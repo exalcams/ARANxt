@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="8.372" height="8.316" viewBox="0 0 8.372 8.316">
+    <defs>
+        <style>
+            .cls-1{fill:#0d0c22}
+        </style>
+    </defs>
+    <g id="Layer_2" transform="rotate(90 9.514 4.15)">
+        <path id="Path_6391" d="M9.717 14.969l3.869 3.873a.392.392 0 0 1-.553.553l-3.551-3.552-3.449 3.45a.392.392 0 0 1-.553 0 .392.392 0 0 1 0-.557l3.767-3.767a.333.333 0 0 1 .47 0z" class="cls-1" transform="translate(0 -5.825)"/>
+        <path id="Path_6392" d="M9.72 5.389l3.869 3.873a.392.392 0 0 1-.553.553L9.485 6.263l-3.449 3.45a.392.392 0 0 1-.553 0 .392.392 0 0 1 0-.553L9.25 5.389a.333.333 0 0 1 .47 0z" class="cls-1" transform="translate(-.003)"/>
+    </g>
+</svg>

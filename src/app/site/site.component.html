@@ -1,0 +1,72 @@
+<form autocomplete="off" [formGroup]="SiteForm">
+<div fxFlex="100" fxLayout="column" fxLayoutGap="30px">
+<div fxFlex="80" fxLayout="row" fxLayoutGap="50px">
+    <div fxLayout="column" fxFlex="45" fxLayoutGap="20px" class="main" >
+        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span fxFlex="30">Site
+                Name</span><span fxFlex="70">
+                <input class="input_cls" formControlName="Site" matInput placeholder=" Enter Site Name">
+            </span>
+        </div>
+        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                fxFlex="30">Title</span><span fxFlex="70">
+                <input class="input_cls" formControlName="Title" matInput placeholder=" Enter Title">
+            </span>
+        </div>
+        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                fxFlex="30">Tax1</span><span fxFlex="70">
+                <input class="input_cls" formControlName="Tax1" matInput placeholder=" Enter Tax1">
+            </span>
+        </div>
+        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                fxFlex="30">Tax2</span><span fxFlex="70">
+                <input class="input_cls" formControlName="Tax2" matInput placeholder=" Enter Tax2">
+            </span>
+        </div>
+        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                fxFlex="30">Tax3</span><span fxFlex="70">
+                <input class="input_cls" formControlName="Tax3" matInput placeholder=" Enter Tax3">
+            </span>
+        </div>
+       
+    </div>
+
+    <div fxLayout="column" fxFlex="45" fxLayoutGap="20px"  class="main">
+        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+            fxFlex="30">Category</span><span fxFlex="70">
+            <input class="input_cls"  formControlName="Category" matInput placeholder=" Enter Category">
+        </span>
+    </div>
+    <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+            fxFlex="30">Company</span>
+            <span fxFlex="70">
+                    <select class="input_cls" formControlName="Company">
+                        <option value="" disabled selected hidden>Select Company</option>
+                        <option class="input_cls" *ngFor="let country of Company"
+                            fxLayoutAlign="center center"  [ngValue]="country.company">
+                            {{country.company}}</option>
+                    </select>
+            <!-- <input class="input_cls" formControlName="Company" matInput placeholder=" Enter Company"> -->
+        </span>
+    </div>
+    <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+            fxFlex="30">ProfitCenter</span><span fxFlex="70">
+            <input class="input_cls" formControlName="ProfitCenter" matInput placeholder=" Enter ProfitCenter">
+        </span>
+    </div>
+    <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+            fxFlex="30">ObjType</span><span fxFlex="70">
+            <input class="input_cls" formControlName="ObjType" matInput placeholder=" Enter ObjType">
+        </span>
+    </div>
+    </div>
+
+    <div fxLayout="column">
+        <div><img class="close_hover" (click)="close()" src="./assets/Images/close.svg"></div>
+    </div>
+</div>
+<div fxLayout="row" fxFlex="20" fxLayoutAlign="center center" >
+    <button (click)="submit()" mat-flat-button color="primary">Create</button>
+</div>
+</div>
+</form>
+

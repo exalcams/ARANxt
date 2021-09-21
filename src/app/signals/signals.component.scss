@@ -1,0 +1,208 @@
+.txt_class{
+    font-size: 12px;
+    font-weight: 600;
+
+}
+.txt_class_Infobutton{
+    font-size: 12px;
+    font-weight: 600;
+    color: #6e6d7a;
+}
+.dot{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin: 3px;
+    background-color: #49ee95;
+}
+.dot_legend{
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin: 7px;
+    /* background-color: red; */
+}
+.Chart_legend{
+    font-size:10px;color: #acacac;font-weight: 600;
+}
+.input_field{outline: none; color: #acacac; font-size:10px; font-family: 'poppins' !important; border: transparent; background-color: #f3f3f4;
+    width: 100%;
+}
+.main_input_field1{
+    background-color: #f3f3f4;width: 55%; border-radius: 4px; align-items: center;
+ }
+ .main_buttons_side1{
+    color: #acacac;;font-size: 11px; font-family: 'poppins-semi' !important;cursor: pointer;  line-height: 1.4;height: 25px;
+padding: 4px 10px 4px 10px;    border-radius: 4px;    border: solid 1px #e7e7e9; }
+.main_buttons_side1:hover{
+    color:blue;
+}
+.filter_img{
+    width: 14px;
+}
+.colorbox_button{
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    background-color: #6e6d7a;
+    color: white;
+    text-align: center;
+ 
+}
+.button_info_active{
+    background-color: #cce1ff;
+    border: 2px solid #0a6dfb;
+   // color:#0a6dfb !important;
+   .txt_class_Infobutton{
+    color:#0a6dfb !important;
+   }
+    border-radius: 4px;
+    .colorbox_button{
+        background-color: #0a6dfb;
+    color: white;
+    }
+}
+
+.Warning_button{
+    background-color: #faf8fb;
+    border-radius: 4px;
+}
+.Warning_button:hover{
+    background-color: #FEF1D1;
+    border-radius: 4px;
+    .txt_class_Infobutton{
+        color:#81621E !important;
+       }
+        .colorbox_button{
+            background-color: #81621E;
+        color: white;
+        }
+    
+}
+.Warning_button:active{
+    border: 2px solid #81621E; 
+    background-color: #FEF1D1;
+    border-radius: 4px;
+    .txt_class_Infobutton{
+        color:#81621E !important;
+       }
+        .colorbox_button{
+            background-color: #81621E;
+        color: white;
+        }
+}
+.Danger_button{
+    background-color: #faf8fb;
+    border-radius: 4px;
+}
+.Danger_button:hover{
+    border-radius: 4px;
+    background-color: #F5D7DA ;
+    .txt_class_Infobutton{
+        color:#6C1E21 !important;
+       }
+        .colorbox_button{
+            background-color: #6C1E21 ;
+        color: white;
+        }
+   
+}
+.Danger_button:active{
+    border: 2px solid #6C1E21; 
+    border-radius: 4px;
+    background-color: #F5D7DA ;
+    .txt_class_Infobutton{
+        color:#6C1E21 !important;
+       }
+        .colorbox_button{
+            background-color: #6C1E21 ;
+        color: white;
+        }
+    
+}
+.Sucess_button{
+    background-color: #faf8fb;
+    border-radius: 4px;
+}
+.Sucess_button:hover{
+    border-radius: 4px;
+    background-color: #D6EADA  ;
+    .txt_class_Infobutton{
+        color:#28541E!important;
+       }
+        .colorbox_button{
+            background-color: #28541E ;
+        color: white;
+        }
+}
+.Sucess_button:active{
+    border: 2px solid  #28541E ;
+    border-radius: 4px;
+    background-color: #D6EADA  ;
+    .txt_class_Infobutton{
+        color:#28541E!important;
+       }
+        .colorbox_button{
+            background-color: #28541E ;
+        color: white;
+        }
+}
+.autoscroll{
+    overflow: scroll;
+    height: 300px;
+}
+.example::-webkit-scrollbar {
+    display: none;
+  }
+
+  table {
+    width: 100%;
+}
+  th {
+    color: #0d0c22;
+    font-weight: bold;
+    font-size: 12px;
+  }
+  tr.mat-header-row {
+    height: 56px;
+    background-color: #f9f8fe !important;
+}
+th.mat-header-cell{
+    padding: 0;
+    border-bottom-width: 0px;
+    border-bottom-style: solid;
+}
+td.mat-cell {
+    border-bottom-style: none;
+    font-size: 12px;
+    font-weight: bold;
+    color: #6e6d7a;
+  }
+  .mat-table {
+    font-family: 'poppins' !important;
+}
+.assignbutton{
+    width: 150px;
+    height: 35px;
+    background-color: #f9f8fe;
+    color: #00ba53;
+    font-weight: 600;
+}
+.assignbutton:hover{
+  
+    background-color: #00ba53;
+    color:white;
+    font-weight: 600;
+}
+.assignbutton:active{
+  
+    background-color: #00ba53;
+    color:white;
+    font-weight: 600;
+}
+.assignbutton:focus{
+  
+    background-color: #00ba53;
+    color:white;
+    font-weight: 600;
+}

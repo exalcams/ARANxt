@@ -1,0 +1,226 @@
+<div style="width:98%;height: 90%;margin-top: 9px;margin-left: 10px;" fxLayout="column">
+
+    <div *ngIf="isExpand" style="width:97%;height:100%;background-color: #f9f8fe;;margin-left: 10px;" fxLayout="row"
+        fxFlex="30">
+
+        <div fxFlex="18" fxLayout="column" style="margin: 13px 0px 0px 25px;">
+            <span style="margin-top: 12px;" class="txt_class">Overall Status</span>
+            <span class="txt_class">
+                Info</span>
+
+            <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                [plotOptions]="chartOptions.plotOptions" [labels]="chartOptions.labels" [colors]="chartOptions.colors"
+                [stroke]="chartOptions.stroke"></apx-chart>
+
+        </div>
+        <div fxFlex="2" style="padding-top: 30px;opacity: 0.12;width: 1px;
+        border-left: solid 1px #0d0055; margin-top: 40px;
+    margin-bottom: 20px;">
+            <!-- <p style="height: 70%;opacity: 0.12;width: 1px;
+        border: solid 1px #0d0055;"></p> -->
+        </div>
+        <div fxFlex="60" fxLayout="row">
+            <div fxFlex="70">
+                <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart" [xaxis]="chartOptions1.xaxis"
+                    [yaxis]="chartOptions1.yaxis" [dataLabels]="chartOptions1.dataLabels" [grid]="chartOptions1.grid"
+                    [markers]="chartOptions1.markers" [stroke]="chartOptions1.stroke" [legend]="chartOptions1.legend">
+                </apx-chart>
+            </div>
+            <div fxFlex="30" style="margin-top: 22px;text-align: center;">
+                <span style="font-weight: 600;font-size: 12px;">Last 6 Months</span>
+                <img src="../../assets/Images/Group 8270.svg" style="width: 15px;
+         height: 15;margin-left: 5px;">
+                <div style="margin: 20px;">
+                    <div fxLayout="row" fxLayoutGap="10px">
+                        <span class="dot_legend" style="background-color: #47cb2a;"></span>
+
+                        <span class="Chart_legend"> Success Alert!</span>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="10px">
+                        <span class="dot_legend" style="background-color: #fc9c18"></span>
+
+                        <span class="Chart_legend"> Warning Alert!</span>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="10px">
+                        <span class="dot_legend" style="background-color: #0a6dfb;"></span>
+                        <span class="Chart_legend">Info Alert!</span>
+
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="10px">
+                        <span class="dot_legend" style="background-color: #f8383f;"></span>
+                        <span class="Chart_legend">Danger Alert!</span>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div fxFlex="20" style="margin: 20px;padding: 10px;background-color: white;box-shadow: 0 5px 15px 0 #cedfff;"
+            fxLayout="column" fxLayoutAlign="space-between center">
+            <!-- <div > -->
+            <div fxFlex="50" style="margin-top: 10px;width: 60%;">
+
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <img src="../../assets/Images/Group 8267.svg" style="width: 30px;
+                   height: 30px;">
+                    <span style="font-size: 10px;opacity: .5;font-weight: 600;"> Available</span>
+                    <span class="dot"></span>
+                </div>
+                <span class="txt_class">18 Technician's</span>
+            </div>
+            <div fxFlex="50" style="margin-top: 10px;width: 60%;">
+                <div fxLayout="row" fxLayoutAlign="space-between  center">
+                    <img src="../../assets/Images/Group 8268.svg" style="width: 30px;
+                height: 20px;">
+                    <span style="font-size: 10px;opacity: .5;font-weight: 600;">&nbsp;in&nbsp;Progress</span>
+                    <span class="dot" style="background-color: #ec6c61;"></span>
+                </div>
+                <span class="txt_class">18 Technician's</span>
+            </div>
+        </div>
+        <!-- </div> -->
+        <!-- <div style="background-color: white;padding: 10px;">
+               
+        </div> -->
+    </div>
+
+    <div fxFlex="70" style="width:97%;height:100%;margin-left: 10px;">
+        <!-- search box -->
+        <div style="width:100%;height: 30px;margin-top: 20px;" fxLayout="row">
+            <div fxLayout="row" fxLayoutGap="25px" style="width:86%;margin-top: 5px;">
+                <span class="txt_class">Notifications</span>
+
+                <div fxLayout="row" class="main_input_field1">
+                    <div fxFlex="10" style="margin-left: 5px;">
+                        <img style="vertical-align: -webkit-baseline-middle;width: 24px;" src="./assets/search.svg">
+                    </div>
+                    <div fxFlex="85">
+                        <input class="input_field" (keyup)="applyFilter($event)" matInput
+                            placeholder="Search by I’d or Name">
+                    </div>
+                    <div fxFlex="5">
+                        <img style="vertical-align: middle; margin-left: -66%;width: 8px;" src="./assets/mic.svg">
+                    </div>
+                </div>
+                <img class="filter_img" src="./assets/iconfinder_Icon_filter_hor_outline_6637739 (2).svg">
+            </div>
+            <div fxLayout="row" class="main_buttons_side1" (click)="Expand()" fxLayoutGap="10px">
+                <div>
+                    <img style="vertical-align: sub;margin-left: 4px;width: 13px;
+            height: 12px;" src="../../assets/Images/Group 7527.svg">
+                </div>
+                <div>Expand View</div>
+
+
+            </div>
+        </div>
+        <!-- buttons -->
+        <div style="width:100%;height: 35px;margin-top: 20px;" fxLayout="row" fxLayoutGap="20px">
+            <div fxFlex="23" fxLayoutAlign="center center" class="button_info_active" fxLayoutGap="10px">
+                <span class="txt_class_Infobutton">Info alert!</span>
+                <div class="colorbox_button">{{InfoAlert}}</div>
+            </div>
+            <div fxFlex="23" fxLayoutAlign="center center" class="Warning_button" fxLayoutGap="10px">
+                <span class="txt_class_Infobutton">Warning alert!</span>
+                <div class="colorbox_button">{{WarningAlert.length}}</div>
+            </div>
+            <div fxFlex="23" fxLayoutAlign="center center" class="Danger_button" fxLayoutGap="10px">
+                <span class="txt_class_Infobutton">Danger alert!</span>
+                <div class="colorbox_button">{{DangerAlert.length}}</div>
+            </div>
+            <div fxFlex="23" fxLayoutAlign="center center" class="Sucess_button" fxLayoutGap="10px">
+                <span class="txt_class_Infobutton">Success alert!</span>
+                <div class="colorbox_button"> {{SuccessAlert}}</div>
+            </div>
+        </div>
+        <!-- tabel -->
+        <div class="autoscroll example" style="margin-top: 20px;">
+            <table mat-table [dataSource]="dataSource" style="width: 100%;">
+                <ng-container matColumnDef="check">
+                    <th mat-header-cell *matHeaderCellDef
+                        style="text-align: left; height: 30px;border-bottom: 15px solid white;">
+                        <mat-checkbox (change)="$event ? masterToggle() : null"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()" color="primary"></mat-checkbox>
+                    </th>
+                    <td mat-cell *matCellDef="let element;index as i" style="width: 10%;text-align: left;">
+                        <mat-checkbox (click)="$event.stopPropagation();"
+                            (change)="$event ? selection.toggle(element) : null"
+                            [checked]="selection.isSelected(element)" color="primary"></mat-checkbox>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="AssertId">
+                    <th mat-header-cell *matHeaderCellDef
+                        style="text-align: left; height: 30px;border-bottom: 15px solid white;"> Assert Id </th>
+                    <td mat-cell *matCellDef="let element;index as i" style="width: 10%;text-align: left;">
+                        {{element.AssertId}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="AssertName">
+                    <th mat-header-cell *matHeaderCellDef
+                        style="text-align: left; height: 30px;border-bottom: 15px solid white;"> Assert Name </th>
+                    <td mat-cell *matCellDef="let element" style="width: 10%;text-align: left;">
+                        {{element.AssertName}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Catalogue">
+                    <th mat-header-cell *matHeaderCellDef
+                        style="text-align: left;border-bottom: 15px solid white; height: 30px"> Catalogue </th>
+                    <td mat-cell *matCellDef="let element" style="width: 10%;text-align: left; color: #00b94d;">
+                        <span style="font-size: 12px;">
+                            View
+                        </span>
+                        <mat-icon style="font-size: 12px;margin-top:1px">remove_red_eye</mat-icon>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="Location">
+                    <th mat-header-cell *matHeaderCellDef
+                        style="text-align: left;border-bottom: 15px solid white; height: 30px"> Location </th>
+                    <td mat-cell *matCellDef="let element" style="width: 10%;text-align: left;"> {{element.Location}}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="AlertDate">
+                    <th mat-header-cell *matHeaderCellDef
+                        style="text-align: left;border-bottom: 15px solid white; height: 30px"> Alert Date </th>
+                    <td mat-cell *matCellDef="let element" style="width: 10%;text-align: left;"> {{element.AlertDate}}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="AlertCount">
+                    <th mat-header-cell *matHeaderCellDef
+                        style="text-align: left; border-bottom: 15px solid white;height: 30px">Alert Count</th>
+                    <td mat-cell *matCellDef="let element" style="width: 10%;text-align: left;">
+                        {{element.AlertCount}} </td>
+                </ng-container>
+                <ng-container matColumnDef="Brand">
+                    <th mat-header-cell *matHeaderCellDef
+                        style="text-align: left;border-bottom: 15px solid white; height: 10px">Brand </th>
+                    <td mat-cell *matCellDef="let element" style="width: 10%;text-align: left;">
+                        {{element.Brand}} </td>
+                </ng-container>
+                <ng-container matColumnDef="Menu">
+                    <th mat-header-cell *matHeaderCellDef
+                        style="text-align: left;border-bottom: 15px solid white; height: 10px"></th>
+                    <td mat-cell *matCellDef="let element;index as i" style="width: 5%;text-align: left;">
+                        <mat-icon [matMenuTriggerFor]="menu">more_vert</mat-icon>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item (click)="MovetoDanger(i)">Move to Danger!</button>
+                            <button mat-menu-item (click)="MovetoWarning(i)">Move to Warning!</button>
+                            <button mat-menu-item (click)="Deleterow(i)">Delete</button>
+                        </mat-menu>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns  sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; let element; columns: displayedColumns;"></tr>
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data matching the filter </td>
+                </tr>
+            </table>
+        </div>
+        <!-- footer -->
+        <div style="width: 100%;height: 40px;    justify-content: flex-end;" fxLayout="row">
+            <button mat-button class="assignbutton" (click)="assign()">Assign ({{selection.selected.length}})</button>
+        </div>
+    </div>
+</div>

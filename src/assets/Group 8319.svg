@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="74" height="74" viewBox="0 0 74 74">
+    <defs>
+        <filter id="rowe8i2tga" width="74" height="74" x="0" y="0" filterUnits="userSpaceOnUse">
+            <feOffset dy="3"/>
+            <feGaussianBlur result="blur" stdDeviation="3"/>
+            <feFlood flood-color="#456af8" flood-opacity=".18"/>
+            <feComposite in2="blur" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g>
+        <g filter="url(#rowe8i2tga)" transform="translate(-1654 -544) translate(1654 544)">
+            <rect width="56" height="56" fill="#dd5049" opacity="0.1" rx="4" transform="translate(9 6)"/>
+        </g>
+        <g>
+            <path fill="#dd5049" d="M23.968 4.112A14.04 14.04 0 0 0 4.112 23.968 14.04 14.04 0 0 0 23.968 4.112zm-9.928 9.05a3.948 3.948 0 0 1 1.079 7.746.276.276 0 0 0-.2.264v.74a.894.894 0 0 1-.835.9.878.878 0 0 1-.92-.877v-.765a.275.275 0 0 0-.2-.264 3.955 3.955 0 0 1-2.87-3.773.892.892 0 0 1 .852-.9.877.877 0 0 1 .9.877 2.194 2.194 0 1 0 2.194-2.194 3.948 3.948 0 0 1-1.079-7.746.276.276 0 0 0 .2-.264v-.74a.894.894 0 0 1 .835-.9.878.878 0 0 1 .92.877v.765a.275.275 0 0 0 .2.264 3.955 3.955 0 0 1 2.87 3.773.892.892 0 0 1-.852.9.877.877 0 0 1-.9-.877 2.194 2.194 0 1 0-2.194 2.194z" transform="translate(-1654 -544) translate(1676.96 563.96)"/>
+        </g>
+    </g>
+</svg>

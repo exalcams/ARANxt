@@ -1,0 +1,371 @@
+<div fxLayout="column" fxFlex="100" fxLayoutGap="3%" style="width: 100%;padding: 25px;">
+    <!-- font-family: 'poppins-semi' !important;
+      font-family: Poppins !important;
+     -->
+    <div fxLayout="row" fxFlex='20' style="width: 100%;">
+        <div fxLayout="column" fxFlex="40">
+            <div fxLayout="column">
+                <span style="font-size: 18px;font-weight: bold;color: #0d0c22;">
+                    DASHBOARD
+                </span>
+                <span style="font-size: 10px;color: #acacac;font-family: 'poppins-semi' !important;">
+                    Hello Admin, Welcome Back!
+                </span>
+            </div>
+        </div>
+
+        <div fxLayout="column" fxFlex="60">
+            <span style="font-size: 12px;color: #acacac;font-family: 'poppins-semi' !important;">Description About Site
+                is Lorea Ipsum is simply dummy text of the printing and typesetting.</span>
+        </div>
+
+    </div>
+
+    <div fxLayout="row" fxFlex='80' fxLayoutGap="15px" style="width: 100%;">
+        <div fxLayout="column" fxFlex="30" fxLayoutGap="15px" class="gap" style="margin-top: -40px;">
+            <div
+                style="background-color: #ffffff;border-radius: 4px;box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.01);padding: 10px;">
+                <div fxLayout="column" fxLayoutGap="15px" style="width: 100%;">
+                    <div fxLayout="row" fxFlex="45">
+                        <div fxLayout="column" style="width: 100%;">
+                            <div fxLayout="row" fxFlex>
+                                <div fxLayout="column" fxLayoutGap="8px">
+                                    <div fxLayout="row">
+                                        <img class="sett" src="./assets/Images/spaces.svg">
+                                        <span style="font-size: 12px;font-family: Poppins !important;"> Spaces</span>
+                                    </div>
+                                    <!-- <img class="dot1" src="./assets/image/spaces.svg"> -->
+                                    <div fxLayout="column">
+                                        <span><img src="./assets/Images/arr.svg"></span>
+                                        <span style="font-size: 12px;font-family: 'poppins-semi' !important;">37
+                                            Found</span>
+                                        <span
+                                            style="font-size: 10px;color: #acacac;font-family: 'poppins-semi' !important;">Occupied</span>
+
+                                    </div>
+                                    <div style="font-size: 12px;color: #ec936a;font-family: 'poppins-semi' !important;">
+                                        05 working in Progress</div>
+                                </div>
+
+
+                                <div fxFlex="40">
+                                    <div style="display: flex;justify-content: flex-end;">
+                                        <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                                            [plotOptions]="chartOptions.plotOptions" [fill]="chartOptions.fill">
+                                        </apx-chart>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- <div>hhoihj </div> -->
+                        </div>
+
+                        <div fxLayout="column">
+
+                        </div>
+
+
+
+                    </div>
+
+                    <div>
+                        <mat-divider class="vert_divider"></mat-divider>
+                    </div>
+
+                    <div fxLayout="row" fxFlex="50" style="width: 100%;">
+                        <div fxLayout="column" fxFlex="50">
+                            <div fxLayout="row">
+                                <img class="sett" style="margin-top: -5px;margin-left: -9px;"
+                                    src="./assets/Images/parking.svg">
+                                <span
+                                    style="font-size: 12px;color: #0d0c22;font-family: 'poppins-semi' !important;">Parking
+                                    Space</span>
+                            </div>
+
+
+                            <div>
+                                <img style="width: 50%;height: auto;" src="./assets/Images/house.png">
+                            </div>
+
+
+                        </div>
+
+                        <div fxLayout="column" fxFlex="50">
+                            <div style="display: flex;
+                            justify-content: flex-end;">
+                                <mat-icon>navigate_next</mat-icon>
+                            </div>
+
+                            <div>
+                                <span style="font-size: 12px;font-family: 'poppins-semi' !important;color: #0d0c22;display: flex;
+                                justify-content: flex-end;">12 Space</span>
+                            </div>
+
+                            <div>
+                                <span style="font-size: 10px;font-family: 'poppins-semi' !important;color: #acacac;display: flex;
+                                justify-content: flex-end;">56&nbsp;&nbsp;Slot&nbsp;Reserved</span>
+                            </div>
+
+                            <div class="resbox1" style="display: flex;
+                            justify-content: flex-end;">
+                                <span class="count1"
+                                    style="font-size: 12px; font-family: 'poppins-semi' !important;color: #00ba53;">10&nbsp;&nbsp;Slot&nbsp;Available</span>
+                            </div>
+                        </div>
+                        <!-- <div fxLayout="row">
+                            <img style="margin-top: -5px;" src="./assets/image/parking.svg">
+                            <span style="font-size: 12px;">Parking Space</span>
+                        </div>
+
+                        <div fxLayout="row">
+                            <div fxLayout="column">
+
+                            </div>
+                        </div> -->
+
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div fxLayout="column" fxLayoutGap="10px"
+                style="background-color: #fbedf6;padding: 10px;border-radius: 4px;">
+                <div fxLayout="row">
+                    <img class="sett" src="./assets/Images/movable.svg ">
+                    <span style="font-size: 12px;font-family: 'poppins-semi' !important; margin-top: 5px;">Movable Asset</span>
+                </div>
+
+                <div fxLayout="column" style="position: relative;left: 35px;">
+                    <span style="font-size: 12px; ">Today</span>
+                    <span style="font-size: 12px;font-family: 'poppins-semi' !important; ">104 Found</span>
+
+                </div>
+
+                <div fxLayout="column " style="position: relative;left: 35px;">
+                    <span style="font-size: 12px; ">More than a Day</span>
+                    <div fxLayout="row">
+                        <span style="font-size: 12px;font-family: 'poppins-semi' !important; ">23 Found</span>
+                        <span style="margin-left: 40%;"><img src="./assets/Images/arr.svg"></span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div fxLayout="column " fxFlex="25">
+            <div fxLayout="column " fxLayoutGap="11.8%"
+                style="background-color: #f9f8fe;margin-top: -40px !important;padding: 15px;">
+                <div fxLayoutAlign="space-evenly center">
+                    <span> <img class="sett" src="./assets/Images/maintence.svg"></span>
+                    <span class="maint"
+                        style="font-size: 12px;color: #0d0c22;font-weight: 500;margin-top: -13px;">Maintenance&nbsp;Report</span>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <div fxLayout="row" fxLayoutGap="5px">
+                        <div fxLayout="column">
+                            <span style="font-size: 12px;color: #c2bedf;font-family: 'poppins-semi' !important;">Open</span>
+                            <span style="font-size: 10px;color: #0d0c22;font-family: 'poppins-semi' !important;">43</span>
+                        </div>
+                        <div class="circle"></div>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutGap="5px">
+                        <div fxLayout="column" class="move">
+                            <span style="font-size: 12px;color: #c2bedf;font-family: 'poppins-semi' !important;">On Time</span>
+                            <span style="font-size: 10px;color: #0d0c22;font-family: 'poppins-semi' !important;">43</span>
+                        </div>
+                        <div class="circle1"></div>
+                    </div>
+
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <div fxLayout="row" fxLayoutGap="5px">
+                        <div fxLayout="column">
+                            <span style="font-size: 12px;color: #c2bedf;font-family: 'poppins-semi' !important;">Delayed</span>
+                            <span style="font-size: 10px;color: #0d0c22;font-family: 'poppins-semi' !important;">43</span>
+                        </div>
+                        <div class="circle2"></div>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutGap="5px">
+                        <div fxLayout="column">
+                            <span style="font-size: 12px;color: #c2bedf;font-family: 'poppins-semi' !important;">Completed</span>
+                            <span style="font-size: 10px;color: #0d0c22;font-family: 'poppins-semi' !important;">43</span>
+                        </div>
+                        <div class="circle3"></div>
+                    </div>
+
+                </div>
+
+                <div fxLayout="column" fxLayoutGap="10%" style="background-color: #ebe6ff;padding: 15px;width: 100%;">
+
+                    <div fxFlex="15" fxLayoutAlign="space-evenly center">
+                        <span> <img class="sett" src="./assets/Images/Expiry_Leases.svg"></span>
+                        <span style="font-size: 12px;margin-top: -13px;font-family: 'poppins-semi' !important;">Expiry Leases</span>
+                    </div>
+
+                    <div fxLayout="row" fxFlex="70" style="width: 100%;">
+
+                        <div fxFlex="100" id="chart">
+                            <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
+                                [labels]="chartOptions1.labels" [legend]="chartOptions1.legend"
+                                [grid]="chartOptions1.grid" [plotOptions]="chartOptions1.plotOptions"
+                                [responsive]="chartOptions1.responsive"></apx-chart>
+                        </div>
+
+                    </div>
+
+                    <div fxFlex="15">
+                        <span style="font-size: 12px;display: flex;justify-content: center;">See&nbsp;Details&nbsp;
+                            <mat-icon class="nextt">navigate_next</mat-icon></span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div fxLayout="column" fxFlex fxLayoutGap="5%" class="neww" style="width: 100%;margin-top: -40px;">
+            <div fxLayout="column" style="padding: 10px;border: 1px solid #f5f5f5;">
+                <div fxLayout="row" fxFlex style="width: 100%;">
+                    <div fxFlex="90" fxLayoutGap="15px">
+                        <span><img class="sett" src="./assets/Images/occupants.svg">
+                        </span>
+                        <span style="font-size: 12px;position: relative;
+                        top: -40%;color:#0d0c22;font-family: 'poppins-semi' !important;">Occupants</span>
+                    </div>
+                    <div><img src="./assets/Images/arr.svg"></div>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <div fxLayout="column">
+
+                        <span style="font-size: 12px;">Inside Campus &nbsp;<img class="equal"
+                                src="./assets/Images/equaltwo.svg"></span>
+                        <span style="font-size: 12px; color: #2c2c2c; font-family: 'poppins-semi' !important;">45000</span>
+                    </div>
+
+                    <div fxLayout="column">
+                        <span style="font-size: 12px;">Entry Gate&nbsp;<img class="equal2"
+                                src="./assets/Images/Polygon 105.svg"></span>
+                        <span style="font-size: 12px;color: #2c2c2c; font-family: 'poppins-semi' !important;">56</span>
+                    </div>
+
+                    <div fxLayout="column">
+                        <span style="font-size: 12px;">Exit Gate&nbsp;<img class="equal2"
+                                src="./assets/Images/Polygon 106.svg"></span>
+                        <span style="font-size: 12px;color: #2c2c2c; font-family: 'poppins-semi' !important;">78</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div fxLayout="column" fxLayoutGap="15px" style="padding: 10px;border: 1px solid #f5f5f5;">
+                <div fxLayout="row" fxFlex style="width: 100%;">
+                    <div fxFlex="90" fxLayoutGap="15px">
+                        <span><img class="sett" src="./assets/Images/trans.svg">
+                        </span>
+                        <span style="font-size: 12px;position: relative;
+                        top: -40%;">Recent Transactions</span>
+                    </div>
+                    <div class="container">
+                        <span>
+                            <span class="overlay">Filter</span>
+                            <img class="filter" src="./assets/Images/Filter.svg">
+                        </span>
+                    </div>
+                    <!-- <span class="tooltiptext">Filter</span> -->
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <div fxLayout="row" fxLayoutGap="5%">
+                        <div>
+                            <mat-icon style="position: relative;top:10px;color: #1cffb9;"> call_received</mat-icon>
+                        </div>
+                        <div fxLayout="column">
+                            <span style="font-size: 12px;color: #2c2c2c;font-family: 'poppins-semi' !important;">+$786 </span>
+                            <span style="font-size: 12px;color: #999999;font-family: 'poppins-semi' !important;">Refund</span>
+                        </div>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutGap="5%">
+                        <div>
+                            <mat-icon style="position: relative;top:10px;color: #f73524;"> call_made</mat-icon>
+                        </div>
+                        <div fxLayout="column">
+                            <span style="font-size: 12px;color: #2c2c2c;font-family: 'poppins-semi' !important;">-$250 </span>
+                            <span style="font-size: 12px;color: #999999;font-family: 'poppins-semi' !important;">Electronic</span>
+                        </div>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutGap="5%">
+                        <div>
+                            <mat-icon style="position: relative;top:10px;color: #1cffb9;"> call_received</mat-icon>
+                        </div>
+                        <div fxLayout="column">
+                            <span style="font-size: 12px;color: #2c2c2c;font-family: 'poppins-semi' !important;">+$786 </span>
+                            <span style="font-size: 12px;color: #999999;font-family: 'poppins-semi' !important;">Refund</span>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <div class="resbox2">
+                        <div fxLayout="row" fxLayoutGap="5px">
+                            <span><img class="equal1" src="./assets/Images/income.svg"></span>
+                            <span style="font-size: 12px;color: #1ecc61; font-family: 'poppins-semi' !important;">Receive Payments</span>
+                        </div>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutGap="5px">
+                        <span style="font-size: 12px;margin-top: 3px;color: #c2bedf;font-weight: 500;">View All</span>
+                        <span>
+                            <mat-icon>navigate_next</mat-icon>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div fxLayout="column" style="padding: 10px;border: 1px solid #f5f5f5;height: 28%;width: 100%;">
+                <div fxLayout="row" fxFlex="18" fxLayoutAlign="space-between center">
+                    <span style="font-size: 12px;">This Month &nbsp;<span style="font-size: 12px;font-family: 'poppins-semi' !important;">28
+                            Found</span></span>
+
+                    <span style="font-size: 12px;">Last Month &nbsp;<span style="font-size: 12px;font-family: 'poppins-semi' !important;">28
+                            Found</span></span>
+
+                    <span class="resbox3" style="font-size: 12px;color: #3c6fec;font-family: 'poppins-semi' !important;">Good</span>
+                </div>
+
+                <div fxFlex="82">
+                    <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart"
+                        [dataLabels]="chartOptions2.dataLabels" [plotOptions]="chartOptions2.plotOptions"
+                        [yaxis]="chartOptions2.yaxis" [grid]="chartOptions2.grid" [fill]="chartOptions2.fill"
+                        [stroke]="chartOptions2.stroke" [xaxis]="chartOptions2.xaxis"></apx-chart>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+
+</div>

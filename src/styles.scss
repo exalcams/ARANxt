@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family:  'poppins' !important  }
+
+::-webkit-scrollbar{
+    display: none;
+}
+@font-face{
+    font-family:'poppins';
+    src: url("./assets/Poppins-Regular.ttf");
+}
+@font-face{
+    font-family: 'poppins-med';
+    src:url('assets/Poppins-Medium.ttf');
+    }
+    @font-face{
+    
+    font-family: 'poppins-bold';
+    src:url('assets/Poppins-Bold.ttf');
+    }
+    @font-face{
+      font-family: 'poppins-light';
+      src:url('assets/Poppins-Light.ttf');
+      }
+    @font-face{
+      font-family: 'poppins-semi';
+      src:url('assets/Poppins-SemiBold.ttf');
+      }
+
+      .full-width-dialog .mat-dialog-container {
+        box-shadow: 0 6px 16px 0 rgba(31, 0, 158, 0.12);
+        padding: 15px 0px 0px 10px;
+      }
+      .success {
+        background-color: #26b329 !important;
+      }
+      
+      .danger {
+        background-color: #d6201d !important;
+      }
+      
+      .warning {
+        background-color: #ee9a2c !important;
+      }
+      
+      .info {
+        background-color: #1992ce !important;
+      }

@@ -1,0 +1,53 @@
+<div id="login" class="inner-scroll normal" fxLayout="row" fxLayoutAlign="start">
+
+    <div id="login-intro" fxFlex fxHide fxShow.gt-xs>
+  
+    </div>
+  
+    <div id="login-form-wrapper" fusePerfectScrollbar
+      [@animate]="{value:'*',params:{delay:'300ms',x:'100%'}}">
+  
+      <div id="login-form">
+        <div class="logo" fxLayout="row" fxLayoutAlign="end">
+          <!-- <img src="assets/images/rfq/Exalca_Logo.jpg" width="100px"> -->
+        </div>
+        <div class="title">Sign In</div>
+        <!-- <div class="border"></div> -->
+  
+        <div class="subTitel">Welcome back ! Please Sign In to Continue</div>
+  
+        <form name="loginForm" [formGroup]="loginForm" novalidate>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>User Name</mat-label>
+            <input matInput  formControlName="userName">
+            <mat-error *ngIf="loginForm.get('userName').hasError('required')">
+              User name is required
+            </mat-error>
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password"  formControlName="password">
+            <mat-error>
+              Password is required
+            </mat-error>
+          </mat-form-field>
+  
+          <!-- <div class="remember-forgot-password" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end center">
+            <span class="forgot-password" (click)="OpenForgetPasswordLinkDialog()">
+              Forgot Password?
+            </span>
+          </div> -->
+  
+          <button  mat-raised-button color="accent" class="submit-button" aria-label="LOGIN" (click)="LoginClicked()">
+            <span class="loginButton">Log In</span>
+          </button>
+  
+        </form>
+        <!-- <mat-progress-spinner *ngIf="IsProgressBarVisibile" class="ProgressBarPostion" color="accent"
+          mode="indeterminate"></mat-progress-spinner> -->
+      </div>
+    </div>
+  </div>
+  

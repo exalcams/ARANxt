@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="38.257" height="38.257" viewBox="0 0 38.257 38.257">
+    <defs>
+        <filter id="wfxpbc36ua" width="38.257" height="38.257" x="0" y="0" filterUnits="userSpaceOnUse">
+            <feOffset dy="3"/>
+            <feGaussianBlur result="blur" stdDeviation="3"/>
+            <feFlood flood-color="#fff"/>
+            <feComposite in2="blur" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g filter="url(#wfxpbc36ua)">
+        <path fill="#9e9ea7" d="M78.024 136.57a5.466 5.466 0 1 0-1.6 3.853 5.252 5.252 0 0 0 1.6-3.853zm6.233 10.13a1.58 1.58 0 0 1-1.558 1.558 1.447 1.447 0 0 1-1.1-.463l-4.176-4.163a8.336 8.336 0 0 1-4.857 1.51 8.421 8.421 0 0 1-3.329-.676 8.393 8.393 0 0 1-4.565-4.565 8.541 8.541 0 0 1 0-6.659 8.393 8.393 0 0 1 4.565-4.565 8.542 8.542 0 0 1 6.659 0 8.393 8.393 0 0 1 4.565 4.565 8.421 8.421 0 0 1 .676 3.329 8.336 8.336 0 0 1-1.51 4.857l4.176 4.176a1.491 1.491 0 0 1 .454 1.096z" transform="translate(-55 -122)"/>
+    </g>
+</svg>

@@ -1,0 +1,190 @@
+.btn_task{
+    width: 90%;
+    height: 25px;
+    // margin: 23px 89px 15px 79px;
+    // padding: 9px 568px 8px 554px;
+    border: solid 1px #f3f3f4;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: #6e6d7a; 
+    margin-top: 20px;
+    cursor: pointer;
+}
+.footer {
+    position: fixed;
+    left: 30%;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    background-color: #ebe6ff;
+    color: #0d0c22;
+    padding: 10px 10px;
+    // text-align: center;
+ }
+ .main_input_field1{
+    background-color: #ffffff;width: 92%; border-radius: 4px; margin-top: 3%;
+ }
+ .main_input_field2{
+  background-color: #ffffff; border-radius: 4px;width: 100% !important;border: 1px solid #acacac;
+}
+ .input_field{outline: none; color: #acacac; font-size:10px; font-family: 'poppins' !important; 
+    border: transparent; background-color: #ffffff;
+    width: 90%;
+}
+.input_field1{outline: none; color: #acacac; font-size:10px; font-family: 'poppins' !important; 
+  border: transparent; background-color: #ffffff;
+  width: 98%;
+}
+.rectangle-box{
+    width: 34px;
+    height: 28px;
+    // margin: 4px 5px 21px 4px;
+    // padding: 1px 9px;
+    border-radius: 4px;
+    background-color: #f6f6f6;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.63;
+    letter-spacing: normal;
+    text-align: center;
+    color: #0d0c22;
+}
+.ava_cls{
+    font-family: Poppins;
+  font-size: 16px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.63;
+  letter-spacing: normal;
+  text-align: left;
+  color: #0d0c22;
+}
+.div_cls{
+    width: 150px !important;
+    height: 64px;
+    // margin: 0 22px 0 0;
+    // padding: 12px 46px 12px 14px;
+    padding: 0px 20px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    
+}
+.div1_cls{
+    font-family: Poppins;
+  font-size: 12px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2;
+  letter-spacing: normal;
+  text-align: left;
+  color: #0d0c22;
+}
+.div2_cls{
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2;
+    letter-spacing: normal;
+    text-align: left;
+    color: #c2bedf;
+  
+}
+.mat-grid-tile .mat-figure {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    // display: flex;
+     align-items: start !important; 
+    justify-content: start !important; 
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+.mat_cls{
+    width: 346px;
+  height: 159px;
+  margin: 0 32px 32px 0;
+//   padding: 21px 16px 15px 27px;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px 0 rgba(22, 115, 242, 0.12);
+  background-color: gray;
+}
+.flex-row-container {
+    // background: #aaa;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+}
+.flex-row-container > .flex-row-item {
+    // flex: 1 1 30%; /*grow | shrink | basis */
+    height: 180px;
+    width: 30%;
+    // gap: 20px;
+    // padding: 0px 10px;
+    // overflow: auto;
+}
+
+.flex-row-item {
+    border-radius: 4px;
+    box-shadow: 0 2px 6px 0 rgba(22, 115, 242, 0.12);
+    background-color: #ffffff;
+    margin: 10px;
+//   overflow: auto;
+}
+.Rectangle-7499 {
+    width: 108px;
+    height: 25px;
+    margin: 20px 55px 4px 0;
+    padding: 3px 26px 3px 14px;
+    border-radius: 4px;
+    background-color: #f9f8fe;
+    font-family: Poppins;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: center;
+  color: #6e6d7a;
+  }
+  .cls_name{
+    font-family: Poppins;
+    font-size: 13px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: left;
+    color: #0d0c22;
+  }
+  .cls_loc{
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-align: left;
+    color: #c2bedf;
+  }
+  // .passwordStatusBarColor .mat-progress-bar-fill::after {
+  //   background-color: #16f527;
+  // }
+  .passwordStatusBarColor ::ng-deep .mat-progress-bar-fill::after {
+    background-color: #16f527;
+}
+

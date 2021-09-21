@@ -1,0 +1,642 @@
+<div fxLayout="column" class="whole">
+    <div fxLayout="row" fxLayoutAlign="space-between center"  class="tool">
+        <div fxLayout="row" fxLayoutGap="20px" fxFlexOffset="1" class="addbtndiv">
+            <img src="../../assets/Images/gear.svg" class="gearimg">
+            <p>Maintenance Report</p>
+            <button mat-flat-button class="addbtn">
+                <span class="addtxt"> ADD </span>
+            </button>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" class="togglediv">
+            <p class="maintainmode">Maintenance Mode</p>
+            <div class="parent">
+                <mat-slide-toggle size="large" class="toggle"></mat-slide-toggle>
+            </div>
+        </div>
+    </div>
+
+    <mat-tab-group>
+        <mat-tab>
+
+
+            <ng-template mat-tab-label>
+                <div class="label" fxLayout="row" fxFlexOffset="8" fxLayoutAlign="space-between center">
+                    <div fxLayout="column" fxFlex="85" class="schedulename">
+                        <p class="daily">Daily</p>
+                        <div fxLayout="row" fxLayoutGap="30px">
+                            <p class="pending">Pending</p>
+                            <span class="twelve">12</span>
+                        </div>
+                    </div>
+
+                    <div fxFlex="15">
+                        <img *ngIf="tabindex == 0" src="../../assets/Images/DownArrowDark.svg">
+                    </div>
+                </div>
+            </ng-template>
+
+            <div fxLayout="column">
+                <div fxLayout="row" fxFlex="100">
+                    <div fxFlex="30" fxLayout="column">
+                        <div fxLayout="row " fxLayoutAlign="space-between center">
+                            <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
+                                <p>Elevation</p>
+                                <p class="lift">Lift 1</p>
+                            </div>
+                            <img src="../../assets/Images/building1.png" class="liftbuilding">
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
+                            <p fxFlexOffset="6">Lift Buttons</p>
+                            <mat-slide-toggle class="slide"></mat-slide-toggle>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                            <p fxFlexOffset="6">Alarm Buttons</p>
+                            <mat-slide-toggle class="slide"></mat-slide-toggle>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                            <p fxFlexOffset="6">Telephone</p>
+                            <mat-slide-toggle class="slide"></mat-slide-toggle>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                            <p fxFlexOffset="6">Ventilation Fan</p>
+                            <mat-slide-toggle class="slide"></mat-slide-toggle>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                            <p fxFlexOffset="6">Door Sensor</p>
+                            <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                            <p fxFlexOffset="6">Elevator Car</p>
+                            <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                        </div>
+                    </div>
+                    <div fxFlex="5">
+                        <mat-divider [vertical]="true"></mat-divider>
+                    </div>
+                    <div fxFlex="30" fxLayout="column">
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
+                                <p>Elevation</p>
+                                <p class="lift">Lift 2</p>
+                            </div>
+                            <img src="../../assets/Images/building1.png" class="liftbuilding">
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
+                            <p fxFlexOffset="6">Lift Buttons</p>
+                            <mat-slide-toggle class="slide"></mat-slide-toggle>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                            <p fxFlexOffset="6">Alarm Buttons</p>
+                            <mat-slide-toggle class="slide"></mat-slide-toggle>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                            <p fxFlexOffset="6">Telephone</p>
+                            <mat-slide-toggle class="slide"></mat-slide-toggle>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                            <p fxFlexOffset="6">Ventilation Fan</p>
+                            <mat-slide-toggle class="slide"></mat-slide-toggle>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                            <p fxFlexOffset="6">Door Sensor</p>
+                            <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                            <p fxFlexOffset="6">Elevator Car</p>
+                            <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                        </div>
+                    </div>
+                    <div fxFlex="5">
+                        <mat-divider [vertical]="true"></mat-divider>
+                    </div>
+                    <div fxFlex="30" fxLayout="column">
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
+                                <p>Elevation</p>
+                                <p class="lift">Lift 3</p>
+                            </div>
+                            <img src="../../assets/Images/building1.png" class="liftbuilding">
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
+                            <p fxFlexOffset="6">Lift Buttons</p>
+                            <mat-slide-toggle class="slide"></mat-slide-toggle>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                            <p fxFlexOffset="6">Alarm Buttons</p>
+                            <mat-slide-toggle class="slide"></mat-slide-toggle>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                            <p fxFlexOffset="6">Telephone</p>
+                            <mat-slide-toggle class="slide"></mat-slide-toggle>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                            <p fxFlexOffset="6">Ventilation Fan</p>
+                            <mat-slide-toggle class="slide"></mat-slide-toggle>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                            <p fxFlexOffset="6">Door Sensor</p>
+                            <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                            <p fxFlexOffset="6">Elevator Car</p>
+                            <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <div class="label" fxLayout="row wrap" fxFlexOffset="6" fxFlex="100"
+                    fxLayoutAlign="space-between center">
+                    <div fxLayout="column" fxFlex="65" class="schedulename">
+                        <p class="daily">Weekly</p>
+                        <div fxLayout="row" fxLayoutGap="30px">
+                            <p class="pending">Pending</p>
+                            <span class="twelve">12</span>
+                        </div>
+                    </div>
+                    <div class="newdiv" fxFlex="20">
+                        <p>New</p>
+                    </div>
+                    <div fxFlex="15">
+                        <img *ngIf="tabindex == 0" src="../../assets/Images/DownArrowDark.svg">
+                    </div>
+                </div>
+            </ng-template>
+
+
+            <div fxLayout="row" fxFlex="100">
+                <div fxFlex="30" fxLayout="column">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
+                            <p>Elevation</p>
+                            <p class="lift">Lift 1</p>
+                        </div>
+                        <img src="../../assets/Images/building1.png" class="liftbuilding">
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
+                        <p fxFlexOffset="6">Fire Alarm</p>
+                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Emergrncy Sensor</p>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6" style="color: #c2bedf">P Sensor</p>
+                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6" style="color: #c2bedf">S Sensor</p>
+                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Joints</p>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6" style="color: #c2bedf">Nut</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6" style="color: #c2bedf">Bolt</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                </div>
+                <div fxFlex="5">
+                    <mat-divider [vertical]="true"></mat-divider>
+                </div>
+                <div fxFlex="30" fxLayout="column">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
+                            <p>Elevation</p>
+                            <p class="lift">Lift 1</p>
+                        </div>
+                        <img src="../../assets/Images/building1.png" class="liftbuilding">
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
+                        <p fxFlexOffset="6">Fire Alarm</p>
+                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Emergrncy Sensor</p>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6" style="color: #c2bedf">P Sensor</p>
+                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6" style="color: #c2bedf">S Sensor</p>
+                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Joints</p>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6" style="color: #c2bedf">Nut</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6" style="color: #c2bedf">Bolt</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                </div>
+                <div fxFlex="5">
+                    <mat-divider [vertical]="true"></mat-divider>
+                </div>
+                <div fxFlex="30" fxLayout="column">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
+                            <p>Elevation</p>
+                            <p class="lift">Lift 1</p>
+                        </div>
+                        <img src="../../assets/Images/building1.png" class="liftbuilding">
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
+                        <p fxFlexOffset="6">Fire Alarm</p>
+                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Emergrncy Sensor</p>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6" style="color: #c2bedf">P Sensor</p>
+                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6" style="color: #c2bedf">S Sensor</p>
+                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Joints</p>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6" style="color: #c2bedf">Nut</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6" style="color: #c2bedf">Bolt</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                </div>
+            </div>
+
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <div class="label" fxLayout="row" fxFlexOffset="8" fxLayoutAlign="space-between center">
+                    <div fxLayout="column" class="schedulename" fxFlex="65">
+                        <p class="daily">Monthly</p>
+                        <div fxLayout="row" fxLayoutGap="30px">
+                            <p class="pending">Completed</p>
+                        </div>
+                    </div>
+                    <div class="newdiv" fxFlex="20">
+                        <p>New</p>
+                    </div>
+                    <div fxFlex="15">
+                        <img *ngIf="tabindex == 0" src="../../assets/Images/DownArrowDark.svg">
+                    </div>
+                </div>
+            </ng-template>
+
+
+            <div fxLayout="row" fxFlex="100">
+                <div fxFlex="30" fxLayout="column">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
+                            <p>Escalator</p>
+                            <p class="lift">Floor 1</p>
+                        </div>
+                        <img src="../../assets/Images/escalator.png" class="escalator">
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
+                        <p fxFlexOffset="6">Motor Bearing</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Shaft</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Belt</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Chain Drive</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Brush</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Roller Wheels</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Guide Rails</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Speed Governor</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Controller</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                </div>
+                <div fxFlex="5">
+                    <mat-divider [vertical]="true"></mat-divider>
+                </div>
+                <div fxFlex="30" fxLayout="column">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
+                            <p>Escalator</p>
+                            <p class="lift">Floor 2</p>
+                        </div>
+                        <img src="../../assets/Images/escalator.png" class="escalator">
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
+                        <p fxFlexOffset="6">Motor Bearing</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Shaft</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Belt</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Chain Drive</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Brush</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Roller Wheels</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Guide Rails</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Speed Governor</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Controller</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                </div>
+                <div fxFlex="5">
+                    <mat-divider [vertical]="true"></mat-divider>
+                </div>
+                <div fxFlex="30" fxLayout="column">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
+                            <p>Escalator</p>
+                            <p class="lift">Floor 3</p>
+                        </div>
+                        <img src="../../assets/Images/escalator.png" class="escalator">
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
+                        <p fxFlexOffset="6">Motor Bearing</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Shaft</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Belt</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Chain Drive</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Brush</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Roller Wheels</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Guide Rails</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Speed Governor</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Controller</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <div class="label" fxLayout="row" fxFlexOffset="8" fxLayoutAlign="space-between center">
+                    <div fxLayout="column" fxFlex="85" class="schedulename">
+                        <p class="daily">6 Months Once</p>
+                        <div fxLayout="row" fxLayoutGap="30px">
+                            <p class="pending">Pending</p>
+                            <span class="twelve">16</span>
+                        </div>
+                    </div>
+
+                    <div fxFlex="15">
+                        <img *ngIf="tabindex == 0" src="../../assets/Images/DownArrowDark.svg">
+                    </div>
+                </div>
+            </ng-template>
+            <div fxLayout="row" fxFlex="100">
+                <div fxFlex="30" fxLayout="column">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
+                            <p>Elevation</p>
+                            <p class="lift">Lift 1</p>
+                        </div>
+                        <img src="../../assets/Images/building1.png" class="liftbuilding">
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
+                        <p fxFlexOffset="6">Motor Bearing</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Shaft</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Belt</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Brush</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Steel Wire</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Sheave Groove</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Guide Rails</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Speed Governor</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Roller Wheels</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+
+
+                </div>
+                <div fxFlex="5">
+                    <mat-divider [vertical]="true"></mat-divider>
+                </div>
+                <div fxFlex="30" fxLayout="column">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
+                            <p>Elevation</p>
+                            <p class="lift">Lift 2</p>
+                        </div>
+                        <img src="../../assets/Images/building1.png" class="liftbuilding">
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
+                        <p fxFlexOffset="6">Motor Bearing</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Shaft</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Belt</p>
+                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Brush</p>
+                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Steel Wire</p>
+                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Sheave Groove</p>
+                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Guide Rails</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Speed Governor</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Roller Wheels</p>
+                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    </div>
+                </div>
+                <div fxFlex="5">
+                    <mat-divider [vertical]="true"></mat-divider>
+                </div>
+                <div fxFlex="30" fxLayout="column">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
+                            <p>Elevation</p>
+                            <p class="lift">Lift 3</p>
+                        </div>
+                        <img src="../../assets/Images/building1.png" class="liftbuilding">
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
+                        <p fxFlexOffset="6">Motor Bearing</p>
+                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Shaft</p>
+                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Belt</p>
+                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Brush</p>
+                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Steel Wire</p>
+                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Sheave Groove</p>
+                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Guide Rails</p>
+                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Speed Governor</p>
+                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
+                        <p fxFlexOffset="6">Roller Wheels</p>
+                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <div class="label" fxLayout="row" fxFlexOffset="8" fxLayoutAlign="space-between center">
+                    <div fxLayout="column" fxFlex="85" class="schedulename">
+                        <p class="daily">Yearly</p>
+                        <div fxLayout="row" fxLayoutGap="30px">
+                            <p class="pending">Pending</p>
+                            <span class="twelve">26</span>
+                        </div>
+                    </div>
+
+                    <div fxFlex="15">
+                        <img *ngIf="tabindex == 0" src="../../assets/Images/DownArrowDark.svg">
+                    </div>
+                </div>
+            </ng-template>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <img src="../../assets/Images/yearly.png" class="yearly">
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+    
+</div> 
+
+
+

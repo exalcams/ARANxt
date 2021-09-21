@@ -1,0 +1,172 @@
+<div fxLayout="row" class="maindiv">
+    <div fxFlex="2" class="emptydiv"></div>
+    <div fxFlex="75" fxLayout="column" fxLayoutGap="20px">
+        <div fxFlexOffset="-1"></div>
+        <div fxLayout="row" fxLayoutGap="20px">
+            <span class="topic">List</span>
+            <span class="spacer"></span>
+            <img class="filter_img" src="./assets/iconfinder_Icon_filter_hor_outline_6637739 (2).svg">
+            <input matInput class="text" type="text" placeholder="Search" (keyup)="applyFilter($event)" #input
+                autocomplete="off">
+
+        </div>
+       
+        <!-- table -->
+
+        <div class="autoscroll example">
+            <table mat-table [dataSource]="dataSource" style="width: 100%;">
+
+                <ng-container matColumnDef="photos">
+                    <th mat-header-cell *matHeaderCellDef
+                        style="text-align: left; height: 30px;border-bottom: 15px solid white;"> Photos </th>
+                    <td mat-cell *matCellDef="let element;index as i" style="width: 10%;text-align: left;">
+                        <img *ngIf="element.name=='AC'" src="./assets/Image 87.jpg">
+                        <img *ngIf="element.name=='Cleaner'" src="./assets/Image 93.png">
+                        <img *ngIf="element.name=='CCTV'" src="./assets/Image 94.png">
+                        <img *ngIf="element.name=='Thermal'" src="./assets/Image 97.png">
+                        <img *ngIf="element.name=='Fire Alarm'" src="./assets/Image 95.png">
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef
+                        style="text-align: left; height: 30px;border-bottom: 15px solid white;"> Name </th>
+                    <td mat-cell *matCellDef="let element" style="width: 10%;text-align: left;">
+                        {{element.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef
+                        style="text-align: left;border-bottom: 15px solid white; height: 30px"> Date </th>
+                    <td mat-cell *matCellDef="let element" style="width: 10%;text-align: left;"> {{element.date}}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="category">
+                    <th mat-header-cell *matHeaderCellDef
+                        style="text-align: left;border-bottom: 15px solid white; height: 30px"> Category </th>
+                    <td mat-cell *matCellDef="let element" style="width: 10%;text-align: left;"> {{element.category}}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="brand">
+                    <th mat-header-cell *matHeaderCellDef
+                        style="text-align: left;border-bottom: 15px solid white; height: 30px"> Brand </th>
+                    <td mat-cell *matCellDef="let element" style="width: 10%;text-align: left;"> {{element.brand}}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="value">
+                    <th mat-header-cell *matHeaderCellDef
+                        style="text-align: left; border-bottom: 15px solid white;height: 30px">Value</th>
+                    <td mat-cell *matCellDef="let element" style="width: 10%;text-align: left;">
+                        {{element.value}} </td>
+                </ng-container>
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef
+                        style="text-align: left;border-bottom: 15px solid white; height: 10px">Status </th>
+                    <td mat-cell *matCellDef="let element" style="width: 10%;text-align: left;">
+                        {{element.status}} </td>
+                </ng-container>
+                <ng-container matColumnDef="assertid">
+                    <th mat-header-cell *matHeaderCellDef
+                        style="text-align: left;border-bottom: 15px solid white; height: 10px">Assert I'D</th>
+                    <td mat-cell *matCellDef="let element" style="width: 10%;text-align: left;">
+                        {{element.assertid}} </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns  sticky: true"></tr>
+                <tr (click)="getID(element.name,element.status)" mat-row
+                    *matRowDef="let row; let element; columns: displayedColumns;"></tr>
+
+            </table>
+        </div>
+    </div>
+    <div fxFlex="4" fxLayoutAlign="center center" class="emptydiv">
+        <mat-divider vertical class="vert_divider"></mat-divider>
+
+    </div>
+
+    <div fxFlex="19" fxLayout="column" fxLayoutGap="5px" >
+        <!-- style="height: 50%;" -->
+        <div fxFlexOffset="15"></div>
+
+        <div fxLayout="row" fxLayoutGap="10px">
+            <img class="select_img" src="./assets/Group 8230.svg">
+            <span class="selected">Selected</span>
+        </div>
+        <div fxLayout="row">
+            <div fxFlexOffset="19"></div>
+            <span class="assert">Assert Details</span>
+        </div>
+        <div id="chart"  *ngIf="res==1" fxLayoutAlign="center center">
+            <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [labels]="chartOptions.labels"
+                [responsive]="chartOptions.responsive" [dataLabels]="chartOptions.dataLabels"
+                [plotOptions]="chartOptions.plotOptions" [legend]="chartOptions.legend" [legend]="chartOptions.legend"
+                [fill]="chartOptions.fill" [responsive]="chartOptions.responsive" [tooltip]="chartOptions.tooltip">
+            </apx-chart>
+        </div>
+        <div id="chart"  *ngIf="res==2" fxLayoutAlign="center center">
+            <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart" [labels]="chartOptions1.labels"
+                [responsive]="chartOptions1.responsive" [dataLabels]="chartOptions1.dataLabels"
+                [plotOptions]="chartOptions1.plotOptions" [legend]="chartOptions1.legend" [legend]="chartOptions1.legend"
+                [fill]="chartOptions1.fill" [responsive]="chartOptions1.responsive" [tooltip]="chartOptions1.tooltip">
+            </apx-chart>
+        </div>
+        <div id="chart"  *ngIf="res==3" fxLayoutAlign="center center">
+            <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart" [labels]="chartOptions2.labels"
+                [responsive]="chartOptions2.responsive" [dataLabels]="chartOptions2.dataLabels"
+                [plotOptions]="chartOptions2.plotOptions" [legend]="chartOptions2.legend" [legend]="chartOptions2.legend"
+                [fill]="chartOptions2.fill" [responsive]="chartOptions2.responsive" [tooltip]="chartOptions2.tooltip">
+            </apx-chart>
+        </div>
+        <div id="chart"  *ngIf="res==4" fxLayoutAlign="center center">
+            <apx-chart [series]="chartOptions3.series" [chart]="chartOptions1.chart" [labels]="chartOptions1.labels"
+                [responsive]="chartOptions1.responsive" [dataLabels]="chartOptions1.dataLabels"
+                [plotOptions]="chartOptions1.plotOptions" [legend]="chartOptions1.legend" [legend]="chartOptions1.legend"
+                [fill]="chartOptions1.fill" [responsive]="chartOptions1.responsive" [tooltip]="chartOptions1.tooltip">
+            </apx-chart>
+        </div>
+        <div id="chart"  *ngIf="res==5" fxLayoutAlign="center center">
+            <apx-chart [series]="chartOptions4.series" [chart]="chartOptions4.chart" [labels]="chartOptions4.labels"
+                [responsive]="chartOptions4.responsive" [dataLabels]="chartOptions4.dataLabels"
+                [plotOptions]="chartOptions4.plotOptions" [legend]="chartOptions4.legend" [legend]="chartOptions4.legend"
+                [fill]="chartOptions4.fill" [responsive]="chartOptions4.responsive" [tooltip]="chartOptions4.tooltip">
+            </apx-chart>
+        </div>
+        <div fxLayoutAlign="center center">
+            <mat-divider class="hori_divider"></mat-divider>
+        </div>
+        <span class="selected">Condition</span>
+        <mat-card class="card" fxLayout="row" fxLayoutGap="10px">
+            <img src="./assets/Group 8231.svg">
+            <div fxLayout="column" style="width: 100%;">
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <span class="assert">Good</span>
+                    <!-- *ngIf="status_res==1" -->
+                    <!-- <span *ngIf="status_res==2"class="assert">Bad</span> -->
+                    <span class="assert">80%</span>
+                </div>
+                <mat-progress-bar  *ngIf="status_res==1" class="green" mode="determinate" value="80"></mat-progress-bar>
+                <mat-progress-bar  *ngIf="status_res==2" class="red" mode="determinate" value="20"></mat-progress-bar>
+            </div>
+        </mat-card>
+        <span class="selected">Description</span>
+        <mat-card class="card" fxLayout="column">
+
+
+            <!-- {{as}} -->
+            <span *ngIf="res==1">An air conditioner is a system that is used to cool down a space by removing heat from
+                the space and moving it to some outside area.</span>
+            <span *ngIf="res==2">Removes stubborn grease, stain and dirt. Disinfect from dust mites, germs, bacteria,
+                and allergens without using harsh chemicals.</span>
+            <span *ngIf="res==3">A temperature sensor is an electronic device that measures the temperature of its
+                environment and converts the input data into electronic data</span>
+            <span *ngIf="res==4">CCTV stands for closed-circuit television and is commonly known as video
+                surveillance.</span>
+            <span *ngIf="res==5"> fire alarm is a unit made of several devices, which uses visual and audio
+                signalization to warn people about a possible fire</span>
+
+        </mat-card>
+        <div fxLayoutAlign="center center" fxFlexOffset="4">
+            <img class="end_img" src="./assets/Group 8046.svg">
+           
+        </div>
+    </div>
+</div>

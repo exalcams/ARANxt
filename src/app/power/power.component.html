@@ -1,0 +1,161 @@
+<div style="width:100%;height:90%;padding-top:15px">
+
+    <div fxLayout="column" style="width:97%;height:90%;padding-top:15px">
+
+        <!-- <nav mat-tab-nav-bar>
+            <div style="height: 50px;margin-left: 15px;width:97%;overflow-y: scroll;display: -webkit-inline-box;">
+
+                <div class="Toolbar_button Toolbar_button1" routerLink="/Electrical">
+                    <p style="margin-top: 3px;">Electrical distribution</p>
+                </div>
+                <div class="Toolbar_button1 Toolbar_button">
+                    <p style="margin-top: 3px;">Energy Consumption</p>
+                </div>
+                <div class="Toolbar_button1 Toolbar_button" routerLink="/hvac">
+                    <p style="margin-top: 3px;">HVAC</p>
+                </div>
+                <div class="Toolbar_button1 Toolbar_button" routerLink="/water">
+                    <p style="margin-top: 3px;">Water Consumption</p>
+                </div>
+                <div class="Toolbar_button1 Toolbar_button">
+                    <p style="margin-top: 3px;">Power Resource</p>
+                </div>
+                <div class="Toolbar_button1 Toolbar_button">
+                    <p style="margin-top: 3px;">Parking Access Control</p>
+                </div>
+                <div class="Toolbar_button1 Toolbar_button">
+                    <p style="margin-top: 3px;">CCTV</p>
+                </div>
+                <div class="Toolbar_button1 Toolbar_button" routerLink="/fire">
+                    <p style="margin-top: 3px;">Fire Alarm</p>
+                </div>
+                <div class="Toolbar_button1 Toolbar_button" routerLink="/others">
+                    <p style="margin-top: 3px;">Others</p>
+                </div>
+    
+    
+            </div>
+          </nav> -->
+
+        <div fxLayout="row" style="width: 100%;padding: 35px 0px 35px 0px;" fxFlex="100" *ngFor="let s of solar">
+            <div fxLayout="column" fxFlex="50">
+                <div fxLayout="column" style="align-items: center;">
+                    <span><img class="st" src="./assets/Images/diesel.png"></span>
+                </div>
+                <div fxLayout="column" fxLayoutGap="10px" style="align-items: center;">
+                    <div style="margin-left: -45px;">
+                        <span style="font-size: 25px;font-weight: bold;margin-left: -45px;">Solar Generator</span>
+                    </div>
+                    <div fxLayout="column" fxLayoutGap="10px">
+                        <div fxLayout="row" fxLayoutGap="80px">
+                            <span style="font-size: 12px;">Type</span>
+                            <span style="font-size: 12px;">{{s.type}}</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="65px">
+                            <span style="font-size: 12px;">Voltage</span>
+                            <span style="font-size: 12px;">{{s.voltage}}</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="70px">
+                            <span style="font-size: 12px;">Output</span>
+                            <span style="font-size: 12px;">{{s.output}}</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="20px">
+                            <span style="font-size: 12px;">Panel &nbsp;Distance</span>
+                            <span style="font-size: 12px;">{{s.panelDistance}}</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="60px">
+                            <span style="font-size: 12px;">1&nbsp;&nbsp;Module</span>
+                            <span style="font-size: 12px;">{{s.module}}</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="65px">
+                            <span style="font-size: 12px;">Produce</span>
+                            <span style="font-size: 12px;">{{s.produce}} </span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="80px">
+                            <span style="font-size: 12px;">Panel</span>
+                            <span style="font-size: 12px;">{{s.panel}} </span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="80px">
+                            <span style="font-size: 12px;">Angle</span>
+                            <span style="font-size: 12px;">{{s.angle}}</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="72px">
+                            <span style="font-size: 12px;">Degree</span>
+                            <span style="font-size: 12px;">{{s.degree}}</span>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div fxLayout="column" fxFlex="50" fxLayoutGap="35px">
+                <div fxLayout="column" style="align-items: center;">
+                    <span><img class="st1" src="./assets/Images/solar.png"></span>
+                </div>
+                <div fxLayout="column" fxLayoutGap="10px" style="align-items: center;">
+                    <div style="align-items: center;">
+                        <span style="font-size: 25px;font-weight: bold;">Diesel Generator</span>
+                    </div>
+                    <div fxLayout="column" fxLayoutGap="10px">
+                        <div fxLayout="row" fxLayoutGap="80px">
+                            <span style="font-size: 12px;">Usage</span>
+                            <span style="font-size: 12px;">{{s.usage}}</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="80px">
+                            <span style="font-size: 12px;">Efficiency</span>
+                            <span style="font-size: 12px;">{{s.efficiency}}</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="80px">
+                            <span style="font-size: 12px;">Output</span>
+                            <span style="font-size: 12px;">{{s.output}}</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="80px">
+                            <span style="font-size: 12px;">1&nbsp;&nbsp;lit</span>
+                            <span style="font-size: 12px;">{{s.module}}</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="80px">
+                            <span style="font-size: 12px;">Average</span>
+                            <span style="font-size: 12px;">{{s.average}}</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="80px">
+                            <span style="font-size: 12px;">Weight</span>
+                            <span style="font-size: 12px;">{{s.weight}}</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="80px">
+                            <span style="font-size: 12px;">Run&nbsp;&nbsp;Time</span>
+                            <span style="font-size: 12px;">{{s.runTime}}</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="80px">
+                            <span style="font-size: 12px;">Lifespan</span>
+                            <span style="font-size: 12px;">{{s.lifeSpan}}</span>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- <div fxLayout="column" fxFlex="50">
+        <div fxLayout="column" style="align-items: center;">
+            <span><img class="st1" src="./assets/image/solar.png"></span>
+            <div fxLayout="column">
+                <span>Type</span>
+                <span>Voltage</span>
+                <span>Output</span>
+                <span>Panel &nbsp;Distance</span>
+                <span>1&nbsp;&nbsp;Module</span>
+                <span>Produce</span>
+                <span>Panel</span>
+                <span>Angle</span>
+                <span>Degree</span>
+            </div>
+        </div>
+    </div> -->
+        </div>
+    </div>
+</div>

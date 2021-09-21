@@ -1,0 +1,137 @@
+.maindiv{
+    /* padding-top: 30px; */
+    width: 99%;
+    height: 650px;
+    /* position:  relative !important; */
+    /* z-index: -1;
+    overflow: none; */
+    /* position: sticky !important; */
+    /* background-color: bisque; */
+}
+/* .emptydiv{
+    background-color: burlywood;
+} */
+.spacer{
+    flex: 1 1 auto;
+}
+.topic{
+    font-size: 14px;
+    font-weight: bold;
+    color: #0d0c22;
+    
+
+}
+.filter_img{
+    width: 14px;
+}
+.text{
+    background-color: #f3f3f4;
+    width:24%;
+    height: 32px;
+    border-radius: 4px;
+    padding-left: 50px;
+    outline: none;
+    border: none;
+    background-size: 10%;
+    background-image: url("/assets/iconfinder_search_1608826 (1).svg");
+    background-repeat: no-repeat;
+    background-position: 5%;
+    font-family: 'poppins' !important;
+    font-size: 10px;
+    color: #6e6d7a;
+    border-radius: 4px;
+    font-weight: bold;
+}
+::placeholder{
+    color: #6e6d7a;
+    opacity: 0.4;
+    font-weight: bold;
+    font-size: 10px;
+}
+.autoscroll{
+    overflow: scroll;
+    height: 670px;
+}
+.example::-webkit-scrollbar {
+    display: none;
+  }
+
+  table {
+    width: 100%;
+}
+  th {
+    color: #0d0c22;
+    font-weight: bold;
+    font-size: 10px;
+  }
+  tr.mat-header-row {
+    height: 56px;
+    background-color: #f9f8fe !important;
+}
+th.mat-header-cell{
+    padding: 0;
+    border-bottom-width: 0px;
+    border-bottom-style: solid;
+}
+td.mat-cell {
+    border-bottom-style: none;
+    font-size: 10px;
+    font-weight: bold;
+    color: #6e6d7a;
+  }
+  .mat-table {
+    font-family: 'poppins' !important;
+}
+.vert_divider{
+    height: 90%;
+    /* margin-top: 35px; */
+}
+.mat-divider.mat-divider-vertical {
+    border-right-width: 2px;
+    border-right-style: solid #f9f9f9 ;
+    opacity: 0.2;
+}
+.select_img{
+    /* width:10%; */
+    height: 28px;
+}
+.selected{
+    font-size: 10px;
+    font-weight: bold;
+    color: #0d0c22;
+}
+.assert{
+    color: #6e6d7a;
+    font-size: 10px;
+    font-weight: bold; 
+}
+.hori_divider{
+    width: 50%;
+}
+.mat-divider {
+    border-right-width: 2px;
+    border-right-style: solid #f9f9f9 ;
+    opacity: 0.4;
+}
+.mat-card {
+    font-family: 'poppins' !important;
+    color: #6e6d7a;
+    font-size: 9px;
+    font-weight: bold;
+}
+.card{
+    width: 90%;
+    box-shadow: 0px 2px 6px 0px #eaf1fa;
+}
+.end_img{
+    width:40%;
+}
+  ::ng-deep .mat-progress-bar-fill::after  {
+    background-color: #00ba53 !important;
+}
+/* mat-progress-bar .mat-progress-bar-buffer {
+    background: #d2f8e3;
+  }  */
+::ng-deep .mat-progress-bar-buffer {
+    background: #d2f8e3;
+}

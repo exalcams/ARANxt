@@ -1,0 +1,96 @@
+<!-- <div style="overflow: auto;height: 500px;">
+    <div fxLayout="column" style="padding: 7px;overflow: auto;">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="create">Create Contract Link Details</span>
+            <span> <img class="close_hover close" src="assets/32178.svg" (click)="close()"></span>
+        </div>
+        <form autocomplete="off" [formGroup]="ContractLinkForm">
+            <div fxLayout="row" style="width: 100%;margin-top: 15px;padding: 10px 55px;" fxLayoutGap="55px">
+                <div fxLayout="column" fxFlex="50" fxLayoutGap="20px">
+
+
+
+
+
+
+                    <div fxLayout="column" fxFlex="50" fxLayoutGap="20px">
+                        <img style="width: 60%;" src="assets/general space.png" />
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div> -->
+<div>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="create">Create Contract Link Details</span>
+        <span> <img class="close_hover close" src="assets/32178.svg" (click)="close()"></span>
+    </div>
+    <form autocomplete="off" [formGroup]="ContractLinkForm">
+        <div fxLayout="row" style="width: 100%;margin-top: 15px;padding: 10px 55px;" fxLayoutGap="55px">
+            <div fxLayout="column" fxFlex="50" fxLayoutGap="20px">
+                <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;">
+                    <span fxFlex="30">Type</span>
+                    <span fxFlex="70">
+
+                        <select class="input_cls" formControlName="Type">
+                            <option value="" disabled selected hidden>Select Contract Type</option>
+                            <option class="input_cls" *ngFor="let type of Type" fxLayoutAlign="center center"
+                                [ngValue]="type">
+                                {{type}}</option>
+                        </select>
+                    </span>
+                </div>
+                <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span fxFlex="30">Title</span><span fxFlex="70">
+                        <input class="input_cls" formControlName="Title" matInput
+                            placeholder="Title">
+                    </span>
+                </div>
+                <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span fxFlex="30">Start
+                        Date</span><span fxFlex="70">
+                        <input class="input_cls" formControlName="StartDate"  fxFlex matInput
+                        [matDatepicker]="picker1" placeholder=" Enter Start Date">
+                        <img src="assets/calenderblue.svg" width="16px" class="clickable" (click)="picker1.open()">
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </span>
+                </div>
+                <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span fxFlex="30">End
+                        Date</span><span fxFlex="70">
+                        <input class="input_cls" formControlName="EndDate"  fxFlex matInput
+                        [matDatepicker]="picker2" placeholder=" Enter End Date">
+                        <img src="assets/calenderblue.svg" width="16px" class="clickable" (click)="picker2.open()">
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </span>
+                </div>
+            </div>
+            <div fxLayout="column" fxFlex="50" fxLayoutGap="20px">
+
+                <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span fxFlex="30">Cover
+                        Value</span><span fxFlex="70">
+                        <input class="input_cls" formControlName="CoverValue" matInput placeholder=" Enter Cover Value">
+                    </span>
+                </div>
+                <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                        fxFlex="30">Vendor</span><span fxFlex="70">
+                        <input class="input_cls" formControlName="Vendor" matInput placeholder=" Enter Vendor">
+                    </span>
+                </div>
+                <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                        fxFlex="30">Exclusions</span><span fxFlex="70">
+                        <input class="input_cls" formControlName="Exclusions" matInput placeholder=" Enter Exclusions">
+                    </span>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<mat-dialog-actions fxLayoutAlign="center center">
+    
+
+<button mat-flat-button color="primary" (click)="Save()">Save</button>
+
+
+</mat-dialog-actions>

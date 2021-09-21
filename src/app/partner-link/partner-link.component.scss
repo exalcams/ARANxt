@@ -1,0 +1,45 @@
+.input_cls{
+    outline: none;
+    // opacity: 0.12;
+    width: 100%;
+    border: none;
+  border-bottom: solid 1px #f1eff9;
+}
+.input_cls1{
+    outline: none;
+    // opacity: 0.12;
+    width: 80%;
+    text-align: center;
+    border: none;
+  border: solid 1px #f1eff9;
+}
+.close_hover{
+    cursor: pointer;
+}
+.close_hover:hover {
+    
+    display: block;
+     // margin-left: -60px;
+      text-align: center;
+     width:20px;
+   
+ }
+ .close:before{
+     content: "close";
+ }
+ .button1{
+    border-radius: 4px;
+    background-color: #4410ff;
+    font-size: 10px;
+    text-align: center;
+    color:white;
+    height: 28px;
+    width: 25%;
+    position: relative;
+    top:0% !important;
+    left: 5%;
+    line-height:5px; 
+}
+.clickable{
+    cursor: pointer;
+}

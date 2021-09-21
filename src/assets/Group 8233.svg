@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56">
+    <defs>
+        <style>
+            .cls-3{stroke:none}
+        </style>
+    </defs>
+    <g id="Group_8233" transform="translate(-676 -263)">
+        <g id="Ellipse_757" fill="#fff" stroke="#f3f3f4" transform="translate(676 263)">
+            <circle cx="28" cy="28" r="28" class="cls-3"/>
+            <circle cx="28" cy="28" r="27.5" fill="none"/>
+        </g>
+        <g id="Union_21" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path fill="#0d0c22" d="M-6674.001-4474.001V-4482h8.001-8.001v-8V-4474.001m0-7.999H-6682h7.999m0 8.999c-.552 0-1-.448-1-1V-4481H-6682c-.552 0-1-.448-1-1s.448-1 1-1h6.999v-7c0-.553.448-1 1-1s1 .447 1 1v7h7.001c.552 0 1 .448 1 1s-.448 1-1 1h-7.001v6.999c0 .552-.448 1-1 1z" transform="translate(7378.5 4773.5)"/>
+        </g>
+    </g>
+</svg>

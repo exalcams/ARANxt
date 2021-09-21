@@ -1,0 +1,827 @@
+<mat-toolbar class="toolbar_cls" fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row">
+        Your Creating Multiple Space inside the
+        <label>
+            Space
+        </label>
+    </div>
+    <div fxLayoutAlign=" end center">
+
+        <img class="close_hover close" src="assets/32178.svg" (click)="close()">
+    </div>
+</mat-toolbar>
+<mat-drawer-container style="height: 94%;margin-top: 2%;">
+    <mat-drawer mode="side" opened class="size" style="border-right: 1px solid #f9f9f9;padding-right: 10px;">
+        <div fxLayout="column">
+
+            <div>
+                <button class="Btn_cls">
+                    +
+                </button>
+            </div>
+            <div fxLayout="column" class="bg_cls" fxLayoutAlign="center start">
+                <div>
+                    Assert Name
+                </div>
+                <div>
+                    Assert Id
+                </div>
+            </div>
+        </div>
+    </mat-drawer>
+    <mat-drawer-content style="background-color: white;">
+        <div fxLayout="column" fxFlex="100">
+            <div class="List_cls">
+                <div fxLayout="row" fxLayoutGap="5px" style="padding: 15px 50px 15px 15px;">
+                    <div [ngClass]="General==true?'General_cls1':'General_cls'" fxFlex="11"
+                        fxLayoutAlign="center center" fxLayout="column" (click)="general()">
+                        <div>
+                            <img width="65px" height="40px !important" style="mix-blend-mode: multiply !important;"
+                                src="assets/Image 157.png">
+                        </div>
+                        <div style="font-size: 12px;font-weight: 600;">
+                            General
+                        </div>
+                    </div>
+                    <div [ngClass]="Location==true?'General_cls1':'General_cls'" fxFlex="11"
+                        fxLayoutAlign="center center" fxLayout="column" (click)="location()">
+                        <div>
+                            <img width="65px" height="40px !important" style="mix-blend-mode: multiply !important;"
+                                src="./assets/location.png">
+                        </div>
+                        <div style="font-size: 12px;font-weight: 600;">
+                            Location
+                        </div>
+                    </div>
+                    <div [ngClass]="Document==true?'General_cls1':'General_cls'" fxFlex="11"
+                        fxLayoutAlign="center center" fxLayout="column" (click)="document()">
+                        <div>
+                            <img width="65px" height="40px !important" style="mix-blend-mode: multiply !important;"
+                                src="assets/Image 160.png">
+                        </div>
+                        <div style="font-size: 12px;font-weight: 600;">
+                            Document
+                        </div>
+                    </div>
+                    <div [ngClass]="Partner==true?'General_cls1':'General_cls'" fxFlex="11"
+                        fxLayoutAlign="center center" fxLayout="column" (click)="partner()">
+                        <div>
+                            <img width="65px" height="40px !important" style="mix-blend-mode: multiply !important;"
+                                src="assets/Image 159.png">
+                        </div>
+                        <div style="font-size: 12px;font-weight: 600;">
+                            Partner
+                        </div>
+                    </div>
+                    <div [ngClass]="Space==true?'General_cls1':'General_cls'" fxFlex="11" fxLayoutAlign="center center"
+                        fxLayout="column" (click)="asset()">
+                        <div>
+                            <img width="65px" height="40px !important" style="mix-blend-mode: multiply !important;"
+                                src="assets/Image 161.png">
+                        </div>
+                        <div style="font-size: 12px;font-weight: 600;">
+                            Space
+                        </div>
+                    </div>
+                    <div [ngClass]="Address==true?'General_cls1':'General_cls'" fxFlex="11"
+                        fxLayoutAlign="center center" fxLayout="column" (click)="address()">
+                        <div>
+                            <img width="65px" height="40px !important" style="mix-blend-mode: multiply !important;"
+                                src="assets/Image 162.png">
+                        </div>
+                        <div style="font-size: 12px;font-weight: 600;">
+                            Address
+                        </div>
+                    </div>
+                    <div [ngClass]="Date==true?'General_cls1':'General_cls'" fxFlex="11" fxLayoutAlign="center center"
+                        fxLayout="column" (click)="date()">
+                        <div>
+                            <img width="65px" height="40px !important" style="mix-blend-mode: multiply !important;"
+                                src="assets/date.png">
+                        </div>
+                        <div style="font-size: 12px;font-weight: 600;">
+                            Date
+                        </div>
+                    </div>
+                    <div [ngClass]="Contract==true?'General_cls1':'General_cls'" fxFlex="11"
+                        fxLayoutAlign="center center" fxLayout="column" (click)="contract()">
+                        <div>
+                            <img width="65px" height="40px !important" style="mix-blend-mode: multiply !important;"
+                                src="assets/contract.png">
+                        </div>
+                        <div style="font-size: 12px;font-weight: 600;">
+                            Contract
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="General==true?'selectedIndex':false" style="overflow: auto;height: 400px;">
+                <div fxLayout="column" style="padding: 7px;overflow: auto;">
+                    <div fxLayout="row">
+                        <span class="create">Create Space Details</span>
+                    </div>
+                    <form autocomplete="off" [formGroup]="GeneralForm">
+                    <div fxLayout="row" style="width: 100%;margin-top: 15px;padding: 10px 55px;" fxLayoutGap="55px">
+                        <div fxLayout="column" fxFlex="50" fxLayoutGap="20px">
+                            <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                    fxFlex="30">Title</span><span fxFlex="70">
+                                    <input class="input_cls" formControlName="title" matInput placeholder=" Enter Title">
+                                </span>
+                            </div>
+                            <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                    fxFlex="30">Partner Id</span><span fxFlex="70">
+                                    <input class="input_cls" formControlName="partnerID" matInput placeholder=" Enter Partner I'D">
+                                </span>
+                            </div>
+                            <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                    fxFlex="30">Cost Center</span><span fxFlex="70">
+                                    <input class="input_cls" formControlName="costCenter" matInput placeholder=" Enter Cost Center">
+                                </span>
+                            </div>
+                            <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                    fxFlex="30">Model Number</span><span fxFlex="70">
+                                    <input class="input_cls" formControlName="modelnumber" matInput placeholder=" Enter Model Number">
+                                </span>
+                            </div>
+                            <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                    fxFlex="30">Tag ID</span><span fxFlex="70">
+                                    <input class="input_cls" formControlName="TagID" matInput placeholder=" Enter Tag ID">
+                                </span>
+                            </div>
+                            <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                    fxFlex="30">Asset Life</span><span fxFlex="70">
+                                    <input class="input_cls" formControlName="assetlife" matInput placeholder=" Enter Asset Life">
+                                </span>
+                            </div>
+                            <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                    fxFlex="30">Transferable</span><span fxFlex="70">
+                                    <input class="input_cls" formControlName="transferable" matInput placeholder=" Enter Transferable">
+                                </span>
+                            </div>
+                            <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                    fxFlex="30">Acquisition Value</span><span fxFlex="70">
+                                    <input class="input_cls" formControlName="acquisitionvalue" matInput placeholder=" Enter Acquisition Value">
+                                </span>
+                            </div>
+                        </div>
+                        <div fxLayout="column" fxFlex="50" fxLayoutGap="20px">
+                            <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                    fxFlex="30">Object Type</span><span fxFlex="70">
+                                    <input class="input_cls" formControlName="objectType" matInput placeholder=" Enter Object Type">
+                                </span>
+                            </div>
+                            <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                    fxFlex="30">Category</span><span fxFlex="70">
+                                        <select class="input_cls">
+                                            <option [ngValue]="null">Select Category</option>
+                                            <option class="input_cls" formControlName="category" *ngFor="let country of Catagories"
+                                                fxLayoutAlign="center center" [ngValue]="country.name">
+                                                {{country.name}}</option>
+                                        </select>
+                                    <!-- <input class="input_cls" formControlName="category" matInput placeholder=" Enter Category"> -->
+                                </span>
+                            </div>
+                            <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                    fxFlex="30">Manufacture</span><span fxFlex="70">
+                                    <input class="input_cls" formControlName="manufacture" matInput placeholder=" Enter Manufacture">
+                                </span>
+                            </div>
+                            <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                    fxFlex="30">Serial</span><span fxFlex="70">
+                                    <input class="input_cls" formControlName="serial" matInput placeholder=" Enter Serial">
+                                </span>
+                            </div>
+                            <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                    fxFlex="30">Purchase Date</span><span fxFlex="70">
+                                    <input class="input_cls" formControlName="purchasedate" matInput placeholder=" Enter Purchase Date">
+                                </span>
+                            </div>
+                            <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;">
+                                <span fxFlex="30">Type</span>
+                                <span fxFlex="70">
+
+                                    <select class="input_cls">
+                                        <option [ngValue]="null">Select Type</option>
+                                        <option class="input_cls" formControlName="Type" *ngFor="let country of countries"
+                                            fxLayoutAlign="center center" [ngValue]="country.id">
+                                            {{country.name}}</option>
+                                    </select>
+                                </span>
+                            </div>
+                            <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                    fxFlex="30">Trans.Approval</span><span fxFlex="70">
+                                    <input class="input_cls" formControlName="transapproval" matInput placeholder="Enter Transferable Approval">
+                                </span>
+                            </div>
+                            <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                    fxFlex="30">Description</span><span fxFlex="70">
+                                    <input class="input_cls"  formControlName="description" matInput placeholder=" Enter Description">
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <div *ngIf="Location==true?'selectedIndex':false">
+                <div style="width: 100%;margin-top: 15px;padding: 10px 55px;" fxLayoutGap="55px">
+                    <div fxLayout="column" fxFlex="50">
+                        <!-- <h1>Angular Google Map Get Current Location Example - ItSolutionStuff.com</h1> -->
+
+                        <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                            <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true">
+                            </agm-marker>
+                        </agm-map>
+
+                        <!-- <h5>Address: {{address1}}</h5>
+                        <div>Latitude: {{latitude}}</div>
+                        <div>Longitude: {{longitude}}</div> -->
+                    </div>
+                    <form autocomplete="off" fxFlex [formGroup]="LocationForm">
+                    <div fxLayout="column" fxFlex="50" fxLayoutGap="20px">
+
+
+
+                        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                fxFlex="30">Latitude</span><span fxFlex="70">
+                                <input class="input_cls" matInput placeholder=" Enter Latitude" [ngModel]="latitude">
+                            </span>
+                        </div>
+                        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                fxFlex="30">Longitude</span><span fxFlex="70">
+                                <input class="input_cls" matInput placeholder=" Enter Longitude" [ngModel]="longitude">
+                            </span>
+                        </div>
+                        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                fxFlex="30">From Latitude</span><span fxFlex="70">
+                                <input class="input_cls" matInput placeholder=" Enter From Latitude">
+                            </span>
+                        </div>
+                        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                fxFlex="30">To Latitude</span><span fxFlex="70">
+                                <input class="input_cls" matInput placeholder=" Enter To Latitude">
+                            </span>
+                        </div>
+                        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                fxFlex="30">From Longitude</span><span fxFlex="70">
+                                <input class="input_cls" matInput placeholder=" Enter From Longitude">
+                            </span>
+                        </div>
+                        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                fxFlex="30">To Longitude</span><span fxFlex="70">
+                                <input class="input_cls" matInput placeholder=" Enter To Longitude">
+                            </span>
+                        </div>
+
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <div *ngIf="Document==true">
+                <div fxLayout="row" style="height:371px !important;margin-top: 20px;">
+                    <div class="div211" fxFlex="3"></div>
+                    <div class="div311" fxFlex="70" fxLayout="column">
+                        <div fxLayout="row" fxLayoutGap="20px">
+                            <span class="topic">Attachments</span>
+                            <span class="spacer"></span>
+                            <input matInput class="text" type="text" (keyup)="applyFilter($event)" placeholder="Search">
+                        </div>
+
+                        <div class=" example tableFixHead">
+                            <table mat-table [dataSource]="dataSource1">
+
+                                <ng-container matColumnDef="one">
+                                    <th mat-header-cell *matHeaderCellDef> File Name <img matSuffix
+                                            style="width:12px" />
+                                    </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.one}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="two">
+                                    <th mat-header-cell *matHeaderCellDef> File Size <img matSuffix
+                                            style="width:12px" />
+                                    </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.two}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="three">
+                                    <th mat-header-cell *matHeaderCellDef> File ext <img matSuffix style="width:12px" />
+                                    </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.three}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="four">
+                                    <th mat-header-cell *matHeaderCellDef>IP <img matSuffix style="width:12px" />
+                                    </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.four}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="five">
+                                    <th mat-header-cell *matHeaderCellDef> User<img matSuffix style="width:12px" />
+                                    </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.five}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="six">
+                                    <th mat-header-cell *matHeaderCellDef> Date<img matSuffix style="width:12px" />
+                                    </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.six}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="seven">
+                                    <th mat-header-cell *matHeaderCellDef> Time <img matSuffix style="width:12px" />
+                                    </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.seven}} </td>
+                                </ng-container>
+                                <ng-container matColumnDef="eight">
+                                    <th mat-header-cell *matHeaderCellDef> Att ID <img matSuffix style="width:12px" />
+                                    </th>
+                                    <td mat-cell *matCellDef="let element"> {{element.eight}} </td>
+                                </ng-container>
+
+
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns sticky:true">
+                                </tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="div411" fxFlex="3"></div>
+                    <div class="div511" fxFlex="24" fxLayout="row">
+
+                        <div fxFlex="10"></div>
+                        <div fxFlex="80" fxLayout="column" fxLayoutGap="10px">
+                            <div fxLayout="row">
+                                <div fxFlex="10"></div>
+                                <div fxFlex="75" fxLayout="row" style="margin-top:15px;">
+                                    <img class="adddoc" src="./assets/adddoc.png" style="width:25%;height:auto" />
+                                    <div class="docu">AddDocuments</div>
+                                </div>
+                                <div fxFlex="15"></div>
+                            </div>
+
+                            <div class="box_1">
+                                <div fxLayout="row" fxLayoutGap="10px">
+                                    <img class="filemana" src="./assets/filemana.png" />
+                                    <div fxLayout="column" fxLayoutAlign="center start">
+                                        <div class="textfrom">From</div>
+                                        <div class="textmana">File Manager</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <input #fileInput type="file" hidden>
+                                    <!-- (change)="handleChange($event.target.files)" -->
+
+                                    <button class="button1" mat-button>Upload</button>
+
+                                </div>
+                            </div>
+                            <div class="box_2">
+                                <div fxLayout="row" fxLayoutGap="10px">
+                                    <img class="filemana" src="./assets/scanner.png" />
+                                    <div fxLayout="column">
+                                        <div class="textfrom2">From</div>
+                                        <div class="textmana2">Scanner</div>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 9px;">
+                                    <button class="button1" mat-button>Scan</button>
+
+                                </div>
+                            </div>
+                            <div class="box_3">
+                                <div fxLayout="row" fxLayoutGap="10px">
+                                    <img class="filemana" src="./assets/cloud.png" />
+                                    <div fxLayout="column">
+                                        <div class="textfrom1">From</div>
+                                        <div class="textmana1">Cloud</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="button1" mat-button>Upload</button>
+
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                        <div fxFlex="10"></div>
+                        <!-- <div fxLayout="row">
+                        <div fxFlex="25" ></div>
+                        <div fxFlex="60" style="margin-top:15px;" >
+                    <img class="j5" src="./assets/docu.png" style="width:12px;height:auto" />
+                    <span class="docu">Add Documents</span>
+                    </div>
+                    <div fxFlex="15"  ></div> -->
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div *ngIf="Partner==true">
+                <div fxLayout="column" style="padding: 20px 10px 10px 10px;width: 100%;">
+                    <div fxLayout="row" style="width: 100%;">
+                        <div fxFlex="60">
+                            <span style="font-size: 20px;color: #0d0c22;font-weight: bold;">Partner Links</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px">
+                            <div fxLayoutAlign="center center">
+                                <div fxLayout="row" class="main_input_field" fxLayoutAlign="space-between center">
+                                    <div>
+                                        <img style="vertical-align: -webkit-baseline-middle;
+                    width: 24px;" src="./assets/search.svg">
+                                    </div>
+                                    <div>
+                                        <input class="input_field" matInput placeholder="Search">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <button
+                                    style="background-color: #4410ff;  border-radius: 4px;width: 200px;height:30px;align-self: center;color: #ffffff;font-weight: bold;font-size: 12px;"
+                                    mat-button><span style="position: relative;top:-3px;font-size: 12px;">ADD New
+                                        Partner Link</span></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class=" example tableFixHead" style="height: 335px !important;">
+                        <table mat-table [dataSource]="dataSource">
+
+                            <ng-container matColumnDef="fav">
+                                <th mat-header-cell *matHeaderCellDef> Partner Type </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <select class="input_cls1">
+                                        <option [ngValue]="null">Select Type</option>
+                                        <option class="input_cls" *ngFor="let country of countries"
+                                            fxLayoutAlign="center center" [ngValue]="country.id">
+                                            {{country.name}}</option>
+                                    </select>
+                                </td>
+                            </ng-container>
+                            <!-- Position Column -->
+                            <ng-container matColumnDef="position">
+                                <th mat-header-cell *matHeaderCellDef> Partner I'D </th>
+                                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef> Starting Date </th>
+                                <td mat-cell *matCellDef="let element"> {{element.name}}
+                                    <span><img width="20px" src="assets/calenderblue.svg"></span>
+                                </td>
+                            </ng-container>
+
+                            <!-- Weight Column -->
+                            <ng-container matColumnDef="weight">
+                                <th mat-header-cell *matHeaderCellDef> Ending Date </th>
+                                <td mat-cell *matCellDef="let element"> {{element.weight}}
+                                    <span><img width="20px" src="assets/calenderblue.svg"></span>
+                                </td>
+                            </ng-container>
+
+                            <!-- Symbol Column -->
+                            <ng-container matColumnDef="icon">
+                                <th mat-header-cell *matHeaderCellDef> </th>
+                                <td mat-cell *matCellDef="let element;index as index">
+                                    <img *ngIf="index==hoveredIndex" src="assets/216658.svg" width="20px">
+                                </td>
+                            </ng-container>
+
+                            <!-- Fav Column -->
+
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns1;index as i;" class="hover_class"
+                                on-mouseover="hoveredIndex=i"></tr>
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div *ngIf="Space==true">
+                <form autocomplete="off" [formGroup]="SpaceForm">
+                <div fxLayout="row" style="width: 100%;margin-top: 15px;padding: 10px 55px;" fxLayoutGap="55px">
+                    <div fxLayout="column" fxFlex="50" fxLayoutGap="20px">
+                        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                fxFlex="30">Total Space</span><span fxFlex="70">
+                                <input class="input_cls" matInput placeholder=" Enter Space">
+                            </span>
+                        </div>
+                        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                fxFlex="30">Rentable Space</span><span fxFlex="70">
+                                <input class="input_cls" matInput placeholder=" Enter Rentable Space">
+                            </span>
+                        </div>
+                        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                fxFlex="30">Breath</span><span fxFlex="70">
+                                <input class="input_cls" matInput placeholder=" Enter Breath">
+                            </span>
+                        </div>
+                        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                fxFlex="30">Volume</span><span fxFlex="70">
+                                <input class="input_cls" matInput placeholder=" Enter Volume">
+                            </span>
+                        </div>
+
+                    </div>
+                    <div fxLayout="column" fxFlex="50" fxLayoutGap="20px">
+                        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                fxFlex="30">Carpet Space</span><span fxFlex="70">
+                                <input class="input_cls" matInput placeholder=" Enter Carpet Space">
+                            </span>
+                        </div>
+                        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                fxFlex="30">Length</span><span fxFlex="70">
+                                <input class="input_cls" matInput placeholder=" Enter Length">
+                            </span>
+                        </div>
+                        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                fxFlex="30">Height</span><span fxFlex="70">
+                                <input class="input_cls" matInput placeholder=" Enter Height">
+                            </span>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+                </form>
+            </div>
+            <div *ngIf="Address==true">
+                <form autocomplete="off" [formGroup]="AddressForm">
+                <div fxLayout="row" style="width: 100%;margin-top: 15px;padding: 10px 55px;" fxLayoutGap="55px">
+                    <div fxLayout="column" fxFlex="50" fxLayoutGap="20px">
+                        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                fxFlex="30">Address Line 1</span><span fxFlex="70">
+                                <input class="input_cls" matInput placeholder=" Enter Address Line 1">
+                            </span>
+                        </div>
+                        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                fxFlex="30">Address Line 2 </span><span fxFlex="70">
+                                <input class="input_cls" matInput placeholder=" Enter Address Line 2">
+                            </span>
+                        </div>
+                        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                fxFlex="30">Address Line 3</span><span fxFlex="70">
+                                <input class="input_cls" matInput placeholder=" Enter Address Line 3">
+                            </span>
+                        </div>
+
+
+                    </div>
+                    <div fxLayout="column" fxFlex="50" fxLayoutGap="20px">
+                        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;">
+                            <span fxFlex="30">Country</span>
+                            <span fxFlex="70">
+
+                                <select class="input_cls"  formControlName="Country">
+                                    <option [ngValue]="null">Select Country</option>
+                                    <option class="input_cls" *ngFor="let country of countries"
+                                        fxLayoutAlign="center center" [ngValue]="country.id">
+                                        {{country.name}}</option>
+                                </select>
+                            </span>
+                        </div>
+                        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                fxFlex="30">Pincode</span><span fxFlex="70">
+                                <input class="input_cls" formControlName="Pincode" matInput placeholder=" Enter Pincode">
+                            </span>
+                        </div>
+                        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;">
+                            <span fxFlex="30">State</span>
+                            <span fxFlex="70">
+
+                                <select class="input_cls" formControlName="State"> 
+                                    <option [ngValue]="null">Select State</option>
+                                    <option class="input_cls" *ngFor="let country of countries"
+                                        fxLayoutAlign="center center" [ngValue]="country.id">
+                                        {{country.name}}</option>
+                                </select>
+                            </span>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+                </form>
+            </div>
+            <div *ngIf="Date==true">
+                <div fxLayout="column" style="padding: 20px 10px 10px 10px;width: 100%;">
+                    <div fxLayout="row" style="width: 100%;">
+                        <div fxFlex="60">
+                            <span style="font-size: 20px;color: #0d0c22;font-weight: bold;">Date Links</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px">
+                            <div fxLayoutAlign="center center">
+                                <div fxLayout="row" class="main_input_field" fxLayoutAlign="space-between center">
+                                    <div>
+                                        <img style="vertical-align: -webkit-baseline-middle;
+                    width: 24px;" src="./assets/search.svg">
+                                    </div>
+                                    <div>
+                                        <input class="input_field" matInput placeholder="Search">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <button
+                                    style="background-color: #4410ff;  border-radius: 4px;width: 200px;height:30px;align-self: center;color: #ffffff;font-weight: bold;font-size: 12px;"
+                                    mat-button><span style="position: relative;top:-3px;font-size: 12px;">ADD New
+                                        Partner Link</span></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <table mat-table [dataSource]="dataSourceDate">
+                            <ng-container matColumnDef="fav">
+                                <th mat-header-cell *matHeaderCellDef> Partner Type </th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.fav}}
+                                    <span><img width="20px" src="assets/calenderblue.svg"></span>
+                                </td>
+                            </ng-container>
+                            <!-- Position Column -->
+                            <ng-container matColumnDef="position">
+                                <th mat-header-cell *matHeaderCellDef> Partner I'D </th>
+                                <td mat-cell *matCellDef="let element"> {{element.position}}
+                                    <span><img width="20px" src="assets/calenderblue.svg"></span>
+                                </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef> Starting Date </th>
+                                <td mat-cell *matCellDef="let element"> {{element.name}}
+                                    <span><img width="20px" src="assets/Page-1.svg"></span>
+                                </td>
+                            </ng-container>
+
+                            <!-- Weight Column -->
+                            <ng-container matColumnDef="weight">
+                                <th mat-header-cell *matHeaderCellDef> Ending Date </th>
+                                <td mat-cell *matCellDef="let element"> {{element.weight}}
+                                </td>
+                            </ng-container>
+
+                            <!-- Symbol Column -->
+                            <ng-container matColumnDef="icon">
+                                <th mat-header-cell *matHeaderCellDef> </th>
+                                <td mat-cell *matCellDef="let element;index as index">
+                                    <img *ngIf="index==hoveredIndex" src="assets/216658.svg" width="20px">
+                                </td>
+                            </ng-container>
+
+
+
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns1;index as i;"
+                                on-mouseover="hoveredIndex=i" class="hover_class"></tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <div *ngIf="Contract==true">
+                <div fxLayout="column" style="padding: 20px 10px 10px 10px;width: 100%;">
+                    <div fxLayout="row" style="width: 100%;">
+                        <div fxFlex="60">
+                            <span style="font-size: 20px;color: #0d0c22;font-weight: bold;">Contract Links</span>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px">
+                            <div fxLayoutAlign="center center">
+                                <div fxLayout="row" class="main_input_field" fxLayoutAlign="space-between center">
+                                    <div>
+                                        <img style="vertical-align: -webkit-baseline-middle;
+                width: 24px;" src="./assets/search.svg">
+                                    </div>
+                                    <div>
+                                        <input class="input_field" matInput placeholder="Search">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div>
+                                <button
+                                    style="background-color: #4410ff;  border-radius: 4px;width: 200px;height:30px;align-self: center;color: #ffffff;font-weight: bold;font-size: 12px;"
+                                    mat-button><span style="position: relative;top:-3px;font-size: 12px;">ADD New
+                                        Partner
+                                        Link</span></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" example tableFixHead" style="height: 335px !important;">
+                        <table mat-table [dataSource]="dataSource2">
+
+                            <ng-container matColumnDef="one">
+                                <th mat-header-cell *matHeaderCellDef> Type <img matSuffix style="width:12px" />
+                                </th>
+                                <td mat-cell *matCellDef="let element"> <select class="input_cls1">
+                                        <option [ngValue]="null">Select Type</option>
+                                        <option class="input_cls" *ngFor="let country of countries"
+                                            fxLayoutAlign="center center" [ngValue]="country.id">
+                                            {{country.name}}</option>
+                                    </select> </td>
+                            </ng-container>
+                            <ng-container matColumnDef="two">
+                                <th mat-header-cell *matHeaderCellDef> Title <img matSuffix style="width:12px" />
+                                </th>
+                                <td mat-cell *matCellDef="let element"> {{element.two}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="three">
+                                <th mat-header-cell *matHeaderCellDef> Starting Date <img matSuffix
+                                        style="width:12px" />
+                                </th>
+                                <td mat-cell *matCellDef="let element"> {{element.three}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="four">
+                                <th mat-header-cell *matHeaderCellDef>Ending Date <img matSuffix style="width:12px" />
+                                </th>
+                                <td mat-cell *matCellDef="let element"> {{element.four}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="five">
+                                <th mat-header-cell *matHeaderCellDef> Cover Value<img matSuffix style="width:12px" />
+                                </th>
+                                <td mat-cell *matCellDef="let element"> {{element.five}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="six">
+                                <th mat-header-cell *matHeaderCellDef> Vendor<img matSuffix style="width:12px" />
+                                </th>
+                                <td mat-cell *matCellDef="let element"> {{element.six}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="seven">
+                                <th mat-header-cell *matHeaderCellDef> Exclusions <img matSuffix style="width:12px" />
+                                </th>
+                                <td mat-cell *matCellDef="let element"> {{element.seven}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="icon">
+                                <th mat-header-cell *matHeaderCellDef> </th>
+                                <td mat-cell *matCellDef="let element;index as index">
+                                    <img *ngIf="index==hoveredIndex" src="assets/216658.svg" width="20px">
+                                </td>
+                            </ng-container>
+
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns2 sticky:true">
+                            </tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns2;index as i;" class="hover_class"
+                                on-mouseover="hoveredIndex=i"></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <mat-toolbar style="width: 100%; position: absolute; bottom: 0;height: 35px;
+            
+            padding: 0px;">
+                <div fxLayout="row" fxLayoutGap='10px' style="margin-top:-15px;" class="footer">
+
+                    <div class="estimate">Estimatd Time to Complete : 6 mins
+
+                    </div>
+
+                    <mat-progress-bar class="progressone" mode="determinate" value="40">
+                    </mat-progress-bar>
+                    <span style="display:flex; flex: 1 1 auto;"></span>
+
+                    <div fxLayout="row" fxLayoutAlign="end" style="margin-top: 5px;">
+                        <div *ngIf="previous" class="but1" tabindex="-1" (click)='Previous()'>
+                            <img src="./assets/Preview.svg" />
+
+                            Previous
+                        </div>
+
+                        <div *ngIf="next" class="but3" tabindex="-1" (click)='Next()'>
+                            Next
+                            <img class="icon-flipped" src="./assets/Next12.svg" />
+
+
+
+                        </div>
+                        <div *ngIf="finish" class="but3" tabindex="-1" (click)='Finishpopup()'>
+                            finish
+                            <img class="icon-flipped" src="./assets/Next12.svg" />
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </mat-toolbar>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>

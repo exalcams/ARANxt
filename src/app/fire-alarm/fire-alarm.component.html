@@ -1,0 +1,477 @@
+
+<div style="width:100%;height:90%;padding-top:15px" fxLayout="column">
+
+
+
+     <!-- <nav mat-tab-nav-bar>
+        <div style="height: 50px;margin-left: 15px;width:97%;overflow-y: scroll;display: -webkit-inline-box;">
+
+            <div class="Toolbar_button Toolbar_button1" routerLink="/Electrical">
+                <p style="margin-top: 3px;">Electrical distribution</p>
+            </div>
+            <div class="Toolbar_button1 Toolbar_button">
+                <p style="margin-top: 3px;">Energy Consumption</p>
+            </div>
+            <div class="Toolbar_button1 Toolbar_button" routerLink="/hvac">
+                <p style="margin-top: 3px;">HVAC</p>
+            </div>
+            <div class="Toolbar_button1 Toolbar_button" routerLink="/water">
+                <p style="margin-top: 3px;">Water Consumption</p>
+            </div>
+            <div class="Toolbar_button1 Toolbar_button">
+                <p style="margin-top: 3px;">Power Resource</p>
+            </div>
+            <div class="Toolbar_button1 Toolbar_button">
+                <p style="margin-top: 3px;">Parking Access Control</p>
+            </div>
+            <div class="Toolbar_button1 Toolbar_button">
+                <p style="margin-top: 3px;">CCTV</p>
+            </div>
+            <div class="Toolbar_button1 Toolbar_button" routerLink="/fire">
+                <p style="margin-top: 3px;">Fire Alarm</p>
+            </div>
+            <div class="Toolbar_button1 Toolbar_button" routerLink="/others">
+                <p style="margin-top: 3px;">Others</p>
+            </div>
+
+
+        </div>
+      </nav> -->
+
+
+    <div fxLayout="row" fxFlex style="width: 98%;margin-left: 15px;" fxLayoutGap="20px">
+        <div style="height: 100%;text-align: center; " fxFlex="25" fxLayout="column">
+            <div style="height: 50px;">
+                <div fxLayout="row" fxLayout="space-between center" style="margin: 10px;">
+                    <div fxFlex="20">
+                        <p class="txt_class">Status</p>
+                    </div>
+                    <div fxLayout="row" fxFlex="80" fxLayoutGap="10px" style="padding-left: 25px;">
+                        <p class="txt_class" style="color: #acacac;">Active</p>
+                        <p class="dot" style="background-color:#4db151; "></p>
+
+                        <p class="txt_class" style="color: #acacac;">InActive</p>
+                        <p class="dot" style="background-color: #e50000;"></p>
+
+                    </div>
+                </div>
+                <div style="background-color: #f9f8fe;text-align: left;height: 435px;">
+                    <p class="txt_class" style="padding-left: 20px;padding-top: 10px;padding-bottom: 10px;">Selected
+                        Area flow chart</p>
+                    <p class="divider" style="margin-top: -13px;
+                    margin-left: 10px;"></p>
+                    <div fxLayout="column" style="height: 220px;overflow-y: auto;">
+                        <div fxLayout="column" [ngClass]="i>-1?'hover_cls2':'hover_cls'"
+                            *ngFor="let area of SelectedArea;let i = index" style="margin: 10px;cursor: pointer;" (click)="SelectedSpace(area)">
+                            <div style="padding: 1px;height: 30px;" fxLayoutAlign="start center">
+                                <div fxLayout="row" fxLayout="space-between center"
+                                    style="width: 100%;padding: 0px 10px;">
+
+                                    <div fxLayout="row" fxFlex="80" fxLayoutAlign="start center">
+                                        <img src="../../assets/1015595.svg" style="width: 15px;height: 15px;">
+
+                                        <p class="txt_class" style="margin:0px 0px 0px 10px !important;">{{area}}</p>
+                                    </div>
+                                    <div fxLayout="row" fxFlex="20">
+                                        <p class="dot_list1" *ngIf="i==0"></p>
+                                        <p class="dot_list"></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div style="padding-left: 15px;">
+                        <img src="../../assets/Image 125.jpg" width="210px" height="150px">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div fxFlex="20">
+            <div style="background-color: #fbedf6;text-align: left;height: 485px;">
+                <div fxLayout="row" style="padding: 10px 10px;">
+                    <p class="txt_class" style="color:#884770;margin-left: 5px;">Select Zone</p>
+                    <p style="width: 35%;"></p>
+                    <p class="txt_class" style="color:#c49bb6">Area</p>
+                </div>
+
+                <p class="divider" style="margin-top: -13px;
+                margin-left: 10px;"></p>
+                <div fxLayout="column" style="height: 415px;overflow-y: auto;">
+                    <div fxLayout="column" [ngClass]="i>-1?'hover_cls1':'hover_cls'" fxLayoutAlign="center"
+                        *ngFor="let area of Area;let i = index" style="margin: 5px 5px;padding: 0px 15px;">
+                        <div style="padding: 1px;height: 30px;" fxLayoutAlign="start center" (click)="SelectedSubSpace(area.space)">
+                            <div fxLayout="row" fxLayout="space-between center" style="width: 100%;">
+
+                                <div fxLayout="row" fxFlex="80" fxLayoutAlign="start center">
+                                    <img src="../../assets/1015595.svg" style="width: 15px;height: 15px;">
+
+                                    <p class="txt_class" style="margin:0px 0px 0px 10px !important;">{{area.space}}</p>
+                                </div>
+                                <div fxLayout="row" fxFlex="20">
+                                    <p class="dot_list1" *ngIf="i==0"></p>
+                                    <p class="dot_list"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div fxFlex="47" fxLayout="column">
+            <div fxLayout="row" fxLayoutAlign="end center">
+                <mat-icon>keyboard_arrow_down</mat-icon>
+                <img src="assets/iconfinder_city_3_3078506.svg" style="margin-right: 5px;">
+                <div class="label">Assert Details</div>
+            </div>
+            <!-- <div fxLayout="row" class="label" fxLayoutAlign="center center">
+                Room Temperature Controller
+            </div> -->
+            <div fxLayout="row" class="label1" fxLayoutAlign="space-between center">
+                <div fxLayout="row" fxLayoutGap="10px">
+                    <div class="label">
+                        Fire Overview
+                    </div>
+                    <!-- <img src="assets/Group 8131.svg"> -->
+                </div>
+                <!-- <div>
+                    <div>
+                        <mat-icon style="color: #c0d6fd;">more_horiz</mat-icon>
+                    </div>
+                </div> -->
+            </div>
+            <div style="height: 150px; background-color:#fff ;">
+
+                <div fxLayout="row" fxLayoutGap="10px">
+                    <div fxFlex="25" fxLayout="column" class="Brand_cls">
+                        <div fxLayoutAlign="center center" class="Cls_bnd">
+                            Brand : Ravel
+                        </div>
+                        <div fxLayout="row" style="padding: 0px 10px;">
+                            <div fxFlex="70">
+                                <div class="Cls_bnd1" fxLayoutAlign="start center">
+                                    System On
+                                </div>
+                                <div class="Cls_bnd1" fxLayoutAlign="start center">
+                                    AQ Power on
+                                </div>
+                                <div class="Cls_bnd1" fxLayoutAlign="start center">
+                                    Standby On
+                                </div>
+                                <div class="Cls_bnd1" fxLayoutAlign="start center">
+                                    Hooter Fault
+                                </div>
+                                <div class="Cls_bnd1 " fxLayoutAlign="start center">
+                                    Silenced
+                                </div>
+                            </div>
+                            <div fxFlex="30" fxLayout="column" fxLayoutAlign="center center">
+                                <div fxLayout="column">
+                                    <mat-radio-group aria-label="Select an option">
+                                        <mat-radio-button value="1" class="radio_cls"></mat-radio-button>
+                                        <mat-radio-button value="2" style="margin-top: 3px;"></mat-radio-button>
+                                        <mat-radio-button value="3" style="margin-top: 3px;"></mat-radio-button>
+                                        <mat-radio-button value="4" style="margin-top: 3px;"></mat-radio-button>
+                                        <mat-radio-button value="5" style="margin-top: 3px;"></mat-radio-button>
+
+                                    </mat-radio-group>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div fxFlex="50" fxLayout="column">
+                        <div fxLayoutAlign="center center" class="Cls_bnd">
+                            Fire Alarm Panel
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="25px" style="margin-top: 5px;">
+                            <div fxLayout="column">
+                                <div class="fire_cls">
+                                    Fire
+                                </div>
+
+                            </div>
+                            <div class="fire_cls">
+                                Fault
+                            </div>
+                            <div class="fire_cls">
+                                Iso / W.T
+                            </div>
+                        </div>
+                        <div fxLayout="row">
+                            <div fxFlex="25" fxLayout="column" fxLayoutGap="10px" style="padding-top: 5px;margin-top: 10px;">
+                                <div class="fire_cls">
+                                    Zone 1
+                                </div>
+                                <div class="fire_cls">
+                                    Zone 2
+                                </div>
+                                <div class="fire_cls">
+                                    Zone 3
+                                </div>
+                                <div class="fire_cls">
+                                    Zone 4
+                                </div>
+                            </div>
+                            <div fxFlex="20" fxLayout="row">
+                                <div>
+                                    <mat-radio-group aria-label="Select an option">
+                                        <mat-radio-button value="1" class="radio_cls"></mat-radio-button>
+                                        <mat-radio-button value="2" style="margin-top: 3px;"></mat-radio-button>
+                                        <mat-radio-button value="3" style="margin-top: 3px;"></mat-radio-button>
+                                        <mat-radio-button value="4" style="margin-top: 3px;"></mat-radio-button>
+
+                                    </mat-radio-group>
+                                </div>
+                                <div>
+                                    <mat-radio-group aria-label="Select an option">
+                                        <mat-radio-button value="1" class="radio_cls"></mat-radio-button>
+                                        <mat-radio-button value="2" style="margin-top: 3px;"></mat-radio-button>
+                                        <mat-radio-button value="3" style="margin-top: 3px;"></mat-radio-button>
+                                        <mat-radio-button value="4" style="margin-top: 3px;"></mat-radio-button>
+
+
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+                            <div fxFlex="20" >
+                                <div style="text-align: end;margin-left: 22px">
+                                    <mat-radio-group aria-label="Select an option">
+                                        <mat-radio-button value="1" class="radio_cls"></mat-radio-button>
+                                        <mat-radio-button value="2" style="margin-top: 3px;"></mat-radio-button>
+                                        <mat-radio-button value="3" style="margin-top: 3px;"></mat-radio-button>
+                                        <mat-radio-button value="4" style="margin-top: 3px;"></mat-radio-button>
+
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+                            <div fxFlex="20">
+                                <div style="text-align: end;margin-left: 38px">
+                                    <mat-radio-group aria-label="Select an option">
+                                        <mat-radio-button value="1" class="radio_cls"></mat-radio-button>
+                                        <mat-radio-button value="2" style="margin-top: 3px;"></mat-radio-button>
+                                        <mat-radio-button value="3" style="margin-top: 3px;"></mat-radio-button>
+                                        <mat-radio-button value="4" style="margin-top: 3px;"></mat-radio-button>
+
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div fxFlex="25" class="Brand_cls" fxLayout="column" fxLayoutGap="13px" style="padding:0px 5px">
+                        <div fxLayoutAlign="center center" class="Cls_bnd">
+                            Model : RE 104
+                        </div>
+                        <div fxLayout="column" fxLayoutGap="25px">
+                            <div fxLayout="row" fxLayoutGap="10px">
+                                <div fxFlex="50" class="Btn_cls menu_cls">
+                                    Silence
+                                </div>
+                                <div fxFlex="50" class="Btn_cls menu_cls">
+                                    Reset
+                                </div>
+                            </div>
+                            <div fxLayout="row" fxLayoutGap="10px" style="margin-top: 10px;">
+                                <div fxFlex="50" class="Btn_cls " fxLayoutAlign="center center">
+                                    <mat-icon>arrow_left</mat-icon>
+                                </div>
+                                <div fxFlex="50" class="Btn_cls " fxLayoutAlign="center center">
+                                    <mat-icon>arrow_right</mat-icon>
+                                </div>
+                            </div>
+                            <div fxLayout="row" fxLayoutGap="10px">
+                                <div fxFlex="50" class="Btn_cls menu_cls">
+                                    Menu
+                                </div>
+                                <div fxFlex="50" class="Btn_cls menu_cls">
+                                    Enter
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="Line-284"></div>
+
+            <div style="height: 250px;overflow-y: auto;padding: 10px;width: 103%;" *ngFor="let f of firealaram">
+                <div fxLayout="row" style="margin-bottom: 30px;">
+                    <div fxFlex="50">
+                        <div fxFlex="50" fxLayout="column" fxLayoutGap="15px">
+                            <div class="label23">
+                                Deductor
+                            </div>
+                            <div class="label23">
+                                Type
+                            </div>
+                            <div class="label23">
+                                Oper. Voltage
+                            </div>
+                            <div class="label23">
+                                Mt. Height
+                            </div>
+                            <div class="label23">
+                                Lifespan
+                            </div>
+                            <div class="label23">
+                                Temperature
+                            </div>
+                            <div class="label23">
+                                Wiring
+                            </div>
+                            <div class="label23">
+                                LED
+                            </div>
+                            <div class="label23">
+                                Condition
+                            </div>
+
+                        </div>
+                        <div fxFlex="50" fxLayout="column" fxLayoutGap="15px" fxLayoutAlign="start" style="    margin-top: 5px;
+                        ">
+                            <div class="label23_1">
+                                Smoke
+                            </div>
+                            <div class="label23_1">
+                               {{ f.type}}
+                            </div>
+                            <div class="label23_1">
+                              {{f.operaVoltage}}
+                            </div>
+                            <div class="label23_1">
+                               {{f.mtHeight}}
+                            </div>
+                            <div class="label23_1">
+                              {{f.lifespan}}
+                            </div>
+                            <div class="label23_1">
+                              {{f.temperature}}
+                            </div>
+                            <div class="label23_1">
+                              {{f.wiring}}
+                            </div>
+                            <div class="label23_1">
+                                {{f.led}}
+                            </div>
+                            <div class="label23_1">
+                                {{f.condition}}
+                            </div>
+
+                        </div>
+                    </div>
+                    <div fxFlex="50" fxLayout="column" style="    padding-left: 20px;">
+                        <div class="Cls_bnd2">
+                            Sprinkler
+                        </div>
+                        <div fxLayout="row">
+                            <div fxFlex="50" fxLayout="column" fxLayoutGap="15px" style="margin-top: 13px;">
+                                <div class="label23">
+                                    Color
+                                </div>
+                                <div class="label23">
+                                    Type
+                                </div>
+                                <div class="label23">
+                                    Bulb Size
+                                </div>
+                                <div class="label23">
+                                    Status
+                                </div>
+                                <div class="label23">
+                                    M. Height
+                                </div>
+
+
+                            </div>
+                            <div fxFlex="50" fxLayout="column" fxLayoutGap="15px" fxLayoutAlign="start"
+                                style="margin-top: 13px;">
+                                <div class="label23_1">
+                                   {{f.color}}
+                                </div>
+                                <div class="label23_1">
+                                    Temp Sensi. Glass Bulb
+                                </div>
+                                <div class="label23_1">
+                                  {{f.bulbSize}}
+                                </div>
+                                <div class="label23_1">
+                                  {{f.status}}
+                                </div>
+                                <div class="label23_1">
+                                 {{f.mHeight}}
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div fxLayout="column" fxLayoutAlign="center center" style="padding-top: 25px;">
+                            <div class="bold_clss">
+                                Deductor
+                            </div>
+                            <div fxLayout="row" fxLayoutGap="20px" style="padding-top: 10px;">
+                                <div class="label23">
+                                   {{f.active}}
+                                </div>
+                                <div class="label23">
+                                   {{f.inActive}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div fxLayout="row">
+                    <div fxFlex="50">
+                        <div fxFlex="50" fxLayout="column" fxLayoutGap="15px">
+                            <div class="label23">
+                                Deductor
+                            </div>
+                            <div class="label23">
+                                Fixed Temp
+                            </div>
+                            <div class="label23">
+                                M. Height
+                            </div>
+
+
+                        </div>
+                        <div fxFlex="50" fxLayout="column" fxLayoutGap="15px" fxLayoutAlign="start" style="    margin-top: 5px;
+                        ">
+                            <div class="label23_1">
+                              {{f.deductor}}
+                            </div>
+                            <div class="label23_1">
+                             {{f.fixedTemperature}}
+                            </div>
+                            <div class="label23_1">
+                               {{f.mHeight}}
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div fxFlex="50" fxLayout="column" style="    padding-left: 20px;">
+
+                        <div fxLayout="column" fxLayoutAlign="center center">
+                            <div class="bold_clss">
+                                Sprinkler
+                            </div>
+                            <div fxLayout="row" fxLayoutGap="20px" style="padding-top: 10px;">
+                                <div class="label23">
+                                   {{f.active}}
+                                </div>
+                                <div class="label23">
+                                   {{f.inActive}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

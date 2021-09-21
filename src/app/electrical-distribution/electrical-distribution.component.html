@@ -1,0 +1,377 @@
+
+<div style="width:100%;height:90%;padding-top:15px">
+    <div style="width:97%;height:90%;padding-top:15px">
+
+
+        <!-- <nav mat-tab-nav-bar>
+            <div style="height: 50px;margin-left: 15px;width:97%;overflow-y: scroll;display: -webkit-inline-box;">
+
+                <div class="Toolbar_button Toolbar_button1" routerLink="/Electrical">
+                    <p style="margin-top: 3px;">Electrical distribution</p>
+                </div>
+                <div class="Toolbar_button1 Toolbar_button" routerLink="/energy">
+                    <p style="margin-top: 3px;">Energy Consumption</p>
+                </div>
+                <div class="Toolbar_button1 Toolbar_button" routerLink="/hvac">
+                    <p style="margin-top: 3px;">HVAC</p>
+                </div>
+                <div class="Toolbar_button1 Toolbar_button" routerLink="/water">
+                    <p style="margin-top: 3px;">Water Consumption</p>
+                </div>
+                <div class="Toolbar_button1 Toolbar_button">
+                    <p style="margin-top: 3px;">Power Resource</p>
+                </div>
+                <div class="Toolbar_button1 Toolbar_button">
+                    <p style="margin-top: 3px;">Parking Access Control</p>
+                </div>
+                <div class="Toolbar_button1 Toolbar_button">
+                    <p style="margin-top: 3px;">CCTV</p>
+                </div>
+                <div class="Toolbar_button1 Toolbar_button" routerLink="/fire">
+                    <p style="margin-top: 3px;">Fire Alarm</p>
+                </div>
+                <div class="Toolbar_button1 Toolbar_button" routerLink="/others">
+                    <p style="margin-top: 3px;">Others</p>
+                </div>
+    
+    
+            </div>
+          </nav> -->
+
+
+        <div fxLayout="row" style="width: 100%;margin-left: 15px;height: 70vh;overflow: auto;" fxLayoutGap="20px">
+
+            <div style="height: 100%;text-align: center; " fxFlex="25" fxLayout="column">
+                <div style="height: 50px;">
+                    <div fxLayout="row" fxLayout="space-between center" style="margin: 10px;">
+                        <div fxFlex="20">
+                            <p class="txt_class">Status</p>
+                        </div>
+                        <div fxLayout="row" fxFlex="80" fxLayoutGap="10px">
+                            <p class="dot" style="background-color: #e50000;"></p>
+                            <p class="txt_class" style="color: #acacac;">High</p>
+                            <!-- <div fxLayout="row"   fxLayout="space-between center"> -->
+                            <p class="dot" style="background-color: #4db151;"></p>
+                            <p class="txt_class" style="color: #acacac;">Normal</p>
+                            <!-- <div fxLayout="row"   fxLayout="space-between center"> -->
+                            <p class="dot" style="background-color: #00c4ff;"></p>
+                            <p class="txt_class" style="color: #acacac;">Low</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="background-color: #f9f8fe;padding: 10px;text-align: left;">
+                    <p class="txt_class">Selected Area flow chart</p>
+                    <p class="divider"></p>
+                    <div fxLayout="column" *ngFor="let area of SelectedArea;let i = index" style="margin: 10px;cursor: pointer;"  (click)="SelectedSpace(area)">
+                        <div style="background-color: #eceff1;padding: 10px;height: 24px;">
+                            <div fxLayout="row" fxLayout="space-between center">
+
+                                <div fxLayout="row" fxFlex="80">
+                                    <img src="../../assets/Images/Electrocution.svg" style="width: 15px;height: 15px;">
+
+                                    <p class="txt_class" style="margin-left:10px">{{area}}</p>
+                                </div>
+                                <div fxLayout="row" fxFlex="20">
+                                    <p class="dot_list1" *ngIf="i==0"></p>
+                                    <p class="dot_list"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div>
+                        <img src="../../assets/Images/Image 46.png" width="230px" height="150px">
+                    </div>
+                    <!-- <app-root (messageEvent)="receiveMessage($event)"></app-root> -->
+                </div>
+            </div>
+
+            <div style="height: 100%;" fxFlex="20">
+                <div style="background-color: #fbedf6;padding: 10px;text-align: left;">
+                    <div fxLayout="row">
+                        <p class="txt_class" style="color:#884770;margin-left: 5px;">Select Zone</p>
+                        <p style="width: 35%;"></p>
+                        <p class="txt_class" style="color:#c49bb6">Area</p>
+                    </div>
+
+                    <p class="divider"></p>
+                    <div fxLayout="column" *ngFor="let area of Area;let i = index" style="margin: 10px;" >
+                        <div style="background-color: #fdf3f9b3;padding: 10px;height: 24px;cursor: pointer;" (click)="SelectedSubSpace(area.space)">
+                            <div fxLayout="row" fxLayout="space-between center" >
+
+                                <div fxLayout="row" fxFlex="80">
+                                    <img src="../../assets/Images/Electrocution.svg" style="width: 15px;height: 15px;">
+
+                                    <p class="txt_class" style="margin-left:10px">{{area.space}}</p>
+                                </div>
+                                <div fxLayout="row" fxFlex="20">
+                                    <p class="dot_list1" *ngIf="i==0"></p>
+                                    <p class="dot_list"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div fxFlex="5" style="height: 100%;">
+                <div
+                    style="border-right: 2px solid #f9f9f9; height: 500px; position: relative; top: 35px; left: -15px;">
+                </div>
+            </div>
+
+            <!-- <div style="height: 100%;" fxFlex="50" fxLayout="column" fxLayoutGap="15px">
+
+                <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="15px">
+                    <mat-icon class="more_icon">expand_more</mat-icon>
+                    <div fxLayout="row">
+                        <img src="../../assets/Images/city.svg" class="city_img">
+                        <span matBadge="4"></span>
+                        <p style="font-weight: bold; position: relative; left: -10px; font-size: 12px;">Assert Details
+                        </p>
+                    </div>
+                </div>
+
+                <div fxLayout="row" fxLayoutGap="30px">
+                    <div fxLayout="row"  fxFlexOffset="6"  fxLayoutGap="15px">
+                        <p style="font-weight: bold; font-size: 12px;">Circuit Breaker</p>
+                        <mat-divider [vertical]="true" style="position: relative; top: -5px; left: -1px; border-width: 2px;">
+                        </mat-divider>
+                        <p style="font-weight: 600; font-size: 12px;">
+                            Server &nbsp;
+                            <span
+                                style="width: 100px;height: 24px; border-radius: 12px; background-color: #92919b;padding: 2px 15px 3px;">ON</span>
+                        </p>
+                    </div>
+                    <div fxLayout="row"  fxLayoutGap="15px">
+                        <p style="color: #acacac; font-size: 12px">Single Phase</p>
+                        <p style="color: #acacac; font-size: 12px">120 V</p>
+                    </div>
+                </div>
+
+                <div fxLayout="row"  fxLayoutAlign="space-between center">
+                    <p fxFlexOffset="6" style="font-weight: bold;color: #6e6d7a;font-size: 12px;">Trip Box Main</p>
+                    <mat-slide-toggle size="large" class="toggle"></mat-slide-toggle>
+                </div>
+
+                <mat-divider style="color: #f9f9f9;"></mat-divider>
+
+                <div fxLayout="row">
+                    <div fxLayout="row">
+                        <mat-icon style="color: #1f009e;font-weight: bold;">arrow_drop_up</mat-icon>
+                        <p style="color: #1f009e;font-size: 12px; font-weight: bold;">Junction Box</p>
+                    </div> 
+                </div>
+
+                <p style="color: #acacac; font-size: 12px; position: relative; top: -25px; left: 25px;">Light</p> 
+
+                <div fxLayout="column" style="position: relative; left: 35px; top: -20px; width: 90%;">
+                    <div fxLayout="row" fxLayoutGap="15px">
+                        <div fxLayout="row" fxLayoutGap="15px">
+                            <p style="font-size: 12px;">Row 1</p>
+                            <mat-slide-toggle size="large" class="toggle"></mat-slide-toggle>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="15px">
+                            <p style="font-size: 12px;">Row 1</p>
+                            <mat-slide-toggle size="large" class="toggle"></mat-slide-toggle>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="15px">
+                            <p style="font-size: 12px;">HR Cabin</p>
+                            <mat-slide-toggle size="large" class="toggle"></mat-slide-toggle>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <div style="height: 100%;" fxFlex="50" fxLayout="column">
+                <div fxLayout="column" fxLayoutGap="20px">
+                    <div fxLayout="row" fxLayoutAlign="end end" style="line-height: 0;cursor: pointer;">
+                        <span [matMenuTriggerFor]="menu" #t="matMenuTrigger">
+                            <mat-icon *ngIf="t.menuOpen == false">expand_more</mat-icon>
+                            <mat-icon *ngIf="t.menuOpen == true">expand_less</mat-icon>
+                        </span>
+                       
+
+                        <img src="../../assets/Images/iconfinder_city_3_3078506@3x.png" width="15px" height="15px"
+                            style="margin-bottom: 4px;">
+
+                        <p class="txt_class">Assert Details</p>
+
+                        <mat-menu #menu="matMenu">
+                            <div fxLayout="column">
+                                <div fxLayout="row" fxLayoutAlign="end center">
+                                    <img src="../../assets/Images/Circuit_small.png"
+                                        style="border: 1px solid #545363; border-radius: 4px;box-shadow: 0 0 5px #545363;position: relative; left: -15px;">
+                                </div>
+                                <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+                                    <img src="../../assets/Images/Circuit_large.png">
+                                    <div fxLayout="column">
+                                        <p>Anchor by Panasonic 98306 Uno series 6 way </p>
+                                        <div fxLayout="row">
+                                            <p>Brand :</p>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </mat-menu>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="row" fxLayoutGap="10px">
+                            <p class="txt_class">Circuit breaker</p>
+                            <p style="border-right: 1px solid grey;height: 20px;opacity: .4;"></p>
+                            <p class="txt_class">Server</p>
+                            <div class="txt_class on_div"> On</div>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px">
+                            <p class="txt_class" style="color: #acacac;">Single Phase</p>
+                            <p class="txt_class" style="color: #acacac;">120 v</p>
+
+                        </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="row" fxLayoutGap="10px">
+                            <p class="txt_class" style="opacity: .7;">Trip box main</p>
+
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="10px" class="common">
+
+                            <mat-slide-toggle class="slide_tog"></mat-slide-toggle>
+                        </div>
+                    </div>
+                    <div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" style="height:17px">
+                            <div fxLayout="row" fxLayoutGap="2px">
+                                <mat-icon style="color: #1f009e;font-weight: bold; position: relative;top: -2px;">
+                                    arrow_drop_down</mat-icon>
+                                <p style="color: #1f009e;font-size: 12px; font-weight: bold;" class="txt_class">Junction
+                                    box</p>
+
+                            </div>
+                            <div fxLayout="row" fxLayoutGap="10px" class="common">
+
+                                <mat-slide-toggle class="slide_tog"></mat-slide-toggle>
+                            </div>
+                        </div>
+                        <p class="txt_class" style="color: #acacac;margin-left: 10px;" >Light</p>
+                        <div fxLayout="column" fxLayoutGap="10px">
+                            <div xLayout="row" fxLayoutAlign="space-around center" *ngFor="let electrical of Electrical">
+                                <div fxLayout="row" fxLayoutGap="10px" class="common">
+                                    <p class="txt_class" style="color: #acacac;">{{electrical.position}}</p>
+                                    <mat-slide-toggle  [(ngModel)]="electrical.slot" class="slide_tog" ></mat-slide-toggle>
+                                </div>
+                                <!-- <div fxLayout="row" fxLayoutGap="10px" class="common">
+                                    <p class="txt_class" style="color: #acacac;">Row 1</p>
+                                    <mat-slide-toggle class="slide_tog"></mat-slide-toggle>
+                                </div>
+                                <div fxLayout="row" fxLayoutGap="10px" class="common">
+                                    <p class="txt_class" style="color: #acacac;">HR Cabin</p>
+                                    <mat-slide-toggle class="slide_tog"></mat-slide-toggle>
+                                </div> -->
+                            </div>
+                            <div xLayout="row" fxLayoutAlign="space-around center">
+                                <div fxLayout="row" fxLayoutGap="10px" class="common">
+                                    <p class="txt_class" style="color: #acacac;">Row 1</p>
+                                    <mat-slide-toggle class="slide_tog"></mat-slide-toggle>
+                                </div>
+                                <div fxLayout="row" fxLayoutGap="10px" class="common">
+                                    <p class="txt_class" style="color: #acacac;">Row 1</p>
+                                    <mat-slide-toggle class="slide_tog"></mat-slide-toggle>
+                                </div>
+                                <div fxLayout="row" fxLayoutGap="10px" class="common">
+                                    <p class="txt_class" style="color: #acacac;">IOT Room</p>
+                                    <mat-slide-toggle class="slide_tog"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div xLayout="row" fxLayoutAlign="space-around center">
+                                <div fxLayout="row" fxLayoutGap="10px" class="common">
+                                    <p class="txt_class" style="color: #acacac;">Row 1</p>
+                                    <mat-slide-toggle class="slide_tog"></mat-slide-toggle>
+                                </div>
+                                <div fxLayout="row" fxLayoutGap="10px" class="common">
+                                    <p class="txt_class" style="color: #acacac;">Row 1</p>
+                                    <mat-slide-toggle class="slide_tog"></mat-slide-toggle>
+                                </div>
+                                <div fxLayout="row" fxLayoutGap="10px" class="common">
+                                    <p class="txt_class" style="color: #acacac;">GD Room</p>
+                                    <mat-slide-toggle class="slide_tog"></mat-slide-toggle>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div fxLayout="column">
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <div fxLayout="row" fxLayoutGap="2px">
+                                <mat-icon>arrow_drop_down</mat-icon>
+                                <p class="txt_class">Trip box 3</p>
+
+                            </div>
+                            <div fxLayout="row" fxLayoutGap="10px" class="common">
+
+                                <mat-slide-toggle class="slide_tog"></mat-slide-toggle>
+                            </div>
+                        </div>
+                        <p class="txt_class" style="color: #acacac;margin-left: 10px;">Trip box main to Trip box 3</p>
+
+                    </div>
+                    <div fxLayout="column">
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <div fxLayout="row" fxLayoutGap="2px">
+                                <mat-icon>arrow_drop_down</mat-icon>
+                                <p class="txt_class">Trip box 3</p>
+
+                            </div>
+                            <div fxLayout="row" fxLayoutGap="10px" class="common">
+
+                                <mat-slide-toggle class="slide_tog"></mat-slide-toggle>
+                            </div>
+                        </div>
+                        <p class="txt_class" style="color: #acacac;margin-left: 10px;">Trip box main to Trip box 3 (AC)
+                        </p>
+
+                    </div>
+                    <div fxLayout="column">
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <div fxLayout="row" fxLayoutGap="2px">
+                                <mat-icon>arrow_drop_down</mat-icon>
+                                <p class="txt_class">Trip box 3</p>
+
+                            </div>
+                            <div fxLayout="row" fxLayoutGap="10px" class="common">
+
+                                <mat-slide-toggle class="slide_tog"></mat-slide-toggle>
+                            </div>
+                        </div>
+                        <p class="txt_class" style="color: #acacac;margin-left: 10px;">Trip box main to Trip box 3 (PC)
+                        </p>
+
+                    </div>
+                    <div fxLayout="column">
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <div fxLayout="row" fxLayoutGap="2px">
+                                <mat-icon>arrow_drop_down</mat-icon>
+                                <p class="txt_class">Trip box 4</p>
+
+                            </div>
+                            <div fxLayout="row" fxLayoutGap="10px" class="common">
+
+                                <mat-slide-toggle class="slide_tog"></mat-slide-toggle>
+                            </div>
+                        </div>
+                        <p class="txt_class" style="color: #acacac;margin-left: 10px;">Trip box main to Trip box 4
+                            (Appliances)</p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

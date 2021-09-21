@@ -1,0 +1,144 @@
+.Toolbar_button:active{
+  height: 25px;
+width: 200px !important;
+border-radius: 4px;
+text-align: center;
+color:white;
+font-size: 12px;
+font-weight: 600;
+background-color: #1f009e;
+}
+
+.Toolbar_button:focus{
+  height: 25px;
+width: 200px !important;
+border-radius: 4px;
+text-align: center;
+color:white;
+font-size: 12px;
+font-weight: 600;
+background-color: #1f009e;
+
+}
+.Toolbar_button1{
+  height: 25px;
+width: 200px !important;
+border-radius: 4px;
+text-align: center;
+color: #6e6d7a;
+font-size: 12px;
+font-weight: 600;
+box-shadow: 0 2px 6px 0 #eaf1fa;
+background-color: #ffffff;
+}
+.dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin: 6px;
+  background-color: #49ee95;
+}
+.dot_list{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 3px;
+  background-color: #4db151;
+}
+.dot_list1{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 3px;
+  background-color: #ffba00;
+}
+.txt_class{
+  font-weight: 600;
+  font-size: 12px;
+}
+.divider{
+  opacity: 0.18;
+  border-bottom: solid 1px #6d50ff;
+  width: 90%;
+}
+.more_icon{
+width: 8px;
+height: 4px;
+position: relative;
+top: -4px;
+}
+.city_img{
+width: 18.2px;
+height: 15.4px;
+}
+.mat-badge-medium .mat-badge-content {
+background: #00ba53;
+color: white;
+width: 17px;
+height: 17px;
+font-size: 9px;
+line-height: 18px;
+position: relative;
+left: -10px;
+}
+
+.common .mat-slide-toggle-bar{
+width: 60px !important;
+height: 24px !important;
+border-radius: 15px !important;
+}
+.common .mat-slide-toggle-thumb {
+  background-color: white !important;
+height: 21px !important;
+width: 21px !important;
+border-radius: 50% !important;
+position:  relative !important;
+top: 4px !important;
+left: 1px !important;
+}
+.common .mat-slide-toggle.mat-checked .mat-slide-toggle-bar::after {
+        content: 'ON';
+        font-size: 12px;
+        font-weight: 600;
+        color: black;
+        position: absolute;
+        left: 12px;
+        top: 0px;
+    }
+    .common .mat-slide-toggle:not(.mat-checked) .mat-slide-toggle-bar::after {
+    content: 'OFF';
+    font-size: 12px;
+    font-weight: 600;
+    color: black;
+    position: absolute;
+    left: 25px;
+    top: 0px;
+    }
+    .common .mat-slide-toggle .mat-slide-toggle-bar {
+      background-color:  #c0d6fd;
+  }
+  .common .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+      background-color: #3ec725 !important;
+      margin-left: 110%;
+      height: 24px !important;
+      width: 24px !important;
+      border-radius: 50% !important;
+      position:  relative !important;
+      top: 3px !important;
+  } 
+  .common .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color: #afffb2 !important;
+} 
+.on_div{
+  height: 22px;
+    width: 46px;
+    border-radius: 45px;
+    background-color: grey;
+    color: white;
+    text-align: center;
+}
+.mat-menu-panel{
+  position: relative;
+  left: 33%;
+  width: 600px !important;
+}

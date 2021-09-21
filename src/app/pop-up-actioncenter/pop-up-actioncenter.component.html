@@ -1,0 +1,78 @@
+<div fxLayout="column" fxFlex>
+    <div fxLayout="row">
+        <form style="width: 100%;">
+            <div fxLayout="column">
+                <div fxLayout="row" fxLayoutGap="20px">
+
+                    <div fxLayout="row" fxLayoutGap="38px" fxLayoutAlign="center center">
+                        <label>Name</label>
+                        <input style="border: none;height: 25px;outline: none;">
+                    </div>
+
+                    <!-- <mat-form-field appearance="outline"> -->
+                    <div>
+                        <label>Choose a date</label>
+                        <input [matDatepicker]="picker"
+                            style="margin-left: 20px;border:none;height: 25px;outline: none;">
+                        <mat-datepicker-toggle matSuffix [for]="picker" style="    margin-left: -35px;">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <!-- </mat-form-field> -->
+
+                    </div>
+
+
+                </div>
+                <div fxLayout="row" fxLayoutGap="20px">
+                    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
+                        <label>Location</label>
+                        <input style="border: none;height: 25px;outline: none;">
+                    </div>
+
+                    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
+                        <label>Assign</label>
+                        <img width="30px" src="assets/Group 8311.svg" (click)="search()">
+                        <div fxLayout="row" *ngIf="searchbutton" class="main_input_field1">
+                            <div>
+                                <img style="vertical-align: -webkit-baseline-middle;
+                                width: 24px;" src="./assets/search.svg">
+                            </div>
+                            <div>
+                                <input class="input_field" matInput placeholder="Search by I’d ">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- <div fxLayout="row" *ngIf="searchbutton" class="main_input_field1">
+                        <div>
+                            <img style="vertical-align: -webkit-baseline-middle;
+                                width: 24px;" src="./assets/search.svg">
+                        </div>
+                        <div>
+                            <input class="input_field" matInput placeholder="Search by I’d ">
+                        </div>
+
+                    </div> -->
+
+
+
+            </div>
+
+        </form>
+
+
+    </div>
+    <div style="height: 100px;" fxLayout="column">
+        <div fxLayoutAlign="start center" style="margin-top: 10px;" fxLayoutGap="20px" fxLayout="row">
+            <img style="height: 28px; margin-left:15px;" src="./assets/face.png">
+            <label class="div1_cls">Employee Id</label>
+            <label class="div2_cls">Employee Name</label>
+        </div>
+    </div>
+    <footer>
+        <div fxLayoutAlign="center end">
+            <button mat-button class="assignbutton">Assign </button>
+        </div>
+    </footer>
+</div>

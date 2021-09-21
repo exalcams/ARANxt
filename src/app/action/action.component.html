@@ -1,0 +1,159 @@
+<!-- <div fxLayoutAlign="center center">
+
+    <img height="500px" src="assets/CP_Building.png">
+</div> -->
+<div>
+    <div fxLayout="row">
+        <div fxFlex="100">
+            <mat-tab-group>
+                <mat-tab label="Task Assignment">
+                    <div>
+                        <div fxLayoutAlign="center center">
+                            <button class="btn_task" (click)="addtask()">
+                                <span>+ Add Task </span>
+                            </button>
+                        </div>
+                        <!-- <mat-grid-list cols="3"  rowHeight="100px" >
+                            <mat-grid-tile *ngFor="let tile of tiles" column-gap= "20px" [style.background]="tile.color">
+                                {{tile.text}}
+                                <div fxLayout="row" fxLayoutAlign="start start">
+                                    <div>sf</div>
+                                    <div>sfd</div>
+                                </div>
+                            </mat-grid-tile>
+                        </mat-grid-list> -->
+
+
+                    </div>
+                    <div fxLayout="row" class="flex-row-container">
+                        <div fxLayout="column" class="flex-row-item" *ngFor="let tile of tiles"  style=" margin-bottom: 20px;overflow-y: auto;   padding: 5px 15px 5px 15px;">
+                            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+                                <div class="cls_name">
+                                    Long Text Lorem Ipsum Lorem
+                                    Ipsum Dummy text
+                                </div>
+                                <div>
+                                    <img src="assets/Images/option.svg">
+                                </div>
+                            </div>
+                            <br>
+                            <div fxLayout="row" fxLayoutGap="20px">
+                                <div class="cls_loc">
+                                    <img src="assets/loc_img.svg">
+                                    <label>Location</label>
+                                </div>
+                                <div class="cls_loc">
+                                    <img src="assets/iconfinder_Calendar_728916.svg">
+                                    <label>02/09/2021</label>
+                                </div>
+                            </div>
+                            <div fxLayoutAlign="end center">
+                                80%
+                            </div>
+                            <div>
+                                <mat-progress-bar  class="passwordStatusBarColor" value="40"></mat-progress-bar>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="space-between center">
+                                <div class="Rectangle-7499" >
+                                    Lorem Ipsum
+                                </div>
+                                <div fxLayout="row" fxLayoutAlign="center center">
+                                    <label class="cls_loc">Assign</label>
+                                    <img width="30px" src="assets/Group 8311.svg" (click)="search()">
+                                </div>
+                            </div>
+                         
+                                <div fxLayout="row" *ngIf="searchbutton"  class="main_input_field2" fxLayoutAlign="start center">
+                                    <div>
+                                        <img style="vertical-align: -webkit-baseline-middle;
+                                        width: 24px;" src="./assets/search.svg">
+                                    </div>
+                                    <div fxFlex>
+                                        <input class="input_field1" matInput placeholder="Search by I’d ">
+                                    </div>
+                                    <!-- <div>
+                                        <img style="vertical-align: middle; margin-left: -66%;width: 8px;"
+                                            src="./assets/mic.svg">
+                                    </div> -->
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <div fxLayout="column">
+                            <div fxLayoutAlign="space-between center" fxLayout="row"
+                                style="width: 70%;padding: 5px 15px;">
+                                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+                                    <div class="ava_cls">
+                                        Avaliable
+                                    </div>
+                                    <div class="rectangle-box">
+                                        16
+                                    </div>
+                                    <div>
+                                        <img src="assets/Ellipse 799.svg">
+                                    </div>
+                                </div>
+                                <div fxLayoutAlign="center center">
+                                    <div fxLayout="row" class="main_input_field1" fxLayoutAlign="space-between center">
+                                        <div>
+                                            <img style="vertical-align: -webkit-baseline-middle;
+                                            width: 24px;" src="./assets/search.svg">
+                                        </div>
+                                        <div>
+                                            <input class="input_field" matInput placeholder="Search by I’d ">
+                                        </div>
+                                        <div>
+                                            <img style="vertical-align: middle; margin-left: -66%;width: 8px;"
+                                                src="./assets/mic.svg">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div fxLayout="row" fxLayoutGap="20px" style="overflow-x: auto;width: 100%;">
+                            <div *ngFor="let employee of employees" fxLayoutAlign="center center" class="div_cls"
+                                fxLayoutGap="20px">
+                                <div fxFlex="20">
+                                    <img style="height: 28px;" src="./assets/face.png">
+                                </div>
+                                <div fxFlex="80" fxLayout="column">
+                                    <div class="div1_cls">
+                                        {{employee.Id}}
+                                    </div>
+                                    <div class="div2_cls">
+                                        {{employee.Name}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Monitoring"> Content 2 </mat-tab>
+                <mat-tab label="Completion"> Content 3 </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <button mat-icon-button [matMenuTriggerFor]="Menu" style="    margin-left: -95px;"
+                            class="cloneIcon">
+                            <!-- <mat-icon>more_vert</mat-icon> -->
+                            + Add More Actions
+                        </button>
+                        {{label}}
+                    </ng-template>
+
+                    <mat-menu #Menu="matMenu" style="height: 60px;">
+                        <button mat-menu-item>Correction</button>
+                        <button mat-menu-item>Preventive</button>
+                        <button mat-menu-item>RCA</button>
+                        <button mat-menu-item>General</button>
+                        <button mat-menu-item>Notices</button>
+
+                    </mat-menu>
+
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+
+
+    </div>
+</div>

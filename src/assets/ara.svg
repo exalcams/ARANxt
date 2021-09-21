@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="143" height="52" viewBox="0 0 143 52">
+    <defs>
+        <style>
+            .cls-1{fill:#4db151}.cls-2{fill:#1f009e}
+        </style>
+    </defs>
+    <g id="Group_8200" transform="translate(-50 -30)">
+        <g id="Group_8184" transform="translate(88.681 20.483)">
+            <g id="Group_32" transform="translate(-38.486 16.376)">
+                <path id="Rectangle_6038" d="M0 0H2.308V11H0z" class="cls-1" transform="translate(23.497 .14)"/>
+                <path id="Rectangle_6037" d="M0 0H2.378V20H0z" class="cls-1" transform="rotate(90 12.832 12.973)"/>
+                <path id="Rectangle_6036" d="M0 0H2.308V15.198H0z" class="cls-1" transform="translate(5.805 .14)"/>
+                <path id="Rectangle_6032" d="M0 0H2.329V25.532H0z" class="cls-2" transform="translate(-.195 14.629)"/>
+                <path id="Rectangle_6034" d="M0 0H2.329V29.362H0z" class="cls-2" transform="translate(11.84 14.629)"/>
+                <path id="Rectangle_6039" d="M0 0H2.329V36H0z" class="cls-1" transform="translate(18.052 9.14)"/>
+                <path id="Rectangle_6033" d="M0 0H2.298V14.365H0z" class="cls-2" transform="rotate(90 .27 13.899)"/>
+                <path id="Rectangle_6041" d="M0 0H2.298V4.659H0z" class="cls-2" transform="rotate(90 11.832 20.973)"/>
+                <path id="Rectangle_6042" d="M0 0H2.33V31H0z" class="cls-2" transform="translate(30.805 9.14)"/>
+                <path id="Path_7051" d="M0 1.026h2V8.75H0z" class="cls-1" transform="rotate(90 8.832 17.973)"/>
+            </g>
+        </g>
+        <text id="ARANxt" fill="#1f009e" font-family="Geometric415BT-BlackA, Geometr415 Blk BT" font-size="26px" font-weight="800" transform="translate(142 69)">
+            <tspan x="-50.716" y="0">A</tspan><tspan y="0" font-size="40px">R</tspan><tspan y="0">A</tspan><tspan y="0" class="cls-1">Nxt</tspan>
+        </text>
+        <path id="Rectangle_7597" d="M0 0H2V2H0z" class="cls-2" transform="translate(74 50)"/>
+        <path id="Rectangle_7598" d="M0 0H2V2H0z" class="cls-1" transform="translate(56 58)"/>
+    </g>
+</svg>

@@ -1,0 +1,140 @@
+.divider_row{
+    width: 70%;
+    margin: 0 0 0 20%;
+    border-bottom: 1px solid rgb(198, 198, 252);
+}
+.tech{
+    margin: 20% 0 0 0;
+    color: #5e6f92;
+    font-size: 12px;
+    font-weight: 600;
+}
+.mailtxt{
+    margin: 20% 0 0 0;
+    color: #5e6f92;
+    font-size: 12px;
+    font-weight: 600;
+    width: 53px;
+}
+.mail{
+    margin: 23% 0 0 0;
+    color: #5e6f92;
+    font-size: 12px;
+    font-weight: 600;
+}
+.create{
+    margin: 18% 0 0 0;
+    color: #5e6f92;
+    font-size: 12px;
+    font-weight: 600;
+}
+.logo{
+    display:none; 
+}
+.temp{
+    position: relative;
+    top: -5px;
+}
+
+.tempdiv:hover .logo{
+    display: block;
+    transform: scale(0.4);
+    position: relative;
+    left: -30px;
+    top: -3px;
+    animation: blink-animation 0.8s
+}
+
+@keyframes blink-animation {
+    0% {
+     opacity: 0;
+    }
+    50%{
+        opacity: 0.5;
+    }
+    100%{
+        opacity: 1;
+    }
+  }
+.tempdiv:hover .temp{
+    margin: 0 0 0 10px;
+    transition: .2s;
+transform: scale(1) rotate(30deg);
+filter: invert(42%) sepia(11%) saturate(3466%) hue-rotate(215deg) brightness(91%) contrast(81%);
+position: relative;
+    left: -30px;
+    top: -3px;
+}
+.caution{
+    margin: -10px 0 0 -5px;
+    transform: scale(0.9);
+}
+.tempdiv:hover .caution{
+    margin: 0 0 0 -1px;
+transform: scale(1.1);
+transition: .1s;
+filter: invert(42%) sepia(11%) saturate(3466%) hue-rotate(215deg) brightness(91%) contrast(81%);
+position: relative;
+    left: -30px;
+    top: -3px;
+}
+.ac{
+    margin: -5px 0 0 0;
+    transform: scale(0.9);
+}
+.tempdiv:hover .ac{
+    margin: 0 0 0 3px;
+transform: scale(1.1);
+filter: invert(42%) sepia(11%) saturate(3466%) hue-rotate(215deg) brightness(91%) contrast(81%);
+position: relative;
+    left: -30px;
+    top: -3px;
+}
+.notify{
+    margin: -15px 0 0 0;
+    transform: scale(0.8);
+}
+.tempdiv:hover .notify{
+    margin: 0 0 0 3px;
+    transform: scale(0.9);
+    filter: invert(42%) sepia(11%) saturate(3466%) hue-rotate(215deg) brightness(91%) contrast(81%);
+    position: relative;
+        left: -30px;
+        top: -3px;
+}
+.order{
+    margin: -15px 0 0 0;
+    transform: scale(0.8);
+}
+.tempdiv:hover .order{
+    margin: 0 0 0 3px;
+transform: scale(0.9);
+filter: invert(42%) sepia(11%) saturate(3466%) hue-rotate(215deg) brightness(91%) contrast(81%);
+position: relative;
+    left: -30px;
+    top: -3px;
+}
+.crate{
+    margin: -15px 0 0 0;
+    transform: scale(0.8);
+}
+.tempdiv:hover .crate{
+    margin: 0 0 0 3px;
+transform: scale(0.9);
+filter: invert(42%) sepia(11%) saturate(3466%) hue-rotate(215deg) brightness(91%) contrast(81%);
+position: relative;
+    left: -30px;
+    top: -3px;
+}
+.tempdiv:hover .temptxt{
+    transform: scale(1.1);
+    color: #765dc4;
+    margin: 6px 0 0 10px;
+    position: relative;
+    left: -30px;
+    top: -3px;
+    font-weight: 600;
+    }
+    .temptxt{
+        color: #6e6d7a;
+    }
