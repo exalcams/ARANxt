@@ -40,8 +40,9 @@ export type ChartOptions1 = {
   responsive: ApexResponsive[];
   plotOptions: ApexPlotOptions;
   grid: ApexGrid;
-  labels:any;
-  
+  labels: any;
+  fill: ApexFill;
+  dataLabels: ApexDataLabels;
 };
 export type ChartOptions2 = {
   series: ApexAxisChartSeries;
@@ -65,20 +66,21 @@ export class OverComponent implements OnInit {
   public chartOptions: ChartOptions;
   public chartOptions1: ChartOptions1;
   public chartOptions2: ChartOptions2;
-  constructor() { 
+  constructor() {
     this.chartOptions = {
       series: [70],
       colors: [" #ee926b"],
       chart: {
         height: 135,
-        type: "radialBar"
+        type: "radialBar",
+
       },
       plotOptions: {
         radialBar: {
           dataLabels: {
             name: {
               show: false
-           }
+            }
           },
           hollow: {
             size: "65%"
@@ -102,159 +104,166 @@ export class OverComponent implements OnInit {
       }
     };
 
-// semi donut
+    // semi donut
 
-this.chartOptions1 = {
-  series: [8, 16, 32],
-  labels: ['High','Medium','Low'],
-  legend: {
-    show: true,
-    position: 'bottom',
-    // offsetY: 0,
-    // height: 230,
-  // formatter: function(seriesName, opts) {
-  //     return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex]+'%'
-  // },
-},
-  chart: {
-    // width: 100,
-    type: "donut"
-  },
-  plotOptions: {
-    pie: {
-      startAngle: -90,
-      endAngle: 90,
-      offsetY: 10,
-      donut: {
-        size: '72%',
-        labels: {
-          show: true,
-          name: {
-            show: true,
-            fontSize: '14px',
-            fontFamily: 'Helvetica, Arial, sans-serif',
-            fontWeight: 600,
-            offsetY: 0,
-            color:'#f9f8fe'
-            
-           
-          },
-          value: {
-            show: true,
-            fontSize: '14px',
-            fontFamily: 'Helvetica, Arial, sans-serif',
-            fontWeight: 600,
-            offsetY: 5,
-            color:'#f9f8fe'
-           
-          },
+    this.chartOptions1 = {
+      series: [8, 16, 32],
+      labels: ['High', 'Medium', 'Low'],
+      legend: {
+        show: true,
+        position: 'bottom',
+
+        // offsetY: 0,
+        // height: 230,
+        // formatter: function(seriesName, opts) {
+        //     return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex]+'%'
+        // },
+      },
+      chart: {
+        // width: 100,
+        type: "donut"
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      plotOptions: {
+        pie: {
+          startAngle: -90,
+          endAngle: 90,
+          offsetY: 10,
+          donut: {
+            size: '80%',
+            labels: {
+              show: true,
+              name: {
+                show: true,
+                fontSize: '0px',
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                fontWeight: 600,
+                offsetY: 0,
+                color: '#ff3c3c'
+
+
+              },
+              value: {
+                show: true,
+                fontSize: '0px',
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                fontWeight: 600,
+                offsetY: 5,
+                color: '#f9f8fe'
+
+              },
+            }
+          }
         }
-      }
-    }
-  },
-  grid: {
-    padding: {
-      bottom: -80
-    }
-  },
-  responsive: [
-    {
-      breakpoint: 480,
-      options: {
-        chart: {
-          width: 200
+      },
+      fill: {
+        colors: ['#ff3c3c', '#6255ff', '#0044c6']
+      },
+      grid: {
+        padding: {
+          bottom: -80
+        }
+      },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }
+      ]
+    };
+
+
+    this.chartOptions2 = {
+      series: [
+        {
+          name: "Free Cash Flow",
+          data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
+        }
+      ],
+      chart: {
+        toolbar: {
+          show: false
         },
-        legend: {
-          position: 'bottom'
+        type: "bar",
+        height: 100
+      },
+
+      plotOptions: {
+        bar: {
+          dataLabels: {
+            position: "top"
+          },
+          horizontal: false,
+          columnWidth: "30%"
+          // endingShape: 'rounded',
+          // startingShape:'rounded'
         }
-      }
-    }
-  ]
-};
-
-
-this.chartOptions2 = {
-  series: [
-    {
-      name: "Free Cash Flow",
-      data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
-    }
-  ],
-  chart: {
-    toolbar: {
-      show: false
-    },
-    type: "bar",
-    height: 100
-  },
-
-  plotOptions: {
-    bar: {
-      dataLabels:{
-        position:"top"
       },
-      horizontal: false,
-      columnWidth: "30%"
-      // endingShape: 'rounded',
-      // startingShape:'rounded'
-    }
-  },
-  dataLabels: {
-    enabled: false
-  },
-  stroke: {
-    show: true,
-    width: 6,
-    colors: ["transparent"]
-  },
-  grid: {
-    show: false,
-    xaxis: {
-      lines: {
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        show: true,
+        width: 6,
+        colors: ["transparent"]
+      },
+      grid: {
         show: false,
+        xaxis: {
+          lines: {
+            show: false,
+          },
+        },
+        yaxis: {
+          lines: {
+            show: false,
+          },
+        },
       },
-    },
-    yaxis: {
-      lines: {
-        show: false,
-      },
-    },
-  },
-  xaxis: {
-    axisBorder: { show: false },
-    axisTicks: { show: false },
-    categories: [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep"
-      
-    ],
-    
+      xaxis: {
+        axisBorder: { show: false },
+        axisTicks: { show: false },
+        categories: [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep"
 
-    // position: "top",
-  },
-  yaxis: {
-    axisTicks: {
-      show: false
-    },
-    
-    axisBorder: {
-      show: false
-    },
-    labels: {
-      show: false
-    }
-  },
-  fill: {
-    opacity: 1
-  },
-};
+        ],
+
+
+        // position: "top",
+      },
+      yaxis: {
+        axisTicks: {
+          show: false
+        },
+
+        axisBorder: {
+          show: false
+        },
+        labels: {
+          show: false
+        }
+      },
+      fill: {
+        opacity: 1
+      },
+    };
   }
 
   ngOnInit(): void {

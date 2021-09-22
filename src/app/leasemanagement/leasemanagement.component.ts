@@ -12,9 +12,9 @@ export interface UserData {
   Actions:any
 }
 const ELEMENT_DATA :UserData[] = [
-  {Documentname :'Document name',Filesize:'1mb',CreatedOn:'15/9/2021',ExpiredOn:'15/9/2022',Actions:'',},
-  {Documentname :'Docx',Filesize:'1mb',CreatedOn:'17/9/2021',ExpiredOn:'17/9/2022',Actions:'',},
-  {Documentname :'form',Filesize:'1mb',CreatedOn:'21/9/2021',ExpiredOn:'21/9/2022',Actions:'',}
+  {Documentname :'Lease Document For Exalca',Filesize:'1mb',CreatedOn:'15/9/2021',ExpiredOn:'15/9/2022',Actions:'',},
+  {Documentname :'Lease Document For Entity Data',Filesize:'1mb',CreatedOn:'17/9/2021',ExpiredOn:'17/9/2022',Actions:'',},
+ 
 
 ]
 @Component({

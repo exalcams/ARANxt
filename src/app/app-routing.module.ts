@@ -1,6 +1,6 @@
 import { AssertNotNull } from '@angular/compiler';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { ActionComponent } from './action/action.component';
 import { AraListComponent } from './ara-list/ara-list.component';
 import { AssetsComponent } from './assets/assets.component';
@@ -119,7 +119,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {​​​​​​​ preloadingStrategy: PreloadAllModules, useHash: true }​​​​​​​)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

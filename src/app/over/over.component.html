@@ -9,14 +9,14 @@
                     DASHBOARD
                 </span>
                 <span style="font-size: 10px;color: #acacac;font-family: 'poppins-semi' !important;">
-                    Hello Admin, Welcome Back!
+                    Hello User, Welcome Back!
                 </span>
             </div>
         </div>
 
         <div fxLayout="column" fxFlex="60">
-            <span style="font-size: 12px;color: #acacac;font-family: 'poppins-semi' !important;">Description About Site
-                is Lorea Ipsum is simply dummy text of the printing and typesetting.</span>
+            <!-- <span style="font-size: 12px;color: #acacac;font-family: 'poppins-semi' !important;">Description About Site
+                is Lorea Ipsum is simply dummy text of the printing and typesetting.</span> -->
         </div>
 
     </div>
@@ -24,7 +24,7 @@
     <div fxLayout="row" fxFlex='80' fxLayoutGap="15px" style="width: 100%;">
         <div fxLayout="column" fxFlex="30" fxLayoutGap="15px" class="gap" style="margin-top: -40px;">
             <div
-                style="background-color: #ffffff;border-radius: 4px;box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.01);padding: 10px;">
+                style="background-color: #ffffff;border-radius: 4px;box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.12);padding: 10px;">
                 <div fxLayout="column" fxLayoutGap="15px" style="width: 100%;">
                     <div fxLayout="row" fxFlex="45">
                         <div fxLayout="column" style="width: 100%;">
@@ -36,19 +36,18 @@
                                     </div>
                                     <!-- <img class="dot1" src="./assets/image/spaces.svg"> -->
                                     <div fxLayout="column">
-                                        <span><img src="./assets/Images/arr.svg"></span>
-                                        <span style="font-size: 12px;font-family: 'poppins-semi' !important;">37
-                                            Found</span>
+                                        <!-- <span><img src="./assets/Images/arr.svg"></span> -->
+                                        <span style="font-size: 10px;font-family: 'poppins-semi' !important;">Total Spaces 35</span>
                                         <span
-                                            style="font-size: 10px;color: #acacac;font-family: 'poppins-semi' !important;">Occupied</span>
-
+                                        style="font-size: 10px;font-family: 'poppins-semi' !important;">Occupied 30</span>
+                                        <span style="font-size: 10px;font-family: 'poppins-semi' !important;">
+                                            Working in Progress 05</span>
                                     </div>
-                                    <div style="font-size: 12px;color: #ec936a;font-family: 'poppins-semi' !important;">
-                                        05 working in Progress</div>
+                                   
                                 </div>
 
 
-                                <div fxFlex="40">
+                                <div fxFlex="40" style="margin-left: 30px;">
                                     <div style="display: flex;justify-content: flex-end;">
                                         <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
                                             [plotOptions]="chartOptions.plotOptions" [fill]="chartOptions.fill">
@@ -97,8 +96,8 @@
                             </div>
 
                             <div>
-                                <span style="font-size: 12px;font-family: 'poppins-semi' !important;color: #0d0c22;display: flex;
-                                justify-content: flex-end;">12 Space</span>
+                                <span style="font-size: 10px;font-family: 'poppins-semi' !important;color: #0d0c22;display: flex;
+                                justify-content: flex-end;">12 Total Parking Space</span>
                             </div>
 
                             <div>
@@ -147,7 +146,7 @@
                     <span style="font-size: 12px; ">More than a Day</span>
                     <div fxLayout="row">
                         <span style="font-size: 12px;font-family: 'poppins-semi' !important; ">23 Found</span>
-                        <span style="margin-left: 40%;"><img src="./assets/Images/arr.svg"></span>
+                        <!-- <span style="margin-left: 40%;"><img src="./assets/Images/arr.svg"></span> -->
                     </div>
                 </div>
 
@@ -215,14 +214,14 @@
                             <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
                                 [labels]="chartOptions1.labels" [legend]="chartOptions1.legend"
                                 [grid]="chartOptions1.grid" [plotOptions]="chartOptions1.plotOptions"
-                                [responsive]="chartOptions1.responsive"></apx-chart>
+                                [responsive]="chartOptions1.responsive" [dataLabels]="chartOptions1.dataLabels" [fill]="chartOptions1.fill"></apx-chart>
                         </div>
 
                     </div>
 
                     <div fxFlex="15">
                         <span style="font-size: 12px;display: flex;justify-content: center;">See&nbsp;Details&nbsp;
-                            <mat-icon class="nextt">navigate_next</mat-icon></span>
+                            <mat-icon class="nextt" routerLink="/leasemanagement">navigate_next</mat-icon></span>
 
                     </div>
 
@@ -236,7 +235,7 @@
 
 
         <div fxLayout="column" fxFlex fxLayoutGap="5%" class="neww" style="width: 100%;margin-top: -40px;">
-            <div fxLayout="column" style="padding: 10px;border: 1px solid #f5f5f5;">
+            <div fxLayout="column" style="padding: 10px;border: solid 1px #f5f5f5;">
                 <div fxLayout="row" fxFlex style="width: 100%;">
                     <div fxFlex="90" fxLayoutGap="15px">
                         <span><img class="sett" src="./assets/Images/occupants.svg">
@@ -244,7 +243,7 @@
                         <span style="font-size: 12px;position: relative;
                         top: -40%;color:#0d0c22;font-family: 'poppins-semi' !important;">Occupants</span>
                     </div>
-                    <div><img src="./assets/Images/arr.svg"></div>
+                    <!-- <div><img src="./assets/Images/arr.svg"></div> -->
                 </div>
 
                 <div fxLayout="row" fxLayoutAlign="space-between center">
@@ -271,7 +270,8 @@
 
             </div>
 
-            <div fxLayout="column" fxLayoutGap="15px" style="padding: 10px;border: 1px solid #f5f5f5;">
+            <div fxLayout="column" fxLayoutGap="15px" style="padding: 10px;border: solid 1px #f5f5f5;
+            ">
                 <div fxLayout="row" fxFlex style="width: 100%;">
                     <div fxFlex="90" fxLayoutGap="15px">
                         <span><img class="sett" src="./assets/Images/trans.svg">
@@ -341,7 +341,7 @@
                 </div>
             </div>
 
-            <div fxLayout="column" style="padding: 10px;border: 1px solid #f5f5f5;height: 28%;width: 100%;">
+            <div fxLayout="column" style="padding: 10px;border: solid 2px #f5f5f5;height: 28%;width: 100%;">
                 <div fxLayout="row" fxFlex="18" fxLayoutAlign="space-between center">
                     <span style="font-size: 12px;">This Month &nbsp;<span style="font-size: 12px;font-family: 'poppins-semi' !important;">28
                             Found</span></span>

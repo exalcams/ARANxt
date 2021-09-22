@@ -10,18 +10,20 @@
                 <div class="menu">Menu</div>
 
 
-                <div fxLayout="row" class="dashboard" >
+                <div fxLayout="row" [ngClass]="overview_bool==true?'inner_menus_home_highlight':'dashboard'" (click)="home_clik()">
                     <div style="margin-left: 9%;">
-                        <img style="width: 14px;vertical-align: middle;" src="./assets/dashboard_icon.svg">
+                        <img style="width: 14px;vertical-align: middle;"  *ngIf="overview_bool==false" src="./assets/dashboard_icon.svg">
+                        <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==true" src="./assets/dashboard_icon_blue.svg">
+
                     </div>
-                    <div class="inner_menus" style="margin-left: 20%;">Home</div>
+                    <div  [ngClass]="overview_bool==true?'inner_menus_highlight':'inner_menus'" style="margin-left: 20%;">Home</div>
                 </div>
 
-                <div fxLayout="row" class="inner_menus_home_highlight" (click)="home_clik()">
+                <div fxLayout="row" class="inner_menus_home" >
                     <div style="margin-left: 9%;">
                         <img style="width: 14px;vertical-align: middle;" src="./assets/models.svg">
                     </div>
-                    <div class="inner_menus_highlight" style="margin-left: 20%;">Models</div>
+                    <div class="inner_menus" style="margin-left: 20%;">Models</div>
                 </div>
 
                 <div fxLayout="row" class="inner_menus_home">
@@ -54,12 +56,13 @@
                     <div class="inner_menus" style="margin-left: 20%;">Privacy Policy</div>
                 </div>
                 <!-- <div fxLayout="row" class="inner_menus_home" (click)="isLeasemanagement=!isLeasemanagement;"> -->
-                <div fxLayout="row" class="inner_menus_home" (click)="leaseclk()">
+                <div fxLayout="row" (click)="leaseclk()" [ngClass]="overview_bool==false?'inner_menus_home_highlight':'inner_menus_home'" >
 
                     <div style="margin-left: 9%;">
-                        <img style="width: 14px;vertical-align: middle;" src="./assets/date-expired_ash.svg">
+                        <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==true" src="./assets/date-expired_ash.svg">
+                        <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==false" src="./assets/date-expired_blue.svg">
                     </div>
-                    <div class="inner_menus" style="margin-left: 20%;">Lease management</div>
+                    <div  [ngClass]="overview_bool==false?'inner_menus_highlight':'inner_menus'" style="margin-left: 20%;">Lease Management</div>
                 </div>
                 <div>
                     <img class="building" src="./assets/building.png">
@@ -139,7 +142,7 @@
                 </div>
                 <div *ngIf="!sidemenu">
                     <div class="menu" style="margin: 5% 0% 0% 8%;">
-                        Main Sites
+                         Sites
                     </div>
                     <div style="margin-top: 5%;" fxLayout="row" fxLayoutAlign="center center">
                         <mat-divider class="divider2"></mat-divider>
@@ -152,7 +155,7 @@
                             </div>
                             <div>
                                 <input class="input_field" [(ngModel)]="voiceText" matInput
-                                    placeholder="Search by I’d or Name">
+                                    placeholder="Search ">
                             </div>
 
                             <div>
