@@ -264,3 +264,114 @@ border-radius: 4px;
   text-align: left;
   color: #6e6d7a;
 }
+
+
+.txt_class{
+  font-weight: 600;
+  font-size: 12px;
+}
+
+
+
+
+.example-container {
+  width: 100%;
+  height: 100%;
+  float: left;
+  // border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.example-sidenav {
+  padding: 20px;
+  width:43%;
+  // width:67%;
+  float: left;
+  height: 100%;
+  // height:127%;
+}
+.badge
+{
+  height: 19px;
+  width: 19px;
+  background-color: #34c561;
+  font-size: 11px;
+  border-radius: 13px;
+  text-align-last: center;
+  color: white;
+}
+.badge_outer
+{
+  margin-top: -9px;
+    margin-left: -7px;
+}
+.electricboard_img
+{
+  text-align-last: center;
+}
+.bigboardimage{
+  width: 80%;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2rem;
+  height: 50vh;
+}
+.anchor_title
+{
+  color: #0d0c22;
+  font-size: 12px;
+  // font-weight: 600;
+  font-family: 'poppins-semi' !important;
+}
+.brand_lab
+{
+  font-size: 12px;
+  font-weight: 600;
+  color: #0d0c22;
+}
+.brand_txt
+{
+  font-size: 12px;
+  font-weight: 500;
+  color: #6e6d7a;
+}
+
+.content
+{
+  color: #acacac;
+  font-size: 12px;
+}
+// #footerCard {
+//   position: relative;
+//   height: 50px;
+//   box-shadow: 0 -5px 10px 0 rgba(0, 0, 0, 0.16);
+//   background-color: #ffffff;
+//   bottom: 0px;
+//   left: 70px;
+//   right: 0px;
+//   margin-bottom: 0px;
+//   z-index: 100;
+// }
+.footerdiv{
+  position: fixed;
+  // box-shadow: 0 -5px 10px 0 rgba(0, 0, 0, 0.16);
+  background-color: #ffffff;
+  margin-top: 50vh;
+  width: 35%;
+  height: 50px;
+  margin-left: -30px;
+}
+.SaveBtn {
+  background-color: #4410ff;
+  color: white;
+  width: 35%;
+}
+.button1{
+  font-size: 10px;
+  font-family: 'poppins-semi' !important;
+  
+}
+.onclickdiv1{
+  cursor: pointer;
+}
+.onclickdiv1:active{
+  border: #86aeff;
+}
