@@ -130,6 +130,7 @@
 .mat-drawer-content{
     height: 100% !important;
 }
+
   
 
 mat-tree {
@@ -144,5 +145,7 @@ mat-tree {
     display: none;
   }
   .mat-tab-group {
-    margin-bottom: 48px;
+    // margin-bottom: 48px;
+    // height: 100%;
+    // margin-bottom: -1rem;
   }

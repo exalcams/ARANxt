@@ -1,6 +1,104 @@
-<div style="width:100%;height:90%;padding-top:15px">
-    <div style="width:97%;height:90%;padding-top:15px">
-        <!-- <nav mat-tab-nav-bar>
+<mat-sidenav-container class="example-container" autosize>
+    <mat-sidenav #drawer class="example-sidenav " position="end" mode="over">
+        <div fxLayout="column" style="padding: 10px 0px 0px 0px;">
+            <div fxLayout="row" fxLayoutGap="8px">
+
+                <div fxFlex="86" style=" font-size: 14px;font-weight: bold;text-align: right;">
+                    <p>Asset Details</p>
+                </div>
+
+                <div fxFlex="12" (click)="drawer.toggle()">
+                    <div fxFlex="69">
+                        <img src="./assets/iconfinder_city_3_3078506 selected.png">
+                    </div>
+                    <div fxFlex="4" class="badge_outer">
+                        <p class="badge">2</p>
+                    </div>
+                </div>
+
+            </div>
+            <div fxLayout="column" fxLayoutGap="15px" style="padding: 23px 12px 0px 12px;overflow-y: scroll;  ">
+                <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                    <div class="electricboard_img ">
+                        <img src="./assets/Group 8489.png">
+                    </div>
+                    <div class="electricboard_img">
+                        <img src="./assets/Group 8489.png">
+                    </div>
+                    <div class="electricboard_img">
+                        <img src="./assets/Group 8489.png">
+                    </div>
+                </div>
+                <!-- <div style="width: 60%;text-align-last: right;height: 50vh;"> -->
+                <img src="./assets/Mask Group 38.png" class="bigboardimage">
+                <!-- </div> -->
+                <div fxFlex="8" style="width:96%" class="anchor_title">
+                    Anchor by Panasonic 98306 Uno Series 6 Way
+                    TPN Metal Double Door Distribution Board,
+                    Pack of 2
+                </div>
+                <br>
+
+                <div fxLayout="row" fxLayoutGap="10px">
+                    <div class="brand_lab">
+                        Brand :
+                    </div>
+                    <div class="brand_txt">
+                        Anchor by Panasonic
+                    </div>
+                </div>
+                <div class="content">
+                    Material: Polycorbonate, Color: White
+                </div>
+                <div class="content">
+                    Item Dimension: 27mm x 20mm x 125mm
+                </div>
+                <div class="content">
+                    6 months warranty provided by the manufacturer
+                    from date of purchase
+                </div>
+                <div class="content">
+                    Package contains : Pack of 2, 6 Way TPN Metal
+                    Double Door Distribution
+                </div>
+                <div class="content">
+                    Door is separately packed for preventing rusting in
+                    double door distribution boards Ample (sufficient)
+                    wiring space is provided to ensure proper distribution
+                    of neutral and earth wires.
+                </div>
+                <div fxLayout="row" class="footerdiv" fxLayoutAlign="center center" fxLayoutGap="10px">
+                    <button mat-flat-button class="button1">
+                        Check Out SimilarProducts
+                    </button>
+                    <button class="SaveBtn" mat-raised-button>
+                        Go To Amazon
+                    </button>
+                </div>
+            </div>
+
+            <!-- <div fxLayout="row" id="footerCard">
+                <div fxLayout fxLayoutAlign="end">
+                    <div>
+                        <button mat-flat-button style="font-size: 12px;
+            font-family: 'poppins-semi' !important;">Check Out Similar
+                            Products</button>
+                    </div>
+                    <div>
+                        <button class="SaveBtn" mat-raised-button>Go To Amazon</button>
+
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+
+
+
+        <div style="width:100%;height:90%;padding-top:15px">
+            <div style="width:97%;height:90%;padding-top:15px">
+                <!-- <nav mat-tab-nav-bar>
             <div style="height: 50px;margin-left: 15px;width:97%;overflow-y: scroll;display: -webkit-inline-box;">
 
                 <div class="Toolbar_button Toolbar_button1" routerLink="/Electrical">
@@ -36,219 +134,247 @@
         </nav> -->
 
 
-        <div fxLayout="row" style="width: 100%;margin-left: 15px;height: 70vh;overflow: auto;" fxLayoutGap="20px">
+                <div fxLayout="row" style="width: 100%;margin-left: 15px;height: 70vh;overflow: auto;"
+                    fxLayoutGap="20px">
 
-            <div style="height: 100%;text-align: center; " fxFlex="25" fxLayout="column">
-                <div style="height: 50px;">
-                    <div fxLayout="row" fxLayout="space-between center" style="margin: 10px;">
-                        <div fxFlex="20">
-                            <p class="txt_class">Status</p>
-                        </div>
-                        <div fxLayout="row" fxFlex="80" fxLayoutGap="10px" style="justify-content: flex-end;">
-
-                            <p class="txt_class" style="color: #acacac;">Active</p>
-                            <p class="dot" style="background-color: #4db151;"></p>
-                            <p class="txt_class" style="color: #acacac;">In-Active</p>
-                            <p class="dot" style="background-color: #e50000;"></p>
-                        </div>
-                    </div>
-                </div>
-                <div style="background-color: #f9f8fe;padding: 10px;text-align: left;">
-                    <p class="txt_class">Selected Area flow chart</p>
-                    <p class="divider"></p>
-                    <div fxLayout="column" *ngFor="let area of SelectedArea;let i = index" style="margin: 10px;cursor: pointer;" (click)="SelectedSpace(area)">
-                        <div style="background-color: #eceff1;padding: 10px;height: 24px;">
-                            <div fxLayout="row" fxLayout="space-between center">
-
-                                <div fxLayout="row" fxFlex="80">
-                                    <img src="../../assets/Images/Electrocution.svg" style="width: 15px;height: 15px;">
-
-                                    <p class="txt_class" style="margin-left:10px">{{area}}</p>
+                    <div style="height: 100%;text-align: center; " fxFlex="25" fxLayout="column">
+                        <div style="height: 50px;">
+                            <div fxLayout="row" fxLayout="space-between center" style="margin: 10px;">
+                                <div fxFlex="20">
+                                    <p class="txt_class">Status</p>
                                 </div>
-                                <div fxLayout="row" fxFlex="20">
-                                    <p class="dot_list"></p>
+                                <div fxLayout="row" fxFlex="80" fxLayoutGap="10px" style="justify-content: flex-end;">
+
+                                    <p class="txt_class" style="color: #acacac;">Active</p>
+                                    <p class="dot" style="background-color: #4db151;"></p>
+                                    <p class="txt_class" style="color: #acacac;">In-Active</p>
+                                    <p class="dot" style="background-color: #e50000;"></p>
                                 </div>
                             </div>
                         </div>
+                        <div style="background-color: #f9f8fe;padding: 10px;text-align: left;">
+                            <p class="txt_class">Selected Area flow chart</p>
+                            <p class="divider"></p>
+                            <div fxLayout="column" *ngFor="let area of SelectedArea;let i = index"
+                                style="margin: 10px;cursor: pointer;" (click)="SelectedSpace(area)">
+                                <div style="background-color: #eceff1;padding: 10px;height: 24px;">
+                                    <div fxLayout="row" fxLayout="space-between center">
 
+                                        <div fxLayout="row" fxFlex="80">
+                                            <img src="../../assets/Images/Electrocution.svg"
+                                                style="width: 15px;height: 15px;">
+
+                                            <p class="txt_class" style="margin-left:10px">{{area}}</p>
+                                        </div>
+                                        <div fxLayout="row" fxFlex="20">
+                                            <p class="dot_list"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div>
+                                <img src="../../assets/Images/energy.png" width="230px" height="150px">
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <img src="../../assets/Images/energy.png" width="230px" height="150px">
+
+                    <div style="height: 100%;" fxFlex="20">
+                        <div style="background-color: #fbedf6;padding: 10px;text-align: left;">
+                            <div fxLayout="row">
+                                <p class="txt_class" style="color:#884770;margin-left: 5px;">Select Zone</p>
+                                <p style="width: 35%;"></p>
+                                <p class="txt_class" style="color:#c49bb6">Area</p>
+                            </div>
+
+                            <p class="divider"></p>
+                            <div fxLayout="column" *ngFor="let area of Area;let i = index" style="margin: 10px;">
+                                <div style="background-color: #fdf3f9b3;padding: 10px;height: 24px;cursor: pointer;"
+                                    (click)="SelectedSubSpace(area.space)">
+                                    <div fxLayout="row" fxLayout="space-between center">
+
+                                        <div fxLayout="row" fxFlex="80">
+                                            <img src="../../assets/Images/Electrocution.svg"
+                                                style="width: 15px;height: 15px;">
+
+                                            <p class="txt_class" style="margin-left:10px">{{area.space}}</p>
+                                        </div>
+                                        <div fxLayout="row" fxFlex="20">
+                                            <p class="dot_list"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div fxFlex="5" style="height: 100%;">
+                        <div
+                            style="border-right: 2px solid #f9f9f9; height: 500px; position: relative; top: 35px; left: -15px;">
+                        </div>
+                    </div>
+                    <div style="height: 100%;" fxFlex="50">
+                        <div fxLayout="column" fxLayoutGap="20px">
+                            <div fxLayout="row" (click)="drawer.toggle()" fxLayoutAlign="end center"
+                                style="line-height: 0;cursor: pointer;" fxLayoutGap="5px">
+                                <mat-icon>keyboard_arrow_left</mat-icon>
+
+                                <img src="../../assets/Images/iconfinder_city_3_3078506@3x.png" width="15px" height="15px"
+                                style="margin-right: 5px;">
+
+                                <div class="txt_class">Assert Details</div>
+                            </div>
+                            <!-- <div fxLayout="row" fxLayoutAlign="end end" style="line-height: 0;cursor: pointer;"
+                            fxLayoutGap="10px" (click)="drawer.toggle()">
+                            <mat-icon>keyboard_arrow_down</mat-icon>
+                            <div>
+                                <img src="../../assets/Images/iconfinder_city_3_3078506@3x.png" width="15px"
+                                    height="15px" style="margin-bottom: 4px;">
+                            </div>
+                            <p class="txt_class">Assert Details</p>
+                        </div> -->
+                            <div fxLayout="row" class="label" fxLayoutAlign="center center">
+                                Emergy Consumption Over View
+                            </div>
+                            <div fxLayout="row" class="label1" fxLayoutAlign="center center">
+                                <div class="label">
+                                    Last 6 Months
+                                </div>
+                            </div>
+                            <div style="height: 150px; background-color:#fff ;">
+                                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+                                    <div>
+                                        <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
+                                            [xaxis]="chartOptions1.xaxis" [yaxis]="chartOptions1.yaxis"
+                                            [dataLabels]="chartOptions1.dataLabels" [grid]="chartOptions1.grid"
+                                            [markers]="chartOptions1.markers" [stroke]="chartOptions1.stroke"
+                                            [legend]="chartOptions1.legend"></apx-chart>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="Line-284"></div>
+                            <div fxLayoutAlign="center center" fxLayout="column" class="label" style="margin-top: 10px;"
+                                *ngFor="let ele of Electrical">
+                                <div fxLayout="row" fxLayoutAlign="center center">
+                                    <label> Energy Usage </label>
+                                </div>
+                                <div fxLayout="row" fxLayoutAlign="center center">
+                                    <label style="margin-left: 10px;font-size: 18px;">{{ele.energyUsage}}</label>
+                                </div>
+                            </div>
+                            <div style="height: 190px;padding: 10px;" *ngFor="let ele of Electrical">
+                                <div fxLayout="row">
+                                    <div fxLayout="column" fxLayoutGap="20px" style="padding: 20px;">
+                                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                                            <div class="label23">
+                                                Type
+                                            </div>
+                                            <div fxLayout="column">
+                                                <div class="label23_1">
+                                                    {{ele.type}}
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                                            <div class="label23">
+                                                Stabilizer
+                                            </div>
+                                            <div fxLayout="column">
+                                                <div class="label23_1">
+                                                    {{ele.stabilizer}}
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                                            <div class="label23">
+                                                Capacity
+                                            </div>
+                                            <div fxLayout="column">
+                                                <div class="label23_1">
+                                                    {{ele.capacity}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+                                            <div class="label23">
+                                                Voltage
+                                            </div>
+                                            <div fxLayout="column">
+                                                <div class="label23_1">
+                                                    {{ele.voltage}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                                            <div class="label23" fxFlexOffset="55px">
+                                                Input
+                                            </div>
+                                            <div fxLayout="column">
+                                                <div class="label23_1">
+                                                    {{ele.inputVoltage}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                                            <div class="label23">
+                                                Ampere
+                                            </div>
+                                            <div fxLayout="column">
+                                                <div class="label23_1">
+                                                    {{ele.ampere}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                                            <div class="label23">
+                                                Power
+                                            </div>
+                                            <div fxLayout="column">
+                                                <div class="label23_1">
+                                                    {{ele.power}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                                            <div class="label23">
+                                                Frequency
+                                            </div>
+                                            <div fxLayout="column">
+                                                <div class="label23_1">
+                                                    {{ele.frequency}}
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div fxLayout="column" fxLayoutGap="20px" style="padding: 20px;">
+
+                                        <div fxLayout="row" fxLayoutAlign="space-between center" fxFlexOffset="135px"
+                                            fxLayoutGap="10px">
+                                            <div class="label23">
+                                                Output
+                                            </div>
+                                            <div fxLayout="column">
+                                                <div class="label23_1">
+                                                    {{ele.outputVoltage}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div style="height: 100%;" fxFlex="20">
-                <div style="background-color: #fbedf6;padding: 10px;text-align: left;">
-                    <div fxLayout="row">
-                        <p class="txt_class" style="color:#884770;margin-left: 5px;">Select Zone</p>
-                        <p style="width: 35%;"></p>
-                        <p class="txt_class" style="color:#c49bb6">Area</p>
-                    </div>
+        </div>
 
-                    <p class="divider"></p>
-                    <div fxLayout="column" *ngFor="let area of Area;let i = index" style="margin: 10px;">
-                        <div style="background-color: #fdf3f9b3;padding: 10px;height: 24px;cursor: pointer;" (click)="SelectedSubSpace(area.space)">
-                            <div fxLayout="row" fxLayout="space-between center">
-
-                                <div fxLayout="row" fxFlex="80">
-                                    <img src="../../assets/Images/Electrocution.svg" style="width: 15px;height: 15px;">
-
-                                    <p class="txt_class" style="margin-left:10px">{{area.space}}</p>
-                                </div>
-                                <div fxLayout="row" fxFlex="20">
-                                    <p class="dot_list"></p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-            <div fxFlex="5" style="height: 100%;">
-                <div
-                    style="border-right: 2px solid #f9f9f9; height: 500px; position: relative; top: 35px; left: -15px;">
-                </div>
-            </div>
-
-            <div fxFlex="47" fxLayout="column">
-                <div fxLayout="row" fxLayoutAlign="end center">
-                    <mat-icon>keyboard_arrow_down</mat-icon>
-                    <div class="label">Assert Details</div>
-                </div>
-                <div fxLayout="row" class="label" fxLayoutAlign="center center">
-                    Emergy Consumption Over View
-                </div>
-                <div fxLayout="row" class="label1" fxLayoutAlign="center center">
-                    <div class="label">
-                        Last 6 Months
-                    </div>
-                </div>
-                <div style="height: 150px; background-color:#fff ;">
-                    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
-                        <div>
-                            <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
-                                [xaxis]="chartOptions1.xaxis" [yaxis]="chartOptions1.yaxis"
-                                [dataLabels]="chartOptions1.dataLabels" [grid]="chartOptions1.grid"
-                                [markers]="chartOptions1.markers" [stroke]="chartOptions1.stroke"
-                                [legend]="chartOptions1.legend"></apx-chart>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="Line-284"></div>
-                <div fxLayoutAlign="center center" fxLayout="column" class="label" style="margin-top: 10px;" *ngFor="let ele of Electrical">
-                    <div fxLayout="row" fxLayoutAlign="center center">
-                        <label> Energy Usage </label>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="center center">
-                        <label style="margin-left: 10px;font-size: 18px;">{{ele.energyUsage}}</label>
-                    </div>
-                </div>
-                <div style="height: 190px;padding: 10px;"  *ngFor="let ele of Electrical">
-                    <div fxLayout="row">
-                        <div fxLayout="column" fxLayoutGap="20px" style="padding: 20px;">
-                            <div fxLayout="row" fxLayoutAlign="space-between center">
-                                <div class="label23">
-                                    Type
-                                </div>
-                                <div fxLayout="column">
-                                    <div class="label23_1">
-                                        {{ele.type}}
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div fxLayout="row" fxLayoutAlign="space-between center">
-                                <div class="label23">
-                                    Stabilizer
-                                </div>
-                                <div fxLayout="column">
-                                    <div class="label23_1">
-                                        {{ele.stabilizer}}
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div fxLayout="row" fxLayoutAlign="space-between center">
-                                <div class="label23">
-                                    Capacity
-                                </div>
-                                <div fxLayout="column">
-                                    <div class="label23_1">
-                                       {{ele.capacity}}
-                                    </div>
-                                </div>
-                            </div>
-                            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
-                                <div class="label23">
-                                    Voltage
-                                </div>
-                                <div fxLayout="column">
-                                    <div class="label23_1">
-                                       {{ele.voltage}}
-                                    </div>
-                                </div>
-                            </div>
-                            <div fxLayout="row" fxLayoutAlign="space-between center">
-                                <div class="label23" fxFlexOffset="55px">
-                                    Input
-                                </div>
-                                <div fxLayout="column">
-                                    <div class="label23_1">
-                                      {{ele.inputVoltage}}
-                                    </div>
-                                </div>
-                            </div>
-                            <div fxLayout="row" fxLayoutAlign="space-between center">
-                                <div class="label23">
-                                    Ampere
-                                </div>
-                                <div fxLayout="column">
-                                    <div class="label23_1">
-                                       {{ele.ampere}}
-                                    </div>
-                                </div>
-                            </div>
-                            <div fxLayout="row" fxLayoutAlign="space-between center">
-                                <div class="label23">
-                                    Power
-                                </div>
-                                <div fxLayout="column">
-                                    <div class="label23_1">
-                                        {{ele.power}}
-                                    </div>
-                                </div>
-                            </div>
-                            <div fxLayout="row" fxLayoutAlign="space-between center">
-                                <div class="label23">
-                                    Frequency
-                                </div>
-                                <div fxLayout="column">
-                                    <div class="label23_1">
-                                      {{ele.frequency}}
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <div fxLayout="column" fxLayoutGap="20px" style="padding: 20px;">
-
-                            <div fxLayout="row" fxLayoutAlign="space-between center" fxFlexOffset="135px"
-                                fxLayoutGap="10px">
-                                <div class="label23">
-                                    Output
-                                </div>
-                                <div fxLayout="column">
-                                    <div class="label23_1">
-                                       {{ele.outputVoltage}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
