@@ -43,7 +43,7 @@
                 </div>
 
 
-                <div style="margin-top: 10%;margin-left: 12%;" class="menu">Others</div>
+                <div style="margin-left: 12%;" class="menu">Others</div>
 
 
                 <div fxLayout="row" class="dashboard">
@@ -128,13 +128,17 @@
                 <div style="margin-top:15px ;">
                     <img class="small_icons" src="./assets/privacy_icon.svg">
                 </div>
-
+                <div style="margin-top:15px ;">
+                    <img class="small_icons" matTooltipClass='red-tooltip' matTooltip="Logout"
+                        [matTooltipPosition]="'right'" (click)="logout()" src="./assets/logout_ash.svg">
+                </div>
 
                 <div style="position: absolute;bottom: 0px;margin-bottom: 10px;" fxLayout="row"
                     fxLayoutAlign="center center">
                     <img style="width: 12px;cursor: pointer;" (click)="slidemenuforsmall()"
                         src="./assets/slide_close_arrow.svg">
                 </div>
+
             </div>
 
 
@@ -257,8 +261,7 @@
                         <div class="header_bold"  [matMenuTriggerFor]="menu"> User </div>
                         <div> <img style="height: 28px; margin-left:15px;" src="./assets/face.png"  [matMenuTriggerFor]="menu"></div>
                         <div> <img style="height: 4px; vertical-align: middle;margin-left:5px;cursor: pointer;"
-                                src="./assets/down_arrrow.svg"  [matMenuTriggerFor]="menu"> </div>
-
+                                    src="./assets/down_arrrow.svg"  [matMenuTriggerFor]="menu"> </div>
                         <mat-menu #menu="matMenu" yPosition="below">
                             <button mat-menu-item>
 
