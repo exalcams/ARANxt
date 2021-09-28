@@ -7,6 +7,10 @@
 // .close_hover:hover{
 //     display: none; 
 // }
+.spacecreationheading{
+    font-size: 14px;
+    font-family: 'poppins' !important;
+}
 .close_hover{
     cursor: pointer;
 }
@@ -327,7 +331,7 @@ color:black;
  flex: 1 1 auto;
 }
 .topic{
-    font-size:18px;
+    font-size:16px;
     font-weight: 600;
 }
  /* .scroll{
@@ -486,9 +490,11 @@ display: none;
 
 }
 .estimate{
-    font-size: 12px;
+    font-size: 11px;
     padding-top: 1.5%;
     padding-left: 4%;
+    color: #0d0c22;
+    font-family: 'poppins-semi' !important;
 }
 .adddoc{
     padding-right: 5%;
@@ -675,7 +681,7 @@ td.mat-footer-cell {
     line-height: 9px;
     margin-right: 10px;
     margin-top: 18px;
-
+    cursor: pointer;
   }
   .but3{
     color: #0d0c22;
@@ -688,7 +694,7 @@ td.mat-footer-cell {
     line-height: 9px;
     margin-right: 10px;
     margin-top: 18px;
-
+    cursor: pointer;
   }
   .plusbutton{
       text-align: center;
@@ -806,4 +812,12 @@ font-weight: 600;
   }
   .mat-form-field-infix{
     width: 80px !important;
+}
+.spacename{
+    font-family: 'poppins-semi' !important;
+    font-size: 12px;
+}
+
+::-webkit-input-placeholder{
+    font-size: 10px;
 }

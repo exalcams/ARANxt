@@ -101,6 +101,9 @@ export class AssetsComponent implements OnInit {
   latitude: number;
   longitude: number;
   zoom: number;
+  progress=12.5;
+  steps = 8;
+  progressvalue:any;
   address1: string;
   private geoCoder;
   selectedFood1: string | undefined;
@@ -461,7 +464,7 @@ export class AssetsComponent implements OnInit {
         console.log(val);
         break;
     }
-
+    this.progressbar()
   }
   // Next() {
   //   switch (this.selectedIndex) {
@@ -490,46 +493,67 @@ export class AssetsComponent implements OnInit {
 
   // }
 
-  // Previous() {
-  //   switch (this.selectedIndex) {
-  //     case "Contract":
-  //       this.date();
-  //       break;
-  //       case "Date":
-  //       this.address();
-  //       break;
-  //       case "Address":
-  //       this.asset();
-  //       break;
-  //       case "Space":
-  //       this.partner();
-  //       break;
-  //       case "Partner":
-  //       this.document();
-  //       break;
-  //       case "Document":
-  //       this.location();
-  //       break;
-  //       case "Location":
-  //       this.general();
-  //       break;
+  Previous() {
+    switch (this.selectedIndex) {
+      case "Contract":
+        this.date();
+        break;
+        case "Date":
+        this.address();
+        break;
+        case "Address":
+        this.asset();
+        break;
+        case "Space":
+        this.partner();
+        break;
+        case "Partner":
+        this.document();
+        break;
+        case "Document":
+        this.location();
+        break;
+        case "Location":
+        this.general();
+        break;
         
-  //   }
-  // }
+    }
+    this.progressbarminus()
+  }
   Finishpopup(){
     this.dialog.open(FinishComponent, {
       // panelClass: 'full-width-dialog',
       // position: {top: '3.9%',right:'1%'},
       width:'50%',
       // maxWidth: '85.5vw ',
-      height:'40%',
+      height:'450px',
       
     });
+
+    this.dialogRef.close();
   }
   close(): void {
     this.dialogRef.close();
   }
 
+  progressbar(){
+    this.progress = this.progress + 12.5;
+    this.progressvalue = this.progress
+   this.stepsforprogressminus()
+  }
+  stepsforprogressminus(){
+    this.steps = this.steps-1
+  }
+  
+  
+  stepsforprogress(){
+    this.steps = this.steps+1
+  }
+  progressbarminus(){
+    this.progress = this.progress - 12.5;
+    this.progressvalue = this.progress
+    this.stepsforprogress()
+  }
 }
 
 

@@ -1,13 +1,12 @@
 <mat-toolbar class="toolbar_cls" fxLayout="row" fxLayoutAlign="space-between center">
-    <div fxLayout="row">
-        Your Creating Multiple Space inside the
-        <label>
-            Space
-        </label>
+    <div fxLayout="row" fxLayoutAlign="start center">
+        <span class="spacecreationheading">
+            Your Creating Multiple Space inside the Space
+        </span>
     </div>
     <div fxLayoutAlign=" end center">
 
-        <img class="close_hover close" src="assets/32178.svg" (click)="close()" >
+        <img class="close_hover close" src="assets/32178.svg" (click)="close()">
     </div>
 </mat-toolbar>
 <mat-drawer-container style="height: 94%;margin-top: 2%;">
@@ -19,11 +18,11 @@
                     +
                 </button>
             </div>
-            <div fxLayout="column" class="bg_cls" fxLayoutAlign="center start">
-                <div>
+            <div fxLayout="column" class="bg_cls" fxLayoutAlign="center start" fxLayoutGap="5px">
+                <div class="spacename">
                     Space Name
                 </div>
-                <div>
+                <div class="spacename">
                     Space Id
                 </div>
             </div>
@@ -132,23 +131,24 @@
                                 <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;">
                                     <span fxFlex="30">Object Type</span>
                                     <span fxFlex="70">
-                                        <select class="input_cls" formControlName="objectType">
-                                            <option value="" disabled selected hidden>Select Object Type</option>
+                                        <select class="input_cls" formControlName="objectType" style="font-size: 12px;">
+                                            <option value="" disabled selected hidden style="font-size: 12px;">Select
+                                                Object Type</option>
                                             <option class="input_cls" *ngFor="let country of ObjectType"
-                                                fxLayoutAlign="center center"  [ngValue]="country">
+                                                fxLayoutAlign="center center" [ngValue]="country">
                                                 {{country}}</option>
                                         </select>
                                     </span>
                                 </div>
                                 <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                         fxFlex="30">Site Name</span>
-                                        <span fxFlex="70">
-                                            <select class="input_cls" formControlName="siteName">
-                                                <option value="" disabled selected hidden>Select siteName</option>
-                                                <option class="input_cls" *ngFor="let country of ARASite"
-                                                    fxLayoutAlign="center center"  [ngValue]="country.site">
-                                                    {{country.site}}</option>
-                                            </select>
+                                    <span fxFlex="70">
+                                        <select class="input_cls" formControlName="siteName" style="font-size: 12px;">
+                                            <option value="" disabled selected hidden>Select siteName</option>
+                                            <option class="input_cls" *ngFor="let country of ARASite"
+                                                fxLayoutAlign="center center" [ngValue]="country.site">
+                                                {{country.site}}</option>
+                                        </select>
                                         <!-- <input class="input_cls" formControlName="siteName" matInput
                                             placeholder=" Enter Site Name"> -->
                                     </span>
@@ -162,14 +162,14 @@
                                 <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;">
                                     <span fxFlex="30">Category</span>
                                     <span fxFlex="70">
-                                        <select class="input_cls" formControlName="category">
+                                        <select class="input_cls" formControlName="category" style="font-size: 12px;">
                                             <option value="" disabled selected hidden>Select Category</option>
                                             <option class="input_cls" *ngFor="let country of Catagories"
-                                                fxLayoutAlign="center center"  [ngValue]="country.name">
+                                                fxLayoutAlign="center center" [ngValue]="country.name">
                                                 {{country.name}}</option>
                                         </select>
                                     </span>
-                                
+
                                 </div>
                                 <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                         fxFlex="30">Cost Center</span><span fxFlex="70">
@@ -214,34 +214,38 @@
 
                             <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">Latitude</span><span fxFlex="70">
-                                    <input class="input_cls"  formControlName="Latitude" matInput placeholder=" Enter Latitude"
-                                        [ngModel]="latitude">
+                                    <input class="input_cls" formControlName="Latitude" matInput
+                                        placeholder=" Enter Latitude" [ngModel]="latitude">
                                 </span>
                             </div>
                             <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">Longitude</span><span fxFlex="70">
-                                    <input class="input_cls"  formControlName="Longitude" matInput placeholder=" Enter Longitude"
-                                        [ngModel]="longitude">
+                                    <input class="input_cls" formControlName="Longitude" matInput
+                                        placeholder=" Enter Longitude" [ngModel]="longitude">
                                 </span>
                             </div>
                             <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">From Latitude</span><span fxFlex="70">
-                                    <input class="input_cls"  formControlName="FromLatitude" matInput placeholder=" Enter From Latitude">
+                                    <input class="input_cls" formControlName="FromLatitude" matInput
+                                        placeholder=" Enter From Latitude">
                                 </span>
                             </div>
                             <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">To Latitude</span><span fxFlex="70">
-                                    <input class="input_cls"  formControlName="ToLatitude" matInput placeholder=" Enter To Latitude">
+                                    <input class="input_cls" formControlName="ToLatitude" matInput
+                                        placeholder=" Enter To Latitude">
                                 </span>
                             </div>
                             <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">From Longitude</span><span fxFlex="70">
-                                    <input class="input_cls"  formControlName="FromLongitude" matInput placeholder=" Enter From Longitude">
+                                    <input class="input_cls" formControlName="FromLongitude" matInput
+                                        placeholder=" Enter From Longitude">
                                 </span>
                             </div>
                             <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">To Longitude</span><span fxFlex="70">
-                                    <input class="input_cls"  formControlName="ToLongitude" matInput placeholder=" Enter To Longitude">
+                                    <input class="input_cls" formControlName="ToLongitude" matInput
+                                        placeholder=" Enter To Longitude">
                                 </span>
                             </div>
 
@@ -269,7 +273,7 @@
                                     <td mat-cell *matCellDef="let element"> {{element.FileName}} </td>
                                 </ng-container>
                                 <ng-container matColumnDef="two">
-                                    <th mat-header-cell *matHeaderCellDef> File Size 
+                                    <th mat-header-cell *matHeaderCellDef> File Size
                                     <td mat-cell *matCellDef="let element"> {{element.FileSize}} </td>
                                 </ng-container>
                                 <ng-container matColumnDef="three">
@@ -278,7 +282,7 @@
                                     <td mat-cell *matCellDef="let element"> {{element.FileExt}} </td>
                                 </ng-container>
                                 <ng-container matColumnDef="four">
-                                    <th mat-header-cell *matHeaderCellDef> 
+                                    <th mat-header-cell *matHeaderCellDef>
                                     </th>
                                     <td mat-cell *matCellDef="let element"> {{element.ip}} </td>
                                 </ng-container>
@@ -294,12 +298,12 @@
                                 </ng-container>
 
                                 <ng-container matColumnDef="seven">
-                                    <th mat-header-cell *matHeaderCellDef> Time 
+                                    <th mat-header-cell *matHeaderCellDef> Time
                                     </th>
                                     <td mat-cell *matCellDef="let element"> {{element.time}} </td>
                                 </ng-container>
                                 <ng-container matColumnDef="eight">
-                                    <th mat-header-cell *matHeaderCellDef> Att ID 
+                                    <th mat-header-cell *matHeaderCellDef> Att ID
                                     </th>
                                     <td mat-cell *matCellDef="let element"> {{element.attID}} </td>
                                 </ng-container>
@@ -335,7 +339,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <input #fileInput type="file" hidden  ngFileSelect (change)="onFileSelected($event)">
+                                    <input #fileInput type="file" hidden ngFileSelect (change)="onFileSelected($event)">
                                     <button class="button1" mat-button (click)="fileInput.click()">Upload</button>
 
                                 </div>
@@ -388,11 +392,11 @@
                 <div fxLayout="column" style="padding: 20px 10px 10px 10px;width: 100%;">
                     <div fxLayout="row" style="width: 100%;">
                         <div fxFlex="60">
-                            <span style="font-size: 20px;color: #0d0c22;font-weight: bold;">Partner Links</span>
+                            <span style="font-size: 14px;color: #0d0c22;font-weight: bold;padding-left: 10px;">Partner Links</span>
                         </div>
-                        <div fxLayout="row" fxLayoutGap="10px">
-                            <div fxLayoutAlign="center center">
-                                <div fxLayout="row" class="main_input_field" fxLayoutAlign="space-between center">
+                        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="10px">
+                            <div fxLayoutAlign="center center" style="margin-top: -0.5rem;">
+                                <div fxLayout="row" class="main_input_field" fxLayoutAlign="space-between center" style="margin-top: -0.22rem;">
                                     <div>
                                         <img style="vertical-align: -webkit-baseline-middle;
                     width: 24px;" src="./assets/search.svg">
@@ -407,7 +411,8 @@
                             <div>
                                 <button
                                     style="background-color: #4410ff;  border-radius: 4px;width: 200px;height:30px;align-self: center;color: #ffffff;font-weight: bold;font-size: 12px;"
-                                   (click)="OpenPartnerdialogue()" mat-button><span style="position: relative;top:-3px;font-size: 12px;">ADD New
+                                    (click)="OpenPartnerdialogue()" mat-button><span
+                                        style="position: relative;top:-3px;font-size: 12px;">ADD New
                                         Partner Link</span></button>
                             </div>
                         </div>
@@ -477,22 +482,26 @@
                         <div fxLayout="column" fxFlex="50" fxLayoutGap="20px">
                             <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">Total Space</span><span fxFlex="70">
-                                    <input class="input_cls" formControlName="TotalSpace" matInput placeholder=" Enter Space">
+                                    <input class="input_cls" formControlName="TotalSpace" matInput
+                                        placeholder=" Enter Space">
                                 </span>
                             </div>
                             <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">Rentable Space</span><span fxFlex="70">
-                                    <input class="input_cls" formControlName="RentableSpace" matInput placeholder=" Enter Rentable Space">
+                                    <input class="input_cls" formControlName="RentableSpace" matInput
+                                        placeholder=" Enter Rentable Space">
                                 </span>
                             </div>
                             <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">Breath</span><span fxFlex="70">
-                                    <input class="input_cls" formControlName="Breath" matInput placeholder=" Enter Breath">
+                                    <input class="input_cls" formControlName="Breath" matInput
+                                        placeholder=" Enter Breath">
                                 </span>
                             </div>
                             <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">Volume</span><span fxFlex="70">
-                                    <input class="input_cls" formControlName="Volume" matInput placeholder=" Enter Volume">
+                                    <input class="input_cls" formControlName="Volume" matInput
+                                        placeholder=" Enter Volume">
                                 </span>
                             </div>
 
@@ -500,17 +509,20 @@
                         <div fxLayout="column" fxFlex="50" fxLayoutGap="20px">
                             <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">Carpet Space</span><span fxFlex="70">
-                                    <input class="input_cls" formControlName="CarpetSpace" matInput placeholder=" Enter Carpet Space">
+                                    <input class="input_cls" formControlName="CarpetSpace" matInput
+                                        placeholder=" Enter Carpet Space">
                                 </span>
                             </div>
                             <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">Length</span><span fxFlex="70">
-                                    <input class="input_cls" formControlName="Length" matInput placeholder=" Enter Length">
+                                    <input class="input_cls" formControlName="Length" matInput
+                                        placeholder=" Enter Length">
                                 </span>
                             </div>
                             <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">Height</span><span fxFlex="70">
-                                    <input class="input_cls" formControlName="Height" matInput placeholder=" Enter Height">
+                                    <input class="input_cls" formControlName="Height" matInput
+                                        placeholder=" Enter Height">
                                 </span>
                             </div>
 
@@ -527,17 +539,20 @@
                         <div fxLayout="column" fxFlex="50" fxLayoutGap="20px">
                             <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">Address Line 1</span><span fxFlex="70">
-                                    <input class="input_cls"  formControlName="AddressLine1" matInput placeholder=" Enter Address Line 1">
+                                    <input class="input_cls" formControlName="AddressLine1" matInput
+                                        placeholder=" Enter Address Line 1">
                                 </span>
                             </div>
                             <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">Address Line 2 </span><span fxFlex="70">
-                                    <input class="input_cls" formControlName="AddressLine2" matInput placeholder=" Enter Address Line 2">
+                                    <input class="input_cls" formControlName="AddressLine2" matInput
+                                        placeholder=" Enter Address Line 2">
                                 </span>
                             </div>
                             <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">Address Line 3</span><span fxFlex="70">
-                                    <input class="input_cls" formControlName="AddressLine3" matInput placeholder=" Enter Address Line 3">
+                                    <input class="input_cls" formControlName="AddressLine3" matInput
+                                        placeholder=" Enter Address Line 3">
                                 </span>
                             </div>
 
@@ -548,27 +563,28 @@
                                 <span fxFlex="30">Country</span>
                                 <span fxFlex="70">
 
-                                    <select class="input_cls" formControlName="Country">
+                                    <select class="input_cls" formControlName="Country" style="font-size: 12px;">
                                         <option value="" disabled selected hidden>Select Country</option>
                                         <option class="input_cls" *ngFor="let country of country"
-                                            fxLayoutAlign="center center"   [ngValue]="country.name">
+                                            fxLayoutAlign="center center" [ngValue]="country.name">
                                             {{country.name}}</option>
                                     </select>
                                 </span>
                             </div>
                             <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">Pincode</span><span fxFlex="70">
-                                    <input class="input_cls"  formControlName="Pincode" matInput placeholder=" Enter Pincode">
+                                    <input class="input_cls" formControlName="Pincode" matInput
+                                        placeholder=" Enter Pincode">
                                 </span>
                             </div>
                             <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;">
                                 <span fxFlex="30">State</span>
                                 <span fxFlex="70">
 
-                                    <select class="input_cls" formControlName="State">
+                                    <select class="input_cls" formControlName="State" style="font-size: 12px;">
                                         <option value="" disabled selected hidden>Select State</option>
                                         <option class="input_cls" *ngFor="let country of State"
-                                            fxLayoutAlign="center center"  [ngValue]="country.name">
+                                            fxLayoutAlign="center center" [ngValue]="country.name">
                                             {{country.name}}</option>
                                     </select>
                                 </span>
@@ -585,12 +601,12 @@
             <div *ngIf="Date==true">
                 <div fxLayout="column" style="padding: 20px 10px 10px 10px;width: 100%;">
                     <div fxLayout="row" style="width: 100%;">
-                        <div fxFlex="60">
-                            <span style="font-size: 20px;color: #0d0c22;font-weight: bold;">Date Links</span>
+                        <div fxFlex="60" style="padding-left: 10px;">
+                            <span style="font-size: 14px;color: #0d0c22;font-weight: bold;">Date Links</span>
                         </div>
                         <div fxLayout="row" fxLayoutGap="10px">
                             <div fxLayoutAlign="center center">
-                                <div fxLayout="row" class="main_input_field" fxLayoutAlign="space-between center">
+                                <div fxLayout="row" class="main_input_field" fxLayoutAlign="space-between center" style="margin-top: -0.22rem;">
                                     <div>
                                         <img style="vertical-align: -webkit-baseline-middle;
                     width: 24px;" src="./assets/search.svg">
@@ -605,7 +621,8 @@
                             <div>
                                 <button
                                     style="background-color: #4410ff;  border-radius: 4px;width: 200px;height:30px;align-self: center;color: #ffffff;font-weight: bold;font-size: 12px;"
-                                    mat-button (click)="OpenDateLinkDialogue()"><span style="position: relative;top:-3px;font-size: 12px;">ADD New
+                                    mat-button (click)="OpenDateLinkDialogue()"><span
+                                        style="position: relative;top:-3px;font-size: 12px;">ADD New
                                         Date Link</span></button>
                             </div>
                         </div>
@@ -665,12 +682,12 @@
             <div *ngIf="Contract==true">
                 <div fxLayout="column" style="padding: 20px 10px 10px 10px;width: 100%;">
                     <div fxLayout="row" style="width: 100%;">
-                        <div fxFlex="60">
-                            <span style="font-size: 20px;color: #0d0c22;font-weight: bold;">Contract Links</span>
+                        <div fxFlex="60" style="padding-left: 10px;">
+                            <span style="font-size: 14px;color: #0d0c22;font-weight: bold;">Contract Links</span>
                         </div>
                         <div fxLayout="row" fxLayoutGap="10px">
                             <div fxLayoutAlign="center center">
-                                <div fxLayout="row" class="main_input_field" fxLayoutAlign="space-between center">
+                                <div fxLayout="row" class="main_input_field" fxLayoutAlign="space-between center" style="margin-top: -0.22rem;">
                                     <div>
                                         <img style="vertical-align: -webkit-baseline-middle;
                 width: 24px;" src="./assets/search.svg">
@@ -685,7 +702,8 @@
                             <div>
                                 <button
                                     style="background-color: #4410ff;  border-radius: 4px;width: 200px;height:30px;align-self: center;color: #ffffff;font-weight: bold;font-size: 12px;"
-                                    mat-button (click)="OpenContractLinkDialogue()"><span style="position: relative;top:-3px;font-size: 12px;">ADD New
+                                    mat-button (click)="OpenContractLinkDialogue()"><span
+                                        style="position: relative;top:-3px;font-size: 12px;">ADD New
                                         Contract
                                         Link</span></button>
                             </div>
@@ -697,7 +715,7 @@
                             <ng-container matColumnDef="one">
                                 <th mat-header-cell *matHeaderCellDef> Type <img matSuffix style="width:12px" />
                                 </th>
-                                <td mat-cell *matCellDef="let element"> 
+                                <td mat-cell *matCellDef="let element">
                                     {{element.type}}
                                     <!-- <select class="input_cls1">
                                         <option [ngValue]="null">Select Type</option>
@@ -760,11 +778,11 @@
             padding: 0px;">
                 <div fxLayout="row" fxLayoutGap='10px' style="margin-top:-15px;" class="footer">
 
-                    <div class="estimate">Estimatd Time to Complete : 6 mins
+                    <div class="estimate">Estimated Steps to Complete : {{steps}} Steps
 
                     </div>
 
-                    <mat-progress-bar class="progressone" mode="determinate" value="40">
+                    <mat-progress-bar class="progressone" mode="determinate" [value]="progressvalue">
                     </mat-progress-bar>
                     <span style="display:flex; flex: 1 1 auto;"></span>
 
@@ -778,15 +796,10 @@
                         <div *ngIf="next" class="but3" tabindex="-1" (click)='Next()'>
                             Next
                             <img class="icon-flipped" src="./assets/Next12.svg" />
-
-
-
                         </div>
                         <div *ngIf="finish" class="but3" tabindex="-1" (click)='Finishpopup()'>
                             finish
                             <img class="icon-flipped" src="./assets/Next12.svg" />
-
-
 
                         </div>
                     </div>

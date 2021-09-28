@@ -18,6 +18,6 @@ export class FinishComponent implements OnInit {
   }
   close(): void {
     this.dialogRef.close();
-    this.notificationSnackBarComponent.openSnackBar('Space Created Successfully', SnackBarStatus.success);
+    // this.notificationSnackBarComponent.openSnackBar('Space Created Successfully', SnackBarStatus.success);
   }
 }

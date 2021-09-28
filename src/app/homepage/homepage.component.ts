@@ -460,10 +460,10 @@ div2Function(){
   spaceclicked() {
     const dialogRef = this.dialog.open(SpaceComponent, {
       panelClass: 'full-width-dialog',
-      position: { top: '3.9%', right: '1%' },
+      position: { top: '3%', right: '1%' },
       width: '100%',
       maxWidth: '85.5vw ',
-      height: '90%',
+      height: '93%',
 
     });
     dialogRef.afterClosed().subscribe( ()=>{
@@ -473,10 +473,10 @@ div2Function(){
   assetsclicked() {
     this.dialog.open(AssetsComponent, {
       panelClass: 'full-width-dialog',
-      position: { top: '3.9%', right: '1%' },
+      position: { top: '3%', right: '1%' },
       width: '100%',
       maxWidth: '85.5vw ',
-      height: '90%',
+      height: '91%',
 
     });
   }
