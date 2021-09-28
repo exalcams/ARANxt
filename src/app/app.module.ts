@@ -80,6 +80,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { LoaderComponent } from './loader/loader.component';
 import { GDriveComponent } from './g-drive/g-drive.component';
 import { GoogleLoginProvider, SocialLoginModule } from 'angularx-social-login';
+import {LeaseManagementService} from 'src/app/service/lease-management.service';
 
 @NgModule({
   declarations: [
@@ -163,7 +164,7 @@ import { GoogleLoginProvider, SocialLoginModule } from 'angularx-social-login';
   ],
   providers: [AuthService,DatePipe,
     // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
-    FuseNavigationService,MasterService,MenuUpdataionService,
+    FuseNavigationService,MasterService,MenuUpdataionService,LeaseManagementService,
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {

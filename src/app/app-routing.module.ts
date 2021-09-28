@@ -13,7 +13,7 @@ import { FinishComponent } from './finish/finish.component';
 import { FireAlarmComponent } from './fire-alarm/fire-alarm.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { HvacComponent } from './hvac/hvac.component';
-import { LeasemanagementComponent } from './leasemanagement/leasemanagement.component';
+import { LeasemanagementComponent } from './lease-management/leasemanagement/leasemanagement.component';
 import { LoginComponent } from './login/login.component';
 import { OthersComponent } from './others/others.component';
 import { OverComponent } from './over/over.component';

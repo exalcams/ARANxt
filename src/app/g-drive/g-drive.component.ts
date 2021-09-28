@@ -76,7 +76,7 @@ export class GDriveComponent implements OnInit {
       blobArr.push(blob);
       this.selectedFile=new File(blobArr,file.name);
       this.spinner.hide();
-      this.dialogRef.close({status:true,file:this.selectedFile});
+      this.dialogRef.close({file:this.selectedFile});
     },
       err => {
         console.log(err);

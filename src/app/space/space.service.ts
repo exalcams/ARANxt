@@ -10,7 +10,7 @@ import { LeaseDocument, LeaseManagement } from '../Model/Leasemanagement';
 export class SpaceService {
     constructor(
         private _httpClient: HttpClient) { }
-   private baseUrlVsign1 = "http://localhost:4554/"
+   private baseUrlVsign1 = "http://192.168.0.25:8002/"
 //  private baseUrlVsign1 = "http://192.168.0.25:8002/"
     errorHandler(error: HttpErrorResponse): Observable<string> {
         return throwError(error.error instanceof Object ? error.error.Message ? error.error.Message : error.error : error.error || error.message || 'Server Error');
