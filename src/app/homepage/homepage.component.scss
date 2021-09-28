@@ -4,12 +4,28 @@
 .sidenav_1_short{height: auto; box-shadow: 2px 0 3px 0 #f7f7f7;width: 10%;   
 }
 .sidenav_3{height: auto; }   
-.ara_img{width: 65%; height: auto;     padding: 9px 20px 20px 32px;}    
-.menu{color: #0d0c22;font-size: 11px; font-family: 'poppins-semi'; margin-top: 6%;margin-left: 15%;}     
+.ara_img {
+    width: 65%;
+    height: auto;
+    padding: 9px 20px 1px 32px;
+}  
+.menu {
+    color: #0d0c22;
+    font-size: 11px;
+    font-family: "poppins-semi";
+    /* margin-top: 2%; */
+    margin-left: 15%;
+}    
 .inner_menus{color: #acacac;font-size: 11px; font-family: 'poppins-med'!important;}
 .inner_menus_highlight{color: #26009c;font-size: 11px; font-family: 'poppins-med' !important;}
-.dashboard{width: 84%;  margin-top: 5%;  margin-left: 14px; border-radius: 4px;cursor: pointer;
-    padding: 5px 0px 5px 5px;}
+.dashboard {
+    width: 84%;
+    /* margin-top: 5%; */
+    margin-left: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0px 0px 5px 5px;
+}
     .dashboard:hover{width: 84%;  margin-top: 5%;  margin-left: 14px; border-radius: 4px;cursor: pointer;
         padding: 5px 0px 5px 5px; background-color: #f2eff8; }
 .inner_menus_home_highlight{
@@ -19,8 +35,14 @@
 .small_icons{
      width: 14px; cursor: pointer;
 }
-.inner_menus_home{width: 84%;margin-top: 2%; margin-left: 14px; border-radius: 4px; cursor: pointer;
-    padding: 5px 0px 5px 5px;}
+.inner_menus_home {
+    width: 84%;
+    margin-top: 2%;
+    margin-left: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 5px 0px 5px 5px;
+}
     .inner_menus_home:hover{
         width: 84%;margin-top: 2%; margin-left: 14px; border-radius: 4px; cursor: pointer;
     padding: 5px 0px 5px 5px; background-color: #f2eff8;
@@ -33,13 +55,25 @@
         color: #0d0c22 !important; background-color: #ebe5ff !important; font-family:'poppins-med' !important; font-size: 11px;
     }
 
-      
-
-.content_sidenav{color: #acacac; font-size: 10px; font-family: 'poppins' !important; margin-left: 4px;}
-.content_sidenav1{color: #acacac; font-size: 10px; font-family: 'poppins' !important;line-height: 1;}
+        .content_sidenav {
+        color: #acacac;
+        font-size: 10px;
+        font-family: "poppins" !important;
+        margin-left: 4px;
+    }
+    .content_sidenav1 {
+        color: #acacac;
+        font-size: 10px;
+        font-family: "poppins" !important;
+        line-height: 2;
+    }
 .send_btn{color: #26009c;  border-radius: 4px;  font-size: 11px; font-family: 'poppins-med' !important; line-height: 2.6; margin-top: 8px;
     background-color: #f7f7f7; width: 90%; padding: 0px;}
-.building{width: 72%; height: auto;    margin: 38% 7% 7% 14%}
+    .building {
+        width: 68%;
+        height: 112px;
+        margin: 6% 7% 7% 14%;
+    }
 .models{color: white;font-size: 11px; font-family: 'poppins-semi' !important;font-weight: 500;margin-left: 20%;} 
 .divider{width: 100px; position: relative; left: 0;} 
 .divider_small{width: 30px; } 

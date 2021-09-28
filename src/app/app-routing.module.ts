@@ -115,12 +115,10 @@ const routes: Routes = [
   path:"homepage",
   component:HomepageComponent
 },
-{
-  path:"leasemanagement",
-  component:LeasemanagementComponent
-}
-
-
+// {
+//   path:"leasemanagement",
+//   component:LeasemanagementComponent
+// }
 ];
 
 @NgModule({

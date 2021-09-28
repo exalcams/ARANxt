@@ -23,7 +23,12 @@ export class LeaseManagement  extends CommonClass
     TerminatedOn: Date | string | null;
     IsVocated: boolean;
     IsTerminated: boolean;
-
+    BankName: string;
+    HolderName : string;
+    AccountNo : number;
+    ModeofTransfer : string;
+    IFSCCode : string;
+    AdvanceRequest: string;
 // tslint:disable-next-line:eofline
 }
 export class LeaseDocument  extends CommonClass

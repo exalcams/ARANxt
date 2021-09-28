@@ -75,29 +75,35 @@ export class LeasemanagementSignedComponent implements OnInit {
       this.btn_name = 'Upload Document';
     }
   }
-  SignedFormGroup(): void {
-    this.SignedDocumentDetailsForm = this.formBuilder.group({
-      Client: [''],
-      FileName: [''],
-      CreatedOn: [''],
-      ExpiryDate: [''],
-      TotalDeposit: [''],
-      Rental: [''],
-      Maintenance: [''],
-      Electrical: [''],
-      Condition: [''],
-      Remarks: [''],
-    });
-  }
+SignedFormGroup(): void
+{
+  this.SignedDocumentDetailsForm = this.formBuilder.group({
+    Client: [''],
+    FileName : [''],
+    CreatedOn: [''],
+    ExpiryDate: [''],
+    TotalDeposit : [''],
+    Rental: [''],
+    BankName: [''],
+    HolderName : [''],
+    AccountNo : [''],
+    ModeofTransfer : [''],
+    IFSCCode : [''],
+    AdvanceRequest : [''],
+    Maintenance: [''],
+    Electrical: [''],
+    Condition: [''],
+    Remarks: [''],
 
-  upload(): void {
-    this.uploadVisible = false;
-    // tslint:disable-next-line:quotemark
-    // tslint:disable-next-line:align
-    this.btn_name = 'Upload Document';
-  }
-  handleFileInput(event): void {
-
+  });
+}
+upload(): void {
+  this.uploadVisible = false;
+  // tslint:disable-next-line:quotemark
+  // tslint:disable-next-line:align
+  this.btn_name = 'Upload Document';
+}
+handleFileInput(event): void {
     // tslint:disable-next-line:semicolon
     // tslint:disable-next-line:align
 
