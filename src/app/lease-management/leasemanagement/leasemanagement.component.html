@@ -61,7 +61,7 @@
 
         <div class="neweditdiv1 uploadfiles" fxLayout="row" >
 
-            <ngx-dropzone (change)="onSelect($event)" class="dropzonengx">
+            <ngx-dropzone accept=".doc , .docx" (change)="onSelect($event)" class="dropzonengx">
                 <ngx-dropzone-label class="dragdrop-label">Drag and Drop file here</ngx-dropzone-label>
                 <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" style=" min-height: 41px !important; " (removed)="onRemove(f)"
                     class="drag-preview">

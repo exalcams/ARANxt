@@ -17,6 +17,7 @@ import { ChangePassword, EMailModel, ForgotPassword, LoginModel, SessionMaster, 
 export class AuthService {
     baseAddress: string;
     clientId: string;
+    // tslint:disable-next-line:variable-name
     constructor(private _httpClient: HttpClient) {
         this.baseAddress = environment.baseAddress;
         this.clientId = environment.clientId;
@@ -29,12 +30,12 @@ export class AuthService {
             error.error.error_description ||
                 error.error ||
                 error.message ||
-                "Server Error"
+                'Server Error'
         );
     }
 
     errorHandler1(error: HttpErrorResponse): Observable<string> {
-        return throwError(error.error || error.message || "Server Error");
+        return throwError(error.error || error.message || 'Server Error');
     }
 
     login(userName: string, password: string): Observable<any> {
