@@ -54,7 +54,7 @@ import { SpaceComponent } from './space/space.component';
 import { AssetsComponent } from './assets/assets.component';
 import { FinishComponent } from './finish/finish.component';
 import { AgmCoreModule } from '@agm/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SiteComponent } from './site/site.component';
 import { OverComponent } from './over/over.component';
 import { AssignComponent } from './assign/assign.component';
@@ -71,6 +71,16 @@ import {LeasemanagementComponent} from './lease-management/leasemanagement/lease
 import { LeasemanagementSignedComponent } from './lease-management/leasemanagement-signed/leasemanagement-signed.component';
 import { DatePipe } from '@angular/common';
 import { LeasemanagementExpiryComponent } from './lease-management/leasemanagement-expiry/leasemanagement-expiry.component';
+import { AuthService } from './service/auth.service';
+import { AuthInterceptorService } from './service/auth-interceptor.service';
+import { MasterService } from './service/master.service';
+import { MenuUpdataionService } from './service/menu-update.service';
+import { FuseNavigationService } from './service/navigation.service';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { LoaderComponent } from './loader/loader.component';
+import { GDriveComponent } from './g-drive/g-drive.component';
+import { GoogleLoginProvider, SocialLoginModule } from 'angularx-social-login';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,6 +118,8 @@ import { LeasemanagementExpiryComponent } from './lease-management/leasemanageme
 
     
   
+    LoaderComponent,
+    GDriveComponent
   ],
   imports: [
     MatGridListModule,
@@ -145,9 +157,27 @@ import { LeasemanagementExpiryComponent } from './lease-management/leasemanageme
     AgmCoreModule.forRoot({
       apiKey: '',
      
-    })
+    }),
+    NgxSpinnerModule,
+    SocialLoginModule
   ],
-  providers: [DatePipe],
+  providers: [AuthService,DatePipe,
+    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+    FuseNavigationService,MasterService,MenuUpdataionService,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: true, //keeps the user signed in
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('24029020399-jotol3pdi5aec7n3gbsl8ls04vev480a.apps.googleusercontent.com') // your client id
+          }
+        ]
+      }
+    }
+  ],
+  entryComponents:[GDriveComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,18 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+        <label class="title">Select file from drive</label>
+        <!-- <img (click)="dialogRef.close()" src="assets/images/cancel1.png" style="cursor: pointer;"> -->
+    </mat-toolbar>
+  
+    <mat-dialog-content class="content" fusePerfectScrollbar>
+        <span class="signin" *ngIf="!isLoggedin" (click)="loginWithGoogle()">SignIn</span>
+        <div fxLayout="row wrap" fxLayoutAlign="space-evenly">
+            <div fxFlex=28 *ngFor="let file of driveFiles" class="list"
+            [ngStyle]="{'border':file.id == selectedID ? '2px solid #5f2cff' : 'none' }" (click)="selectFile(file.id)">{{file.name}}</div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="m-0 p-16 footer" fxLayoutAlign="center center">
+        <button mat-button *ngIf="selectedID" type="button" class="savebtn" (click)="DownloadFile()">Select</button>
+        <button mat-button type="button" class="savebtn" (click)="close()">Close</button>
+    </mat-dialog-actions>
+  </div>
