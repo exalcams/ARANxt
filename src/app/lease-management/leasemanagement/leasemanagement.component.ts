@@ -8,12 +8,11 @@ export interface UserData {
   Documentname: string;
   Filesize: string;
   CreatedOn: string;
-  ExpiredOn:string;
   Actions:any
 }
 const ELEMENT_DATA :UserData[] = [
-  {Documentname :'Lease Document For Exalca',Filesize:'1mb',CreatedOn:'15/9/2021',ExpiredOn:'15/9/2022',Actions:'',},
-  {Documentname :'Lease Document For Entity Data',Filesize:'1mb',CreatedOn:'17/9/2021',ExpiredOn:'17/9/2022',Actions:'',},
+  {Documentname :'Lease Document For Exalca',Filesize:'1mb',CreatedOn:'15/9/2021',Actions:'',},
+  {Documentname :'Lease Document For Entity Data',Filesize:'1mb',CreatedOn:'17/9/2021',Actions:'',},
  
 
 ]
@@ -23,30 +22,42 @@ const ELEMENT_DATA :UserData[] = [
   styleUrls: ['./leasemanagement.component.scss']
 })
 export class LeasemanagementComponent implements OnInit {
-  displayedColumns: string[] = ['select','Documentname', 'Filesize', 'CreatedOn', 'ExpiredOn','Actions'];
+  displayedColumns: string[] = ['select','Documentname', 'Filesize', 'CreatedOn','Actions'];
   dataSource = new MatTableDataSource<UserData>(ELEMENT_DATA) ;
   selection = new SelectionModel<UserData>(true, []);
-  link_bool:boolean=false;
-  product_bool:boolean=false;
-  drive_bool:boolean=false;
-  search_bool:boolean=false
+  // tslint:disable-next-line:variable-name
+  
+  // tslint:disable-next-line:variable-name
+  link_bool = false;
+  // tslint:disable-next-line:variable-name
+  // tslint:disable-next-line:no-inferrable-types
+  // tslint:disable-next-line:variable-name
+  product_bool: boolean = false;
+  // tslint:disable-next-line:variable-name
+  drive_bool = false;
+  // tslint:disable-next-line:variable-name
+  search_bool: boolean = false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  bool1:Boolean;
+  bool1:Boolean=true;
+  // tslint:disable-next-line:ban-types
   bool2: Boolean;
   bool3:Boolean;
   files:File[] =[];
+  bool4: boolean;
+  bool5: boolean;
   constructor() { }
 
   ngOnInit(): void {
+
   }
   // table work
-  isAllSelected() {
+  isAllSelected(): any {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
-  masterToggle() {
+  masterToggle(): any {
     if (this.isAllSelected()) {
       this.selection.clear();
       return;
@@ -63,38 +74,61 @@ export class LeasemanagementComponent implements OnInit {
   }
 // table work
 
-  func1(){
+  func1(): void{
     this.bool1 = true;
     this.bool2 = false;
     this.bool3 = false;
+    this.bool4 = false;
+    this.bool5 = false;
+
   }
-  func2(){
+  func2(): void{
     this.bool1 = false;
     this.bool2 = true;
     this.bool3 = false;
+    this.bool4 = false;
+    this.bool5 = false;
+
   }
-  func3(){
+  func3(): void{
     this.bool1 = false;
     this.bool2 = false;
     this.bool3 = true;
-  }
+    this.bool4 = false;
+    this.bool5 = false;
 
-  onSelect(event) {
+  }
+  func4(): void{
+    this.bool1 = false;
+    this.bool2 = false;
+    this.bool3 = false;
+
+    this.bool4 = true;
+    this.bool5 = false;
+  }
+  func5(): void{
+    this.bool1 = false;
+    this.bool2 = false;
+    this.bool3 = false;
+    this.bool4 = false;
+    this.bool5 = true;
+  }
+  onSelect(event): void {
     console.log(event);
     this.files.push(...event.addedFiles);
   }
   
-  onRemove(event) {
+  onRemove(event): void {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+  // ngAfterViewInit()  {
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
+  // }
 
-  applyFilter(event: Event) {
+  applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -107,30 +141,30 @@ export class LeasemanagementComponent implements OnInit {
 if ( eve === 'search')
 {
 this.search_bool = !this.search_bool;
-this.product_bool=false;
+this.product_bool = false;
 this.link_bool = false;
-this.drive_bool=false
+this.drive_bool = false;
 }
 if ( eve === 'product')
 {
 this.product_bool = !this.product_bool;
-this.search_bool =false;
+this.search_bool = false;
 this.link_bool = false;
-this.drive_bool=false;
+this.drive_bool = false;
 }
 if ( eve === 'drive')
 {
 this.drive_bool = !this.drive_bool;
 this.product_bool = false;
 this.link_bool = false;
-this.search_bool=false;
+this.search_bool = false;
 }
 if ( eve === 'link')
 {
 this.link_bool = !this.link_bool;
 this.product_bool = false;
 this.drive_bool = false;
-this.search_bool=false;
+this.search_bool = false;
 }
   }
 }
