@@ -110,6 +110,9 @@ export class SpaceComponent implements OnInit {
   ARASite: SiteLink[] = [];
   SiteName: any[] = [];
   title: string = 'AGM project';
+  progress=12.5;
+  steps = 8;
+  progressvalue:any;
   latitude: any;
   longitude: any;
   zoom: number;
@@ -484,6 +487,7 @@ export class SpaceComponent implements OnInit {
         console.log(val);
         break;
     }
+    this.progressbar()
   }
 
   Previous() {
@@ -511,6 +515,7 @@ export class SpaceComponent implements OnInit {
         break;
 
     }
+    this.progressbarminus()
   }
   Finishpopup() {
     this.dialog.open(FinishComponent,
@@ -635,5 +640,24 @@ export class SpaceComponent implements OnInit {
   close(): void {
     this.dialogRef.close();
   }
+
+progressbar(){
+  this.progress = this.progress + 12.5;
+  this.progressvalue = this.progress
+ this.stepsforprogressminus()
+}
+stepsforprogressminus(){
+  this.steps = this.steps-1
+}
+
+
+stepsforprogress(){
+  this.steps = this.steps+1
+}
+progressbarminus(){
+  this.progress = this.progress - 12.5;
+  this.progressvalue = this.progress
+  this.stepsforprogress()
+}
 
 }

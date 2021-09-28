@@ -1,9 +1,8 @@
 <mat-toolbar class="toolbar_cls" fxLayout="row" fxLayoutAlign="space-between center">
-    <div fxLayout="row">
-        Your Creating Multiple Space inside the
-        <label>
-            Space
-        </label>
+    <div fxLayout="row" fxLayoutAlign="start center">
+        <span class="spacecreationheading">
+            Your Creating Multiple Asset inside the Asset
+        </span>
     </div>
     <div fxLayoutAlign=" end center">
 
@@ -19,11 +18,11 @@
                     +
                 </button>
             </div>
-            <div fxLayout="column" class="bg_cls" fxLayoutAlign="center start">
-                <div>
+            <div fxLayout="column" class="bg_cls" fxLayoutAlign="center start" fxLayoutGap="5px">
+                <div class="spacename">
                     Assert Name
                 </div>
-                <div>
+                <div class="spacename">
                     Assert Id
                 </div>
             </div>
@@ -118,7 +117,7 @@
             <div *ngIf="General==true?'selectedIndex':false" style="overflow: auto;height: 400px;">
                 <div fxLayout="column" style="padding: 7px;overflow: auto;">
                     <div fxLayout="row">
-                        <span class="create">Create Space Details</span>
+                        <span class="create">Create Asset Details</span>
                     </div>
                     <form autocomplete="off" [formGroup]="GeneralForm">
                     <div fxLayout="row" style="width: 100%;margin-top: 15px;padding: 10px 55px;" fxLayoutGap="55px">
@@ -172,7 +171,7 @@
                             </div>
                             <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">Category</span><span fxFlex="70">
-                                        <select class="input_cls">
+                                        <select class="input_cls" style="font-size: 12px;">
                                             <option [ngValue]="null">Select Category</option>
                                             <option class="input_cls" formControlName="category" *ngFor="let country of Catagories"
                                                 fxLayoutAlign="center center" [ngValue]="country.name">
@@ -200,7 +199,7 @@
                                 <span fxFlex="30">Type</span>
                                 <span fxFlex="70">
 
-                                    <select class="input_cls">
+                                    <select class="input_cls" style="font-size: 12px;">
                                         <option [ngValue]="null">Select Type</option>
                                         <option class="input_cls" formControlName="Type" *ngFor="let country of countries"
                                             fxLayoutAlign="center center" [ngValue]="country.id">
@@ -239,7 +238,7 @@
                         <div>Longitude: {{longitude}}</div> -->
                     </div>
                     <form autocomplete="off" fxFlex [formGroup]="LocationForm">
-                    <div fxLayout="column" fxFlex="50" fxLayoutGap="20px">
+                    <div fxLayout="column" fxFlex="100" fxLayoutGap="20px">
 
 
 
@@ -422,11 +421,11 @@
                 <div fxLayout="column" style="padding: 20px 10px 10px 10px;width: 100%;">
                     <div fxLayout="row" style="width: 100%;">
                         <div fxFlex="60">
-                            <span style="font-size: 20px;color: #0d0c22;font-weight: bold;">Partner Links</span>
+                            <span style="font-size: 14px;color: #0d0c22;font-weight: bold;padding-left: 10px;">Partner Links</span>
                         </div>
                         <div fxLayout="row" fxLayoutGap="10px">
                             <div fxLayoutAlign="center center">
-                                <div fxLayout="row" class="main_input_field" fxLayoutAlign="space-between center">
+                                <div fxLayout="row" class="main_input_field" fxLayoutAlign="space-between center" style="margin-top: -0.22rem;">
                                     <div>
                                         <img style="vertical-align: -webkit-baseline-middle;
                     width: 24px;" src="./assets/search.svg">
@@ -581,7 +580,7 @@
                             <span fxFlex="30">Country</span>
                             <span fxFlex="70">
 
-                                <select class="input_cls"  formControlName="Country">
+                                <select class="input_cls"  formControlName="Country" style="font-size: 12px;">
                                     <option [ngValue]="null">Select Country</option>
                                     <option class="input_cls" *ngFor="let country of countries"
                                         fxLayoutAlign="center center" [ngValue]="country.id">
@@ -598,7 +597,7 @@
                             <span fxFlex="30">State</span>
                             <span fxFlex="70">
 
-                                <select class="input_cls" formControlName="State"> 
+                                <select class="input_cls" formControlName="State" style="font-size: 12px;"> 
                                     <option [ngValue]="null">Select State</option>
                                     <option class="input_cls" *ngFor="let country of countries"
                                         fxLayoutAlign="center center" [ngValue]="country.id">
@@ -617,12 +616,12 @@
             <div *ngIf="Date==true">
                 <div fxLayout="column" style="padding: 20px 10px 10px 10px;width: 100%;">
                     <div fxLayout="row" style="width: 100%;">
-                        <div fxFlex="60">
-                            <span style="font-size: 20px;color: #0d0c22;font-weight: bold;">Date Links</span>
+                        <div fxFlex="60" style="padding-left: 10px;">
+                            <span style="font-size: 14px;color: #0d0c22;font-weight: bold;">Date Links</span>
                         </div>
                         <div fxLayout="row" fxLayoutGap="10px">
                             <div fxLayoutAlign="center center">
-                                <div fxLayout="row" class="main_input_field" fxLayoutAlign="space-between center">
+                                <div fxLayout="row" class="main_input_field" fxLayoutAlign="space-between center" style="margin-top: -0.22rem;">
                                     <div>
                                         <img style="vertical-align: -webkit-baseline-middle;
                     width: 24px;" src="./assets/search.svg">
@@ -697,12 +696,12 @@
             <div *ngIf="Contract==true">
                 <div fxLayout="column" style="padding: 20px 10px 10px 10px;width: 100%;">
                     <div fxLayout="row" style="width: 100%;">
-                        <div fxFlex="60">
-                            <span style="font-size: 20px;color: #0d0c22;font-weight: bold;">Contract Links</span>
+                        <div fxFlex="60" style="padding-left: 10px;">
+                            <span style="font-size: 14px;color: #0d0c22;font-weight: bold;">Contract Links</span>
                         </div>
                         <div fxLayout="row" fxLayoutGap="10px">
                             <div fxLayoutAlign="center center">
-                                <div fxLayout="row" class="main_input_field" fxLayoutAlign="space-between center">
+                                <div fxLayout="row" class="main_input_field" fxLayoutAlign="space-between center" style="margin-top: -0.22rem;">
                                     <div>
                                         <img style="vertical-align: -webkit-baseline-middle;
                 width: 24px;" src="./assets/search.svg">
@@ -789,11 +788,11 @@
             padding: 0px;">
                 <div fxLayout="row" fxLayoutGap='10px' style="margin-top:-15px;" class="footer">
 
-                    <div class="estimate">Estimatd Time to Complete : 6 mins
+                    <div class="estimate">Estimated Steps to Complete : {{steps}} Steps
 
                     </div>
 
-                    <mat-progress-bar class="progressone" mode="determinate" value="40">
+                    <mat-progress-bar class="progressone" mode="determinate" [value]="progressvalue">
                     </mat-progress-bar>
                     <span style="display:flex; flex: 1 1 auto;"></span>
 
@@ -808,14 +807,10 @@
                             Next
                             <img class="icon-flipped" src="./assets/Next12.svg" />
 
-
-
                         </div>
                         <div *ngIf="finish" class="but3" tabindex="-1" (click)='Finishpopup()'>
                             finish
                             <img class="icon-flipped" src="./assets/Next12.svg" />
-
-
 
                         </div>
                     </div>

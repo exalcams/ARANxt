@@ -421,7 +421,7 @@ margin-top: -2rem;
 
 
 .spacearrow{
-    transform: scale(0.6);
+    transform: scale(0.8);
     align-self: right;
     justify-content: right;
 }
@@ -452,7 +452,7 @@ margin-top: -2rem;
     margin-top: 2px;
 }
 .spacearrow2{
-    transform: scale(0.6);
+    transform: scale(0.8);
     align-self: right;
     justify-content: right;
 }
@@ -544,4 +544,18 @@ margin-top: -2rem;
     position: absolute;
     margin-left: 7.7rem;
     padding: 48px;
+}
+.spacearrowmovable{
+    transform: scale(0.7);
+    align-self: right;
+    justify-content: right;
+    
+}
+
+.fourthchild{
+    // height: 100%;
+    margin-top: 18rem !important;
+}
+.fifthchild{
+    margin-top: 18rem !important;
 }
