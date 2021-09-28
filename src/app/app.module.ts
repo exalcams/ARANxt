@@ -66,9 +66,11 @@ import { ContractLinkComponent } from './contract-link/contract-link.component';
 import { EnergyConsumptionComponent } from './energy-consumption/energy-consumption.component';
 import { LoginComponent } from './login/login.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { LeasemanagementComponent } from './leasemanagement/leasemanagement.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
-
+import {LeasemanagementComponent} from './lease-management/leasemanagement/leasemanagement.component';
+import { LeasemanagementSignedComponent } from './lease-management/leasemanagement-signed/leasemanagement-signed.component';
+import { DatePipe } from '@angular/common';
+import { LeasemanagementExpiryComponent } from './lease-management/leasemanagement-expiry/leasemanagement-expiry.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -101,6 +103,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     LoginComponent,
     HomepageComponent,
     LeasemanagementComponent,
+    LeasemanagementSignedComponent,
+    LeasemanagementExpiryComponent,
 
     
   
@@ -143,7 +147,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
      
     })
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

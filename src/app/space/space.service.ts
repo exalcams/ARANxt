@@ -3,14 +3,15 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AreaLink, LocLink,AddrLink, DocumentLink, ARA_Space, PartnerLink, DateLink, ContractLink, SiteLink, ARA_Asset } from './spacemodel';
+import { LeaseDocument, LeaseManagement } from '../Model/Leasemanagement';
 @Injectable({
     providedIn: 'root'
 })
 export class SpaceService {
     constructor(
         private _httpClient: HttpClient) { }
-//    private baseUrlVsign1 = "http://localhost:4554/"
- private baseUrlVsign1 = "http://192.168.0.25:8002/"
+   private baseUrlVsign1 = "http://localhost:4554/"
+//  private baseUrlVsign1 = "http://192.168.0.25:8002/"
     errorHandler(error: HttpErrorResponse): Observable<string> {
         return throwError(error.error instanceof Object ? error.error.Message ? error.error.Message : error.error : error.error || error.message || 'Server Error');
     }
@@ -124,5 +125,30 @@ export class SpaceService {
     GetOthers():Observable<any> {
         return this._httpClient.get<any>(this.baseUrlVsign1 + "api/Space/GetOtherDetails")
         .pipe(catchError(this.errorHandler));
+    }
+    // AddSignedFileDetail
+    AddSignedFileDetail(signeddetail: LeaseManagement): Observable<any>{
+        return this._httpClient.post<any>(this.baseUrlVsign1 + 'api/Lease/AddSignedFileDetail', signeddetail
+        ) 
+    }
+    //AddSignedFileDetail
+  
+    AddSignedFile(signeddetail: LeaseDocument,selectedFiles: File): Observable<any> {
+        const formData: FormData = new FormData();
+        formData.append(selectedFiles.name, selectedFiles, selectedFiles.name);
+        formData.append('Client', signeddetail.Client);
+        formData.append('Site', signeddetail.Site);
+        formData.append('Company', signeddetail.Company);
+        formData.append('IsDraft', signeddetail.IsDraft.toString());
+        formData.append('DocumentName', signeddetail.DocumentName);
+        formData.append('ContentLength', signeddetail.ContentLength.toString());
+        return this._httpClient.post<any>(this.baseUrlVsign1 + 'api/Lease/AddSignedFile',
+            formData,
+            // {
+            //   headers: new HttpHeaders({
+            //     'Content-Type': 'application/json'
+            //   })
+            // }
+        ).pipe(catchError(this.errorHandler));
     }
 }
