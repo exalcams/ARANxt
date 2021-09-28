@@ -1,10 +1,12 @@
-import { Component, OnInit , AfterViewInit, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-import {SelectionModel} from '@angular/cdk/collections';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatDialog } from '@angular/material/dialog';
+import { GDriveComponent } from 'src/app/g-drive/g-drive.component';
 export interface UserData {
- 
+
   Documentname: string;
   Filesize: string;
   CreatedOn: string;
@@ -46,7 +48,7 @@ export class LeasemanagementComponent implements OnInit {
   files:File[] =[];
   bool4: boolean;
   bool5: boolean;
-  constructor() { }
+  constructor(private dialog:MatDialog) { }
 
   ngOnInit(): void {
 
@@ -72,7 +74,7 @@ export class LeasemanagementComponent implements OnInit {
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.Documentname + 1}`;
   }
-// table work
+  // table work
 
   func1(): void{
     this.bool1 = true;
@@ -136,35 +138,43 @@ export class LeasemanagementComponent implements OnInit {
     //   this.dataSource.paginator.firstPage();
     // }
   }
-  chooseIcons(eve): void
-  {
-if ( eve === 'search')
-{
-this.search_bool = !this.search_bool;
-this.product_bool = false;
-this.link_bool = false;
-this.drive_bool = false;
-}
-if ( eve === 'product')
-{
-this.product_bool = !this.product_bool;
-this.search_bool = false;
-this.link_bool = false;
-this.drive_bool = false;
-}
-if ( eve === 'drive')
-{
-this.drive_bool = !this.drive_bool;
-this.product_bool = false;
-this.link_bool = false;
-this.search_bool = false;
-}
-if ( eve === 'link')
-{
-this.link_bool = !this.link_bool;
-this.product_bool = false;
-this.drive_bool = false;
-this.search_bool = false;
-}
+  chooseIcons(eve): void {
+    if (eve === 'search') {
+      this.search_bool = !this.search_bool;
+      this.product_bool = false;
+      this.link_bool = false;
+      this.drive_bool = false
+    }
+    if (eve === 'product') {
+      this.product_bool = !this.product_bool;
+      this.search_bool = false;
+      this.link_bool = false;
+      this.drive_bool = false;
+    }
+    if (eve === 'drive') {
+      this.drive_bool = !this.drive_bool;
+      this.product_bool = false;
+      this.link_bool = false;
+      this.search_bool = false;
+    }
+    if (eve === 'link') {
+      this.link_bool = !this.link_bool;
+      this.product_bool = false;
+      this.drive_bool = false;
+      this.search_bool = false;
+    }
+  }
+  openGdrive() {
+    const dialogRef = this.dialog.open(GDriveComponent,
+      {
+        panelClass: "g-drive-dialog"
+      }
+    );
+    dialogRef.disableClose = true;
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        
+      }
+    });
   }
 }
