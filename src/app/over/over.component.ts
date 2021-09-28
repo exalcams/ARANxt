@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 // import { NgCircleProgressModule } from 'ng-circle-progress';
 import {
   ApexNonAxisChartSeries,
@@ -29,7 +30,6 @@ export type ChartOptions = {
   series: ApexNonAxisChartSeries;
   chart: ApexChart;
   // labels: string[];
-  colors: [any];
   fill: ApexFill;
   plotOptions: ApexPlotOptions;
 };
@@ -66,42 +66,48 @@ export class OverComponent implements OnInit {
   public chartOptions: ChartOptions;
   public chartOptions1: ChartOptions1;
   public chartOptions2: ChartOptions2;
-  constructor() {
+  isDisplay: boolean = true;
+  isDisplayhover: boolean = false;
+  breakpoint: number;
+  changetolease:boolean = false;
+  changetodashboard:boolean=true;
+  constructor(private router: Router) {
     this.chartOptions = {
       series: [70],
-      colors: [" #ee926b"],
       chart: {
+        width: 82.7,
         height: 135,
         type: "radialBar",
-
       },
       plotOptions: {
         radialBar: {
           dataLabels: {
-            name: {
-              show: false
-            }
+            show:false,
+            // name: {
+            //   show: false
+            // }
           },
           hollow: {
             size: "65%"
           }
-        }
+        },
       },
       //  labels: ["series"],
 
       fill: {
+        colors:["#f0ace3"],
         type: "gradient",
         gradient: {
           shade: "dark",
           type: "horizontal",
           shadeIntensity: 0.5,
-          gradientToColors: ["219deg, #f0ace3 85%, #ee926b 22%"],
+          gradientToColors: ["#ee926b"],
           inverseColors: true,
           opacityFrom: 1,
           opacityTo: 1,
-          stops: [0, 100]
+          stops: [0,100]
         }
-      }
+      },
     };
 
     // semi donut
@@ -110,7 +116,7 @@ export class OverComponent implements OnInit {
       series: [8, 16, 32],
       labels: ['High', 'Medium', 'Low'],
       legend: {
-        show: true,
+        show: false,
         position: 'bottom',
 
         // offsetY: 0,
@@ -267,6 +273,39 @@ export class OverComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.breakpoint = (window.innerWidth <= 600) ? 1 : 6;
+  }
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 600) ? 1 : 6;
   }
 
+
+
+  mouseEnter() {
+    this.isDisplayhover = true;
+    this.isDisplay = false;
+  }
+  mouseLeave() {
+    this.isDisplay = true;
+    this.isDisplayhover = false;
+  }
+  navigate()  {
+    this.router.navigate(['leasemanagement']);
+
+  }
+
+  gotoleasemanagement(){
+    this.router.navigate(["leasemanagement"])
+  }
+
+  leaseclk()
+  {
+    this.changetolease=true;
+    this.changetodashboard=false
+  }
+  dashclk()
+  {
+    this.changetolease=false;
+    this.changetodashboard=true
+  }
 }
