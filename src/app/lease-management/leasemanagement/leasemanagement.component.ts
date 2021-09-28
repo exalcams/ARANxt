@@ -1,10 +1,12 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material/dialog';
 import { GDriveComponent } from 'src/app/g-drive/g-drive.component';
+import { LeaseManagementService } from 'src/app/service/lease-management.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 export interface UserData {
 
   Documentname: string;
@@ -25,7 +27,7 @@ const ELEMENT_DATA :UserData[] = [
 })
 export class LeasemanagementComponent implements OnInit {
   displayedColumns: string[] = ['select','Documentname', 'Filesize', 'CreatedOn','Actions'];
-  dataSource = new MatTableDataSource<UserData>(ELEMENT_DATA) ;
+  dataSource = new MatTableDataSource<any>([]) ;
   selection = new SelectionModel<UserData>(true, []);
   // tslint:disable-next-line:variable-name
   
@@ -48,10 +50,26 @@ export class LeasemanagementComponent implements OnInit {
   files:File[] =[];
   bool4: boolean;
   bool5: boolean;
-  constructor(private dialog:MatDialog) { }
+  LeaseDrafts:any[]=[];
+  constructor(private dialog:MatDialog,private service:LeaseManagementService,
+    private spinner:NgxSpinnerService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+    this.getAllDrafts();
+  }
 
+  getAllDrafts(){
+    this.spinner.show();
+    this.service.GetLeaseDrafts().subscribe(res=>{
+      this.LeaseDrafts=res;
+      this.dataSource=new MatTableDataSource(this.LeaseDrafts);
+      this.spinner.hide();
+      console.log("LeaseDrafts",res);
+    },
+    err=>{
+      this.spinner.hide();
+      console.log(err);
+    })
   }
   // table work
   isAllSelected(): any {
@@ -173,8 +191,37 @@ export class LeasemanagementComponent implements OnInit {
     dialogRef.disableClose = true;
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
-        
+        this.files.push(res.file);
+        this.cdr.detectChanges();
       }
     });
+  }
+  OpenFileFromLink(){
+    let link="test";
+    let fileName;
+    this.service.GetFileFromLink(link).subscribe((res)=>{
+      console.log("link file",res);
+      const blob = new Blob([res])
+      let blobArr=new Array<Blob>();
+      blobArr.push(blob);
+      let resFile=new File(blobArr,fileName);
+    },
+    err=>{
+      console.log(err);
+    })
+  }
+  addDraftToTable(){
+    if(this.files.length>0){
+      this.spinner.show();
+      this.service.UploadLeaseDraft(this.files).subscribe(res=>{
+        console.log("docs uploaded");
+        this.spinner.hide();
+        this.getAllDrafts();
+      },
+      err=>{
+        console.log(err);
+        this.spinner.hide();
+      });
+    }
   }
 }
