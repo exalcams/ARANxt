@@ -11,12 +11,6 @@ import { LeaseManagementService } from 'src/app/service/lease-management.service
 import { SpaceService } from 'src/app/space/space.service';
 import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/notification-snackbar-status-enum';
 
-
-const ELEMENT_DATA: any[] = [
-  // tslint:disable-next-line:max-line-length
-  { ClientName: 'Hari', FileName: 'Laese Document for Exalca', DaysRemaining: '5', ExpiryDate: '1/10/2022', Action: '', ViewDetails: '' },
-  { ClientName: 'Ram', FileName: 'Laese Document for Exalca', DaysRemaining: '3', ExpiryDate: '29/9/2022', Action: '', ViewDetails: '' },
-];
 @Component({
   selector: 'app-leasemanagement-signed',
   templateUrl: './leasemanagement-signed.component.html',
@@ -24,7 +18,7 @@ const ELEMENT_DATA: any[] = [
 })
 export class LeasemanagementSignedComponent implements OnInit {
   displayedColumns: string[] = [ 'ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action', 'ViewDetails'];
-  dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<any>([]);
   selection = new SelectionModel<any>(true, []);
   @ViewChild('fileInput1') fileInput1: ElementRef;
   selectedRowIndex: any;
@@ -96,7 +90,7 @@ export class LeasemanagementSignedComponent implements OnInit {
   }
   updateCheckedList(event, index): void {
     if (event.checked) {
-      console.log('update', ELEMENT_DATA[index]);
+      // console.log('update', ELEMENT_DATA[index]);
 
     }
   }
@@ -174,7 +168,7 @@ handleFileInput(event): void {
     signeddetail.expiryDate = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
     signeddetail.totalDeposit = this.SignedDocumentDetailsForm.get('TotalDeposit').value;
     signeddetail.rental = this.SignedDocumentDetailsForm.get('Rental').value;
-    signeddetail.manintenace = this.SignedDocumentDetailsForm.get('Maintenance').value;
+    signeddetail.maintenance = this.SignedDocumentDetailsForm.get('Maintenance').value;
     signeddetail.electrical = this.SignedDocumentDetailsForm.get('Electrical').value;
     signeddetail.condition = this.SignedDocumentDetailsForm.get('Condition').value;
     signeddetail.remarks = this.SignedDocumentDetailsForm.get('Remarks').value;
@@ -192,7 +186,7 @@ handleFileInput(event): void {
     signeddetail.holderName = this.SignedDocumentDetailsForm.get('HolderName').value;
     signeddetail.accountNo = this.SignedDocumentDetailsForm.get('AccountNo').value;
     signeddetail.modeofTransfer = this.SignedDocumentDetailsForm.get('ModeofTransfer').value;
-    signeddetail.ifsc = this.SignedDocumentDetailsForm.get('IFSCCode').value;
+    signeddetail.iFSC = this.SignedDocumentDetailsForm.get('IFSCCode').value;
     signeddetail.advanceRequest = this.SignedDocumentDetailsForm.get('AdvanceRequest').value;
     this.service.AddSignedFileDetail(signeddetail).subscribe((x) => {
       console.log(x);

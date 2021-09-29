@@ -6,11 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { LeaseDocument, LeaseManagement } from 'src/app/Model/Leasemanagement';
 import { LeaseManagementService } from 'src/app/service/lease-management.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-const ELEMENT_DATA: any[] = [
-  // tslint:disable-next-line:max-line-length
-  { ClientName: 'Hari', FileName: 'Laese Document for Exalca', DaysRemaining: '5', ExpiryDate: '1/10/2022', Action: '', ViewDetails: '' },
-  { ClientName: 'Ram', FileName: 'Laese Document for Exalca', DaysRemaining: '3', ExpiryDate: '29/9/2022', Action: '', ViewDetails: '' },
-];
+
 @Component({
   selector: 'app-leasemanagement-expiry',
   templateUrl: './leasemanagement-expiry.component.html',
@@ -18,7 +14,7 @@ const ELEMENT_DATA: any[] = [
 })
 export class LeasemanagementExpiryComponent implements OnInit {
   displayedColumns: string[] = ['select', 'ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action', 'ViewDetails'];
-  dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<any>([]);
   selection = new SelectionModel<any>(true, []);
   selectedRowIndex: any;
   // tslint:disable-next-line:typedef-whitespace
@@ -66,7 +62,7 @@ export class LeasemanagementExpiryComponent implements OnInit {
   updateCheckedList(event, index): void {
     if (event.checked)
     {
-      console.log('update', ELEMENT_DATA[index]);
+      // console.log('update', ELEMENT_DATA[index]);
 
     }
   }
@@ -99,7 +95,7 @@ loadallsigneddocuments(Mlease:LeaseManagement){
   console.log("selected",this.SelectedSpace)
   this.SignedDocumentDetailsForm.get('ClientName').setValue(this.SelectedSpace.client);
   this.SignedDocumentDetailsForm.get('FileName').setValue(this.SelectedSpace.fileName);
-  this.SignedDocumentDetailsForm.get('CreationDate').setValue(this.SelectedSpace.CreatedOn);
+  this.SignedDocumentDetailsForm.get('CreationDate').setValue(this.SelectedSpace.createdOn);
   this.SignedDocumentDetailsForm.get('ExpiryDate').setValue(this.SelectedSpace.expiryDate);
   this.SignedDocumentDetailsForm.get('TotalDeposit').setValue(this.SelectedSpace.totalDeposit);
   this.SignedDocumentDetailsForm.get('Rental').setValue(this.SelectedSpace.rental);
