@@ -85,17 +85,23 @@
                     <button mat-flat-button class="send_btn" style="cursor: pointer;" color="primary">Purchase
                         Now!</button>
                 </div>
-                <div fxLayout="row" style="margin: 8px 10px 0px 41px;">
-                    <div fxFlex="10">
-                        <img src="./assets/logout_ash.svg" style="width: 9px;">
+                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px" style="padding: 12px;">
+                    <img style="height: 28px;" src="./assets/face.png">
+                    <label style="color: #394256;
+                    font-size: 12px;font-weight:500 ;font-family: poppins-med;">{{currentUser}}</label>
+                    <img src="assets/Images/userActive.svg" width="8px">
+                </div>
+                <div fxLayout="row" style="padding: 0 12px;" fxLayoutAlign="center" fxLayoutGap="16px">
+                    <div>
+                        <img src="./assets/logout_ash.svg" style="width: 12px;">
                     </div>
-                    <div fxFlex="10" style="    color: #394256;
-                   font-size: 11px;cursor: pointer;" (click)="logout()">
+                    <div style="color: #394256;
+                   font-size: 12px;cursor: pointer;font-weight:500 ;font-family: poppins-med;" (click)="logout()">
                         Logout
                     </div>
                 </div>
-                <div style="bottom: 0px;right: 0px;margin:5px ;">
-                    <img style="float: right;width: 12px;cursor: pointer;" (click)="slidemenuforbig()"
+                <div style="padding: 12px;" fxLayout="row" fxLayoutAlign="end center">
+                    <img style="width: 12px;cursor: pointer;" (click)="slidemenuforbig()"
                         src="./assets/slide_close_arrow.svg">
                 </div>
             </div>
@@ -258,7 +264,7 @@
                     </div>
                     <div fxLayout="row" style="margin-right: 30px;">
 
-                        <div class="header_bold"  [matMenuTriggerFor]="menu"> User </div>
+                        <!-- <div class="header_bold"  [matMenuTriggerFor]="menu"> User </div>
                         <div> <img style="height: 28px; margin-left:15px;" src="./assets/face.png"  [matMenuTriggerFor]="menu"></div>
                         <div> <img style="height: 4px; vertical-align: middle;margin-left:5px;cursor: pointer;"
                                     src="./assets/down_arrrow.svg"  [matMenuTriggerFor]="menu"> </div>
@@ -278,7 +284,7 @@
                         </div>
                         <div>
                             <mat-divider [vertical]="true" class="divider3"></mat-divider>
-                        </div>
+                        </div> -->
 
 
 

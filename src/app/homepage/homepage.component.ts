@@ -47,6 +47,7 @@ declare const annyang: any;
   encapsulation: ViewEncapsulation.None,
 })
 export class HomepageComponent implements OnInit {
+  currentUser:string;
   voiceActiveSectionDisabled: boolean = true;
 	voiceActiveSectionError: boolean = false;
 	voiceActiveSectionSuccess: boolean = false;
@@ -202,7 +203,8 @@ closeVoiceRecognition(): void {
     this.SubSpace = '';
     this.state = 'maximum';
     console.log(this.TREE_DATA);
-    console.log(this.treeSource.data)
+    console.log(this.treeSource.data);
+    this.currentUser=JSON.parse(localStorage.getItem('authorizationData'))?.displayName;
   }
   GetARASubSpace(){
       this.SubSpace = localStorage.getItem('SubSpace');

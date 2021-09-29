@@ -77,4 +77,39 @@ export class LeaseManagementService {
     return this.http.get(`${this.baseAddress}api/Lease/GetExpiryLeases`)
     .pipe(catchError(this.errorHandler));
   }
+  GetNoticePeriodLeases(){
+    return this.http.get(`${this.baseAddress}api/Lease/GetNoticePeriodLeases`)
+    .pipe(catchError(this.errorHandler));
+  }
+  GetTerminatedLeases(){
+    return this.http.get(`${this.baseAddress}api/Lease/GetTerminatedLeases`)
+    .pipe(catchError(this.errorHandler));
+  }
+  RenewLease(lease: LeaseManagement): Observable<any> {
+    return this.http.post<any>(this.baseAddress + 'api/Lease/RenewLease', lease,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+      })
+      .pipe(catchError(this.errorHandler));
+  }
+  VocateLease(lease: LeaseManagement): Observable<any> {
+    return this.http.post<any>(this.baseAddress + 'api/Lease/VocateLease', lease,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+      })
+      .pipe(catchError(this.errorHandler));
+  }
+  TerminateLease(lease: LeaseManagement): Observable<any> {
+    return this.http.post<any>(this.baseAddress + 'api/Lease/TerminateLease', lease,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+      })
+      .pipe(catchError(this.errorHandler));
+  }
 }

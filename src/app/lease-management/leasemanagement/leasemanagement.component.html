@@ -21,7 +21,7 @@
     </div>
     <div style="margin-left: 10px;" (click)="func5()"
     [ngClass]="bool5== true ? 'main_buttons' : 'main_buttons_not_seklected' ">
-    Terminate
+   Terminated
 </div>
     </div>
     <br>
@@ -146,7 +146,7 @@
 
             <ng-container matColumnDef="Filesize">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 9%;"> File size </th>
-                <td mat-cell *matCellDef="let row"> {{row.fileSize}} </td>
+                <td mat-cell *matCellDef="let row"> {{formatBytes(row.fileSize)}} </td>
             </ng-container>
 
 
@@ -195,5 +195,11 @@
 </div>
 <div *ngIf="bool3==true">
     <app-leasemanagement-expiry></app-leasemanagement-expiry>
+</div>
+<div *ngIf="bool4==true">
+    <app-under-notice></app-under-notice>
+</div>
+<div *ngIf="bool5==true">
+    <app-terminate></app-terminate>
 </div>
 </div>
