@@ -3,7 +3,9 @@ import { DatePipe } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { LeaseDocument, LeaseManagement } from 'src/app/Model/Leasemanagement';
+import { LeaseManagementService } from 'src/app/service/lease-management.service';
 import { SpaceService } from 'src/app/space/space.service';
 
 const ELEMENT_DATA: any[] = [
@@ -33,10 +35,33 @@ export class LeasemanagementSignedComponent implements OnInit {
   // tslint:disable-next-line:no-inferrable-types
   uploadVisible: boolean = false;
   minDate: Date;
-  constructor(private formBuilder: FormBuilder, private datepipe: DatePipe, private service: SpaceService,) { }
+  AllLeases:any[]=[];
+  constructor(private formBuilder: FormBuilder, private datepipe: DatePipe, private service: LeaseManagementService,
+    private spinner:NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.SignedFormGroup();
+    this.GetAllLeases();
+  }
+
+  GetAllLeases(){
+    this.spinner.show();
+    this.service.GetAllSignedLeases().subscribe((data)=>{
+      this.AllLeases=<any[]>data;
+      console.log(data);
+      this.dataSource=new MatTableDataSource(this.AllLeases);
+      this.spinner.hide();
+    },
+    err=>{
+      console.log(err);
+      this.spinner.hide();
+    });
+  }
+
+  GetRemainingDays(expiry){
+    let today=new Date();
+    let rDays=new Date(expiry).getDate()-today.getDate();
+    return rDays;
   }
 
   isAllSelected(): any {
