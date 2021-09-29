@@ -8,7 +8,7 @@
     background-color: #f3f3f4;
     color: #6e6d7a;
     font-size: 11px;
-    font-weight: 500;
+    font-family: 'poppins-semi' !important;
 }
 .serachicon_search
 {
@@ -100,7 +100,7 @@
   {
     position: absolute;
     right: 48px;
-    top: 152px;
+    top: 175px;
     height: 103px;
 
   }
@@ -129,10 +129,19 @@
 .client_placeholder::placeholder {
   color: black;
   font-size: 10px;
+  font-family: "poppins" !important;
+}
+.client_placeholder{
+  color: black;
+  font-size: 12px;
+  margin-top: 15px !important;
+  line-height: 5px;
+  font-family: "poppins" !important;
 }
 .forminput
 {
-  color:red
+  color:red;
+
 }
 // .uploadfiles{
 //   background-color: #ececec;
@@ -292,3 +301,43 @@ tr.mat-header-row {
 //   background-color: inherit;
 //   text-align: center;
 // }
+
+th{
+ 
+  flex-direction: column;
+
+}
+tr{
+  // height: 50px !important;
+  line-height: normal;
+  width: max-content;
+}
+
+::-webkit-input-placeholder{
+  font-size: 8px;
+  font-family: 'poppins-semi' !important;
+  margin-top: 10px;
+}
+.formfield{
+  padding: 0;
+}
+.datepicker{
+ line-height: 5px;
+ margin-top: 5px !important;
+}
+
+.color-green{
+  color: green;
+}
+.color-yellow{
+  color: yellow;
+}
+.color-red{
+  color: red;
+}
+.color-blue{
+  color: blue;
+}
+.color-grey{
+  color: rebeccapurple;
+}

@@ -3,7 +3,9 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
-
+import { LeaseDocument, LeaseManagement } from 'src/app/Model/Leasemanagement';
+import { LeaseManagementService } from 'src/app/service/lease-management.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 const ELEMENT_DATA: any[] = [
   // tslint:disable-next-line:max-line-length
   { ClientName: 'Hari', FileName: 'Laese Document for Exalca', DaysRemaining: '5', ExpiryDate: '1/10/2022', Action: '', ViewDetails: '' },
@@ -24,15 +26,19 @@ export class LeasemanagementExpiryComponent implements OnInit {
   btn_name: any = 'Upload Document';
   // tslint:disable-next-line:typedef-whitespace
   files: File[] = [];
-
+  Mlease:LeaseManagement[]=[];
+  SelectedSpace:LeaseManagement=new LeaseManagement();
+  Mget:LeaseManagement[]=[];
+  days=new Date();
   SignedDocumentDetailsForm: FormGroup;
   date: any = new Date((new Date().getTime() - 3888000000));
   // tslint:disable-next-line:no-inferrable-types
   uploadVisible: boolean = false;
-  constructor(private formBuilder: FormBuilder, private datepipe: DatePipe) { }
+  constructor(private formBuilder: FormBuilder, private spinner:NgxSpinnerService, private datepipe: DatePipe, private service:LeaseManagementService) { }
 
   ngOnInit(): void {
     this.SignedFormGroup();
+    this.GetExpiryLeases()
   }
 
   isAllSelected(): any {
@@ -88,6 +94,55 @@ SignedFormGroup(): void
     Remarks: [''],
   });
 }
+loadallsigneddocuments(Mlease:LeaseManagement){
+  this.SelectedSpace =Mlease;
+  console.log("selected",this.SelectedSpace)
+  this.SignedDocumentDetailsForm.get('ClientName').setValue(this.SelectedSpace.client);
+  this.SignedDocumentDetailsForm.get('FileName').setValue(this.SelectedSpace.fileName);
+  this.SignedDocumentDetailsForm.get('CreationDate').setValue(this.SelectedSpace.CreatedOn);
+  this.SignedDocumentDetailsForm.get('ExpiryDate').setValue(this.SelectedSpace.expiryDate);
+  this.SignedDocumentDetailsForm.get('TotalDeposit').setValue(this.SelectedSpace.totalDeposit);
+  this.SignedDocumentDetailsForm.get('Rental').setValue(this.SelectedSpace.rental);
+  this.SignedDocumentDetailsForm.get('Maintenance').setValue(this.SelectedSpace.maintenance);
+  this.SignedDocumentDetailsForm.get('Electrical').setValue(this.SelectedSpace.electrical);
+  this.SignedDocumentDetailsForm.get('Condition').setValue(this.SelectedSpace.condition);
+  this.SignedDocumentDetailsForm.get('Remarks').setValue(this.SelectedSpace.remarks);
+}
+
+
+// // not used func
+// GetSpaceValues() {
+//   this.SelectedSpace.client = this.SignedDocumentDetailsForm.get('ClientName').value;
+// }
+
+
+GetExpiryLeases(){
+  this.spinner.show();
+  this.service.GetExpiryLeases().subscribe((data)=>{
+    this.Mlease=<any[]>data;
+    console.log(data);
+    this.dataSource=new MatTableDataSource(this.Mlease);
+    if(this.Mlease.length>0){
+      this.loadallsigneddocuments(this.Mlease[0]);
+    }
+    this.spinner.hide();
+  },
+  err=>{
+    console.log(err);
+    this.spinner.hide();
+  });
+}
+
+GetRemainingDays(expiry){
+  let today=new Date();
+  let rDays=new Date(expiry).getDate()-today.getDate();
+this.rdayscolorchange(rDays)
+  return rDays;
+}
+rdayscolorchange(days){
+
+}
+
 
 upload(): void{
   this.uploadVisible = false;
@@ -101,6 +156,22 @@ handleFileInput(event): void {
   this.files.push(...event.addedFiles);
 
 
+}
+
+applyFilter(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value;
+  this.dataSource.filter = filterValue.trim().toLowerCase();
+}
+getWidth(days){
+    if(days>=20 && days<=30){
+      return "green"
+    }
+    else   if(days>=10 && days<=20){
+      return "yellow"
+    }
+    else   if(days<10){
+      return "red"
+    }
 }
 }
 
