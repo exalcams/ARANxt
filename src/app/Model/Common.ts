@@ -1,7 +1,7 @@
 export class CommonClass {
-    IsActive: boolean | null;
-    CreatedOn: Date | string;
-    CreatedBy: string | null;
-    ModifiedOn: Date | string | null;
-    ModifiedBy: string | null;
+    isActive: boolean | null;
+    createdOn: Date | string;
+    createdBy: string | null;
+    modifiedOn: Date | string | null;
+    modifiedBy: string | null;
 }

@@ -62,9 +62,9 @@ export class LeaseManagementService {
   AddSignedFile(signeddetail: LeaseDocument, selectedFiles: File): Observable<any> {
     const formData: FormData = new FormData();
     formData.append(selectedFiles.name, selectedFiles, selectedFiles.name);
-    formData.append('Client', signeddetail.Client);
-    formData.append('Site', signeddetail.Site);
-    formData.append('Company', signeddetail.Company);
+    formData.append('Client', signeddetail.client);
+    formData.append('Site', signeddetail.site);
+    formData.append('Company', signeddetail.company);
     return this.http.post<any>(this.baseAddress + 'api/Lease/AddSignedFile',
       formData,
     ).pipe(catchError(this.errorHandler));

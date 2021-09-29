@@ -1,12 +1,16 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { DatePipe } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { LeaseDocument, LeaseManagement } from 'src/app/Model/Leasemanagement';
+import { NotificationSnackBarComponent } from 'src/app/notification/notification-snack-bar/notification-snack-bar.component';
 import { LeaseManagementService } from 'src/app/service/lease-management.service';
 import { SpaceService } from 'src/app/space/space.service';
+import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/notification-snackbar-status-enum';
+
 
 const ELEMENT_DATA: any[] = [
   // tslint:disable-next-line:max-line-length
@@ -19,7 +23,7 @@ const ELEMENT_DATA: any[] = [
   styleUrls: ['./leasemanagement-signed.component.scss']
 })
 export class LeasemanagementSignedComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action', 'ViewDetails'];
+  displayedColumns: string[] = [ 'ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action', 'ViewDetails'];
   dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
   selection = new SelectionModel<any>(true, []);
   @ViewChild('fileInput1') fileInput1: ElementRef;
@@ -36,8 +40,12 @@ export class LeasemanagementSignedComponent implements OnInit {
   uploadVisible: boolean = false;
   minDate: Date;
   AllLeases:any[]=[];
+  notificationSnackBarComponent: NotificationSnackBarComponent;
   constructor(private formBuilder: FormBuilder, private datepipe: DatePipe, private service: LeaseManagementService,
-    private spinner:NgxSpinnerService) { }
+    // tslint:disable-next-line:align
+    private spinner:NgxSpinnerService,   public snackBar: MatSnackBar) { 
+      this.notificationSnackBarComponent = new NotificationSnackBarComponent(this.snackBar);
+    }
 
   ngOnInit(): void {
     this.SignedFormGroup();
@@ -137,45 +145,62 @@ handleFileInput(event): void {
     // tslint:disable-next-line:align
     console.log(event);
     // tslint:disable-next-line:align
-    this.files.push(...event.addedFiles);
+    this.files.push(event.target.files[0]);
     const signeddetailFile = new LeaseDocument();
-    signeddetailFile.Client = this.SignedDocumentDetailsForm.get('Client').value;
-    signeddetailFile.Site = "Site 1";
-    signeddetailFile.Company = "EXA";
-    signeddetailFile.IsDraft = false;
-    signeddetailFile.DocumentName = event.target.files[0].name;
-    signeddetailFile.ContentLength = event.target.files[0].type;
-    signeddetailFile.ContentLength = event.target.files[0].size;
+    signeddetailFile.client = this.SignedDocumentDetailsForm.get('Client').value;
+    signeddetailFile.site = "Site 1";
+    signeddetailFile.company = "EXA";
+    signeddetailFile.isDraft = false;
+    signeddetailFile.documentName = event.target.files[0].name;
+    signeddetailFile.contentLength = event.target.files[0].type;
+    signeddetailFile.contentLength = event.target.files[0].size;
     const selectedFiles = event.target.files[0];
+    this.service.AddSignedFile(signeddetailFile,selectedFiles).subscribe((x) => {
+      console.log(x);
+      this.notificationSnackBarComponent.openSnackBar('Uploaded in successfully', SnackBarStatus.success);
+    },
+      err => {
+        console.log(err);
+
+      })
   }
   saveclk(): void {
     const signeddetail = new LeaseManagement();
     // tslint:disable-next-line:align
-    signeddetail.Client = this.SignedDocumentDetailsForm.get('Client').value;
+    signeddetail.client = this.SignedDocumentDetailsForm.get('Client').value;
     // tslint:disable-next-line:align
-    signeddetail.FileName = this.SignedDocumentDetailsForm.get('FileName').value;
-    signeddetail.CreatedOn = this.SignedDocumentDetailsForm.get('CreatedOn').value;
-    signeddetail.ExpiryDate = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
-    signeddetail.TotalDeposit = this.SignedDocumentDetailsForm.get('TotalDeposit').value;
-    signeddetail.Rental = this.SignedDocumentDetailsForm.get('Rental').value;
-    signeddetail.Maintenance = this.SignedDocumentDetailsForm.get('Maintenance').value;
-    signeddetail.Electrical = this.SignedDocumentDetailsForm.get('Electrical').value;
-    signeddetail.Condition = this.SignedDocumentDetailsForm.get('Condition').value;
-    signeddetail.Remarks = this.SignedDocumentDetailsForm.get('Remarks').value;
-    signeddetail.Site = "Site 1";
-    signeddetail.Company = "EXA";
-    signeddetail.SignedOn = this.SignedDocumentDetailsForm.get('CreatedOn').value;
-    signeddetail.SiteSign = 'ABC';
-    signeddetail.RenewalCount = 0;
-    signeddetail.RenewedOn = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
-    signeddetail.VacatedOn = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
-    signeddetail.TerminatedOn = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
-    signeddetail.IsVocated = false;
-    signeddetail.IsTerminated = false
+    signeddetail.fileName = this.SignedDocumentDetailsForm.get('FileName').value;
+    signeddetail.createdOn = this.SignedDocumentDetailsForm.get('CreatedOn').value;
+    signeddetail.expiryDate = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
+    signeddetail.totalDeposit = this.SignedDocumentDetailsForm.get('TotalDeposit').value;
+    signeddetail.rental = this.SignedDocumentDetailsForm.get('Rental').value;
+    signeddetail.manintenace = this.SignedDocumentDetailsForm.get('Maintenance').value;
+    signeddetail.electrical = this.SignedDocumentDetailsForm.get('Electrical').value;
+    signeddetail.condition = this.SignedDocumentDetailsForm.get('Condition').value;
+    signeddetail.remarks = this.SignedDocumentDetailsForm.get('Remarks').value;
+    signeddetail.site = "Site 1";
+    signeddetail.company = "EXA";
+    signeddetail.signedOn = this.SignedDocumentDetailsForm.get('CreatedOn').value;
+    signeddetail.siteSign = 'ABC';
+    signeddetail.renewalCount = 0;
+    signeddetail.renewedOn = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
+    signeddetail.vacatedOn = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
+    signeddetail.terminatedOn = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
+    signeddetail.isVocated = false;
+    signeddetail.isTerminated = false;
+    signeddetail.bankName = this.SignedDocumentDetailsForm.get('BankName').value;
+    signeddetail.holderName = this.SignedDocumentDetailsForm.get('HolderName').value;
+    signeddetail.accountNo = this.SignedDocumentDetailsForm.get('AccountNo').value;
+    signeddetail.modeofTransfer = this.SignedDocumentDetailsForm.get('ModeofTransfer').value;
+    signeddetail.ifsc = this.SignedDocumentDetailsForm.get('IFSCCode').value;
+    signeddetail.advanceRequest = this.SignedDocumentDetailsForm.get('AdvanceRequest').value;
     this.service.AddSignedFileDetail(signeddetail).subscribe((x) => {
       console.log(x);
+        const event = new MouseEvent('click', { bubbles: false });
+    // tslint:disable-next-line:align
+    this.fileInput1.nativeElement.dispatchEvent(event);
       // tslint:disable-next-line:align
-      this.filehandle();
+      // this.filehandle();
     },
       err => {
         console.log(err);
@@ -184,10 +209,23 @@ handleFileInput(event): void {
 
 
   }
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    // if (this.dataSource.paginator) {
+    //   this.dataSource.paginator.firstPage();
+    // }
+  }
   filehandle() {
-    const event = new MouseEvent('click', { bubbles: false });
-    // tslint:disable-next-line:align
-    this.fileInput1.nativeElement.dispatchEvent(event);
+  
+    
+    // setTimeout(() => {
+    //   const el: HTMLElement = this.fileInput1.nativeElement;
+    //   // tslint:disable-next-line:align
+    //   el.click();
+    // }, 10);
+  
   }
   createdDate(): void {
     this.minDate = this.SignedDocumentDetailsForm.get('CreatedOn').value;
