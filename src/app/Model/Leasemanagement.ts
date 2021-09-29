@@ -13,7 +13,7 @@ export class LeaseManagement  extends CommonClass
     expiryDate: Date | string | null;
     totalDeposit: number;
     rental: number;
-    manintenace: number;
+    maintenance: number;
     electrical: number;
     condition: string;
     remarks: string;
@@ -27,7 +27,7 @@ export class LeaseManagement  extends CommonClass
     holderName : string;
     accountNo : number;
     modeofTransfer : string;
-    ifsc : string;
+    iFSC : string;
     advanceRequest: string;
 // tslint:disable-next-line:eofline
 }

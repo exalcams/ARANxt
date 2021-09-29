@@ -26,9 +26,14 @@ export class GDriveComponent implements OnInit {
     private socialAuthService: SocialAuthService,
     private http: HttpClient,
     private spinner:NgxSpinnerService
-  ) { }
+  ) {
+    
+   }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.loginWithGoogle();
+    }, 2000);
   }
 
   selectFile(id){

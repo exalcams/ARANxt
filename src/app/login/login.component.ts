@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit {
   saveUserDetails(data: AuthenticationDetails): void {
     localStorage.setItem('authorizationData', JSON.stringify(data));
     this.UpdateMenu();
-    this.notificationSnackBarComponent.openSnackBar('Logged in successfully', SnackBarStatus.success);
+    // this.notificationSnackBarComponent.openSnackBar('Logged in successfully', SnackBarStatus.success);
     // if (data.userRole === 'Administrator') {
     //   this._router.navigate(['pages/adminDashboard']);
     // } else {

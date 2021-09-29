@@ -81,6 +81,8 @@ import { LoaderComponent } from './loader/loader.component';
 import { GDriveComponent } from './g-drive/g-drive.component';
 import { GoogleLoginProvider, SocialLoginModule } from 'angularx-social-login';
 import {LeaseManagementService} from 'src/app/service/lease-management.service';
+import { UnderNoticeComponent } from './lease-management/under-notice/under-notice.component';
+import { TerminateComponent } from './lease-management/terminate/terminate.component';
 
 @NgModule({
   declarations: [
@@ -120,7 +122,9 @@ import {LeaseManagementService} from 'src/app/service/lease-management.service';
     
   
     LoaderComponent,
-    GDriveComponent
+    GDriveComponent,
+    UnderNoticeComponent,
+    TerminateComponent
   ],
   imports: [
     MatGridListModule,

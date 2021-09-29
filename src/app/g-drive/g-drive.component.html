@@ -5,7 +5,7 @@
     </mat-toolbar>
   
     <mat-dialog-content class="content" fusePerfectScrollbar>
-        <span class="signin" *ngIf="!isLoggedin" (click)="loginWithGoogle()">SignIn</span>
+        <!-- <span class="signin" *ngIf="!isLoggedin" (click)="loginWithGoogle()">SignIn</span> -->
         <div fxLayout="row wrap" fxLayoutAlign="space-evenly">
             <div fxFlex=28 *ngFor="let file of driveFiles" class="list"
             [ngStyle]="{'border':file.id == selectedID ? '2px solid #5f2cff' : 'none' }" (click)="selectFile(file.id)">{{file.name}}</div>
