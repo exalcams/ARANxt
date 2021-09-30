@@ -1,0 +1,53 @@
+<!-- <p>uploaddocumentsigned works!</p> -->
+<div fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="15px">
+    <div style="margin-left: 50px;">
+        <img (click)="Close()" class="closeimages" src="assets/Close.svg">
+    </div>
+    <div>
+        <form [formGroup]="SignedDocumentDetailsForm">
+            <div fxLayout="column" fxLayoutAlign="space-evenly center">
+                <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+                    <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+                        <span class="formspan">Client Name</span>
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Client Name</mat-label>
+                            <input matInput placeholder="Enter Client Nmae" formControlName="Client" >
+
+
+                        </mat-form-field>
+                    </div>
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Legacy form field</mat-label>
+                        <input matInput placeholder="Placeholder">
+
+                        <mat-hint>Hint</mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Legacy form field</mat-label>
+                        <input matInput placeholder="Placeholder">
+
+                        <mat-hint>Hint</mat-hint>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Legacy form field</mat-label>
+                        <input matInput placeholder="Placeholder">
+
+                        <mat-hint>Hint</mat-hint>
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+        </form>
+        <div fxFlex="19" style="margin-top: 20px;" fxLayoutAlign="center center">
+            <button mat-button class="upload_btn" for="file" style="background-color:#4410ff;width:100%"
+                (click)="saveclk()">Save</button>
+
+            <input hidden type="file" #fileInput1 id="file_id" (change)="handleFileInput($event)" />
+        </div>
+    </div>
+</div>

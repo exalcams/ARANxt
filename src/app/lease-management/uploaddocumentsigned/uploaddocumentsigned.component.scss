@@ -1,0 +1,52 @@
+.client_placeholder::placeholder {
+    color: black;
+    font-size: 10px;
+  }
+::-webkit-input-placeholder{
+  color: black;
+  font-size: 8px;
+  font-family: 'poppins-semi' !important;
+}
+
+  .cl_lab
+  {
+    color: #0d0c22;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 63px;
+  }
+  .cl_lab1
+  {
+    color: #0d0c22;
+    font-size: 11px;
+    font-weight: 600;
+    // line-height: 63px;
+  }
+.subtitle{
+    color: #0d0c22;
+    font-size: 14px;
+    font-family: 'poppins-semi' !important;
+}
+.formfield{
+    width: 60%;
+}
+.form-field-wrapper{
+  width: 100%;
+}
+.closeimages{
+  cursor: pointer;
+  width: 20px;
+   margin-top: 15px;
+   justify-content: right;
+   text-align: right;
+   align-items: flex-end;
+}
+.formspan{
+  color: #0d0c22;
+  font-size: 12px;
+  font-family: 'poppins-semi' !important;
+}
+::-webkit-input-placeholder{
+  font-size: 12px;
+  font-family: 'poppins-semi' !important;
+}
