@@ -261,40 +261,31 @@ table {
 }
 //table
 tr.mat-header-row {
-    height: 35px;
+    height: 40px;
   }
   .table.mat-table {
     background: #fff;
-    // width: 100%;
-    // overflow: scroll;
-    // overflow-x: scroll !important;
-    margin-top:20px
+    margin-top:24px
 }
 .mat-row {
     height: auto;
     min-width: max-content !important;
-    width: max-content;
   }
   
   .mat-cell {
     padding: 8px 8px 8px 0;
-    min-width: 50% !important;
-    width: max-content;
   }
 
   .mat-cell, .mat-header-cell {
     border: none !important;
-    font-size: 11px;
-    padding: 10px 25px 0px 0;
-    overflow: hidden;
+    font-size: 12px;
   }
   ::ng-deep  .mat-cell, .mat-header-cell {
     border: none !important;
-    font-size: 11px;
-    padding: 0px 25px 0px 0;
+    font-size: 12px;
     color:
     #6e6d7a;
-    font-weight: 600px;
+    font-weight: 500;
   }
 .title
 {

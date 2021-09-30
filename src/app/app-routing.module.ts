@@ -19,6 +19,7 @@ import { OthersComponent } from './others/others.component';
 import { OverComponent } from './over/over.component';
 import { ParkingAccessComponent } from './parking-access/parking-access.component';
 import { PowerComponent } from './power/power.component';
+import { RichTextEditorComponent } from './rich-text-editor/rich-text-editor.component';
 import { SignalsComponent } from './signals/signals.component';
 import { SiteComponent } from './site/site.component';
 import { SpaceComponent } from './space/space.component';
@@ -114,7 +115,7 @@ const routes: Routes = [
 {
   path:"homepage",
   component:HomepageComponent
-},
+}
 // {
 //   path:"leasemanagement",
 //   component:LeasemanagementComponent
