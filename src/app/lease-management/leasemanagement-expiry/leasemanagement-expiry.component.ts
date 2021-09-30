@@ -169,6 +169,12 @@ getWidth(days){
       return "red"
     }
 }
+
+changeSelection(row){
+  setTimeout(()=>{
+    this.selection.toggle(row);
+  })
+}
 }
 
 

@@ -1,17 +1,334 @@
 <div fxLayout="column" fxFlex="100">
-    <!-- <div fxFlex fxLayout="row" fxLayoutGap="10px">
+
+  <div fxFlex fxLayout="row" fxLayoutGap="10px">
+    <div fxFlex="50" class="btn_bg">
+      <!-- fxLayoutAlign="flex-start flex-start" -->
+      <button mat-flat-button class="Renew_btn">Renew</button>
+      <button mat-flat-button class="Renew_btn">Vacate</button>
+      <button mat-flat-button class="Renew_btn">Terminate</button>
+      <button mat-flat-button class="Renew_btn">Send</button>
+      <!-- <button mat-flat-button class="Renew_btn">Delete</button> -->
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="30">
+      <div fxLayout="row" class="btn_bg2" fxFlex="100">
+        <mat-icon matSuffix class="serachicon_search">search</mat-icon>
+        <input matInput class="search_input1" placeholder="Search Document" (keyup)="applyFilter($event)">
+      </div>
+    </div>
+    <div style="margin-top: 0px;" fxLayoutAlign="flex-end" fxFlex="20">
+      <button mat-button class="upload_btn2" (click)="uploadDocument()">
+        <!-- [style.background-color]="btn_name==='Upload Document'?'#4410ff':'red'" (click)="uploadDocument()"-->
+        {{btn_name}}
+      </button>
+    </div>
+
+  </div>
+  <!-- <div fxFlex fxLayout="row" fxLayoutGap="10px">
      
       <div fxFlex="25" fxLayout="row" class="btn_bg">
         <mat-icon matSuffix class="serachicon_search">search</mat-icon>
         <input matInput class="search_input1" placeholder="Search Document">
       </div>
-    </div> -->
-    <div fxLayout="row" fxLayoutGap="10px">
-      <div fxFlex="70" style="
+     </div> -->
+  <div style="height: 10px;">
+
+  </div>
+
+
+  <div style="height: 10px;">
+
+  </div>
+  <mat-sidenav-container class="example-container" autosize hasBackdrop="false">
+    <mat-sidenav #drawer class="example-sidenav " position="end" mode="push">
+      <div fxLayout="column" fxLayoutAlign="space-evenly center" (click)="drawer.toggle()">
+
+        <div class="form_bg" fxLayout="column" fxLayoutAlign="space-evenly center">
+
+
+
+          <div fxLayout="row" fxLayoutAlign="space-evenly center" style="padding: 10px;width: 80%;" fxLayoutGap="20px">
+            <div fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="20px"
+              style="width: 100%;justify-content: right;">
+              <div class="labelcss">Client Name</div>
+              <div class="labelcss">FileName</div>
+              <div class="labelcss">Creation Date</div>
+              <div class="labelcss">Expiry Date</div>
+              <div class="labelcss">Total Deposit</div>
+              <div class="labelcss">Rental</div>
+              <div class="labelcss">Bank Name</div>
+              <div class="labelcss">Holder Name</div>
+              <div class="labelcss">Account No.</div>
+              <div class="labelcss">Mode of Transfer</div>
+              <div class="labelcss">IFSC Code</div>
+              <div class="labelcss">Advance Request</div>
+              <div class="labelcss">Maintenance</div>
+              <div class="labelcss">Remarks</div>
+              <div class="labelcss">Electrical</div>
+              <div class="labelcss">Condition</div>
+
+            </div>
+            <div fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="20px" style="width: 100%;">
+              <div class="labelcssvalue">client</div>
+              <div class="labelcssvalue">FileName</div>
+              <div class="labelcssvalue">Creation Date</div>
+              <div class="labelcssvalue">Expiry Date</div>
+              <div class="labelcssvalue">Total Deposit</div>
+              <div class="labelcssvalue">Rental</div>
+              <div class="labelcssvalue">Bank Name</div>
+              <div class="labelcssvalue">Holder Name</div>
+              <div class="labelcssvalue">Account No</div>
+              <div class="labelcssvalue">IFSC Code</div>
+              <div class="labelcssvalue">Mode of Transfer</div>
+              <div class="labelcssvalue">Advance Request</div>
+              <div class="labelcssvalue">Maintenance</div>
+              <div class="labelcssvalue">Remarks</div>
+              <div class="labelcssvalue">Electrical</div>
+              <div class="labelcssvalue">Condition</div>
+
+            </div>
+
+
+
+          </div>
+
+          <!-- <form fxLayout="column" fxFlex="100" autocomplete="off" name="form" novalidate
+              [formGroup]="SignedDocumentDetailsForm" class="form_align ">
+              <div fxFlex="11" style="margin-top: 63px;" class="cl_formdiv">
+                <div fxFlex="38">
+                  <mat-label class="cl_lab">Client Name</mat-label>
+                </div>
+                <div fxFlex="59" class="spaceinput_outer">
+                  <mat-form-field appearance="standard" style="width:100%">
+                    <input matInput placeholder="Enter Client Name" class="client_placeholder " formControlName="Client">
+                  </mat-form-field>
+                </div>
+              </div>
+    
+              <div fxFlex="11" class="cl_formdiv">
+                <div fxFlex="38">
+                  <mat-label class="cl_lab">FileName</mat-label>
+                </div>
+                <div fxFlex="59" class="spaceinput_outer">
+                  <mat-form-field appearance="standard" style="width:100%">
+                    <input matInput placeholder="Enter File Name" formControlName="FileName" class="client_placeholder ">
+                  </mat-form-field>
+                </div>
+              </div>
+    
+              <div fxFlex="11" class="cl_formdiv">
+                <div fxFlex="38">
+                  <mat-label class="cl_lab">Creation Date</mat-label>
+                </div>
+                <div fxFlex="59" class="spaceinput_outer">
+                  <mat-form-field appearance="standard" style="width:100%">
+                    <input matInput [matDatepicker]="dp1" readonly placeholder="dd/mm/yyy" class="client_placeholder "
+                      style="color: black;" formControlName="CreatedOn">
+                    <mat-datepicker-toggle matSuffix [for]="dp1" (click)="createdDate()"></mat-datepicker-toggle>
+                    <mat-datepicker #dp1 disabled="false"></mat-datepicker>
+                  </mat-form-field>
+                </div>
+              </div>
+    
+              <div fxFlex="11" class="cl_formdiv">
+                <div fxFlex="38">
+                  <mat-label class="cl_lab">Expiry Date</mat-label>
+                </div>
+                <div fxFlex="59" class="spaceinput_outer">
+                  <mat-form-field appearance="standard" style="width:100%">
+                    <input matInput [matDatepicker]="dp2" readonly placeholder="dd/mm/yyy"
+                      [min]="SignedDocumentDetailsForm.get('CreatedOn').value" class="client_placeholder "
+                      style="color: black;" formControlName="ExpiryDate">
+                    <mat-datepicker-toggle matSuffix [for]="dp2" style="height:10px"></mat-datepicker-toggle>
+                    <mat-datepicker #dp2 disabled="false"></mat-datepicker>
+                  </mat-form-field>
+                </div>
+              </div>
+    
+              <div fxFlex="11" class="cl_formdiv">
+                <div fxFlex="38">
+                  <mat-label class="cl_lab">Total Deposit</mat-label>
+                </div>
+                <div fxFlex="59" class="spaceinput_outer">
+                  <mat-form-field appearance="standard" style="width:100%">
+                    <input matInput placeholder="Enter Total Deposit" type="number" class="client_placeholder "
+                      formControlName="TotalDeposit">
+                    <span matPrefix>
+                      <p style="font-size: 11px;
+              font-weight: 600px;
+              height: 0px;">Rs.</p>&nbsp;
+                    </span>
+                  </mat-form-field>
+                </div>
+              </div>
+    
+    
+              <div fxFlex="11" class="cl_formdiv">
+                <div fxFlex="38">
+                  <mat-label class="cl_lab">Rental</mat-label>
+                </div>
+                <div fxFlex="59" class="spaceinput_outer">
+                  <mat-form-field appearance="standard" style="width:100%">
+                    <input matInput placeholder="Enter Rental" type="number" class="client_placeholder "
+                      formControlName="Rental">
+                    <span matPrefix>
+                      <p style="font-size: 11px;
+              font-weight: 600px;
+              height: 0px;">Rs.</p>&nbsp;
+                    </span>
+                  </mat-form-field>
+                </div>
+              </div>
+    
+              <div fxFlex="11" class="cl_formdiv">
+                <div fxFlex="38">
+                  <mat-label class="cl_lab">Bank Name</mat-label>
+                </div>
+                <div fxFlex="59" class="spaceinput_outer">
+                  <mat-form-field appearance="standard" style="width:100%">
+                    <input matInput placeholder="Enter Bank Name" class="client_placeholder " formControlName="BankName">
+    
+                  </mat-form-field>
+                </div>
+              </div>
+    
+              <div fxFlex="11" class="cl_formdiv">
+                <div fxFlex="38">
+                  <mat-label class="cl_lab">Holder Name</mat-label>
+                </div>
+                <div fxFlex="59" class="spaceinput_outer">
+                  <mat-form-field appearance="standard" style="width:100%">
+                    <input matInput placeholder="Enter Holder Name" class="client_placeholder "
+                      formControlName="HolderName">
+    
+                  </mat-form-field>
+                </div>
+              </div>
+    
+              <div fxFlex="17" class="cl_formdiv">
+                <div fxFlex="38">
+                  <mat-label class="cl_lab">Account No.</mat-label>
+                </div>
+                <div fxFlex="59" class="spaceinput_outer">
+                  <mat-form-field appearance="standard" style="width:100%">
+                    <input matInput placeholder="Enter Account No." class="client_placeholder " formControlName="AccountNo">
+    
+                  </mat-form-field>
+                </div>
+              </div>
+           
+              <div fxFlex="11" class="cl_formdiv">
+                <div fxFlex="38">
+                  <mat-label class="cl_lab1">Mode of Transfer</mat-label>
+                </div>
+                <div fxFlex="59" class="spaceinput_outer">
+                  <mat-form-field appearance="standard" style="width:100%">
+                    <input matInput placeholder="Enter Mode of Transfer" class="client_placeholder "
+                      formControlName="ModeofTransfer">
+                  </mat-form-field>
+                </div>
+              </div>
+    
+              <div fxFlex="16" class="cl_formdiv">
+                <div fxFlex="38">
+                  <mat-label class="cl_lab">IFSC Code</mat-label>
+                </div>
+                <div fxFlex="59" class="spaceinput_outer">
+                  <mat-form-field appearance="standard" style="width:100%">
+                    <input matInput placeholder="Enter IFSC Code" class="client_placeholder " formControlName="IFSCCode">
+                  </mat-form-field>
+                </div>
+              </div>
+           
+              <div fxFlex="11" class="cl_formdiv">
+                <div fxFlex="38">
+                  <mat-label class="cl_lab1">Advance Request</mat-label>
+                </div>
+                <div fxFlex="59" class="spaceinput_outer">
+                  <mat-form-field appearance="standard" style="width:100%">
+                    <input matInput placeholder="Enter Advance Request" type="number" class="client_placeholder "
+                      formControlName="AdvanceRequest">
+                    <span matPrefix>
+                      <p style="font-size: 11px;
+            font-weight: 600px;
+            height: 0px;">Rs.</p>&nbsp;
+                    </span>
+                  </mat-form-field>
+                </div>
+              </div>
+    
+    
+    
+              <div fxFlex="11" class="cl_formdiv">
+                <div fxFlex="38">
+                  <mat-label class="cl_lab">Maintenance</mat-label>
+                </div>
+                <div fxFlex="59" class="spaceinput_outer">
+                  <mat-form-field appearance="standard" style="width:100%">
+                    <input matInput placeholder="Enter Maintenance" class="client_placeholder "
+                      formControlName="Maintenance">
+    
+                  </mat-form-field>
+                </div>
+              </div>
+    
+              <div fxFlex="11" class="cl_formdiv">
+                <div fxFlex="38">
+                  <mat-label class="cl_lab">Electrical</mat-label>
+                </div>
+                <div fxFlex="59" class="spaceinput_outer">
+                  <mat-form-field appearance="standard" style="width:100%">
+                    <input matInput placeholder="Enter Electrical" type="number" class="client_placeholder "
+                      formControlName="Electrical">
+                  </mat-form-field>
+                </div>
+              </div>
+    
+              <div fxFlex="11" class="cl_formdiv">
+                <div fxFlex="38">
+                  <mat-label class="cl_lab">Condition</mat-label>
+                </div>
+                <div fxFlex="59" class="spaceinput_outer" fxLayout="column">
+                  <div fxFlex="50">
+                    <mat-form-field appearance="standard" style="width:100%">
+                      <input matInput placeholder="Enter Condition" class="client_placeholder " formControlName="Condition">
+                    </mat-form-field>
+                  </div>
+                 
+                </div>
+              </div>
+    
+              <div fxFlex="11" class="cl_formdiv">
+                <div fxFlex="38">
+                  <mat-label class="cl_lab">Remarks</mat-label>
+                </div>
+                <div fxFlex="59" class="spaceinput_outer" fxLayout="column">
+                  <div fxFlex="50">
+                    <mat-form-field appearance="standard" style="width:100%">
+                      <input matInput placeholder="Enter Description" class="client_placeholder " formControlName="Remarks">
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+    
+              <div fxFlex="19" style="margin-top: 20px;" fxLayoutAlign="center center">
+                <button mat-button class="upload_btn" for="file" style="background-color:#4410ff;width:100%"
+                  (click)="saveclk()">Save</button>
+               
+                <input hidden type="file" #fileInput1 id="file_id" (change)="handleFileInput($event)" />
+              </div> 
+            
+            </form> -->
+        </div>
+
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content *ngIf="valuetable">
+      <div fxLayout="row" fxLayoutGap="10px" style="width: 100%;">
+        <div fxFlex="100" style="
       overflow-x: scroll !important;">
-        <table mat-table [dataSource]="dataSource" colspan=20 style="overflow-x: scroll !important;width:126% !important" matSort
-          class="table example-container">
-          <!-- <ng-container matColumnDef="select" sticky>
+          <table mat-table [dataSource]="dataSource" colspan=20
+            style="overflow-x: scroll !important;width:100% !important" matSort class="table example-container">
+            <!-- <ng-container matColumnDef="select" sticky>
             <th mat-header-cell *matHeaderCellDef >
             </th>
             <td mat-cell *matCellDef="let row;index as i;">
@@ -22,311 +339,333 @@
               </div>
             </td>
           </ng-container> -->
-  
-          <ng-container matColumnDef="ClientName">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 20%;"> Client Name </th>
-            <td mat-cell *matCellDef="let row;let element"> {{row.client}} </td>
-          </ng-container>
-  
-  
-          <ng-container matColumnDef="FileName">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 22%;text-align: left;"> File Name </th>
-            <td mat-cell *matCellDef="let row"> {{row.fileName}} </td>
-          </ng-container>
-  
-  
-          <ng-container matColumnDef="DaysRemaining">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 18%;text-align: left;">  Remaining Days
+
+            <ng-container matColumnDef="select" sticky>
+              <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox class="headcheckbox" (change)="$event ? masterToggle() : null"
+                  [checked]="selection.hasValue() && isAllSelected()"
+                  [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                </mat-checkbox>
               </th>
-            <td mat-cell *matCellDef="let row" style="    text-align: center;
-            "> {{GetRemainingDays(row.expiryDate)}} </td>
-          </ng-container>
-  
-  
-          <ng-container matColumnDef="ExpiryDate">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 19%;text-align: left;"> Expiry Date </th>
-            <td mat-cell *matCellDef="let row"> {{row.expiryDate | date:'dd/MM/yyyy'}} </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="Action"  >
-            <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: center;"> Action </th>
-            <td mat-cell *matCellDef="let row">
-              <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="15px">
-                <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
-                  <img src="./assets/iconmonstr-paper-plane-2 (2).svg" class="actionstable">
-                  <span class="actionsspan">Send</span>
+              <td mat-cell *matCellDef="let row;index as i;">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                  <mat-checkbox (click)="$event.stopPropagation()" (change)="updateCheckedList($event,i)"
+                    [checked]="selection.isSelected(row)" (change)="$event ? selection.toggle(row) : null"
+                    [aria-label]="checkboxLabel(row,i)">
+                    <!-- (change)="$event ? selection.toggle(row) : null"  (click)="changeSelection(row)" -->
+                  </mat-checkbox>
                 </div>
-                <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
-                  <img src="./assets/download_ash.svg" class="actionstable">
-                  <span class="actionsspan">Open</span>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="ClientName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Client Name </th>
+              <td mat-cell *matCellDef="let row;let element" class="datarow"> {{row.client}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="FileName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: left;"> File Name
+              </th>
+              <td mat-cell *matCellDef="let row" class="datarow"> {{row.fileName}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="DaysRemaining">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: left;"> Remaining Days
+              </th>
+              <td mat-cell *matCellDef="let row" style="text-align: left;" class="datarow"
+                [ngStyle]="{'color': getWidth(GetRemainingDays(row.expiryDate))}">
+                {{GetRemainingDays(row.expiryDate)}} days </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="ExpiryDate">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: left;"> Expiry Date
+              </th>
+              <td mat-cell *matCellDef="let row" class="datarow"> {{row.expiryDate | date:'dd/MM/yyyy'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Action">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: center;"> Action </th>
+              <td mat-cell *matCellDef="let row" class="datarow">
+                <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="15px">
+
+                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
+                    <img src="./assets/download_ash.svg" class="actionstable">
+                    <span class="actionsspan">Download</span>
+                  </div>
+                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
+                    <img src="./assets/iconmonstr-product-10.svg" class="actionstable">
+                    <span class="actionsspan">Review</span>
+                  </div>
+                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px" (click)="drawer.toggle()">
+                    <img src="./assets/iconmonstr-paper-plane-2 (2).svg" class="actionstable">
+                    <span class="actionsspan">Open</span>
+                  </div>
                 </div>
-                <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
-                  <img src="./assets/iconmonstr-product-10.svg" class="actionstable">
-                  <span class="actionsspan">Review</span>
-                </div>
-              </div>
-            </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="ViewDetails" >
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
-            <td mat-cell *matCellDef="let row" style="width: 23%">
-              <div fxLayout="row" fxLayoutAlign="start center" style="align-items: center;
-              margin-left: 28px;    margin-top: 12px;">
-                <p>View Details</p>
-                <img src="./assets/double front arrow_ash.svg" class="viewdetails_arrow">
-              </div>
-            </td>
-          </ng-container>
-          <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color: #f3f3f4;"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;" style="border-bottom-style: none;"
-            (click)="selection.toggle(row)"></tr>
-        </table>
-  
+              </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color: #f4f3f4;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" style="border-bottom-style: none;"
+               [ngClass]="{'highlight2': selectedRowIndex2 == row.id}"
+              (click)="highlight2(row)">
+            </tr>
+          </table>
+
+        </div>
+
       </div>
-      <div fxFlex="29" fxLayout="column">
-        <div fxFlex="6" fxLayout="row" class="btn_bg">
-          <mat-icon matSuffix class="serachicon_search">search</mat-icon>
-          <input matInput class="search_input1" (keyup)="applyFilter($event)"  placeholder="Search Document">
-        </div>
-        <div fxFlex="6" style="margin-top: 9px;" fxLayoutAlign="flex-end">
-          <button mat-button class="upload_btn" (click)="uploadDocument()"
-            [style.background-color]="btn_name==='Upload Document'?'#4410ff':'red'">{{btn_name}}</button>
-        </div>
-        <div fxFlex="90" fxLayoutAlign="center center">
-          <div *ngIf="btn_name=='Upload Document'">
-            <img src="./assets/Filing system-rafiki (1).svg" style="height: 255px;">
-          </div>
-          <div *ngIf="btn_name=='Cancel' && uploadVisible==false" class="form_bg">
-            <img src="./assets/Filing system-rafiki (1).svg" class="form_img">
-  
-            <form fxLayout="column" fxFlex="100" autocomplete="off" name="form" novalidate
-              [formGroup]="SignedDocumentDetailsForm" class="form_align ">
-              <div fxFlex="11" style="margin-top: 63px;" class="cl_formdiv">
-                <div fxFlex="38">
-                  <mat-label class="cl_lab">Client Name</mat-label>
-                </div>
-                <div fxFlex="59" class="spaceinput_outer">
-                  <mat-form-field appearance="standard" style="width:100%">
-                    <input matInput placeholder="Enter Client Name" class="client_placeholder "
-                      formControlName="Client">
-                  </mat-form-field>
-                </div>
-              </div>
-              <!--  -->
-              <div fxFlex="11" class="cl_formdiv">
-                <div fxFlex="38">
-                  <mat-label class="cl_lab">FileName</mat-label>
-                </div>
-                <div fxFlex="59" class="spaceinput_outer">
-                  <mat-form-field appearance="standard" style="width:100%">
-                    <input matInput placeholder="Enter File Name" formControlName="FileName"  class="client_placeholder ">
-                  </mat-form-field>
-                </div>
-              </div>
-              <!--  -->
-              <div fxFlex="11" class="cl_formdiv">
-                <div fxFlex="38">
-                  <mat-label class="cl_lab">Creation Date</mat-label>
-                </div>
-                <div fxFlex="59" class="spaceinput_outer">
-                  <mat-form-field appearance="standard" style="width:100%">
-                    <input matInput [matDatepicker]="dp1"  readonly placeholder="dd/mm/yyy"   class="client_placeholder " style="color: black;"
-                      formControlName="CreatedOn">
-                    <mat-datepicker-toggle matSuffix [for]="dp1" (click) ="createdDate()"></mat-datepicker-toggle>
-                    <mat-datepicker #dp1 disabled="false"></mat-datepicker>
-                  </mat-form-field>
-                </div>
-              </div>
-              <!--  -->
-              <div fxFlex="11" class="cl_formdiv">
-                <div fxFlex="38">
-                  <mat-label class="cl_lab">Expiry Date</mat-label>
-                </div>
-                <div fxFlex="59" class="spaceinput_outer">
-                  <mat-form-field appearance="standard" style="width:100%">
-                    <input matInput [matDatepicker]="dp2" readonly placeholder="dd/mm/yyy" [min]="SignedDocumentDetailsForm.get('CreatedOn').value" class="client_placeholder " style="color: black;"
-                      formControlName="ExpiryDate">
-                    <mat-datepicker-toggle matSuffix [for]="dp2" style="height:10px"></mat-datepicker-toggle>
-                    <mat-datepicker #dp2 disabled="false"></mat-datepicker>
-                  </mat-form-field>
-                </div>
-              </div>
-              <!--  -->
-              <div fxFlex="11" class="cl_formdiv">
-                <div fxFlex="38">
-                  <mat-label class="cl_lab">Total Deposit</mat-label>
-                </div>
-                <div fxFlex="59" class="spaceinput_outer">
-                  <mat-form-field appearance="standard" style="width:100%">
-                    <input matInput placeholder="Enter Total Deposit" type="number"  class="client_placeholder " formControlName="TotalDeposit">
-                    <span matPrefix>
-                      <p style="font-size: 11px;
-              font-weight: 600px;
-              height: 0px;">Rs.</p>&nbsp;
-                    </span>
-                  </mat-form-field>
-                </div>
-              </div>
-              <!--  -->
-  
-              <div fxFlex="11" class="cl_formdiv">
-                <div fxFlex="38">
-                  <mat-label class="cl_lab">Rental</mat-label>
-                </div>
-                <div fxFlex="59" class="spaceinput_outer">
-                  <mat-form-field appearance="standard" style= "width:100%">
-                    <input matInput placeholder="Enter Rental" type="number"   class="client_placeholder " formControlName="Rental">
-                    <span matPrefix>
-                      <p style="font-size: 11px;
-              font-weight: 600px;
-              height: 0px;">Rs.</p>&nbsp;
-                    </span>
-                  </mat-form-field>
-                </div>
-              </div>
-              <!--  -->
-              <div fxFlex="11" class="cl_formdiv">
-                <div fxFlex="38">
-                  <mat-label class="cl_lab">Bank Name</mat-label>
-                </div>
-                <div fxFlex="59" class="spaceinput_outer">
-                  <mat-form-field appearance="standard" style= "width:100%">
-                    <input matInput placeholder="Enter Bank Name"  class="client_placeholder " formControlName="BankName">
-               
-                  </mat-form-field>
-                </div>
-              </div>
-                <!--  -->
-                <div fxFlex="11" class="cl_formdiv">
-                  <div fxFlex="38">
-                    <mat-label class="cl_lab">Holder Name</mat-label>
-                  </div>
-                  <div fxFlex="59" class="spaceinput_outer">
-                    <mat-form-field appearance="standard" style= "width:100%">
-                      <input matInput placeholder="Enter Holder Name"    class="client_placeholder " formControlName="HolderName">
-                     
-                    </mat-form-field>
-                  </div>
-                </div>
-              <!--  -->
-              <div fxFlex="17" class="cl_formdiv">
-                <div fxFlex="38">
-                  <mat-label class="cl_lab">Account No.</mat-label>
-                </div>
-                <div fxFlex="59" class="spaceinput_outer">
-                  <mat-form-field appearance="standard" style= "width:100%">
-                    <input matInput placeholder="Enter Account No."    class="client_placeholder " formControlName="AccountNo">
-                   
-                  </mat-form-field>
-                </div>
-              </div>
-               <!--  -->
-               <div fxFlex="11" class="cl_formdiv">
-                <div fxFlex="38">
-                  <mat-label class="cl_lab1">Mode of Transfer</mat-label>
-                </div>
-                <div fxFlex="59" class="spaceinput_outer">
-                  <mat-form-field appearance="standard" style= "width:100%">
-                    <input matInput placeholder="Enter Mode of Transfer"  class="client_placeholder " formControlName="ModeofTransfer">          
-                  </mat-form-field>
-                </div>
-              </div>
-               <!--  -->
-               <div fxFlex="16" class="cl_formdiv">
-                <div fxFlex="38">
-                  <mat-label class="cl_lab">IFSC Code</mat-label>
-                </div>
-                <div fxFlex="59" class="spaceinput_outer">
-                  <mat-form-field appearance="standard" style= "width:100%">
-                    <input matInput placeholder="Enter IFSC Code"    class="client_placeholder " formControlName="IFSCCode">
-                  </mat-form-field>
-                </div>
-              </div>
-            <!--  -->
-            <div fxFlex="11" class="cl_formdiv">
-              <div fxFlex="38">
-                <mat-label class="cl_lab1">Advance Request</mat-label>
-              </div>
-              <div fxFlex="59" class="spaceinput_outer">
-                <mat-form-field appearance="standard" style= "width:100%">
-                  <input matInput placeholder="Enter Advance Request" type="number"   class="client_placeholder " formControlName="AdvanceRequest">
-                  <span matPrefix>
-                    <p style="font-size: 11px;
-            font-weight: 600px;
-            height: 0px;">Rs.</p>&nbsp;
-                  </span>
+
+
+    </mat-sidenav-content>
+
+    <mat-sidenav-content *ngIf="valueupload" style="overflow-y: scroll;">
+      <div fxLayout="column" fxLayoutAlign="space-evenly center" style="padding: 15px;">
+        <form [formGroup]="SignedDocumentDetailsForm">
+          <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="10px">
+
+
+            <div fxLayout="column" fxLayoutAlign="space-around center" style="width: 100%;" fxLayoutGap="20px">
+
+              <div fxLayout="row" class="label_connect" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+                <span class="formspan">Client Name</span>
+                <mat-form-field appearance="legacy">
+                  <input matInput placeholder="Enter Client Name" formControlName="Client" type="text" class="placeholdertext">
+                  <mat-error *ngIf="SignedDocumentDetailsForm.get('Client').hasError('required')">
+                    Client Name is required
+                  </mat-error>
                 </mat-form-field>
               </div>
+
+              <div fxLayout="row" class="label_connect" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+                <span class="formspan">File Name</span>
+                <mat-form-field appearance="legacy">
+                  <input matInput placeholder="Enter File Name" formControlName="FileName">
+                  <mat-error *ngIf="SignedDocumentDetailsForm.get('FileName').hasError('required')">
+                    File Name is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div fxLayout="row" class="label_connect" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+                <span class="formspan">CreatedOn</span>
+                <mat-form-field appearance="legacy">
+                  <input matInput placeholder="Enter File Name" formControlName="CreatedOn">
+                  <mat-error *ngIf="SignedDocumentDetailsForm.get('CreatedOn').hasError('required')">
+                    Date is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div fxLayout="row" class="label_connect" fxLayoutAlign="space-evenly center" fxLayoutGap="25px">
+                <span class="formspan">Expiry Date</span>
+                <mat-form-field appearance="legacy">
+                  <input matInput placeholder="Enter Expiry Date" formControlName="ExpiryDate">
+                  <mat-error *ngIf="SignedDocumentDetailsForm.get('ExpiryDate').hasError('required')">
+                    ExpiryDate is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div fxLayout="row" class="label_connect" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+                <span class="formspan">Total Deposit</span>
+                <mat-form-field appearance="legacy">
+                  <input matInput placeholder="Enter Total Deposit" formControlName="TotalDeposit">
+                  <mat-error *ngIf="SignedDocumentDetailsForm.get('TotalDeposit').hasError('required')">
+                    Total Deposit is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
             </div>
-        
-        <!--  -->
-              
-              <div fxFlex="11" class="cl_formdiv">
-                <div fxFlex="38">
-                  <mat-label class="cl_lab">Maintenance</mat-label>
-                </div>
-                <div fxFlex="59" class="spaceinput_outer">
-                  <mat-form-field appearance="standard" style="width:100%">
-                    <input matInput placeholder="Enter Maintenance"  class="client_placeholder " formControlName="Maintenance">
-  
-                  </mat-form-field>
-                </div>
+
+            <div fxLayout="column" fxLayoutAlign="space-around center" style="width: 100%;" fxLayoutGap="20px">
+
+
+
+              <div fxLayout="row" class="label_connect" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+                <span class="formspan">Rental</span>
+                <mat-form-field appearance="legacy">
+                  <input matInput placeholder="Enter Rental" formControlName="Rental">
+                  <mat-error *ngIf="SignedDocumentDetailsForm.get('Rental').hasError('required')">
+                    Rental is required
+                  </mat-error>
+                </mat-form-field>
               </div>
-              <!--  -->
-              <div fxFlex="11" class="cl_formdiv">
-                <div fxFlex="38">
-                  <mat-label class="cl_lab">Electrical</mat-label>
-                </div>
-                <div fxFlex="59" class="spaceinput_outer">
-                  <mat-form-field appearance="standard" style="width:100%">
-                    <input matInput placeholder="Enter Electrical" type="number"   class="client_placeholder " formControlName="Electrical">
-                  </mat-form-field>
-                </div>
+
+              <div fxLayout="row" class="label_connect" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+                <span class="formspan">Bank Name</span>
+                <mat-form-field appearance="legacy">
+                  <input matInput placeholder="Enter BankName" formControlName="BankName">
+                  <mat-error *ngIf="SignedDocumentDetailsForm.get('BankName').hasError('required')">
+                    Bank Name is required
+                  </mat-error>
+                </mat-form-field>
               </div>
-              <!--  -->
-              <div fxFlex="11" class="cl_formdiv">
-                <div fxFlex="38">
-                  <mat-label class="cl_lab">Condition</mat-label>
-                </div>
-                <div fxFlex="59" class="spaceinput_outer" fxLayout="column">
-                  <div fxFlex="50">
-                    <mat-form-field appearance="standard" style="width:100%">
-                      <input matInput placeholder="Enter Condition"   class="client_placeholder " formControlName="Condition">
-                    </mat-form-field>
-                  </div>
-                  <!-- <div fxFlex="50">
-                    <mat-form-field appearance="standard" style="width:100%;">
-                      <input matInput formControlName="Condition">
-                    </mat-form-field>
-                  </div> -->
-                </div>
+
+              <div fxLayout="row" class="label_connect" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+                <span class="formspan">Holder Name</span>
+                <mat-form-field appearance="legacy">
+                  <input matInput placeholder="Enter HolderName" formControlName="HolderName">
+                  <mat-error *ngIf="SignedDocumentDetailsForm.get('HolderName').hasError('required')">
+                    Holder Name is required
+                  </mat-error>
+                </mat-form-field>
               </div>
-              <!--  -->
-              <!--  -->
-              <div fxFlex="11" class="cl_formdiv">
-                <div fxFlex="38">
-                  <mat-label class="cl_lab">Remarks</mat-label>
-                </div>
-                <div fxFlex="59" class="spaceinput_outer" fxLayout="column">
-                  <div fxFlex="50">
-                    <mat-form-field appearance="standard" style="width:100%">
-                      <input matInput placeholder="Enter Description"  class="client_placeholder " formControlName="Remarks">
-                    </mat-form-field>
-                  </div>
-                </div>
+
+              <div fxLayout="row" class="label_connect" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+                <span class="formspan">AccountNo</span>
+                <mat-form-field appearance="legacy">
+                  <input matInput placeholder="Enter AccountNo" formControlName="AccountNo">
+                  <mat-error *ngIf="SignedDocumentDetailsForm.get('AccountNo').hasError('required')">
+                    AccountNo is required
+                  </mat-error>
+                </mat-form-field>
               </div>
-              <!--  -->
-              <div fxFlex="19" style="margin-top: 20px;" fxLayoutAlign="center center">
-                <button mat-button class="upload_btn" for="file" style="background-color:#4410ff;width:100%"
-               (click)="saveclk()">Save</button>
-               <!-- (click)="fileInput1.click(); -->
-                <input hidden type="file" #fileInput1 id="file_id"  (change)="handleFileInput($event)" />
+
+              <div fxLayout="row" class="label_connect" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+                <span class="formspan">ModeofTransfer</span>
+                <mat-form-field appearance="legacy">
+                  <input matInput placeholder="Enter ModeofTransfer" formControlName="ModeofTransfer">
+                  <mat-error *ngIf="SignedDocumentDetailsForm.get('ModeofTransfer').hasError('required')">
+                    ModeofTransfer is required
+                  </mat-error>
+                </mat-form-field>
               </div>
-            </form>
+
+
+            </div>
+
+
+
+            <div fxLayout="column" fxLayoutAlign="space-around center" style="width: 100%;" fxLayoutGap="20px">
+
+
+              <div fxLayout="row" class="label_connect" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+                <span class="formspan">Total Deposit</span>
+                <mat-form-field appearance="legacy">
+                  <input matInput placeholder="Enter IFSC Code" formControlName="IFSCCode">
+                  <mat-error *ngIf="SignedDocumentDetailsForm.get('IFSCCode').hasError('required')">
+                    IFSC Code is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div fxLayout="row"class="label_connect"  fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+                <span class="formspan">File Name</span>
+                <mat-form-field appearance="legacy">
+                  <input matInput placeholder="Enter AdvanceRequest" formControlName="AdvanceRequest">
+                  <mat-error *ngIf="SignedDocumentDetailsForm.get('AdvanceRequest').hasError('required')">
+                    AdvanceRequest is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div fxLayout="row" class="label_connect" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+                <span class="formspan">Maintenance</span>
+                <mat-form-field appearance="legacy">
+                  <input matInput placeholder="Enter Maintenance" formControlName="Maintenance">
+                  <mat-error *ngIf="SignedDocumentDetailsForm.get('Maintenance').hasError('required')">
+                    Maintenance is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div fxLayout="row" class="label_connect" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+                <span class="formspan">Electrical</span>
+                <mat-form-field appearance="legacy">
+                  <input matInput placeholder="Enter Electrical" formControlName="Electrical">
+                  <mat-error *ngIf="SignedDocumentDetailsForm.get('Electrical').hasError('required')">
+                    Electrical is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div fxLayout="row" class="label_connect" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+                <span class="formspan">Condition</span>
+                <mat-form-field appearance="legacy">
+                  <input matInput placeholder="Enter Condition" formControlName="Condition">
+                  <mat-error *ngIf="SignedDocumentDetailsForm.get('Condition').hasError('required')">
+                    Condition is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+
+            </div>
+
+
           </div>
-    <!--  -->
-        </div>
-  
+          <div fxLayout="row" fxLayoutAlign="space-around center" style="width: 100%;" fxLayoutGap="20px">
+
+            <div fxLayout="row" class="label_connect" fxLayoutAlign="space-evenly center" fxLayoutGap="20px">
+              <span class="formspan">Remarks</span>
+              <mat-form-field appearance="legacy">
+                <input matInput placeholder="Enter Remarks" formControlName="Remarks">
+                <mat-error *ngIf="SignedDocumentDetailsForm.get('Remarks').hasError('required')">
+                  Remarks is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+          </div>
+        </form>
+
       </div>
-    </div>
+      <div style="margin-top: 20px;" fxLayoutAlign="end end">
+        <button mat-button class="upload_btn" for="file" style="background-color:#4410ff;width:40%"
+          (click)="saveclk()">Save</button>
+
+        <input hidden type="file" #fileInput1 id="file_id" (change)="handleFileInput($event)" />
+      </div>
+    </mat-sidenav-content>
+
+
+  </mat-sidenav-container>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- <div fxFlex="29" fxLayout="column"> -->
+<!-- <div fxFlex="6" fxLayout="row" class="btn_bg">
+        <mat-icon matSuffix class="serachicon_search">search</mat-icon>
+        <input matInput class="search_input1" (keyup)="applyFilter($event)" placeholder="Search Document">
+      </div> -->
+<!-- <div fxFlex="6" style="margin-top: 9px;" fxLayoutAlign="flex-end">
+            <button mat-button class="upload_btn" (click)="uploadDocument()"
+              [style.background-color]="btn_name==='Upload Document'?'#4410ff':'red'">{{btn_name}}</button>
+          </div> -->
+<!-- <div fxFlex="90" fxLayoutAlign="center center"> -->
+<!-- <div *ngIf="btn_name=='Upload Document'">
+          <img src="./assets/Filing system-rafiki (1).svg" style="height: 200px;">
+        </div> -->
+
+<!--  -->
+<!-- </div> -->
+
+<!-- </div> -->
+
+
+
+
+
+<!-- <ng-container matColumnDef="ViewDetails">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+          <td mat-cell *matCellDef="let row" style="width: 23%">
+            <div fxLayout="row" fxLayoutAlign="start center" style="align-items: center;
+              margin-left: 28px;    margin-top: 12px;">
+              <p>View Details</p>
+              <img src="./assets/double front arrow_ash.svg" class="viewdetails_arrow">
+            </div>
+          </td>
+        </ng-container> -->

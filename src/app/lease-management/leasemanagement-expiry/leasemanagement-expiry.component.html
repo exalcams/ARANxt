@@ -19,14 +19,17 @@
         matSort class="table example-container">
         <ng-container matColumnDef="select" sticky>
           <th mat-header-cell *matHeaderCellDef>
-            <mat-checkbox class="headcheckbox" [checked]="selection.hasValue() && isAllSelected()"
-              [aria-label]="checkboxLabel()">
+            <mat-checkbox class="headcheckbox" (change)="$event ? masterToggle() : null"
+              [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
             </mat-checkbox>
           </th>
           <td mat-cell *matCellDef="let row;index as i;">
             <div fxLayout="row" fxLayoutAlign="start center">
               <mat-checkbox (click)="$event.stopPropagation()" (change)="updateCheckedList($event,i)"
-                [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row,i)">
+                [checked]="selection.isSelected(row)" (change)="$event ? selection.toggle(row) : null"
+                [aria-label]="checkboxLabel(row,i)">
+                <!-- (change)="$event ? selection.toggle(row) : null"  (click)="changeSelection(row)" -->
               </mat-checkbox>
             </div>
           </td>
@@ -45,10 +48,10 @@
 
 
         <ng-container matColumnDef="DaysRemaining">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 30%;text-align: left;"> Days Remaining
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 20%;text-align: left;"> Days Remaining
           </th>
-          <td mat-cell *matCellDef="let row" style="text-align: center;" 
-          [ngStyle]="{'color': getWidth(GetRemainingDays(row.expiryDate))}">
+          <td mat-cell *matCellDef="let row" style="text-align: center;"
+            [ngStyle]="{'color': getWidth(GetRemainingDays(row.expiryDate))}">
             <!-- ng-class="{'color-green': GetRemainingDays(row.expiryDate) >20 , 'color-yellow': GetRemainingDays(row.expiryDate) > 10, 'color-red': GetRemainingDays(row.expiryDate) <= 10, -->
             <!-- 'color-blue': GetRemainingDays(row.expiryDate) === 0 , 'color-grey': GetRemainingDays(row.expiryDate) < 0 }" -->
             {{GetRemainingDays(row.expiryDate)}}
@@ -87,17 +90,17 @@
             <div fxLayout="row" fxLayoutAlign="start center" style="align-items: center;
               margin-left: 43px;cursor: pointer;" id="leaseeee" [checked]="selection.isSelected(row)"
               (click)="loadallsigneddocuments(row)">
-              <!-- [checked]="selection.isSelected(row)" *ngFor="let leaseeee of Mlease;"  (click)="loadallsigneddocuments(leaseeee)" -->
-              <!-- *ngFor="let leaseeee of Mlease;"  (click)="loadallsigneddocuments(leaseeee)" -->
+
 
               <p>View Details</p>
               <img src="./assets/double front arrow_ash.svg" class="viewdetails_arrow">
             </div>
           </td>
         </ng-container>
+        <!-- [checked]="selection.isSelected(row)" *ngFor="let leaseeee of Mlease;"  (click)="loadallsigneddocuments(leaseeee)" -->
+        <!-- *ngFor="let leaseeee of Mlease;"  (click)="loadallsigneddocuments(leaseeee)" -->
         <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color: #f3f3f4;"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" style="border-bottom-style: none;"
-          (click)="selection.toggle(row)"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" style="border-bottom-style: none;"></tr>
       </table>
 
     </div>

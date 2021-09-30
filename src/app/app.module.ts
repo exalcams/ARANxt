@@ -83,6 +83,7 @@ import { GoogleLoginProvider, SocialLoginModule } from 'angularx-social-login';
 import {LeaseManagementService} from 'src/app/service/lease-management.service';
 import { UnderNoticeComponent } from './lease-management/under-notice/under-notice.component';
 import { TerminateComponent } from './lease-management/terminate/terminate.component';
+import { UploaddocumentsignedComponent } from './lease-management/uploaddocumentsigned/uploaddocumentsigned.component';
 
 @NgModule({
   declarations: [
@@ -124,7 +125,8 @@ import { TerminateComponent } from './lease-management/terminate/terminate.compo
     LoaderComponent,
     GDriveComponent,
     UnderNoticeComponent,
-    TerminateComponent
+    TerminateComponent,
+    UploaddocumentsignedComponent
   ],
   imports: [
     MatGridListModule,
