@@ -52,7 +52,7 @@ export class HomepageComponent implements OnInit {
 	voiceActiveSectionError: boolean = false;
 	voiceActiveSectionSuccess: boolean = false;
 	voiceActiveSectionListening: boolean = false;
-  overview_bool:boolean=true
+  overview_bool:boolean=false
 	voiceText: any;
   ass:any;
   TREE_DATA: TreeItem[] = [
@@ -94,7 +94,7 @@ export class HomepageComponent implements OnInit {
   Space : string;
   SubSpace : string;
   ChildNode: string;
-  isLeasemanagement=false;
+  isLeasemanagement=true;
   setInterval = setInterval;
   getspace: string []= [];
   speech: boolean;

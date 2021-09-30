@@ -1,0 +1,61 @@
+
+.draft-dialog{
+    width: 540px;
+    .poppins{
+        font-family: Poppins;
+        font-weight: 600;
+    }
+    .mat-dialog-container {
+      padding: 0;
+      border-radius: 4px;
+    }
+  .content{
+      padding: 24px;
+      margin: 0;
+  }
+    .dialog-content-wrapper {
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .toolbar{
+      background-color: #f4f4fb;
+      height: 56px;
+    }
+    .title{
+        @extend .poppins;
+        font-size: 14px;
+        color: #2c2c2e;
+    }
+    .footer{
+      box-shadow: 0 2px 18px 0 rgba(74, 122, 255, 0.38);
+      background-color: #fdfdfd;
+      height: 56px;
+      margin: 0;
+      padding: 16px;
+    }
+    .savebtn{
+      background-color: #4410ff !important;
+      color: #ffffff !important;
+    }
+    .list{
+      padding: 10px;
+      margin:8px;
+      background-color: #ebe5ff;
+      word-wrap: break-word;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .list:hover{
+      border: 2px solid #5f2cff !important;
+    }
+    .signin{
+      color: #5f2cff;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .form{
+        padding: 0 16px;
+    }
+  }
+  

@@ -1,0 +1,25 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+        <label class="title">Upload Document</label>
+    </mat-toolbar>
+
+    <mat-dialog-content class="content" fusePerfectScrollbar>
+        <form fxLayout="column" fxLayoutGap="24px" class="form" [formGroup]="form">
+            <mat-radio-group aria-label="Select a document type" fxLayoutGap="32px" formControlName="documentType">
+                <mat-radio-button color="primary" value="template" [checked]="true">Template</mat-radio-button>
+                <mat-radio-button color="primary" value="draft">Draft</mat-radio-button>
+            </mat-radio-group>
+            <mat-form-field appearance="outline">
+                <mat-label>Document owner</mat-label>
+                <input matInput formControlName="documentOwner">
+                <mat-error *ngIf="form.get('documentOwner').touched && form.get('documentOwner').hasError('required')">
+                    Document owner
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions class="m-0 p-16 footer" fxLayoutAlign="end center" fxLayoutGap="8px">
+        <button mat-raised-button class="savebtn" type="button" color="primary" (click)="UploadFile()">Upload</button>
+        <button mat-raised-button type="button" (click)="close()">Close</button>
+    </mat-dialog-actions>
+</div>

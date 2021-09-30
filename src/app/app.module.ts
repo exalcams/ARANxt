@@ -84,6 +84,9 @@ import {LeaseManagementService} from 'src/app/service/lease-management.service';
 import { UnderNoticeComponent } from './lease-management/under-notice/under-notice.component';
 import { TerminateComponent } from './lease-management/terminate/terminate.component';
 import { UploaddocumentsignedComponent } from './lease-management/uploaddocumentsigned/uploaddocumentsigned.component';
+import { DraftDialogComponent } from './draft-dialog/draft-dialog.component';
+import { RichTextEditorComponent } from './rich-text-editor/rich-text-editor.component';
+import { CKEditorModule } from 'ngx-ckeditor';
 
 @NgModule({
   declarations: [
@@ -126,7 +129,9 @@ import { UploaddocumentsignedComponent } from './lease-management/uploaddocument
     GDriveComponent,
     UnderNoticeComponent,
     TerminateComponent,
-    UploaddocumentsignedComponent
+    UploaddocumentsignedComponent,
+    DraftDialogComponent,
+    RichTextEditorComponent
   ],
   imports: [
     MatGridListModule,
@@ -166,7 +171,8 @@ import { UploaddocumentsignedComponent } from './lease-management/uploaddocument
      
     }),
     NgxSpinnerModule,
-    SocialLoginModule
+    SocialLoginModule,
+    CKEditorModule
   ],
   providers: [AuthService,DatePipe,
     // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
@@ -184,7 +190,7 @@ import { UploaddocumentsignedComponent } from './lease-management/uploaddocument
       }
     }
   ],
-  entryComponents:[GDriveComponent],
+  entryComponents:[GDriveComponent,DraftDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

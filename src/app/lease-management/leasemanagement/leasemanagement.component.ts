@@ -7,6 +7,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { GDriveComponent } from 'src/app/g-drive/g-drive.component';
 import { LeaseManagementService } from 'src/app/service/lease-management.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { DraftDialogComponent } from 'src/app/draft-dialog/draft-dialog.component';
+import { NotificationSnackBarComponent } from 'src/app/notification/notification-snack-bar/notification-snack-bar.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/notification-snackbar-status-enum';
 export interface UserData {
 
   Documentname: string;
@@ -26,7 +30,7 @@ const ELEMENT_DATA :UserData[] = [
   styleUrls: ['./leasemanagement.component.scss']
 })
 export class LeasemanagementComponent implements OnInit {
-  displayedColumns: string[] = ['select','Documentname', 'Filesize', 'CreatedOn','Actions'];
+  displayedColumns: string[] = ['select','documentOwner', 'documentType','documentName', 'createdOn','modifiedOn','actions'];
   dataSource = new MatTableDataSource<any>([]) ;
   selection = new SelectionModel<UserData>(true, []);
   // tslint:disable-next-line:variable-name
@@ -51,8 +55,12 @@ export class LeasemanagementComponent implements OnInit {
   bool4: boolean;
   bool5: boolean;
   LeaseDrafts:any[]=[];
+  notificationSnackBarComponent;
   constructor(private dialog:MatDialog,private service:LeaseManagementService,
-    private spinner:NgxSpinnerService, private cdr: ChangeDetectorRef) { }
+    private spinner:NgxSpinnerService, private cdr: ChangeDetectorRef,
+    private snackBar:MatSnackBar) { 
+      this.notificationSnackBarComponent = new NotificationSnackBarComponent(this.snackBar);
+    }
 
   ngOnInit(): void {
     this.getAllDrafts();
@@ -135,6 +143,7 @@ export class LeasemanagementComponent implements OnInit {
   }
   onSelect(event): void {
     console.log(event);
+    this.files=[];
     this.files.push(...event.addedFiles);
   }
   
@@ -212,7 +221,14 @@ export class LeasemanagementComponent implements OnInit {
   }
   addDraftToTable(){
     if(this.files.length>0){
-      this.spinner.show();
+      this.openDraftDialog();
+    }
+    else{
+      this.notificationSnackBarComponent.openSnackBar("Please attach document", SnackBarStatus.danger);
+    }
+  }
+  saveDraftToDB(){
+    this.spinner.show();
       this.service.UploadLeaseDraft(this.files).subscribe(res=>{
         console.log("docs uploaded");
         this.spinner.hide();
@@ -223,7 +239,6 @@ export class LeasemanagementComponent implements OnInit {
         console.log(err);
         this.spinner.hide();
       });
-    }
   }
   formatBytes(byteStr, decimals = 2) {
     let bytes=parseFloat(byteStr);
@@ -236,5 +251,18 @@ export class LeasemanagementComponent implements OnInit {
     let i = Math.floor(Math.log(bytes) / Math.log(k));
 
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+}
+openDraftDialog() {
+  const dialogRef = this.dialog.open(DraftDialogComponent,
+    {
+      panelClass: "draft-dialog"
+    }
+  );
+  dialogRef.disableClose = true;
+  dialogRef.afterClosed().subscribe(res => {
+    if (res) {
+      console.log("draft-dialog",res)
+    }
+  });
 }
 }
