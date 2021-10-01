@@ -87,6 +87,7 @@ import { UploaddocumentsignedComponent } from './lease-management/uploaddocument
 import { DraftDialogComponent } from './draft-dialog/draft-dialog.component';
 import { RichTextEditorComponent } from './rich-text-editor/rich-text-editor.component';
 import { CKEditorModule } from 'ngx-ckeditor';
+import { UploadSignedDialogComponent } from './upload-signed-dialog/upload-signed-dialog.component';
 
 @NgModule({
   declarations: [
@@ -131,7 +132,8 @@ import { CKEditorModule } from 'ngx-ckeditor';
     TerminateComponent,
     UploaddocumentsignedComponent,
     DraftDialogComponent,
-    RichTextEditorComponent
+    RichTextEditorComponent,
+    UploadSignedDialogComponent
   ],
   imports: [
     MatGridListModule,
@@ -190,7 +192,7 @@ import { CKEditorModule } from 'ngx-ckeditor';
       }
     }
   ],
-  entryComponents:[GDriveComponent,DraftDialogComponent],
+  entryComponents:[GDriveComponent,DraftDialogComponent,UploadSignedDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

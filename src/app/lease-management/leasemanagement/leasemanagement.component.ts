@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -11,17 +11,18 @@ import { DraftDialogComponent } from 'src/app/draft-dialog/draft-dialog.componen
 import { NotificationSnackBarComponent } from 'src/app/notification/notification-snack-bar/notification-snack-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/notification-snackbar-status-enum';
+import { LeaseDraft } from 'src/app/Model/Leasemanagement';
 export interface UserData {
 
   Documentname: string;
   Filesize: string;
   CreatedOn: string;
-  Actions:any
+  Actions: any
 }
-const ELEMENT_DATA :UserData[] = [
-  {Documentname :'Lease Document For Exalca',Filesize:'1mb',CreatedOn:'15/9/2021',Actions:'',},
-  {Documentname :'Lease Document For Entity Data',Filesize:'1mb',CreatedOn:'17/9/2021',Actions:'',},
- 
+const ELEMENT_DATA: UserData[] = [
+  { Documentname: 'Lease Document For Exalca', Filesize: '1mb', CreatedOn: '15/9/2021', Actions: '', },
+  { Documentname: 'Lease Document For Entity Data', Filesize: '1mb', CreatedOn: '17/9/2021', Actions: '', },
+
 
 ]
 @Component({
@@ -30,11 +31,11 @@ const ELEMENT_DATA :UserData[] = [
   styleUrls: ['./leasemanagement.component.scss']
 })
 export class LeasemanagementComponent implements OnInit {
-  displayedColumns: string[] = ['select','documentOwner', 'documentType','documentName', 'createdOn','modifiedOn','actions'];
-  dataSource = new MatTableDataSource<any>([]) ;
-  selection = new SelectionModel<UserData>(true, []);
+  displayedColumns: string[] = ['select', 'documentOwner', 'documentType', 'documentName', 'createdOn', 'modifiedOn', 'actions'];
+  dataSource = new MatTableDataSource<any>([]);
+  selection = new SelectionModel<any>(true, []);
   // tslint:disable-next-line:variable-name
-  
+
   // tslint:disable-next-line:variable-name
   link_bool = false;
   // tslint:disable-next-line:variable-name
@@ -47,37 +48,50 @@ export class LeasemanagementComponent implements OnInit {
   search_bool: boolean = false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  bool1:Boolean=true;
+  bool1: Boolean = true;
   // tslint:disable-next-line:ban-types
   bool2: Boolean;
-  bool3:Boolean;
-  files:File[] =[];
+  bool3: Boolean;
+  files: File[] = [];
   bool4: boolean;
   bool5: boolean;
-  LeaseDrafts:any[]=[];
-  notificationSnackBarComponent;
-  constructor(private dialog:MatDialog,private service:LeaseManagementService,
-    private spinner:NgxSpinnerService, private cdr: ChangeDetectorRef,
-    private snackBar:MatSnackBar) { 
-      this.notificationSnackBarComponent = new NotificationSnackBarComponent(this.snackBar);
-    }
+  LeaseDrafts: any[] = [];
+  selectedPage: string = 'draft';
+  editor1: boolean = false;
+  editor2: boolean = false;
+  notificationSnackBarComponent: NotificationSnackBarComponent;
+  @Output() toggleFold: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  toggleSideNav(value: boolean) {
+    this.toggleFold.emit(!value);
+  }
+
+  newLeaseDraft: LeaseDraft = new LeaseDraft();
+  leaseDraft1: LeaseDraft = new LeaseDraft();
+  leaseDraft2: LeaseDraft = new LeaseDraft();
+
+  constructor(private dialog: MatDialog, private service: LeaseManagementService,
+    private spinner: NgxSpinnerService, private cdr: ChangeDetectorRef,
+    private snackBar: MatSnackBar) {
+    this.notificationSnackBarComponent = new NotificationSnackBarComponent(this.snackBar);
+  }
 
   ngOnInit(): void {
     this.getAllDrafts();
   }
 
-  getAllDrafts(){
+  getAllDrafts() {
     this.spinner.show();
-    this.service.GetLeaseDrafts().subscribe(res=>{
-      this.LeaseDrafts=res;
-      this.dataSource=new MatTableDataSource(this.LeaseDrafts);
+    this.service.GetLeaseDrafts().subscribe(res => {
+      this.LeaseDrafts = res;
+      this.dataSource = new MatTableDataSource(this.LeaseDrafts);
       this.spinner.hide();
-      console.log("LeaseDrafts",res);
+      console.log("LeaseDrafts", res);
     },
-    err=>{
-      this.spinner.hide();
-      console.log(err);
-    })
+      err => {
+        this.spinner.hide();
+        console.log(err);
+      })
   }
   // table work
   isAllSelected(): any {
@@ -100,62 +114,16 @@ export class LeasemanagementComponent implements OnInit {
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.Documentname + 1}`;
   }
-  // table work
-
-  func1(): void{
-    this.bool1 = true;
-    this.bool2 = false;
-    this.bool3 = false;
-    this.bool4 = false;
-    this.bool5 = false;
-
-  }
-  func2(): void{
-    this.bool1 = false;
-    this.bool2 = true;
-    this.bool3 = false;
-    this.bool4 = false;
-    this.bool5 = false;
-
-  }
-  func3(): void{
-    this.bool1 = false;
-    this.bool2 = false;
-    this.bool3 = true;
-    this.bool4 = false;
-    this.bool5 = false;
-
-  }
-  func4(): void{
-    this.bool1 = false;
-    this.bool2 = false;
-    this.bool3 = false;
-
-    this.bool4 = true;
-    this.bool5 = false;
-  }
-  func5(): void{
-    this.bool1 = false;
-    this.bool2 = false;
-    this.bool3 = false;
-    this.bool4 = false;
-    this.bool5 = true;
-  }
   onSelect(event): void {
     console.log(event);
-    this.files=[];
+    this.files = [];
     this.files.push(...event.addedFiles);
   }
-  
+
   onRemove(event): void {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
-
-  // ngAfterViewInit()  {
-  //   this.dataSource.paginator = this.paginator;
-  //   this.dataSource.sort = this.sort;
-  // }
 
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -205,43 +173,31 @@ export class LeasemanagementComponent implements OnInit {
       }
     });
   }
-  OpenFileFromLink(){
-    let link="test";
+  OpenFileFromLink() {
+    let link = "test";
     let fileName;
-    this.service.GetFileFromLink(link).subscribe((res)=>{
-      console.log("link file",res);
+    this.service.GetFileFromLink(link).subscribe((res) => {
+      console.log("link file", res);
       const blob = new Blob([res])
-      let blobArr=new Array<Blob>();
+      let blobArr = new Array<Blob>();
       blobArr.push(blob);
-      let resFile=new File(blobArr,fileName);
+      let resFile = new File(blobArr, fileName);
     },
-    err=>{
-      console.log(err);
-    })
+      err => {
+        console.log(err);
+      })
   }
-  addDraftToTable(){
-    if(this.files.length>0){
-      this.openDraftDialog();
+  addDraftToTable() {
+    if (this.files.length > 0) {
+      this.openDraftDialog(2);
     }
-    else{
+    else {
       this.notificationSnackBarComponent.openSnackBar("Please attach document", SnackBarStatus.danger);
     }
   }
-  saveDraftToDB(){
-    this.spinner.show();
-      this.service.UploadLeaseDraft(this.files).subscribe(res=>{
-        console.log("docs uploaded");
-        this.spinner.hide();
-        this.files=[];
-        this.getAllDrafts();
-      },
-      err=>{
-        console.log(err);
-        this.spinner.hide();
-      });
-  }
+
   formatBytes(byteStr, decimals = 2) {
-    let bytes=parseFloat(byteStr);
+    let bytes = parseFloat(byteStr);
     if (bytes === 0) return '0 Bytes';
 
     let k = 1024;
@@ -251,18 +207,75 @@ export class LeasemanagementComponent implements OnInit {
     let i = Math.floor(Math.log(bytes) / Math.log(k));
 
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-}
-openDraftDialog() {
-  const dialogRef = this.dialog.open(DraftDialogComponent,
-    {
-      panelClass: "draft-dialog"
+  }
+
+  openDraftDialog(mode: number) {          //1.new draft  2.edit draft  3.upload doc
+    const dialogRef = this.dialog.open(DraftDialogComponent,
+      {
+        panelClass: "draft-dialog"
+      }
+    );
+    dialogRef.disableClose = true;
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        console.log("draft-dialog", res)
+        if (mode == 1) {
+          this.newLeaseDraft.documentName = res.documentName;
+          this.newLeaseDraft.documentOwner = res.documentOwner;
+          this.newLeaseDraft.documentType = res.documentType;
+          this.saveLeaseDraft(this.newLeaseDraft);
+        }
+        else {
+          //convert and save lease draft
+        }
+      }
+    });
+  }
+  saveLeaseDraft(draft: LeaseDraft) {
+    this.spinner.show();
+    this.service.SaveLeaseDraft(draft).subscribe(() => {
+      this.spinner.hide();
+      this.getAllDrafts();
+      console.log("draft saved");
+    },
+      err => {
+        this.spinner.hide();
+        console.log(err);
+      });
+  }
+  openDratEdtitor(row: LeaseDraft) {
+    this.selectedPage = 'edit';
+    this.editor1 = true;
+    this.editor2 = false;
+    this.leaseDraft1 = row;
+  }
+  openMultiDraftEditor() {
+    if (this.selection.selected.length == 0) {
+      this.notificationSnackBarComponent.openSnackBar("Plese select document to edit", SnackBarStatus.danger);
     }
-  );
-  dialogRef.disableClose = true;
-  dialogRef.afterClosed().subscribe(res => {
-    if (res) {
-      console.log("draft-dialog",res)
+    else {
+      console.log(this.selection.selected);
+      this.selectedPage = 'edit';
+      if (this.selection.selected.length >= 2) {
+        // this.leaseDraft1 = this.selection.selected[1];
+        // this.leaseDraft2 = this.selection.selected[2];
+        this.editor1 = true;
+        this.editor2 = true;
+      }
+      else {
+        this.leaseDraft1 = this.selection.selected[1];
+        this.editor1 = true;
+        this.editor2 = false;
+      }
     }
-  });
-}
+  }
+  saveNewDraft() {
+    this.openDraftDialog(1);
+  }
+  saveDraft1() {
+    this.saveLeaseDraft(this.leaseDraft1);
+  }
+  saveDraft2() {
+    this.saveLeaseDraft(this.leaseDraft2);
+  }
 }

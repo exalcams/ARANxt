@@ -1,197 +1,199 @@
 <div class="bg">
 
-<p class="title"> Lease Document Management System</p>
+    <p class="title"> Lease Document Management System</p>
     <div fxLayout="row">
-        <div  (click)="func1()"
-            [ngClass]="bool1 == true ? 'main_buttons' : 'main_buttons_not_seklected' ">
-            Draft 
-          
+        <div (click)="selectedPage='draft';"
+            [ngClass]="selectedPage=='draft' ? 'main_buttons' : 'main_buttons_not_seklected' ">
+            Draft
+
         </div>
-        <div style="margin-left: 10px;" (click)="func2()"
-            [ngClass]="bool2 == true ? 'main_buttons' : 'main_buttons_not_seklected' ">
-            Signed 
+        <div style="margin-left: 10px;" (click)="selectedPage='signed'"
+            [ngClass]="selectedPage=='signed' ? 'main_buttons' : 'main_buttons_not_seklected' ">
+            Signed
         </div>
-        <div style="margin-left: 10px;" (click)="func3()"
-            [ngClass]="bool3 == true ? 'main_buttons' : 'main_buttons_not_seklected' ">
+        <div style="margin-left: 10px;" (click)="selectedPage='expiry'"
+            [ngClass]="selectedPage=='expiry' ? 'main_buttons' : 'main_buttons_not_seklected' ">
             About To Expiry
         </div>
-        <div style="margin-left: 10px;" (click)="func4()"
-        [ngClass]="bool4 == true ? 'main_buttons' : 'main_buttons_not_seklected' ">
-        Under Notice
-    </div>
-    <div style="margin-left: 10px;" (click)="func5()"
-    [ngClass]="bool5== true ? 'main_buttons' : 'main_buttons_not_seklected' ">
-   Terminated
-</div>
+        <div style="margin-left: 10px;" (click)="selectedPage='underNotice'"
+            [ngClass]="selectedPage=='underNotice' ? 'main_buttons' : 'main_buttons_not_seklected' ">
+            Under Notice
+        </div>
+        <div style="margin-left: 10px;" (click)="selectedPage='terminate'"
+            [ngClass]="selectedPage=='terminate' ? 'main_buttons' : 'main_buttons_not_seklected' ">
+            Terminated
+        </div>
     </div>
     <br>
-<div *ngIf="bool1==true">
-    <div class="neweditdiv" fxLayout="row" fxLayoutAlign="space-evenly center">
-        <div fxLayout="row" class="tab1" fxLayoutAlign="start center">
-            <div class="new" fxFlex="10">
-                <button mat-flat-button class="Renew_btn">New</button>
-            </div>
-            <div fxFlex="10">
-                <button mat-flat-button class="Renew_btn">Edit</button>
-            </div>
-            <div fxFlex="10">
+    <div *ngIf="selectedPage=='draft'">
+        <div class="neweditdiv" fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="16px">
+            <div fxLayout="row" class="tab1" fxLayoutAlign="start center">
+                <button mat-flat-button class="Renew_btn" (click)="selectedPage='new'">New</button>
+                <button mat-flat-button class="Renew_btn" (click)="openMultiDraftEditor()">Edit</button>
                 <button mat-flat-button class="Renew_btn">Delete</button>
-            </div>
-            <div fxFlex="10">
                 <button mat-flat-button class="Renew_btn">Download</button>
             </div>
-        </div>
-        <div style="width: 3%;">
-
-        </div>
-        <div fxLayout="row" class="neweditdiv2">
-            <div class="search-to-do">
-                <!-- (keyup)="applyFilter($event)" -->
-                <mat-icon matSuffix  class ="search_iocn" >search</mat-icon>
-                <input matInput class="search_input1" placeholder="Search Document" (keyup)="applyFilter($event)">
-                <!-- <img src="./assets/73720.svg"> -->
-
+            <div fxLayout="row" class="neweditdiv2">
+                <div class="search-to-do">
+                    <mat-icon matSuffix class="search_iocn">search</mat-icon>
+                    <input matInput class="search_input1" placeholder="Search Document" (keyup)="applyFilter($event)">
+                </div>
             </div>
         </div>
 
-    </div>
-    <br>
-
-    <div fxLayout="row" >
-
-        <div class="neweditdiv1 uploadfiles" fxLayout="row" >
-
-            <ngx-dropzone accept=".doc , .docx" (change)="onSelect($event)" class="dropzonengx" multiple="false">
-                <ngx-dropzone-label class="dragdrop-label">Drag and Drop file here</ngx-dropzone-label>
-                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" style=" min-height: 41px !important; " (removed)="onRemove(f)"
-                    class="drag-preview">
-                    <ngx-dropzone-label class="dragdrop-label_2">{{ f.name }}</ngx-dropzone-label>
-                    <!-- ({{ f.type }}) -->
-                </ngx-dropzone-preview>
-            </ngx-dropzone>
-<div class="add_div">
-    <button mat-button class="btn_Add" (click)="addDraftToTable()">Add</button>
-</div>
-        </div>
-        <div fxLayout="column" class="files">
-            <div fxFlex="50" fxLayoutAlign="space-evenly center">
-                Choose Files
+        <div fxLayout="row">
+            <div class="neweditdiv1 uploadfiles" fxLayout="row">
+                <ngx-dropzone accept=".doc , .docx" (change)="onSelect($event)" class="dropzonengx" multiple="false">
+                    <ngx-dropzone-label class="dragdrop-label">Drag and Drop file here</ngx-dropzone-label>
+                    <ngx-dropzone-preview *ngFor="let f of files" [removable]="true"
+                        style=" min-height: 41px !important; " (removed)="onRemove(f)" class="drag-preview">
+                        <ngx-dropzone-label class="dragdrop-label_2">{{ f.name }}</ngx-dropzone-label>
+                        <!-- ({{ f.type }}) -->
+                    </ngx-dropzone-preview>
+                </ngx-dropzone>
+                <div class="add_div">
+                    <button mat-button class="btn_Add" (click)="addDraftToTable()">Add</button>
+                </div>
             </div>
-            <div fxLayout="row" fxFlex="50" fxLayoutGap="19px" style="margin: 0px 0px 0px 0px;">
-                <div fxFlex="10">
-                    <!-- <img src="./assets/file_search_black.svg" *ngIf="!search_bool" (click)="chooseIcons('search')"
+            <div fxLayout="column" class="files">
+                <div fxFlex="50" fxLayoutAlign="space-evenly center">
+                    Choose Files
+                </div>
+                <div fxLayout="row" fxFlex="50" fxLayoutGap="19px" style="margin: 0px 0px 0px 0px;">
+                    <div fxFlex="10">
+                        <!-- <img src="./assets/file_search_black.svg" *ngIf="!search_bool" (click)="chooseIcons('search')"
                         class="filesimage"> -->
-                    <img src="./assets/file_search_white.svg" (click)="chooseIcons('search')"
-                        class="filesimage">
-                </div>
+                        <img src="./assets/file_search_white.svg" (click)="chooseIcons('search')" class="filesimage">
+                    </div>
 
-                <div fxFlex="10">
-                    <!-- <img src="./assets/iconmonstr-product-4black.svg" *ngIf="!product_bool"
+                    <div fxFlex="10">
+                        <!-- <img src="./assets/iconmonstr-product-4black.svg" *ngIf="!product_bool"
                         (click)="chooseIcons('product')" class="filesimage"> -->
-                    <img src="./assets/iconmonstr-product-4_white.svg"
-                        (click)="chooseIcons('product')" class="filesimage">
-                </div>
+                        <img src="./assets/iconmonstr-product-4_white.svg" (click)="chooseIcons('product')"
+                            class="filesimage">
+                    </div>
 
-                <div fxFlex="10">
-                    <!-- <img src="./assets/drive_black.svg" *ngIf="!drive_bool"
+                    <div fxFlex="10">
+                        <!-- <img src="./assets/drive_black.svg" *ngIf="!drive_bool"
                         (click)="chooseIcons('drive')" class="filesimage"> -->
-                    <img src="./assets/drive white.svg"
-                        (click)="openGdrive()" class="filesimage">
-                </div>
-                
-                <div fxFlex="10">
-                    <!-- <img src="./assets/XMLID_16_black.svg" *ngIf="!link_bool"
-                        (click)="chooseIcons('link')" class="filesimage"> -->
-                    <img src="./assets/XMLID_16_white.svg" 
-                        (click)="OpenFileFromLink()" class="filesimage">
-                </div>
-               
+                        <img src="./assets/drive white.svg" (click)="openGdrive()" class="filesimage">
+                    </div>
 
+                    <div fxFlex="10">
+                        <!-- <img src="./assets/XMLID_16_black.svg" *ngIf="!link_bool"
+                        (click)="chooseIcons('link')" class="filesimage"> -->
+                        <img src="./assets/XMLID_16_white.svg" (click)="OpenFileFromLink()" class="filesimage">
+                    </div>
+
+
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <br>
+        <br>
 
 
-    <div class="tabledivision">
-        <table mat-table [dataSource]="dataSource" matSort>
+        <div class="tabledivision">
+            <table mat-table [dataSource]="dataSource" matSort>
 
-            <ng-container matColumnDef="select" sticky>
-                <th mat-header-cell *matHeaderCellDef>
-                    <mat-checkbox (change)="$event ? masterToggle() : null"
-                        [checked]="selection.hasValue() && isAllSelected()"
-                        [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
-                    </mat-checkbox>
-                </th>
-                <td mat-cell *matCellDef="let row;index as i;">
-                    <div fxLayout="row" fxLayoutAlign="start center">
-                        <mat-checkbox (click)="$event.stopPropagation()"
-                            (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
-                            [aria-label]="checkboxLabel(row)">
+                <ng-container matColumnDef="select" sticky>
+                    <th mat-header-cell *matHeaderCellDef>
+                        <mat-checkbox (change)="$event ? masterToggle() : null" color="primary"
+                            [checked]="selection.hasValue() && isAllSelected()"
+                            [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
                         </mat-checkbox>
-                    </div>
-                </td>
-            </ng-container>
-
-            <ng-container matColumnDef="documentOwner">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Document Name </th>
-                <td mat-cell *matCellDef="let row"> {{row.documentOwner}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="documentType">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Document Name </th>
-                <td mat-cell *matCellDef="let row"> {{row.documentType}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="documentName">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Document Name </th>
-                <td mat-cell *matCellDef="let row"> {{row.documentName}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="createdOn">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Created On </th>
-                <td mat-cell *matCellDef="let row"> {{row.createdOn | date:'dd/MM/yyyy'}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="modifiedOn">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Created On </th>
-                <td mat-cell *matCellDef="let row"> {{row.modifiedOn | date:'dd/MM/yyyy'}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="actions">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: -webkit-center;"> Actions </th>
-                <td mat-cell *matCellDef="let row">
-                    <div fxLayout="row" fxLayoutAlign="space-evenly center">
-                        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
-                            <img src="./assets/iconmonstr-paper-plane-2 (2).svg" class="actionstable">
-                            <span class="actionsspan">Send</span>
+                    </th>
+                    <td mat-cell *matCellDef="let row;index as i;">
+                        <div fxLayout="row" fxLayoutAlign="start center">
+                            <mat-checkbox (click)="$event.stopPropagation()" color="primary"
+                                (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                                [aria-label]="checkboxLabel(row)">
+                            </mat-checkbox>
                         </div>
-                        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
-                            <img src="./assets/iconmonstr-share-8.svg" class="actionstable">
-                            <span class="actionsspan">Open</span>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="documentOwner">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Document Owner </th>
+                    <td mat-cell *matCellDef="let row"> {{row.documentOwner}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="documentType">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Document Type </th>
+                    <td mat-cell *matCellDef="let row"> {{row.documentType}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="documentName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Document Name </th>
+                    <td mat-cell *matCellDef="let row"> {{row.documentName}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="createdOn">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Created On </th>
+                    <td mat-cell *matCellDef="let row"> {{row.createdOn | date:'dd/MM/yyyy'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="modifiedOn">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Modified On </th>
+                    <td mat-cell *matCellDef="let row"> {{row.modifiedOn | date:'dd/MM/yyyy'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: -webkit-center;"> Actions
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                        <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" class="pointer">
+                                <img src="./assets/iconmonstr-paper-plane-2 (2).svg" class="actionstable">
+                                <span class="actionsspan">Send</span>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" class="pointer">
+                                <img src="./assets/iconmonstr-share-8.svg" class="actionstable">
+                                <span class="actionsspan" (click)="openDratEdtitor(row)">Open</span>
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </ng-container>
+                    </td>
+                </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"  style="background-color: #f3f3f4;"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"  style="border-bottom-style: none;"></tr>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color: #f3f3f4;"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" style="border-bottom-style: none;"></tr>
 
-        </table>
+            </table>
+        </div>
     </div>
-</div>
-<div *ngIf="bool2==true">
-<app-leasemanagement-signed></app-leasemanagement-signed>
-</div>
-<div *ngIf="bool3==true">
-    <app-leasemanagement-expiry></app-leasemanagement-expiry>
-</div>
-<div *ngIf="bool4==true">
-    <app-under-notice></app-under-notice>
-</div>
-<div *ngIf="bool5==true">
-    <app-terminate></app-terminate>
-</div>
+    <div *ngIf="selectedPage=='signed'">
+        <app-leasemanagement-signed></app-leasemanagement-signed>
+    </div>
+    <div *ngIf="selectedPage=='expiry'">
+        <app-leasemanagement-expiry></app-leasemanagement-expiry>
+    </div>
+    <div *ngIf="selectedPage=='underNotice'">
+        <app-under-notice></app-under-notice>
+    </div>
+    <div *ngIf="selectedPage=='terminate'">
+        <app-terminate></app-terminate>
+    </div>
+    <div *ngIf="selectedPage=='new'">
+        <ck-editor name="richEditor" [(ngModel)]="newLeaseDraft.documentContent" skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
+        <div fxLayout="row" fxLayoutAlign="end center" class="submit-area">
+            <button mat-raised-button class="saveBtn" (click)="saveNewDraft()">Save</button>
+        </div>
+    </div>
+    <div *ngIf="selectedPage=='edit'">
+        <div fxLayout="row" fxLayoutGap="8px">
+            <ck-editor *ngIf="editor1" name="richEditor" [(ngModel)]="leaseDraft1.documentContent" skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
+            <ck-editor *ngIf="editor2" name="richEditor" [(ngModel)]="leaseDraft2.documentContent" skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
+        </div>
+        <div fxLayout="row" fxLayoutGap="8px">
+            <div fxFlex></div>
+            <div fxFlex="50"  *ngIf="editor1" fxLayout="row" fxLayoutAlign="end center" class="submit-area">
+                <button mat-raised-button class="saveBtn" (click)="saveDraft1()">Save</button>
+            </div>
+            <div fxFlex="50"  *ngIf="editor2" fxLayout="row" fxLayoutAlign="end center" class="submit-area">
+                <button mat-raised-button class="saveBtn" (click)="saveDraft2()">Save</button>
+            </div>
+        </div>
+        
+    </div>
 </div>
