@@ -1,8 +1,8 @@
 
-.draft-dialog{
+.send-mail-dialog{
     width: 540px;
     .poppins{
-      font-family: poppins-semi;
+        font-family: poppins-semi;
     }
     .mat-dialog-container {
       padding: 0;
@@ -55,17 +55,19 @@
     }
     .form{
         padding: 0 16px;
+        .body{
+            min-height: 100px;
+        }
         .fields{
-          font-size: 12px;
-          @extend .poppins;
+            font-size: 12px;
+            @extend .poppins;
+        }
+        .field-prefix{
+            @extend .poppins;
         }
     }
     .radio-group{
       margin-bottom: 24px;
-      .radio{
-        font-size: 12px;
-        @extend .poppins;
-      }
     }
   }
   

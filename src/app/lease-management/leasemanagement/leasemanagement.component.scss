@@ -1,12 +1,11 @@
-
+*{
+    font-family: 'poppins-semi';
+}
 .bg
 {
     margin-top: 55px;
     margin-left: 17px;
     margin-right: 17px;
-
-
-
 }
 .main_buttons_not_seklected{color: #6e6d7a;font-size: 11px; font-family: 'poppins-semi' !important;font-weight: 600;
     padding: 4px 10px 4px 10px;    border-radius: 4px; cursor: pointer; line-height: 2;height: 20px; }
@@ -19,7 +18,6 @@
 .main_buttons_side{
                 color: #0d0c22;font-size: 11px; font-family: 'poppins-semi' !important;cursor: pointer;  line-height: 1.4;height: 25px;
             padding: 4px 10px 4px 10px;    border-radius: 4px;    border: solid 1px #e7e7e9;   }
-
 
 
 .neweditdiv{
@@ -154,13 +152,8 @@
     align-items: center!important;
     border-radius: 5px!important;
     display: flex!important;
-    // height: 140px!important;
     justify-content: center !important;
     margin: 10px!important;
-    /* max-width: 180px; */
-    /* min-height: 61px; */
-    // height: 41px !important;
-    /* min-width: 180px; */
     padding: 0px 20px!important;
     position: relative!important;
 
@@ -186,34 +179,14 @@
     top: 0px;
     width: 15px;
 }
-// [_nghost-qij-c299]:hover {
-   
-// }
-
-
 table {
     width: 100%;
-    // padding: 4px 10px 4px 10px;  
 }
-  
 .mat-form-field {
     font-size: 14px;
     width: 100%;
 }
-  
-// td, th {
-//     width: 7%;
-//     font-family: 'poppins-semi' !important;
-    
-// }
-// td{
-//     font-size: 10px;
-//     color: #6e6d7a;
-//     font-family: Poppins !important;
-// }
-
-.tabledivision{
-    // padding: 4px 10px 4px 10px;  
+.tabledivision{ 
     font-family: 'poppins-semi' !important;
     font-size: 12px;
 }
@@ -225,7 +198,7 @@ table {
     color: #6e6d7a;
     font-family: Poppins !important;
 }
-.add_div
+.add_div_draft
 {
     width: 15%;
     height: 91%;
@@ -259,6 +232,7 @@ table {
     color: #98abc4;
     transform: scale(0.7);
     margin-left: 12px;
+    font-family: 'Material Icons';
 }
 //table
 tr.mat-header-row {
@@ -279,7 +253,7 @@ tr.mat-header-row {
 
   .mat-cell, .mat-header-cell {
     border: none !important;
-    font-size: 12px;
+    font-size: 11px;
   }
   ::ng-deep  .mat-cell, .mat-header-cell {
     border: none !important;

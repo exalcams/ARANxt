@@ -1,0 +1,63 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+        <label class="title">Send Email</label>
+    </mat-toolbar>
+
+    <mat-dialog-content class="content" fusePerfectScrollbar>
+        <form fxLayout="column" class="form" [formGroup]="form" autocomplete="off" novalidate>
+            <mat-form-field appearance="fill" class="fields">
+                <input matInput formControlName="toMail" autocomplete="off" required>
+                <span matPrefix class="field-prefix">To :&nbsp;&nbsp;</span>
+                <mat-error *ngIf="form.get('toMail').touched && form.get('toMail').hasError('required')">
+                    Please enter Email id
+                </mat-error>
+                <mat-error *ngIf="form.get('toMail').touched && form.get('toMail').hasError('email')">
+                    Please enter valid email id
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="fields">
+                <mat-chip-list #chipList1 multiple>
+                    <mat-chip *ngFor="let item of ccList" [selected]="item" [value]="item"
+                        (removed)="removeCC(item)">
+                        {{item}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input [matChipInputFor]="chipList1" (matChipInputTokenEnd)="addCCFromInput($event)" formControlName="cc">
+                </mat-chip-list>
+                <span matPrefix class="field-prefix">CC :&nbsp;&nbsp;</span>
+                <mat-error *ngIf="form.get('cc').hasError('mail')">
+                    Please enter valid email id
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="fields">
+                <mat-chip-list #chipList2 multiple>
+                    <mat-chip *ngFor="let item of bccList" [selected]="item" [value]="item"
+                        (removed)="removeBCC(item)">
+                        {{item}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input [matChipInputFor]="chipList2" (matChipInputTokenEnd)="addBCCFromInput($event)" formControlName="bcc">
+                </mat-chip-list>
+                <span matPrefix class="field-prefix">BCC :&nbsp;&nbsp;</span>
+                <mat-error *ngIf="form.get('bcc').touched && form.get('bcc').hasError('email')">
+                    Please enter valid email id
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="fields">
+                <input matInput formControlName="subject" autocomplete="off">
+                <span matPrefix class="field-prefix">Subject :&nbsp;&nbsp;</span>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="fields">
+                <textarea class="body" matInput formControlName="body" autocomplete="off"></textarea>
+            </mat-form-field>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions class="m-0 p-16 footer" fxLayoutAlign="end center" fxLayoutGap="8px">
+        <button mat-raised-button class="savebtn" type="button" color="primary" (click)="sendMail()">Send</button>
+        <button mat-raised-button type="button" (click)="close()">Close</button>
+    </mat-dialog-actions>
+</div>

@@ -17,7 +17,8 @@ export class DraftDialogComponent implements OnInit {
     private fb:FormBuilder
     ) {
       this.form=this.fb.group({
-        documentType:['',Validators.required],
+        documentName:['',Validators.required],
+        documentType:['Template',Validators.required],
         documentOwner:['',Validators.required]
       });
      }
@@ -28,6 +29,7 @@ export class DraftDialogComponent implements OnInit {
     this.dialogRef.close(false);
   }
   UploadFile(){
+    console.log(this.form);
     if(this.form.valid){
       this.dialogRef.close(this.form.value);
     }
