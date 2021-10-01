@@ -92,7 +92,7 @@ handleFileInput(event): void {
   // tslint:disable-next-line:align
   this.files.push(event.target.files[0]);
   const signeddetailFile = new LeaseDocument();
-  signeddetailFile.client = this.SignedDocumentDetailsForm.get('Client').value;
+  signeddetailFile.clientName = this.SignedDocumentDetailsForm.get('Client').value;
   signeddetailFile.site = "Site 1";
   signeddetailFile.company = "EXA";
   signeddetailFile.isDraft = false;
@@ -112,7 +112,7 @@ handleFileInput(event): void {
 saveclk(): void {
   const signeddetail = new LeaseManagement();
   // tslint:disable-next-line:align
-  signeddetail.client = this.SignedDocumentDetailsForm.get('Client').value;
+  signeddetail.clientName = this.SignedDocumentDetailsForm.get('Client').value;
   // tslint:disable-next-line:align
   signeddetail.fileName = this.SignedDocumentDetailsForm.get('FileName').value;
   signeddetail.createdOn = this.SignedDocumentDetailsForm.get('CreatedOn').value;

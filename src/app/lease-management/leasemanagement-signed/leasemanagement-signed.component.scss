@@ -113,7 +113,8 @@
     background-color: #f3f3f4;
     height: 100%;
     width: 100%;
-   
+    overflow-y: scroll;
+    padding: 8px 8px;
   }
   .form_img
   {
@@ -318,18 +319,20 @@ tr.mat-header-row {
 
 .example-container {
   width: 100%;
-  height: 100%;
+  // height: 100% !important;
   float: left;
   // border: 1px solid rgba(0, 0, 0, 0.5);
   background-color: white;
 }
 .example-sidenav {
-  padding: 20px;
-  width:40%;
-  // width:67%;
+  // padding: 20px;
+  width:30%;
   float: left;
-  height: 85%;
-  // height:127%;
+  height: 85% !important;
+
+}
+mat-sidenav{
+height: 100% !important;
 }
 td{
   font-size: 12px !important;
@@ -347,15 +350,17 @@ height: 40px !important;
 }
 
 .labelcss{
-  font-size: 12px;
+  font-size: 11px;
   color: #0d0c22;
   font-family: 'poppins-semi' !important;
   justify-content: left;
+  text-align: left;
 }
 .labelcssvalue{
-  font-size: 12px;
+  font-size: 11px;
   color: #838383;
   font-family: 'poppins-semi' !important;
+  text-align: left;
 }
 
 .formspan{
@@ -371,9 +376,9 @@ height: 40px !important;
 .form-field-wrapper{
 width: 100%;
 }
-.mat-form-field{
-  width: 50%;
-}
+// .mat-form-field{
+//   width: 50%;
+// }
 
 .datarow{
   font-size: 10px !important;
@@ -407,11 +412,20 @@ width: 100%;
   color: #0d0c22 !important;
 }
 
-.highlight2{
-  font-size: 12px;
-  font-family: 'poppins-semi' !important;
-  color: #0d0c22;
+.highlight3{
+  .mat-cell, .mat-header-cell {
+    color: #0d0c22;
+    // font-weight: 600;
+    font-size: 10px;
+  }
 }
+// .highlight3:hover{
+//   .mat-cell, .mat-header-cell {
+//     color: #0d0c22;
+//     font-size: 12px;
+//   }
+// }
+
 .label_connect .mat-form-field-appearance-legacy .mat-form-field-label{
   font-size: 10px !important;
   font-family: 'poppins' !important;
@@ -429,3 +443,65 @@ tr:hover{
   color: #0d0c22 !important;
 }
 
+
+.datarow{
+  font-size: 10px !important;
+  font-family: 'poppins-semi' !important;
+}
+// .datarow:hover{
+//   font-family: 'poppins-semi' !important;
+//   font-size: 12px;
+//   color: black;
+// }
+.datarowrow:hover{
+  font-family: 'poppins-semi' !important;
+  font-size: 12px;
+  color: black;
+}
+
+.mat-sidenav-backdrop.mat-sidenav-shown{
+  background-color: transparent !important;
+}
+
+.mat-sidenav-content{
+  height: 90vh !important;
+}
+
+
+.clientview{
+  text-align: left !important;
+  justify-content: left;
+  justify-self: left;
+  width: 100%;
+  justify-content: space-evenly center;
+  padding-left: 10px;
+}
+
+.toggleimage{
+  width: 12px;cursor: pointer;
+  justify-content: start start;
+  margin-left: -230px;
+  margin-top: 10px;
+}
+
+
+.mat-row {
+  height: auto;
+  min-width: max-content !important;
+}
+
+.mat-cell {
+  padding: 8px 8px 8px 0;
+}
+
+.mat-cell, .mat-header-cell {
+  border: none !important;
+  font-size: 12px;
+}
+::ng-deep  .mat-cell, .mat-header-cell {
+  border: none !important;
+  font-size: 12px;
+  color:
+  #6e6d7a;
+  font-weight: 500;
+}

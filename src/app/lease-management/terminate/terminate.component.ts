@@ -7,6 +7,19 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { LeaseManagement } from 'src/app/Model/Leasemanagement';
 import { LeaseManagementService } from 'src/app/service/lease-management.service';
 
+
+export interface PeriodicElement {
+  select: string;
+  ClientName: string;
+  FileName: string;
+  DaysRemaining: string;
+  ExpiryDate:string;
+  Action:string
+}
+
+const ELEMENT_DATA: PeriodicElement[] = [
+  {select: '', ClientName: 'Hydrogen', FileName: 'oxygen',DaysRemaining:'25', ExpiryDate: '',Action:''},
+];
 @Component({
   selector: 'app-terminate',
   templateUrl: './terminate.component.html',
@@ -14,16 +27,20 @@ import { LeaseManagementService } from 'src/app/service/lease-management.service
 })
 export class TerminateComponent implements OnInit {
 
-  displayedColumns: string[] = ['ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action', 'ViewDetails'];
+  displayedColumns: string[] = ['select','ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action'];
+  dataSourcea = ELEMENT_DATA;
   dataSource = new MatTableDataSource<any>([]);
   selection = new SelectionModel<any>(true, []);
   selectedRowIndex: any;
+  days=new Date();
   // tslint:disable-next-line:typedef-whitespace
   // tslint:disable-next-line:variable-name
   btn_name: any = 'Upload Document';
+  selectedRowIndex2 = -1;
   // tslint:disable-next-line:typedef-whitespace
   files: File[] = [];
-
+  valuetable :boolean = true;
+  valueupload :boolean = false;
   SignedDocumentDetailsForm: FormGroup;
   date: any = new Date((new Date().getTime() - 3888000000));
   // tslint:disable-next-line:no-inferrable-types
@@ -117,7 +134,7 @@ SignedFormGroup(): void
 loadLeaseDetails(row:LeaseManagement){
   console.log("selected",row);
   this.SignedDocumentDetailsForm.patchValue({
-    ClientName: row.client,
+    ClientName: row.clientName,
     FileName :row.fileName,
     CreationDate: row.createdOn,
     ExpiryDate: row.expiryDate,
@@ -154,4 +171,35 @@ GetRemainingDays(expiry){
   let rDays=new Date(expiry).getDate()-today.getDate();
   return rDays;
 }
+
+buttonvaluetable(){
+  this.valuetable = true;
+  this.valueupload = false;
+  }
+  buttonvalueupload(){
+    this.valuetable = false;
+    this.valueupload = true;
+  }
+  
+  highlight2(row){
+    this.selectedRowIndex2 = row.id;
+  }
+
+  getWidth(days){
+    if(days>=20 && days<=30){
+      return "green" 
+    }
+    else   if(days>=10 && days<=20){
+      return "yellow" 
+    }
+    else   if(days<10){
+      return "red" 
+    }
+  }
+
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }
