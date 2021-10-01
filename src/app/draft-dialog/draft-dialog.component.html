@@ -4,14 +4,21 @@
     </mat-toolbar>
 
     <mat-dialog-content class="content" fusePerfectScrollbar>
-        <form fxLayout="column" fxLayoutGap="24px" class="form" [formGroup]="form">
-            <mat-radio-group aria-label="Select a document type" fxLayoutGap="32px" formControlName="documentType">
-                <mat-radio-button color="primary" value="template" [checked]="true">Template</mat-radio-button>
-                <mat-radio-button color="primary" value="draft">Draft</mat-radio-button>
+        <form fxLayout="column" class="form" [formGroup]="form">
+            <mat-radio-group class="radio-group" aria-label="Select a document type" fxLayoutGap="32px" formControlName="documentType">
+                <mat-radio-button color="primary" value="Template" [checked]="true" class="radio">Template</mat-radio-button>
+                <mat-radio-button color="primary" value="Draft" class="radio">Draft</mat-radio-button>
             </mat-radio-group>
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="fill" class="fields">
+                <mat-label>Document Name</mat-label>
+                <input matInput formControlName="documentName" autocomplete="off">
+                <mat-error *ngIf="form.get('documentName').touched && form.get('documentName').hasError('required')">
+                    Document Name
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="fields">
                 <mat-label>Document owner</mat-label>
-                <input matInput formControlName="documentOwner">
+                <input matInput formControlName="documentOwner" autocomplete="off">
                 <mat-error *ngIf="form.get('documentOwner').touched && form.get('documentOwner').hasError('required')">
                     Document owner
                 </mat-error>

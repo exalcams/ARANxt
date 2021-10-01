@@ -34,6 +34,15 @@ export class LeaseManagementService {
     })
     .pipe(catchError(this.errorHandler));
   }
+  DeleteLeaseDraft(draftIDs:number[]){
+    return this.http.post<any>(this.baseAddress + 'api/Lease/DeleteLeaseDraft', draftIDs,
+    {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    })
+    .pipe(catchError(this.errorHandler));
+  }
   UploadLeaseDraft(selectedFiles: File[], client = "001", company = "Exa", site = "site1"): Observable<any> {
     const formData: FormData = new FormData();
     if (selectedFiles && selectedFiles.length) {

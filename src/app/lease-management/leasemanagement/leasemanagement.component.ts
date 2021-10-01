@@ -12,6 +12,7 @@ import { NotificationSnackBarComponent } from 'src/app/notification/notification
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/notification-snackbar-status-enum';
 import { LeaseDraft } from 'src/app/Model/Leasemanagement';
+import { SendMailDialogComponent } from 'src/app/send-mail-dialog/send-mail-dialog.component';
 export interface UserData {
 
   Documentname: string;
@@ -85,6 +86,7 @@ export class LeasemanagementComponent implements OnInit {
     this.service.GetLeaseDrafts().subscribe(res => {
       this.LeaseDrafts = res;
       this.dataSource = new MatTableDataSource(this.LeaseDrafts);
+      this.selection=new SelectionModel<any>(true, []);
       this.spinner.hide();
       console.log("LeaseDrafts", res);
     },
@@ -257,16 +259,36 @@ export class LeasemanagementComponent implements OnInit {
       console.log(this.selection.selected);
       this.selectedPage = 'edit';
       if (this.selection.selected.length >= 2) {
-        // this.leaseDraft1 = this.selection.selected[1];
-        // this.leaseDraft2 = this.selection.selected[2];
+        this.leaseDraft1 = this.selection.selected[0];
+        this.leaseDraft2 = this.selection.selected[1];
         this.editor1 = true;
         this.editor2 = true;
       }
       else {
-        this.leaseDraft1 = this.selection.selected[1];
+        this.leaseDraft1 = this.selection.selected[0];
         this.editor1 = true;
         this.editor2 = false;
       }
+    }
+  }
+  DeleteLeaseDrafts(){
+    if(this.selection.selected.length>0){
+      let ids=[];
+      this.selection.selected.forEach((draft:LeaseDraft) => {
+        ids.push(draft.documentID);
+      });
+      this.spinner.show();
+      this.service.DeleteLeaseDraft(ids).subscribe(res=>{
+        this.spinner.hide();
+        this.getAllDrafts();
+      },
+      err=>{
+        console.log(err);
+        this.spinner.hide();
+      });
+    }
+    else{
+      this.notificationSnackBarComponent.openSnackBar("Please select a document",SnackBarStatus.danger);
     }
   }
   saveNewDraft() {
@@ -277,5 +299,20 @@ export class LeasemanagementComponent implements OnInit {
   }
   saveDraft2() {
     this.saveLeaseDraft(this.leaseDraft2);
+  }
+  openSendMailDialog(documentID){
+    const dialogRef = this.dialog.open(SendMailDialogComponent,
+      {
+        panelClass: "send-mail-dialog",
+        data:{documentID:documentID}
+      }
+    );
+    dialogRef.disableClose = true;
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        console.log("send-mail-dialog", res)
+        
+      }
+    });
   }
 }

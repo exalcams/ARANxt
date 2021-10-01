@@ -88,6 +88,8 @@ import { DraftDialogComponent } from './draft-dialog/draft-dialog.component';
 import { RichTextEditorComponent } from './rich-text-editor/rich-text-editor.component';
 import { CKEditorModule } from 'ngx-ckeditor';
 import { UploadSignedDialogComponent } from './upload-signed-dialog/upload-signed-dialog.component';
+import { SendMailDialogComponent } from './send-mail-dialog/send-mail-dialog.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -133,7 +135,8 @@ import { UploadSignedDialogComponent } from './upload-signed-dialog/upload-signe
     UploaddocumentsignedComponent,
     DraftDialogComponent,
     RichTextEditorComponent,
-    UploadSignedDialogComponent
+    UploadSignedDialogComponent,
+    SendMailDialogComponent
   ],
   imports: [
     MatGridListModule,
@@ -174,7 +177,8 @@ import { UploadSignedDialogComponent } from './upload-signed-dialog/upload-signe
     }),
     NgxSpinnerModule,
     SocialLoginModule,
-    CKEditorModule
+    CKEditorModule,
+    MatChipsModule
   ],
   providers: [AuthService,DatePipe,
     // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
@@ -192,7 +196,7 @@ import { UploadSignedDialogComponent } from './upload-signed-dialog/upload-signe
       }
     }
   ],
-  entryComponents:[GDriveComponent,DraftDialogComponent,UploadSignedDialogComponent],
+  entryComponents:[GDriveComponent,DraftDialogComponent,UploadSignedDialogComponent,SendMailDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
