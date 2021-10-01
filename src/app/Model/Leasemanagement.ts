@@ -43,3 +43,12 @@ export class LeaseDocument  extends CommonClass
     documentFile: File;
 // tslint:disable-next-line:eofline
 }
+
+export class LeaseDraft extends CommonClass{
+    documentID:number;
+    documentOwner:string;
+    documentType:string;
+    documentName:string;
+    documentContent:string;
+    isFavourite:boolean=false;
+}

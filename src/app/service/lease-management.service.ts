@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from 'src/app/service/auth.service';
-import { LeaseDocument, LeaseManagement } from '../Model/Leasemanagement';
+import { LeaseDocument, LeaseDraft, LeaseManagement } from '../Model/Leasemanagement';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,15 @@ export class LeaseManagementService {
     );
   }
 
+  SaveLeaseDraft(draft:LeaseDraft){
+    return this.http.post<any>(this.baseAddress + 'api/Lease/SaveLeaseDraft', draft,
+    {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    })
+    .pipe(catchError(this.errorHandler));
+  }
   UploadLeaseDraft(selectedFiles: File[], client = "001", company = "Exa", site = "site1"): Observable<any> {
     const formData: FormData = new FormData();
     if (selectedFiles && selectedFiles.length) {

@@ -1,0 +1,225 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+        <label class="title">Upload Signed Document</label>
+        <img class="close_hover close" src="assets/32178.svg" (click)="close()">
+    </mat-toolbar>
+
+    <mat-dialog-content class="content" fusePerfectScrollbar>
+        <div fxLayout="column" fxLayoutAlign="space-between center">
+            <form [formGroup]="SignedDocumentDetailsForm" style="width: 100%;">
+                <div fxLayout="row" fxLayoutGap="20px">
+                    <div fxLayout="column" fxLayoutAlign="space-between center" style="width: 100%;" fxLayoutGap="20px">
+                        <div fxLayout="row" class="label_connect" fxLayoutAlign="space-between center"
+                            style="width: 80%;" fxLayoutGap="6px">
+                            <span class="formspan">Client Name</span>
+                            <mat-form-field appearance="legacy" class="form_field_cls">
+                                <input matInput placeholder="Enter Client Name" formControlName="Client" type="text"
+                                    class="placeholdertext">
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('Client').hasError('required')">
+                                    Client Name is required
+                                </mat-error>
+                            </mat-form-field>
+
+                        </div>
+                        <div fxLayout="row" class="label_connect" fxLayoutAlign="space-between center"
+                            style="width: 80%;" fxLayoutGap="6px">
+                            <span class="formspan">File Name</span>
+                            <mat-form-field appearance="legacy" class="form_field_cls">
+                                <input matInput placeholder="Enter File Name" formControlName="FileName"
+                                    class="placeholdertext">
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('FileName').hasError('required')">
+                                    File Name is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row" class="label_connect" fxLayoutAlign="space-between center"
+                            style="width: 80%;" fxLayoutGap="6px">
+                            <span class="formspan">CreatedOn</span>
+                            <mat-form-field appearance="legacy" class="form_field_cls">
+                                <input matInput placeholder="Enter File Name" formControlName="CreatedOn"
+                                    class="placeholdertext">
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('CreatedOn').hasError('required')">
+                                    Date is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row" class="label_connect" fxLayoutAlign="space-between center"
+                            style="width: 80%;" fxLayoutGap="6px">
+                            <span class="formspan">Expiry Date</span>
+                            <mat-form-field appearance="legacy" class="form_field_cls">
+                                <input matInput placeholder="Enter Expiry Date" formControlName="ExpiryDate"
+                                    class="placeholdertext">
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('ExpiryDate').hasError('required')">
+                                    ExpiryDate is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row" class="label_connect" fxLayoutAlign="space-between center"
+                            style="width: 80%;" fxLayoutGap="6px">
+                            <span class="formspan">Total Deposit</span>
+                            <mat-form-field appearance="legacy" class="form_field_cls">
+                                <input matInput placeholder="Enter Total Deposit" formControlName="TotalDeposit"
+                                    class="placeholdertext">
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('TotalDeposit').hasError('required')">
+                                    Total Deposit is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="space-between center" style="width: 100%;" fxLayoutGap="20px">
+                        <div fxLayout="row" class="label_connect" fxLayoutAlign="space-between center"
+                            style="width: 80%;" fxLayoutGap="6px">
+                            <span class="formspan">Rental</span>
+                            <mat-form-field appearance="legacy" class="form_field_cls">
+                                <input matInput placeholder="Enter Rental" formControlName="Rental"
+                                    class="placeholdertext">
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('Rental').hasError('required')">
+                                    Rental is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" class="label_connect" fxLayoutAlign="space-between center"
+                            style="width: 80%;" fxLayoutGap="6px">
+                            <span class="formspan">Bank Name</span>
+                            <mat-form-field appearance="legacy" class="form_field_cls">
+                                <input matInput placeholder="Enter BankName" formControlName="BankName"
+                                    class="placeholdertext">
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('BankName').hasError('required')">
+                                    Bank Name is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" class="label_connect" fxLayoutAlign="space-between center"
+                            style="width: 80%;" fxLayoutGap="6px">
+                            <span class="formspan">Holder Name</span>
+                            <mat-form-field appearance="legacy" class="form_field_cls">
+                                <input matInput placeholder="Enter HolderName" formControlName="HolderName"
+                                    class="placeholdertext">
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('HolderName').hasError('required')">
+                                    Holder Name is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" class="label_connect" fxLayoutAlign="space-between center"
+                            style="width: 80%;" fxLayoutGap="6px">
+                            <span class="formspan">AccountNo</span>
+                            <mat-form-field appearance="legacy" class="form_field_cls">
+                                <input matInput placeholder="Enter AccountNo" formControlName="AccountNo"
+                                    class="placeholdertext">
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('AccountNo').hasError('required')">
+                                    AccountNo is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" class="label_connect" fxLayoutAlign="space-between center"
+                            style="width: 80%;" fxLayoutGap="6px">
+                            <span class="formspan">ModeofTransfer</span>
+                            <mat-form-field appearance="legacy" class="form_field_cls">
+                                <input matInput placeholder="Enter ModeofTransfer" formControlName="ModeofTransfer"
+                                    class="placeholdertext">
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('ModeofTransfer').hasError('required')">
+                                    ModeofTransfer is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div fxLayout="column" style="width: 85%;padding-right: 25px;" fxLayoutGap="20px">
+                        <div fxLayout="row" class="label_connect" fxLayoutAlign="space-between center" fxLayoutGap="6px"
+                            style="width: 100%;">
+                            <span class="formspan">Total Deposit</span>
+                            <mat-form-field appearance="legacy" class="form_field_cls">
+                                <input matInput placeholder="Enter IFSC Code" formControlName="IFSCCode"
+                                    class="placeholdertext">
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('IFSCCode').hasError('required')">
+                                    IFSC Code is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" class="label_connect" fxLayoutAlign="space-between center" fxLayoutGap="6px"
+                            style="width: 100%;">
+                            <span class="formspan">File Name</span>
+                            <mat-form-field appearance="legacy" class="form_field_cls">
+                                <input matInput placeholder="Enter AdvanceRequest" formControlName="AdvanceRequest"
+                                    class="placeholdertext">
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('AdvanceRequest').hasError('required')">
+                                    AdvanceRequest is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" class="label_connect" fxLayoutAlign="space-between center" fxLayoutGap="6px"
+                            style="width: 100%;">
+                            <span class="formspan">Maintenance</span>
+                            <mat-form-field appearance="legacy" class="form_field_cls">
+                                <input matInput placeholder="Enter Maintenance" formControlName="Maintenance"
+                                    class="placeholdertext">
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('Maintenance').hasError('required')">
+                                    Maintenance is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" class="label_connect" fxLayoutAlign="space-between center" fxLayoutGap="6px"
+                            style="width: 100%;">
+                            <span class="formspan">Electrical</span>
+                            <mat-form-field appearance="legacy" class="form_field_cls">
+                                <input matInput placeholder="Enter Electrical" formControlName="Electrical"
+                                    class="placeholdertext">
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('Electrical').hasError('required')">
+                                    Electrical is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutGap="20px">
+                    <div fxLayout="column" class="condition_div_cls">
+
+                        <div fxLayout="row" class="label_connect" fxLayoutAlign="space-between center" fxLayoutGap="6px"
+                            style="width: 85.5%;">
+                            <span class="formspan">Condition</span>
+                            <mat-form-field appearance="legacy" class="form_field_cls">
+                                <textarea matInput placeholder="Enter Condition" formControlName="Condition"
+                                    class="placeholdertext"></textarea>
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('Condition').hasError('required')">
+                                    Condition is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row" class="label_connect" fxLayoutAlign="space-between center" fxLayoutGap="6px"
+                            style="width: 85.5%;">
+                            <span class="formspan">Remarks</span>
+                            <mat-form-field appearance="legacy" class="form_field_cls">
+                                <textarea matInput placeholder="Enter Remarks" formControlName="Remarks"
+                                    class="placeholdertext"></textarea>
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('Remarks').hasError('required')">
+                                    Remarks is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div style="width: 100%;" fxLayoutAlign="center center">
+                        <div class="neweditdiv1 uploadfiles" fxLayout="row">
+
+                            <ngx-dropzone accept=".doc , .docx" (change)="onSelect($event)" class="dropzonengx" multiple="false">
+                                <ngx-dropzone-label class="dragdrop-label">Drag and Drop file here</ngx-dropzone-label>
+                                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" style=" min-height: 41px !important; " (removed)="onRemove(f)"
+                                    class="drag-preview">
+                                    <ngx-dropzone-label class="dragdrop-label_2">{{ f.name }}</ngx-dropzone-label>
+                                    <!-- ({{ f.type }}) -->
+                                </ngx-dropzone-preview>
+                            </ngx-dropzone>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="m-0 p-16 footer" fxLayoutAlign="end center" fxLayoutGap="8px">
+        <button mat-raised-button class="savebtn" type="button" color="primary">Upload</button>
+        <button mat-raised-button type="button" (click)="close()">Close</button>
+    </mat-dialog-actions>
+</div>

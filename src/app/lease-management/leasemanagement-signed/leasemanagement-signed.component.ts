@@ -12,7 +12,7 @@ import { SpaceService } from 'src/app/space/space.service';
 import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/notification-snackbar-status-enum';
 import { UserData } from '../leasemanagement/leasemanagement.component';
 import { MatDialog } from '@angular/material/dialog';
-import { UploaddocumentsignedComponent } from '../uploaddocumentsigned/uploaddocumentsigned.component';
+import { UploadSignedDialogComponent } from 'src/app/upload-signed-dialog/upload-signed-dialog.component';
 
 @Component({
   selector: 'app-leasemanagement-signed',
@@ -111,14 +111,15 @@ export class LeasemanagementSignedComponent implements OnInit {
     }
   }
   uploadDocument(): void {
-    if (this.btn_name === 'Upload Document') {
-      this.btn_name = 'Cancel';
-      this.buttonvalueupload()
-    }
-    else if (this.btn_name === 'Cancel') {
-      this.btn_name = 'Upload Document';
-      this.buttonvaluetable()
-    }
+    this.openDialog();
+    // if (this.btn_name === 'Upload Document') {
+    //   this.btn_name = 'Cancel';
+    //   this.buttonvalueupload()
+    // }
+    // else if (this.btn_name === 'Cancel') {
+    //   this.btn_name = 'Upload Document';
+    //   this.buttonvaluetable()
+    // }
 
     // this.openDialog()
   }
@@ -288,10 +289,10 @@ handleFileInput(event): void {
 }
 
 openDialog() {
-  const dialogRef = this.dialog.open(UploaddocumentsignedComponent,{
-    panelClass: 'full-width-dialog',
-    position: { top: '3%', right: '3%' },
-    width: '75%',
+  const dialogRef = this.dialog.open(UploadSignedDialogComponent,{
+    panelClass: 'upload-signed-dialog',
+    // position: { top: '3%', right: '3%' },
+    width: '80%',
     maxWidth: '85.5vw ',
     height: '90%',
 

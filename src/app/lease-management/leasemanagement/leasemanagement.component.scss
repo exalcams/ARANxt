@@ -25,6 +25,7 @@
 .neweditdiv{
     font-family: 'poppins-semi' !important;
     padding: 4px 2px 4px 2px;
+    margin-bottom: 12px;
    
 }
 .search-to-do{
@@ -293,4 +294,14 @@ tr.mat-header-row {
     color: #0d0c22;
     /* font-family: HelveticaNeue; */
     font-weight: 600;
+}
+.submit-area{
+    padding: 8px 0;
+    .saveBtn{
+        background-color: #4410ff;
+        color: white;
+    }
+}
+.pointer{
+    cursor: pointer;
 }
