@@ -57,13 +57,35 @@ export class LeaseManagementService {
       .pipe(catchError(this.errorHandler));
   }
   // AddSignedFileDetail
-  AddSignedFileDetail(signeddetail: LeaseManagement): Observable<any> {
-    return this.http.post<any>(this.baseAddress + 'api/Lease/AddSignedFileDetail', signeddetail,
-      {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json'
-        })
-      })
+  AddSignedFileDetail(signeddetail: LeaseManagement,selectedFiles: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append(selectedFiles.name, selectedFiles, selectedFiles.name);
+    formData.append('ClientName', signeddetail.clientName);
+    formData.append('DocumentName', signeddetail.documentName);
+    // formData.append('CreatedOn', signeddetail.createdOn .toString());
+    formData.append('SignedOn', signeddetail.signedOn.toLocaleString());
+    formData.append('ExpiryDate', signeddetail.expiryDate.toString());
+    formData.append('TotalDeposit', signeddetail.totalDeposit.toString());
+    formData.append('Rental', signeddetail.rental.toString());
+    formData.append('Manintenace', signeddetail.manintenace.toString());
+    formData.append('Electrical', signeddetail.electrical.toString());
+    formData.append('Condition', signeddetail.condition);
+    formData.append('Remarks', signeddetail.remarks);
+
+    formData.append('BankName', signeddetail.bankName);
+    formData.append('HolderName', signeddetail.holderName);
+    formData.append('AccountNo', signeddetail.accountNo);
+    formData.append('ModeOfTransfer', signeddetail.modeofTransfer);
+    formData.append('IFSC', signeddetail.iFSC);
+    formData.append('Advance', signeddetail.advance);
+    formData.append('NoticePeriod', signeddetail.noticePeriod.toString());
+    return this.http.post<any>(this.baseAddress + 'api/Lease/UploadNewLease', formData,
+      // {
+      //   headers: new HttpHeaders({
+      //     'Content-Type': 'application/json'
+      //   })
+      // }
+      )
       .pipe(catchError(this.errorHandler));
   }
   //AddSignedFileDetail

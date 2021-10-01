@@ -3,33 +3,29 @@ import { CommonClass } from "./Common";
 
 export class LeaseManagement  extends CommonClass
 {
-    clientName: string;
-    company: string;
+   
     site: string;
-    fileName: string;
-    signedOn: Date | string | null;
-    clientSign: string;
-    siteSign: string ;
-    expiryDate: Date | string | null;
+    space:string;
+    asset:string;
+    clientName:string;
+    documentID:number;
+    documentName:string;
+    signedOn: Date ;
+    expiryDate: Date |string ;
     totalDeposit: number;
     rental: number;
-    maintenance: number;
-    electrical: number;
-    condition: string;
-    remarks: string;
-    renewalCount: number;
-    renewedOn: Date | string | null;
-    vacatedOn: Date | string | null;
-    terminatedOn: Date | string | null;
-    isVocated: boolean;
-    isTerminated: boolean;
     bankName: string;
     holderName : string;
-    accountNo : number;
+    accountNo : string;
     modeofTransfer : string;
     iFSC : string;
-    advanceRequest: string;
-// tslint:disable-next-line:eofline
+    advance: string;
+    manintenace:number;
+    electrical: number;
+    condition: string;
+    noticePeriod :number;
+    remarks: string;
+    status:string;
 }
 export class LeaseDocument  extends CommonClass
 {

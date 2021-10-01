@@ -104,7 +104,7 @@ vRemarks:any;
       this.clientdata = ind;
      console.log(this.clientdata.clientName)
      this.variableclient = this.clientdata.clientName
-     this.variablefilename = this.clientdata.fileName
+     this.variablefilename = this.clientdata.documentName
      this.variableCreatedOn = this.clientdata.createdOn
      this.variableExpiryDate = this.clientdata.expiryDate
      this.variableTotalDeposit = this.clientdata.totalDeposit
@@ -116,8 +116,8 @@ vRemarks:any;
      this.variaModeofTransfer = this.clientdata.modeofTransfer
      this.varIFSCCode = this.clientdata.iFSC
 
-     this.vAdvanceRequest = this.clientdata.advanceRequest
-     this.vMaintenance = this.clientdata.maintenance
+     this.vAdvanceRequest = this.clientdata.advance
+     this.vMaintenance = this.clientdata.manintenace
      this.vElectrical = this.clientdata.electrical
      this.vCondition = this.clientdata.condition
      this.vRemarks = this.clientdata.remarks
@@ -250,47 +250,45 @@ handleFileInput(event): void {
       })
   }
   saveclk(): void {
-    const signeddetail = new LeaseManagement();
-    // tslint:disable-next-line:align
-    signeddetail.clientName = this.SignedDocumentDetailsForm.get('Client').value;
-    // tslint:disable-next-line:align
-    signeddetail.fileName = this.SignedDocumentDetailsForm.get('FileName').value;
-    signeddetail.createdOn = this.SignedDocumentDetailsForm.get('CreatedOn').value;
-    signeddetail.expiryDate = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
-    signeddetail.totalDeposit = this.SignedDocumentDetailsForm.get('TotalDeposit').value;
-    signeddetail.rental = this.SignedDocumentDetailsForm.get('Rental').value;
-    signeddetail.maintenance = this.SignedDocumentDetailsForm.get('Maintenance').value;
-    signeddetail.electrical = this.SignedDocumentDetailsForm.get('Electrical').value;
-    signeddetail.condition = this.SignedDocumentDetailsForm.get('Condition').value;
-    signeddetail.remarks = this.SignedDocumentDetailsForm.get('Remarks').value;
-    signeddetail.site = "Site 1";
-    signeddetail.company = "EXA";
-    signeddetail.signedOn = this.SignedDocumentDetailsForm.get('CreatedOn').value;
-    signeddetail.siteSign = 'ABC';
-    signeddetail.renewalCount = 0;
-    signeddetail.renewedOn = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
-    signeddetail.vacatedOn = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
-    signeddetail.terminatedOn = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
-    signeddetail.isVocated = false;
-    signeddetail.isTerminated = false;
-    signeddetail.bankName = this.SignedDocumentDetailsForm.get('BankName').value;
-    signeddetail.holderName = this.SignedDocumentDetailsForm.get('HolderName').value;
-    signeddetail.accountNo = this.SignedDocumentDetailsForm.get('AccountNo').value;
-    signeddetail.modeofTransfer = this.SignedDocumentDetailsForm.get('ModeofTransfer').value;
-    signeddetail.iFSC = this.SignedDocumentDetailsForm.get('IFSCCode').value;
-    signeddetail.advanceRequest = this.SignedDocumentDetailsForm.get('AdvanceRequest').value;
-    this.service.AddSignedFileDetail(signeddetail).subscribe((x) => {
-      console.log(x);
-        const event = new MouseEvent('click', { bubbles: false });
-    // tslint:disable-next-line:align
-    this.fileInput1.nativeElement.dispatchEvent(event);
-      // tslint:disable-next-line:align
-      // this.filehandle();
-    },
-      err => {
-        console.log(err);
+    // const signeddetail = new LeaseManagement();
+    // signeddetail.clientName = this.SignedDocumentDetailsForm.get('Client').value;
+    // signeddetail.documentName = this.SignedDocumentDetailsForm.get('FileName').value;
+    // signeddetail.createdOn = this.SignedDocumentDetailsForm.get('CreatedOn').value;
+    // signeddetail.expiryDate = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
+    // signeddetail.totalDeposit = this.SignedDocumentDetailsForm.get('TotalDeposit').value;
+    // signeddetail.rental = this.SignedDocumentDetailsForm.get('Rental').value;
+    // signeddetail.maintenance = this.SignedDocumentDetailsForm.get('Maintenance').value;
+    // signeddetail.electrical = this.SignedDocumentDetailsForm.get('Electrical').value;
+    // signeddetail.condition = this.SignedDocumentDetailsForm.get('Condition').value;
+    // signeddetail.remarks = this.SignedDocumentDetailsForm.get('Remarks').value;
+    // signeddetail.site = "Site 1";
+    // signeddetail.company = "EXA";
+    // signeddetail.signedOn = this.SignedDocumentDetailsForm.get('CreatedOn').value;
+    // signeddetail.siteSign = 'ABC';
+    // signeddetail.renewalCount = 0;
+    // signeddetail.renewedOn = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
+    // signeddetail.vacatedOn = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
+    // signeddetail.terminatedOn = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
+    // signeddetail.isVocated = false;
+    // signeddetail.isTerminated = false;
+    // signeddetail.bankName = this.SignedDocumentDetailsForm.get('BankName').value;
+    // signeddetail.holderName = this.SignedDocumentDetailsForm.get('HolderName').value;
+    // signeddetail.accountNo = this.SignedDocumentDetailsForm.get('AccountNo').value;
+    // signeddetail.modeofTransfer = this.SignedDocumentDetailsForm.get('ModeofTransfer').value;
+    // signeddetail.iFSC = this.SignedDocumentDetailsForm.get('IFSCCode').value;
+    // signeddetail.advanceRequest = this.SignedDocumentDetailsForm.get('AdvanceRequest').value;
+    // this.service.AddSignedFileDetail(signeddetail).subscribe((x) => {
+    //   console.log(x);
+    //     const event = new MouseEvent('click', { bubbles: false });
+    // // tslint:disable-next-line:align
+    // this.fileInput1.nativeElement.dispatchEvent(event);
+    //   // tslint:disable-next-line:align
+    //   // this.filehandle();
+    // },
+    //   err => {
+    //     console.log(err);
 
-      })
+    //   })
 
   this.ShowValidationErrors(this.SignedDocumentDetailsForm)
   }

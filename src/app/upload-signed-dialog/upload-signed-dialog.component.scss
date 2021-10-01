@@ -58,22 +58,24 @@
         padding: 0 16px;
     }
     .placeholdertext{
-        font-size: 12px;
+        font-size: 13px;
         font-family: 'poppins-semi' !important;
       }
       .placeholdertext::placeholder{
         font-size: 12px !important;
         font-family: 'poppins-semi' !important;
-        color: #0d0c22 !important;
+        color: 
+        #596069 !important;
       }
       .formspan{
         color: #0d0c22;
-        font-size: 12px;
+        font-size: 11px;
         font-family: 'poppins-semi' !important;
         justify-content: left;
       }
       .form_field_cls{
           width: 70%;
+          font-size:14px;
       }
       .label_connect .mat-form-field-appearance-legacy .mat-form-field-label{
         font-size: 10px !important;
@@ -83,9 +85,9 @@
         width: 100% !important;
       }
       .condition_div_cls{
-          width: 56.5%;
-    padding-right: 25px;
-    padding-left: 40px;
+        width: 56.5%;
+        padding-right: 11px;
+        padding-left: 40px;
 
       }
       .dropzonengx{
@@ -98,16 +100,16 @@
         border: none;
     }
     .uploadfiles{
-        background-color: #ececec;
-        border-radius: 4px;
-        cursor: pointer;
-        width: 98%;
-        color: #fff;
-        font-size: 12px;
-        align-items: center;
-        font-family: Poppins;
-        height: 5rem;
-        padding: 4px 10px 4px 10px;
+      background-color: #ececec;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 101%;
+      color: #fff;
+      font-size: 12px;
+      align-items: center;
+      font-family: Poppins;
+      height: 5rem;
+      padding: 4px 10px 4px 10px;
     }
     .dragdrop-label{
         font-family: "poppins-semi" !important;
@@ -126,6 +128,7 @@
         color: #acacac;
        min-width: max-content;
     }
+    
     .dragdrop-label_2{
         min-width: -webkit-max-content;
         min-width: max-content;
@@ -141,5 +144,15 @@
     .close_hover{
         cursor: pointer;
     }
+    .attachment
+    {
+      font-size: 14px;
+    font-weight: bolder;
+    }
+    .div_condition
+    {
+      margin-top: 20px;
+    }
+    
   }
   
