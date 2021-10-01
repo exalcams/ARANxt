@@ -48,7 +48,7 @@ export class UploadSignedDialogComponent implements OnInit {
     Electrical: ['', Validators.required],
     Condition: ['', Validators.required],
     Remarks: ['', Validators.required],
-
+    NoticePeriod: ['', Validators.required],
   });
 }
 onSelect(event): void {
@@ -85,6 +85,7 @@ onRemove(event): void {
     signeddetail.modeofTransfer = this.SignedDocumentDetailsForm.get('ModeofTransfer').value;
     signeddetail.advance = this.SignedDocumentDetailsForm.get('AdvanceRequest').value;
     signeddetail.iFSC = this.SignedDocumentDetailsForm.get('IFSCCode').value;
+    signeddetail.noticePeriod = this.SignedDocumentDetailsForm.get('NoticePeriod').value;
 
    console.log("upload");
    
