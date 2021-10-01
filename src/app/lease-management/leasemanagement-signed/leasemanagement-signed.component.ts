@@ -23,6 +23,7 @@ import { UploadSignedDialogComponent } from 'src/app/upload-signed-dialog/upload
 })
 export class LeasemanagementSignedComponent implements OnInit {
   displayedColumns: string[] = [ 'select','ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action'];
+
   dataSource = new MatTableDataSource<any>([]);
   selection = new SelectionModel<any>(true, []);
   SelectedSpace:any[]=[];
@@ -44,6 +45,7 @@ export class LeasemanagementSignedComponent implements OnInit {
   valuetable :boolean = true;
   valueupload :boolean = false;
   notificationSnackBarComponent: NotificationSnackBarComponent;
+  clientdata: LeaseManagement;
   constructor(private formBuilder: FormBuilder, private datepipe: DatePipe, private service: LeaseManagementService,
     // tslint:disable-next-line:align
     private spinner:NgxSpinnerService,   public snackBar: MatSnackBar,public dialog: MatDialog) { 
@@ -66,15 +68,59 @@ export class LeasemanagementSignedComponent implements OnInit {
       //   this.loadallsigneddocuments(this.AllLeases[0]);
       // }
       this.spinner.hide();
+      this.allplaces(this.AllLeases);
+      console.log(this.AllLeases)
     },
     err=>{
       console.log(err);
       this.spinner.hide();
     });
-    this.allplaces();
+   
   }
-  allplaces(){
-    this.SelectedSpace = this.AllLeases;
+  allplaces(bindingdatalase){
+   this.SelectedSpace = bindingdatalase
+    console.log(this.SelectedSpace)
+    console.log(this.AllLeases)
+  }
+  variableclient:any;
+  variablefilename:any;
+variableCreatedOn:any;
+variableExpiryDate:any;
+variableTotalDeposit:any;
+variableRental:any;
+variableBankName:any;
+variableHolderName:any;
+variableAccountNo:any;
+variaModeofTransfer:any;
+varIFSCCode:any;
+vAdvanceRequest:any;
+vMaintenance:any;
+vElectrical:any;
+vCondition:any;
+vRemarks:any;
+
+
+  docdata(ind){
+      this.clientdata = ind;
+     console.log(this.clientdata.clientName)
+     this.variableclient = this.clientdata.clientName
+     this.variablefilename = this.clientdata.fileName
+     this.variableCreatedOn = this.clientdata.createdOn
+     this.variableExpiryDate = this.clientdata.expiryDate
+     this.variableTotalDeposit = this.clientdata.totalDeposit
+     this.variableRental = this.clientdata.rental
+     this.variableBankName = this.clientdata.bankName
+     this.variableHolderName = this.clientdata.holderName
+     this.variableAccountNo = this.clientdata.accountNo
+   
+     this.variaModeofTransfer = this.clientdata.modeofTransfer
+     this.varIFSCCode = this.clientdata.iFSC
+
+     this.vAdvanceRequest = this.clientdata.advanceRequest
+     this.vMaintenance = this.clientdata.maintenance
+     this.vElectrical = this.clientdata.electrical
+     this.vCondition = this.clientdata.condition
+     this.vRemarks = this.clientdata.remarks
   }
   GetRemainingDays(expiry){
     let today=new Date();
@@ -146,26 +192,26 @@ SignedFormGroup(): void
   });
 }
 // loadallsigneddocuments(AllLeases:LeaseManagement){
-//   this.SelectedSpace =AllLeases;
-//   console.log("selected",this.SelectedSpace)
-//   this.SignedDocumentDetailsForm.get('ClientName').setValue(this.SelectedSpace.client);
-//   this.SignedDocumentDetailsForm.get('FileName').setValue(this.SelectedSpace.fileName);
-//   this.SignedDocumentDetailsForm.get('CreationDate').setValue(this.SelectedSpace.createdOn);
-//   this.SignedDocumentDetailsForm.get('ExpiryDate').setValue(this.SelectedSpace.expiryDate);
-//   this.SignedDocumentDetailsForm.get('TotalDeposit').setValue(this.SelectedSpace.totalDeposit);
-//   this.SignedDocumentDetailsForm.get('Rental').setValue(this.SelectedSpace.rental);
-//   this.SignedDocumentDetailsForm.get('BankName').setValue(this.SelectedSpace.bankName);
-//   this.SignedDocumentDetailsForm.get('Electrical').setValue(this.SelectedSpace.electrical);
-//   this.SignedDocumentDetailsForm.get('Condition').setValue(this.SelectedSpace.condition);
-//   this.SignedDocumentDetailsForm.get('Remarks').setValue(this.SelectedSpace.remarks);
+  // this.SelectedSpace =AllLeases;
+  // console.log("selected",this.AllLeases)
+  // this.SignedDocumentDetailsForm.get('ClientName').setValue(this.SelectedSpace.client);
+  // this.SignedDocumentDetailsForm.get('FileName').setValue(this.SelectedSpace.fileName);
+  // this.SignedDocumentDetailsForm.get('CreationDate').setValue(this.SelectedSpace.createdOn);
+  // this.SignedDocumentDetailsForm.get('ExpiryDate').setValue(this.SelectedSpace.expiryDate);
+  // this.SignedDocumentDetailsForm.get('TotalDeposit').setValue(this.SelectedSpace.totalDeposit);
+  // this.SignedDocumentDetailsForm.get('Rental').setValue(this.SelectedSpace.rental);
+  // this.SignedDocumentDetailsForm.get('BankName').setValue(this.SelectedSpace.bankName);
+  // this.SignedDocumentDetailsForm.get('Electrical').setValue(this.SelectedSpace.electrical);
+  // this.SignedDocumentDetailsForm.get('Condition').setValue(this.SelectedSpace.condition);
+  // this.SignedDocumentDetailsForm.get('Remarks').setValue(this.SelectedSpace.remarks);
 
-//   this.SignedDocumentDetailsForm.get('ModeofTransfer').setValue(this.SelectedSpace.modeofTransfer);
-//   this.SignedDocumentDetailsForm.get('AccountNo').setValue(this.SelectedSpace.accountNo);
-//   this.SignedDocumentDetailsForm.get('HolderName').setValue(this.SelectedSpace.holderName);
+  // this.SignedDocumentDetailsForm.get('ModeofTransfer').setValue(this.SelectedSpace.modeofTransfer);
+  // this.SignedDocumentDetailsForm.get('AccountNo').setValue(this.SelectedSpace.accountNo);
+  // this.SignedDocumentDetailsForm.get('HolderName').setValue(this.SelectedSpace.holderName);
 
-//   this.SignedDocumentDetailsForm.get('Electrical').setValue(this.SelectedSpace.electrical);
-//   this.SignedDocumentDetailsForm.get('AdvanceRequest').setValue(this.SelectedSpace.advanceRequest);
-//   this.SignedDocumentDetailsForm.get('IFSCCode').setValue(this.SelectedSpace.iFSC);
+  // this.SignedDocumentDetailsForm.get('Electrical').setValue(this.SelectedSpace.electrical);
+  // this.SignedDocumentDetailsForm.get('AdvanceRequest').setValue(this.SelectedSpace.advanceRequest);
+  // this.SignedDocumentDetailsForm.get('IFSCCode').setValue(this.SelectedSpace.iFSC);
 // }
 
 
@@ -186,7 +232,7 @@ handleFileInput(event): void {
     // tslint:disable-next-line:align
     this.files.push(event.target.files[0]);
     const signeddetailFile = new LeaseDocument();
-    signeddetailFile.client = this.SignedDocumentDetailsForm.get('Client').value;
+    signeddetailFile.clientName = this.SignedDocumentDetailsForm.get('Client').value;
     signeddetailFile.site = "Site 1";
     signeddetailFile.company = "EXA";
     signeddetailFile.isDraft = false;
@@ -206,7 +252,7 @@ handleFileInput(event): void {
   saveclk(): void {
     const signeddetail = new LeaseManagement();
     // tslint:disable-next-line:align
-    signeddetail.client = this.SignedDocumentDetailsForm.get('Client').value;
+    signeddetail.clientName = this.SignedDocumentDetailsForm.get('Client').value;
     // tslint:disable-next-line:align
     signeddetail.fileName = this.SignedDocumentDetailsForm.get('FileName').value;
     signeddetail.createdOn = this.SignedDocumentDetailsForm.get('CreatedOn').value;
@@ -313,6 +359,8 @@ buttonvalueupload(){
 }
 
 highlight2(row){
-  this.selectedRowIndex2 = row.id;
+  console.log(row)
+  this.selectedRowIndex2 = row.leaseID;
+  console.log(this.selectedRowIndex2);
 }
 }

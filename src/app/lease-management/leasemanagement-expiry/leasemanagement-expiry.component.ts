@@ -1,6 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { LeaseDocument, LeaseManagement } from 'src/app/Model/Leasemanagement';
@@ -10,22 +10,29 @@ import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-leasemanagement-expiry',
   templateUrl: './leasemanagement-expiry.component.html',
-  styleUrls: ['./leasemanagement-expiry.component.scss']
+  styleUrls: ['./leasemanagement-expiry.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LeasemanagementExpiryComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action', 'ViewDetails'];
+  displayedColumns: string[] = ['select', 'ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action'];
+  clientdata: LeaseManagement;
   dataSource = new MatTableDataSource<any>([]);
   selection = new SelectionModel<any>(true, []);
   selectedRowIndex: any;
+  selectedRowIndex2 = -1;
+  
   // tslint:disable-next-line:typedef-whitespace
   // tslint:disable-next-line:variable-name
   btn_name: any = 'Upload Document';
   // tslint:disable-next-line:typedef-whitespace
   files: File[] = [];
   Mlease:LeaseManagement[]=[];
+  Mleasebinddata:LeaseManagement[]=[];
   SelectedSpace:LeaseManagement=new LeaseManagement();
   Mget:LeaseManagement[]=[];
   days=new Date();
+  valuetable :boolean = true;
+  valueupload :boolean = false;
   SignedDocumentDetailsForm: FormGroup;
   date: any = new Date((new Date().getTime() - 3888000000));
   // tslint:disable-next-line:no-inferrable-types
@@ -93,7 +100,7 @@ SignedFormGroup(): void
 loadallsigneddocuments(Mlease:LeaseManagement){
   this.SelectedSpace =Mlease;
   console.log("selected",this.SelectedSpace)
-  this.SignedDocumentDetailsForm.get('ClientName').setValue(this.SelectedSpace.client);
+  this.SignedDocumentDetailsForm.get('ClientName').setValue(this.SelectedSpace.clientName);
   this.SignedDocumentDetailsForm.get('FileName').setValue(this.SelectedSpace.fileName);
   this.SignedDocumentDetailsForm.get('CreationDate').setValue(this.SelectedSpace.createdOn);
   this.SignedDocumentDetailsForm.get('ExpiryDate').setValue(this.SelectedSpace.expiryDate);
@@ -103,6 +110,7 @@ loadallsigneddocuments(Mlease:LeaseManagement){
   this.SignedDocumentDetailsForm.get('Electrical').setValue(this.SelectedSpace.electrical);
   this.SignedDocumentDetailsForm.get('Condition').setValue(this.SelectedSpace.condition);
   this.SignedDocumentDetailsForm.get('Remarks').setValue(this.SelectedSpace.remarks);
+ 
 }
 
 
@@ -121,13 +129,64 @@ GetExpiryLeases(){
     if(this.Mlease.length>0){
       this.loadallsigneddocuments(this.Mlease[0]);
     }
+    this.allplaces(this.Mlease);
+    console.log(this.Mlease)
     this.spinner.hide();
   },
   err=>{
     console.log(err);
     this.spinner.hide();
   });
+  this.Mleasebinddata = this.Mlease
+  console.log(this.Mleasebinddata)
 }
+
+allplaces(bindingdatalase){
+  this.SelectedSpace = bindingdatalase
+   console.log(this.SelectedSpace)
+   console.log(this.Mlease)
+ }
+ variableclient:any;
+ variablefilename:any;
+variableCreatedOn:any;
+variableExpiryDate:any;
+variableTotalDeposit:any;
+variableRental:any;
+variableBankName:any;
+variableHolderName:any;
+variableAccountNo:any;
+variaModeofTransfer:any;
+varIFSCCode:any;
+vAdvanceRequest:any;
+vMaintenance:any;
+vElectrical:any;
+vCondition:any;
+vRemarks:any;
+
+
+ docdata(ind){
+     this.clientdata = ind;
+    console.log(this.clientdata.clientName)
+    this.variableclient = this.clientdata.clientName
+    this.variablefilename = this.clientdata.fileName
+    this.variableCreatedOn = this.clientdata.createdOn
+    this.variableExpiryDate = this.clientdata.expiryDate
+    this.variableTotalDeposit = this.clientdata.totalDeposit
+    this.variableRental = this.clientdata.rental
+    this.variableBankName = this.clientdata.bankName
+    this.variableHolderName = this.clientdata.holderName
+    this.variableAccountNo = this.clientdata.accountNo
+  
+    this.variaModeofTransfer = this.clientdata.modeofTransfer
+    this.varIFSCCode = this.clientdata.iFSC
+
+    this.vAdvanceRequest = this.clientdata.advanceRequest
+    this.vMaintenance = this.clientdata.maintenance
+    this.vElectrical = this.clientdata.electrical
+    this.vCondition = this.clientdata.condition
+    this.vRemarks = this.clientdata.remarks
+ }
+
 
 GetRemainingDays(expiry){
   let today=new Date();
@@ -174,6 +233,21 @@ changeSelection(row){
   setTimeout(()=>{
     this.selection.toggle(row);
   })
+}
+
+
+buttonvaluetable(){
+  this.valuetable = true;
+  this.valueupload = false;
+  }
+  buttonvalueupload(){
+    this.valuetable = false;
+    this.valueupload = true;
+  }
+  
+highlight2(row){
+  // this.Mleasebinddata[row]
+  this.selectedRowIndex2 = row.id;
 }
 }
 

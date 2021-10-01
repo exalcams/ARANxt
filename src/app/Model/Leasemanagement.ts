@@ -3,7 +3,7 @@ import { CommonClass } from "./Common";
 
 export class LeaseManagement  extends CommonClass
 {
-    client: string;
+    clientName: string;
     company: string;
     site: string;
     fileName: string;
@@ -33,7 +33,7 @@ export class LeaseManagement  extends CommonClass
 }
 export class LeaseDocument  extends CommonClass
 {
-    client: string;
+    clientName: string;
     company: string;
     site: string;
     isDraft: boolean;

@@ -1,29 +1,46 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { LeaseManagement } from 'src/app/Model/Leasemanagement';
 import { LeaseManagementService } from 'src/app/service/lease-management.service';
 
+export interface PeriodicElement {
+  select: string;
+  ClientName: string;
+  FileName: string;
+  DaysRemaining: string;
+  ExpiryDate:string;
+  Action:string
+}
+
+const ELEMENT_DATA: PeriodicElement[] = [
+  {select: '', ClientName: 'Hydrogen', FileName: 'oxygen',DaysRemaining:'25', ExpiryDate: '',Action:''},
+];
 @Component({
   selector: 'app-under-notice',
   templateUrl: './under-notice.component.html',
-  styleUrls: ['./under-notice.component.scss']
+  styleUrls: ['./under-notice.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class UnderNoticeComponent implements OnInit {
 
-  displayedColumns: string[] = ['ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action', 'ViewDetails'];
+  displayedColumns: string[] = ['select','ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action'];
+  dataSourcea = ELEMENT_DATA;
   dataSource = new MatTableDataSource<any>([]);
   selection = new SelectionModel<any>(true, []);
   selectedRowIndex: any;
+  selectedRowIndex2 = -1;
+  days=new Date();
   // tslint:disable-next-line:typedef-whitespace
   // tslint:disable-next-line:variable-name
   btn_name: any = 'Upload Document';
   // tslint:disable-next-line:typedef-whitespace
   files: File[] = [];
-
+  valuetable :boolean = true;
+  valueupload :boolean = false;
   SignedDocumentDetailsForm: FormGroup;
   date: any = new Date((new Date().getTime() - 3888000000));
   // tslint:disable-next-line:no-inferrable-types
@@ -111,7 +128,7 @@ SignedFormGroup(): void
 loadLeaseDetails(row:LeaseManagement){
   console.log("selected",row);
   this.SignedDocumentDetailsForm.patchValue({
-    ClientName: row.client,
+    ClientName: row.clientName,
     FileName :row.fileName,
     CreationDate: row.createdOn,
     ExpiryDate: row.expiryDate,
@@ -128,6 +145,7 @@ loadLeaseDetails(row:LeaseManagement){
     IFSC:row.iFSC,
     AdvanceRequest:row.advanceRequest
   });
+  this.highlight2(row)
 }
 upload(): void{
   this.uploadVisible = false;
@@ -148,4 +166,34 @@ GetRemainingDays(expiry){
   return rDays;
 }
 
+getWidth(days){
+  if(days>=20 && days<=30){
+    return "green" 
+  }
+  else   if(days>=10 && days<=20){
+    return "yellow" 
+  }
+  else   if(days<10){
+    return "red" 
+  }
+}
+
+
+buttonvaluetable(){
+  this.valuetable = true;
+  this.valueupload = false;
+  }
+  buttonvalueupload(){
+    this.valuetable = false;
+    this.valueupload = true;
+  }
+  
+  highlight2(row){
+    this.selectedRowIndex2 = row.id;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }
