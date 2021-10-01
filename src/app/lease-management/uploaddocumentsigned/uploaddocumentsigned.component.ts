@@ -110,47 +110,47 @@ handleFileInput(event): void {
     })
 }
 saveclk(): void {
-  const signeddetail = new LeaseManagement();
-  // tslint:disable-next-line:align
-  signeddetail.clientName = this.SignedDocumentDetailsForm.get('Client').value;
-  // tslint:disable-next-line:align
-  signeddetail.fileName = this.SignedDocumentDetailsForm.get('FileName').value;
-  signeddetail.createdOn = this.SignedDocumentDetailsForm.get('CreatedOn').value;
-  signeddetail.expiryDate = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
-  signeddetail.totalDeposit = this.SignedDocumentDetailsForm.get('TotalDeposit').value;
-  signeddetail.rental = this.SignedDocumentDetailsForm.get('Rental').value;
-  signeddetail.maintenance = this.SignedDocumentDetailsForm.get('Maintenance').value;
-  signeddetail.electrical = this.SignedDocumentDetailsForm.get('Electrical').value;
-  signeddetail.condition = this.SignedDocumentDetailsForm.get('Condition').value;
-  signeddetail.remarks = this.SignedDocumentDetailsForm.get('Remarks').value;
-  signeddetail.site = "Site 1";
-  signeddetail.company = "EXA";
-  signeddetail.signedOn = this.SignedDocumentDetailsForm.get('CreatedOn').value;
-  signeddetail.siteSign = 'ABC';
-  signeddetail.renewalCount = 0;
-  signeddetail.renewedOn = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
-  signeddetail.vacatedOn = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
-  signeddetail.terminatedOn = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
-  signeddetail.isVocated = false;
-  signeddetail.isTerminated = false;
-  signeddetail.bankName = this.SignedDocumentDetailsForm.get('BankName').value;
-  signeddetail.holderName = this.SignedDocumentDetailsForm.get('HolderName').value;
-  signeddetail.accountNo = this.SignedDocumentDetailsForm.get('AccountNo').value;
-  signeddetail.modeofTransfer = this.SignedDocumentDetailsForm.get('ModeofTransfer').value;
-  signeddetail.iFSC = this.SignedDocumentDetailsForm.get('IFSCCode').value;
-  signeddetail.advanceRequest = this.SignedDocumentDetailsForm.get('AdvanceRequest').value;
-  this.service.AddSignedFileDetail(signeddetail).subscribe((x) => {
-    console.log(x);
-      const event = new MouseEvent('click', { bubbles: false });
-  // tslint:disable-next-line:align
-  this.fileInput1.nativeElement.dispatchEvent(event);
-    // tslint:disable-next-line:align
-    // this.filehandle();
-  },
-    err => {
-      console.log(err);
+  // const signeddetail = new LeaseManagement();
+  // // tslint:disable-next-line:align
+  // signeddetail.client = this.SignedDocumentDetailsForm.get('Client').value;
+  // // tslint:disable-next-line:align
+  // signeddetail.fileName = this.SignedDocumentDetailsForm.get('FileName').value;
+  // signeddetail.createdOn = this.SignedDocumentDetailsForm.get('CreatedOn').value;
+  // signeddetail.expiryDate = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
+  // signeddetail.totalDeposit = this.SignedDocumentDetailsForm.get('TotalDeposit').value;
+  // signeddetail.rental = this.SignedDocumentDetailsForm.get('Rental').value;
+  // signeddetail.maintenance = this.SignedDocumentDetailsForm.get('Maintenance').value;
+  // signeddetail.electrical = this.SignedDocumentDetailsForm.get('Electrical').value;
+  // signeddetail.condition = this.SignedDocumentDetailsForm.get('Condition').value;
+  // signeddetail.remarks = this.SignedDocumentDetailsForm.get('Remarks').value;
+  // signeddetail.site = "Site 1";
+  // signeddetail.company = "EXA";
+  // signeddetail.signedOn = this.SignedDocumentDetailsForm.get('CreatedOn').value;
+  // signeddetail.siteSign = 'ABC';
+  // signeddetail.renewalCount = 0;
+  // signeddetail.renewedOn = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
+  // signeddetail.vacatedOn = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
+  // signeddetail.terminatedOn = this.SignedDocumentDetailsForm.get('ExpiryDate').value;
+  // signeddetail.isVocated = false;
+  // signeddetail.isTerminated = false;
+  // signeddetail.bankName = this.SignedDocumentDetailsForm.get('BankName').value;
+  // signeddetail.holderName = this.SignedDocumentDetailsForm.get('HolderName').value;
+  // signeddetail.accountNo = this.SignedDocumentDetailsForm.get('AccountNo').value;
+  // signeddetail.modeofTransfer = this.SignedDocumentDetailsForm.get('ModeofTransfer').value;
+  // signeddetail.iFSC = this.SignedDocumentDetailsForm.get('IFSCCode').value;
+  // signeddetail.advanceRequest = this.SignedDocumentDetailsForm.get('AdvanceRequest').value;
+  // this.service.AddSignedFileDetail(signeddetail).subscribe((x) => {
+  //   console.log(x);
+  //     const event = new MouseEvent('click', { bubbles: false });
+  // // tslint:disable-next-line:align
+  // this.fileInput1.nativeElement.dispatchEvent(event);
+  //   // tslint:disable-next-line:align
+  //   // this.filehandle();
+  // },
+  //   err => {
+  //     console.log(err);
 
-    })
+  //   })
 
 }
 

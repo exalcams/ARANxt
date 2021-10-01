@@ -135,12 +135,12 @@ loadLeaseDetails(row:LeaseManagement){
   console.log("selected",row);
   this.SignedDocumentDetailsForm.patchValue({
     ClientName: row.clientName,
-    FileName :row.fileName,
+    FileName :row.documentName,
     CreationDate: row.createdOn,
     ExpiryDate: row.expiryDate,
     TotalDeposit : row.totalDeposit,
     Rental: row.rental,
-    Maintenance: row.maintenance,
+    Maintenance: row.manintenace,
     Electrical: row.electrical,
     Condition: row.condition,
     Remarks: row.remarks,
@@ -149,7 +149,7 @@ loadLeaseDetails(row:LeaseManagement){
     AccountNo:row.accountNo,
     ModeOfTransfer:row.modeofTransfer,
     IFSC:row.iFSC,
-    AdvanceRequest:row.advanceRequest
+    AdvanceRequest:row.advance
   });
 }
 

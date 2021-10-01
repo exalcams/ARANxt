@@ -101,12 +101,12 @@ loadallsigneddocuments(Mlease:LeaseManagement){
   this.SelectedSpace =Mlease;
   console.log("selected",this.SelectedSpace)
   this.SignedDocumentDetailsForm.get('ClientName').setValue(this.SelectedSpace.clientName);
-  this.SignedDocumentDetailsForm.get('FileName').setValue(this.SelectedSpace.fileName);
+  this.SignedDocumentDetailsForm.get('FileName').setValue(this.SelectedSpace.documentName);
   this.SignedDocumentDetailsForm.get('CreationDate').setValue(this.SelectedSpace.createdOn);
   this.SignedDocumentDetailsForm.get('ExpiryDate').setValue(this.SelectedSpace.expiryDate);
   this.SignedDocumentDetailsForm.get('TotalDeposit').setValue(this.SelectedSpace.totalDeposit);
   this.SignedDocumentDetailsForm.get('Rental').setValue(this.SelectedSpace.rental);
-  this.SignedDocumentDetailsForm.get('Maintenance').setValue(this.SelectedSpace.maintenance);
+  this.SignedDocumentDetailsForm.get('Maintenance').setValue(this.SelectedSpace.manintenace);
   this.SignedDocumentDetailsForm.get('Electrical').setValue(this.SelectedSpace.electrical);
   this.SignedDocumentDetailsForm.get('Condition').setValue(this.SelectedSpace.condition);
   this.SignedDocumentDetailsForm.get('Remarks').setValue(this.SelectedSpace.remarks);
@@ -168,7 +168,7 @@ vRemarks:any;
      this.clientdata = ind;
     console.log(this.clientdata.clientName)
     this.variableclient = this.clientdata.clientName
-    this.variablefilename = this.clientdata.fileName
+    this.variablefilename = this.clientdata.documentName
     this.variableCreatedOn = this.clientdata.createdOn
     this.variableExpiryDate = this.clientdata.expiryDate
     this.variableTotalDeposit = this.clientdata.totalDeposit
@@ -180,8 +180,8 @@ vRemarks:any;
     this.variaModeofTransfer = this.clientdata.modeofTransfer
     this.varIFSCCode = this.clientdata.iFSC
 
-    this.vAdvanceRequest = this.clientdata.advanceRequest
-    this.vMaintenance = this.clientdata.maintenance
+    this.vAdvanceRequest = this.clientdata.advance
+    this.vMaintenance = this.clientdata.manintenace
     this.vElectrical = this.clientdata.electrical
     this.vCondition = this.clientdata.condition
     this.vRemarks = this.clientdata.remarks
