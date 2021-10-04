@@ -2,6 +2,7 @@ import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips/chip-input';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-send-mail-dialog',
@@ -12,18 +13,20 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class SendMailDialogComponent implements OnInit {
 
   form: FormGroup;
-  ccList = new Set([]);
-  bccList = new Set([]);
-  removable:boolean=true;
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   constructor(
     public dialogRef: MatDialogRef<SendMailDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder
   ) {
     this.form = this.fb.group({
-      toMail: ['', [Validators.required,Validators.email]],
-      cc: [''],
-      bcc: [''],
+      toMail: [[], [Validators.required]],
+      cc: [[]],
+      bcc: [[]],
       subject: [''],
       body: [''],
       documentID: [this.data.documentID]
@@ -37,26 +40,59 @@ export class SendMailDialogComponent implements OnInit {
   close() {
     this.dialogRef.close(false);
   }
-  addCCFromInput(event: MatChipInputEvent) {
-    if (event.value) {
-      this.ccList.add(event.value);
-      event.input.value="";
+  get toList() {
+    return this.form.get('toMail');
+  }
+  get ccList() {
+    return this.form.get('cc');
+  }
+  get bccList() {
+    return this.form.get('bcc');
+  }
+  add(event: MatChipInputEvent,control:string): void {
+    const input = event.input;
+    const value = event.value;
+    if ((value || '').trim()) {
+      if(control=="to"){
+        this.toList.setValue([...this.toList.value, value.trim()]);
+        this.toList.updateValueAndValidity();
+      }
+      else if(control=="cc"){
+        this.ccList.setValue([...this.ccList.value, value.trim()]);
+        this.ccList.updateValueAndValidity();
+      }
+      else if(control=="bcc"){
+        this.bccList.setValue([...this.bccList.value, value.trim()]);
+        this.bccList.updateValueAndValidity();
+      }
+    }
+    if (input) {
+      input.value = '';
     }
   }
 
-  removeCC(cc: string) {
-    this.ccList.delete(cc);
-  }
-
-  addBCCFromInput(event: MatChipInputEvent) {
-    if (event.value) {
-      this.bccList.add(event.value);
-      event.input.value="";
+  remove(item: string,control:string): void {
+    if(control=="to"){
+      const index = this.toList.value.indexOf(item);
+      if (index >= 0) {
+        this.toList.value.splice(index, 1);
+        this.toList.updateValueAndValidity();
+      }
     }
-  }
-
-  removeBCC(bcc: string) {
-    this.bccList.delete(bcc);
+    else if(control=="cc"){
+      const index = this.ccList.value.indexOf(item);
+      if (index >= 0) {
+        this.ccList.value.splice(index, 1);
+        this.ccList.updateValueAndValidity();
+      }
+    }
+    else if(control=="bcc"){
+      const index = this.bccList.value.indexOf(item);
+      if (index >= 0) {
+        this.bccList.value.splice(index, 1);
+        this.bccList.updateValueAndValidity();
+      }
+    }
   }
   ShowValidationErrors(formGroup: FormGroup): void {
     Object.keys(formGroup.controls).forEach(key => {

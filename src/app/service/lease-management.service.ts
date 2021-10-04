@@ -43,16 +43,16 @@ export class LeaseManagementService {
     })
     .pipe(catchError(this.errorHandler));
   }
-  UploadLeaseDraft(selectedFiles: File[], client = "001", company = "Exa", site = "site1"): Observable<any> {
+  UploadLeaseDraft(selectedFiles: File[],draft:LeaseDraft): Observable<any> {
     const formData: FormData = new FormData();
     if (selectedFiles && selectedFiles.length) {
       selectedFiles.forEach(x => {
         formData.append(x.name, x, x.name);
       });
     }
-    formData.append('Client', client);
-    formData.append('Company', company);
-    formData.append('Site', site);
+    formData.append('documentName', draft.documentName);
+    formData.append('documentOwner', draft.documentOwner);
+    formData.append('documentType', draft.documentType);
     return this.http.post<any>(`${this.baseAddress}api/Lease/UploadLeaseDraft`,
       formData
     ).pipe(catchError(this.errorHandler));
@@ -151,5 +151,20 @@ export class LeaseManagementService {
         })
       })
       .pipe(catchError(this.errorHandler));
+  }
+  SendMailFromDraft(mailTemplate: any): Observable<any> {
+    return this.http.post<any>(this.baseAddress + 'api/Lease/SendMailFromDraft', mailTemplate,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+      })
+      .pipe(catchError(this.errorHandler));
+  }
+  DownloadLeaseDraft(documentID:number): Observable<any> {
+    return this.http.get(`${this.baseAddress}api/Lease/DownloadLeaseDraft?documentID=${documentID}`,{
+      responseType:'blob'
+    })
+    .pipe(catchError(this.errorHandler));
   }
 }

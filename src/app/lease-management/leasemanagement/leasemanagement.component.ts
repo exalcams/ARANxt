@@ -13,6 +13,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/notification-snackbar-status-enum';
 import { LeaseDraft } from 'src/app/Model/Leasemanagement';
 import { SendMailDialogComponent } from 'src/app/send-mail-dialog/send-mail-dialog.component';
+import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
+import { saveAs } from 'file-saver';
 export interface UserData {
 
   Documentname: string;
@@ -70,15 +72,18 @@ export class LeasemanagementComponent implements OnInit {
   newLeaseDraft: LeaseDraft = new LeaseDraft();
   leaseDraft1: LeaseDraft = new LeaseDraft();
   leaseDraft2: LeaseDraft = new LeaseDraft();
-
+  editorConfig:any;
   constructor(private dialog: MatDialog, private service: LeaseManagementService,
     private spinner: NgxSpinnerService, private cdr: ChangeDetectorRef,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar, private socialAuthService: SocialAuthService) {
     this.notificationSnackBarComponent = new NotificationSnackBarComponent(this.snackBar);
   }
 
   ngOnInit(): void {
     this.getAllDrafts();
+    this.editorConfig={
+      height:window.innerHeight-328+'px'
+    }
   }
 
   getAllDrafts() {
@@ -86,7 +91,7 @@ export class LeasemanagementComponent implements OnInit {
     this.service.GetLeaseDrafts().subscribe(res => {
       this.LeaseDrafts = res;
       this.dataSource = new MatTableDataSource(this.LeaseDrafts);
-      this.selection=new SelectionModel<any>(true, []);
+      this.selection = new SelectionModel<any>(true, []);
       this.spinner.hide();
       console.log("LeaseDrafts", res);
     },
@@ -162,18 +167,33 @@ export class LeasemanagementComponent implements OnInit {
     }
   }
   openGdrive() {
-    const dialogRef = this.dialog.open(GDriveComponent,
-      {
-        panelClass: "g-drive-dialog"
-      }
-    );
-    dialogRef.disableClose = true;
-    dialogRef.afterClosed().subscribe(res => {
-      if (res) {
-        this.files.push(res.file);
-        this.cdr.detectChanges();
-      }
-    });
+    this.spinner.show();
+    let signInOptions = {
+      scope: "https://www.googleapis.com/auth/drive"
+    }
+    // let fileID = "1QMOPHcNxzlLTFlwbQa1n5t_WU3yMsN5R";
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID, signInOptions)
+      .then((data) => {
+        console.log(data);
+        const dialogRef = this.dialog.open(GDriveComponent,
+          {
+            panelClass: "g-drive-dialog",
+            data:data
+          }
+        );
+        dialogRef.disableClose = true;
+        dialogRef.afterClosed().subscribe(res => {
+          if (res) {
+            this.files.push(res.file);
+            this.cdr.detectChanges();
+          }
+        });
+        this.spinner.hide;
+      },
+      err=>{
+        console.log(err);
+        this.spinner.hide();
+      });
   }
   OpenFileFromLink() {
     let link = "test";
@@ -189,12 +209,12 @@ export class LeasemanagementComponent implements OnInit {
         console.log(err);
       })
   }
-  addDraftToTable() {
+  UploadDraftDocument() {
     if (this.files.length > 0) {
       this.openDraftDialog(2);
     }
     else {
-      this.notificationSnackBarComponent.openSnackBar("Please attach document", SnackBarStatus.danger);
+      this.notificationSnackBarComponent.openSnackBar("please attach document", SnackBarStatus.danger);
     }
   }
 
@@ -211,7 +231,7 @@ export class LeasemanagementComponent implements OnInit {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   }
 
-  openDraftDialog(mode: number) {          //1.new draft  2.edit draft  3.upload doc
+  openDraftDialog(mode: number) {          //1.save draft  2.upload doc
     const dialogRef = this.dialog.open(DraftDialogComponent,
       {
         panelClass: "draft-dialog"
@@ -229,6 +249,11 @@ export class LeasemanagementComponent implements OnInit {
         }
         else {
           //convert and save lease draft
+          var draft=new LeaseDraft();
+          draft.documentName=res.documentName;
+          draft.documentOwner=res.documentOwner;
+          draft.documentType=res.documentType;
+          this.uploadLeaseDraft(draft);
         }
       }
     });
@@ -245,6 +270,20 @@ export class LeasemanagementComponent implements OnInit {
         console.log(err);
       });
   }
+  uploadLeaseDraft(draft:LeaseDraft){
+    this.spinner.show();
+    this.service.UploadLeaseDraft(this.files,draft).subscribe(() => {
+      this.spinner.hide();
+      this.getAllDrafts();
+      this.files=[];
+      console.log("draft saved");
+    },
+      err => {
+        this.spinner.hide();
+        console.log(err);
+        this.files=[];
+      });
+  }
   openDratEdtitor(row: LeaseDraft) {
     this.selectedPage = 'edit';
     this.editor1 = true;
@@ -253,7 +292,7 @@ export class LeasemanagementComponent implements OnInit {
   }
   openMultiDraftEditor() {
     if (this.selection.selected.length == 0) {
-      this.notificationSnackBarComponent.openSnackBar("Plese select document to edit", SnackBarStatus.danger);
+      this.notificationSnackBarComponent.openSnackBar("plese select document to edit", SnackBarStatus.danger);
     }
     else {
       console.log(this.selection.selected);
@@ -271,24 +310,41 @@ export class LeasemanagementComponent implements OnInit {
       }
     }
   }
-  DeleteLeaseDrafts(){
-    if(this.selection.selected.length>0){
-      let ids=[];
-      this.selection.selected.forEach((draft:LeaseDraft) => {
+  DeleteLeaseDrafts() {
+    if (this.selection.selected.length > 0) {
+      let ids = [];
+      this.selection.selected.forEach((draft: LeaseDraft) => {
         ids.push(draft.documentID);
       });
       this.spinner.show();
-      this.service.DeleteLeaseDraft(ids).subscribe(res=>{
+      this.service.DeleteLeaseDraft(ids).subscribe(res => {
         this.spinner.hide();
         this.getAllDrafts();
       },
-      err=>{
-        console.log(err);
-        this.spinner.hide();
+        err => {
+          console.log(err);
+          this.spinner.hide();
+        });
+    }
+    else {
+      this.notificationSnackBarComponent.openSnackBar("please select a document", SnackBarStatus.danger);
+    }
+  }
+  DownloadLeaseDrafts() {
+    if (this.selection.selected.length > 0) {
+      this.selection.selected.forEach((draft: LeaseDraft) => {
+        this.service.DownloadLeaseDraft(draft.documentID).subscribe((res)=>{
+          let blob:any = new Blob([res], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+          saveAs(blob, `${draft.documentName}.docx`);
+          console.log(`${draft.documentName} downloaded`);
+        },
+        err=>{
+          console.log(err);
+        });
       });
     }
-    else{
-      this.notificationSnackBarComponent.openSnackBar("Please select a document",SnackBarStatus.danger);
+    else {
+      this.notificationSnackBarComponent.openSnackBar("please select a document", SnackBarStatus.danger);
     }
   }
   saveNewDraft() {
@@ -300,18 +356,27 @@ export class LeasemanagementComponent implements OnInit {
   saveDraft2() {
     this.saveLeaseDraft(this.leaseDraft2);
   }
-  openSendMailDialog(documentID){
+  openSendMailDialog(documentID) {
     const dialogRef = this.dialog.open(SendMailDialogComponent,
       {
         panelClass: "send-mail-dialog",
-        data:{documentID:documentID}
+        data: { documentID: documentID }
       }
     );
     dialogRef.disableClose = true;
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
-        console.log("send-mail-dialog", res)
-        
+        console.log("send-mail-dialog", res);
+        this.spinner.show();
+        this.service.SendMailFromDraft(res).subscribe(() => {
+          console.log("Mail sent");
+          this.notificationSnackBarComponent.openSnackBar("email has been sent", SnackBarStatus.success);
+          this.spinner.hide();
+        },
+          err => {
+            console.log(err);
+            this.spinner.hide();
+          });
       }
     });
   }

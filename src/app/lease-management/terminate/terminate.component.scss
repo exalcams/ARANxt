@@ -53,18 +53,6 @@
     width: max-content;
   }
   
-  .mat-cell {
-    padding: 8px 8px 8px 0;
-    min-width: 50% !important;
-    width: max-content;
-  }
-
-  .mat-cell, .mat-header-cell {
-    border: none !important;
-    font-size: 11px;
-    padding: 10px 25px 0px 0;
-    overflow: hidden;
-  }
   .actionstable{
     height: 14px;
 }
@@ -75,14 +63,6 @@
 
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
     background-color: black;
-  }
-  ::ng-deep  .mat-cell, .mat-header-cell {
-    border: none !important;
-    font-size: 11px;
-    padding: 0px 25px 0px 0;
-    color:
-    #6e6d7a;
-    font-weight: 600px;
   }
   .upload_btn
   {
@@ -264,35 +244,6 @@ tr.mat-header-row {
   margin-left: 8px !important;
 
 }
-// ::ng-deep.mat-datepicker-content .mat-calendar{
-//   width: 10px !important;
-//   height: 10px !important;
-// }
-// 
-// .mat-row,
-// .mat-header-row {
-//   min-width: 1123px;
-//   width: 100%;
-//   width: max-content;
-// }
-
-// .mat-table {
-//   overflow: scroll;
-//   max-height: 500px;
-// }
-
-// .mat-cell,
-// .mat-header-cell {
-//   min-width: 90px;
-// }
-// /*unnecessary to make table header fixed*/
-// .mat-header-row {
-//   top: 0;
-//   position: sticky;
-//   z-index: 1;
-//   background-color: inherit;
-//   text-align: center;
-// }
 
 
 
@@ -313,18 +264,8 @@ tr.mat-header-row {
 
 
 .datarow{
-  font-size: 10px !important;
+  font-size: 11px !important;
   font-family: 'poppins-semi' !important;
-}
-// .datarow:hover{
-//   font-family: 'poppins-semi' !important;
-//   font-size: 12px;
-//   color: black;
-// }
-.datarowrow:hover{
-  font-family: 'poppins-semi' !important;
-  font-size: 12px;
-  color: black;
 }
 
 .mat-sidenav-backdrop.mat-sidenav-shown{
@@ -344,15 +285,6 @@ tr.mat-header-row {
   line-height: 3.5;
 
 }
-tr{
-  background-color: #f4f3f4;
-  border-bottom-style:none;
-}
-tr:hover{
-  font-size: 12px !important;
-  font-family: 'poppins-semi' !important;
-  color: #0d0c22 !important;
-}
 
 .labelcss{
   font-size: 11px;
@@ -371,11 +303,6 @@ tr:hover{
 
 td{
   font-size: 12px !important;
-}
-tr:hover {
-   color: black;
-   cursor: pointer;
-   font-family: 'poppins-semi' !important;
 }
 th{
   font-family: 'poppins-semi' !important;
@@ -405,14 +332,7 @@ height: 40px !important;
 
 .mat-cell, .mat-header-cell {
   border: none !important;
-  font-size: 12px;
-}
-::ng-deep  .mat-cell, .mat-header-cell {
-  border: none !important;
-  font-size: 12px;
-  color:
-  #6e6d7a;
-  font-weight: 500;
+  font-size: 11px;
 }
 
 tr{
@@ -421,11 +341,6 @@ tr{
 }
 td{
   background-color: white;
-}
-tr:hover{
-  font-size: 12px !important;
-  font-family: 'poppins-semi' !important;
-  color: #0d0c22 !important;
 }
 
 .form_bg
@@ -453,10 +368,10 @@ tr:hover{
 }
 
 .toggleimage{
-  width: 12px;cursor: pointer;
-  justify-content: start start;
-  margin-left: -230px;
-  margin-top: 10px;
+  width: 12px;
+    cursor: pointer;
+    padding: 10px;
+    transform: rotate(180deg);
 }
 
 
@@ -465,4 +380,8 @@ tr:hover{
     color: #0d0c22;
     font-weight: 600;
   }
+}
+.mat-cell, .mat-header-cell {
+  border: none !important;
+  color:#6e6d7a;
 }

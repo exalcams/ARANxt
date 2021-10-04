@@ -340,12 +340,6 @@ tr{
   background-color: transparent !important;
 }
 
-.highlight2{
-  font-size: 12px;
-  font-family: 'poppins-semi' !important;
-  color: #0d0c22;
-}
-
 .highlight3{
   .mat-cell, .mat-header-cell {
     color: #0d0c22;
@@ -382,7 +376,7 @@ tr{
 }
 
 .highlight2{
-  font-size: 12px;
+  font-size: 11px;
   font-family: 'poppins-semi' !important;
   color: #0d0c22;
 }
@@ -397,15 +391,6 @@ tr{
   background-color: #f4f3f4;
   border-bottom-style:none;
 }
-tr:hover{
-  font-size: 12px !important;
-  font-family: 'poppins-semi' !important;
-  color: #0d0c22 !important;
-}
-
-
-
-
 
 .mat-row {
   height: auto;
@@ -416,17 +401,6 @@ tr:hover{
   padding: 8px 8px 8px 0;
 }
 
-.mat-cell, .mat-header-cell {
-  border: none !important;
-  font-size: 12px;
-}
-::ng-deep  .mat-cell, .mat-header-cell {
-  border: none !important;
-  font-size: 12px;
-  color:
-  #6e6d7a;
-  font-weight: 500;
-}
 
 .form_bg
   {
@@ -451,8 +425,16 @@ tr:hover{
 }
 
 .toggleimage{
-  width: 12px;cursor: pointer;
-  justify-content: start start;
-  // margin-left: -200px;
-  // margin-top: 10px;
+    width: 12px;
+    cursor: pointer;
+    padding: 10px;
+    transform: rotate(180deg);
+}
+.datarow{
+  font-size: 11px !important;
+  font-family: 'poppins-semi' !important;
+}
+.mat-cell, .mat-header-cell {
+  border: none !important;
+  color:#6e6d7a;
 }

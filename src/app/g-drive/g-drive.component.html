@@ -11,8 +11,8 @@
             [ngStyle]="{'border':file.id == selectedID ? '2px solid #5f2cff' : 'none' }" (click)="selectFile(file.id)">{{file.name}}</div>
         </div>
     </mat-dialog-content>
-    <mat-dialog-actions class="m-0 p-16 footer" fxLayoutAlign="center center">
-        <button mat-button *ngIf="selectedID" type="button" class="savebtn" (click)="DownloadFile()">Select</button>
-        <button mat-button type="button" class="savebtn" (click)="close()">Close</button>
+    <mat-dialog-actions class="m-0 p-16 footer" fxLayoutAlign="center center" fxLayoutGap="16px">
+        <button mat-raised-button *ngIf="selectedID" type="button" class="savebtn" (click)="DownloadFile()">Select</button>
+        <button mat-raised-button type="button" (click)="close()">Close</button>
     </mat-dialog-actions>
   </div>

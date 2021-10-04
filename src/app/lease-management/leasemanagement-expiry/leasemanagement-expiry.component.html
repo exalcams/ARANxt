@@ -5,7 +5,7 @@
       <button mat-flat-button class="Renew_btn">Renew</button>
       <button mat-flat-button class="Renew_btn">Vacate</button>
       <button mat-flat-button class="Renew_btn">Terminate</button>
-      <button mat-flat-button class="Renew_btn">Send</button>
+      <!-- <button mat-flat-button class="Renew_btn">Send</button> -->
       <!-- <button mat-flat-button class="Renew_btn">Delete</button> -->
     </div>
     <div fxFlex="29" fxLayout="row" class="btn_bg">
@@ -19,83 +19,62 @@
   <mat-sidenav-container class="example-container" autosize hasBackdrop="false">
     <mat-sidenav #drawer class="example-sidenav " position="end" mode="side">
 
-      <div fxLayout="column" fxLayoutAlign="space-evenly center" fxlayoutGap="10px"
-        style="width: 100%;height: 100% !important;">
+      <div style="width: 100%;height: 100% !important;">
 
-        <div class="form_bg" fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
-        
-    
+        <div class="form_bg" fxLayout="column" fxLayoutGap="10px">
+
           <img class="toggleimage" (click)="drawer.toggle()" src="./assets/slide_close_arrow.svg">
-          <!-- {{variableclient}}
-          {{variablefilename}}
-          {{variableCreatedOn}}
-          {{variableExpiryDate}}
-          {{variableTotalDeposit}}
-          {{variableRental}}
-          {{variableBankName}}
-          {{variableHolderName}}
-          {{variableAccountNo}}
-          {{variaModeofTransfer}}
-          {{varIFSCCode}}
-          {{vAdvanceRequest}}
-          {{vMaintenance}}
-          {{vRemarks}}
-          {{vElectrical}}
-          {{vCondition}} -->
-       
-          <div fxLayout="row" fxFlex="100" fxLayoutAlign="start center" class="clientview">
+
+          <div fxLayout="row" class="clientview">
             <div fxFlex="50" class="labelcss">Client Name</div>
             <div fxFlex="50" class="labelcssvalue"> {{variableclient}}</div>
           </div>
-          <div fxLayout="row" fxFlex="100" fxLayoutAlign="start center" class="clientview">
+          <div fxLayout="row" class="clientview">
             <div fxFlex="50" class="labelcss">FileName</div>
             <div fxFlex="50" class="labelcssvalue">{{variablefilename}}</div>
           </div>
-          <div fxLayout="row" fxFlex="100" fxLayoutAlign="start center" class="clientview">
+          <div fxLayout="row" class="clientview">
             <div fxFlex="50" class="labelcss">Creation Date</div>
             <div fxFlex="50" class="labelcssvalue">{{variableCreatedOn}}</div>
           </div>
-          <div fxLayout="row" fxFlex="100" fxLayoutAlign="start center" class="clientview">
+          <div fxLayout="row" class="clientview">
             <div fxFlex="50" class="labelcss">Expiry Date</div>
             <div fxFlex="50" class="labelcssvalue">{{variableExpiryDate}}</div>
           </div>
-          <div fxLayout="row" fxFlex="100" fxLayoutAlign="start center" class="clientview">
+          <div fxLayout="row" class="clientview">
             <div fxFlex="50" class="labelcss">Total Deposit</div>
             <div fxFlex="50" class="labelcssvalue">{{variableTotalDeposit}}</div>
           </div>
-          <div fxLayout="row" fxFlex="100" fxLayoutAlign="start center" class="clientview">
+          <div fxLayout="row" class="clientview">
             <div fxFlex="50" class="labelcss">Rental</div>
             <div fxFlex="50" class="labelcssvalue"> {{variableRental}}</div>
           </div>
-          
-          <div fxLayout="row" fxFlex="100" fxLayoutAlign="start center" class="clientview">
-            <div  fxFlex="50"class="labelcss">Maintenance</div>
-            <div  fxFlex="50"class="labelcssvalue"> {{vMaintenance}}</div>
+
+          <div fxLayout="row" class="clientview">
+            <div fxFlex="50" class="labelcss">Maintenance</div>
+            <div fxFlex="50" class="labelcssvalue"> {{vMaintenance}}</div>
           </div>
-          <div fxLayout="row" fxFlex="100" fxLayoutAlign="start center" class="clientview">
-            <div  fxFlex="50"class="labelcss">Remarks</div>
-            <div  fxFlex="50"class="labelcssvalue"> {{vRemarks}}</div>
+          <div fxLayout="row" class="clientview">
+            <div fxFlex="50" class="labelcss">Remarks</div>
+            <div fxFlex="50" class="labelcssvalue"> {{vRemarks}}</div>
           </div>
-          <div fxLayout="row" fxFlex="100" fxLayoutAlign="start center" class="clientview">
-            <div  fxFlex="50"class="labelcss">Electrical</div>
-            <div  fxFlex="50"class="labelcssvalue"> {{vElectrical}}</div>
+          <div fxLayout="row" class="clientview">
+            <div fxFlex="50" class="labelcss">Electrical</div>
+            <div fxFlex="50" class="labelcssvalue"> {{vElectrical}}</div>
           </div>
-          <div fxLayout="row" fxFlex="100" fxLayoutAlign="start center" class="clientview">
-            <div  fxFlex="50"class="labelcss">Condition</div>
-            <div  fxFlex="50"class="labelcssvalue">{{vCondition}}</div>
+          <div fxLayout="row" class="clientview">
+            <div fxFlex="50" class="labelcss">Condition</div>
+            <div fxFlex="50" class="labelcssvalue">{{vCondition}}</div>
           </div>
         </div>
       </div>
     </mat-sidenav>
 
-
-
-
     <mat-sidenav-content *ngIf="valuetable">
       <div fxLayout="row" fxLayoutGap="10px" style="width: 100%;">
         <div fxFlex="100" style="overflow-x: scroll !important;">
           <table mat-table [dataSource]="dataSource" colspan=20
-            style="overflow-x: scroll !important;width:100% !important" matSort class="table example-container">
+            style="overflow-x: scroll !important;width:100% !important" matSort class="table">
             <ng-container matColumnDef="select" sticky>
               <th mat-header-cell *matHeaderCellDef>
                 <mat-checkbox class="headcheckbox" (change)="$event ? masterToggle() : null"
@@ -108,7 +87,6 @@
                   <mat-checkbox (click)="$event.stopPropagation()" (change)="updateCheckedList($event,i)"
                     [checked]="selection.isSelected(row)" (change)="$event ? selection.toggle(row) : null"
                     [aria-label]="checkboxLabel(row,i)">
-                    <!-- (change)="$event ? selection.toggle(row) : null"  (click)="changeSelection(row)" -->
                   </mat-checkbox>
                 </div>
               </td>
@@ -116,30 +94,29 @@
 
             <ng-container matColumnDef="ClientName">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Client </th>
-              <td mat-cell *matCellDef="let row;let element"> {{row.clientName}} </td>
+              <td mat-cell *matCellDef="let row;let element" class="datarow"> {{row.clientName}} </td>
             </ng-container>
 
 
             <ng-container matColumnDef="FileName">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: left;"> Document Name
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Document Name
               </th>
               <td mat-cell *matCellDef="let row" class="datarow"> {{row.documentName}} </td>
             </ng-container>
 
 
             <ng-container matColumnDef="DaysRemaining">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: left;"> Days Remaining
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Days Remaining
               </th>
-              <td mat-cell *matCellDef="let row" style="text-align: center;" class="datarow"
+              <td mat-cell *matCellDef="let row" class="datarow"
                 [ngStyle]="{'color': getWidth(GetRemainingDays(row.expiryDate))}">
-
                 {{GetRemainingDays(row.expiryDate)}} days
               </td>
             </ng-container>
 
 
             <ng-container matColumnDef="ExpiryDate">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: left;"> Expiry Date
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Expiry Date
               </th>
               <td mat-cell *matCellDef="let row" class="datarow"> {{row.expiryDate | date:'dd/MM/yyyy'}} </td>
             </ng-container>
@@ -147,7 +124,7 @@
             <ng-container matColumnDef="Action">
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: center;"> Action </th>
               <td mat-cell *matCellDef="let row" class="datarow">
-                <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+                <div fxLayout="row" fxLayoutAlign="space-evenly center">
 
                   <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
                     <img src="./assets/download_ash.svg" class="actionstable">
@@ -157,7 +134,8 @@
                     <img src="./assets/iconmonstr-product-10.svg" class="actionstable">
                     <span class="actionsspan">Review</span>
                   </div>
-                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px" (click)="drawer.toggle();docdata(row)">
+                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px"
+                    (click)="drawer.toggle();docdata(row)">
                     <img src="./assets/iconmonstr-paper-plane-2 (2).svg" class="actionstable">
                     <span class="actionsspan">Open</span>
                   </div>
@@ -165,22 +143,9 @@
               </td>
             </ng-container>
 
-            <!-- <ng-container matColumnDef="ViewDetails">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
-              <td mat-cell *matCellDef="let row" style="width: 23%">
-                <div fxLayout="row" fxLayoutAlign="start center" style="align-items: center;
-              margin-left: 43px;cursor: pointer;" id="leaseeee" [checked]="selection.isSelected(row)"
-                  (click)="loadallsigneddocuments(row)">
-                  <p>View Details</p>
-                  <img src="./assets/double front arrow_ash.svg" class="viewdetails_arrow">
-                </div>
-              </td>
-            </ng-container> -->
-            <!-- [checked]="selection.isSelected(row)" *ngFor="let leaseeee of Mlease;"  (click)="loadallsigneddocuments(leaseeee)" -->
-            <!-- *ngFor="let leaseeee of Mlease;"  (click)="loadallsigneddocuments(leaseeee)" -->
             <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color: #f3f3f4;"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;" style="border-bottom-style: none;"
-              [ngClass]="{'highlight3': selectedRowIndex2 == row.id}" (click)="highlight2(row)"></tr>
+              [ngClass]="{'highlight3': selectedRowIndex2 == row.leaseID}" (click)="highlight2(row)"></tr>
           </table>
 
         </div>

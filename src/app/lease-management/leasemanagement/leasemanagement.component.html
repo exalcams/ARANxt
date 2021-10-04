@@ -1,24 +1,24 @@
 <div class="bg">
     <p class="title"> Lease Document Management System</p>
     <div fxLayout="row">
-        <div (click)="selectedPage='draft';"
+        <div (click)="selectedPage='draft';selection.clear();"
             [ngClass]="selectedPage=='draft' ? 'main_buttons' : 'main_buttons_not_seklected' ">
             Draft
 
         </div>
-        <div style="margin-left: 10px;" (click)="selectedPage='signed'"
+        <div style="margin-left: 10px;" (click)="selectedPage='signed';selection.clear();"
             [ngClass]="selectedPage=='signed' ? 'main_buttons' : 'main_buttons_not_seklected' ">
             Signed
         </div>
-        <div style="margin-left: 10px;" (click)="selectedPage='expiry'"
+        <div style="margin-left: 10px;" (click)="selectedPage='expiry';selection.clear();"
             [ngClass]="selectedPage=='expiry' ? 'main_buttons' : 'main_buttons_not_seklected' ">
             About To Expiry
         </div>
-        <div style="margin-left: 10px;" (click)="selectedPage='underNotice'"
+        <div style="margin-left: 10px;" (click)="selectedPage='underNotice';selection.clear();"
             [ngClass]="selectedPage=='underNotice' ? 'main_buttons' : 'main_buttons_not_seklected' ">
             Under Notice
         </div>
-        <div style="margin-left: 10px;" (click)="selectedPage='terminate'"
+        <div style="margin-left: 10px;" (click)="selectedPage='terminate';selection.clear();"
             [ngClass]="selectedPage=='terminate' ? 'main_buttons' : 'main_buttons_not_seklected' ">
             Terminated
         </div>
@@ -30,7 +30,7 @@
                 <button mat-flat-button class="Renew_btn" (click)="selectedPage='new'">New</button>
                 <button mat-flat-button class="Renew_btn" (click)="openMultiDraftEditor()">Edit</button>
                 <button mat-flat-button class="Renew_btn" (click)="DeleteLeaseDrafts()">Delete</button>
-                <button mat-flat-button class="Renew_btn">Download</button>
+                <button mat-flat-button class="Renew_btn" (click)="DownloadLeaseDrafts()">Download</button>
             </div>
             <div fxLayout="row" class="neweditdiv2">
                 <div class="search-to-do">
@@ -50,7 +50,7 @@
                     </ngx-dropzone-preview>
                 </ngx-dropzone>
                 <div class="add_div_draft">
-                    <button mat-button class="btn_Add" (click)="addDraftToTable()">Add</button>
+                    <button mat-button class="btn_Add" (click)="UploadDraftDocument()">Add</button>
                 </div>
             </div>
             <div fxLayout="column" class="files">
@@ -131,11 +131,13 @@
                     </th>
                     <td mat-cell *matCellDef="let row">
                         <div fxLayout="row" fxLayoutAlign="space-evenly center">
-                            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" class="pointer" (click)="openSendMailDialog(row.documentID)">
+                            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" class="pointer"
+                                (click)="openSendMailDialog(row.documentID)">
                                 <img src="./assets/iconmonstr-paper-plane-2 (2).svg" class="actionstable">
                                 <span>Send</span>
                             </div>
-                            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" class="pointer" (click)="openDratEdtitor(row)">
+                            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" class="pointer"
+                                (click)="openDratEdtitor(row)">
                                 <img src="./assets/iconmonstr-share-8.svg" class="actionstable">
                                 <span>Open</span>
                             </div>
@@ -162,25 +164,28 @@
         <app-terminate></app-terminate>
     </div>
     <div *ngIf="selectedPage=='new'">
-        <ck-editor name="richEditor" [(ngModel)]="newLeaseDraft.documentContent" skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
+        <ck-editor name="richEditor" [(ngModel)]="newLeaseDraft.documentContent" skin="moono-lisa" language="en"
+            [fullPage]="true" [config]="editorConfig" class="editor"></ck-editor>
         <div fxLayout="row" fxLayoutAlign="end center" class="submit-area">
             <button mat-raised-button class="saveBtn" (click)="saveNewDraft()">Save</button>
         </div>
     </div>
     <div *ngIf="selectedPage=='edit'">
         <div fxLayout="row" fxLayoutGap="8px">
-            <ck-editor *ngIf="editor1" name="richEditor" [(ngModel)]="leaseDraft1.documentContent" skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
-            <ck-editor *ngIf="editor2" name="richEditor" [(ngModel)]="leaseDraft2.documentContent" skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
+            <ck-editor *ngIf="editor1" name="richEditor1" [(ngModel)]="leaseDraft1.documentContent" skin="moono-lisa"
+                language="en" [fullPage]="true" [config]="editorConfig" class="editor"></ck-editor>
+            <ck-editor *ngIf="editor2" name="richEditor2" [(ngModel)]="leaseDraft2.documentContent" skin="moono-lisa"
+                language="en" [fullPage]="true" [config]="editorConfig" class="editor"></ck-editor>
         </div>
         <div fxLayout="row" fxLayoutGap="8px">
             <div fxFlex></div>
-            <div fxFlex="50"  *ngIf="editor1" fxLayout="row" fxLayoutAlign="end center" class="submit-area">
+            <div fxFlex="50" *ngIf="editor1" fxLayout="row" fxLayoutAlign="end center" class="submit-area">
                 <button mat-raised-button class="saveBtn" (click)="saveDraft1()">Save</button>
             </div>
-            <div fxFlex="50"  *ngIf="editor2" fxLayout="row" fxLayoutAlign="end center" class="submit-area">
+            <div fxFlex="50" *ngIf="editor2" fxLayout="row" fxLayoutAlign="end center" class="submit-area">
                 <button mat-raised-button class="saveBtn" (click)="saveDraft2()">Save</button>
             </div>
         </div>
-        
+
     </div>
 </div>
