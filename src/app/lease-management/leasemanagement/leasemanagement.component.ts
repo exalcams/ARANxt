@@ -187,6 +187,7 @@ export class LeasemanagementComponent implements OnInit {
             this.files.push(res.file);
             this.cdr.detectChanges();
           }
+          this.socialAuthService.signOut();
         });
         this.spinner.hide;
       },

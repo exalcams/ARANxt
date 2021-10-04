@@ -105,10 +105,10 @@ export class AppComponent implements OnInit{
     this.services.Getsitehierarchy().subscribe( data =>{ 
       this.TREE_DATA = <TreeItem[]>data;
       this.treeSource.data =this.treeConstruct(this.TREE_DATA);  
-         console.log(data); 
+        //  console.log(data); 
     })
     this.state = 'maximum';
-    console.log(this.TREE_DATA);
+    // console.log(this.TREE_DATA);
    if (this.bool7 === true) {
       // this.router.navigate(['/login']); 
     }

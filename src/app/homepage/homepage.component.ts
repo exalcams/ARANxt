@@ -55,24 +55,7 @@ export class HomepageComponent implements OnInit {
   overview_bool:boolean=false
 	voiceText: any;
   ass:any;
-  TREE_DATA: TreeItem[] = [
-    // { name: 'Fruit', parent:null },
-    // { name: 'Apple', parent: 'Fruit' },
-    // { name: 'Banana', parent: 'Fruit' },
-    // { name: 'Fruit loops', parent: 'Fruit' }, 
-    // { name: 'Vegetables', parent:null },
-    // { name: 'Green', parent: 'Vegetables' },
-    // { name: 'Broccoli', parent: 'Green' },
-    // { name: 'Brussels sprouts', parent: 'Green' }, 
-    // { name: 'Orange', parent: 'Vegetables' },
-    // { name: 'Pumpkins', parent: 'Orange' },
-    // { name: 'Carrots', parent: 'Orange' },
-    // { name: 'India', parent: null },
-    // { name: 'Maharashtra', parent: 'India' },
-    // { name: 'Mumbai', parent: 'Maharashtra' },
-    // { name: 'Karnataka', parent: 'India' },
-    // { name: 'Bangalore', parent: 'Karnataka' },
-  ]
+  TREE_DATA: TreeItem[] = [];
   bool1 = false;
   bool2 = false;
   bool3 = false;
@@ -193,17 +176,15 @@ closeVoiceRecognition(): void {
   ngOnInit(): void {
     this.ass = localStorage.getItem('ass');
     this.services.Getsitehierarchy().subscribe( data =>{ 
+      console.log("tree data",data);
       this.TREE_DATA = <TreeItem[]>data;
-      this.treeSource.data =this.treeConstruct(this.TREE_DATA);  
-         console.log(data); 
+      this.treeSource.data =this.treeConstruct(this.TREE_DATA);
     })
     setInterval(() => this.GetARASpace(),150);
     setInterval(() => this.GetARASubSpace(),150);
     this.Space = '';
     this.SubSpace = '';
     this.state = 'maximum';
-    console.log(this.TREE_DATA);
-    console.log(this.treeSource.data);
     this.currentUser=JSON.parse(localStorage.getItem('authorizationData'))?.displayName;
   }
   GetARASubSpace(){
