@@ -1,0 +1,238 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+        <span class="vacatespan">
+            Vacate
+        </span>
+        <img (click)="Close()" class="closeimages" src="assets/Close.svg">
+    </mat-toolbar>
+
+    <mat-dialog-content class="content" fusePerfectScrollbar>
+        <div fxLayout="column" fxLayoutAlign="end  center">
+            <!-- <div fxLayout="row" fxLayoutAlign="end center" class="vacatediv">
+                <div fxLayout="row" fxLayoutAlign="space-evenly center" class="closediv" fxLayoutGap="15px">
+                    <span class="vacatespan">
+                        Vacate
+                    </span>
+                    <img (click)="Close()" class="closeimages" src="assets/Close.svg">
+
+                </div>
+            </div> -->
+
+            <div fxLayout="row" fxLayoutAlign="space-evenly" fxFlex="100" style="align-items: unset;">
+                <div fxFlex="5"></div>
+
+                <div fxFlex="30" class="imagesforbackground">
+
+                    <div fxLayout="column" fxlayoutGap="16px" style="width: 100%;height: 100% !important;">
+                        <div fxLayout="row" fxFlex>
+                            <div fxFlex></div>
+                            <img src="./assets/MaskGroup55.png" class="greyscaleimage">
+                        </div>
+                        
+                        
+                        
+                        
+                       
+                       
+                       
+                        
+                       
+                      
+                        <div class="form_bg" fxLayout="column" fxLayoutAlign="start start">
+                            <div fxLayout="row" fxFlex="100" class="clientview">
+                                <div fxFlex="50" class="labelcss">Client Name</div>
+                                <div fxFlex="50" class="labelcssvalue">{{leaseData.clientName}}</div>
+                            </div>
+                            <div fxLayout="row" fxFlex="100" class="clientview">
+                                <div fxFlex="50" class="labelcss">FileName</div>
+                                <div fxFlex="50" class="labelcssvalue">{{leaseData.documentName}}</div>
+                            </div>
+                            <div fxLayout="row" fxFlex="100" class="clientview">
+                                <div fxFlex="50" class="labelcss">Creation Date</div>
+                                <div fxFlex="50" class="labelcssvalue">{{leaseData.createdOn}}</div>
+                            </div>
+                            <div fxLayout="row" fxFlex="100" class="clientview">
+                                <div fxFlex="50" class="labelcss">Expiry Date</div>
+                                <div fxFlex="50" class="labelcssvalue">{{leaseData.expiryDate}}</div>
+                            </div>
+
+                            <div fxLayout="row" fxFlex="100" class="clientview">
+                                <div fxFlex="50" class="labelcss">Total Deposit</div>
+                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.totalDeposit}}</div>
+                            </div>
+                            <div fxLayout="row" fxFlex="100" class="clientview">
+                                <div fxFlex="50" class="labelcss">Rental</div>
+                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.rental}}</div>
+                            </div>
+                            <div fxLayout="row" fxFlex="100" class="clientview">
+                                <div fxFlex="50" class="labelcss">Bank Name</div>
+                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.bankName}}</div>
+                            </div>
+                            <div fxLayout="row" fxFlex="100" class="clientview">
+                                <div fxFlex="50" class="labelcss">Holder Name</div>
+                                <div fxFlex="50" class="labelcssvalue">{{leaseData.holderName}}</div>
+                            </div>
+                            <div fxLayout="row" fxFlex="100" class="clientview">
+                                <div fxFlex="50" class="labelcss">Account No.</div>
+                                <div fxFlex="50" class="labelcssvalue">   {{leaseData.accountNo}}</div>
+                            </div>
+                            
+                           
+                            <div fxLayout="row" fxFlex="100" class="clientview">
+                                <div fxFlex="50" class="labelcss">Mode of Transfer</div>
+                                <div fxFlex="50" class="labelcssvalue">{{leaseData.modeOfTransfer}}</div>
+                            </div>
+                            <div fxLayout="row" fxFlex="100" class="clientview">
+                                <div fxFlex="50" class="labelcss">IFSC Code</div>
+                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.iFSC}}</div>
+                            </div>
+                            <div fxLayout="row" fxFlex="100" class="clientview">
+                                <div fxFlex="50" class="labelcss">Advance Request</div>
+                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.advance}}</div>
+                            </div>
+                            <div fxLayout="row" fxFlex="100" class="clientview">
+                                <div fxFlex="50" class="labelcss">Maintenance</div>
+                                <div fxFlex="50" class="labelcssvalue">  {{leaseData.manintenace}}</div>
+                            </div>
+                            <div fxLayout="row" fxFlex="100" class="clientview">
+                                <div fxFlex="50" class="labelcss">Remarks</div>
+                                <div fxFlex="50" class="labelcssvalue">{{leaseData.remarks}}</div>
+                            </div>
+                            <div fxLayout="row" fxFlex="100" class="clientview">
+                                <div fxFlex="50" class="labelcss">Electrical</div>
+                                <div fxFlex="50" class="labelcssvalue">  {{leaseData.electrical}}</div>
+                            </div>
+
+                            <div fxLayout="row" fxFlex="100" class="clientview">
+                                <div fxFlex="50" class="labelcss">Condition</div>
+                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.condition}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div fxFlex="10"></div>
+
+                <div fxFlex="60" fxLayout="row">
+                    <form [formGroup]="Vacateformgroup" style="width: 80%;">
+                        <div fxLayout="column" style="width:100% !important;padding: 10px 10px;">
+
+                            <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
+                                <span class="formspan" fxFlex="50">Proposed date</span>
+                                <mat-form-field appearance="legacy" fxFlex="50">
+                                    <input matInput placeholder="Enter Proposeddate" formControlName="Proposeddate" [matDatepicker]="picker">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-date-range-picker #picker></mat-date-range-picker>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
+                                <span class="formspan" fxFlex="50">Accepted date</span>
+                                <mat-form-field appearance="legacy" fxFlex="50">
+                                    <input matInput placeholder="Accepteddate" formControlName="Accepteddate" [matDatepicker]="picker">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-date-range-picker #picker></mat-date-range-picker>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
+                                <span class="formspan" fxFlex="50">Inspection date</span>
+                                <mat-form-field appearance="legacy" fxFlex="50">
+                                    <input matInput placeholder="Inspectiondate" formControlName="Inspectiondate" [matDatepicker]="picker">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-date-range-picker #picker></mat-date-range-picker>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
+                                <span class="formspan" fxFlex="50">Inspected by</span>
+                                <mat-form-field appearance="legacy" fxFlex="50">
+                                    <input matInput placeholder="Inspectedby" formControlName="Inspectedby">
+                                </mat-form-field>
+                            </div>
+
+                            <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
+                                <span class="formspan" fxFlex="50">Rent due if any</span>
+                                <mat-form-field appearance="legacy" fxFlex="50">
+                                    <input matInput placeholder="Rentdue" formControlName="Rentdue">
+                                </mat-form-field>
+                            </div>
+
+                            <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
+                                <span class="formspan" fxFlex="50">Maintenance due if any</span>
+                                <mat-form-field appearance="legacy" fxFlex="50">
+                                    <input matInput placeholder="Maintenancedue" formControlName="Maintenancedue">
+                                </mat-form-field>
+                            </div>
+
+
+                            <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
+                                <span class="formspan" fxFlex="50">Damage Recovery</span>
+                                <mat-form-field appearance="legacy" fxFlex="50">
+                                    <input matInput placeholder="Enter DamageRecovery" formControlName="DamageRecovery">
+                                </mat-form-field>
+                            </div>
+
+                            <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
+                                <span class="formspan" fxFlex="50">Advance Balance to Be settled</span>
+                                <mat-form-field appearance="legacy" fxFlex="50">
+                                    <input matInput placeholder="AdvanceBalance" formControlName="AdvanceBalance">
+                                </mat-form-field>
+                            </div>
+
+                            <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
+                                <span class="formspan" fxFlex="50">Expected Date To transfer</span>
+                                <mat-form-field appearance="legacy" fxFlex="50">
+                                    <input matInput placeholder="ExpectedDate" formControlName="ExpectedDate" [matDatepicker]="picker">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-date-range-picker #picker></mat-date-range-picker>
+                                </mat-form-field>
+                            </div>
+
+                            <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
+                                <span class="formspan" fxFlex="50">Mode of transfer</span>
+                                <mat-form-field appearance="legacy" fxFlex="50">
+                                    <input matInput placeholder="Modeoftransfer" formControlName="Modeoftransfer">
+                                </mat-form-field>
+                            </div>
+
+                            <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
+                                <span class="formspan" fxFlex="50">Returnable Assets</span>
+                                <mat-form-field appearance="legacy" fxFlex="50">
+                                    <mat-label>Enter Returnable Assets</mat-label>
+                                    <mat-select [formControl]="toppings" multiple formControlName="ReturnableAssets">
+                                        <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+                            </div>
+
+                            <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
+                                <span class="formspan" fxFlex="50">Verified by</span>
+                                <mat-form-field appearance="legacy" fxFlex="50">
+                                    <input matInput placeholder="Verifiedby" formControlName="Verifiedby">
+                                </mat-form-field>
+                            </div>
+
+                            <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
+                                <span class="formspan" fxFlex="50">Remarks</span>
+                                <mat-form-field appearance="legacy" fxFlex="50">
+                                    <input matInput placeholder="Remarks" formControlName="Remarks">
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="m-0 p-16 footer" fxLayoutAlign="center center" fxLayoutGap="8px">
+        <button mat-raised-button class="savebtn" type="button" color="primary">Vacate</button>
+
+    </mat-dialog-actions>
+
+</div>

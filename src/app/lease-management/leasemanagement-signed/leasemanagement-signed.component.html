@@ -2,11 +2,11 @@
 
   <div fxFlex fxLayout="row" fxLayoutGap="10px">
     <div fxFlex="50" class="btn_bg">
-      <!-- fxLayoutAlign="flex-start flex-start" -->
-      <button mat-flat-button class="Renew_btn">Renew</button>
-      <button mat-flat-button class="Renew_btn">Vacate</button>
-      <button mat-flat-button class="Renew_btn">Terminate</button>
-      <!-- <button mat-flat-button class="Renew_btn">Send</button> -->
+      <!-- fxLayoutAlign="flex-start flex-start" (click)="openDialogrenew()"-->
+      <button mat-flat-button class="Renew_btn" (click)="openDialogrenew()" >Renew</button>
+      <button mat-flat-button class="Renew_btn" (click)="openDialogvacate()">Vacate</button>
+      <button mat-flat-button class="Renew_btn" (click)="openDialogterminate()">Terminate</button>
+      <button mat-flat-button class="Renew_btn">Send</button>
       <!-- <button mat-flat-button class="Renew_btn">Delete</button> -->
     </div>
     <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="30">
@@ -134,7 +134,8 @@
                 <div fxLayout="row" fxLayoutAlign="start center">
                   <mat-checkbox color="primary" (click)="$event.stopPropagation()"
                     (change)="updateCheckedList($event,i)" [checked]="selection.isSelected(row)"
-                    (change)="$event ? selection.toggle(row) : null" [aria-label]="checkboxLabel(row,i)">
+                    (change)="$event ? selection.toggle(row) : null" [aria-label]="checkboxLabel(row,i)"
+                    (click)="go(row)">
                     <!-- (change)="$event ? selection.toggle(row) : null"  (click)="changeSelection(row)" -->
                   </mat-checkbox>
                 </div>

@@ -13,6 +13,9 @@ import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/noti
 import { UserData } from '../leasemanagement/leasemanagement.component';
 import { MatDialog } from '@angular/material/dialog';
 import { UploadSignedDialogComponent } from 'src/app/upload-signed-dialog/upload-signed-dialog.component';
+import { VacatecomponentComponent } from '../vacatecomponent/vacatecomponent.component';
+import { RenewcomponentComponent } from '../renewcomponent/renewcomponent.component';
+import { TerminatecomponentComponent } from '../terminatecomponent/terminatecomponent.component';
 
 @Component({
   selector: 'app-leasemanagement-signed',
@@ -23,7 +26,7 @@ import { UploadSignedDialogComponent } from 'src/app/upload-signed-dialog/upload
 })
 export class LeasemanagementSignedComponent implements OnInit {
   displayedColumns: string[] = [ 'select','ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action'];
-
+  valueforrenewdialog = 0;
   dataSource = new MatTableDataSource<any>([]);
   selection = new SelectionModel<any>(true, []);
   SelectedSpace:any[]=[];
@@ -44,8 +47,10 @@ export class LeasemanagementSignedComponent implements OnInit {
   AllLeases:any[]=[];
   valuetable :boolean = true;
   valueupload :boolean = false;
+  Checked : boolean = false
   notificationSnackBarComponent: NotificationSnackBarComponent;
   clientdata: LeaseManagement;
+  Renewdialogdata: any;
   constructor(private formBuilder: FormBuilder, private datepipe: DatePipe, private service: LeaseManagementService,
     // tslint:disable-next-line:align
     private spinner:NgxSpinnerService,   public snackBar: MatSnackBar,public dialog: MatDialog) { 
@@ -113,7 +118,7 @@ vRemarks:any;
      this.variableHolderName = this.clientdata.holderName
      this.variableAccountNo = this.clientdata.accountNo
    
-     this.variaModeofTransfer = this.clientdata.modeofTransfer
+     this.variaModeofTransfer = this.clientdata.modeOfTransfer
      this.varIFSCCode = this.clientdata.iFSC
 
      this.vAdvanceRequest = this.clientdata.advance
@@ -346,6 +351,77 @@ openDialog() {
     console.log(`Dialog result: ${result}`);
   });
 }
+
+
+openDialogvacate() {
+  if(this.Checked){
+  const dialogRef = this.dialog.open(VacatecomponentComponent,{
+    panelClass: 'upload-vacate-dialog',
+    // position: { top: '3%', right: '3%' },
+    width: '80%',
+
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog result: ${result}`);
+  });
+}
+else{
+  
+  this.notificationSnackBarComponent.openSnackBar('Please select a checkbox', SnackBarStatus.warning);
+  this.Checked = false
+}
+}
+go(row){
+  this.valueforrenewdialog=row
+  console.log(this.valueforrenewdialog)
+  this.Checked = true;
+  this.Renewdialogdata = row;
+  // if(this.selection.selected)
+ 
+}
+openDialogrenew() {
+  if(this.Checked){
+
+  const dialogRef = this.dialog.open(RenewcomponentComponent,{
+    panelClass: 'upload-renew-dialog',
+    data : this.Renewdialogdata,
+    // position: { top: '3%', right: '3%' },
+    width: '80%',
+
+  });
+
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog result: ${result}`);
+  });
+}
+else{
+  
+  this.notificationSnackBarComponent.openSnackBar('Please select a checkbox', SnackBarStatus.warning);
+  this.Checked = false
+}
+}
+openDialogterminate() {
+  if(this.Checked){
+  const dialogRef = this.dialog.open(TerminatecomponentComponent,{
+    panelClass: 'upload-terminate-dialog',
+    // position: { top: '3%', right: '3%' },
+    width: '80%',
+
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog result: ${result}`);
+  });
+}
+else{
+  
+  this.notificationSnackBarComponent.openSnackBar('Please select a checkbox', SnackBarStatus.warning);
+  this.Checked = false
+}
+}
+
 
 buttonvaluetable(){
 this.valuetable = true;

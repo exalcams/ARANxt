@@ -77,14 +77,14 @@
             style="overflow-x: scroll !important;width:100% !important" matSort class="table">
             <ng-container matColumnDef="select" sticky>
               <th mat-header-cell *matHeaderCellDef>
-                <mat-checkbox class="headcheckbox" (change)="$event ? masterToggle() : null"
+                <mat-checkbox color="primary" class="headcheckbox" (change)="$event ? masterToggle() : null"
                   [checked]="selection.hasValue() && isAllSelected()"
                   [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
                 </mat-checkbox>
               </th>
               <td mat-cell *matCellDef="let row;index as i;">
                 <div fxLayout="row" fxLayoutAlign="start center">
-                  <mat-checkbox (click)="$event.stopPropagation()" (change)="updateCheckedList($event,i)"
+                  <mat-checkbox color="primary" (click)="$event.stopPropagation()" (change)="updateCheckedList($event,i)"
                     [checked]="selection.isSelected(row)" (change)="$event ? selection.toggle(row) : null"
                     [aria-label]="checkboxLabel(row,i)">
                   </mat-checkbox>
