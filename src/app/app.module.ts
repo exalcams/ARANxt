@@ -90,6 +90,9 @@ import { CKEditorModule } from 'ngx-ckeditor';
 import { UploadSignedDialogComponent } from './upload-signed-dialog/upload-signed-dialog.component';
 import { SendMailDialogComponent } from './send-mail-dialog/send-mail-dialog.component';
 import {MatChipsModule} from '@angular/material/chips';
+import { VacatecomponentComponent } from './lease-management/vacatecomponent/vacatecomponent.component';
+import { RenewcomponentComponent } from './lease-management/renewcomponent/renewcomponent.component';
+import { TerminatecomponentComponent } from './lease-management/terminatecomponent/terminatecomponent.component';
 
 @NgModule({
   declarations: [
@@ -136,7 +139,10 @@ import {MatChipsModule} from '@angular/material/chips';
     DraftDialogComponent,
     RichTextEditorComponent,
     UploadSignedDialogComponent,
-    SendMailDialogComponent
+    SendMailDialogComponent,
+    VacatecomponentComponent,
+    RenewcomponentComponent,
+    TerminatecomponentComponent
   ],
   imports: [
     MatGridListModule,

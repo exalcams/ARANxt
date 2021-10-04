@@ -177,7 +177,7 @@ vRemarks:any;
     this.variableHolderName = this.clientdata.holderName
     this.variableAccountNo = this.clientdata.accountNo
   
-    this.variaModeofTransfer = this.clientdata.modeofTransfer
+    this.variaModeofTransfer = this.clientdata.modeOfTransfer
     this.varIFSCCode = this.clientdata.iFSC
 
     this.vAdvanceRequest = this.clientdata.advance

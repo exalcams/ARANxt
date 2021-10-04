@@ -143,7 +143,7 @@ loadLeaseDetails(row:LeaseManagement){
     BankName:row.bankName,
     HolderName:row.holderName,
     AccountNo:row.accountNo,
-    ModeOfTransfer:row.modeofTransfer,
+    ModeOfTransfer:row.modeOfTransfer,
     IFSC:row.iFSC,
     AdvanceRequest:row.advance
   });

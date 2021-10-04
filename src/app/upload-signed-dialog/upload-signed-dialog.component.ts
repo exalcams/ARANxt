@@ -82,7 +82,7 @@ onRemove(event): void {
     signeddetail.bankName = this.SignedDocumentDetailsForm.get('BankName').value;
     signeddetail.holderName = this.SignedDocumentDetailsForm.get('HolderName').value;
     signeddetail.accountNo = this.SignedDocumentDetailsForm.get('AccountNo').value;
-    signeddetail.modeofTransfer = this.SignedDocumentDetailsForm.get('ModeofTransfer').value;
+    signeddetail.modeOfTransfer = this.SignedDocumentDetailsForm.get('ModeofTransfer').value;
     signeddetail.advance = this.SignedDocumentDetailsForm.get('AdvanceRequest').value;
     signeddetail.iFSC = this.SignedDocumentDetailsForm.get('IFSCCode').value;
     signeddetail.noticePeriod = this.SignedDocumentDetailsForm.get('NoticePeriod').value;

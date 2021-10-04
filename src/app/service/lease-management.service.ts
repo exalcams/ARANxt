@@ -84,7 +84,7 @@ export class LeaseManagementService {
     formData.append('BankName', signeddetail.bankName);
     formData.append('HolderName', signeddetail.holderName);
     formData.append('AccountNo', signeddetail.accountNo);
-    formData.append('ModeOfTransfer', signeddetail.modeofTransfer);
+    formData.append('ModeOfTransfer', signeddetail.modeOfTransfer);
     formData.append('IFSC', signeddetail.iFSC);
     formData.append('Advance', signeddetail.advance);
     formData.append('NoticePeriod', signeddetail.noticePeriod.toString());
