@@ -1,12 +1,18 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { LeaseManagement } from 'src/app/Model/Leasemanagement';
+import { NotificationSnackBarComponent } from 'src/app/notification/notification-snack-bar/notification-snack-bar.component';
 import { LeaseManagementService } from 'src/app/service/lease-management.service';
-
+import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/notification-snackbar-status-enum';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SendMailDialogComponent } from 'src/app/send-mail-dialog/send-mail-dialog.component';
+import { saveAs } from 'file-saver';
+import { MatDrawer } from '@angular/material/sidenav';
 export interface PeriodicElement {
   select: string;
   ClientName: string;
@@ -42,8 +48,14 @@ export class UnderNoticeComponent implements OnInit {
   // tslint:disable-next-line:no-inferrable-types
   uploadVisible: boolean = false;
   underNoticeLeases:LeaseManagement[]=[];
-  constructor(private formBuilder: FormBuilder, private datepipe: DatePipe,
-    private service:LeaseManagementService,private spinner:NgxSpinnerService) { }
+  clientdata: LeaseManagement;
+  notificationSnackBarComponent: NotificationSnackBarComponent;
+  sideNavStatus:boolean;
+  @ViewChild ('drawer') sidenav :MatDrawer;
+  constructor(private formBuilder: FormBuilder, private datepipe: DatePipe,public dialog: MatDialog,
+    private service:LeaseManagementService,private spinner:NgxSpinnerService, public snackBar: MatSnackBar) {
+      this.notificationSnackBarComponent = new NotificationSnackBarComponent(this.snackBar);
+     }
 
   ngOnInit(): void {
     this.SignedFormGroup();
@@ -55,6 +67,7 @@ export class UnderNoticeComponent implements OnInit {
       console.log("under notice",data);
       this.underNoticeLeases=<LeaseManagement[]>data;
       this.dataSource=new MatTableDataSource(this.underNoticeLeases);
+      
       this.spinner.hide();
     },
     err=>{
@@ -143,6 +156,50 @@ loadLeaseDetails(row:LeaseManagement){
   });
   this.highlight2(row)
 }
+variableclient:any;
+variablefilename:any;
+variableCreatedOn:any;
+variableExpiryDate:any;
+variableTotalDeposit:any;
+variableRental:any;
+variableBankName:any;
+variableHolderName:any;
+variableAccountNo:any;
+variaModeofTransfer:any;
+varIFSCCode:any;
+vAdvanceRequest:any;
+vMaintenance:any;
+vElectrical:any;
+vCondition:any;
+vRemarks:any;
+
+
+docdata(ind){
+    this.clientdata = ind;
+   console.log(this.clientdata.clientName)
+   this.variableclient = this.clientdata.clientName
+   this.variablefilename = this.clientdata.documentName
+   this.variableCreatedOn = this.clientdata.createdOn
+   this.variableExpiryDate = this.clientdata.expiryDate
+   this.variableTotalDeposit = this.clientdata.totalDeposit
+   this.variableRental = this.clientdata.rental
+   this.variableBankName = this.clientdata.bankName
+   this.variableHolderName = this.clientdata.holderName
+   this.variableAccountNo = this.clientdata.accountNo
+ 
+   this.variaModeofTransfer = this.clientdata.modeOfTransfer
+   this.varIFSCCode = this.clientdata.iFSC
+
+   this.vAdvanceRequest = this.clientdata.advance
+   this.vMaintenance = this.clientdata.manintenace
+   this.vElectrical = this.clientdata.electrical
+   this.vCondition = this.clientdata.condition
+   this.vRemarks = this.clientdata.remarks
+   if(!this.sideNavStatus)
+     {
+      this.sidenav.toggle();
+     }
+}
 upload(): void{
   this.uploadVisible = false;
   // tslint:disable-next-line:quotemark
@@ -164,10 +221,10 @@ GetRemainingDays(expiry){
 
 getWidth(days){
   if(days>=20 && days<=30){
-    return "green" 
+    return "#3ec725"  
   }
   else   if(days>=10 && days<=20){
-    return "yellow" 
+    return "#faa542"; 
   }
   else   if(days<10){
     return "red" 
@@ -192,4 +249,46 @@ buttonvaluetable(){
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+  openSendMailDialog(documentID) {
+    const dialogRef = this.dialog.open(SendMailDialogComponent,
+      {
+        panelClass: "send-mail-dialog",
+        data: { documentID: documentID }
+      }
+    );
+    dialogRef.disableClose = true;
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        console.log("send-mail-dialog", res);
+        this.spinner.show();
+        this.service.SendMailFromLease(res).subscribe(() => {
+          console.log("Mail sent");
+          this.notificationSnackBarComponent.openSnackBar("email has been sent", SnackBarStatus.success);
+          this.spinner.hide();
+        },
+          err => {
+            console.log(err);
+            this.spinner.hide();
+          });
+      }
+    });
+  }
+  DownloadLeaseDocument(row)
+{
+  
+   
+      this.service.DownloadLeaseDocument(row.documentID).subscribe((res)=>{
+        let blob:any = new Blob([res], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+        saveAs(blob, `${row.documentName}.docx`);
+        console.log(`${row.documentName} downloaded`);
+      },
+      err=>{
+        console.log(err);
+      });
+  
+ 
+}
+drawerToggled(event){
+  this.sideNavStatus=event;
+}
 }

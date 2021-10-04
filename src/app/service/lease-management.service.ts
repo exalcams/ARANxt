@@ -167,4 +167,33 @@ export class LeaseManagementService {
     })
     .pipe(catchError(this.errorHandler));
   }
+  SendMailFromLease(mailTemplate: any): Observable<any> {
+
+    return this.http.post<any>(this.baseAddress + 'api/Lease/SendMailFromLease', mailTemplate,
+
+      {
+
+        headers: new HttpHeaders({
+
+          'Content-Type': 'application/json'
+
+        })
+
+      })
+
+      .pipe(catchError(this.errorHandler));
+
+  }
+
+  DownloadLeaseDocument(documentID:number): Observable<any> {
+
+    return this.http.get(`${this.baseAddress}api/Lease/DownloadLeaseDocument?documentID=${documentID}`,{
+
+      responseType:'blob'
+
+    })
+
+    .pipe(catchError(this.errorHandler));
+
+  }
 }

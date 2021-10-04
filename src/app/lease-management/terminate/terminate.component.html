@@ -15,7 +15,7 @@
   </div>
 
   <mat-sidenav-container class="example-container" autosize hasBackdrop="false">
-    <mat-sidenav #drawer class="example-sidenav " position="end" mode="side">
+    <mat-sidenav #drawer class="example-sidenav " position="end" mode="side" (openedChange)="drawerToggled($event)">
       <div fxLayout="column" fxLayoutAlign="space-evenly center" fxlayoutGap="10px"
         style="width: 100%;height: 100% !important;">
 
@@ -25,67 +25,85 @@
 
           <div fxLayout="row" fxFlex="100" class="clientview">
             <div fxFlex="50" class="labelcss">Client Name</div>
-            <div fxFlex="50" class="labelcssvalue">client</div>
+            <div fxFlex="50" class="labelcssvalue"  *ngIf="variableclient">{{variableclient}}</div>
+            <div fxFlex="50" class="labelcssvalue"  *ngIf="!variableclient">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
             <div fxFlex="50" class="labelcss">FileName</div>
-            <div fxFlex="50" class="labelcssvalue">FileName</div>
+            <div fxFlex="50" class="labelcssvalue"  *ngIf="variablefilename">{{variablefilename}}</div>
+            <div fxFlex="50" class="labelcssvalue"  *ngIf="!variablefilename">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">Creation Date</div>
-            <div fxFlex="50" class="labelcssvalue">Creation Date</div>
+            <div fxFlex="50" class="labelcss" >Creation Date</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="variableCreatedOn">{{variableCreatedOn | date: 'dd.MM.yyyy'}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!variableCreatedOn">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">Expiry Date</div>
-            <div fxFlex="50" class="labelcssvalue">Expiry Date</div>
+            <div fxFlex="50" class="labelcss" >Expiry Date</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="variableExpiryDate">{{variableExpiryDate | date: 'dd.MM.yyyy'}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!variableExpiryDate">-</div>
           </div>
+   
           <div fxLayout="row" fxFlex="100" class="clientview">
             <div fxFlex="50" class="labelcss">Total Deposit</div>
-            <div fxFlex="50" class="labelcssvalue">Total Deposit</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="variableTotalDeposit">{{variableTotalDeposit}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!variableTotalDeposit">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
             <div fxFlex="50" class="labelcss">Rental</div>
-            <div fxFlex="50" class="labelcssvalue">Rental</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="variableRental">{{variableRental}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!variableRental">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
             <div fxFlex="50" class="labelcss">Bank Name</div>
-            <div fxFlex="50" class="labelcssvalue">Bank Name</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="variableBankName">{{variableBankName}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!variableBankName">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
             <div fxFlex="50" class="labelcss">Holder Name</div>
-            <div fxFlex="50" class="labelcssvalue">Holder Name</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="variableHolderName">{{variableHolderName}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!variableHolderName">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
             <div fxFlex="50" class="labelcss">Account No.</div>
-            <div fxFlex="50" class="labelcssvalue">Account No</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="variableAccountNo">{{variableAccountNo}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!variableAccountNo">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
             <div fxFlex="50" class="labelcss">Mode of Transfer</div>
-            <div fxFlex="50" class="labelcssvalue">Mode of Transfer</div>
+            <div fxFlex="50" class="labelcssvalue"  *ngIf="variaModeofTransfer">{{variaModeofTransfer}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!variaModeofTransfer">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
             <div fxFlex="50" class="labelcss">IFSC Code</div>
-            <div fxFlex="50" class="labelcssvalue">IFSC Code</div>
+            <div fxFlex="50" class="labelcssvalue"  *ngIf="varIFSCCode">{{varIFSCCode}}</div>
+            <div fxFlex="50" class="labelcssvalue"  *ngIf="!varIFSCCode">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
             <div  fxFlex="50"class="labelcss">Advance Request</div>
-            <div  fxFlex="50"class="labelcssvalue">Advance Request</div>
+            <div  fxFlex="50"class="labelcssvalue" *ngIf="vAdvanceRequest">{{vAdvanceRequest}}</div>
+            <div  fxFlex="50"class="labelcssvalue" *ngIf="!vAdvanceRequest">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div  fxFlex="50"class="labelcss">Maintenance</div>
-            <div  fxFlex="50"class="labelcssvalue">Maintenance</div>
+            <div  fxFlex="50"class="labelcss" >Maintenance</div>
+            <div  fxFlex="50"class="labelcssvalue"  *ngIf="vMaintenance">{{vMaintenance}}</div>
+            <div  fxFlex="50"class="labelcssvalue"  *ngIf="!vMaintenance">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div  fxFlex="50"class="labelcss">Remarks</div>
-            <div  fxFlex="50"class="labelcssvalue">Remarks</div>
+            <div  fxFlex="50"class="labelcss" >Remarks</div>
+            <div  fxFlex="50"class="labelcssvalue" *ngIf="vRemarks">{{vRemarks}}</div>
+            <div  fxFlex="50"class="labelcssvalue" *ngIf="!vRemarks">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
             <div  fxFlex="50"class="labelcss">Electrical</div>
-            <div  fxFlex="50"class="labelcssvalue">Electrical</div>
+            <div  fxFlex="50"class="labelcssvalue" *ngIf="vElectrical">{{vElectrical}}</div>
+            <div  fxFlex="50"class="labelcssvalue" *ngIf="!vElectrical">-</div>
           </div>
+        
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div  fxFlex="50"class="labelcss">Condition</div>
-            <div  fxFlex="50"class="labelcssvalue">Condition</div>
+            <div  fxFlex="50"class="labelcss" >Condition</div>
+            <div  fxFlex="50"class="labelcssvalue" *ngIf="vCondition">{{vCondition}}</div>
+            <div  fxFlex="50"class="labelcssvalue" *ngIf="!vCondition">-</div>
           </div>
         </div>
       </div>
@@ -99,14 +117,14 @@
 
             <ng-container matColumnDef="select" sticky>
               <th mat-header-cell *matHeaderCellDef>
-                <mat-checkbox color="primary" class="headcheckbox" (change)="$event ? masterToggle() : null"
+                <mat-checkbox class="headcheckbox" color="primary"  (change)="$event ? masterToggle() : null"
                   [checked]="selection.hasValue() && isAllSelected()"
                   [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
                 </mat-checkbox>
               </th>
               <td mat-cell *matCellDef="let row;index as i;">
                 <div fxLayout="row" fxLayoutAlign="start center">
-                  <mat-checkbox color="primary" (click)="$event.stopPropagation()" (change)="updateCheckedList($event,i)"
+                  <mat-checkbox (click)="$event.stopPropagation()" color="primary"  (change)="updateCheckedList($event,i)"
                     [checked]="selection.isSelected(row)" (change)="$event ? selection.toggle(row) : null"
                     [aria-label]="checkboxLabel(row,i)">
                     <!-- (change)="$event ? selection.toggle(row) : null"  (click)="changeSelection(row)" -->
@@ -148,26 +166,27 @@
               <td mat-cell *matCellDef="let row" class="datarow">
                 <div fxLayout="row" fxLayoutAlign="space-evenly center" >
 
-                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
-                    <img src="./assets/download_ash.svg" class="actionstable">
+                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px" (click)="DownloadLeaseDocument(row)">
+                    <img src="./assets/download_ash.svg" class="actionstable cursor_hover">
                     <span class="actionsspan">Download</span>
                   </div>
+                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px" >
+                    <img src="./assets/iconmonstr-paper-plane-2 (2).svg" class="actionstable cursor_hover">
+                    <span class="actionsspan" (click)="openSendMailDialog(row.documentID)">Send</span>
+                  </div>
                   <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
-                    <img src="./assets/iconmonstr-product-10.svg" class="actionstable">
-                    <span class="actionsspan">Review</span>
+                    <img src="./assets/iconmonstr-product-10.svg" class="actionstable cursor_hover">
+                    <span class="actionsspan" (click)="openDialog()">Review</span>
                   </div>
-                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px" (click)="drawer.toggle()">
-                    <img src="./assets/iconmonstr-paper-plane-2 (2).svg" class="actionstable">
-                    <span class="actionsspan">Open</span>
-                  </div>
+                 
                 </div>
               </td>
             </ng-container>
 
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color: #f4f3f4;"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;" style="border-bottom-style: none;"
-              [ngClass]="{'highlight3': selectedRowIndex2 == row.leaseID}" (click)="highlight2(row)">
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" style="border-bottom-style: none; cursor: pointer;"
+              [ngClass]="{'highlight3': selectedRowIndex2 == row.leaseID}" (click)="highlight2(row);docdata(row)">
             </tr>
           </table>
 

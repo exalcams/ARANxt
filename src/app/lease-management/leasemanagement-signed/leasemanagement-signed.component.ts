@@ -16,6 +16,9 @@ import { UploadSignedDialogComponent } from 'src/app/upload-signed-dialog/upload
 import { VacatecomponentComponent } from '../vacatecomponent/vacatecomponent.component';
 import { RenewcomponentComponent } from '../renewcomponent/renewcomponent.component';
 import { TerminatecomponentComponent } from '../terminatecomponent/terminatecomponent.component';
+import { saveAs } from 'file-saver';
+import { SendMailDialogComponent } from 'src/app/send-mail-dialog/send-mail-dialog.component';
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-leasemanagement-signed',
@@ -44,13 +47,15 @@ export class LeasemanagementSignedComponent implements OnInit {
   // tslint:disable-next-line:no-inferrable-types
   uploadVisible: boolean = false;
   minDate: Date;
-  AllLeases:any[]=[];
+  AllLeases:LeaseManagement[]=[];
   valuetable :boolean = true;
   valueupload :boolean = false;
   Checked : boolean = false
   notificationSnackBarComponent: NotificationSnackBarComponent;
   clientdata: LeaseManagement;
   Renewdialogdata: any;
+  sideNavStatus:boolean;
+  @ViewChild ('drawer') sidenav :MatDrawer;
   constructor(private formBuilder: FormBuilder, private datepipe: DatePipe, private service: LeaseManagementService,
     // tslint:disable-next-line:align
     private spinner:NgxSpinnerService,   public snackBar: MatSnackBar,public dialog: MatDialog) { 
@@ -65,9 +70,9 @@ export class LeasemanagementSignedComponent implements OnInit {
   GetAllLeases(){
     this.spinner.show();
     this.service.GetAllSignedLeases().subscribe((data)=>{
-      this.AllLeases=<any[]>data;
+      this.AllLeases=<LeaseManagement[]>data;
       
-      console.log(data);
+      console.log("getallleases",data);
       this.dataSource=new MatTableDataSource(this.AllLeases);
       // if(this.AllLeases.length>0){
       //   this.loadallsigneddocuments(this.AllLeases[0]);
@@ -126,6 +131,10 @@ vRemarks:any;
      this.vElectrical = this.clientdata.electrical
      this.vCondition = this.clientdata.condition
      this.vRemarks = this.clientdata.remarks
+     if(!this.sideNavStatus)
+     {
+      this.sidenav.toggle();
+     }
   }
   GetRemainingDays(expiry){
     let today=new Date();
@@ -327,10 +336,10 @@ handleFileInput(event): void {
 
   getWidth(days){
     if(days>=20 && days<=30){
-      return "green" 
+      return "#3ec725" 
     }
     else   if(days>=10 && days<=20){
-      return "yellow" 
+      return " #faa542"; 
     }
     else   if(days<10){
       return "red" 
@@ -436,5 +445,47 @@ highlight2(row){
   console.log(row)
   this.selectedRowIndex2 = row.leaseID;
   console.log(this.selectedRowIndex2);
+}
+DownloadLeaseDocument(row)
+{
+  
+   
+      this.service.DownloadLeaseDocument(row.documentID).subscribe((res)=>{
+        let blob:any = new Blob([res], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+        saveAs(blob, `${row.documentName}.docx`);
+        console.log(`${row.documentName} downloaded`);
+      },
+      err=>{
+        console.log(err);
+      });
+  
+ 
+}
+openSendMailDialog(documentID) {
+  const dialogRef = this.dialog.open(SendMailDialogComponent,
+    {
+      panelClass: "send-mail-dialog",
+      data: { documentID: documentID }
+    }
+  );
+  dialogRef.disableClose = true;
+  dialogRef.afterClosed().subscribe(res => {
+    if (res) {
+      console.log("send-mail-dialog", res);
+      this.spinner.show();
+      this.service.SendMailFromLease(res).subscribe(() => {
+        console.log("Mail sent");
+        this.notificationSnackBarComponent.openSnackBar("email has been sent", SnackBarStatus.success);
+        this.spinner.hide();
+      },
+        err => {
+          console.log(err);
+          this.spinner.hide();
+        });
+    }
+  });
+}
+drawerToggled(event){
+  this.sideNavStatus=event;
 }
 }
