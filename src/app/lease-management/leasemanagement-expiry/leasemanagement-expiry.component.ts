@@ -206,9 +206,13 @@ vRemarks:any;
 
 GetRemainingDays(expiry){
   let today=new Date();
-  let rDays=new Date(expiry).getDate()-today.getDate();
-this.rdayscolorchange(rDays)
-  return rDays;
+    var diff = Math.floor(new Date(expiry).getTime() - today.getTime());
+    var day = 1000 * 60 * 60 * 24;
+
+    var days = Math.floor(diff/day);
+    // var months = Math.floor(days/31);
+    // var years = Math.floor(months/12);
+    return days;
 }
 rdayscolorchange(days){
 

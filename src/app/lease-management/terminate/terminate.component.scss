@@ -388,3 +388,9 @@ td{
 .cursor_hover{
   cursor: pointer;
 }
+
+::placeholder {
+  color: #98abc4;
+  font-size: 10px;
+  margin-left:10px
+}
