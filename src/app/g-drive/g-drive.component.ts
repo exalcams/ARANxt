@@ -27,44 +27,32 @@ export class GDriveComponent implements OnInit {
     private http: HttpClient,
     private spinner:NgxSpinnerService
   ) {
-    
+    this.gToken=this.data.authToken
    }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.loginWithGoogle();
-    }, 2000);
+    this.GetAllFiles();
   }
 
   selectFile(id){
     this.selectedID=id;
   }
 
-  loginWithGoogle(): void {
-    this.spinner.show();
-    let signInOptions = {
-      scope: "https://www.googleapis.com/auth/drive"
-    }
-    // let fileID = "1QMOPHcNxzlLTFlwbQa1n5t_WU3yMsN5R";
-    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID, signInOptions)
-      .then((data) => {
-        console.log(data);
-        this.isLoggedin = true;
-        this.headers = new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${data.authToken}`
-        });
-        this.http.get(`https://www.googleapis.com/drive/v3/files`, {
-          headers: this.headers
-        }).subscribe((res: any) => {
-          console.log("res", res);
-          this.driveFiles = <any>res.files;
-          this.spinner.hide();
-        },
-          err => {
-            console.log(err);
-            this.spinner.hide();
-          });
+  GetAllFiles(): void {
+    this.headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.gToken}`
+    });
+    this.http.get(`https://www.googleapis.com/drive/v3/files`, {
+      headers: this.headers
+    }).subscribe((res: any) => {
+      console.log("res", res);
+      this.driveFiles = <any>res.files;
+      this.spinner.hide();
+    },
+      err => {
+        console.log(err);
+        this.spinner.hide();
       });
   }
 

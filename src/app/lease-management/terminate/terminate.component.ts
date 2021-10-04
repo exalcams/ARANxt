@@ -17,9 +17,6 @@ export interface PeriodicElement {
   Action:string
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {select: '', ClientName: 'Hydrogen', FileName: 'oxygen',DaysRemaining:'25', ExpiryDate: '',Action:''},
-];
 @Component({
   selector: 'app-terminate',
   templateUrl: './terminate.component.html',
@@ -28,7 +25,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class TerminateComponent implements OnInit {
 
   displayedColumns: string[] = ['select','ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action'];
-  dataSourcea = ELEMENT_DATA;
   dataSource = new MatTableDataSource<any>([]);
   selection = new SelectionModel<any>(true, []);
   selectedRowIndex: any;

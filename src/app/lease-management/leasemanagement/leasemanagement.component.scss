@@ -255,12 +255,9 @@ tr.mat-header-row {
     border: none !important;
     font-size: 11px;
   }
-  ::ng-deep  .mat-cell, .mat-header-cell {
+  .mat-cell, .mat-header-cell {
     border: none !important;
-    font-size: 12px;
-    color:
-    #6e6d7a;
-    font-weight: 500;
+    color:#6e6d7a;
   }
 .title
 {
@@ -278,4 +275,7 @@ tr.mat-header-row {
 }
 .pointer{
     cursor: pointer;
+}
+.editor{
+    width: -webkit-fill-available;
 }

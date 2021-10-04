@@ -1,6 +1,6 @@
 
 .g-drive-dialog{
-  width: 720px;
+  width: 70%;
   .poppins{
       font-family: Poppins;
       font-weight: 600;
@@ -28,7 +28,7 @@
       color: #2c2c2e;
   }
   .footer{
-    box-shadow: 0 2px 18px 0 rgba(74, 122, 255, 0.38);
+    // box-shadow: 0 2px 18px 0 rgba(74, 122, 255, 0.38);
     background-color: #fdfdfd;
     height: 56px;
     margin: 0;
@@ -37,15 +37,15 @@
   .savebtn{
     background-color: #4410ff !important;
     color: #ffffff !important;
-    font-size: 12px;
   }
   .list{
-    padding: 10px;
+    padding: 16px 12px;
     margin:8px;
     background-color: #ebe5ff;
     word-wrap: break-word;
     cursor: pointer;
     border-radius: 4px;
+    border: 2px solid transparent !important;
   }
   .list:hover{
     border: 2px solid #4410ff !important;

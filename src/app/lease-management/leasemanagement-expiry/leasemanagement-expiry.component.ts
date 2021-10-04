@@ -247,7 +247,7 @@ buttonvaluetable(){
   
 highlight2(row){
   // this.Mleasebinddata[row]
-  this.selectedRowIndex2 = row.id;
+  this.selectedRowIndex2 = row.leaseID;
 }
 }
 
