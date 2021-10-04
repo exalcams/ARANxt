@@ -90,6 +90,7 @@ import { CKEditorModule } from 'ngx-ckeditor';
 import { UploadSignedDialogComponent } from './upload-signed-dialog/upload-signed-dialog.component';
 import { SendMailDialogComponent } from './send-mail-dialog/send-mail-dialog.component';
 import {MatChipsModule} from '@angular/material/chips';
+import { ShiftConfirmationComponent } from './lease-management/shift-confirmation/shift-confirmation.component';
 import { VacatecomponentComponent } from './lease-management/vacatecomponent/vacatecomponent.component';
 import { RenewcomponentComponent } from './lease-management/renewcomponent/renewcomponent.component';
 import { TerminatecomponentComponent } from './lease-management/terminatecomponent/terminatecomponent.component';
@@ -142,7 +143,8 @@ import { TerminatecomponentComponent } from './lease-management/terminatecompone
     SendMailDialogComponent,
     VacatecomponentComponent,
     RenewcomponentComponent,
-    TerminatecomponentComponent
+    TerminatecomponentComponent,
+    ShiftConfirmationComponent
   ],
   imports: [
     MatGridListModule,

@@ -1,12 +1,18 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { LeaseDocument, LeaseManagement } from 'src/app/Model/Leasemanagement';
 import { LeaseManagementService } from 'src/app/service/lease-management.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-
+import { saveAs } from 'file-saver';
+import { SendMailDialogComponent } from 'src/app/send-mail-dialog/send-mail-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { NotificationSnackBarComponent } from 'src/app/notification/notification-snack-bar/notification-snack-bar.component';
+import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/notification-snackbar-status-enum';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDrawer } from '@angular/material/sidenav';
 @Component({
   selector: 'app-leasemanagement-expiry',
   templateUrl: './leasemanagement-expiry.component.html',
@@ -34,10 +40,16 @@ export class LeasemanagementExpiryComponent implements OnInit {
   valuetable :boolean = true;
   valueupload :boolean = false;
   SignedDocumentDetailsForm: FormGroup;
+  notificationSnackBarComponent: NotificationSnackBarComponent;
   date: any = new Date((new Date().getTime() - 3888000000));
   // tslint:disable-next-line:no-inferrable-types
   uploadVisible: boolean = false;
-  constructor(private formBuilder: FormBuilder, private spinner:NgxSpinnerService, private datepipe: DatePipe, private service:LeaseManagementService) { }
+  sideNavStatus:boolean;
+  @ViewChild ('drawer') sidenav :MatDrawer;
+
+  constructor(private formBuilder: FormBuilder, private spinner:NgxSpinnerService, private datepipe: DatePipe, private service:LeaseManagementService,public dialog: MatDialog, public snackBar: MatSnackBar) { 
+    this.notificationSnackBarComponent = new NotificationSnackBarComponent(this.snackBar);
+  }
 
   ngOnInit(): void {
     this.SignedFormGroup();
@@ -124,7 +136,7 @@ GetExpiryLeases(){
   this.spinner.show();
   this.service.GetExpiryLeases().subscribe((data)=>{
     this.Mlease=<any[]>data;
-    console.log(data);
+    console.log("expiry" ,data);
     this.dataSource=new MatTableDataSource(this.Mlease);
     if(this.Mlease.length>0){
       this.loadallsigneddocuments(this.Mlease[0]);
@@ -185,6 +197,10 @@ vRemarks:any;
     this.vElectrical = this.clientdata.electrical
     this.vCondition = this.clientdata.condition
     this.vRemarks = this.clientdata.remarks
+    if(!this.sideNavStatus)
+     {
+      this.sidenav.toggle();
+     }
  }
 
 
@@ -219,13 +235,13 @@ applyFilter(event: Event) {
 }
 getWidth(days){
     if(days>=20 && days<=30){
-      return "green"
+      return "#3ec725"
     }
     else   if(days>=10 && days<=20){
-      return "yellow"
+      return " #faa542"; 
     }
     else   if(days<10){
-      return "red"
+      return "red" 
     }
 }
 
@@ -248,6 +264,47 @@ buttonvaluetable(){
 highlight2(row){
   // this.Mleasebinddata[row]
   this.selectedRowIndex2 = row.leaseID;
+}
+DownloadLeaseDocument(row)
+{
+
+      this.service.DownloadLeaseDocument(row.documentID).subscribe((res)=>{
+        let blob:any = new Blob([res], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+        saveAs(blob, `${row.documentName}.docx`);
+        console.log(`${row.documentName} downloaded`);
+      },
+      err=>{
+        console.log(err);
+      });
+  
+ 
+}
+openSendMailDialog(documentID) {
+  const dialogRef = this.dialog.open(SendMailDialogComponent,
+    {
+      panelClass: "send-mail-dialog",
+      data: { documentID: documentID }
+    }
+  );
+  dialogRef.disableClose = true;
+  dialogRef.afterClosed().subscribe(res => {
+    if (res) {
+      console.log("send-mail-dialog", res);
+      this.spinner.show();
+      this.service.SendMailFromLease(res).subscribe(() => {
+        console.log("Mail sent");
+        this.notificationSnackBarComponent.openSnackBar("email has been sent", SnackBarStatus.success);
+        this.spinner.hide();
+      },
+        err => {
+          console.log(err);
+          this.spinner.hide();
+        });
+    }
+  });
+}
+drawerToggled(event){
+  this.sideNavStatus=event;
 }
 }
 

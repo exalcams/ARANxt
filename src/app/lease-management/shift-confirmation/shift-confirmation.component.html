@@ -1,0 +1,63 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar class="toolbar" fxLayout="row">
+        <div fxFlex="100" class="div_toolbar" fxLayoutAlign="space-between center">
+            <label class="fontcolor_dark">Shift Confirmation</label>
+            <img class="close_hover close" src="assets/32178.svg" (click)="close()">
+        </div>
+    </mat-toolbar>
+
+    <mat-dialog-content class="content" fusePerfectScrollbar>
+        <div fxLayout="row">
+            <div fxFlex="50" class="img_div">
+                <img src="assets/Empty-cuate.png" class="empty_img">
+            </div>
+            <div fxFlex="50" fxLayout="column" class="outer">
+                <div fxFlex="10" fxLayout="column">
+                    <form [formGroup]="ShiftConformationForm" fxLayout="column" style="width: 100%;">
+                        <div fxFlex="18">
+                            <p class="fontcolor_dark">Penalty</p>
+                        </div>
+
+                        <mat-form-field appearance="outline" class="form_field_cls">
+                            <input matInput placeholder="Enter penality if any" formControlName="Penalty" type="number">
+                        </mat-form-field>
+
+                        <div fxLayout="row" fxFlex="28" fxLayoutGap="10px"  fxLayoutAlign="space-between center">
+                            <div fxFlex="49" fxLayout="row">
+                                <span class="formspan fontcolor_dark" style="align-self: center;
+                                margin-right: 14px;">From</span>
+                                <mat-form-field appearance="standard" style="align-self: self-end;" class="form_field_cls1">
+    
+                                    <input matInput placeholder="India Land pvt ltd"  type="text"
+                                    class="placeholdertext" class="input_fontsize"  formControlName="From">
+        
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="56" fxLayout="row">
+                                <span class="formspan fontcolor_dark" style="align-self: center;
+                                margin-right: 14px;">To</span>
+                                <mat-form-field appearance="standard" style="align-self: self-end;" class="form_field_cls1">
+    
+                                    <input matInput placeholder="Exalca Technologies"  type="text"
+                                    class="placeholdertext" class="input_fontsize"  formControlName="To">
+        
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <!--  -->
+                        <div fxFlex="18">
+                            <p class="fontcolor_dark">Remarks</p>
+                        </div>
+
+                        <mat-form-field appearance="outline" >
+                            <textarea matInput placeholder="Enter Remarks"  formControlName="Remarks"></textarea>
+                        </mat-form-field>
+                        <!--  -->
+                        <button mat-raised-button  class="savebtn" type="button" class="shift_btn close_hover">Confirm Shift</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </mat-dialog-content>
+</div>
