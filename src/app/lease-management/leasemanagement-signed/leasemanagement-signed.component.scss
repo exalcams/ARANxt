@@ -83,7 +83,7 @@
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
     background-color: black;
   }
-  ::ng-deep  .mat-cell, .mat-header-cell {
+  .mat-cell, .mat-header-cell {
     border: none !important;
     font-size: 11px;
     padding: 0px 25px 0px 0;
@@ -304,17 +304,17 @@ tr.mat-header-row {
 mat-sidenav{
 height: 100% !important;
 }
-tr:hover {
-   color: black;
-   cursor: pointer;
-   font-family: 'poppins-semi' !important;
-}
-th{
-  font-family: 'poppins-semi' !important;
-}
-tr{
-height: 40px !important;
-}
+// tr:hover {
+//    color: black;
+//    cursor: pointer;
+//    font-family: 'poppins-semi' !important;
+// }
+// th{
+//   font-family: 'poppins-semi' !important;
+// }
+// tr{
+// height: 40px !important;
+// }
 
 .labelcss{
   font-size: 11px;
