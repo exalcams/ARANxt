@@ -197,15 +197,15 @@ buttonvaluetable(){
     this.selectedRowIndex2 = row.leaseID;
   }
 
-  getWidth(days){
-    if(days>=20 && days<=30){
-      return "#3ec725"  
+  getWidth(days) {
+    if (days >= 30) {
+      return "#3ec725"
     }
-    else   if(days>=10 && days<=20){
-      return "#faa542"; 
+    else if (days >= 10 && days <= 30) {
+      return " #faa542";
     }
-    else   if(days<10){
-      return "red" 
+    else if (days < 10) {
+      return "red"
     }
   }
 

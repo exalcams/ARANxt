@@ -338,10 +338,10 @@ export class LeasemanagementSignedComponent implements OnInit {
 
 
   getWidth(days) {
-    if (days >= 20 && days <= 30) {
+    if (days >= 30) {
       return "#3ec725"
     }
-    else if (days >= 10 && days <= 20) {
+    else if (days >= 10 && days <= 30) {
       return " #faa542";
     }
     else if (days < 10) {
@@ -381,7 +381,7 @@ export class LeasemanagementSignedComponent implements OnInit {
     }
     else {
 
-      this.notificationSnackBarComponent.openSnackBar('Please select a checkbox', SnackBarStatus.warning);
+      this.notificationSnackBarComponent.openSnackBar('Please select a lease', SnackBarStatus.warning);
       this.Checked = false
     }
   }
@@ -411,7 +411,7 @@ export class LeasemanagementSignedComponent implements OnInit {
     }
     else {
 
-      this.notificationSnackBarComponent.openSnackBar('Please select a checkbox', SnackBarStatus.warning);
+      this.notificationSnackBarComponent.openSnackBar('Please select a lease', SnackBarStatus.warning);
       this.Checked = false
     }
   }
@@ -431,7 +431,7 @@ export class LeasemanagementSignedComponent implements OnInit {
     }
     else {
 
-      this.notificationSnackBarComponent.openSnackBar('Please select a checkbox', SnackBarStatus.warning);
+      this.notificationSnackBarComponent.openSnackBar('Please select a lease', SnackBarStatus.warning);
       this.Checked = false
     }
   }

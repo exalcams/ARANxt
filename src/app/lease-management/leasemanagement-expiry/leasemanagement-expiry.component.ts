@@ -242,16 +242,16 @@ applyFilter(event: Event) {
   const filterValue = (event.target as HTMLInputElement).value;
   this.dataSource.filter = filterValue.trim().toLowerCase();
 }
-getWidth(days){
-    if(days>=20 && days<=30){
-      return "#3ec725"
-    }
-    else   if(days>=10 && days<=20){
-      return " #faa542"; 
-    }
-    else   if(days<10){
-      return "red" 
-    }
+getWidth(days) {
+  if (days >= 30) {
+    return "#3ec725"
+  }
+  else if (days >= 10 && days <= 30) {
+    return " #faa542";
+  }
+  else if (days < 10) {
+    return "red"
+  }
 }
 
 changeSelection(row){
@@ -331,7 +331,7 @@ openDialogvacate() {
   }
   else {
 
-    this.notificationSnackBarComponent.openSnackBar('Please select a checkbox', SnackBarStatus.warning);
+    this.notificationSnackBarComponent.openSnackBar('Please select a lease', SnackBarStatus.warning);
     this.Checked = false
   }
 }
@@ -359,7 +359,7 @@ openDialogrenew() {
   }
   else {
 
-    this.notificationSnackBarComponent.openSnackBar('Please select a checkbox', SnackBarStatus.warning);
+    this.notificationSnackBarComponent.openSnackBar('Please select a lease', SnackBarStatus.warning);
     this.Checked = false
   }
 }
@@ -379,7 +379,7 @@ openDialogterminate() {
   }
   else {
 
-    this.notificationSnackBarComponent.openSnackBar('Please select a checkbox', SnackBarStatus.warning);
+    this.notificationSnackBarComponent.openSnackBar('Please select a lease', SnackBarStatus.warning);
     this.Checked = false
   }
 }
