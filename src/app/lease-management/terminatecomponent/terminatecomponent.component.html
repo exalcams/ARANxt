@@ -28,15 +28,17 @@
                             <div fxFlex></div>
                             <img src="./assets/MaskGroup55.png" class="greyscaleimage">
                         </div>
-                      
+
                         <div class="form_bg" fxLayout="column" fxLayoutAlign="start start">
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Client Name</div>
-                                <div fxFlex="50" class="labelcssvalue">{{leaseData.clientName?leaseData.clientName:'-'}}</div>
+                                <div fxFlex="50" class="labelcssvalue">{{leaseData.clientName?leaseData.clientName:'-'}}
+                                </div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">FileName</div>
-                                <div fxFlex="50" class="labelcssvalue">{{leaseData.documentName?leaseData.documentName:'-'}}</div>
+                                <div fxFlex="50" class="labelcssvalue">
+                                    {{leaseData.documentName?leaseData.documentName:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Creation Date</div>
@@ -44,12 +46,14 @@
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Expiry Date</div>
-                                <div fxFlex="50" class="labelcssvalue">{{leaseData.expiryDate | date:'dd/MM/yyyy'}}</div>
+                                <div fxFlex="50" class="labelcssvalue">{{leaseData.expiryDate | date:'dd/MM/yyyy'}}
+                                </div>
                             </div>
 
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Total Deposit</div>
-                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.totalDeposit?leaseData.totalDeposit:'-'}}</div>
+                                <div fxFlex="50" class="labelcssvalue">
+                                    {{leaseData.totalDeposit?leaseData.totalDeposit:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Rental</div>
@@ -57,21 +61,25 @@
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Bank Name</div>
-                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.bankName?leaseData.bankName:'-'}}</div>
+                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.bankName?leaseData.bankName:'-'}}
+                                </div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Holder Name</div>
-                                <div fxFlex="50" class="labelcssvalue">{{leaseData.holderName?leaseData.holderName:'-'}}</div>
+                                <div fxFlex="50" class="labelcssvalue">{{leaseData.holderName?leaseData.holderName:'-'}}
+                                </div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Account No.</div>
-                                <div fxFlex="50" class="labelcssvalue">   {{leaseData.accountNo?leaseData.accountNo:'-'}}</div>
+                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.accountNo?leaseData.accountNo:'-'}}
+                                </div>
                             </div>
-                            
-                           
+
+
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Mode of Transfer</div>
-                                <div fxFlex="50" class="labelcssvalue">{{leaseData.modeOfTransfer?leaseData.modeOfTransfer:'-'}}</div>
+                                <div fxFlex="50" class="labelcssvalue">
+                                    {{leaseData.modeOfTransfer?leaseData.modeOfTransfer:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">IFSC Code</div>
@@ -79,11 +87,13 @@
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Advance Request</div>
-                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.advance?leaseData.advance:'-'}}</div>
+                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.advance?leaseData.advance:'-'}}
+                                </div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Maintenance</div>
-                                <div fxFlex="50" class="labelcssvalue">  {{leaseData.manintenace?leaseData.manintenace:'-'}}</div>
+                                <div fxFlex="50" class="labelcssvalue">
+                                    {{leaseData.manintenace?leaseData.manintenace:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Remarks</div>
@@ -91,12 +101,14 @@
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Electrical</div>
-                                <div fxFlex="50" class="labelcssvalue">  {{leaseData.electrical?leaseData.electrical:'-'}}</div>
+                                <div fxFlex="50" class="labelcssvalue">
+                                    {{leaseData.electrical?leaseData.electrical:'-'}}</div>
                             </div>
 
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Condition</div>
-                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.condition?leaseData.condition:'-'}}</div>
+                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.condition?leaseData.condition:'-'}}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -105,13 +117,14 @@
                 <div fxFlex="10"></div>
 
                 <div fxFlex="60" fxLayout="row">
-                    <form [formGroup]="form" style="width: 80%;">
+                    <form [formGroup]="Terminateformgroup" style="width: 80%;">
                         <div fxLayout="column" style="width:100% !important;padding: 10px 10px;">
 
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Proposed date</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="Enter Proposeddate" formControlName="Proposeddate" [matDatepicker]="picker1">
+                                    <input matInput placeholder="Enter Proposeddate" formControlName="Proposeddate"
+                                        [matDatepicker]="picker1">
                                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                                     <mat-date-range-picker #picker1></mat-date-range-picker>
                                 </mat-form-field>
@@ -120,7 +133,8 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Accepted date</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="Accepteddate" formControlName="Accepteddate" [matDatepicker]="picker2">
+                                    <input matInput placeholder="Accepteddate" formControlName="Accepteddate"
+                                        [matDatepicker]="picker2">
                                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                     <mat-date-range-picker #picker2></mat-date-range-picker>
                                 </mat-form-field>
@@ -129,7 +143,8 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Inspection date</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="Inspectiondate" formControlName="Inspectiondate" [matDatepicker]="picker3">
+                                    <input matInput placeholder="Inspectiondate" formControlName="Inspectiondate"
+                                        [matDatepicker]="picker3">
                                     <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                                     <mat-date-range-picker #picker3></mat-date-range-picker>
                                 </mat-form-field>
@@ -174,7 +189,8 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Expected Date To transfer</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="ExpectedDate" formControlName="ExpectedDate" [matDatepicker]="picker4">
+                                    <input matInput placeholder="ExpectedDate" formControlName="ExpectedDate"
+                                        [matDatepicker]="picker4">
                                     <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
                                     <mat-date-range-picker #picker4></mat-date-range-picker>
                                 </mat-form-field>
@@ -189,12 +205,17 @@
 
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Returnable Assets</span>
-                                <mat-form-field appearance="legacy" fxFlex="50">
-                                    <mat-label>Enter Returnable Assets</mat-label>
-                                    <mat-select multiple formControlName="ReturnableAssets">
-                                        <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}
-                                        </mat-option>
-                                    </mat-select>
+                                <mat-form-field appearance="legacy" fxFlex=50>
+                                    <mat-chip-list #chipList formControlName="ReturnableAssets" color="primary">
+                                        <mat-chip *ngFor="let asset of assets.value" [selectable]="selectable"
+                                            [removable]="removable" (removed)="remove(asset)">
+                                            {{asset}}
+                                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                        </mat-chip>
+                                        <input [matChipInputFor]="chipList" placeholder="Enter Returnable Assets"
+                                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                            [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+                                    </mat-chip-list>
                                 </mat-form-field>
 
                             </div>
@@ -222,8 +243,10 @@
     </mat-dialog-content>
 
     <mat-dialog-actions class="m-0 p-16 footer" fxLayoutAlign="center center" fxLayoutGap="8px">
-        <button mat-raised-button class="savebtn" type="button" color="primary" (click)="openShiftDialog()">Shift</button>
-        <button mat-raised-button class="savebtn" type="button" color="primary">Terminate</button>
+        <button mat-raised-button class="savebtn" type="button" color="primary"
+            (click)="openShiftDialog()">Shift</button>
+        <button mat-raised-button class="savebtn" type="button" color="primary"
+            (click)="Postterminatedetails()">Terminate</button>
 
     </mat-dialog-actions>
 

@@ -3,7 +3,7 @@ import { CommonClass } from "./Common";
 
 export class LeaseManagement  extends CommonClass
 {
-   
+    leaseID:number;
     site: string;
     space:string;
     asset:string;
@@ -47,4 +47,44 @@ export class LeaseDraft extends CommonClass{
     documentName:string;
     documentContent:string;
     isFavourite:boolean=false;
+}
+export class LeaseVacate extends CommonClass{
+    vacateID:number;
+    leaseID:number;
+    proposedDate:Date | string;
+    acceptedDate:Date | string;
+    inspectionDate:Date | string;
+    inspectedBy:string;
+    rentDue:number;
+    maintenanceDue:number;
+    damageRecovery:number;
+    advanceBalance:number;
+    dateToTransfer:Date | string;
+    modeOfTransfer:string;
+    returnableAssets:string;
+    verifiedBy:string;
+    remarks:string;
+}
+
+
+export class LeaseTerminate extends CommonClass{
+    TerminateID:number;
+    leaseID:number;
+    proposedDate:Date | string;
+    acceptedDate:Date | string;
+    inspectionDate:Date | string;
+    inspectedBy:string;
+    rentDue:number;
+    maintenanceDue:number;
+    damageRecovery:number;
+    advanceBalance:number;
+    dateToTransfer:Date | string;
+    modeOfTransfer:string;
+    returnableAssets:string;
+    verifiedBy:string;
+    remarks:string;
+    isShift:boolean;
+    penaltyAmount:number
+    penaltyFrom:string;
+    penaltyTo:string
 }

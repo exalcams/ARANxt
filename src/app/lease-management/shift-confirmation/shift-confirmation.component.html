@@ -22,25 +22,27 @@
                             <input matInput placeholder="Enter penality if any" formControlName="Penalty" type="number">
                         </mat-form-field>
 
-                        <div fxLayout="row" fxFlex="28" fxLayoutGap="10px"  fxLayoutAlign="space-between center">
+                        <div fxLayout="row" fxFlex="28" fxLayoutGap="10px" fxLayoutAlign="space-between center">
                             <div fxFlex="49" fxLayout="row">
                                 <span class="formspan fontcolor_dark" style="align-self: center;
                                 margin-right: 14px;">From</span>
-                                <mat-form-field appearance="standard" style="align-self: self-end;" class="form_field_cls1">
-    
-                                    <input matInput placeholder="India Land pvt ltd"  type="text"
-                                    class="placeholdertext" class="input_fontsize"  formControlName="From">
-        
+                                <mat-form-field appearance="standard" style="align-self: self-end;"
+                                    class="form_field_cls1">
+                                    <mat-select formControlName="From" class="selectoptionclass">
+                                        <mat-option *ngFor="let option of fromToOptions" [value]="option">
+                                            {{option}}</mat-option>
+                                    </mat-select>
                                 </mat-form-field>
                             </div>
                             <div fxFlex="56" fxLayout="row">
                                 <span class="formspan fontcolor_dark" style="align-self: center;
                                 margin-right: 14px;">To</span>
-                                <mat-form-field appearance="standard" style="align-self: self-end;" class="form_field_cls1">
-    
-                                    <input matInput placeholder="Exalca Technologies"  type="text"
-                                    class="placeholdertext" class="input_fontsize"  formControlName="To">
-        
+                                <mat-form-field appearance="standard" style="align-self: self-end;"
+                                    class="form_field_cls1">
+                                    <mat-select formControlName="To" class="selectoptionclass">
+                                        <mat-option *ngFor="let option of fromToOptions" [value]="option">
+                                            {{option}}</mat-option>
+                                    </mat-select>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -49,11 +51,12 @@
                             <p class="fontcolor_dark">Remarks</p>
                         </div>
 
-                        <mat-form-field appearance="outline" class="form_field_cls" >
-                            <textarea style="min-height: 150px;" matInput placeholder="Enter Remarks"  formControlName="Remarks"></textarea>
+                        <mat-form-field appearance="outline" class="form_field_cls">
+                            <textarea matInput placeholder="Enter Remarks" formControlName="Remarks"></textarea>
                         </mat-form-field>
                         <!--  -->
-                        <button mat-raised-button  class="savebtn" type="button" class="shift_btn close_hover">Confirm Shift</button>
+                        <button mat-raised-button class="savebtn" type="button" class="shift_btn close_hover"
+                            (click)="Save()">Confirm Shift</button>
                     </form>
                 </div>
 
