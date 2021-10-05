@@ -33,6 +33,19 @@
     font-family: 'poppins-semi' !important;
     color: #0d0c22 !important;
   }
+  ::placeholder {
+    color: #596069;
+    font-size: 10px !important;
+}
+::-webkit-input-placeholder{
+  color: #596069;
+    font-size: 10px;
+}
+.selectoptionclass{
+  color: #9ba0a5;
+  font-size: 12px !important;
+  font-family: 'poppins-semi' !important;
+}
   .empty_img
   {
     height: 295px;
@@ -53,6 +66,7 @@
   {
     width: 63%;
     font-family: 'poppins-semi';
+    margin-top: -16px;
   }
   .formspan
   {
@@ -71,4 +85,7 @@
   }
   .close_hover{
     cursor: pointer;
+}
+.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 0.3em 0 1em 0 !important;
 }

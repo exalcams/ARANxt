@@ -1,65 +1,156 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { LeaseManagement } from 'src/app/Model/Leasemanagement';
+import { LeaseManagement, LeaseTerminate } from 'src/app/Model/Leasemanagement';
 import { ShiftConfirmationComponent } from '../shift-confirmation/shift-confirmation.component';
-
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { NotificationSnackBarComponent } from 'src/app/notification/notification-snack-bar/notification-snack-bar.component';
+import { LeaseManagementService } from 'src/app/service/lease-management.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DatePipe } from '@angular/common';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/notification-snackbar-status-enum';
 @Component({
   selector: 'app-terminatecomponent',
   templateUrl: './terminatecomponent.component.html',
   styleUrls: ['./terminatecomponent.component.scss'],
-  encapsulation:ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None
 })
 export class TerminatecomponentComponent implements OnInit {
-  form: FormGroup;
+  Terminateformgroup: FormGroup;
   toppings = new FormControl();
-  leaseData:LeaseManagement=new LeaseManagement();
-  toppingList: string[] = ['Chairs', 'Table', 'AC Units', 'Remot Control', 'Fridge'];
-  constructor(public dialogRef: MatDialogRef<TerminatecomponentComponent>,private formBuilder: FormBuilder,public dialog:MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data: any,) { 
-      this.leaseData=this.data;
-      console.log("dialogData",this.leaseData)
-      
-    }
-
+  notificationSnackBarComponent: NotificationSnackBarComponent;
+  leaseData: LeaseManagement = new LeaseManagement();
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  shiftConfirmation;
+  constructor(public dialogRef: MatDialogRef<TerminatecomponentComponent>, private formBuilder: FormBuilder, public dialog: MatDialog, private spinner: NgxSpinnerService,
+    private service: LeaseManagementService, public snackBar: MatSnackBar, private _datePipe: DatePipe,
+    @Inject(MAT_DIALOG_DATA) public data: any,) {
+    this.notificationSnackBarComponent = new NotificationSnackBarComponent(this.snackBar)
+    this.leaseData = this.data;
+    console.log("dialogData", this.leaseData)
+  }
   ngOnInit(): void {
     this.SignedFormGroup();
   }
-
-  Close():void{
+  Close(): void {
     this.dialogRef.close();
   }
-  SignedFormGroup(): void
-{
-  this.form = this.formBuilder.group({
-    Proposeddate: ['',Validators.required],
-    Accepteddate : ['',Validators.required],
-    Inspectiondate: ['',Validators.required],
-    Inspectedby: ['',Validators.required],
-    Rentdue: ['',Validators.required],
-    Maintenancedue: ['',Validators.required],
-    DamageRecovery: ['',Validators.required],
-    AdvanceBalance: ['',Validators.required],
-    ExpectedDate: ['',Validators.required],
-    Modeoftransfer : ['',Validators.required],
-    ReturnableAssets : ['',Validators.required],
-    Verifiedby : ['',Validators.required],
-    Remarks: ['',Validators.required],
-  });
-}
-openShiftDialog() {
-  const dialogRef = this.dialog.open(ShiftConfirmationComponent,{
-    panelClass: 'upload-signed-dialog',
-    // position: { top: '3%', right: '3%' },
-    width: '61%',
-    maxWidth: '85.5vw ',
-    height: '80%',
+  SignedFormGroup(): void {
+    this.Terminateformgroup = this.formBuilder.group({
+      Proposeddate: ['', Validators.required],
+      Accepteddate: ['', Validators.required],
+      Inspectiondate: ['', Validators.required],
+      Inspectedby: ['', Validators.required],
+      Rentdue: ['', Validators.required],
+      Maintenancedue: ['', Validators.required],
+      DamageRecovery: ['', Validators.required],
+      AdvanceBalance: ['', Validators.required],
+      ExpectedDate: ['', Validators.required],
+      Modeoftransfer: ['', Validators.required],
+      ReturnableAssets: ['', Validators.required],
+      Verifiedby: ['', Validators.required],
+      Remarks: [''],
+    });
+  }
+  openShiftDialog() {
+    const dialogRef = this.dialog.open(ShiftConfirmationComponent, {
+      panelClass: 'upload-signed-dialog',
+      data: this.leaseData.clientName,
+      width: '61%',
+      maxWidth: '85.5vw ',
+      height: '80%',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.shiftConfirmation = result;
+        console.log("shift dialog data", result);
+        this.Postterminatedetails(true);
+      }
+    });
+  }
+  Postterminatedetails(isShift: boolean = false) {
+    if (this.Terminateformgroup.valid) {
+      this.spinner.show();
+      const signeddetail = new LeaseTerminate();
+      signeddetail.leaseID = this.leaseData.leaseID;
+      signeddetail.proposedDate = this._datePipe.transform(this.Terminateformgroup.get('Proposeddate').value, 'yyyy-MM-dd');
+      signeddetail.acceptedDate = this._datePipe.transform(this.Terminateformgroup.get('Accepteddate').value, 'yyyy-MM-dd');
+      signeddetail.inspectionDate = this._datePipe.transform(this.Terminateformgroup.get('Inspectiondate').value, 'yyyy-MM-dd');
+      signeddetail.inspectedBy = this.Terminateformgroup.get('Inspectedby').value;
+      signeddetail.rentDue = this.Terminateformgroup.get('Rentdue').value;
+      signeddetail.maintenanceDue = this.Terminateformgroup.get('Maintenancedue').value;
+      signeddetail.damageRecovery = this.Terminateformgroup.get('DamageRecovery').value;
+      signeddetail.advanceBalance = this.Terminateformgroup.get('AdvanceBalance').value;
+      signeddetail.dateToTransfer = this.Terminateformgroup.get('ExpectedDate').value;
+      signeddetail.modeOfTransfer = this.Terminateformgroup.get('Modeoftransfer').value;
+      let assets = this.Terminateformgroup.get('ReturnableAssets').value;
+      let assetString = "";
+      for (let i = 0; i < assets.length; i++) {
+        if (i != assets.length - 1) {
+          assetString += assets[i] + ",";
+        }
+        else {
+          assetString += assets[i];
+        }
+      }
+      signeddetail.returnableAssets = assetString;
+      if (isShift) {
+        signeddetail.penaltyAmount = this.shiftConfirmation.Penalty;
+        signeddetail.penaltyFrom = this.shiftConfirmation.From;
+        signeddetail.penaltyTo = this.shiftConfirmation.To;
+        signeddetail.isShift = true;
+      }
+      signeddetail.isShift = isShift;
+      signeddetail.verifiedBy = this.Terminateformgroup.get('Verifiedby').value;
+      signeddetail.remarks = this.Terminateformgroup.get('Remarks').value;
+      this.service.TerminateLease(signeddetail).subscribe((x) => {
+        this.spinner.hide();
+        console.log("Terminate uploaded", signeddetail);
+        this.notificationSnackBarComponent.openSnackBar('Uploaded in successfully', SnackBarStatus.success);
+        this.dialogRef.close()
+      },
+        err => {
+          console.log(err);
+          this.spinner.hide();
+        })
+    }
+    else {
+      this.ShowValidationErrors(this.Terminateformgroup);
+    }
+  }
+  ShowValidationErrors(Vacateformgroup: FormGroup): void {
+    Object.keys(Vacateformgroup.controls).forEach(key => {
+      Vacateformgroup.get(key).markAsTouched();
+      Vacateformgroup.get(key).markAsDirty();
+    });
+  }
+  get assets() {
+    return this.Terminateformgroup.get('ReturnableAssets');
+  }
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+    if ((value || '').trim()) {
+      this.assets.setValue([...this.assets.value, value.trim()]);
+      this.assets.updateValueAndValidity();
+    }
+    if (input) {
+      input.value = '';
+    }
+  }
 
-  });
-
-  dialogRef.afterClosed().subscribe(result => {
-    console.log(`Dialog result: ${result}`);
-  });
-}
+  remove(item: string): void {
+    const index = this.assets.value.indexOf(item);
+    if (index >= 0) {
+      this.assets.value.splice(index, 1);
+      this.assets.updateValueAndValidity();
+    }
+  }
 
 }

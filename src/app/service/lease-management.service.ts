@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from 'src/app/service/auth.service';
-import { LeaseDocument, LeaseDraft, LeaseManagement } from '../Model/Leasemanagement';
+import { LeaseDocument, LeaseDraft, LeaseManagement, LeaseTerminate, LeaseVacate } from '../Model/Leasemanagement';
 
 @Injectable({
   providedIn: 'root'
@@ -134,7 +134,7 @@ export class LeaseManagementService {
       })
       .pipe(catchError(this.errorHandler));
   }
-  VocateLease(lease: LeaseManagement): Observable<any> {
+  VocateLease(lease: LeaseVacate): Observable<any> {
     return this.http.post<any>(this.baseAddress + 'api/Lease/VocateLease', lease,
       {
         headers: new HttpHeaders({
@@ -143,7 +143,7 @@ export class LeaseManagementService {
       })
       .pipe(catchError(this.errorHandler));
   }
-  TerminateLease(lease: LeaseManagement): Observable<any> {
+  TerminateLease(lease: LeaseTerminate): Observable<any> {
     return this.http.post<any>(this.baseAddress + 'api/Lease/TerminateLease', lease,
       {
         headers: new HttpHeaders({
