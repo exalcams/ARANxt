@@ -86,5 +86,16 @@ export class LeaseTerminate extends CommonClass{
     isShift:boolean;
     penaltyAmount:number
     penaltyFrom:string;
-    penaltyTo:string
+    penaltyTo:string;
+}
+export class LeaseRenew extends CommonClass{
+
+    renewalID:number;
+    leaseID:number;
+    renewedOn:Date;
+    validFor:number;
+    expiryDate:Date;
+    revisedRent:number;
+    revisedRatio:number;
+
 }

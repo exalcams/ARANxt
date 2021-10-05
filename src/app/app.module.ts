@@ -94,7 +94,7 @@ import { ShiftConfirmationComponent } from './lease-management/shift-confirmatio
 import { VacatecomponentComponent } from './lease-management/vacatecomponent/vacatecomponent.component';
 import { RenewcomponentComponent } from './lease-management/renewcomponent/renewcomponent.component';
 import { TerminatecomponentComponent } from './lease-management/terminatecomponent/terminatecomponent.component';
-
+import {MatListModule} from '@angular/material/list';
 @NgModule({
   declarations: [
     AppComponent,
@@ -186,7 +186,8 @@ import { TerminatecomponentComponent } from './lease-management/terminatecompone
     NgxSpinnerModule,
     SocialLoginModule,
     CKEditorModule,
-    MatChipsModule
+    MatChipsModule,
+    MatListModule
   ],
   providers: [AuthService,DatePipe,
     // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from 'src/app/service/auth.service';
-import { LeaseDocument, LeaseDraft, LeaseManagement, LeaseTerminate, LeaseVacate } from '../Model/Leasemanagement';
+import { LeaseDocument, LeaseDraft, LeaseManagement, LeaseRenew, LeaseTerminate, LeaseVacate } from '../Model/Leasemanagement';
 
 @Injectable({
   providedIn: 'root'
@@ -125,13 +125,23 @@ export class LeaseManagementService {
     return this.http.get(`${this.baseAddress}api/Lease/GetTerminatedLeases`)
     .pipe(catchError(this.errorHandler));
   }
-  RenewLease(lease: LeaseManagement): Observable<any> {
-    return this.http.post<any>(this.baseAddress + 'api/Lease/RenewLease', lease,
-      {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json'
-        })
-      })
+  RenewLease(lease: LeaseRenew,selectedFiles: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append(selectedFiles.name, selectedFiles, selectedFiles.name);
+    formData.append('LeaseID', lease.leaseID.toLocaleString());
+    formData.append('RenewedOn', lease.renewedOn.toLocaleString());
+    formData.append('ExpiryDate', lease.expiryDate.toLocaleString());
+    formData.append('ValidFor', lease.validFor.toLocaleString());
+    formData.append('RevisedRent', lease.revisedRent.toLocaleString());
+    formData.append('RevisedRatio', lease.revisedRatio.toLocaleString());
+
+    return this.http.post<any>(this.baseAddress + 'api/Lease/RenewLease', formData,
+      // {
+      //   headers: new HttpHeaders({
+      //     'Content-Type': 'application/json'
+      //   })
+      // }
+      )
       .pipe(catchError(this.errorHandler));
   }
   VocateLease(lease: LeaseVacate): Observable<any> {
@@ -195,5 +205,9 @@ export class LeaseManagementService {
 
     .pipe(catchError(this.errorHandler));
 
+  }
+  GetLeaseRenewals(leaseID:number){
+    return this.http.get(`${this.baseAddress}api/Lease/GetLeaseRenewals?leaseID=${leaseID}`)
+    .pipe(catchError(this.errorHandler));
   }
 }

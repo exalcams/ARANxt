@@ -202,7 +202,36 @@
     width: 200px;
     padding-bottom: 0;
 }
+.filename
+{
+    
+    font-size: 12px;
+    color: black;
+    font-weight: bold;
 
-
+}
+.filename_outer
+{
+    height: 10px;
+    align-self: center;
+    margin-top: 10px;
+}
+.date
+{
+    font-size: 12px;
+    color: black;
+}
+.highlight{
+    background-color: #f3f3f4;
+}
+.newbtn
+{
+    background-color: #4410ff !important;
+    color: #ffffff !important;
+    width: 47%;
+    font-size: 11px;
+    height: 33px;
+    margin-bottom: 16px;
+}
 }
 
