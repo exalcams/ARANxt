@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LeaseManagement } from 'src/app/Model/Leasemanagement';
+import { ShiftConfirmationComponent } from '../shift-confirmation/shift-confirmation.component';
 
 @Component({
   selector: 'app-terminatecomponent',
@@ -10,11 +11,11 @@ import { LeaseManagement } from 'src/app/Model/Leasemanagement';
   encapsulation:ViewEncapsulation.None
 })
 export class TerminatecomponentComponent implements OnInit {
-  Vacateformgroup: FormGroup;
+  form: FormGroup;
   toppings = new FormControl();
   leaseData:LeaseManagement=new LeaseManagement();
-  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
-  constructor(public dialogRef: MatDialogRef<TerminatecomponentComponent>,private formBuilder: FormBuilder,
+  toppingList: string[] = ['Chairs', 'Table', 'AC Units', 'Remot Control', 'Fridge'];
+  constructor(public dialogRef: MatDialogRef<TerminatecomponentComponent>,private formBuilder: FormBuilder,public dialog:MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,) { 
       this.leaseData=this.data;
       console.log("dialogData",this.leaseData)
@@ -30,7 +31,7 @@ export class TerminatecomponentComponent implements OnInit {
   }
   SignedFormGroup(): void
 {
-  this.Vacateformgroup = this.formBuilder.group({
+  this.form = this.formBuilder.group({
     Proposeddate: ['',Validators.required],
     Accepteddate : ['',Validators.required],
     Inspectiondate: ['',Validators.required],
@@ -46,6 +47,19 @@ export class TerminatecomponentComponent implements OnInit {
     Remarks: ['',Validators.required],
   });
 }
+openShiftDialog() {
+  const dialogRef = this.dialog.open(ShiftConfirmationComponent,{
+    panelClass: 'upload-signed-dialog',
+    // position: { top: '3%', right: '3%' },
+    width: '61%',
+    maxWidth: '85.5vw ',
+    height: '80%',
 
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog result: ${result}`);
+  });
+}
 
 }

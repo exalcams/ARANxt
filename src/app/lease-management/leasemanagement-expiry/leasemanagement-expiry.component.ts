@@ -13,6 +13,9 @@ import { NotificationSnackBarComponent } from 'src/app/notification/notification
 import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/notification-snackbar-status-enum';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDrawer } from '@angular/material/sidenav';
+import { VacatecomponentComponent } from '../vacatecomponent/vacatecomponent.component';
+import { RenewcomponentComponent } from '../renewcomponent/renewcomponent.component';
+import { TerminatecomponentComponent } from '../terminatecomponent/terminatecomponent.component';
 @Component({
   selector: 'app-leasemanagement-expiry',
   templateUrl: './leasemanagement-expiry.component.html',
@@ -45,7 +48,9 @@ export class LeasemanagementExpiryComponent implements OnInit {
   // tslint:disable-next-line:no-inferrable-types
   uploadVisible: boolean = false;
   sideNavStatus:boolean;
+  Renewdialogdata:LeaseManagement=new LeaseManagement();
   @ViewChild ('drawer') sidenav :MatDrawer;
+  Checked: boolean = false
 
   constructor(private formBuilder: FormBuilder, private spinner:NgxSpinnerService, private datepipe: DatePipe, private service:LeaseManagementService,public dialog: MatDialog, public snackBar: MatSnackBar) { 
     this.notificationSnackBarComponent = new NotificationSnackBarComponent(this.snackBar);
@@ -190,7 +195,7 @@ vRemarks:any;
     this.variableAccountNo = this.clientdata.accountNo
   
     this.variaModeofTransfer = this.clientdata.modeOfTransfer
-    this.varIFSCCode = this.clientdata.iFSC
+    this.varIFSCCode = this.clientdata.ifsc
 
     this.vAdvanceRequest = this.clientdata.advance
     this.vMaintenance = this.clientdata.manintenace
@@ -309,6 +314,74 @@ openSendMailDialog(documentID) {
 }
 drawerToggled(event){
   this.sideNavStatus=event;
+}
+openDialogvacate() {
+  if (this.Checked) {
+    const dialogRef = this.dialog.open(VacatecomponentComponent, {
+      panelClass: 'upload-vacate-dialog',
+      data: this.Renewdialogdata,
+      // position: { top: '3%', right: '3%' },
+      width: '80%',
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  else {
+
+    this.notificationSnackBarComponent.openSnackBar('Please select a checkbox', SnackBarStatus.warning);
+    this.Checked = false
+  }
+}
+go(row) {
+  this.Checked = true;
+  this.Renewdialogdata = row;
+  // if(this.selection.selected)
+
+}
+openDialogrenew() {
+  if (this.Checked) {
+
+    const dialogRef = this.dialog.open(RenewcomponentComponent, {
+      panelClass: 'upload-renew-dialog',
+      data: this.Renewdialogdata,
+      // position: { top: '3%', right: '3%' },
+      width: '80%',
+
+    });
+
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  else {
+
+    this.notificationSnackBarComponent.openSnackBar('Please select a checkbox', SnackBarStatus.warning);
+    this.Checked = false
+  }
+}
+openDialogterminate() {
+  if (this.Checked) {
+    const dialogRef = this.dialog.open(TerminatecomponentComponent, {
+      panelClass: 'upload-terminate-dialog',
+      data: this.Renewdialogdata,
+      // position: { top: '3%', right: '3%' },
+      width: '80%',
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  else {
+
+    this.notificationSnackBarComponent.openSnackBar('Please select a checkbox', SnackBarStatus.warning);
+    this.Checked = false
+  }
 }
 }
 

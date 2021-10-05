@@ -31,71 +31,71 @@
                         <div class="form_bg" fxLayout="column" fxLayoutAlign="start start">
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Client Name</div>
-                                <div fxFlex="50" class="labelcssvalue">{{leaseData.clientName}}</div>
+                                <div fxFlex="50" class="labelcssvalue">{{leaseData.clientName?leaseData.clientName:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">FileName</div>
-                                <div fxFlex="50" class="labelcssvalue">{{leaseData.documentName}}</div>
+                                <div fxFlex="50" class="labelcssvalue">{{leaseData.documentName?leaseData.documentName:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Creation Date</div>
-                                <div fxFlex="50" class="labelcssvalue">{{leaseData.createdOn}}</div>
+                                <div fxFlex="50" class="labelcssvalue">{{leaseData.createdOn | date:'dd/MM/yyyy'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Expiry Date</div>
-                                <div fxFlex="50" class="labelcssvalue">{{leaseData.expiryDate}}</div>
+                                <div fxFlex="50" class="labelcssvalue">{{leaseData.expiryDate | date:'dd/MM/yyyy'}}</div>
                             </div>
 
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Total Deposit</div>
-                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.totalDeposit}}</div>
+                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.totalDeposit?leaseData.totalDeposit:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Rental</div>
-                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.rental}}</div>
+                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.rental?leaseData.rental:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Bank Name</div>
-                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.bankName}}</div>
+                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.bankName?leaseData.bankName:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Holder Name</div>
-                                <div fxFlex="50" class="labelcssvalue">{{leaseData.holderName}}</div>
+                                <div fxFlex="50" class="labelcssvalue">{{leaseData.holderName?leaseData.holderName:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Account No.</div>
-                                <div fxFlex="50" class="labelcssvalue">   {{leaseData.accountNo}}</div>
+                                <div fxFlex="50" class="labelcssvalue">   {{leaseData.accountNo?leaseData.accountNo:'-'}}</div>
                             </div>
                             
                            
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Mode of Transfer</div>
-                                <div fxFlex="50" class="labelcssvalue">{{leaseData.modeOfTransfer}}</div>
+                                <div fxFlex="50" class="labelcssvalue">{{leaseData.modeOfTransfer?leaseData.modeOfTransfer:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">IFSC Code</div>
-                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.iFSC}}</div>
+                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.ifsc?leaseData.ifsc:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Advance Request</div>
-                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.advance}}</div>
+                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.advance?leaseData.advance:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Maintenance</div>
-                                <div fxFlex="50" class="labelcssvalue">  {{leaseData.manintenace}}</div>
+                                <div fxFlex="50" class="labelcssvalue">  {{leaseData.manintenace?leaseData.manintenace:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Remarks</div>
-                                <div fxFlex="50" class="labelcssvalue">{{leaseData.remarks}}</div>
+                                <div fxFlex="50" class="labelcssvalue">{{leaseData.remarks?leaseData.remarks:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Electrical</div>
-                                <div fxFlex="50" class="labelcssvalue">  {{leaseData.electrical}}</div>
+                                <div fxFlex="50" class="labelcssvalue">  {{leaseData.electrical?leaseData.electrical:'-'}}</div>
                             </div>
 
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Condition</div>
-                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.condition}}</div>
+                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.condition?leaseData.condition:'-'}}</div>
                             </div>
                         </div>
                     </div>
