@@ -1,10 +1,10 @@
 <div class="dialog-content-wrapper">
-    <mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="space-between center" >
+    <mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="space-between center">
         <div class="daysleftdiv" fxLayout="row" fxLayoutAlign="center center">
             <span class="daysleft">
-                02 Days Left
+                {{GetRemainingDays(data.expiryDate)}} days left
             </span>
-           
+
         </div>
         <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
             <span class="vacatespan">
@@ -25,16 +25,19 @@
 
                 </div>
             </div> -->
+            <!-- {{leaseData.clientName?leaseData.clientName:'-'}} -->
+            <!-- {{item.renewedOn | date: 'MMMM d, y'}} -->
+            <!-- {{item.expiryDate | date: 'MMMM d, y'}} -->
 
             <div fxLayout="row" fxLayoutAlign="space-evenly" fxFlex="100" style="align-items: unset;">
                 <div fxFlex="200px">
-                    <div fxLayout="column" class="firstdiv">
-
-                        <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="8px"
-                            style="background-color: #f3f3f4;padding: 8px 0;">
-                            <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="50px">
+                    <div fxLayout="column" class="firstdiv" fxLayoutGap="8px">
+                        <div fxLayout="column" fxLayoutGap="8px" style="padding: 16px;cursor: pointer;"
+                            *ngFor="let item of renewalById" [ngClass]="{'highlight':item.renewalID==selectedID}"
+                            (click)="loadData(item)">
+                            <div fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%;">
                                 <span class="name">
-                                    John, File name
+                                    {{leaseData.clientName?leaseData.clientName:'-'}}
                                 </span>
                                 <div>
                                     <img src="assets/Group 7976.svg" class="arrowimages">
@@ -42,28 +45,12 @@
                             </div>
                             <div>
                                 <span class="dateclass">
-                                    Sept 20, 2021 - Sept 20, 2022
+                                    {{item.renewedOn | date: 'MMMM d, y'}} - {{item.expiryDate | date: 'MMMM d, y'}}
                                 </span>
                             </div>
 
                         </div>
-                        <div fxLayout="column" fxLayoutAlign="center center"
-                            style="background-color: white;border-radius: 4px;padding: 8px 0;">
-                            <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="50px">
-                                <span class="name">
-                                    John, File name
-                                </span>
-                                <div>
-                                    <img src="assets/Group 7976.svg" class="arrowimages">
-                                </div>
-                            </div>
-                            <div>
-                                <span class="dateclass">
-                                    Sept 20, 2021 - Sept 20, 2022
-                                </span>
-                            </div>
 
-                        </div>
                         <div>
 
                         </div>
@@ -79,14 +66,16 @@
                             <div fxFlex></div>
                             <img src="./assets/MaskGroup55.png" class="greyscaleimage">
                         </div>
-                        <div class="form_bg" fxLayout="column" fxLayoutAlign="start start">
+                        <div class="form_bg" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Client Name</div>
-                                <div fxFlex="50" class="labelcssvalue">{{leaseData.clientName?leaseData.clientName:'-'}}</div>
+                                <div fxFlex="50" class="labelcssvalue">{{leaseData.clientName?leaseData.clientName:'-'}}
+                                </div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">FileName</div>
-                                <div fxFlex="50" class="labelcssvalue">{{leaseData.documentName?leaseData.documentName:'-'}}</div>
+                                <div fxFlex="50" class="labelcssvalue">
+                                    {{leaseData.documentName?leaseData.documentName:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Creation Date</div>
@@ -94,12 +83,14 @@
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Expiry Date</div>
-                                <div fxFlex="50" class="labelcssvalue">{{leaseData.expiryDate | date:'dd/MM/yyyy'}}</div>
+                                <div fxFlex="50" class="labelcssvalue">{{leaseData.expiryDate | date:'dd/MM/yyyy'}}
+                                </div>
                             </div>
 
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Total Deposit</div>
-                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.totalDeposit?leaseData.totalDeposit:'-'}}</div>
+                                <div fxFlex="50" class="labelcssvalue">
+                                    {{leaseData.totalDeposit?leaseData.totalDeposit:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Rental</div>
@@ -107,21 +98,25 @@
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Bank Name</div>
-                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.bankName?leaseData.bankName:'-'}}</div>
+                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.bankName?leaseData.bankName:'-'}}
+                                </div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Holder Name</div>
-                                <div fxFlex="50" class="labelcssvalue">{{leaseData.holderName?leaseData.holderName:'-'}}</div>
+                                <div fxFlex="50" class="labelcssvalue">{{leaseData.holderName?leaseData.holderName:'-'}}
+                                </div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Account No.</div>
-                                <div fxFlex="50" class="labelcssvalue">   {{leaseData.accountNo?leaseData.accountNo:'-'}}</div>
+                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.accountNo?leaseData.accountNo:'-'}}
+                                </div>
                             </div>
-                            
-                           
+
+
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Mode of Transfer</div>
-                                <div fxFlex="50" class="labelcssvalue">{{leaseData.modeOfTransfer?leaseData.modeOfTransfer:'-'}}</div>
+                                <div fxFlex="50" class="labelcssvalue">
+                                    {{leaseData.modeOfTransfer?leaseData.modeOfTransfer:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">IFSC Code</div>
@@ -129,11 +124,13 @@
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Advance Request</div>
-                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.advance?leaseData.advance:'-'}}</div>
+                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.advance?leaseData.advance:'-'}}
+                                </div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Maintenance</div>
-                                <div fxFlex="50" class="labelcssvalue">  {{leaseData.manintenace?leaseData.manintenace:'-'}}</div>
+                                <div fxFlex="50" class="labelcssvalue">
+                                    {{leaseData.manintenace?leaseData.manintenace:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Remarks</div>
@@ -141,12 +138,14 @@
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Electrical</div>
-                                <div fxFlex="50" class="labelcssvalue">  {{leaseData.electrical?leaseData.electrical:'-'}}</div>
+                                <div fxFlex="50" class="labelcssvalue">
+                                    {{leaseData.electrical?leaseData.electrical:'-'}}</div>
                             </div>
 
                             <div fxLayout="row" fxFlex="100" class="clientview">
                                 <div fxFlex="50" class="labelcss">Condition</div>
-                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.condition?leaseData.condition:'-'}}</div>
+                                <div fxFlex="50" class="labelcssvalue"> {{leaseData.condition?leaseData.condition:'-'}}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -155,48 +154,57 @@
                 <div fxFlex="5"></div>
 
                 <div fxFlex="60" fxLayout="row">
-                    <form [formGroup]="Vacateformgroup" style="width: 80%;">
+                    <form [formGroup]="Vacateformgroup" style="width: 80%;" autocomplete="off">
                         <div fxLayout="column" style="width:100% !important;padding: 10px 10px;">
+                            <div *ngIf="selectedID">
+                                <button mat-raised-button class="newbtn" type="button" color="primary" (click)="newlease()">New</button>
 
+                            </div>
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Renew On</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="Enter RenewOn" formControlName="RenewOn"
-                                        [matDatepicker]="picker1">
-                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                                    <mat-date-range-picker #picker1></mat-date-range-picker>
+                                    <input matInput [matDatepicker]="dp1" placeholder="Enter RenewOn"
+                                        formControlName="RenewOn">
+                                    <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                                    <mat-datepicker #dp1 disabled="false"></mat-datepicker>
+
+                                  
                                 </mat-form-field>
                             </div>
 
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Valid for</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="Validfor" formControlName="Validfor">
+                                    <input matInput placeholder="Enter Months" type="number" formControlName="Validfor">
+                                   
                                 </mat-form-field>
                             </div>
 
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">New Expiry Date</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="NewExpiryDate" formControlName="NewExpiryDate"
-                                        [matDatepicker]="picker2">
-                                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                                    <mat-date-range-picker #picker2></mat-date-range-picker>
+                                    <input matInput [matDatepicker]="dp2" disabled placeholder="New Expiry Date"
+                                        formControlName="NewExpiryDate">
+                                    <mat-datepicker-toggle matSuffix disabled [for]="dp2"></mat-datepicker-toggle>
+                                    <mat-datepicker #dp2 disabled="false"></mat-datepicker>
+                                    
                                 </mat-form-field>
                             </div>
 
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Revised Rent</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="RevisedRent" formControlName="RevisedRent">
+                                    <input matInput placeholder="Revised Rent" formControlName="RevisedRent">
                                 </mat-form-field>
+                              
                             </div>
 
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Revised ratio</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="Revisedratio" formControlName="Revisedratio">
+                                    <input matInput placeholder="Revised ratio" formControlName="Revisedratio">
                                 </mat-form-field>
+                               
                             </div>
 
 
@@ -205,13 +213,19 @@
                                 <span class="formspan" fxFlex="50">Remarks</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
                                     <input matInput placeholder="Remarks" formControlName="Remarks">
+                                   
                                 </mat-form-field>
                             </div>
 
                             <div fxLayout="row" fxLayoutAlign="end center">
-                                <button mat-raised-button class="savebtn" type="button" color="primary">Upload</button>
+                                <button mat-raised-button *ngIf="!selectedID" class="savebtn" type="button"
+                                    color="primary" (click)="fileInput1.click()">Upload</button>
                             </div>
-                            <div style="height: 10px;"> </div>
+                            <div class="filename_outer">
+                                <p class="filename">{{filename}}
+                                </p>
+                            </div>
+                            <!-- <div style="height: 10px;"> </div>
                             <div class="messagediv">
                                 <div>
                                     <img src="./assets/New-message-rafiki.png" class="messageimage">
@@ -224,11 +238,12 @@
                                         Currently No Message
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                         </div>
                     </form>
-
+                    <input hidden type="file" #fileInput1 id="file_id" accept=".doc , .docx , .pdf"
+                        (change)="handleFileInput($event)" />
 
                 </div>
 
@@ -239,7 +254,7 @@
     </mat-dialog-content>
 
     <mat-dialog-actions class="m-0 p-16 footer" fxLayoutAlign="center center" fxLayoutGap="8px">
-        <button mat-raised-button class="savebtnfooter" type="button" color="primary">Renew</button>  
+        <button mat-raised-button class="savebtnfooter" type="button" color="primary" (click)="Renew()">Renew</button>
 
     </mat-dialog-actions>
 
