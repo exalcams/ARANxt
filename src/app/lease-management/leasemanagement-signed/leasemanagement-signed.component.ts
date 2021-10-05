@@ -28,11 +28,11 @@ import { MatDrawer } from '@angular/material/sidenav';
 
 })
 export class LeasemanagementSignedComponent implements OnInit {
-  displayedColumns: string[] = [ 'select','ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action'];
+  displayedColumns: string[] = ['select', 'ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action'];
   valueforrenewdialog = 0;
   dataSource = new MatTableDataSource<any>([]);
   selection = new SelectionModel<any>(true, []);
-  SelectedSpace:any[]=[];
+  SelectedSpace: any[] = [];
   selectedRowIndex2 = -1;
   @ViewChild('fileInput1') fileInput1: ElementRef;
   selectedRowIndex: any;
@@ -41,39 +41,39 @@ export class LeasemanagementSignedComponent implements OnInit {
   btn_name: any = 'Upload Document';
   // tslint:disable-next-line:typedef-whitespace
   files: File[] = [];
-  days=new Date();
+  days = new Date();
   SignedDocumentDetailsForm: FormGroup;
   date: any = new Date((new Date().getTime() - 3888000000));
   // tslint:disable-next-line:no-inferrable-types
   uploadVisible: boolean = false;
   minDate: Date;
-  AllLeases:LeaseManagement[]=[];
-  valuetable :boolean = true;
-  valueupload :boolean = false;
-  Checked : boolean = false
+  AllLeases: LeaseManagement[] = [];
+  valuetable: boolean = true;
+  valueupload: boolean = false;
+  Checked: boolean = false
   notificationSnackBarComponent: NotificationSnackBarComponent;
   clientdata: LeaseManagement;
   Renewdialogdata: any;
-  sideNavStatus:boolean;
-  @ViewChild ('drawer') sidenav :MatDrawer;
+  sideNavStatus: boolean;
+  @ViewChild('drawer') sidenav: MatDrawer;
   constructor(private formBuilder: FormBuilder, private datepipe: DatePipe, private service: LeaseManagementService,
     // tslint:disable-next-line:align
-    private spinner:NgxSpinnerService,   public snackBar: MatSnackBar,public dialog: MatDialog) { 
-      this.notificationSnackBarComponent = new NotificationSnackBarComponent(this.snackBar);
-    }
+    private spinner: NgxSpinnerService, public snackBar: MatSnackBar, public dialog: MatDialog) {
+    this.notificationSnackBarComponent = new NotificationSnackBarComponent(this.snackBar);
+  }
 
   ngOnInit(): void {
     this.SignedFormGroup();
     this.GetAllLeases();
   }
 
-  GetAllLeases(){
+  GetAllLeases() {
     this.spinner.show();
-    this.service.GetAllSignedLeases().subscribe((data)=>{
-      this.AllLeases=<LeaseManagement[]>data;
-      
-      console.log("getallleases",data);
-      this.dataSource=new MatTableDataSource(this.AllLeases);
+    this.service.GetAllSignedLeases().subscribe((data) => {
+      this.AllLeases = <LeaseManagement[]>data;
+
+      console.log("getallleases", data);
+      this.dataSource = new MatTableDataSource(this.AllLeases);
       // if(this.AllLeases.length>0){
       //   this.loadallsigneddocuments(this.AllLeases[0]);
       // }
@@ -81,67 +81,66 @@ export class LeasemanagementSignedComponent implements OnInit {
       this.allplaces(this.AllLeases);
       console.log(this.AllLeases)
     },
-    err=>{
-      console.log(err);
-      this.spinner.hide();
-    });
-   
+      err => {
+        console.log(err);
+        this.spinner.hide();
+      });
+
   }
-  allplaces(bindingdatalase){
-   this.SelectedSpace = bindingdatalase
+  allplaces(bindingdatalase) {
+    this.SelectedSpace = bindingdatalase
     console.log(this.SelectedSpace)
     console.log(this.AllLeases)
   }
-  variableclient:any;
-  variablefilename:any;
-variableCreatedOn:any;
-variableExpiryDate:any;
-variableTotalDeposit:any;
-variableRental:any;
-variableBankName:any;
-variableHolderName:any;
-variableAccountNo:any;
-variaModeofTransfer:any;
-varIFSCCode:any;
-vAdvanceRequest:any;
-vMaintenance:any;
-vElectrical:any;
-vCondition:any;
-vRemarks:any;
+  variableclient: any;
+  variablefilename: any;
+  variableCreatedOn: any;
+  variableExpiryDate: any;
+  variableTotalDeposit: any;
+  variableRental: any;
+  variableBankName: any;
+  variableHolderName: any;
+  variableAccountNo: any;
+  variaModeofTransfer: any;
+  varIFSCCode: any;
+  vAdvanceRequest: any;
+  vMaintenance: any;
+  vElectrical: any;
+  vCondition: any;
+  vRemarks: any;
 
 
-  docdata(ind){
-      this.clientdata = ind;
-     console.log(this.clientdata.clientName)
-     this.variableclient = this.clientdata.clientName
-     this.variablefilename = this.clientdata.documentName
-     this.variableCreatedOn = this.clientdata.createdOn
-     this.variableExpiryDate = this.clientdata.expiryDate
-     this.variableTotalDeposit = this.clientdata.totalDeposit
-     this.variableRental = this.clientdata.rental
-     this.variableBankName = this.clientdata.bankName
-     this.variableHolderName = this.clientdata.holderName
-     this.variableAccountNo = this.clientdata.accountNo
-   
-     this.variaModeofTransfer = this.clientdata.modeOfTransfer
-     this.varIFSCCode = this.clientdata.iFSC
+  docdata(ind) {
+    this.clientdata = ind;
+    console.log(this.clientdata.clientName)
+    this.variableclient = this.clientdata.clientName
+    this.variablefilename = this.clientdata.documentName
+    this.variableCreatedOn = this.clientdata.createdOn
+    this.variableExpiryDate = this.clientdata.expiryDate
+    this.variableTotalDeposit = this.clientdata.totalDeposit
+    this.variableRental = this.clientdata.rental
+    this.variableBankName = this.clientdata.bankName
+    this.variableHolderName = this.clientdata.holderName
+    this.variableAccountNo = this.clientdata.accountNo
 
-     this.vAdvanceRequest = this.clientdata.advance
-     this.vMaintenance = this.clientdata.manintenace
-     this.vElectrical = this.clientdata.electrical
-     this.vCondition = this.clientdata.condition
-     this.vRemarks = this.clientdata.remarks
-     if(!this.sideNavStatus)
-     {
+    this.variaModeofTransfer = this.clientdata.modeOfTransfer
+    this.varIFSCCode = this.clientdata.ifsc
+
+    this.vAdvanceRequest = this.clientdata.advance
+    this.vMaintenance = this.clientdata.manintenace
+    this.vElectrical = this.clientdata.electrical
+    this.vCondition = this.clientdata.condition
+    this.vRemarks = this.clientdata.remarks
+    if (!this.sideNavStatus) {
       this.sidenav.toggle();
-     }
+    }
   }
-  GetRemainingDays(expiry){
-    let today=new Date();
+  GetRemainingDays(expiry) {
+    let today = new Date();
     var diff = Math.floor(new Date(expiry).getTime() - today.getTime());
     var day = 1000 * 60 * 60 * 24;
 
-    var days = Math.floor(diff/day);
+    var days = Math.floor(diff / day);
     // var months = Math.floor(days/31);
     // var years = Math.floor(months/12);
     return days;
@@ -188,29 +187,28 @@ vRemarks:any;
 
     // this.openDialog()
   }
-SignedFormGroup(): void
-{
-  this.SignedDocumentDetailsForm = this.formBuilder.group({
-    Client: ['', Validators.required],
-    FileName : ['', Validators.required],
-    CreatedOn: ['', Validators.required],
-    ExpiryDate: ['', Validators.required],
-    TotalDeposit : ['', Validators.required],
-    Rental: ['', Validators.required],
-    BankName: ['', Validators.required],
-    HolderName : ['', Validators.required],
-    AccountNo : ['', Validators.required],
-    ModeofTransfer : ['', Validators.required],
-    IFSCCode : ['', Validators.required],
-    AdvanceRequest : ['', Validators.required],
-    Maintenance: ['', Validators.required],
-    Electrical: ['', Validators.required],
-    Condition: ['', Validators.required],
-    Remarks: ['', Validators.required],
+  SignedFormGroup(): void {
+    this.SignedDocumentDetailsForm = this.formBuilder.group({
+      Client: ['', Validators.required],
+      FileName: ['', Validators.required],
+      CreatedOn: ['', Validators.required],
+      ExpiryDate: ['', Validators.required],
+      TotalDeposit: ['', Validators.required],
+      Rental: ['', Validators.required],
+      BankName: ['', Validators.required],
+      HolderName: ['', Validators.required],
+      AccountNo: ['', Validators.required],
+      ModeofTransfer: ['', Validators.required],
+      IFSCCode: ['', Validators.required],
+      AdvanceRequest: ['', Validators.required],
+      Maintenance: ['', Validators.required],
+      Electrical: ['', Validators.required],
+      Condition: ['', Validators.required],
+      Remarks: ['', Validators.required],
 
-  });
-}
-// loadallsigneddocuments(AllLeases:LeaseManagement){
+    });
+  }
+  // loadallsigneddocuments(AllLeases:LeaseManagement){
   // this.SelectedSpace =AllLeases;
   // console.log("selected",this.AllLeases)
   // this.SignedDocumentDetailsForm.get('ClientName').setValue(this.SelectedSpace.client);
@@ -231,16 +229,16 @@ SignedFormGroup(): void
   // this.SignedDocumentDetailsForm.get('Electrical').setValue(this.SelectedSpace.electrical);
   // this.SignedDocumentDetailsForm.get('AdvanceRequest').setValue(this.SelectedSpace.advanceRequest);
   // this.SignedDocumentDetailsForm.get('IFSCCode').setValue(this.SelectedSpace.iFSC);
-// }
+  // }
 
 
-upload(): void {
-  this.uploadVisible = false;
-  // tslint:disable-next-line:quotemark
-  // tslint:disable-next-line:align
-  this.btn_name = 'Upload Document';
-}
-handleFileInput(event): void {
+  upload(): void {
+    this.uploadVisible = false;
+    // tslint:disable-next-line:quotemark
+    // tslint:disable-next-line:align
+    this.btn_name = 'Upload Document';
+  }
+  handleFileInput(event): void {
     // tslint:disable-next-line:semicolon
     // tslint:disable-next-line:align
 
@@ -259,7 +257,7 @@ handleFileInput(event): void {
     signeddetailFile.contentLength = event.target.files[0].type;
     signeddetailFile.contentLength = event.target.files[0].size;
     const selectedFiles = event.target.files[0];
-    this.service.AddSignedFile(signeddetailFile,selectedFiles).subscribe((x) => {
+    this.service.AddSignedFile(signeddetailFile, selectedFiles).subscribe((x) => {
       console.log(x);
       this.notificationSnackBarComponent.openSnackBar('Uploaded in successfully', SnackBarStatus.success);
     },
@@ -309,7 +307,7 @@ handleFileInput(event): void {
 
     //   })
 
-  this.ShowValidationErrors(this.SignedDocumentDetailsForm)
+    this.ShowValidationErrors(this.SignedDocumentDetailsForm)
   }
 
   ShowValidationErrors(formGroup: FormGroup): void {
@@ -324,14 +322,14 @@ handleFileInput(event): void {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   filehandle() {
-  
-    
+
+
     // setTimeout(() => {
     //   const el: HTMLElement = this.fileInput1.nativeElement;
     //   // tslint:disable-next-line:align
     //   el.click();
     // }, 10);
-  
+
   }
   createdDate(): void {
     this.minDate = this.SignedDocumentDetailsForm.get('CreatedOn').value;
@@ -339,158 +337,159 @@ handleFileInput(event): void {
   // tslint:disable-next-line:eofline
 
 
-  getWidth(days){
-    if(days>=20 && days<=30){
-      return "#3ec725" 
+  getWidth(days) {
+    if (days >= 20 && days <= 30) {
+      return "#3ec725"
     }
-    else   if(days>=10 && days<=20){
-      return " #faa542"; 
+    else if (days >= 10 && days <= 20) {
+      return " #faa542";
     }
-    else   if(days<10){
-      return "red" 
+    else if (days < 10) {
+      return "red"
     }
-}
+  }
 
-openDialog() {
-  const dialogRef = this.dialog.open(UploadSignedDialogComponent,{
-    panelClass: 'upload-signed-dialog',
-    // position: { top: '3%', right: '3%' },
-    width: '80%',
-    maxWidth: '85.5vw ',
-    height: '90%',
+  openDialog() {
+    const dialogRef = this.dialog.open(UploadSignedDialogComponent, {
+      panelClass: 'upload-signed-dialog',
+      // position: { top: '3%', right: '3%' },
+      width: '80%',
+      maxWidth: '85.5vw ',
+      height: '90%',
 
-  });
+    });
 
-  dialogRef.afterClosed().subscribe(result => {
-    console.log(`Dialog result: ${result}`);
-  });
-}
-
-
-openDialogvacate() {
-  if(this.Checked){
-  const dialogRef = this.dialog.open(VacatecomponentComponent,{
-    panelClass: 'upload-vacate-dialog',
-    // position: { top: '3%', right: '3%' },
-    width: '80%',
-
-  });
-
-  dialogRef.afterClosed().subscribe(result => {
-    console.log(`Dialog result: ${result}`);
-  });
-}
-else{
-  
-  this.notificationSnackBarComponent.openSnackBar('Please select a checkbox', SnackBarStatus.warning);
-  this.Checked = false
-}
-}
-go(row){
-  this.valueforrenewdialog=row
-  console.log(this.valueforrenewdialog)
-  this.Checked = true;
-  this.Renewdialogdata = row;
-  // if(this.selection.selected)
- 
-}
-openDialogrenew() {
-  if(this.Checked){
-
-  const dialogRef = this.dialog.open(RenewcomponentComponent,{
-    panelClass: 'upload-renew-dialog',
-    data : this.Renewdialogdata,
-    // position: { top: '3%', right: '3%' },
-    width: '80%',
-
-  });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
 
-  dialogRef.afterClosed().subscribe(result => {
-    console.log(`Dialog result: ${result}`);
-  });
-}
-else{
-  
-  this.notificationSnackBarComponent.openSnackBar('Please select a checkbox', SnackBarStatus.warning);
-  this.Checked = false
-}
-}
-openDialogterminate() {
-  if(this.Checked){
-  const dialogRef = this.dialog.open(TerminatecomponentComponent,{
-    panelClass: 'upload-terminate-dialog',
-    // position: { top: '3%', right: '3%' },
-    width: '80%',
+  openDialogvacate() {
+    if (this.Checked) {
+      const dialogRef = this.dialog.open(VacatecomponentComponent, {
+        panelClass: 'upload-vacate-dialog',
+        data: this.Renewdialogdata,
+        // position: { top: '3%', right: '3%' },
+        width: '80%',
 
-  });
+      });
 
-  dialogRef.afterClosed().subscribe(result => {
-    console.log(`Dialog result: ${result}`);
-  });
-}
-else{
-  
-  this.notificationSnackBarComponent.openSnackBar('Please select a checkbox', SnackBarStatus.warning);
-  this.Checked = false
-}
-}
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+    }
+    else {
+
+      this.notificationSnackBarComponent.openSnackBar('Please select a checkbox', SnackBarStatus.warning);
+      this.Checked = false
+    }
+  }
+  go(row) {
+    this.valueforrenewdialog = row
+    console.log(this.valueforrenewdialog)
+    this.Checked = true;
+    this.Renewdialogdata = row;
+    // if(this.selection.selected)
+
+  }
+  openDialogrenew() {
+    if (this.Checked) {
+
+      const dialogRef = this.dialog.open(RenewcomponentComponent, {
+        panelClass: 'upload-renew-dialog',
+        data: this.Renewdialogdata,
+        // position: { top: '3%', right: '3%' },
+        width: '80%',
+
+      });
 
 
-buttonvaluetable(){
-this.valuetable = true;
-this.valueupload = false;
-}
-buttonvalueupload(){
-  this.valuetable = false;
-  this.valueupload = true;
-}
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+    }
+    else {
 
-highlight2(row){
-  console.log(row)
-  this.selectedRowIndex2 = row.leaseID;
-  console.log(this.selectedRowIndex2);
-}
-DownloadLeaseDocument(row)
-{
-  
-   
-      this.service.DownloadLeaseDocument(row.documentID).subscribe((res)=>{
-        let blob:any = new Blob([res], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
-        saveAs(blob, `${row.documentName}.docx`);
-        console.log(`${row.documentName} downloaded`);
-      },
-      err=>{
+      this.notificationSnackBarComponent.openSnackBar('Please select a checkbox', SnackBarStatus.warning);
+      this.Checked = false
+    }
+  }
+  openDialogterminate() {
+    if (this.Checked) {
+      const dialogRef = this.dialog.open(TerminatecomponentComponent, {
+        panelClass: 'upload-terminate-dialog',
+        data: this.Renewdialogdata,
+        // position: { top: '3%', right: '3%' },
+        width: '80%',
+
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+    }
+    else {
+
+      this.notificationSnackBarComponent.openSnackBar('Please select a checkbox', SnackBarStatus.warning);
+      this.Checked = false
+    }
+  }
+
+
+  buttonvaluetable() {
+    this.valuetable = true;
+    this.valueupload = false;
+  }
+  buttonvalueupload() {
+    this.valuetable = false;
+    this.valueupload = true;
+  }
+
+  highlight2(row) {
+    console.log(row)
+    this.selectedRowIndex2 = row.leaseID;
+    console.log(this.selectedRowIndex2);
+  }
+  DownloadLeaseDocument(row) {
+
+
+    this.service.DownloadLeaseDocument(row.documentID).subscribe((res) => {
+      let blob: any = new Blob([res], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+      saveAs(blob, `${row.documentName}.docx`);
+      console.log(`${row.documentName} downloaded`);
+    },
+      err => {
         console.log(err);
       });
-  
- 
-}
-openSendMailDialog(documentID) {
-  const dialogRef = this.dialog.open(SendMailDialogComponent,
-    {
-      panelClass: "send-mail-dialog",
-      data: { documentID: documentID }
-    }
-  );
-  dialogRef.disableClose = true;
-  dialogRef.afterClosed().subscribe(res => {
-    if (res) {
-      console.log("send-mail-dialog", res);
-      this.spinner.show();
-      this.service.SendMailFromLease(res).subscribe(() => {
-        console.log("Mail sent");
-        this.notificationSnackBarComponent.openSnackBar("email has been sent", SnackBarStatus.success);
-        this.spinner.hide();
-      },
-        err => {
-          console.log(err);
+
+
+  }
+  openSendMailDialog(documentID) {
+    const dialogRef = this.dialog.open(SendMailDialogComponent,
+      {
+        panelClass: "send-mail-dialog",
+        data: { documentID: documentID }
+      }
+    );
+    dialogRef.disableClose = true;
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        console.log("send-mail-dialog", res);
+        this.spinner.show();
+        this.service.SendMailFromLease(res).subscribe(() => {
+          console.log("Mail sent");
+          this.notificationSnackBarComponent.openSnackBar("email has been sent", SnackBarStatus.success);
           this.spinner.hide();
-        });
-    }
-  });
-}
-drawerToggled(event){
-  this.sideNavStatus=event;
-}
+        },
+          err => {
+            console.log(err);
+            this.spinner.hide();
+          });
+      }
+    });
+  }
+  drawerToggled(event) {
+    this.sideNavStatus = event;
+  }
 }

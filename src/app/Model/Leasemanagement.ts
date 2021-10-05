@@ -18,7 +18,7 @@ export class LeaseManagement  extends CommonClass
     holderName : string;
     accountNo : string;
     modeOfTransfer : string;
-    iFSC : string;
+    ifsc : string;
     advance: string;
     manintenace:number;
     electrical: number;

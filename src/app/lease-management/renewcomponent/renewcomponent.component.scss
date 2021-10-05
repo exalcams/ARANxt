@@ -127,13 +127,14 @@
       }
       .content{
         padding: 24px;
+        padding-top: 0px;
         margin: 0;
     }
 
     .toolbar{
         background-color: white;
         // height: 30px;
-        padding: 20px;
+        padding: 16px 24px;
         padding-bottom: 0;
       }
 
@@ -198,7 +199,7 @@
 
 .daysleftdiv{
     background-color: #ff3131;
-    width: 180px;
+    width: 200px;
     padding-bottom: 0;
 }
 

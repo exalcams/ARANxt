@@ -85,7 +85,7 @@ onRemove(event): void {
     signeddetail.accountNo = this.SignedDocumentDetailsForm.get('AccountNo').value;
     signeddetail.modeOfTransfer = this.SignedDocumentDetailsForm.get('ModeofTransfer').value;
     signeddetail.advance = this.SignedDocumentDetailsForm.get('AdvanceRequest').value;
-    signeddetail.iFSC = this.SignedDocumentDetailsForm.get('IFSCCode').value;
+    signeddetail.ifsc = this.SignedDocumentDetailsForm.get('IFSCCode').value;
     signeddetail.noticePeriod = this.SignedDocumentDetailsForm.get('NoticePeriod').value;
 
    console.log("upload");

@@ -6,7 +6,6 @@
       <button mat-flat-button class="Renew_btn" (click)="openDialogrenew()" >Renew</button>
       <button mat-flat-button class="Renew_btn" (click)="openDialogvacate()">Vacate</button>
       <button mat-flat-button class="Renew_btn" (click)="openDialogterminate()">Terminate</button>
-      <button mat-flat-button class="Renew_btn">Send</button>
       <!-- <button mat-flat-button class="Renew_btn">Delete</button> -->
     </div>
     <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="30">
@@ -200,10 +199,10 @@
                     <img src="./assets/iconmonstr-paper-plane-2 (2).svg" class="actionstable">
                     <span class="actionsspan"   (click)="openSendMailDialog(row.documentID)">Send</span>
                   </div>
-                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
+                  <!-- <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
                     <img src="./assets/iconmonstr-product-10.svg" class="actionstable">
                     <span class="actionsspan">Review</span>
-                  </div>
+                  </div> -->
                 </div>
               </td>
             </ng-container>

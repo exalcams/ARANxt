@@ -2,9 +2,9 @@
   <div fxFlex fxLayout="row" fxLayoutGap="10px">
     <div fxFlex="70" class="btn_bg">
       <!-- fxLayoutAlign="flex-start flex-start" -->
-      <button mat-flat-button class="Renew_btn">Renew</button>
-      <button mat-flat-button class="Renew_btn">Vacate</button>
-      <button mat-flat-button class="Renew_btn">Terminate</button>
+      <button mat-flat-button class="Renew_btn" (click)="openDialogrenew()" >Renew</button>
+      <button mat-flat-button class="Renew_btn" (click)="openDialogvacate()">Vacate</button>
+      <button mat-flat-button class="Renew_btn" (click)="openDialogterminate()">Terminate</button>
       <!-- <button mat-flat-button class="Renew_btn">Send</button> -->
       <!-- <button mat-flat-button class="Renew_btn">Delete</button> -->
     </div>
@@ -117,24 +117,16 @@
             style="overflow-x: scroll !important;width:100% !important" matSort class="table">
             <ng-container matColumnDef="select" sticky>
               <th mat-header-cell *matHeaderCellDef>
-<<<<<<< HEAD
-                <mat-checkbox color="primary" class="headcheckbox" (change)="$event ? masterToggle() : null"
-=======
                 <mat-checkbox class="headcheckbox" color="primary" (change)="$event ? masterToggle() : null"
->>>>>>> fdcf081 (laesemanagement)
                   [checked]="selection.hasValue() && isAllSelected()"
                   [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
                 </mat-checkbox>
               </th>
               <td mat-cell *matCellDef="let row;index as i;">
                 <div fxLayout="row" fxLayoutAlign="start center">
-<<<<<<< HEAD
-                  <mat-checkbox color="primary" (click)="$event.stopPropagation()" (change)="updateCheckedList($event,i)"
-=======
                   <mat-checkbox (click)="$event.stopPropagation()" color="primary" (change)="updateCheckedList($event,i)"
->>>>>>> fdcf081 (laesemanagement)
                     [checked]="selection.isSelected(row)" (change)="$event ? selection.toggle(row) : null"
-                    [aria-label]="checkboxLabel(row,i)">
+                    [aria-label]="checkboxLabel(row,i)" (click)="go(row)">
                   </mat-checkbox>
                 </div>
               </td>
@@ -183,10 +175,10 @@
                     <img src="./assets/iconmonstr-paper-plane-2 (2).svg" class="actionstable">
                     <span class="actionsspan" (click)="openSendMailDialog(row.documentID)">Send</span>
                   </div>
-                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
+                  <!-- <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
                     <img src="./assets/iconmonstr-product-10.svg" class="actionstable">
                     <span class="actionsspan">Review</span>
-                  </div>
+                  </div> -->
                   
                 </div>
               </td>

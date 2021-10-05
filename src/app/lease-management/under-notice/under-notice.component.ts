@@ -151,7 +151,7 @@ loadLeaseDetails(row:LeaseManagement){
     HolderName:row.holderName,
     AccountNo:row.accountNo,
     ModeOfTransfer:row.modeOfTransfer,
-    IFSC:row.iFSC,
+    IFSC:row.ifsc,
     AdvanceRequest:row.advance
   });
   this.highlight2(row)
@@ -188,7 +188,7 @@ docdata(ind){
    this.variableAccountNo = this.clientdata.accountNo
  
    this.variaModeofTransfer = this.clientdata.modeOfTransfer
-   this.varIFSCCode = this.clientdata.iFSC
+   this.varIFSCCode = this.clientdata.ifsc
 
    this.vAdvanceRequest = this.clientdata.advance
    this.vMaintenance = this.clientdata.manintenace
