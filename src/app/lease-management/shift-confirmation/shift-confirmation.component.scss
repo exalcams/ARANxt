@@ -21,11 +21,11 @@
   {
     color: #0d0c22;
     font-family: 'poppins-semi';
-    font-size: 12px;
+    font-size: 10px;
     font-weight: bold;
   }
   .placeholdertext{
-    font-size: 12px;
+    font-size: 10px;
     font-family: 'poppins-semi' !important;
   }
   .placeholdertext::placeholder{
@@ -43,7 +43,7 @@
 }
 .selectoptionclass{
   color: #9ba0a5;
-  font-size: 12px !important;
+  font-size: 10px !important;
   font-family: 'poppins-semi' !important;
 }
   .empty_img
@@ -79,7 +79,10 @@
     background-color: #4410ff;
     color: white;
     width: 38%;
-    font-size: 11px;
+    height: 28px;
+    line-height: normal;
+    font-size: 10px;
+    font-family: 'poppins-semi' !important;
 
 
   }
@@ -89,3 +92,9 @@
 .mat-form-field-appearance-outline .mat-form-field-infix {
   padding: 0.3em 0 1em 0 !important;
 }
+
+// width: 17%;
+//         height: 28px;
+//         line-height: normal;
+//         font-size: 10px;
+//         font-family: 'poppins-semi' !important;

@@ -8,19 +8,8 @@
 
     <mat-dialog-content class="content" fusePerfectScrollbar>
         <div fxLayout="column" fxLayoutAlign="end  center">
-            <!-- <div fxLayout="row" fxLayoutAlign="end center" class="vacatediv">
-                <div fxLayout="row" fxLayoutAlign="space-evenly center" class="closediv" fxLayoutGap="15px">
-                    <span class="vacatespan">
-                        Vacate
-                    </span>
-                    <img (click)="Close()" class="closeimages" src="assets/Close.svg">
-
-                </div>
-            </div> -->
-
-            <div fxLayout="row" fxLayoutAlign="space-evenly" fxFlex="100" style="align-items: unset;">
-                <div fxFlex="5"></div>
-
+    
+            <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="56px" fxFlex="100" >
                 <div fxFlex="30" class="imagesforbackground">
 
                     <div fxLayout="column" fxlayoutGap="16px" style="width: 100%;height: 100% !important;">
@@ -114,17 +103,24 @@
                     </div>
                 </div>
 
-                <div fxFlex="10"></div>
-
-                <div fxFlex="60" fxLayout="row">
-                    <form [formGroup]="Terminateformgroup" autocomplete="off" style="width: 80%;">
+                <div fxFlex fxLayout="row">
+                    <form [formGroup]="Terminateformgroup" autocomplete="off" style="width: 100%;">
                         <div fxLayout="column" style="width:100% !important;padding: 10px 10px;">
 
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Proposed date</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="Enter Proposeddate" formControlName="Proposeddate"
+                                    <input matInput  formControlName="Proposeddate"
                                         [matDatepicker]="picker1">
+                                        <mat-error *ngIf="Terminateformgroup.get('Proposeddate').hasError('required')">
+                                            Proposeddate (mm/dd/yyyy format) is required
+                                        </mat-error>
+                                        <mat-error *ngIf="Terminateformgroup.get('Proposeddate').hasError('TerminatecomponentComponent.Date')">
+                                            mm/dd/yyyy format  is required
+                                        </mat-error>
+                                        <!-- <mat-error *ngIf="Terminateformgroup.controls['Proposeddate'].hasError('ptDate')">
+                                            mm/dd/yyyy format  is required
+                                        </mat-error> -->
                                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                                     <mat-datepicker #picker1></mat-datepicker>
                                 </mat-form-field>
@@ -133,8 +129,14 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Accepted date</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="Accepteddate" formControlName="Accepteddate"
+                                    <input matInput  formControlName="Accepteddate"
                                         [matDatepicker]="picker2">
+                                        <mat-error *ngIf="Terminateformgroup.get('Accepteddate').hasError('required')">
+                                            Accepteddate (mm/dd/yyyy format) is required
+                                        </mat-error>
+                                        <mat-error *ngIf="Terminateformgroup.get('Accepteddate').hasError('TerminatecomponentComponent.Date')">
+                                            mm/dd/yyyy format  is required
+                                        </mat-error>
                                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                     <mat-datepicker #picker2></mat-datepicker>
                                 </mat-form-field>
@@ -143,8 +145,14 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Inspection date</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="Inspectiondate" formControlName="Inspectiondate"
+                                    <input matInput  formControlName="Inspectiondate"
                                         [matDatepicker]="picker3">
+                                        <mat-error *ngIf="Terminateformgroup.get('Inspectiondate').hasError('required')">
+                                            Inspectiondate (mm/dd/yyyy format) is required
+                                        </mat-error>    
+                                        <mat-error *ngIf="Terminateformgroup.get('Inspectiondate').hasError('TerminatecomponentComponent.Date')">
+                                            mm/dd/yyyy format  is required
+                                        </mat-error>
                                     <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                                     <mat-datepicker #picker3></mat-datepicker>
                                 </mat-form-field>
@@ -153,21 +161,46 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Inspected by</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="Inspectedby" formControlName="Inspectedby">
+                                    <mat-select formControlName="Inspectedby" class="selectoptionclass">
+                                        <mat-option *ngFor="let option of fromToOptions" [value]="option">
+                                            {{option}}</mat-option>
+                                    </mat-select>
+                                    <!-- <input matInput  formControlName="Inspectedby"> -->
+                                    <mat-error *ngIf="Terminateformgroup.get('Inspectedby').hasError('required')">
+                                        Select an option
+                                    </mat-error>
+                                    <!-- <mat-error *ngIf="Terminateformgroup.get('Inspectedby').touched">
+                                        Select an option
+                                    </mat-error> -->
                                 </mat-form-field>
                             </div>
 
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Rent due if any</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="Rentdue" formControlName="Rentdue">
+                                    <input matInput  formControlName="Rentdue" type="number">
+                                    <mat-error *ngIf="Terminateformgroup.get('Rentdue').hasError('required')">
+                                        Rentdue is required
+                                    </mat-error> 
+                                    <mat-error *ngIf="Terminateformgroup.controls['Rentdue'].hasError('invalidName')">
+                                        No special character
+                                    </mat-error>
                                 </mat-form-field>
                             </div>
 
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Maintenance due if any</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="Maintenancedue" formControlName="Maintenancedue">
+                                    <input matInput  formControlName="Maintenancedue" type="number">
+                                    <mat-error *ngIf="Terminateformgroup.get('Maintenancedue').hasError('required')">
+                                        Maintenancedue is required
+                                    </mat-error>
+                                    <mat-error *ngIf="Terminateformgroup.controls['Maintenancedue'].hasError('invalidName')">
+                                        No special character
+                                    </mat-error>
+                                    <!-- <mat-error *ngIf="Terminateformgroup.get('Maintenancedue').hasError('pattern')">
+                                        correct pattern with no special is required
+                                    </mat-error> -->
                                 </mat-form-field>
                             </div>
 
@@ -175,22 +208,40 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Damage Recovery</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="Enter DamageRecovery" formControlName="DamageRecovery">
+                                    <input matInput  formControlName="DamageRecovery" type="number">
+                                    <mat-error *ngIf="Terminateformgroup.get('DamageRecovery').hasError('required')">
+                                        DamageRecovery is required
+                                    </mat-error>
+                                    <mat-error *ngIf="Terminateformgroup.controls['DamageRecovery'].hasError('invalidName')">
+                                        No special character
+                                    </mat-error>
                                 </mat-form-field>
                             </div>
 
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Advance Balance to Be settled</span>
-                                <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="AdvanceBalance" formControlName="AdvanceBalance">
+                                <mat-form-field appearance="legacy" fxFlex="50" >
+                                    <input matInput  formControlName="AdvanceBalance" type="number">
+                                    <mat-error *ngIf="Terminateformgroup.get('AdvanceBalance').hasError('required')">
+                                        AdvanceBalance is required
+                                    </mat-error>
+                                    <mat-error *ngIf="Terminateformgroup.controls['AdvanceBalance'].hasError('invalidName')">
+                                        No special character
+                                    </mat-error>
                                 </mat-form-field>
                             </div>
 
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Expected Date To transfer</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="ExpectedDate" formControlName="ExpectedDate"
+                                    <input matInput  formControlName="ExpectedDate"
                                         [matDatepicker]="picker4">
+                                        <mat-error *ngIf="Terminateformgroup.get('ExpectedDate').hasError('required')">
+                                            ExpectedDate (mm/dd/yyyy format) is required
+                                        </mat-error>
+                                        <mat-error *ngIf="Terminateformgroup.get('ExpectedDate').hasError('TerminatecomponentComponent.Date')">
+                                            mm/dd/yyyy format  is required
+                                        </mat-error>
                                     <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
                                     <mat-datepicker #picker4></mat-datepicker>
                                 </mat-form-field>
@@ -199,7 +250,14 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Mode of transfer</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="Modeoftransfer" formControlName="Modeoftransfer">
+                                    <mat-select formControlName="Modeoftransfer" class="selectoptionclass">
+                                        <mat-option *ngFor="let option of fromToOptions" [value]="option">
+                                            {{option}}</mat-option>
+                                    </mat-select>
+                                    <!-- <input matInput  formControlName="Modeoftransfer"> -->
+                                    <mat-error *ngIf="Terminateformgroup.get('Modeoftransfer').hasError('required')">
+                                        Select an option
+                                    </mat-error>
                                 </mat-form-field>
                             </div>
 
@@ -212,7 +270,7 @@
                                             {{asset}}
                                             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                                         </mat-chip>
-                                        <input [matChipInputFor]="chipList" placeholder="Enter Returnable Assets"
+                                        <input [matChipInputFor]="chipList" 
                                             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                                             [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
                                     </mat-chip-list>
@@ -223,14 +281,25 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Verified by</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="Verifiedby" formControlName="Verifiedby">
+                                
+                                    <mat-select formControlName="Verifiedby" class="selectoptionclass">
+                                        <mat-option *ngFor="let option of fromToOptions" [value]="option">
+                                            {{option}}</mat-option>
+                                    </mat-select>
+                                    <!-- <input matInput  formControlName="Verifiedby"> -->
+                                    <mat-error *ngIf="Terminateformgroup.get('Verifiedby').hasError('required')">
+                                        Select an option
+                                    </mat-error>
                                 </mat-form-field>
                             </div>
 
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Remarks</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="Remarks" formControlName="Remarks">
+                                    <input matInput  formControlName="Remarks">
+                                    <mat-error *ngIf="Terminateformgroup.get('Remarks').hasError('required')">
+                                        Remarks is required
+                                    </mat-error>
                                 </mat-form-field>
                             </div>
 
