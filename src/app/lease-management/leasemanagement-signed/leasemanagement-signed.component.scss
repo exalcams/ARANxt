@@ -12,7 +12,7 @@
 {
     background-color: #f3f3f4;
     color: #6e6d7a;
-    font-size: 11px;
+    font-size: 10px;
     font-family: 'poppins-semi' !important;
 }
 .serachicon_search
@@ -98,6 +98,7 @@
     height: 30px;
     font-size: 12px;
     line-height: normal;
+    font-family: "poppins-semi" !important;
   }
   .upload_btn2
   {
@@ -105,15 +106,16 @@
     background-color: #4410ff;
     width: 100%;
     height: 33px;
-    font-size: 12px;
+    font-size: 10px !important;
     line-height: normal;
+    font-family: "poppins-semi" !important;
   }
   .form_bg
   {
     background-color: #f3f3f4;
     height: 100%;
     width: 100%;
-    overflow-y: scroll;
+    // overflow-y: scroll;
     padding: 8px 8px;
   }
   .form_img
@@ -298,38 +300,72 @@ tr.mat-header-row {
   // padding: 20px;
   width:30%;
   float: left;
-  height: 85% !important;
+  height: 93% !important;
 
 }
 mat-sidenav{
 height: 100% !important;
 }
-// tr:hover {
-//    color: black;
-//    cursor: pointer;
-//    font-family: 'poppins-semi' !important;
-// }
-// th{
-//   font-family: 'poppins-semi' !important;
-// }
-// tr{
-// height: 40px !important;
-// }
 
+
+td{
+  font-size: 10px !important;
+}
+th{
+  font-size: 10px !important;
+  font-family: 'poppins-semi' !important;
+}
+tr{
+height: 40px !important;
+}
+.mat-row {
+  height: auto;
+  min-width: max-content !important;
+}
+
+.mat-cell {
+  padding: 8px 8px 8px 0;
+}
+
+.mat-cell, .mat-header-cell {
+  border: none !important;
+  font-size: 10px;
+}
+
+tr{
+  background-color: #f4f3f4;
+  border-bottom-style:none;
+}
+td{
+  background-color: white;
+}
+
+// .labelcss{
+//   font-size: 11px;
+//   color: #0d0c22;
+//   font-family: 'poppins-semi' !important;
+//   justify-content: left;
+//   text-align: left;
+// }
+// .labelcssvalue{
+//   font-size: 11px;
+//   color: #838383;
+//   font-family: 'poppins-semi' !important;
+//   text-align: left;
+// }
 .labelcss{
-  font-size: 11px;
+  font-size: 10px;
   color: #0d0c22;
   font-family: 'poppins-semi' !important;
   justify-content: left;
   text-align: left;
 }
 .labelcssvalue{
-  font-size: 11px;
+  font-size: 10px;
   color: #838383;
   font-family: 'poppins-semi' !important;
-  text-align: left;
+  word-wrap: break-word;
 }
-
 .formspan{
   color: #0d0c22;
   font-size: 12px;
@@ -342,7 +378,7 @@ height: 100% !important;
 }
 
 .datarow{
-  font-size: 11px !important;
+  font-size: 10px !important;
   font-family: 'poppins-semi' !important;
 }
 
@@ -399,9 +435,8 @@ tr{
 
 .toggleimage{
   width: 12px;
-    cursor: pointer;
-    padding: 10px;
-    transform: rotate(180deg);
+  cursor: pointer;
+  padding: 10px;
 }
 .mat-cell, .mat-header-cell {
   border: none !important;
@@ -411,4 +446,28 @@ tr{
   color: #98abc4;
   font-size: 10px;
   margin-left:10px
+}
+.circlerow{
+  width: 5px !important;
+  height: 5px !important;
+  border-radius: 50%;
+}
+
+.arrowtoolbar{
+  background-color: #f3f3f4;
+  height: 36px;
+  position: absolute;
+  top: -1px;
+  width: 100%;
+  padding-left: 4px;
+  padding-top: 4px;
+}
+.toggleimage:hover{
+  width: 13px;
+  padding: 10px;
+  transform: rotate(180deg) !important;
+  animation-duration: 2s !important;
+}
+.pointer{
+  cursor: pointer;
 }

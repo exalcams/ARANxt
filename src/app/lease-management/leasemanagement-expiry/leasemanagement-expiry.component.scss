@@ -7,7 +7,7 @@
 {
     background-color: #f3f3f4;
     color: #6e6d7a;
-    font-size: 11px;
+    font-size: 10px;
     font-family: 'poppins-semi' !important;
 }
 .serachicon_search
@@ -347,17 +347,17 @@ tr{
   }
 }
 .labelcss{
-  font-size: 11px;
+  font-size: 10px;
   color: #0d0c22;
   font-family: 'poppins-semi' !important;
   justify-content: left;
   text-align: left;
 }
 .labelcssvalue{
-  font-size: 11px;
+  font-size: 10px;
   color: #838383;
   font-family: 'poppins-semi' !important;
-  text-align: left;
+  word-wrap: break-word;
 }
 
 .example-container {
@@ -371,7 +371,7 @@ tr{
   // padding: 20px;
   width:30%;
   float: left;
-  height: 85% !important;
+  height: 93% !important;
 
 }
 
@@ -385,29 +385,45 @@ tr{
   font-family: 'poppins' !important;
   color: #596069 !important;
   line-height: 3.5;
+}
 
+td{
+  font-size: 10px !important;
+}
+th{
+  font-size: 10px !important;
+  font-family: 'poppins-semi' !important;
 }
 tr{
-  background-color: #f4f3f4;
-  border-bottom-style:none;
+height: 40px !important;
 }
-
 .mat-row {
   height: auto;
   min-width: max-content !important;
 }
-
 .mat-cell {
   padding: 8px 8px 8px 0;
 }
 
+.mat-cell, .mat-header-cell {
+  border: none !important;
+  font-size: 10px;
+}
+
+tr{
+  background-color: #f4f3f4;
+  border-bottom-style:none;
+}
+td{
+  background-color: white;
+}
 
 .form_bg
   {
     background-color: #f3f3f4;
     height: 100%;
     width: 100%;
-    overflow-y: scroll !important;
+    // overflow-y: scroll !important;
     padding: 8px 8px;
   }
 .mat-sidenav-content{
@@ -425,13 +441,12 @@ tr{
 }
 
 .toggleimage{
-    width: 12px;
-    cursor: pointer;
-    padding: 10px;
-    transform: rotate(180deg);
+  width: 12px;
+  cursor: pointer;
+  padding: 10px;
 }
 .datarow{
-  font-size: 11px !important;
+  font-size: 10px !important;
   font-family: 'poppins-semi' !important;
 }
 .mat-cell, .mat-header-cell {
@@ -442,4 +457,22 @@ tr{
   color: #98abc4;
   font-size: 10px;
   margin-left:10px
+}
+
+
+
+.arrowtoolbar{
+  background-color: #f3f3f4;
+  height: 36px;
+  position: absolute;
+  top: -1px;
+  width: 100%;
+  padding-left: 4px;
+  padding-top: 4px;
+}
+.toggleimage:hover{
+  width: 13px;
+  padding: 10px;
+  transform: rotate(180deg) !important;
+  animation-duration: 2s !important;
 }

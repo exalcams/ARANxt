@@ -20,6 +20,7 @@ import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/noti
 export class TerminatecomponentComponent implements OnInit {
   Terminateformgroup: FormGroup;
   toppings = new FormControl();
+  fromToOptions: string[] = ["person1", "person2"];
   notificationSnackBarComponent: NotificationSnackBarComponent;
   leaseData: LeaseManagement = new LeaseManagement();
   visible = true;
@@ -43,26 +44,40 @@ export class TerminatecomponentComponent implements OnInit {
   }
   SignedFormGroup(): void {
     this.Terminateformgroup = this.formBuilder.group({
-      Proposeddate: ['', Validators.required],
-      Accepteddate: ['', Validators.required],
-      Inspectiondate: ['', Validators.required],
+      Proposeddate: ['', Validators.required, TerminatecomponentComponent.Date],
+      Accepteddate: ['', Validators.required, TerminatecomponentComponent.Date],
+      Inspectiondate: ['', Validators.required, TerminatecomponentComponent.Date],
       Inspectedby: ['', Validators.required],
-      Rentdue: ['', Validators.required],
-      Maintenancedue: ['', Validators.required],
-      DamageRecovery: ['', Validators.required],
-      AdvanceBalance: ['', Validators.required],
-      ExpectedDate: ['', Validators.required],
+      Rentdue: ['',  [Validators.required, this.nameValidator, Validators.pattern(/^[0-9]*$/)]],
+      Maintenancedue: ['', [Validators.required, this.nameValidator, Validators.pattern(/^[0-9]*$/)]],
+      DamageRecovery: ['',  [Validators.required, this.nameValidator, Validators.pattern(/^[0-9]*$/)]],
+      AdvanceBalance: ['',  [Validators.required, this.nameValidator, Validators.pattern(/^[0-9]*$/)]],
+      ExpectedDate: ['', Validators.required, TerminatecomponentComponent.Date],
       Modeoftransfer: ['', Validators.required],
       ReturnableAssets: ['', Validators.required],
       Verifiedby: ['', Validators.required],
-      Remarks: [''],
+      Remarks: ['', Validators.required],
     });
+  }
+  // ,Validators.pattern(/^[0-9]*$/)
+  static Date(control: FormControl): { [key: string]: any } {
+    let ptDatePattern = /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g;
+    if (!control.value.match(ptDatePattern))
+      return { ptDate: true };
+    return null;
+  }
+
+  nameValidator(control: FormControl): { [key: string]: boolean } {
+    const nameRegexp: RegExp = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+    if (control.value && nameRegexp.test(control.value)) {
+      return { invalidName: true };
+    }
   }
   openShiftDialog() {
     const dialogRef = this.dialog.open(ShiftConfirmationComponent, {
       panelClass: 'upload-signed-dialog',
       data: this.leaseData.clientName,
-      width: '61%',
+      width: '720px',
       maxWidth: '85.5vw ',
       height: '80%',
     });

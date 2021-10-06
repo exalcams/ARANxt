@@ -19,13 +19,12 @@ import { TerminatecomponentComponent } from '../terminatecomponent/terminatecomp
 import { saveAs } from 'file-saver';
 import { SendMailDialogComponent } from 'src/app/send-mail-dialog/send-mail-dialog.component';
 import { MatDrawer } from '@angular/material/sidenav';
-
+import { trigger, state, style, animate, transition } from '@angular/animations';
 @Component({
   selector: 'app-leasemanagement-signed',
   templateUrl: './leasemanagement-signed.component.html',
   styleUrls: ['./leasemanagement-signed.component.scss'],
   encapsulation: ViewEncapsulation.None
-
 })
 export class LeasemanagementSignedComponent implements OnInit {
   displayedColumns: string[] = ['select', 'ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action'];
@@ -55,6 +54,7 @@ export class LeasemanagementSignedComponent implements OnInit {
   clientdata: LeaseManagement;
   Renewdialogdata: any;
   sideNavStatus: boolean;
+  state: string = 'default';
   @ViewChild('drawer') sidenav: MatDrawer;
   constructor(private formBuilder: FormBuilder, private datepipe: DatePipe, private service: LeaseManagementService,
     // tslint:disable-next-line:align
@@ -348,7 +348,20 @@ export class LeasemanagementSignedComponent implements OnInit {
       return "red"
     }
   }
-
+  bulletcolorwidth(bulletcolor,expiryforsigned){
+    if (bulletcolor == "terminated"){
+      return "#6e6d7a"
+    }
+    if (bulletcolor =="vacated"){
+      return "#faa542"
+    }
+    if (bulletcolor == "signed"){
+      return "#3ec725"
+    }
+    if (bulletcolor == "signed" && expiryforsigned <=30 ){
+      return "red"
+    }
+  }
   openDialog() {
     const dialogRef = this.dialog.open(UploadSignedDialogComponent, {
       panelClass: 'upload-signed-dialog',
@@ -371,7 +384,7 @@ export class LeasemanagementSignedComponent implements OnInit {
         panelClass: 'upload-vacate-dialog',
         data: this.Renewdialogdata,
         // position: { top: '3%', right: '3%' },
-        width: '80%',
+        width: '720px',
 
       });
 
@@ -421,7 +434,7 @@ export class LeasemanagementSignedComponent implements OnInit {
         panelClass: 'upload-terminate-dialog',
         data: this.Renewdialogdata,
         // position: { top: '3%', right: '3%' },
-        width: '80%',
+        width: '720px',
 
       });
 
@@ -431,7 +444,7 @@ export class LeasemanagementSignedComponent implements OnInit {
     }
     else {
 
-      this.notificationSnackBarComponent.openSnackBar('Please select a lease', SnackBarStatus.warning);
+      this.notificationSnackBarComponent.openSnackBar('Please select a terminate', SnackBarStatus.warning);
       this.Checked = false
     }
   }

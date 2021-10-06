@@ -23,7 +23,7 @@ import { TerminatecomponentComponent } from '../terminatecomponent/terminatecomp
   encapsulation: ViewEncapsulation.None
 })
 export class LeasemanagementExpiryComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action'];
+  displayedColumns: string[] = [ 'ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action'];
   clientdata: LeaseManagement;
   dataSource = new MatTableDataSource<any>([]);
   selection = new SelectionModel<any>(true, []);
@@ -321,7 +321,7 @@ openDialogvacate() {
       panelClass: 'upload-vacate-dialog',
       data: this.Renewdialogdata,
       // position: { top: '3%', right: '3%' },
-      width: '80%',
+      width: '720px',
 
     });
 
@@ -369,8 +369,7 @@ openDialogterminate() {
       panelClass: 'upload-terminate-dialog',
       data: this.Renewdialogdata,
       // position: { top: '3%', right: '3%' },
-      width: '80%',
-
+      width: '720px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
