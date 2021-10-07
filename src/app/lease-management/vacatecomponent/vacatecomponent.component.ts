@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -24,6 +24,7 @@ export class VacatecomponentComponent implements OnInit {
   Vacateformgroup: FormGroup;
   toppings = new FormControl();
   fromToOptions: string[] = ["person1", "person2"];
+  modeoftransferoptions:string[]=["Cash","Online"];
   notificationSnackBarComponent: NotificationSnackBarComponent;
   leaseData: LeaseManagement = new LeaseManagement();
   visible = true;
@@ -44,17 +45,18 @@ export class VacatecomponentComponent implements OnInit {
   Close(): void {
     this.dialogRef.close();
   }
+  // VacatecomponentComponent.Date
   SignedFormGroup(): void {
     this.Vacateformgroup = this.formBuilder.group({
-      Proposeddate: ['', Validators.required, VacatecomponentComponent.Date],
-      Accepteddate: ['', Validators.required, VacatecomponentComponent.Date],
-      Inspectiondate: ['', Validators.required, VacatecomponentComponent.Date],
+      Proposeddate: ['', [Validators.required, this.invalidDateValidatorFn]],
+      Accepteddate: ['', [Validators.required, this.invalidDateValidatorFn]],
+      Inspectiondate: ['', [Validators.required,this.invalidDateValidatorFn]],
       Inspectedby: ['', Validators.required],
       Rentdue: ['',  [Validators.required, this.nameValidator, Validators.pattern(/^[0-9]*$/)]],
       Maintenancedue: ['', [Validators.required, this.nameValidator, Validators.pattern(/^[0-9]*$/)]],
       DamageRecovery: ['',  [Validators.required, this.nameValidator, Validators.pattern(/^[0-9]*$/)]],
       AdvanceBalance: ['',  [Validators.required, this.nameValidator, Validators.pattern(/^[0-9]*$/)]],
-      ExpectedDate: ['', Validators.required, VacatecomponentComponent.Date],
+      ExpectedDate: ['', [Validators.required,this.invalidDateValidatorFn]],
       Modeoftransfer: ['', Validators.required],
       ReturnableAssets: ['', Validators.required],
       Verifiedby: ['', Validators.required],
@@ -70,11 +72,25 @@ export class VacatecomponentComponent implements OnInit {
     return null;
   }
 
+
   nameValidator(control: FormControl): { [key: string]: boolean } {
     const nameRegexp: RegExp = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
     if (control.value && nameRegexp.test(control.value)) {
       return { invalidName: true };
     }
+  }
+  static Dateasync(eve): { [key: string]: any } {
+    let ptDatePattern = /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g;
+    if (!eve.value.match(ptDatePattern))
+      return { ptDate: true };
+    return null;
+  }
+  invalidDateValidatorFn(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } => {
+      const date = new Date(control.value);
+      const invalidDate = !control.value || date.getMonth === undefined;
+      return invalidDate ? { 'invalidDate': { value: control.value } } : null;
+    };
   }
 
 

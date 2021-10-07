@@ -18,6 +18,7 @@ font-family: 'poppins-semi' !important;
     .closeimages{
         cursor: pointer;
         width: 15px;
+        height: 15px;
         justify-content: right;
         text-align: right;
         align-items: flex-end;
@@ -124,6 +125,7 @@ font-family: 'poppins-semi' !important;
       }
       .content{
         padding: 24px;
+        padding-top: 0;
         margin: 0;
         .contentdivision{
           padding:0 24px;
@@ -134,7 +136,6 @@ font-family: 'poppins-semi' !important;
         background-color: white;
         height: 30px;
         padding: 24px;
-        padding-bottom: 0;
       }
       input::-webkit-outer-spin-button,
       input::-webkit-inner-spin-button {
@@ -146,6 +147,27 @@ font-family: 'poppins-semi' !important;
         font-size: 10px !important;
         font-family: 'poppins-semi' !important;
       }
+
+      .forminputedit{
+        color: #0d0c22 !important;
+        font-size: 10px !important;
+        font-family: 'poppins-semi' !important;
+      }
+
+      .mat-option {
+        color: #0d0c22 !important;
+        font-size: 10px !important;
+        font-family: 'poppins-semi' !important;
+      }
+      .erroredits{
+        font-size: 8px !important;
+        font-family: 'poppins-semi' !important;
+      }
+
+
+
+
+
 
     }
 

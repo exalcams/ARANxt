@@ -372,7 +372,7 @@ tr{
   // padding: 20px;
   width:30%;
   float: left;
-  height: 93% !important;
+  height: 100% !important;
 
 }
 
@@ -444,7 +444,18 @@ td{
 .toggleimage{
   width: 12px;
   cursor: pointer;
-  padding: 10px;
+  padding: 10px;  
+  animation: out 0.5s ;
+  animation-fill-mode: backwards ;
+}
+
+@keyframes out {
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
 }
 .datarow{
   font-size: 10px !important;
@@ -474,8 +485,16 @@ td{
 .toggleimage:hover{
   width: 13px;
   padding: 10px;
-  transform: rotate(180deg) !important;
-  animation-duration: 2s !important;
+  animation: rotation 0.5s;
+  animation-fill-mode: forwards;
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(180deg);
+    }
+  }
 }
 .ripple_outer
 {
@@ -488,7 +507,10 @@ td{
     vertical-align: -webkit-baseline-middle;
     font-size: 10px;
 }
-.outerbg
-{
-  margin-top:15px
+
+
+.forminputedit{
+  color: #0d0c22 !important;
+  font-size: 10px !important;
+  font-family: 'poppins-semi' !important;
 }

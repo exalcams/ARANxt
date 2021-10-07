@@ -1,9 +1,15 @@
 <div class="dialog-content-wrapper">
-    <mat-toolbar class="toolbar" fxLayout="row">
+    <!-- <mat-toolbar class="toolbar" fxLayout="row">
         <div fxFlex="100" class="div_toolbar" fxLayoutAlign="space-between center">
             <label class="fontcolor_dark">Shift Confirmation</label>
             <img class="close_hover close" src="assets/32178.svg" (click)="close()">
         </div>
+    </mat-toolbar> -->
+    <mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px">
+        <span class="vacatespan">
+            Shift Confirmation
+        </span>
+        <img (click)="close()" class="closeimages" src="assets/Close.svg">
     </mat-toolbar>
 
     <mat-dialog-content class="content" fusePerfectScrollbar>
@@ -11,50 +17,66 @@
             <div fxFlex="50" class="img_div">
                 <img src="assets/Empty-cuate.png" class="empty_img">
             </div>
-            <div fxFlex="50" fxLayout="column" class="outer">
-                <div fxFlex="10" fxLayout="column">
-                    <form [formGroup]="ShiftConformationForm" fxLayout="column" style="width: 100%;">
-                        <div fxFlex="18">
-                            <p class="fontcolor_dark">Penalty</p>
+            <div fxLayout="column" class="outer" fxLayoutAlign="start" fxFlex="50" >
+                <div fxFlex="100" fxLayout="column">
+                    <form [formGroup]="ShiftConformationForm" fxLayout="column" style="width: 100%;" fxLayoutGap="10px">
+                        <div fxLayout="column">
+                            <div fxFlex="18">
+                                <p class="fontcolor_dark">Penalty</p>
+                            </div>
+                            <mat-form-field appearance="outline" class="form_field_cls">
+                                <input matInput placeholder="Enter penality if any" formControlName="Penalty"
+                                    type="number" class="forminputedit">
+                                <mat-error *ngIf="ShiftConformationForm.get('Penalty').hasError('required')" class="erroredits">
+                                    Penalty is required
+                                </mat-error>
+                                <mat-error *ngIf="ShiftConformationForm.controls['Penalty'].hasError('invalidName')" class="erroredits">
+                                    No special character
+                                </mat-error>
+                            </mat-form-field>
                         </div>
-
-                        <mat-form-field appearance="outline" class="form_field_cls">
-                            <input matInput placeholder="Enter penality if any" formControlName="Penalty" type="number">
-                        </mat-form-field>
-
-                        <div fxLayout="row" fxFlex="28" fxLayoutGap="10px" fxLayoutAlign="space-between center">
-                            <div fxFlex="49" fxLayout="row">
-                                <span class="formspan fontcolor_dark" style="align-self: center;
-                                margin-right: 14px;">From</span>
-                                <mat-form-field appearance="standard" style="align-self: self-end;"
-                                    class="form_field_cls1">
+                        <div fxLayout="row" fxFlex="100" fxLayoutGap="10px" fxLayoutAlign="start center">
+                            <div fxLayout="row" fxFlex="100" fxLayoutAlign="start center" class="label_connect">
+                                <span class="formspan fontcolor_dark" fxFlex="20">From</span>
+                                <mat-form-field appearance="standard" fxFlex="80">
+                                    <!-- style="align-self: self-end;" -->
                                     <mat-select formControlName="From" class="selectoptionclass">
-                                        <mat-option *ngFor="let option of fromToOptions" [value]="option">
+                                        <mat-option *ngFor="let option of fromToOptions" [value]="option"
+                                            class="forminputedit">
                                             {{option}}</mat-option>
                                     </mat-select>
+                                    <mat-error *ngIf="ShiftConformationForm.get('From').hasError('required')" class="erroredits">
+                                        Select an option
+                                    </mat-error>
                                 </mat-form-field>
                             </div>
-                            <div fxFlex="56" fxLayout="row">
+                            <!-- <div fxFlex="56" fxLayout="row">
                                 <span class="formspan fontcolor_dark" style="align-self: center;
                                 margin-right: 14px;">To</span>
                                 <mat-form-field appearance="standard" style="align-self: self-end;"
                                     class="form_field_cls1">
                                     <mat-select formControlName="To" class="selectoptionclass">
-                                        <mat-option *ngFor="let option of fromToOptions" [value]="option">
+                                        <mat-option *ngFor="let option of fromToOptions" [value]="option"  class="forminputedit">
                                             {{option}}</mat-option>
                                     </mat-select>
                                 </mat-form-field>
-                            </div>
-                        </div>
-                        <!--  -->
-                        <div fxFlex="18">
-                            <p class="fontcolor_dark">Remarks</p>
+                            </div> -->
                         </div>
 
-                        <mat-form-field appearance="outline" class="form_field_cls">
-                            <textarea matInput placeholder="Enter Remarks" formControlName="Remarks"></textarea>
-                        </mat-form-field>
-                        <!--  -->
+
+                        <div fxLayout="column">
+                            <div fxFlex="18">
+                                <p class="fontcolor_dark">Remarks</p>
+                            </div>
+                            <mat-form-field appearance="outline" class="form_field_cls">
+                                <textarea matInput placeholder="Enter Remarks" formControlName="Remarks"
+                                    class="forminputedit textareaclass"></textarea>
+                                <mat-error *ngIf="ShiftConformationForm.get('Remarks').hasError('required')" class="erroredits">
+                                    Enter Remarks
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
                         <button mat-raised-button class="savebtn" type="button" class="shift_btn close_hover"
                             (click)="Save()">Confirm Shift</button>
                     </form>
