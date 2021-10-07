@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, Validators,FormBuilder, FormArray } from '@angular/forms';
+import { FormGroup, Validators,FormBuilder, FormArray, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DraftDialogComponent } from '../draft-dialog/draft-dialog.component';
@@ -19,6 +19,9 @@ export class UploadSignedDialogComponent implements OnInit {
   SignedDocumentDetailsForm: FormGroup;
   files:File[] =[];
   notificationSnackBarComponent: NotificationSnackBarComponent;
+  modeoftransfer:any[]=["cash","online"];
+  modetransfer_selected:any;
+  NUMERIC_PATTREN = '^([0-9]{4,10})([.][0-9]{1,2})?$';
 
   constructor(private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<DraftDialogComponent>,private service: LeaseManagementService, public snackBar: MatSnackBar,public _datePipe:DatePipe,
@@ -31,25 +34,34 @@ export class UploadSignedDialogComponent implements OnInit {
 
   SignedFormGroup(): void
 {
+  
   this.SignedDocumentDetailsForm = this.formBuilder.group({
-    Client: ['', Validators.required],
-    FileName : ['', Validators.required],
-    CreatedOn: ['', Validators.required],
-    ExpiryDate: ['', Validators.required],
-    TotalDeposit : ['', Validators.required],
-    Rental: ['', Validators.required],
+    Client: ['',Validators.required],
+    FileName : ['',Validators.required],
+    CreatedOn: ['',[Validators.required,UploadSignedDialogComponent.Date]],
+    ExpiryDate: ['',Validators.required],
+    TotalDeposit : ['',[Validators.required,Validators.pattern('^([0-9]{4,10})([.][0-9]{1,2})?$' )]],
+    Rental: ['',[Validators.required,Validators.pattern('^([0-9]{4,10})([.][0-9]{1,2})?$' )]],
     BankName: ['', Validators.required],
-    HolderName : ['', Validators.required],
-    AccountNo : ['', Validators.required],
+    HolderName : ['',[Validators.required,Validators.pattern('^[a-zA-Z]+$')]],
+    AccountNo : ['',[Validators.required,Validators.pattern('^([0-9]{9,16})?$')]],
     ModeofTransfer : ['', Validators.required],
-    IFSCCode : ['', Validators.required],
-    AdvanceRequest : ['', Validators.required],
-    Maintenance: ['', Validators.required],
-    Electrical: ['', Validators.required],
-    Condition: ['', Validators.required],
-    Remarks: ['', Validators.required],
-    NoticePeriod: ['', Validators.required],
+    IFSCCode : ['',Validators.required],
+    // AdvanceRequest : ['', Validators.required],
+    Maintenance:['',[Validators.required,Validators.pattern('^([0-9]{4,10})([.][0-9]{1,2})?$')]],
+    Electrical:['',Validators.required],
+    Condition: ['',Validators.required],
+    Remarks: ['',Validators.required],
+    NoticePeriod: ['',[Validators.required,Validators.pattern('^([0-9]{1,2})([.][0-9]{1})?$')]],
   });
+}
+static Date(control: FormControl): { [key: string]: any } {
+  let ptDatePattern =  (/^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/);
+
+       if (!control.value.match(ptDatePattern))
+           return { "ptDate": true };
+
+       return null;
 }
 onSelect(event): void {
   console.log(event);
@@ -84,7 +96,7 @@ onRemove(event): void {
     signeddetail.holderName = this.SignedDocumentDetailsForm.get('HolderName').value;
     signeddetail.accountNo = this.SignedDocumentDetailsForm.get('AccountNo').value;
     signeddetail.modeOfTransfer = this.SignedDocumentDetailsForm.get('ModeofTransfer').value;
-    signeddetail.advance = this.SignedDocumentDetailsForm.get('AdvanceRequest').value;
+    // signeddetail.advance = this.SignedDocumentDetailsForm.get('AdvanceRequest').value;
     signeddetail.ifsc = this.SignedDocumentDetailsForm.get('IFSCCode').value;
     signeddetail.noticePeriod = this.SignedDocumentDetailsForm.get('NoticePeriod').value;
 

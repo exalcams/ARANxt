@@ -466,8 +466,9 @@ export class LeasemanagementSignedComponent implements OnInit {
   }
   DownloadLeaseDocument(row) {
 
-
+    this.sideNavStatus=true;
     this.service.DownloadLeaseDocument(row.documentID).subscribe((res) => {
+      this.sideNavStatus=false;
       let blob: any = new Blob([res], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
       saveAs(blob, `${row.documentName}.docx`);
       console.log(`${row.documentName} downloaded`);
@@ -479,6 +480,7 @@ export class LeasemanagementSignedComponent implements OnInit {
 
   }
   openSendMailDialog(documentID) {
+    // this.sideNavStatus=true;
     const dialogRef = this.dialog.open(SendMailDialogComponent,
       {
         panelClass: "send-mail-dialog",
@@ -487,12 +489,14 @@ export class LeasemanagementSignedComponent implements OnInit {
     );
     dialogRef.disableClose = true;
     dialogRef.afterClosed().subscribe(res => {
+      this.sideNavStatus=false;
       if (res) {
         console.log("send-mail-dialog", res);
         this.spinner.show();
         this.service.SendMailFromLease(res).subscribe(() => {
           console.log("Mail sent");
           this.notificationSnackBarComponent.openSnackBar("email has been sent", SnackBarStatus.success);
+        
           this.spinner.hide();
         },
           err => {
