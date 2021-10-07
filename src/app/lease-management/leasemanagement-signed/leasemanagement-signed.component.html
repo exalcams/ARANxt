@@ -7,8 +7,8 @@
     </div>
     <div matRipple class="ripple_outer"  (click)="openDialogvacate()">
         <label class="new_txt">Vacate</label>
-    </div>
-    <div matRipple class="ripple_outer" (click)="openDialogterminate()">
+      </div>
+      <div matRipple class="ripple_outer" (click)="openDialogterminate()">
         <label class="new_txt">Terminate</label>
     </div>
  
@@ -20,7 +20,7 @@
     <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="30">
       <div fxLayout="row" class="btn_bg2" fxFlex="100">
         <mat-icon matSuffix class="serachicon_search">search</mat-icon>
-        <input matInput class="search_input1" placeholder="Search Document" (keyup)="applyFilter($event)">
+        <input matInput class="search_input1 forminputedit" placeholder="Search Document" (keyup)="applyFilter($event)">
       </div>
     </div>
     <div style="margin-top: 0px;" fxLayoutAlign="flex-end" fxFlex="20">
@@ -51,11 +51,16 @@
       <div style="width: 100%;height: 100% !important;">
 
         <div class="form_bg" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
- 
-          <mat-toolbar class="arrowtoolbar" fxLayout="row" fxLayoutAlign="start center">
-            <img class="toggleimage"   (click)="drawer.toggle()" src="./assets/slide_close_arrow.svg">
-          </mat-toolbar> 
 
+          <mat-toolbar class="arrowtoolbar" fxLayout="row" fxLayoutAlign="start center">
+            <img class="toggleimage"  (click)="drawer.toggle()" src="./assets/slide_close_arrow.svg">
+          </mat-toolbar>
+           
+          <div fxLayout="row" fxFlex="100" class="clientview">
+            <div fxFlex="50" class="labelcss">Client Name</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="variableclient">{{variableclient}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!variableclient">-</div>
+          </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
             <div fxFlex="50" class="labelcss">Client Name</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="variableclient">{{variableclient}}</div>
@@ -163,7 +168,7 @@
                   </mat-checkbox> -->
                   <!-- (change)="$event ? selection.toggle(row) : null"  (click)="changeSelection(row)" -->
                   <div [ngStyle]="{'background-color': bulletcolorwidth(row.status,row.expiryDate)}"
-                    matTooltip={{row.status}}  class="circlerow"></div>
+                    matTooltip={{row.status}} class="circlerow"></div>
                 </div>
               </td>
             </ng-container>
@@ -206,10 +211,17 @@
                     <img src="./assets/download_ash.svg" class="actionstable">
                     <span class="actionsspan">Download</span>
                   </div>
-                
-                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px" (click)="sideNavStatus=true">
+
+                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px"
+                    (click)="sideNavStatus=true">
                     <img src="./assets/iconmonstr-paper-plane-2 (2).svg" class="actionstable">
-                    <span class="actionsspan"   (click)="openSendMailDialog(row.documentID);">Send</span>
+                    <span class="actionsspan" (click)="openSendMailDialog(row.documentID);">Send</span>
+                  </div>
+
+                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px"
+                   class="pointer">
+                    <img src="./assets/iconmonstr-trash-can-28.svg" class="actionstable">
+                    <span class="actionsspan">Delete</span>
                   </div>
                   <!-- <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
                     <img src="./assets/iconmonstr-product-10.svg" class="actionstable">
@@ -221,7 +233,8 @@
 
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color: #f4f3f4;"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;" style="border-bottom-style: none;cursor: pointer;"
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+              style="border-bottom-style: none;cursor: pointer;"
               [ngClass]="{'highlight3':selectedRowIndex2 == row.leaseID }"
               (click)="highlight2(row);docdata(row);go(row)">
             </tr>

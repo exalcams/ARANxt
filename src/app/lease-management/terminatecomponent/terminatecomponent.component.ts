@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LeaseManagement, LeaseTerminate } from 'src/app/Model/Leasemanagement';
 import { ShiftConfirmationComponent } from '../shift-confirmation/shift-confirmation.component';
@@ -21,6 +21,7 @@ export class TerminatecomponentComponent implements OnInit {
   Terminateformgroup: FormGroup;
   toppings = new FormControl();
   fromToOptions: string[] = ["person1", "person2"];
+  modeoftransferoptions:string[]=["Cash","Online"]
   notificationSnackBarComponent: NotificationSnackBarComponent;
   leaseData: LeaseManagement = new LeaseManagement();
   visible = true;
@@ -44,15 +45,15 @@ export class TerminatecomponentComponent implements OnInit {
   }
   SignedFormGroup(): void {
     this.Terminateformgroup = this.formBuilder.group({
-      Proposeddate: ['', Validators.required, TerminatecomponentComponent.Date],
-      Accepteddate: ['', Validators.required, TerminatecomponentComponent.Date],
-      Inspectiondate: ['', Validators.required, TerminatecomponentComponent.Date],
+      Proposeddate: ['', [Validators.required, this.invalidDateValidatorFn]],
+      Accepteddate: ['', [Validators.required, this.invalidDateValidatorFn]],
+      Inspectiondate: ['', [Validators.required, this.invalidDateValidatorFn]],
       Inspectedby: ['', Validators.required],
       Rentdue: ['',  [Validators.required, this.nameValidator, Validators.pattern(/^[0-9]*$/)]],
       Maintenancedue: ['', [Validators.required, this.nameValidator, Validators.pattern(/^[0-9]*$/)]],
       DamageRecovery: ['',  [Validators.required, this.nameValidator, Validators.pattern(/^[0-9]*$/)]],
       AdvanceBalance: ['',  [Validators.required, this.nameValidator, Validators.pattern(/^[0-9]*$/)]],
-      ExpectedDate: ['', Validators.required, TerminatecomponentComponent.Date],
+      ExpectedDate: ['', [Validators.required, this.invalidDateValidatorFn]],
       Modeoftransfer: ['', Validators.required],
       ReturnableAssets: ['', Validators.required],
       Verifiedby: ['', Validators.required],
@@ -73,13 +74,21 @@ export class TerminatecomponentComponent implements OnInit {
       return { invalidName: true };
     }
   }
+
+  invalidDateValidatorFn(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } => {
+      const date = new Date(control.value);
+      const invalidDate = !control.value || date.getMonth === undefined;
+      return invalidDate ? { 'invalidDate': { value: control.value } } : null;
+    };
+  }
   openShiftDialog() {
     const dialogRef = this.dialog.open(ShiftConfirmationComponent, {
       panelClass: 'upload-signed-dialog',
       data: this.leaseData.clientName,
-      width: '720px',
-      maxWidth: '85.5vw ',
-      height: '80%',
+      width: '630px',
+      // maxWidth: '85.5vw ',
+      // height: '80%',
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {

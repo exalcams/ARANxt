@@ -301,7 +301,7 @@ tr.mat-header-row {
   // padding: 20px;
   width:30%;
   float: left;
-  height: 93% !important;
+  height: 100% !important;
 
 }
 mat-sidenav{
@@ -438,6 +438,17 @@ tr{
   width: 12px;
   cursor: pointer;
   padding: 10px;
+  animation: out 0.5s ;
+  animation-fill-mode: backwards ;
+}
+
+@keyframes out {
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
 }
 .mat-cell, .mat-header-cell {
   border: none !important;
@@ -466,9 +477,20 @@ tr{
 .toggleimage:hover{
   width: 13px;
   padding: 10px;
-  transform: rotate(180deg) !important;
-  animation-duration: 2s !important;
+  animation: rotation 0.5s ;
+  animation-fill-mode: forwards ;
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(180deg);
+    }
+  }
+
 }
+
+
 .pointer{
   cursor: pointer;
 }
@@ -484,7 +506,9 @@ tr{
     vertical-align: -webkit-baseline-middle;
     font-size: 10px;
 }
-.bgouter
-{
-  margin-top:15px
+
+.forminputedit{
+  color: #0d0c22 !important;
+  font-size: 10px !important;
+  font-family: 'poppins-semi' !important;
 }
