@@ -471,6 +471,7 @@ tr{
 }
 .pointer{
   cursor: pointer;
+}
 .ripple_outer
 {
   width: 58px;
@@ -483,4 +484,7 @@ tr{
     vertical-align: -webkit-baseline-middle;
     font-size: 10px;
 }
+.bgouter
+{
+  margin-top:15px
 }

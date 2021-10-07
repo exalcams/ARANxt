@@ -1,0 +1,12 @@
+<div class="dialog-content-wrapper">
+    <mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+        <label class="title">Close</label>
+    </mat-toolbar>
+    <mat-dialog-content class="content" fusePerfectScrollbar>
+        <p class="content_text">Are you sure , you want to close without saving</p>
+    </mat-dialog-content>
+    <mat-dialog-actions class="m-0 p-16 footer" fxLayoutAlign="end center" fxLayoutGap="8px">
+        <button mat-raised-button class="savebtn" type="button" color="primary" (click)="Yes()">Yes</button>
+        <button mat-raised-button type="button" (click)="close()" >No</button>
+    </mat-dialog-actions>
+</div>

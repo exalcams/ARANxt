@@ -23,20 +23,20 @@
             Terminated
         </div>
     </div>
-    <br>
+    <!-- <br> -->
     <div *ngIf="selectedPage=='draft'">
-        <div class="neweditdiv" fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="16px">
+        <div class="neweditdiv" fxLayout="row" fxLayoutAlign="space-evenly center" style="margin-top: 13px;" fxLayoutGap="16px">
             <div fxLayout="row" class="tab1" fxLayoutAlign="start center">
-                <div matRipple class="ripple_outer" (click)="selectedPage='new'">
+                <div matRipple class="ripple_outer" fxLayoutAlign="center center" (click)="selectedPage='new';">
                     <label class="new_txt">New</label>
                 </div>
-                <div matRipple class="ripple_outer" (click)="openMultiDraftEditor()">
+                <div matRipple class="ripple_outer" fxLayoutAlign="center center" (click)="openMultiDraftEditor()">
                     <label class="new_txt">Edit</label>
                 </div>
-                <div matRipple class="ripple_outer" (click)="DeleteLeaseDrafts()">
+                <div matRipple class="ripple_outer" fxLayoutAlign="center center" (click)="DeleteLeaseDrafts()">
                     <label class="new_txt">Delete</label>
                 </div>
-                <div matRipple class="ripple_outer" (click)="DownloadLeaseDrafts()">
+                <div matRipple class="ripple_outer"  fxLayoutAlign="center center" (click)="DownloadLeaseDrafts()">
                     <label class="new_txt">Download</label>
                 </div>
                 <!-- <button mat-flat-button class="Renew_btn" (click)="selectedPage='new'">New</button>
@@ -47,7 +47,8 @@
             <div fxLayout="row" class="neweditdiv2">
                 <div class="search-to-do">
                     <mat-icon matSuffix class="search_iocn">search</mat-icon>
-                    <input matInput class="search_input1" placeholder="Search Document" autocomplete="off" (keyup)="applyFilter($event)">
+                    <input matInput class="search_input1" placeholder="Search Document" autocomplete="off"
+                        (keyup)="applyFilter($event)">
                 </div>
             </div>
         </div>
@@ -175,15 +176,21 @@
     <div *ngIf="selectedPage=='terminate'">
         <app-terminate></app-terminate>
     </div>
-    <div *ngIf="selectedPage=='new'">
+
+    <div *ngIf="selectedPage=='new'" class="ckeditor_outer">
+
         <div fxLayout="row" fxLayoutAlign="end center" class="submit-area">
-            <div fxLayout="row"> 
+            <div fxLayout="row">
                 <div fxLayout="row" matRipple class="icon_outer" (click)="saveNewDraft()">
-                    <mat-icon   style="font-family: 'Material Icons';font-size: 17px;text-align-last: center; line-height: 24px;">save</mat-icon>
+                    <mat-icon
+                        style="font-family: 'Material Icons';font-size: 15px;text-align-last: center; line-height: 24px;">
+                        save</mat-icon>
                     <label class="save_label">Save</label>
                 </div>
-                <div fxLayout="row" matRipple class="icon_outer" >
-                    <mat-icon   style="font-family: 'Material Icons';font-size: 17px;text-align-last: center; line-height: 24px;">clear</mat-icon>
+                <div fxLayout="row" matRipple class="icon_outer" (click)="closeDraft('new')">
+                    <mat-icon
+                        style="font-family: 'Material Icons';font-size: 13px;text-align-last: center; line-height: 24px;">
+                        clear</mat-icon>
                     <label class="save_label">Close</label>
                 </div>
             </div>
@@ -192,16 +199,54 @@
         </div>
         <ck-editor name="richEditor" [(ngModel)]="newLeaseDraft.documentContent" skin="moono-lisa" language="en"
             [fullPage]="true" [config]="editorConfig" class="editor"></ck-editor>
-       
+
     </div>
-    <div *ngIf="selectedPage=='edit'">
+    <div *ngIf="selectedPage=='edit'" class="ckeditor_outer">
         <div fxLayout="row" fxLayoutGap="8px">
-            <ck-editor *ngIf="editor1" name="richEditor1" [(ngModel)]="leaseDraft1.documentContent" skin="moono-lisa"
-                language="en" [fullPage]="true" [config]="editorConfig" class="editor"></ck-editor>
-            <ck-editor *ngIf="editor2" name="richEditor2" [(ngModel)]="leaseDraft2.documentContent" skin="moono-lisa"
-                language="en" [fullPage]="true" [config]="editorConfig" class="editor"></ck-editor>
+            <div fxLayout="column">
+                <div fxLayout="row" fxLayoutAlign="end center" *ngIf="editor1" class="submit-area">
+                    <div fxLayout="row">
+                        <div fxLayout="row" matRipple class="icon_outer" (click)="saveDraft1()">
+                            <mat-icon
+                                style="font-family: 'Material Icons';font-size: 15px;text-align-last: center; line-height: 24px;">
+                                save</mat-icon>
+                            <label class="save_label">Save</label>
+                        </div>
+                        <div fxLayout="row" matRipple class="icon_outer" (click)="closeDraft('editor1')">
+                            <mat-icon
+                                style="font-family: 'Material Icons';font-size: 13px;text-align-last: center; line-height: 24px;">
+                                clear</mat-icon>
+                            <label class="save_label">Close</label>
+                        </div>
+                    </div>
+                </div>
+                <ck-editor *ngIf="editor1" name="richEditor1" [(ngModel)]="leaseDraft1.documentContent"
+                    skin="moono-lisa" language="en" [fullPage]="true" [config]="editorConfig" class="editor">
+                </ck-editor>
+            </div>
+            <div fxLayout="column">
+                <div fxLayout="row" fxLayoutAlign="end center" *ngIf="editor2" class="submit-area">
+                    <div fxLayout="row">
+                        <div fxLayout="row" matRipple class="icon_outer" (click)="saveDraft2()">
+                            <mat-icon
+                                style="font-family: 'Material Icons';font-size: 15px;text-align-last: center; line-height: 24px;">
+                                save</mat-icon>
+                            <label class="save_label">Save</label>
+                        </div>
+                        <div fxLayout="row" matRipple class="icon_outer" (click)="closeDraft('editor2')">
+                            <mat-icon
+                                style="font-family: 'Material Icons';font-size: 13px;text-align-last: center; line-height: 24px;">
+                                clear</mat-icon>
+                            <label class="save_label">Close</label>
+                        </div>
+                    </div>
+                </div>
+                <ck-editor *ngIf="editor2" name="richEditor2" [(ngModel)]="leaseDraft2.documentContent"
+                    skin="moono-lisa" language="en" [fullPage]="true" [config]="editorConfig" class="editor">
+                </ck-editor>
+            </div>
         </div>
-        <div fxLayout="row" fxLayoutGap="8px">
+        <!-- <div fxLayout="row" fxLayoutGap="8px">
             <div fxFlex></div>
             <div fxFlex="50" *ngIf="editor1" fxLayout="row" fxLayoutAlign="end center" class="submit-area">
                 <button mat-raised-button class="saveBtn" (click)="saveDraft1()">Save</button>
@@ -209,7 +254,7 @@
             <div fxFlex="50" *ngIf="editor2" fxLayout="row" fxLayoutAlign="end center" class="submit-area">
                 <button mat-raised-button class="saveBtn" (click)="saveDraft2()">Save</button>
             </div>
-        </div>
+        </div> -->
 
     </div>
 </div>

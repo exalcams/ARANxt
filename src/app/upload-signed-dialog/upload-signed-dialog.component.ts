@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, Validators,FormBuilder, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, Validators,FormBuilder, FormArray, FormControl, ValidatorFn, AbstractControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DraftDialogComponent } from '../draft-dialog/draft-dialog.component';
@@ -21,6 +21,7 @@ export class UploadSignedDialogComponent implements OnInit {
   notificationSnackBarComponent: NotificationSnackBarComponent;
   modeoftransfer:any[]=["cash","online"];
   modetransfer_selected:any;
+  date_input:any;
   NUMERIC_PATTREN = '^([0-9]{4,10})([.][0-9]{1,2})?$';
 
   constructor(private formBuilder: FormBuilder,
@@ -38,8 +39,8 @@ export class UploadSignedDialogComponent implements OnInit {
   this.SignedDocumentDetailsForm = this.formBuilder.group({
     Client: ['',Validators.required],
     FileName : ['',Validators.required],
-    CreatedOn: ['',[Validators.required,UploadSignedDialogComponent.Date]],
-    ExpiryDate: ['',Validators.required],
+    CreatedOn: ['',[Validators.required,this.invalidDateValidatorFn]],
+    ExpiryDate: ['',[Validators.required,Validators.pattern("([1-9]|0[1-9]|[12][0-9]|3[01])[-]([1-9]|0[1-9]|1[012])[-](19|20)dd$")]],
     TotalDeposit : ['',[Validators.required,Validators.pattern('^([0-9]{4,10})([.][0-9]{1,2})?$' )]],
     Rental: ['',[Validators.required,Validators.pattern('^([0-9]{4,10})([.][0-9]{1,2})?$' )]],
     BankName: ['', Validators.required],
@@ -55,13 +56,35 @@ export class UploadSignedDialogComponent implements OnInit {
     NoticePeriod: ['',[Validators.required,Validators.pattern('^([0-9]{1,2})([.][0-9]{1})?$')]],
   });
 }
-static Date(control: FormControl): { [key: string]: any } {
-  let ptDatePattern =  (/^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/);
+invalidDateValidatorFn(): ValidatorFn {
+  let invalidDate
+ var a =  (control: AbstractControl): { [key: string]: any } => {
 
-       if (!control.value.match(ptDatePattern))
-           return { "ptDate": true };
+    const date = new Date(control.value);
 
-       return null;
+    invalidDate= !control.value || date.getMonth === undefined;
+  
+    return invalidDate ? { 'invalidDate': { value: control.value } } : null;
+
+  };
+  console.log("invaliddate",invalidDate);
+return a
+}
+Date_func(eve)
+{
+  let ptDatePattern =   /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g;
+       if (eve.target.value.match(ptDatePattern))
+        {
+          this.SignedDocumentDetailsForm.get("CreatedOn").setErrors({dt:true})
+        }
+else
+{
+  this.SignedDocumentDetailsForm.get("CreatedOn").markAsUntouched();
+  this.SignedDocumentDetailsForm.get("CreatedOn").valid;
+  this.SignedDocumentDetailsForm.get("CreatedOn").setErrors({dt:null})
+}
+ 
+
 }
 onSelect(event): void {
   console.log(event);

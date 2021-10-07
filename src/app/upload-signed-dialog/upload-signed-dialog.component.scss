@@ -23,7 +23,7 @@
     }
     .title{
         @extend .poppins;
-        font-size: 14px;
+        font-size: 13px;
         color: #2c2c2e;
     }
     .footer{
@@ -57,16 +57,16 @@
     .form{
         padding: 0 16px;
     }
-    .placeholdertext{
-        font-size: 13px;
-        font-family: 'poppins-semi' !important;
-      }
-      .placeholdertext::placeholder{
-        font-size: 12px !important;
-        font-family: 'poppins-semi' !important;
-        color: 
-        #596069 !important;
-      }
+    // .placeholdertext{
+    //     font-size: 13px;
+    //     font-family: 'poppins-semi' !important;
+    //   }
+    //   .placeholdertext::placeholder{
+    //     font-size: 12px !important;
+    //     font-family: 'poppins-semi' !important;
+    //     color: 
+    //     #596069 !important;
+    //   }
      
     
       .label_connect .mat-form-field-appearance-legacy .mat-form-field-label{
@@ -147,40 +147,53 @@
     }
 .form_outer
 {
-  width: 24%;
-  align-items: center;
+  width: 32%;
+    align-items: center;
 }
 .form_field_cls{
-  width: 58%;
-  font-size: 12px;
+  width: 54%;
+    font-size: 12px;
 }
 .formspan{
-  color: #0d0c22;
+  color: #383744;
   font-size: 11px;
-  font-family: 'poppins-semi' !important;
+  font-family: "poppins-semi" !important;
   justify-content: left;
-  width: 87px;
+  width: 100px;
 }
 .form_outer_bank
 {
-  width: 24%;
+  width: 32%;
   align-items: center;
 }
 .form_field_cls_bank{
-  width: 58%;
+  width: 54%;
   font-size: 12px;
 }
 .formspan_bank{
-  color: #0d0c22;
+  color: #383744;
   font-size: 11px;
-  font-family: 'poppins-semi' !important;
+  font-family: "poppins-semi" !important;
   justify-content: left;
-  width: 87px;
+  width: 100px;
 }
 .General
 {
-  font-size: 16px;
+  font-size: 14px;
     font-weight: 900;
+}
+.subtitle
+{
+  margin-top: 45px;
+    margin-bottom: 9px;
+}
+.textarea
+{
+  min-height: 10px;
+}
+.cursor
+{
+  cursor: pointer;
 }
   }
  
