@@ -62,6 +62,9 @@ export class LeasemanagementComponent implements OnInit {
   selectedPage: string = 'draft';
   editor1: boolean = false;
   editor2: boolean = false;
+  draftdata_filter:any[]=[];
+  matripple_centered=true;
+
   notificationSnackBarComponent: NotificationSnackBarComponent;
   @Output() toggleFold: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -82,7 +85,9 @@ export class LeasemanagementComponent implements OnInit {
   ngOnInit(): void {
     this.getAllDrafts();
     this.editorConfig={
-      height:window.innerHeight-328+'px'
+      height:window.innerHeight-328+'px',
+
+      
     }
   }
 
@@ -91,6 +96,7 @@ export class LeasemanagementComponent implements OnInit {
     this.service.GetLeaseDrafts().subscribe(res => {
       this.LeaseDrafts = res;
       this.dataSource = new MatTableDataSource(this.LeaseDrafts);
+      this.draftdata_filter=this.LeaseDrafts;
       this.selection = new SelectionModel<any>(true, []);
       this.spinner.hide();
       console.log("LeaseDrafts", res);
@@ -134,11 +140,14 @@ export class LeasemanagementComponent implements OnInit {
 
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
+    console.log("this.draftdata_filter",this.draftdata_filter);
+    this.draftdata_filter.forEach(function(x){delete x.documentContent});
+    this.dataSource = new MatTableDataSource(this.draftdata_filter);
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    // if (this.dataSource.paginator) {
-    //   this.dataSource.paginator.firstPage();
-    // }
+    // date
+    // this.dataSource = (this.dataSource) ?
+// this.draftdata_filter.filter(v => new Date(v.datecreated) == filterValue) :
+// this.venues;
   }
   chooseIcons(eve): void {
     if (eve === 'search') {
@@ -215,7 +224,7 @@ export class LeasemanagementComponent implements OnInit {
       this.openDraftDialog(2);
     }
     else {
-      this.notificationSnackBarComponent.openSnackBar("please attach document", SnackBarStatus.danger);
+      this.notificationSnackBarComponent.openSnackBar("please attach document", SnackBarStatus.warning);
     }
   }
 
@@ -293,7 +302,7 @@ export class LeasemanagementComponent implements OnInit {
   }
   openMultiDraftEditor() {
     if (this.selection.selected.length == 0) {
-      this.notificationSnackBarComponent.openSnackBar("plese select document to edit", SnackBarStatus.danger);
+      this.notificationSnackBarComponent.openSnackBar("plese select document to edit", SnackBarStatus.warning);
     }
     else {
       console.log(this.selection.selected);
@@ -328,7 +337,7 @@ export class LeasemanagementComponent implements OnInit {
         });
     }
     else {
-      this.notificationSnackBarComponent.openSnackBar("please select a document", SnackBarStatus.danger);
+      this.notificationSnackBarComponent.openSnackBar("please select a document", SnackBarStatus.warning);
     }
   }
   DownloadLeaseDrafts() {
@@ -345,7 +354,7 @@ export class LeasemanagementComponent implements OnInit {
       });
     }
     else {
-      this.notificationSnackBarComponent.openSnackBar("please select a document", SnackBarStatus.danger);
+      this.notificationSnackBarComponent.openSnackBar("please select a document", SnackBarStatus.warning);
     }
   }
   saveNewDraft() {

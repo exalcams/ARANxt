@@ -165,11 +165,11 @@
               <td mat-cell *matCellDef="let row" class="datarow">
                 <div fxLayout="row" fxLayoutAlign="space-evenly center" >
 
-                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px" (click)="DownloadLeaseDocument(row)">
+                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px" (click)="DownloadLeaseDocument(row);">
                     <img src="./assets/download_ash.svg" class="actionstable cursor_hover">
                     <span class="actionsspan">Download</span>
                   </div>
-                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px" >
+                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px" (click)="sideNavStatus=true;">
                     <img src="./assets/iconmonstr-paper-plane-2 (2).svg" class="actionstable cursor_hover">
                     <span class="actionsspan" (click)="openSendMailDialog(row.documentID)">Send</span>
                   </div>

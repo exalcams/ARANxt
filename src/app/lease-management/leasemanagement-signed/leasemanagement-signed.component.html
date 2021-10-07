@@ -1,12 +1,21 @@
 <div fxLayout="column" fxFlex="100">
 
   <div fxFlex fxLayout="row" fxLayoutGap="10px">
-    <div fxFlex="50" class="btn_bg">
-      <!-- fxLayoutAlign="flex-start flex-start" (click)="openDialogrenew()"-->
-      <button mat-flat-button class="Renew_btn" (click)="openDialogrenew()">Renew</button>
+    <div fxFlex="50" class="btn_bg" fxLayout="row">
+      <div matRipple class="ripple_outer" (click)="openDialogrenew()">
+        <label class="new_txt">Renew</label>
+    </div>
+    <div matRipple class="ripple_outer" (click)="openDialogvacate()">
+        <label class="new_txt">Vacate</label>
+    </div>
+    <div matRipple class="ripple_outer" (click)="openDialogterminate()">
+        <label class="new_txt">Terminate</label>
+    </div>
+    
+      <!-- <button mat-flat-button class="Renew_btn" (click)="openDialogrenew()" >Renew</button>
       <button mat-flat-button class="Renew_btn" (click)="openDialogvacate()">Vacate</button>
-      <button mat-flat-button class="Renew_btn" (click)="openDialogterminate()">Terminate</button>
-      <!-- <button mat-flat-button class="Renew_btn">Delete</button> -->
+      <button mat-flat-button class="Renew_btn" (click)="openDialogterminate()">Terminate</button> -->
+   
     </div>
     <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="30">
       <div fxLayout="row" class="btn_bg2" fxFlex="100">
@@ -197,10 +206,10 @@
                     <img src="./assets/download_ash.svg" class="actionstable">
                     <span class="actionsspan">Download</span>
                   </div>
-
-                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px" class="pointer">
+                
+                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px" (click)="sideNavStatus=true">
                     <img src="./assets/iconmonstr-paper-plane-2 (2).svg" class="actionstable">
-                    <span class="actionsspan" (click)="openSendMailDialog(row.documentID)">Send</span>
+                    <span class="actionsspan"   (click)="openSendMailDialog(row.documentID);">Send</span>
                   </div>
                   <!-- <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
                     <img src="./assets/iconmonstr-product-10.svg" class="actionstable">

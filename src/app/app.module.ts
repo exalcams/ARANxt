@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import {MatIconModule} from '@angular/material/icon';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSidenavModule} from '@angular/material/sidenav';
 
@@ -95,6 +95,8 @@ import { VacatecomponentComponent } from './lease-management/vacatecomponent/vac
 import { RenewcomponentComponent } from './lease-management/renewcomponent/renewcomponent.component';
 import { TerminatecomponentComponent } from './lease-management/terminatecomponent/terminatecomponent.component';
 import {MatListModule} from '@angular/material/list';
+import {MatRippleModule} from '@angular/material/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -187,7 +189,8 @@ import {MatListModule} from '@angular/material/list';
     SocialLoginModule,
     CKEditorModule,
     MatChipsModule,
-    MatListModule
+    MatListModule,
+    MatRippleModule
   ],
   providers: [AuthService,DatePipe,
     // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },

@@ -2,6 +2,7 @@
 {
     border-radius: 4px;
   background-color: #f3f3f4;
+  height: 32px;
 }
 .Renew_btn
 {
@@ -475,4 +476,15 @@ td{
   padding: 10px;
   transform: rotate(180deg) !important;
   animation-duration: 2s !important;
+}
+.ripple_outer
+{
+    width: 58px;
+    height: 100%;
+    text-align-last: center;
+}
+.new_txt
+{
+    vertical-align: -webkit-baseline-middle;
+    font-size: 10px;
 }

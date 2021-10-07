@@ -67,16 +67,8 @@
         color: 
         #596069 !important;
       }
-      .formspan{
-        color: #0d0c22;
-        font-size: 11px;
-        font-family: 'poppins-semi' !important;
-        justify-content: left;
-      }
-      .form_field_cls{
-          width: 70%;
-          font-size:14px;
-      }
+     
+    
       .label_connect .mat-form-field-appearance-legacy .mat-form-field-label{
         font-size: 10px !important;
         font-family: 'poppins' !important;
@@ -153,7 +145,42 @@
     {
       margin-top: 20px;
     }
-
-
+.form_outer
+{
+  width: 24%;
+  align-items: center;
+}
+.form_field_cls{
+  width: 58%;
+  font-size: 12px;
+}
+.formspan{
+  color: #0d0c22;
+  font-size: 11px;
+  font-family: 'poppins-semi' !important;
+  justify-content: left;
+  width: 87px;
+}
+.form_outer_bank
+{
+  width: 24%;
+  align-items: center;
+}
+.form_field_cls_bank{
+  width: 58%;
+  font-size: 12px;
+}
+.formspan_bank{
+  color: #0d0c22;
+  font-size: 11px;
+  font-family: 'poppins-semi' !important;
+  justify-content: left;
+  width: 87px;
+}
+.General
+{
+  font-size: 16px;
+    font-weight: 900;
+}
   }
  

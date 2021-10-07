@@ -27,15 +27,27 @@
     <div *ngIf="selectedPage=='draft'">
         <div class="neweditdiv" fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="16px">
             <div fxLayout="row" class="tab1" fxLayoutAlign="start center">
-                <button mat-flat-button class="Renew_btn" (click)="selectedPage='new'">New</button>
+                <div matRipple class="ripple_outer" (click)="selectedPage='new'">
+                    <label class="new_txt">New</label>
+                </div>
+                <div matRipple class="ripple_outer" (click)="openMultiDraftEditor()">
+                    <label class="new_txt">Edit</label>
+                </div>
+                <div matRipple class="ripple_outer" (click)="DeleteLeaseDrafts()">
+                    <label class="new_txt">Delete</label>
+                </div>
+                <div matRipple class="ripple_outer" (click)="DownloadLeaseDrafts()">
+                    <label class="new_txt">Download</label>
+                </div>
+                <!-- <button mat-flat-button class="Renew_btn" (click)="selectedPage='new'">New</button>
                 <button mat-flat-button class="Renew_btn" (click)="openMultiDraftEditor()">Edit</button>
                 <button mat-flat-button class="Renew_btn" (click)="DeleteLeaseDrafts()">Delete</button>
-                <button mat-flat-button class="Renew_btn" (click)="DownloadLeaseDrafts()">Download</button>
+                <button mat-flat-button class="Renew_btn" (click)="DownloadLeaseDrafts()">Download</button> -->
             </div>
             <div fxLayout="row" class="neweditdiv2">
                 <div class="search-to-do">
                     <mat-icon matSuffix class="search_iocn">search</mat-icon>
-                    <input matInput class="search_input1" placeholder="Search Document" (keyup)="applyFilter($event)">
+                    <input matInput class="search_input1" placeholder="Search Document" autocomplete="off" (keyup)="applyFilter($event)">
                 </div>
             </div>
         </div>
@@ -102,27 +114,27 @@
                 </ng-container>
 
                 <ng-container matColumnDef="documentOwner">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Document Owner </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Document owner </th>
                     <td mat-cell *matCellDef="let row"> {{row.documentOwner}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="documentType">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Document Type </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Document type </th>
                     <td mat-cell *matCellDef="let row"> {{row.documentType}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="documentName">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Document Name </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Document name </th>
                     <td mat-cell *matCellDef="let row"> {{row.documentName}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="createdOn">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Created On </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Created on </th>
                     <td mat-cell *matCellDef="let row"> {{row.createdOn | date:'dd/MM/yyyy'}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="modifiedOn">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Modified On </th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Modified on </th>
                     <td mat-cell *matCellDef="let row"> {{row.modifiedOn | date:'dd/MM/yyyy'}} </td>
                 </ng-container>
 
@@ -164,11 +176,23 @@
         <app-terminate></app-terminate>
     </div>
     <div *ngIf="selectedPage=='new'">
+        <div fxLayout="row" fxLayoutAlign="end center" class="submit-area">
+            <div fxLayout="row"> 
+                <div fxLayout="row" matRipple class="icon_outer" (click)="saveNewDraft()">
+                    <mat-icon   style="font-family: 'Material Icons';font-size: 17px;text-align-last: center; line-height: 24px;">save</mat-icon>
+                    <label class="save_label">Save</label>
+                </div>
+                <div fxLayout="row" matRipple class="icon_outer" >
+                    <mat-icon   style="font-family: 'Material Icons';font-size: 17px;text-align-last: center; line-height: 24px;">clear</mat-icon>
+                    <label class="save_label">Close</label>
+                </div>
+            </div>
+            <!-- <button mat-raised-button class="saveBtn" (click)="saveNewDraft()">Save</button>
+            <button mat-raised-button class="saveBtn" (click)="close">close</button> -->
+        </div>
         <ck-editor name="richEditor" [(ngModel)]="newLeaseDraft.documentContent" skin="moono-lisa" language="en"
             [fullPage]="true" [config]="editorConfig" class="editor"></ck-editor>
-        <div fxLayout="row" fxLayoutAlign="end center" class="submit-area">
-            <button mat-raised-button class="saveBtn" (click)="saveNewDraft()">Save</button>
-        </div>
+       
     </div>
     <div *ngIf="selectedPage=='edit'">
         <div fxLayout="row" fxLayoutGap="8px">

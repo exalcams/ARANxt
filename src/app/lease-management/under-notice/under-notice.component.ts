@@ -263,6 +263,7 @@ buttonvaluetable(){
     );
     dialogRef.disableClose = true;
     dialogRef.afterClosed().subscribe(res => {
+      this.sideNavStatus=false;
       if (res) {
         console.log("send-mail-dialog", res);
         this.spinner.show();
@@ -281,8 +282,9 @@ buttonvaluetable(){
   DownloadLeaseDocument(row)
 {
   
-   
+  this.sideNavStatus=true;
       this.service.DownloadLeaseDocument(row.documentID).subscribe((res)=>{
+        this.sideNavStatus=false;
         let blob:any = new Blob([res], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
         saveAs(blob, `${row.documentName}.docx`);
         console.log(`${row.documentName} downloaded`);
