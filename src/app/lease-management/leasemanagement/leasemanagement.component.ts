@@ -15,6 +15,7 @@ import { LeaseDraft } from 'src/app/Model/Leasemanagement';
 import { SendMailDialogComponent } from 'src/app/send-mail-dialog/send-mail-dialog.component';
 import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 import { saveAs } from 'file-saver';
+import { CloseDialogComponent } from 'src/app/close-dialog/close-dialog.component';
 export interface UserData {
 
   Documentname: string;
@@ -62,11 +63,12 @@ export class LeasemanagementComponent implements OnInit {
   selectedPage: string = 'draft';
   editor1: boolean = false;
   editor2: boolean = false;
-  draftdata_filter:any[]=[];
-  matripple_centered=true;
+  draftdata_filter: any[] = [];
+  matripple_centered = true;
 
   notificationSnackBarComponent: NotificationSnackBarComponent;
   @Output() toggleFold: EventEmitter<boolean> = new EventEmitter<boolean>();
+  closedialog: string = 'yes';
 
   toggleSideNav(value: boolean) {
     this.toggleFold.emit(!value);
@@ -75,7 +77,7 @@ export class LeasemanagementComponent implements OnInit {
   newLeaseDraft: LeaseDraft = new LeaseDraft();
   leaseDraft1: LeaseDraft = new LeaseDraft();
   leaseDraft2: LeaseDraft = new LeaseDraft();
-  editorConfig:any;
+  editorConfig: any;
   constructor(private dialog: MatDialog, private service: LeaseManagementService,
     private spinner: NgxSpinnerService, private cdr: ChangeDetectorRef,
     private snackBar: MatSnackBar, private socialAuthService: SocialAuthService) {
@@ -84,10 +86,10 @@ export class LeasemanagementComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllDrafts();
-    this.editorConfig={
-      height:window.innerHeight-328+'px',
+    this.editorConfig = {
+      height: window.innerHeight - 328 + 'px',
 
-      
+
     }
   }
 
@@ -96,7 +98,7 @@ export class LeasemanagementComponent implements OnInit {
     this.service.GetLeaseDrafts().subscribe(res => {
       this.LeaseDrafts = res;
       this.dataSource = new MatTableDataSource(this.LeaseDrafts);
-      this.draftdata_filter=this.LeaseDrafts;
+      this.draftdata_filter = this.LeaseDrafts;
       this.selection = new SelectionModel<any>(true, []);
       this.spinner.hide();
       console.log("LeaseDrafts", res);
@@ -140,14 +142,14 @@ export class LeasemanagementComponent implements OnInit {
 
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
-    console.log("this.draftdata_filter",this.draftdata_filter);
-    this.draftdata_filter.forEach(function(x){delete x.documentContent});
+    console.log("this.draftdata_filter", this.draftdata_filter);
+    this.draftdata_filter.forEach(function (x) { delete x.documentContent });
     this.dataSource = new MatTableDataSource(this.draftdata_filter);
     this.dataSource.filter = filterValue.trim().toLowerCase();
     // date
     // this.dataSource = (this.dataSource) ?
-// this.draftdata_filter.filter(v => new Date(v.datecreated) == filterValue) :
-// this.venues;
+    // this.draftdata_filter.filter(v => new Date(v.datecreated) == filterValue) :
+    // this.venues;
   }
   chooseIcons(eve): void {
     if (eve === 'search') {
@@ -187,7 +189,7 @@ export class LeasemanagementComponent implements OnInit {
         const dialogRef = this.dialog.open(GDriveComponent,
           {
             panelClass: "g-drive-dialog",
-            data:data
+            data: data
           }
         );
         dialogRef.disableClose = true;
@@ -200,10 +202,10 @@ export class LeasemanagementComponent implements OnInit {
         });
         this.spinner.hide;
       },
-      err=>{
-        console.log(err);
-        this.spinner.hide();
-      });
+        err => {
+          console.log(err);
+          this.spinner.hide();
+        });
   }
   OpenFileFromLink() {
     let link = "test";
@@ -259,15 +261,49 @@ export class LeasemanagementComponent implements OnInit {
         }
         else {
           //convert and save lease draft
-          var draft=new LeaseDraft();
-          draft.documentName=res.documentName;
-          draft.documentOwner=res.documentOwner;
-          draft.documentType=res.documentType;
+          var draft = new LeaseDraft();
+          draft.documentName = res.documentName;
+          draft.documentOwner = res.documentOwner;
+          draft.documentType = res.documentType;
           this.uploadLeaseDraft(draft);
         }
       }
     });
   }
+  closeDraft(eve) {
+    console.log("this.editor1", this.editor1);
+    console.log("this.editor2", this.editor2);
+    this.closedialog = 'no';
+    const dialogRef = this.dialog.open(CloseDialogComponent, {
+      panelClass: 'close-dialog',
+      width: '427px',
+      maxWidth: '85.5vw ',
+      height: '33%',
+      disableClose: true
+    });
+    // this.selectedPage='draft';
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == "yes" && eve == 'new') {
+        console.log("test")
+        this.selectedPage = "draft";
+        this.selection.clear();
+        this.cdr.detectChanges();
+      }
+      else if (eve == 'editor1') {
+        this.editor1 = false;
+        this.cdr.detectChanges();
+      }
+      else if (eve == 'editor2') {
+        this.editor2 = false;
+        this.cdr.detectChanges();
+      }
+      // this.closedialog=result; 
+
+    });
+
+  }
+
   saveLeaseDraft(draft: LeaseDraft) {
     this.spinner.show();
     this.service.SaveLeaseDraft(draft).subscribe(() => {
@@ -280,18 +316,18 @@ export class LeasemanagementComponent implements OnInit {
         console.log(err);
       });
   }
-  uploadLeaseDraft(draft:LeaseDraft){
+  uploadLeaseDraft(draft: LeaseDraft) {
     this.spinner.show();
-    this.service.UploadLeaseDraft(this.files,draft).subscribe(() => {
+    this.service.UploadLeaseDraft(this.files, draft).subscribe(() => {
       this.spinner.hide();
       this.getAllDrafts();
-      this.files=[];
+      this.files = [];
       console.log("draft saved");
     },
       err => {
         this.spinner.hide();
         console.log(err);
-        this.files=[];
+        this.files = [];
       });
   }
   openDratEdtitor(row: LeaseDraft) {
@@ -343,14 +379,14 @@ export class LeasemanagementComponent implements OnInit {
   DownloadLeaseDrafts() {
     if (this.selection.selected.length > 0) {
       this.selection.selected.forEach((draft: LeaseDraft) => {
-        this.service.DownloadLeaseDraft(draft.documentID).subscribe((res)=>{
-          let blob:any = new Blob([res], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+        this.service.DownloadLeaseDraft(draft.documentID).subscribe((res) => {
+          let blob: any = new Blob([res], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
           saveAs(blob, `${draft.documentName}.docx`);
           console.log(`${draft.documentName} downloaded`);
         },
-        err=>{
-          console.log(err);
-        });
+          err => {
+            console.log(err);
+          });
       });
     }
     else {

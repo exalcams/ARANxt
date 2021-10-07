@@ -366,7 +366,7 @@ export class LeasemanagementSignedComponent implements OnInit {
     const dialogRef = this.dialog.open(UploadSignedDialogComponent, {
       panelClass: 'upload-signed-dialog',
       // position: { top: '3%', right: '3%' },
-      width: '80%',
+      width: '951px',
       maxWidth: '85.5vw ',
       height: '90%',
 
