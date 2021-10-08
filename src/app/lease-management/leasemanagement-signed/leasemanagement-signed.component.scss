@@ -401,6 +401,9 @@ td{
   .mat-cell, .mat-header-cell {
     color: #0d0c22;
   }
+  .actionstable{
+    filter: brightness(0.5);
+  }
 }
 
 .label_connect .mat-form-field-appearance-legacy .mat-form-field-label{

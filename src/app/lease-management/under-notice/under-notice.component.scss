@@ -357,6 +357,9 @@ td{
     color: #0d0c22;
     font-weight: 600;
   }
+  .actionstable{
+    filter: brightness(0.5);
+  }
 }
 .mat-cell, .mat-header-cell {
   border: none !important;

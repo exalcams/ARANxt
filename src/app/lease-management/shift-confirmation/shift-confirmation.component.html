@@ -17,7 +17,7 @@
             <div fxFlex="50" class="img_div">
                 <img src="assets/Empty-cuate.png" class="empty_img">
             </div>
-            <div fxLayout="column" class="outer" fxLayoutAlign="start" fxFlex="50" >
+            <div fxLayout="column" class="outer" fxLayoutAlign="start" fxFlex="50">
                 <div fxFlex="100" fxLayout="column">
                     <form [formGroup]="ShiftConformationForm" fxLayout="column" style="width: 100%;" fxLayoutGap="10px">
                         <div fxLayout="column">
@@ -27,11 +27,17 @@
                             <mat-form-field appearance="outline" class="form_field_cls">
                                 <input matInput placeholder="Enter penality if any" formControlName="Penalty"
                                     type="number" class="forminputedit">
-                                <mat-error *ngIf="ShiftConformationForm.get('Penalty').hasError('required')" class="erroredits">
+                                <mat-error *ngIf="ShiftConformationForm.get('Penalty').hasError('required')"
+                                    class="erroredits">
                                     Penalty is required
                                 </mat-error>
-                                <mat-error *ngIf="ShiftConformationForm.controls['Penalty'].hasError('invalidName')" class="erroredits">
+                                <mat-error *ngIf="ShiftConformationForm.controls['Penalty'].hasError('invalidName')"
+                                    class="erroredits">
                                     No special character
+                                </mat-error>
+                                <mat-error *ngIf="ShiftConformationForm.get('Penalty').touched && !ShiftConformationForm.get('Penalty').hasError('required')
+                            &&ShiftConformationForm.get('Penalty').hasError('pattern')" class="erroredits">
+                                    Enter a valid amount
                                 </mat-error>
                             </mat-form-field>
                         </div>
@@ -45,7 +51,8 @@
                                             class="forminputedit">
                                             {{option}}</mat-option>
                                     </mat-select>
-                                    <mat-error *ngIf="ShiftConformationForm.get('From').hasError('required')" class="erroredits">
+                                    <mat-error *ngIf="ShiftConformationForm.get('From').hasError('required')"
+                                        class="erroredits">
                                         Select an option
                                     </mat-error>
                                 </mat-form-field>
@@ -71,7 +78,8 @@
                             <mat-form-field appearance="outline" class="form_field_cls">
                                 <textarea matInput placeholder="Enter Remarks" formControlName="Remarks"
                                     class="forminputedit textareaclass"></textarea>
-                                <mat-error *ngIf="ShiftConformationForm.get('Remarks').hasError('required')" class="erroredits">
+                                <mat-error *ngIf="ShiftConformationForm.get('Remarks').hasError('required')"
+                                    class="erroredits">
                                     Enter Remarks
                                 </mat-error>
                             </mat-form-field>

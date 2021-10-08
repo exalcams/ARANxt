@@ -28,14 +28,14 @@ export class ShiftConfirmationComponent implements OnInit {
   }
   SignedFormGroup(): void {
     this.ShiftConformationForm = this.formBuilder.group({
-      Penalty: ['', [Validators.required, this.nameValidator, Validators.pattern(/^[0-9]*$/)]],
+      Penalty: ['', [Validators.required, this.nameValidator, Validators.pattern(/^([0-9]{4,10})([.][0-9]{1,2})?$/)]],
       From: ['', Validators.required],
       Remarks: ['', Validators.required]
     });
   }
 
   nameValidator(control: FormControl): { [key: string]: boolean } {
-    const nameRegexp: RegExp = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+    const nameRegexp: RegExp = /[!@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?]/;
     if (control.value && nameRegexp.test(control.value)) {
       return { invalidName: true };
     }
