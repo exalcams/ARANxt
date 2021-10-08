@@ -210,4 +210,16 @@ export class LeaseManagementService {
     return this.http.get(`${this.baseAddress}api/Lease/GetLeaseRenewals?leaseID=${leaseID}`)
     .pipe(catchError(this.errorHandler));
   }
+
+
+  DeleteLeaseManagement(leaseIDs:number[]){
+    return this.http.post<any>(this.baseAddress + 'api/Lease/DeleteLeaseManagement', leaseIDs,
+    {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    })
+    .pipe(catchError(this.errorHandler));
+
+  }
 }

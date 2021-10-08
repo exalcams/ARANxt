@@ -509,4 +509,17 @@ export class LeasemanagementSignedComponent implements OnInit {
   drawerToggled(event) {
     this.sideNavStatus = event;
   }
+
+  Deleteleaserow(documentID){
+    this.spinner.show();
+    this.service.DeleteLeaseManagement( documentID).subscribe((x) => {
+      console.log(x);
+      this.spinner.hide();
+      this.notificationSnackBarComponent.openSnackBar('Deleted  successfully', SnackBarStatus.success);
+    },
+      err => {
+        console.log(err);
+
+      })
+  }
 }

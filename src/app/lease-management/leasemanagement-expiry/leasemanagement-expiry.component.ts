@@ -384,6 +384,21 @@ openDialogterminate() {
     this.Checked = false
   }
 }
+
+Deleteleaserow(documentID){
+  this.spinner.show();
+  this.service.DeleteLeaseManagement( documentID).subscribe((x) => {
+    console.log(x);
+    this.spinner.hide();
+    this.notificationSnackBarComponent.openSnackBar('Deleted  successfully', SnackBarStatus.success);
+  },
+    err => {
+      console.log(err);
+
+    })
+}
+
+
 }
 
 

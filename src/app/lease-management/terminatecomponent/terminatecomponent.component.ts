@@ -49,10 +49,10 @@ export class TerminatecomponentComponent implements OnInit {
       Accepteddate: ['', [Validators.required, this.invalidDateValidatorFn]],
       Inspectiondate: ['', [Validators.required, this.invalidDateValidatorFn]],
       Inspectedby: ['', Validators.required],
-      Rentdue: ['',  [Validators.required, this.nameValidator, Validators.pattern(/^[0-9]*$/)]],
-      Maintenancedue: ['', [Validators.required, this.nameValidator, Validators.pattern(/^[0-9]*$/)]],
-      DamageRecovery: ['',  [Validators.required, this.nameValidator, Validators.pattern(/^[0-9]*$/)]],
-      AdvanceBalance: ['',  [Validators.required, this.nameValidator, Validators.pattern(/^[0-9]*$/)]],
+      Rentdue: ['',  [Validators.required, this.nameValidator, Validators.pattern(/^([0-9]{4,10})([.][0-9]{1,2})?$/)]],
+      Maintenancedue: ['', [Validators.required, this.nameValidator, Validators.pattern(/^([0-9]{4,10})([.][0-9]{1,2})?$/)]],
+      DamageRecovery: ['',  [Validators.required, this.nameValidator,Validators.pattern(/^([0-9]{4,10})([.][0-9]{1,2})?$/)]],
+      AdvanceBalance: ['',  [Validators.required, this.nameValidator,Validators.pattern(/^([0-9]{4,10})([.][0-9]{1,2})?$/)]],
       ExpectedDate: ['', [Validators.required, this.invalidDateValidatorFn]],
       Modeoftransfer: ['', Validators.required],
       ReturnableAssets: ['', Validators.required],
@@ -69,7 +69,7 @@ export class TerminatecomponentComponent implements OnInit {
   }
 
   nameValidator(control: FormControl): { [key: string]: boolean } {
-    const nameRegexp: RegExp = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+    const nameRegexp: RegExp = /[!@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?]/;
     if (control.value && nameRegexp.test(control.value)) {
       return { invalidName: true };
     }
