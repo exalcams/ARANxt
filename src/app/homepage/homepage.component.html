@@ -1,16 +1,17 @@
-<mat-drawer-container style="height: 100%;">
+<mat-drawer-container style="height: 100%;" autosize="true">
     <mat-drawer mode="side" opened class="size" style="border-right: 1px solid rgb(242, 242, 242);">
         <div fxLayout="row" fxLayoutAlign=" none" fxFlex="100">
 
 
-            <div (window:resize)="onResize($event)" *ngIf="fullmenu" fxFlex="45" fxLayout="column" fxLayoutAlign="none"
-                class="sidenav_1">
-                <div> <img [@fadeSlideInOut]='state' class="ara_img" src="./assets/ara_img.png"></div>
-
+            <div (window:resize)="onResize($event)" *ngIf="fullmenu" fxLayout="column" class="sidenav_1">
+                <div fxLayoutAlign="center" style="padding: 12px;">
+                    <img [@fadeSlideInOut]='state' class="ara_img" src="./assets/ara_img.png">
+                </div>
+                <div class="divider"></div>
                 <div class="menu">Menu</div>
 
 
-                <div fxLayout="row" [ngClass]="overview_bool==true?'inner_menus_home_highlight':'dashboard'"
+                <div fxLayout="row" [ngClass]="overview_bool==true?'inner_menus_home_highlight':'inner_menus_home'"
                     (click)="home_clik()">
                     <div style="margin-left: 9%;">
                         <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==false"
@@ -20,44 +21,39 @@
 
                     </div>
                     <div [ngClass]="overview_bool==true?'inner_menus_highlight':'inner_menus'"
-                        style="margin-left: 20%;">Home</div>
+                        style="margin-left: 16px;">Home</div>
                 </div>
 
                 <div fxLayout="row" class="inner_menus_home">
                     <div style="margin-left: 9%;">
                         <img style="width: 14px;vertical-align: middle;" src="./assets/models.svg">
                     </div>
-                    <div class="inner_menus" style="margin-left: 20%;">Models</div>
+                    <div class="inner_menus" style="margin-left: 16px;">Models</div>
                 </div>
 
                 <div fxLayout="row" class="inner_menus_home">
                     <div style="margin-left: 9%;">
                         <img style="width: 14px;vertical-align: middle;" src="./assets/rental_icon.svg">
                     </div>
-                    <div class="inner_menus" style="margin-left: 20%;">Rental</div>
+                    <div class="inner_menus" style="margin-left: 16px;">Rental</div>
                 </div>
 
 
-                <div style="margin-top: 10%;" fxLayout="row" fxLayoutAlign="center center">
-                    <mat-divider class="divider"></mat-divider>
-                </div>
+                <div style="margin-top:12px;margin-bottom: 12px;" class="menu">Others</div>
 
 
-                <div style="margin-left: 12%;" class="menu">Others</div>
-
-
-                <div fxLayout="row" class="dashboard">
+                <div fxLayout="row" class="inner_menus_home">
                     <div style="margin-left: 9%;">
                         <img style="width: 14px;vertical-align: middle;" src="./assets/chatbot_icon.svg">
                     </div>
-                    <div class="inner_menus" style="margin-left: 20%;">Chat Bot</div>
+                    <div class="inner_menus" style="margin-left: 16px;">Chat Bot</div>
                 </div>
 
                 <div fxLayout="row" class="inner_menus_home">
                     <div style="margin-left: 9%;">
                         <img style="width: 14px;vertical-align: middle;" src="./assets/privacy_icon.svg">
                     </div>
-                    <div class="inner_menus" style="margin-left: 20%;">Privacy Policy</div>
+                    <div class="inner_menus" style="margin-left: 16px;">Privacy Policy</div>
                 </div>
                 <!-- <div fxLayout="row" class="inner_menus_home" (click)="isLeasemanagement=!isLeasemanagement;"> -->
                 <div fxLayout="row" (click)="leaseclk()"
@@ -70,9 +66,9 @@
                             src="./assets/date-expired_blue.svg">
                     </div>
                     <div [ngClass]="overview_bool==false?'inner_menus_highlight':'inner_menus'"
-                        style="margin-left: 20%;">Lease Management</div>
+                        style="margin-left: 16px;">Lease</div>
                 </div>
-                <div>
+                <!-- <div>
                     <img class="building" src="./assets/building.png">
                 </div>
                 <div fxLayout="column" fxLayoutAlign="center center">
@@ -84,28 +80,32 @@
                     </div>
                     <button mat-flat-button class="send_btn" style="cursor: pointer;" color="primary">Purchase
                         Now!</button>
-                </div>
-                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px" style="padding: 12px;">
-                    <img style="height: 28px;" src="./assets/face.png">
-                    <label style="color: #394256;
-                    font-size: 12px;font-weight:500 ;font-family: poppins-med;">{{currentUser}}</label>
-                    <img src="assets/Images/userActive.svg" width="8px">
-                </div>
-                <div fxLayout="row" style="padding: 0 12px;" fxLayoutAlign="center" fxLayoutGap="16px">
-                    <div>
-                        <img src="./assets/logout_ash.svg" style="width: 12px;">
+                </div> -->
+                <div fxFlex></div>
+                <div class="user-panel">
+                    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px" style="padding: 8px;">
+                        <img style="height: 28px;" src="./assets/face.png">
+                        <label style="color: #394256;
+                        font-size: 11px;font-weight:500 ;font-family: poppins-med;">{{currentUser}}</label>
+                        <img src="assets/Images/userActive.svg" width="8px">
                     </div>
-                    <div style="color: #394256;
-                   font-size: 12px;cursor: pointer;font-weight:500 ;font-family: poppins-med;" (click)="logout()">
-                        Logout
+                    <div fxLayout="row" style="padding:0px 8px 8px;" fxLayoutAlign="center" fxLayoutGap="16px">
+                        <div>
+                            <img src="./assets/logout_ash.svg" style="width: 12px;">
+                        </div>
+                        <div style="color: #394256;
+                       font-size: 11px;cursor: pointer;font-weight:500 ;font-family: poppins-med;" (click)="logout()">
+                            Logout
+                        </div>
                     </div>
                 </div>
-                <div style="padding: 12px;" fxLayout="row" fxLayoutAlign="end center">
+
+                <div style="padding:4px 12px 12px 12px;" fxLayout="row" fxLayoutAlign="end center">
                     <img style="width: 12px;cursor: pointer;" (click)="slidemenuforbig()"
                         src="./assets/slide_close_arrow.svg">
                 </div>
             </div>
-            <div @fadeSlideInOut_one *ngIf="shortmenu" fxLayout="column" fxFlex="10" fxLayoutAlign="start center"
+            <div @fadeSlideInOut_one *ngIf="shortmenu" fxLayout="column" fxLayoutAlign="start center"
                 class="sidenav_1_short ">
                 <div>
                     <img style="width: 18px;margin-top:12px;" src="./assets/short_ara.png">
@@ -166,21 +166,12 @@
                         <mat-divider class="divider2"></mat-divider>
                     </div>
                     <div fxLayoutAlign="center center">
-                        <div fxLayout="row" class="main_input_field" fxLayoutAlign="space-between center">
-                            <div>
-                                <img style="vertical-align: -webkit-baseline-middle;
+                        <div fxLayout="row" class="main_input_field" fxLayoutAlign="start center">
+                            <img style="vertical-align: -webkit-baseline-middle;
                                 width: 24px;" src="./assets/search.svg">
-                            </div>
-                            <div>
-                                <input class="input_field" [(ngModel)]="voiceText" matInput placeholder="Search ">
-                            </div>
-
-                            <div>
-                                <img style="vertical-align: middle; margin-left: -66%;width: 8px;"
-                                    src="./assets/mic.svg" (click)="startVoiceRecognition()">
-                            </div>
-
-
+                            <input class="input_field" [(ngModel)]="voiceText" matInput placeholder="Search">
+                            <div fxFlex></div>
+                            <img width="8px" src="./assets/mic.svg" (click)="startVoiceRecognition()">
                         </div>
                     </div>
 
@@ -252,8 +243,8 @@
 
     <mat-drawer-content style="background-color: white;">
         <mat-toolbar class="toolbar_class">
-            <div class="sidenav_3" style="background-color: white;width: 71%;">
-                <div fxLayout="row" style="padding-top: 5px;" fxLayoutAlign="space-between center" class="header_row">
+            <div class="sidenav_3">
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="header_row">
                     <div fxLayout="row" class="header">
                         <span>{{displayparent}}</span>
                         <span *ngIf="(Space != '') || (SubSpace != '') ">+</span>
@@ -261,49 +252,16 @@
                         <span *ngIf="(SubSpace != '') || (Space != '')  ">+</span>
                         <span>{{SubSpace}}</span>
                     </div>
-                    <div fxLayout="row" style="margin-right: 30px;">
-
-                        <!-- <div class="header_bold"  [matMenuTriggerFor]="menu"> User </div>
-                        <div> <img style="height: 28px; margin-left:15px;" src="./assets/face.png"  [matMenuTriggerFor]="menu"></div>
-                        <div> <img style="height: 4px; vertical-align: middle;margin-left:5px;cursor: pointer;"
-                                    src="./assets/down_arrrow.svg"  [matMenuTriggerFor]="menu"> </div>
-                        <mat-menu #menu="matMenu" yPosition="below">
-                            <button mat-menu-item>
-
-                                <span>logout</span>
-                            </button>
-
-                        </mat-menu>
-                        <div>
-                            <mat-divider [vertical]="true" class="divider3"></mat-divider>
-                        </div>
-                        <div> <img style="height: 14px; vertical-align: middle;margin-left:15px"
-                                src="./assets/settings.svg"> </div>
-                        <div> <img style="height: 12px; vertical-align:middle;margin-left:15px" src="./assets/mail.svg">
-                        </div>
-                        <div>
-                            <mat-divider [vertical]="true" class="divider3"></mat-divider>
-                        </div> -->
-
-
-
-                        <div class="header_bold" style="margin-left: 15px;">
-                            <div (click)="openDialog()"> Main <span> +</span></div>
-                            <div class="inkbar"></div>
-
-                        </div>
-
-
-
+                    <div class="header_bold" style="margin-left: 15px;">
+                        <div (click)="openDialog()"> Main <span> +</span></div>
+                        <div class="inkbar"></div>
                     </div>
                 </div>
-
-
             </div>
         </mat-toolbar>
 
-        <div style="margin-top: 95px;" *ngIf="overview_bool">
-            <div fxLayout="row" style="margin: -35px 20px 10px 15px;" fxLayoutAlign="space-between center">
+        <div *ngIf="overview_bool" style="padding: 16px;">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
                 <div fxLayout="row">
                     <div (click)="func1()"
                         [ngClass]="bool1 || bool7 == true ? 'main_buttons' : 'main_buttons_not_seklected' ">
@@ -327,24 +285,15 @@
                         [ngClass]="bool8 == true ? 'main_buttons' : 'main_buttons_not_seklected' ">
                         Action Center
                     </div>
-                    <!-- <div class="main_buttons_not_seklected" style="margin-left: 10px;" (click)="func8()"
-                        [ngClass]="bool9 == true ? 'main_buttons' : 'main_buttons_not_seklected' " *ngIf="divhide1">
-                        Lease Management
-                    </div > -->
-
                 </div>
                 <div fxLayout="row" class="main_buttons_side" (click)="ViewAnalytics()">
-
                     <div>View Analytics </div>
                     <div>
                         <img style="vertical-align: sub;margin-left: 4px;" src="./assets/arrow_right_direction.svg">
                     </div>
-
                 </div>
             </div>
-
-            <!-- <router-outlet></router-outlet> -->
-            <div *ngIf="bool1==true || bool7 == true">
+            <div *ngIf="bool1==true || bool7 == true" style="padding: 16px 0 0 0;">
                 <app-over></app-over>
             </div>
             <div *ngIf="bool2==true">
@@ -365,13 +314,9 @@
             <div *ngIf="bool6==true">
                 <app-signals></app-signals>
             </div>
-            <div *ngIf="bool8==true">
+            <div *ngIf="bool8==true" style="padding: 16px 0 0 0;">
                 <app-action></app-action>
             </div>
-            <!-- <div *ngIf="bool9==true">
-                <app-leasemanagement></app-leasemanagement>
-            </div> -->
-
         </div>
         <div *ngIf="isLeasemanagement">
             <app-leasemanagement></app-leasemanagement>
