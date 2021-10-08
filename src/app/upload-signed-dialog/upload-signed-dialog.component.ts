@@ -3,6 +3,7 @@ import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, Validators,FormBuilder, FormArray, FormControl, ValidatorFn, AbstractControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { DraftDialogComponent } from '../draft-dialog/draft-dialog.component';
 import { LeaseManagement } from '../Model/Leasemanagement';
 import { NotificationSnackBarComponent } from '../notification/notification-snack-bar/notification-snack-bar.component';
@@ -25,7 +26,7 @@ export class UploadSignedDialogComponent implements OnInit {
   NUMERIC_PATTREN = '^([0-9]{4,10})([.][0-9]{1,2})?$';
 
   constructor(private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<DraftDialogComponent>,private service: LeaseManagementService, public snackBar: MatSnackBar,public _datePipe:DatePipe,
+    public dialogRef: MatDialogRef<DraftDialogComponent>,private service: LeaseManagementService, public snackBar: MatSnackBar,public _datePipe:DatePipe,   private spinner: NgxSpinnerService,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {   this.notificationSnackBarComponent = new NotificationSnackBarComponent(this.snackBar);}
 
@@ -40,7 +41,9 @@ export class UploadSignedDialogComponent implements OnInit {
     Client: ['',Validators.required],
     FileName : ['',Validators.required],
     CreatedOn: ['',[Validators.required,this.invalidDateValidatorFn]],
-    ExpiryDate: ['',[Validators.required,Validators.pattern("([1-9]|0[1-9]|[12][0-9]|3[01])[-]([1-9]|0[1-9]|1[012])[-](19|20)dd$")]],
+    // ExpiryDate: ['',[Validators.required,Validators.pattern("([1-9]|0[1-9]|[12][0-9]|3[01])[-]([1-9]|0[1-9]|1[012])[-](19|20)dd$")]],
+    ExpiryDate: ['',[Validators.required,this.invalidDateValidatorFn]],
+
     TotalDeposit : ['',[Validators.required,Validators.pattern('^([0-9]{4,10})([.][0-9]{1,2})?$' )]],
     Rental: ['',[Validators.required,Validators.pattern('^([0-9]{4,10})([.][0-9]{1,2})?$' )]],
     BankName: ['', Validators.required],
@@ -53,7 +56,8 @@ export class UploadSignedDialogComponent implements OnInit {
     Electrical:['',Validators.required],
     Condition: ['',Validators.required],
     Remarks: ['',Validators.required],
-    NoticePeriod: ['',[Validators.required,Validators.pattern('^([0-9]{1,2})([.][0-9]{1})?$')]],
+    // NoticePeriod: ['',Validators.required],
+    NoticePeriod: ['',[Validators.required,Validators.pattern('^[0-9]+$')]],
   });
 }
 invalidDateValidatorFn(): ValidatorFn {
@@ -101,6 +105,7 @@ onRemove(event): void {
   
   upload()
   {
+    this.spinner.show();
     if((this.SignedDocumentDetailsForm.valid  )&&(this.files[0]))
     {
       const signeddetail = new LeaseManagement();
@@ -126,13 +131,14 @@ onRemove(event): void {
    console.log("upload");
    
     this.service.AddSignedFileDetail(signeddetail,this.files[0]).subscribe((x) => {
-     if(x)
-     {
-      this.notificationSnackBarComponent.openSnackBar('Uploaded in successfully', SnackBarStatus.success);
-     }
+    this.SignedDocumentDetailsForm.reset()
+      this.spinner.hide();
+      this.notificationSnackBarComponent.openSnackBar('Uploaded  successfully', SnackBarStatus.success);
+    
  
     },
       err => {
+        this.spinner.hide();
         console.log(err);
 
       })
@@ -140,10 +146,12 @@ onRemove(event): void {
     }
     else if(!this.files[0] && this.SignedDocumentDetailsForm.valid)
   {
+    this.spinner.hide();
     this.notificationSnackBarComponent.openSnackBar('File need to be Uploaded', SnackBarStatus.danger);
   }
   else if(!this.SignedDocumentDetailsForm.valid)
   {
+    this.spinner.hide();
   // this.SignedDocumentDetailsForm.invalid;
   this.ShowValidationErrors(this.SignedDocumentDetailsForm);
   }

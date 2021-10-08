@@ -17,6 +17,7 @@
   .savebtn{
     background-color: #4410ff !important;
     color: #ffffff !important;
+    font-size: 10px;
   }
   .mat-dialog-container {
     display: block;
@@ -44,11 +45,17 @@
   }
   .content_text
   {
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 12px;
+    font-weight: 700;
   }
   .title
   {
     font-size: 15px;
     font-weight: 600;
+  }
+  .btn
+  {
+    margin-right: 8px;
+    width: 10px;
+    height: 33px;
   }

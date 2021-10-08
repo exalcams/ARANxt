@@ -368,7 +368,7 @@ export class LeasemanagementSignedComponent implements OnInit {
       // position: { top: '3%', right: '3%' },
       width: '951px',
       maxWidth: '85.5vw ',
-      height: '90%',
+      // height: '90%',
 
     });
 
