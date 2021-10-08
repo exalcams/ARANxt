@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-close-dialog',
@@ -7,9 +7,12 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class CloseDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<CloseDialogComponent>) {
-    dialogRef.disableClose = true;
-   }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public dialogData: any,
+    public dialogRef: MatDialogRef<CloseDialogComponent>,
+  ) {
+
+  }
 
   ngOnInit(): void {
   }

@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { GDriveComponent } from 'src/app/g-drive/g-drive.component';
 import { LeaseManagementService } from 'src/app/service/lease-management.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -274,13 +274,18 @@ export class LeasemanagementComponent implements OnInit {
     console.log("this.editor1", this.editor1);
     console.log("this.editor2", this.editor2);
     this.closedialog = 'no';
-    const dialogRef = this.dialog.open(CloseDialogComponent, {
+    const dialogConfig: MatDialogConfig = {
+      data: {
+        title: "Close",
+        body: "Are you sure , you want to close without saving",
+      },
       panelClass: 'close-dialog',
-      width: '427px',
+      width: '379px',
       maxWidth: '85.5vw ',
       height: '33%',
       disableClose: true
-    });
+    };
+    const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
     // this.selectedPage='draft';
 
     dialogRef.afterClosed().subscribe(result => {
@@ -290,12 +295,22 @@ export class LeasemanagementComponent implements OnInit {
         this.selection.clear();
         this.cdr.detectChanges();
       }
-      else if (eve == 'editor1') {
+      else if (eve == 'editor1' && result == "yes" && this.editor2) {
         this.editor1 = false;
         this.cdr.detectChanges();
       }
-      else if (eve == 'editor2') {
+      else if (eve == 'editor2' && result == "yes" && this.editor1) {
         this.editor2 = false;
+        this.cdr.detectChanges();
+      }
+      else if (this.editor1 && !this.editor2 && result == "yes") {
+        this.selectedPage = "draft";
+        this.selection.clear();
+        this.cdr.detectChanges();
+      }
+      else if (!this.editor1 && this.editor2 && result == "yes") {
+        this.selectedPage = "draft";
+        this.selection.clear();
         this.cdr.detectChanges();
       }
       // this.closedialog=result; 
@@ -308,6 +323,7 @@ export class LeasemanagementComponent implements OnInit {
     this.spinner.show();
     this.service.SaveLeaseDraft(draft).subscribe(() => {
       this.spinner.hide();
+      this.notificationSnackBarComponent.openSnackBar("Saved Sucessfully", SnackBarStatus.success);
       this.getAllDrafts();
       console.log("draft saved");
     },
@@ -331,28 +347,57 @@ export class LeasemanagementComponent implements OnInit {
       });
   }
   openDratEdtitor(row: LeaseDraft) {
-    this.selectedPage = 'edit';
-    this.editor1 = true;
-    this.editor2 = false;
-    this.leaseDraft1 = row;
+    console.log("row",row);
+    this.spinner.show();
+    this.service.GetLeaseDraftDocument(row.documentID).subscribe(res => {
+      this.spinner.hide();
+      this.selectedPage = 'edit';
+      this.editor1 = true;
+      this.editor2 = false;
+      this.leaseDraft1 = res;
+     
+
+    },
+    err => {
+      this.spinner.hide();
+      console.log(err);
+     
+    });
   }
   openMultiDraftEditor() {
     if (this.selection.selected.length == 0) {
       this.notificationSnackBarComponent.openSnackBar("plese select document to edit", SnackBarStatus.warning);
     }
     else {
-      console.log(this.selection.selected);
+      console.log("openMultiDraftEditor", this.selection.selected);
       this.selectedPage = 'edit';
       if (this.selection.selected.length >= 2) {
-        this.leaseDraft1 = this.selection.selected[0];
-        this.leaseDraft2 = this.selection.selected[1];
-        this.editor1 = true;
-        this.editor2 = true;
+        this.service.GetLeaseDraftDocument(this.selection.selected[0].documentID).subscribe(res => {
+          this.leaseDraft1 = res;
+          this.editor1 = true;
+          this.cdr.detectChanges();
+        });
+        this.service.GetLeaseDraftDocument(this.selection.selected[1].documentID).subscribe(res => {
+          this.leaseDraft2 = res;
+          this.editor2 = true;
+          this.cdr.detectChanges();
+        })
       }
       else {
-        this.leaseDraft1 = this.selection.selected[0];
-        this.editor1 = true;
-        this.editor2 = false;
+        //  this.spinner.show();
+        // this.leaseDraft1 = this.selection.selected[0];
+        this.service.GetLeaseDraftDocument(this.selection.selected[0].documentID).subscribe(res => {
+          this.leaseDraft1 = res;
+          console.log("LeaseDrafts", res);
+          this.editor1 = true;
+          this.editor2 = false;
+          this.cdr.detectChanges();
+        },
+          err => {
+            this.spinner.hide();
+            console.log(err);
+          })
+
       }
     }
   }
@@ -362,16 +407,37 @@ export class LeasemanagementComponent implements OnInit {
       this.selection.selected.forEach((draft: LeaseDraft) => {
         ids.push(draft.documentID);
       });
-      this.spinner.show();
-      this.service.DeleteLeaseDraft(ids).subscribe(res => {
-        this.spinner.hide();
-        this.getAllDrafts();
-      },
-        err => {
-          console.log(err);
-          this.spinner.hide();
-        });
+      const dialogConfig: MatDialogConfig = {
+        data: {
+          title: "Delete",
+          body: "Are you sure , you want to delete",
+        },
+        panelClass: 'close-dialog',
+        width: '379px',
+        maxWidth: '85.5vw ',
+        height: '33%',
+        disableClose: true
+      };
+      const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
+      // this.selectedPage='draft';
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result == "yes") {
+          this.spinner.show();
+          this.service.DeleteLeaseDraft(ids).subscribe(res => {
+            this.spinner.hide();
+            this.notificationSnackBarComponent.openSnackBar("Deleted Sucessfully", SnackBarStatus.success);
+            this.getAllDrafts();
+          },
+            err => {
+              console.log(err);
+              this.spinner.hide();
+            });
+        }
+
+      });
     }
+
     else {
       this.notificationSnackBarComponent.openSnackBar("please select a document", SnackBarStatus.warning);
     }

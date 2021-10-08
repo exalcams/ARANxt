@@ -20,6 +20,7 @@ import { saveAs } from 'file-saver';
 import { SendMailDialogComponent } from 'src/app/send-mail-dialog/send-mail-dialog.component';
 import { MatDrawer } from '@angular/material/sidenav';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 @Component({
   selector: 'app-leasemanagement-signed',
   templateUrl: './leasemanagement-signed.component.html',
@@ -368,7 +369,7 @@ export class LeasemanagementSignedComponent implements OnInit {
       // position: { top: '3%', right: '3%' },
       width: '951px',
       maxWidth: '85.5vw ',
-      height: '90%',
+      // height: '90%',
 
     });
 
@@ -511,13 +512,18 @@ export class LeasemanagementSignedComponent implements OnInit {
   }
 
   Deleteleaserow(documentID){
+    
     this.spinner.show();
-    this.service.DeleteLeaseManagement( documentID).subscribe((x) => {
+    this.sideNavStatus=true;
+    this.service.DeleteLeaseManagement(documentID).subscribe((x) => {
+      this.sideNavStatus=false;
       console.log(x);
+      this.GetAllLeases()
       this.spinner.hide();
       this.notificationSnackBarComponent.openSnackBar('Deleted  successfully', SnackBarStatus.success);
     },
       err => {
+        this.spinner.hide();
         console.log(err);
 
       })

@@ -389,7 +389,7 @@ td{
 
 .placeholdertext{
   font-size: 12px;
-  font-family: 'poppins-semi' !important;
+  font-family: 'poppins' !important;
 }
 .placeholdertext::placeholder{
   font-size: 10px !important;
@@ -514,4 +514,8 @@ tr{
   color: #0d0c22 !important;
   font-size: 10px !important;
   font-family: 'poppins-semi' !important;
+}
+.bgouter
+{
+  margin-top:16px
 }

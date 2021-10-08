@@ -7,15 +7,15 @@
     <mat-dialog-content class="content" fusePerfectScrollbar>
         <div fxLayout="column" fxLayoutAlign="space-between center">
             <form [formGroup]="SignedDocumentDetailsForm" autocomplete="off" style="width: 100%;">
-                <div>
-                    <p class="General">General</p>
+                <div class="subtitle1"> 
+                    <label class="General">General</label>
                 </div>
-                <div fxLayout="column" fxLayoutGap="10px">
+                <div fxLayout="column" fxLayoutGap="1px">
                     <div fxLayout="row" fxLayoutGap="15px">
                         <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="10px">
                             <span class="formspan">Client name</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
-                                <input matInput formControlName="Client" type="text" class="placeholdertext"
+                                <input matInput formControlName="Client" type="text" class="placeholdertext "
                                     class="input_fontsize">
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('Client').hasError('required')">
                                     Client name is required
@@ -26,7 +26,7 @@
                         <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="10px">
                             <span class="formspan">File name</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
-                                <input matInput formControlName="FileName" class="placeholdertext">
+                                <input matInput formControlName="FileName" class="placeholdertext ">
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('FileName').hasError('required')">
                                     File name is required
                                 </mat-error>
@@ -63,11 +63,16 @@
                         <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="10px">
                             <span class="formspan">Expiry date</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                <input matInput [matDatepicker]="picker4" formControlName="ExpiryDate" fxFlex >
+                                <img src="assets/calendar_upload.svg" width="16px" class="cursor"
+                                    (click)="picker4.open()">
+                                <mat-datepicker #picker4></mat-datepicker>
+                            <!-- <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
 
                                 <input matInput [matDatepicker]="dp2" #date_input class="placeholdertext"
                                     formControlName="ExpiryDate" >
                                 <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
-                                <mat-datepicker #dp2 disabled="false"></mat-datepicker>
+                                <mat-datepicker #dp2 disabled="false"></mat-datepicker> -->
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('ExpiryDate').hasError('required')">
                                     Expiry date is required
                                 </mat-error>
@@ -81,7 +86,7 @@
                         <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="10px">
                             <span class="formspan">Maintenance</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
-                                <label matPrefix>Rs.</label>
+                                <label matPrefix class="font">Rs.</label>
                                 <input matInput formControlName="Maintenance" class="placeholdertext">
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('Maintenance').hasError('required')">
                                     Maintenance is required
@@ -97,7 +102,7 @@
                             <span class="formspan">Notice period</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
                                 <input matInput formControlName="NoticePeriod" class="placeholdertext">
-                                <label matSuffix>months</label>
+                                <label matSuffix class="font">months</label>
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('NoticePeriod').hasError('required')">
                                     Notice period is required
                                 </mat-error>
@@ -113,7 +118,7 @@
                         <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="10px">
                             <span class="formspan">Rental</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
-                                <label matPrefix>Rs.</label>
+                                <label matPrefix class="font">Rs.</label>
                                 <input matInput formControlName="Rental" class="placeholdertext">
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('Rental').hasError('required')">
                                     Rental is required
@@ -165,7 +170,7 @@
                         </div>
                     </div>
                     <!--  -->
-                    <div class="subtitle">
+                    <div class="subtitle" >
                         <label class="General">Bank Details</label>
                     </div>
                     <div fxLayout="row" fxLayoutGap="15px" style="width: 100%;">
@@ -236,7 +241,7 @@
                         <div fxLayout="row" class="label_connect form_outer_bank" fxLayoutGap="10px">
                             <span class="formspan">Total deposit</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
-                                <label matPrefix>Rs.</label>
+                                <label matPrefix class="font">Rs.</label>
                                 <input matInput formControlName="TotalDeposit" class="placeholdertext">
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('TotalDeposit').hasError('required')">
                                     Total deposit is required
@@ -251,7 +256,7 @@
                     <!--  -->
                     <div fxLayout="column" fxLayoutGap="12px" style="width: 100%;" class="subtitle">
                         <p class="General">Attachemnt</p>
-                        <div class="neweditdiv1 uploadfiles" fxLayout="row">
+                        <div class="neweditdiv1 uploadfiles" fxLayout="row" >
 
                             <ngx-dropzone accept=".pdf" (change)="onSelect($event)" class="dropzonengx"
                                 multiple="false">
@@ -269,8 +274,15 @@
             </form>
         </div>
     </mat-dialog-content>
-    <mat-dialog-actions class="m-0 p-16 footer" fxLayoutAlign="end center" fxLayoutGap="8px">
+    <!-- <mat-dialog-actions class="m-0 p-16 footer" fxLayoutAlign="end center" fxLayoutGap="8px">
         <button mat-raised-button (click)="upload()" class="savebtn" type="button" color="primary">Upload</button>
         <button mat-raised-button type="button" (click)="close()">Cancel</button>
+    </mat-dialog-actions> -->
+    <mat-dialog-actions class="m-0 p-16 footer" fxLayoutAlign="end center">
+
+        <button mat-button type="button" class="savebtn btn" color="primary" (click)="upload()">Upload</button>
+
+        <button mat-raised-button type="button" class="btn" (click)="close()">Cancel</button>
+
     </mat-dialog-actions>
 </div>
