@@ -23,7 +23,7 @@
     }
     .title{
         @extend .poppins;
-        font-size: 13px;
+        font-size: 12px;
         color: #2c2c2e;
     }
     .footer{
@@ -84,7 +84,7 @@
       }
       .dropzonengx{
         border-radius: 4px !important;
-        background-color: #f3f3f4;
+        background-color: #ececec;
         color: #6e6d7a;
         font-size: 11px;
         width: 97%;
@@ -107,7 +107,7 @@
         font-family: "poppins-semi" !important;
         font-size: 10px;
         border-radius: 4px;
-        background-color: #f3f3f4;
+        background-color: #ececec;
         cursor: pointer;
         width: 97%;
         font-size: 13px;
@@ -135,6 +135,7 @@
     }
     .close_hover{
         cursor: pointer;
+        height: 10px;
     }
     .attachment
     {
@@ -156,7 +157,7 @@
 }
 .formspan{
   color: #383744;
-  font-size: 11px;
+  font-size: 10px;
   font-family: "poppins-semi" !important;
   justify-content: left;
   width: 100px;
@@ -172,14 +173,14 @@
 }
 .formspan_bank{
   color: #383744;
-  font-size: 11px;
+  font-size: 10px;
   font-family: "poppins-semi" !important;
   justify-content: left;
   width: 100px;
 }
 .General
 {
-  font-size: 14px;
+  font-size: 12px;
     font-weight: 900;
 }
 .subtitle
