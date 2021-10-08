@@ -216,13 +216,8 @@ export class LeaseManagementService {
   }
 
 
-  DeleteLeaseManagement(leaseIDs:number[]){
-    return this.http.post<any>(this.baseAddress + 'api/Lease/DeleteLeaseManagement', leaseIDs,
-    {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    })
+  DeleteLeaseManagement(leaseID :any){
+    return this.http.get(`${this.baseAddress}api/Lease/DeleteLeaseManagement?leaseID=${leaseID}`)
     .pipe(catchError(this.errorHandler));
 
   }
