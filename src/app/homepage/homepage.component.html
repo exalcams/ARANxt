@@ -179,35 +179,14 @@
 
                     <div class="tree-container">
                         <mat-tree [dataSource]="treeSource" [treeControl]="treeControl" [trackBy]="trackBy">
-                            <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle class="example-tree-node"
-                                matTreeNodePadding matTreeNodePaddingIndent="20px">
-                                <li class="mat-tree-node">
-                                    <button mat-icon-button disabled></button>
-                                    {{node.name}}
-                                    <button type="button" [matMenuTriggerFor]="menu" mat-icon-button
-                                        (click)="showSelected(node.name)">
-                                        <mat-icon inline="true">add</mat-icon>
-                                    </button>
-                                    <mat-menu #menu="matMenu" yPosition="below">
-                                        <button mat-menu-item>
-                                            <span (click)="spaceclicked()">Space</span>
-                                        </button>
-                                        <button mat-menu-item>
-
-                                            <span (click)="assetsclicked()">Asset</span>
-                                        </button>
-                                    </mat-menu>
-                                </li>
-                            </mat-tree-node>
-
-                            <!-- node with children -->
+                            
                             <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding
-                                matTreeNodePaddingIndent="20px" class="example-tree-node">
-                                <li class="mat-tree-node" style="cursor: pointer;" (click)="GetChild(node.name)">
-                                    <div class="mat-tree-node">
+                                matTreeNodePaddingIndent="8px" class="example-tree-node" [ngStyle]="{'background-color':selectedNode == node.name ? '#ebe5ff' : '#f9f8fe' }">
+                                <li class="mat-tree-node" style="cursor: pointer;" (click)="setSelectedNode(node)">
+                                    <div class="mat-tree-node" [ngStyle]="{'color':selectedNode == node.name ? '#26009c' : 'inherit' }">
                                         <button mat-icon-button matTreeNodeToggle recursive="true"
                                             [attr.aria-label]="'toggle ' + node.name">
-                                            <mat-icon class="mat-icon-rtl-mirror">
+                                            <mat-icon class="mat-icon-rtl-mirror" *ngIf="node.expandable">
                                                 {{treeControl.isExpanded(node) ? 'expand_more' : 'play_arrow'}}
                                             </mat-icon>
                                         </button>
@@ -245,14 +224,10 @@
             <div class="sidenav_3">
                 <div fxLayout="row" fxLayoutAlign="space-between center" class="header_row">
                     <div fxLayout="row" class="header">
-                        <span>{{displayparent}}</span>
-                        <span *ngIf="(Space != '') || (SubSpace != '') ">+</span>
-                        <span>{{Space}}</span>
-                        <span *ngIf="(SubSpace != '') || (Space != '')  ">+</span>
-                        <span>{{SubSpace}}</span>
+                        <span>{{selectedNode}}</span>
                     </div>
                     <div class="header_bold" style="margin-left: 15px;">
-                        <div (click)="openDialog()"> Main <span> +</span></div>
+                        <div (click)="openDialog()">+</div>
                         <div class="inkbar"></div>
                     </div>
                 </div>

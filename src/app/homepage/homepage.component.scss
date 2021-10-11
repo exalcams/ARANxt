@@ -81,15 +81,17 @@
 }
 .menu_container{
     min-height: calc(100vh - 182px);
+    max-height: calc(100vh - 182px);
     overflow-y: auto;
 }
 .tree-container{
-    min-height: calc(100vh - 140px);
+    max-height: calc(100vh - 156px);
     overflow-y: auto;
+    margin: 8px;
 }
 
 
-.header{color: #6e6d7a;font-size: 11px; font-family: 'poppins-med' !important;font-weight: 500;margin-left: 2%;line-height: 3.5;}
+.header{color: #6e6d7a;font-size: 11px; font-family: 'poppins-med' !important;font-weight: 500;line-height: 3.5;}
 .header_bold{color: #0d0c22;font-size: 11px; font-family: 'poppins-semi' !important;}
 .header_bold:hover{
     color: #7487ad;
@@ -174,10 +176,10 @@
   
 
 mat-tree {
-    ul, li {
-      margin-top: 0;
-      margin-bottom: 0;
-      list-style-type: none;
+    .mat-tree-node, .mat-nested-tree-node {
+        min-height: 40px;
+        font-weight: 400;
+        font-size: 12px;
     }
   }
   
