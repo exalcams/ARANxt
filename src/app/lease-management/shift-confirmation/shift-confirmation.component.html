@@ -26,7 +26,7 @@
                             </div>
                             <mat-form-field appearance="outline" class="form_field_cls">
                                 <input matInput placeholder="Enter penality if any" formControlName="Penalty"
-                                    type="number" class="forminputedit">
+                                    type="number" class="forminputedit" (keydown)="decimalOnly($event)">
                                 <mat-error *ngIf="ShiftConformationForm.get('Penalty').hasError('required')"
                                     class="erroredits">
                                     Penalty is required

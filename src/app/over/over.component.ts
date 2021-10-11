@@ -69,8 +69,8 @@ export class OverComponent implements OnInit {
   isDisplay: boolean = true;
   isDisplayhover: boolean = false;
   breakpoint: number;
-  changetolease:boolean = false;
-  changetodashboard:boolean=true;
+  changetolease: boolean = false;
+  changetodashboard: boolean = true;
   constructor(private router: Router) {
     this.chartOptions = {
       series: [70],
@@ -82,7 +82,7 @@ export class OverComponent implements OnInit {
       plotOptions: {
         radialBar: {
           dataLabels: {
-            show:false,
+            show: false,
             // name: {
             //   show: false
             // }
@@ -95,7 +95,7 @@ export class OverComponent implements OnInit {
       //  labels: ["series"],
 
       fill: {
-        colors:["#f0ace3"],
+        colors: ["#f0ace3"],
         type: "gradient",
         gradient: {
           shade: "dark",
@@ -105,7 +105,7 @@ export class OverComponent implements OnInit {
           inverseColors: true,
           opacityFrom: 1,
           opacityTo: 1,
-          stops: [0,100]
+          stops: [0, 100]
         }
       },
     };
@@ -200,9 +200,10 @@ export class OverComponent implements OnInit {
           show: false
         },
         type: "bar",
-        height: 100
+        height: 100,
+        foreColor: '#999999',
+        fontFamily: 'poppins-semi',
       },
-
       plotOptions: {
         bar: {
           dataLabels: {
@@ -215,7 +216,12 @@ export class OverComponent implements OnInit {
         }
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
+        style: {
+          fontSize: "10px !important",
+          fontFamily: 'poppins-semi',
+          colors: ["#2c2c2e"]
+        }
       },
       stroke: {
         show: true,
@@ -247,11 +253,13 @@ export class OverComponent implements OnInit {
           "Jun",
           "Jul",
           "Aug",
-          "Sep"
+          "Sep"],
 
-        ],
-
-
+        labels: {
+          style: {
+            fontSize: "10px"
+          }
+        }
         // position: "top",
       },
       yaxis: {
@@ -289,23 +297,21 @@ export class OverComponent implements OnInit {
     this.isDisplay = true;
     this.isDisplayhover = false;
   }
-  navigate()  {
+  navigate() {
     this.router.navigate(['leasemanagement']);
 
   }
 
-  gotoleasemanagement(){
+  gotoleasemanagement() {
     this.router.navigate(["leasemanagement"])
   }
 
-  leaseclk()
-  {
-    this.changetolease=true;
-    this.changetodashboard=false
+  leaseclk() {
+    this.changetolease = true;
+    this.changetodashboard = false
   }
-  dashclk()
-  {
-    this.changetolease=false;
-    this.changetodashboard=true
+  dashclk() {
+    this.changetolease = false;
+    this.changetodashboard = true
   }
 }

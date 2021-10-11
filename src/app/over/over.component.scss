@@ -1,10 +1,16 @@
 .gap {
     margin-top: 0% !important;
-    height: 88%;
+    height: 310px;
     background-color: #ffffff;
     border-radius: 4px;
     box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.12);
     padding: 15px;
+    // width: 80%;
+    // min-width: 200px !important;
+    min-width: 200px !important;
+    // max-width: 320px !important;
+    max-width: 300px !important;
+    justify-content: center;
 }
 
 // #chart {
@@ -37,12 +43,11 @@
 .resbox2 {
     width: auto;
     border-radius: 4px;
-    background-color: #a2ffc6;
-    // height: 30px;
+    background-color: #d6ffe6;
+    height: 30px;
     text-align: center;
     justify-content: center;
-    padding: 8px;
-    // opacity: 0.1;
+    padding: 4px;
 }
 
 .resbox3 {
@@ -67,28 +72,24 @@
 }
 
 .sett {
-    // width: 36.2px;
-    // height: 36.3px;
-    // margin-top: -4px;
       transform: scale(0.7);
 }
 .sett1 {
-    // width: 36.2px;
-    // height: 36.3px;
-     margin-top: -4px;
-     transform: scale(0.8);
+  
+     margin-top: -6px;
+     transform: scale(0.7);
 }
 
 .equal1 {
-    width: 18.2px;
-    height: 18.2px;
+    width: 17.2px;
+    height: 17.2px;
 }
 
 .circle {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     background: red;
-    border-radius: 50%
+    border-radius: 50%;
 }
 
 .circle {
@@ -137,13 +138,11 @@
     top: 4px;
 }
 
-// .equal2 {
-//     position: relative;
-//     top: 4px;
+
+
+// .neww {
+//     margin-top: -40px;
 // }
-.neww {
-    margin-top: -40px;
-}
 
 .filter {
     width: 22.3px;
@@ -199,7 +198,7 @@
 // }
 
 .spacesspan{
-    font-size: 12px;
+    font-size: 11px;
     font-family:'poppins-semi' !important;
     color: #0d0c22;
 }
@@ -214,7 +213,7 @@
     color: #acacac;
 }
 .parkingspan{
-    font-size: 12px;
+    font-size: 11px;
     color: #0d0c22;
     font-family: 'poppins-semi' !important;
 }
@@ -234,17 +233,17 @@
 }
 .slotavailable{
     text-align: center;
-    font-size: 12px;
+    font-size: 10px;
     font-family: 'poppins-semi' !important;
     color: #00ba53;
+
 }
 
 .inprogressdiv{
 -webkit-backdrop-filter: blur(30px);
   backdrop-filter: blur(30px);
-//   background-color: var(--very-light-purple);
   background-color: #fbedf6;
-  width: 150px;
+  width: 130px;
   height: 25px;
   border-radius: 4px;
 }
@@ -262,27 +261,27 @@
     justify-content: left;
 }
 .slotavailablediv{
-    width: 100%;
+    width: 95px;
+    height: 20px;
     border-radius: 4px;
     background-color: #cbffe2;
     padding: 5px;
-    // opacity: 0.3;
-  border-radius: 4px;
-//   -webkit-backdrop-filter: blur(10px);
-//   backdrop-filter: blur(10px);
+    border-radius: 4px;
 }
 .movablediv{
     background-color: #fbedf6;
     padding: 10px;
     border-radius: 4px;
+    min-width: 180px !important;
+    // width: 95%;
     width: 100%;
-    height: 50% ;
+    height: 180px ;
+    max-width: 265px !important;
 }
 .movablespan{
-    font-size: 12px;
+    font-size: 11px;
     font-family: 'poppins-semi' !important;
-    margin-top: 5px;
-    // line-height: 5px;
+    margin-top: 8px;
     color: #884770;
 }
 .movableimage{
@@ -292,10 +291,10 @@
 .todayspan{
     color: #c49bb6;
     font-size: 10px;
-    font-family: 'poppins' !important;
+    font-family: 'poppins-semi' !important;
 }
 .founddiv{
-    font-size: 14px;
+    font-size: 11px;
     font-family: 'poppins-semi' !important;
     color: #0d0c22;
 }
@@ -304,7 +303,7 @@
 }
 .maintenancespan{
     color: #0d0c22;
-    font-size: 12px;
+    font-size: 11px;
     font-family: 'poppins-semi' !important;
 }
 .openspan{
@@ -314,14 +313,15 @@
 }
 .opennumber{
     color: #0d0c22;;
-    font-size: 14px;
+    font-size: 12px;
     font-family: 'poppins-semi' !important;
 }
 .expiryleasesdiv{
     background-color: #ebe6ff;
-   border-radius: 4px;
-   padding: 10px;
+    border-radius: 4px;
+    padding: 10px;
     width: 100%;
+    min-height: 350px;
 }
 .graphcondiv{
     position: relative;
@@ -332,7 +332,7 @@ margin-top: -2rem;
     transform: scale(0.8);
 }
 .seedetailsdiv{
-    font-size: 12px;
+    font-size: 11px;
     display: flex;
     justify-content: center;
     color: #222222;
@@ -348,7 +348,7 @@ margin-top: -2rem;
     margin-top: 1rem;
     margin-left: 1rem;
     box-shadow: 0 3px 6px rgba(69, 106, 248, 0.18) 0;
-    height: 185px;
+    height: 130px;
     background-color: #ebe6ff;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
@@ -376,19 +376,17 @@ margin-top: -2rem;
 
 
 
-   .hoveringdiv11{
+.hoveringdiv11{
     font-family: 'poppins-semi' !important;
-    margin-top: 1rem;
-    // margin-left: 1rem;
-  height: 185px;
+    margin-top: 2rem;
+    min-width: 150px;
     box-shadow: 0 3px 6px rgba(69, 106, 248, 0.18) 0;
-    // box-shadow: 0 3px 6px 0 rgba(69, 106, 248, 0.18);
     animation: slide-in 0.5s backwards;
     -webkit-animation: slide-in 1s backwards;
     background-color: white;
     -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border-radius: 4px;
+    backdrop-filter: blur(10px);
+    border-radius: 4px;
   }
   @keyframes slide-in {
     0% {
@@ -401,7 +399,7 @@ margin-top: -2rem;
   
   @-webkit-keyframes slide-in {
     0% {
-      transform: translateX(100%);
+      transform: translateX(90%);
     }
     100% {
       transform: translateX(0%);
@@ -426,7 +424,7 @@ margin-top: -2rem;
     justify-content: right;
 }
 .occupantspan{
-    font-size: 12px;
+    font-size: 11px;
     color: #0d0c22;
     font-family: 'poppins-semi' !important;
 }
@@ -437,7 +435,7 @@ margin-top: -2rem;
 }
 .insidecampusnumber{
     color: #0d0c22;
-    font-size: 12px;
+    font-size: 11px;
     font-family: 'poppins-semi' !important;
 }
 .polygonimge{
@@ -484,17 +482,21 @@ margin-top: -2rem;
 }
 .scrolldivi{
     overflow-x: auto;
+    min-height: 40px !important;
+    max-height: 150px;
 }
 .scrolldivi::-webkit-scrollbar{
     display: none;
 }
-.thismonth{
+.performancespan{
+    color: #2c2c2e;
+    font-size: 10px !important;
+    font-family: 'poppins-semi' !important;
+}
+.performancespan2{
     color: #999999;
     font-size: 10px;
-}
-.foundmonth{
-    color: #2c2c2e;
-    font-size: 10px;
+    font-family: 'poppins-semi' !important;
 }
 .goodspan{
     font-size: 10px;
@@ -539,17 +541,19 @@ margin-top: -2rem;
     font-size: 8px;
     font-family: 'poppins-semi' !important;
 }
-.twelvepercent{
+.chartpercent{
     color: #00ba53;
     position: absolute;
     margin-left: 7.7rem;
     padding: 48px;
+    font-size: 10px;
+    font-family: 'poppins-semi' !important;
 }
 .spacearrowmovable{
     transform: scale(0.7);
     align-self: right;
     justify-content: right;
-    
+    padding-bottom: 0;
 }
 
 .fourthchild{
@@ -558,4 +562,41 @@ margin-top: -2rem;
 }
 .fifthchild{
     margin-top: 18rem !important;
+}
+.performancediv{
+    height: 165px ;
+    padding: 5px;
+    border: solid 2px #f5f5f5;
+}
+.statushovering{
+    width: 140px;
+    height: 100px;
+}
+.secondrowdivision{
+    min-width: 180px !important;
+    max-width: 330px !important;
+}
+.secondrowdivision2row{
+    min-width: 180px !important;
+    max-width: 270px !important;
+    min-height: 500px;
+}
+.performancechart{
+    font-size: 8px !important;
+    font-family: 'poppins-semi' !important;
+    color: #999999 !important;
+}
+.transactionamounts{
+    font-size: 12px;
+    color: #2c2c2c;
+    font-family: 'poppins-semi' !important;
+}
+.transactionamountrefund{
+    font-size: 12px;
+    color: #999999;
+    font-family: 'poppins-semi' !important;
+}
+.secondrowdivision3{
+    min-width: 200px !important;
+    max-width: 340px !important;
 }

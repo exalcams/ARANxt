@@ -52,10 +52,10 @@ export class VacatecomponentComponent implements OnInit {
       Accepteddate: ['', [Validators.required, this.invalidDateValidatorFn]],
       Inspectiondate: ['', [Validators.required,this.invalidDateValidatorFn]],
       Inspectedby: ['', Validators.required],
-      Rentdue: ['',  [Validators.required, this.nameValidator, Validators.pattern(/^[0-9]*$/)]],
-      Maintenancedue: ['', [Validators.required, this.nameValidator, Validators.pattern(/^[0-9]*$/)]],
-      DamageRecovery: ['',  [Validators.required, this.nameValidator, Validators.pattern(/^[0-9]*$/)]],
-      AdvanceBalance: ['',  [Validators.required, this.nameValidator, Validators.pattern(/^[0-9]*$/)]],
+      Rentdue: ['',  [Validators.required, this.nameValidator,Validators.pattern(/^([0-9]{4,10})([.][0-9]{1,2})?$/)]],
+      Maintenancedue: ['', [Validators.required, this.nameValidator, Validators.pattern(/^([0-9]{4,10})([.][0-9]{1,2})?$/)]],
+      DamageRecovery: ['',  [Validators.required, this.nameValidator, Validators.pattern(/^([0-9]{4,10})([.][0-9]{1,2})?$/)]],
+      AdvanceBalance: ['',  [Validators.required, this.nameValidator, Validators.pattern(/^([0-9]{4,10})([.][0-9]{1,2})?$/)]],
       ExpectedDate: ['', [Validators.required,this.invalidDateValidatorFn]],
       Modeoftransfer: ['', Validators.required],
       ReturnableAssets: ['', Validators.required],
@@ -64,17 +64,15 @@ export class VacatecomponentComponent implements OnInit {
     });
   }
 
-  // ,Validators.pattern(/^[0-9]*$/)
+//  validation codes
   static Date(control: FormControl): { [key: string]: any } {
     let ptDatePattern = /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g;
     if (!control.value.match(ptDatePattern))
       return { ptDate: true };
     return null;
   }
-
-
   nameValidator(control: FormControl): { [key: string]: boolean } {
-    const nameRegexp: RegExp = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+    const nameRegexp: RegExp = /[!@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?]/;
     if (control.value && nameRegexp.test(control.value)) {
       return { invalidName: true };
     }
@@ -92,7 +90,19 @@ export class VacatecomponentComponent implements OnInit {
       return invalidDate ? { 'invalidDate': { value: control.value } } : null;
     };
   }
-
+  decimalOnly(event): boolean {
+    // this.AmountSelected();
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode === 8 || charCode === 9 || charCode === 13 || charCode === 46
+      || charCode === 37 || charCode === 39 || charCode === 123 || charCode === 190) {
+      return true;
+    }
+    else if (charCode < 48 || charCode > 57) {
+      return false;
+    }
+    return true;
+  }
+ // validation codes
 
 
   Postvacatedetails() {
