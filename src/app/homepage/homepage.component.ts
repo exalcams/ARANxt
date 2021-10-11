@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 // import { AssetsComponent } from './assets/assets.component';
 // import { SpaceComponent } from './space/space.component';
 // import { TreeItem , FlatNode } from "./model/treeitem";
-import {FlatTreeControl} from '@angular/cdk/tree';
-import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
+import { FlatTreeControl } from '@angular/cdk/tree';
+import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { SpaceService } from 'src/app//space/space.service';
 import { FlatNode, TreeItem } from '../model/treeitem';
 import { DialogComponent } from '../dialog/dialog.component';
@@ -47,14 +47,14 @@ declare const annyang: any;
   encapsulation: ViewEncapsulation.None,
 })
 export class HomepageComponent implements OnInit {
-  currentUser:string;
+  currentUser: string;
   voiceActiveSectionDisabled: boolean = true;
-	voiceActiveSectionError: boolean = false;
-	voiceActiveSectionSuccess: boolean = false;
-	voiceActiveSectionListening: boolean = false;
-  overview_bool:boolean=true;
-	voiceText: any;
-  ass:any;
+  voiceActiveSectionError: boolean = false;
+  voiceActiveSectionSuccess: boolean = false;
+  voiceActiveSectionListening: boolean = false;
+  overview_bool: boolean = true;
+  voiceText: any;
+  ass: any;
   TREE_DATA: TreeItem[] = [];
   bool1 = false;
   bool2 = false;
@@ -63,10 +63,10 @@ export class HomepageComponent implements OnInit {
   bool5 = false;
   bool6 = false;
   bool7 = true;
-  divhide1:boolean = true;
-  divhide2:boolean=true;
+  divhide1: boolean = true;
+  divhide2: boolean = true;
   as: any;
-  parents : string[]=[]
+  parents: string[] = []
   fullmenu = true; shortmenu = false; state: string = 'none';
   title = 'ARA';
   bool8: boolean;
@@ -74,128 +74,122 @@ export class HomepageComponent implements OnInit {
   sidemenu: boolean;
   node: any;
   displayparent: string;
-  Space : string;
-  SubSpace : string;
+  Space: string;
+  SubSpace: string;
   ChildNode: string;
-  isLeasemanagement=false;
+  isLeasemanagement = false;
   setInterval = setInterval;
-  getspace: string []= [];
+  getspace: string[] = [];
   speech: boolean;
+  selectedNode:string="";
+  selectedNodePath:string="";
 
-  constructor(public dialog: MatDialog, private router: Router,private services: SpaceService,private ngZone: NgZone) { 
-   
+  constructor(public dialog: MatDialog, private router: Router, private services: SpaceService, private ngZone: NgZone) {
+
   }
 
   private _transformer = (node: TreeItem, level: number) => {
     return {
-    expandable: !!node.children && node.children.length > 0,
-    name: node.name,
-    level: level,
+      expandable: !!node.children && node.children.length > 0,
+      name: node.name,
+      level: level,
     };
   }
-   treeControl = new FlatTreeControl<FlatNode>(
+  treeControl = new FlatTreeControl<FlatNode>(
     node => node.level, node => node.expandable);
-   treeFlattener = new MatTreeFlattener(
+  treeFlattener = new MatTreeFlattener(
     this._transformer, node => node.level, node => node.expandable, node => node.children);
-    treeSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
-  
-   hasChild = (_: number, node: FlatNode) => node.expandable;
-   
- 
-   initializeVoiceRecognitionCallback(): void {
-		annyang.addCallback('error', (err:any) => {
-      if(err.error === 'network'){
+  treeSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+
+  hasChild = (_: number, node: FlatNode) => node.expandable;
+
+
+  initializeVoiceRecognitionCallback(): void {
+    annyang.addCallback('error', (err: any) => {
+      if (err.error === 'network') {
         this.voiceText = "Internet is require";
         annyang.abort();
         this.ngZone.run(() => this.voiceActiveSectionSuccess = true);
       } else if (this.voiceText === undefined) {
-				this.ngZone.run(() => this.voiceActiveSectionError = true);
-				annyang.abort();
-			}
-		});
+        this.ngZone.run(() => this.voiceActiveSectionError = true);
+        annyang.abort();
+      }
+    });
 
-		annyang.addCallback('soundstart', (res:any) => {
+    annyang.addCallback('soundstart', (res: any) => {
       this.ngZone.run(() => this.voiceActiveSectionListening = true);
-		});
+    });
 
-		annyang.addCallback('end', () => {
+    annyang.addCallback('end', () => {
       if (this.voiceText === undefined) {
         this.ngZone.run(() => this.voiceActiveSectionError = true);
-				annyang.abort();
-			}
-		});
+        annyang.abort();
+      }
+    });
 
-		annyang.addCallback('result', (userSaid:any) => {
-			this.ngZone.run(() => this.voiceActiveSectionError = false);
+    annyang.addCallback('result', (userSaid: any) => {
+      this.ngZone.run(() => this.voiceActiveSectionError = false);
 
-			let queryText: any = userSaid[0];
+      let queryText: any = userSaid[0];
 
-			annyang.abort();
+      annyang.abort();
 
       this.voiceText = queryText;
       console.log(this.voiceText);
-      
 
-			this.ngZone.run(() => this.voiceActiveSectionListening = false);
+
+      this.ngZone.run(() => this.voiceActiveSectionListening = false);
       this.ngZone.run(() => this.voiceActiveSectionSuccess = true);
-		});
-	}
+    });
+  }
 
-	startVoiceRecognition(): void {
+  startVoiceRecognition(): void {
     this.speech = true;
     this.voiceActiveSectionDisabled = false;
-		this.voiceActiveSectionError = false;
-		this.voiceActiveSectionSuccess = false;
+    this.voiceActiveSectionError = false;
+    this.voiceActiveSectionSuccess = false;
     this.voiceText = undefined;
 
-		if (annyang) {
-			let commands = {
-				'demo-annyang': () => { }
-			};
+    if (annyang) {
+      let commands = {
+        'demo-annyang': () => { }
+      };
 
-			annyang.addCommands(commands);
+      annyang.addCommands(commands);
 
       this.initializeVoiceRecognitionCallback();
 
-			annyang.start({ autoRestart: false });
-		}
-	}
+      annyang.start({ autoRestart: false });
+    }
+  }
 
-closeVoiceRecognition(): void {
+  closeVoiceRecognition(): void {
     this.voiceActiveSectionDisabled = true;
-		this.voiceActiveSectionError = false;
-		this.voiceActiveSectionSuccess = false;
-		this.voiceActiveSectionListening = false;
-		this.voiceText = undefined;
+    this.voiceActiveSectionError = false;
+    this.voiceActiveSectionSuccess = false;
+    this.voiceActiveSectionListening = false;
+    this.voiceText = undefined;
 
-		if(annyang){
+    if (annyang) {
       annyang.abort();
     }
   }
 
   ngOnInit(): void {
     this.ass = localStorage.getItem('ass');
-    this.services.Getsitehierarchy().subscribe( data =>{ 
-      console.log("tree data",data);
+    this.services.Getsitehierarchy().subscribe(data => {
       this.TREE_DATA = <TreeItem[]>data;
-      this.treeSource.data =this.treeConstruct(this.TREE_DATA);
-    })
-    setInterval(() => this.GetARASpace(),150);
-    setInterval(() => this.GetARASubSpace(),150);
+      this.treeSource.data = this.treeConstruct(this.TREE_DATA);
+      console.log("tree data", this.TREE_DATA);
+      this.selectedNode=this.TREE_DATA[0].name;
+    });
     this.Space = '';
     this.SubSpace = '';
     this.state = 'maximum';
-    this.currentUser=JSON.parse(localStorage.getItem('authorizationData'))?.displayName;
-  }
-  GetARASubSpace(){
-      this.SubSpace = localStorage.getItem('SubSpace');
+    this.currentUser = JSON.parse(localStorage.getItem('authorizationData'))?.displayName;
   }
 
-  GetARASpace(){
-    this.Space = localStorage.getItem('Space');
-  }
-
- //constructTree recursively iterates through the tree to create nested tree structure.
+  //constructTree recursively iterates through the tree to create nested tree structure.
   //We only need Id and parentId Columns in the flat data to construct this tree properly.
   treeConstruct(treeData) {
     let constructedTree = [];
@@ -206,8 +200,8 @@ closeVoiceRecognition(): void {
     }
     return constructedTree;
   }
-constructTree(constructedTree, treeObj, assigned) {
-if (treeObj.parent == null) {
+  constructTree(constructedTree, treeObj, assigned) {
+    if (treeObj.parent == null) {
       treeObj.children = [];
       constructedTree.push(treeObj);
       return true;
@@ -221,8 +215,8 @@ if (treeObj.parent == null) {
         for (let index = 0; index < constructedTree.children.length; index++) {
           let constructedObj = constructedTree.children[index];
           if (assigned == false) {
-            assigned = this.constructTree(constructedObj, treeObj, assigned); 
-          } 
+            assigned = this.constructTree(constructedObj, treeObj, assigned);
+          }
         }
       } else {
         for (let index = 0; index < constructedTree.length; index++) {
@@ -236,67 +230,66 @@ if (treeObj.parent == null) {
     }
   }
 
-  showSelected(node){
+  showSelected(node) {
     this.node = node;
-    localStorage.setItem('ParentID',  this.node);
-    this.getspace=[];
+    localStorage.setItem('ParentID', this.node);
+    this.getspace = [];
     this.test(node);
     // console.log(this.Parent_name,"Space");
-    
+
   }
 
-  test(node:string){
-   // this.getspace = true;
-    var parent=this.TREE_DATA.find(x=>x.name==node);
-    if(parent.parent==null){
+  test(node: string) {
+    // this.getspace = true;
+    var parent = this.TREE_DATA.find(x => x.name == node);
+    if (parent.parent == null) {
       // console.log("parent",node);
-      localStorage.setItem('Assertparent',node);
+      localStorage.setItem('Assertparent', node);
       return;
-    }   
+    }
     // else{
-     
+
     // }
-   // console.log(parent);
-  
+    // console.log(parent);
+
     // console.log(parent.name);
     this.getspace.push(parent.name);
-    localStorage.setItem('AssertSpace',this.getspace[0]);
-  //  console.log(this.getspace[0]);
-  // this.getspace = []
-   
-  
-    
+    localStorage.setItem('AssertSpace', this.getspace[0]);
+    //  console.log(this.getspace[0]);
+    // this.getspace = []
+
+
+
     this.test(parent.parent);
     // this.Parent_name = parent.name;
     // console.log(parent.name);
   }
 
-  GetChild(parent : string){
-    this.TREE_DATA.forEach(element=>{
-        if(element.parent == null)
-             this.parents.push(element.name)
+  GetChild(parent: string) {
+    this.TREE_DATA.forEach(element => {
+      if (element.parent == null)
+        this.parents.push(element.name)
     })
     let check = this.parents.includes(parent)
-    if(check){
-      let child : string[]=[]
-      for(let i=0;i<this.TREE_DATA.length;i++){
-         if(this.TREE_DATA[i].name.includes(parent)){
-             let children = this.TREE_DATA[i].children
-             children.forEach( element=>{
-              child.push(element.name)
-             })
-            break;
-         }
+    if (check) {
+      let child: string[] = []
+      for (let i = 0; i < this.TREE_DATA.length; i++) {
+        if (this.TREE_DATA[i].name.includes(parent)) {
+          let children = this.TREE_DATA[i].children
+          children.forEach(element => {
+            child.push(element.name)
+          })
+          break;
+        }
       }
       this.displayparent = parent
-      localStorage.setItem('Space','');
-      localStorage.setItem('Spaces',JSON.stringify(child))
-      localStorage.setItem('SubSpace','');
-      setInterval(() => this.GetARASubSpace(),50);
+      localStorage.setItem('Space', '');
+      localStorage.setItem('Spaces', JSON.stringify(child))
+      localStorage.setItem('SubSpace', '');
       // this.router.navigate(['/controlpanel']); 
     }
-    
-     
+
+
   }
   func1() {
     this.bool1 = true;
@@ -384,34 +377,34 @@ if (treeObj.parent == null) {
     this.bool9 = true;
   }
 
-  div1Function(){
-    this.divhide1=true;
-    this.divhide2=false;
-    
-}
+  div1Function() {
+    this.divhide1 = true;
+    this.divhide2 = false;
 
-div2Function(){
-  this.divhide1=false;
-    this.divhide2=true;
-   
-}
+  }
+
+  div2Function() {
+    this.divhide1 = false;
+    this.divhide2 = true;
+
+  }
   openDialog() {
     const dialogRef = this.dialog.open(DialogComponent, {
       position: { top: '3.5%', right: '1%' }
     });
-    dialogRef.afterClosed().subscribe( ()=>{
-        this.UpdateTree();
+    dialogRef.afterClosed().subscribe(() => {
+      this.UpdateTree();
     })
   }
- 
-  UpdateTree(){
-    this.services.Getsitehierarchy().subscribe( data =>{ 
+
+  UpdateTree() {
+    this.services.Getsitehierarchy().subscribe(data => {
       this.TREE_DATA = <TreeItem[]>data;
-      this.treeSource.data =this.treeConstruct(this.TREE_DATA);  
-         console.log(data); 
+      this.treeSource.data = this.treeConstruct(this.TREE_DATA);
+      console.log(data);
     })
   }
-  
+
   slidemenuforbig() {
     this.fullmenu = false; this.shortmenu = true;
     console.log(this.fullmenu, this.shortmenu);
@@ -436,8 +429,8 @@ div2Function(){
     });
     // this.router.navigate(['view'])
   }
-  
-  gotoleasemanagement(){
+
+  gotoleasemanagement() {
     this.router.navigate(["leasemanagement"])
   }
   spaceclicked() {
@@ -449,8 +442,8 @@ div2Function(){
       height: '93%',
 
     });
-    dialogRef.afterClosed().subscribe( ()=>{
-        this.UpdateTree();
+    dialogRef.afterClosed().subscribe(() => {
+      this.UpdateTree();
     })
   }
   assetsclicked() {
@@ -463,20 +456,25 @@ div2Function(){
 
     });
   }
-  logout()
-  {
+  logout() {
     this.router.navigate(["login"])
   }
-  leaseclk()
-  {
+  leaseclk() {
 
-    this.isLeasemanagement=true;
-    this.overview_bool=false
+    this.isLeasemanagement = true;
+    this.overview_bool = false
   }
-  home_clik()
-  {
-    this.overview_bool=true
-    this.isLeasemanagement=false;
+  home_clik() {
+    this.overview_bool = true
+    this.isLeasemanagement = false;
 
+  }
+  setSelectedNode(node){
+    console.log(node);
+    this.selectedNode=node.name;
+    console.log("tree source",this.treeSource.data);
+  }
+  setNodePath(node:TreeItem){
+    
   }
 }
