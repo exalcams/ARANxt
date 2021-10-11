@@ -5,68 +5,70 @@
 
             <div (window:resize)="onResize($event)" *ngIf="fullmenu" fxLayout="column" class="sidenav_1">
                 <div fxLayoutAlign="center" style="padding: 12px;">
-                    <img [@fadeSlideInOut]='state' class="ara_img" src="./assets/ara_img.png">
+                    <img class="ara_img" src="./assets/ara_img.png">
                 </div>
                 <div class="divider"></div>
-                <div class="menu">Menu</div>
+                <div fxFlex class="menu_container">
+                    <div class="menu">Menu</div>
 
 
-                <div fxLayout="row" [ngClass]="overview_bool==true?'inner_menus_home_highlight':'inner_menus_home'"
-                    (click)="home_clik()">
-                    <div style="margin-left: 9%;">
-                        <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==false"
-                            src="./assets/dashboard_icon.svg">
-                        <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==true"
-                            src="./assets/dashboard_icon_blue.svg">
+                    <div fxLayout="row" [ngClass]="overview_bool==true?'inner_menus_home_highlight':'inner_menus_home'"
+                        (click)="home_clik()">
+                        <div style="margin-left: 9%;">
+                            <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==false"
+                                src="./assets/dashboard_icon.svg">
+                            <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==true"
+                                src="./assets/dashboard_icon_blue.svg">
 
+                        </div>
+                        <div [ngClass]="overview_bool==true?'inner_menus_highlight':'inner_menus'"
+                            style="margin-left: 16px;">Home</div>
                     </div>
-                    <div [ngClass]="overview_bool==true?'inner_menus_highlight':'inner_menus'"
-                        style="margin-left: 16px;">Home</div>
-                </div>
 
-                <div fxLayout="row" class="inner_menus_home">
-                    <div style="margin-left: 9%;">
-                        <img style="width: 14px;vertical-align: middle;" src="./assets/models.svg">
+                    <div fxLayout="row" class="inner_menus_home">
+                        <div style="margin-left: 9%;">
+                            <img style="width: 14px;vertical-align: middle;" src="./assets/models.svg">
+                        </div>
+                        <div class="inner_menus" style="margin-left: 16px;">Models</div>
                     </div>
-                    <div class="inner_menus" style="margin-left: 16px;">Models</div>
-                </div>
 
-                <div fxLayout="row" class="inner_menus_home">
-                    <div style="margin-left: 9%;">
-                        <img style="width: 14px;vertical-align: middle;" src="./assets/rental_icon.svg">
+                    <div fxLayout="row" class="inner_menus_home">
+                        <div style="margin-left: 9%;">
+                            <img style="width: 14px;vertical-align: middle;" src="./assets/rental_icon.svg">
+                        </div>
+                        <div class="inner_menus" style="margin-left: 16px;">Rental</div>
                     </div>
-                    <div class="inner_menus" style="margin-left: 16px;">Rental</div>
-                </div>
 
 
-                <div style="margin-top:12px;margin-bottom: 12px;" class="menu">Others</div>
+                    <div style="margin-top:12px;margin-bottom: 12px;" class="menu">Others</div>
 
 
-                <div fxLayout="row" class="inner_menus_home">
-                    <div style="margin-left: 9%;">
-                        <img style="width: 14px;vertical-align: middle;" src="./assets/chatbot_icon.svg">
+                    <div fxLayout="row" class="inner_menus_home">
+                        <div style="margin-left: 9%;">
+                            <img style="width: 14px;vertical-align: middle;" src="./assets/chatbot_icon.svg">
+                        </div>
+                        <div class="inner_menus" style="margin-left: 16px;">Chat Bot</div>
                     </div>
-                    <div class="inner_menus" style="margin-left: 16px;">Chat Bot</div>
-                </div>
 
-                <div fxLayout="row" class="inner_menus_home">
-                    <div style="margin-left: 9%;">
-                        <img style="width: 14px;vertical-align: middle;" src="./assets/privacy_icon.svg">
+                    <div fxLayout="row" class="inner_menus_home">
+                        <div style="margin-left: 9%;">
+                            <img style="width: 14px;vertical-align: middle;" src="./assets/privacy_icon.svg">
+                        </div>
+                        <div class="inner_menus" style="margin-left: 16px;">Privacy Policy</div>
                     </div>
-                    <div class="inner_menus" style="margin-left: 16px;">Privacy Policy</div>
-                </div>
-                <!-- <div fxLayout="row" class="inner_menus_home" (click)="isLeasemanagement=!isLeasemanagement;"> -->
-                <div fxLayout="row" (click)="leaseclk()"
-                    [ngClass]="overview_bool==false?'inner_menus_home_highlight':'inner_menus_home'">
+                    <!-- <div fxLayout="row" class="inner_menus_home" (click)="isLeasemanagement=!isLeasemanagement;"> -->
+                    <div fxLayout="row" (click)="leaseclk()"
+                        [ngClass]="overview_bool==false?'inner_menus_home_highlight':'inner_menus_home'">
 
-                    <div style="margin-left: 9%;">
-                        <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==true"
-                            src="./assets/date-expired_ash.svg">
-                        <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==false"
-                            src="./assets/date-expired_blue.svg">
+                        <div style="margin-left: 9%;">
+                            <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==true"
+                                src="./assets/date-expired_ash.svg">
+                            <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==false"
+                                src="./assets/date-expired_blue.svg">
+                        </div>
+                        <div [ngClass]="overview_bool==false?'inner_menus_highlight':'inner_menus'"
+                            style="margin-left: 16px;">Lease</div>
                     </div>
-                    <div [ngClass]="overview_bool==false?'inner_menus_highlight':'inner_menus'"
-                        style="margin-left: 16px;">Lease</div>
                 </div>
                 <!-- <div>
                     <img class="building" src="./assets/building.png">
@@ -105,7 +107,7 @@
                         src="./assets/slide_close_arrow.svg">
                 </div>
             </div>
-            <div @fadeSlideInOut_one *ngIf="shortmenu" fxLayout="column" fxLayoutAlign="start center"
+            <div *ngIf="shortmenu" fxLayout="column" fxLayoutAlign="start center"
                 class="sidenav_1_short ">
                 <div>
                     <img style="width: 18px;margin-top:12px;" src="./assets/short_ara.png">
@@ -149,8 +151,8 @@
 
 
             <!-- sidenav 2 starts here -->
-            <div fxLayout="column" class="sidenav_2" fxFlex>
-                <div fxLayout="row" fxLayoutAlign="space-between center" class="model_bg" style=" height: 7%;">
+            <div fxLayout="column" class="sidenav_2">
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="model_bg">
                     <div fxLayout="row" style="margin-left: 10%;">
                         <img style="width: 16px;vertical-align: middle;" src="./assets/Models_top.svg">
                         <div class="models">Models</div>
@@ -158,14 +160,14 @@
 
                     <div><img class="main_model" src="./assets/down_arrow1.svg"></div>
                 </div>
-                <div *ngIf="!sidemenu">
+                <div *ngIf="!sidemenu" fxLayout="column">
                     <div class="menu" style="margin: 5% 0% 0% 8%;">
                         Sites
                     </div>
                     <div style="margin-top: 5%;" fxLayout="row" fxLayoutAlign="center center">
                         <mat-divider class="divider2"></mat-divider>
                     </div>
-                    <div fxLayoutAlign="center center">
+                    <div fxLayout="row" fxLayoutAlign="start center">
                         <div fxLayout="row" class="main_input_field" fxLayoutAlign="start center">
                             <img style="vertical-align: -webkit-baseline-middle;
                                 width: 24px;" src="./assets/search.svg">
@@ -175,14 +177,11 @@
                         </div>
                     </div>
 
-                    <div style="margin-top: 4%;">
+                    <div class="tree-container">
                         <mat-tree [dataSource]="treeSource" [treeControl]="treeControl" [trackBy]="trackBy">
-                            <!-- [ngStyle]="{'margin-left':'20px'}" -->
-                            <!-- This is the tree node template for leaf nodes -->
                             <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle class="example-tree-node"
                                 matTreeNodePadding matTreeNodePaddingIndent="20px">
                                 <li class="mat-tree-node">
-                                    <!-- use a disabled button to provide padding for tree leaf -->
                                     <button mat-icon-button disabled></button>
                                     {{node.name}}
                                     <button type="button" [matMenuTriggerFor]="menu" mat-icon-button
