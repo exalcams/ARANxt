@@ -375,6 +375,10 @@ export class LeasemanagementSignedComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+      if(!result)
+      {
+        this.GetAllLeases();
+      }
     });
   }
 
@@ -445,7 +449,7 @@ export class LeasemanagementSignedComponent implements OnInit {
     }
     else {
 
-      this.notificationSnackBarComponent.openSnackBar('Please select a terminate', SnackBarStatus.warning);
+      this.notificationSnackBarComponent.openSnackBar('Please select a lease', SnackBarStatus.warning);
       this.Checked = false
     }
   }
