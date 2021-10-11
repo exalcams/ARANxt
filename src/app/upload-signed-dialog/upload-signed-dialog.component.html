@@ -49,7 +49,7 @@
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('CreatedOn').hasError('required')">
                                     Creation Date is required
                                 </mat-error>
-                                <mat-error *ngIf="SignedDocumentDetailsForm.get('CreatedOn').hasError('invalidDate')">
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('CreatedOn').hasError('pattern')">
                                         Enter a valid date
                                     </mat-error>
                                 <!-- <mat-error *ngIf="SignedDocumentDetailsForm.get('CreatedOn').hasError('qty1')">
@@ -87,7 +87,7 @@
                             <span class="formspan">Maintenance</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
                                 <label matPrefix class="font">Rs.</label>
-                                <input matInput formControlName="Maintenance" class="placeholdertext">
+                                <input matInput formControlName="Maintenance" (keydown)="decimalOnly($event)"  class="placeholdertext">
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('Maintenance').hasError('required')">
                                     Maintenance is required
                                 </mat-error>
@@ -119,7 +119,7 @@
                             <span class="formspan">Rental</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
                                 <label matPrefix class="font">Rs.</label>
-                                <input matInput formControlName="Rental" class="placeholdertext">
+                                <input matInput formControlName="Rental" (keydown)="decimalOnly($event)"  class="placeholdertext">
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('Rental').hasError('required')">
                                     Rental is required
                                 </mat-error>
@@ -199,7 +199,7 @@
                         <div fxLayout="row" class="label_connect form_outer_bank" fxLayoutGap="10px">
                             <span class="formspan_bank">Account no</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls_bank">
-                                <input matInput formControlName="AccountNo" class="placeholdertext">
+                                <input matInput formControlName="AccountNo" (keydown)="decimalOnly($event)"  class="placeholdertext">
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('AccountNo').hasError('required')">
                                     Account no is required
                                 </mat-error>
@@ -242,7 +242,7 @@
                             <span class="formspan">Total deposit</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
                                 <label matPrefix class="font">Rs.</label>
-                                <input matInput formControlName="TotalDeposit" class="placeholdertext">
+                                <input matInput formControlName="TotalDeposit" (keydown)="decimalOnly($event)"  class="placeholdertext">
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('TotalDeposit').hasError('required')">
                                     Total deposit is required
                                 </mat-error>

@@ -40,7 +40,7 @@ export class UploadSignedDialogComponent implements OnInit {
   this.SignedDocumentDetailsForm = this.formBuilder.group({
     Client: ['',Validators.required],
     FileName : ['',Validators.required],
-    CreatedOn: ['',[Validators.required,this.invalidDateValidatorFn]],
+    CreatedOn: ['',[Validators.required,Validators.pattern('^([0-9]{4,10})([.][0-9]{1,2})?$' )]],
     // ExpiryDate: ['',[Validators.required,Validators.pattern("([1-9]|0[1-9]|[12][0-9]|3[01])[-]([1-9]|0[1-9]|1[012])[-](19|20)dd$")]],
     ExpiryDate: ['',[Validators.required,this.invalidDateValidatorFn]],
 
@@ -155,6 +155,18 @@ onRemove(event): void {
   // this.SignedDocumentDetailsForm.invalid;
   this.ShowValidationErrors(this.SignedDocumentDetailsForm);
   }
+  }
+  decimalOnly(event): boolean {
+    // this.AmountSelected();
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode === 8 || charCode === 9 || charCode === 13 || charCode === 46
+      || charCode === 37 || charCode === 39 || charCode === 123 || charCode === 190) {
+      return true;
+    }
+    else if (charCode < 48 || charCode > 57) {
+      return false;
+    }
+    return true;
   }
   ShowValidationErrors(formGroup: FormGroup): void {
     Object.keys(formGroup.controls).forEach(key => {
