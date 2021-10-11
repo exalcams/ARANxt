@@ -1,4 +1,4 @@
-.size{height: auto;max-width: 432px;}
+.size{height: auto;max-width: 433px;}
 .sidenav_1{height: auto; box-shadow: 2px 0 3px 0 #f7f7f7;min-width: 200px; }
 .sidenav_2{height: auto; box-shadow: 2px 0 3px 0 #f7f7f7;max-width: 232px;min-width: 232px}
 .sidenav_1_short{height: auto; box-shadow: 2px 0 3px 0 #f7f7f7;width: 64px;   
@@ -73,13 +73,20 @@
 .models{color: white;font-size: 11px; font-family: 'poppins-semi' !important;font-weight: 500;margin-left: 20%;} 
 .divider{width: 100px; position: relative; left: 0;} 
 .divider_small{width: 30px; } 
-.main_model{width: 14px;vertical-align: middle;margin-left: -60%;}
+.main_model{width: 14px;}
 .divider2{width: 80%; position: relative; left: 0;}
 .divider3{width: 20px;  height: 21px; margin-top: 4px;}
-.input_field{ color: #acacac; font-size:10px; font-family: 'poppins' !important; border: transparent; background-color: #f3f3f4;
+.input_field{ color: #acacac; font-size:10px !important; font-family: 'poppins' !important; border: transparent; background-color: #f3f3f4;
     width: 90%;outline: none;
 }
-
+.menu_container{
+    min-height: calc(100vh - 182px);
+    overflow-y: auto;
+}
+.tree-container{
+    min-height: calc(100vh - 140px);
+    overflow-y: auto;
+}
 
 
 .header{color: #6e6d7a;font-size: 11px; font-family: 'poppins-med' !important;font-weight: 500;margin-left: 2%;line-height: 3.5;}
@@ -136,6 +143,9 @@
     background-image: url('/assets/bg_top.svg');   background-repeat: no-repeat;
     background-size:cover;  
     background-position:50% 50%;background-size:100%; 
+    min-height: 56px;
+    width: 100%;
+    padding: 0 16px;
 }
 .example-tree-invisible { color: #0d0c22;font-size: 11px; font-family: 'poppins-med !important';
     display: none;
