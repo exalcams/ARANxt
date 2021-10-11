@@ -33,13 +33,28 @@ export class ShiftConfirmationComponent implements OnInit {
       Remarks: ['', Validators.required]
     });
   }
-
+// validation codes
   nameValidator(control: FormControl): { [key: string]: boolean } {
     const nameRegexp: RegExp = /[!@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?]/;
     if (control.value && nameRegexp.test(control.value)) {
       return { invalidName: true };
     }
   }
+  decimalOnly(event): boolean {
+    // this.AmountSelected();
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode === 8 || charCode === 9 || charCode === 13 || charCode === 46
+      || charCode === 37 || charCode === 39 || charCode === 123 || charCode === 190) {
+      return true;
+    }
+    else if (charCode < 48 || charCode > 57) {
+      return false;
+    }
+    return true;
+  }
+  // validation codes
+
+
   Save() {
     if (this.ShiftConformationForm.valid) {
       console.log(this.ShiftConformationForm.value);

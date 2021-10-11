@@ -60,21 +60,20 @@ export class TerminatecomponentComponent implements OnInit {
       Remarks: ['', Validators.required],
     });
   }
-  // ,Validators.pattern(/^[0-9]*$/)
+  
+  // validation codes
   static Date(control: FormControl): { [key: string]: any } {
     let ptDatePattern = /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g;
     if (!control.value.match(ptDatePattern))
       return { ptDate: true };
     return null;
   }
-
   nameValidator(control: FormControl): { [key: string]: boolean } {
     const nameRegexp: RegExp = /[!@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?]/;
     if (control.value && nameRegexp.test(control.value)) {
       return { invalidName: true };
     }
   }
-
   invalidDateValidatorFn(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } => {
       const date = new Date(control.value);
@@ -82,6 +81,20 @@ export class TerminatecomponentComponent implements OnInit {
       return invalidDate ? { 'invalidDate': { value: control.value } } : null;
     };
   }
+  decimalOnly(event): boolean {
+    // this.AmountSelected();
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode === 8 || charCode === 9 || charCode === 13 || charCode === 46
+      || charCode === 37 || charCode === 39 || charCode === 123 || charCode === 190) {
+      return true;
+    }
+    else if (charCode < 48 || charCode > 57) {
+      return false;
+    }
+    return true;
+  }
+ // validation codes
+
   openShiftDialog() {
     const dialogRef = this.dialog.open(ShiftConfirmationComponent, {
       panelClass: 'upload-signed-dialog',
@@ -98,6 +111,7 @@ export class TerminatecomponentComponent implements OnInit {
       }
     });
   }
+
   Postterminatedetails(isShift: boolean = false) {
     if (this.Terminateformgroup.valid) {
       this.spinner.show();

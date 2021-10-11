@@ -1,8 +1,8 @@
 <div fxLayout="column" fxFlex="100" *ngIf="changetodashboard">
     <div fxLayout="row" fxFlex='20' style="width: 100%;">
         <div fxLayout="column" fxFlex="40">
-            <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="5px">
-                <span style="font-size: 18px;font-weight: bold;color: #0d0c22;">
+            <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="5px" style="padding-left: 5px;">
+                <span style="font-size: 16px;font-weight: bold;color: #0d0c22;">
                     DASHBOARD
                 </span>
                 <span style="font-size: 10px;color: #acacac;font-family: 'poppins-semi' !important;">
@@ -10,511 +10,508 @@
                 </span>
             </div>
         </div>
+    </div>
 
-        <div fxLayout="column" fxFlex="60">
-            <!-- <span style="font-size: 12px;color: #acacac;font-family: 'poppins-semi' !important;">Description About Site
-                is Lorea Ipsum is simply dummy text of the printing and typesetting.</span> -->
+    <div style="height: 20px;"></div>
+
+    <div fxLayout="row" fxLayout.sm="column" fxFlex="100" fxLayoutAlign="start start" fxLayoutGap="16px">
+
+        <div fxFlex="31" fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="20px"
+            class="rowdivisionwidth">
+            <div class="gap">
+                <div fxLayout="column" style="width: 100%;">
+
+                    <div fxLayout="column" style="width: 100%;">
+                        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="60px">
+                            <div fxLayout="column" fxLayoutGap="6px">
+                                <div fxLayout="row" fxLayoutGap="5px">
+                                    <img class="sett1" src="./assets/Images/spaces.svg">
+                                    <span class="spacesspan">
+                                        Spaces
+                                    </span>
+                                </div>
+
+                                <div fxLayout="column" fxLayoutGap="5px" fxLayoutAlign="start start"
+                                    style="padding-left: 10px !important;">
+                                    <img src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg" class="spacearrow">
+                                    <span fxFlex="50" class="spacespancolumn">
+                                        37 Found
+                                    </span>
+                                    <span fxFlex="50" class="spacespancolumn2">
+                                        Occupied
+                                    </span>
+                                </div>
+
+                            </div>
+                            <div fxLayout="row" fxLayoutGap="10px" style="margin-top: 0.5rem;" fxFlex="40">
+                                <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                                    [plotOptions]="chartOptions.plotOptions" [fill]="chartOptions.fill">
+                                </apx-chart>
+                            </div>
+
+                        </div>
+                        <div class="inprogressdiv" style="display: flex;justify-content: center;">
+                            <span class="inprogressspan">
+                                05 working in Progress
+                            </span>
+                        </div>
+                        <div fxLayout="row" class="chartpercent">
+                            +12%
+                        </div>
+                    </div>
+                    <div style="height: 20px;"></div>
+
+                    <div>
+                        <mat-divider class="vert_divider"></mat-divider>
+                    </div>
+
+                    <div fxLayout="row" style="width: 100%;margin-top: 0.5rem;">
+                        <div fxLayout="column" fxLayoutAlign="start start">
+                            <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                                    <img class="sett" src="./assets/Images/parking.svg">
+                                    <span class="parkingspan">
+                                        Parking Space
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div fxLayout="row" fxLayoutAlign="start center" style="margin-top: -1rem;">
+                                <div>
+                                    <img style="transform: scale(0.5);" src="./assets/Images/house.png">
+                                </div>
+                                <div fxLayout="column" fxLayoutAlign="start end" fxLayoutGap="10px"
+                                    style="display: flex; justify-content: flex-end;">
+                                    <div style="justify-content: flex-end;display: flex;">
+                                        <img src="./assets/Union 4.svg">
+                                    </div>
+                                    <span class="totalparkingpspace">
+                                        12 Space
+                                    </span>
+                                    <span class="slotreserved">
+                                        56 slots reserved
+                                    </span>
+                                    <div class="slotavailablediv" style="display: flex;justify-content: center;">
+                                        <span class="slotavailable">
+                                            10 Slot Available
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="column" fxLayoutAlign="start start" class="movablediv" fxLayoutGap="14px">
+                <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px">
+                    <img class="movableimage" src="./assets/Images/movable.svg ">
+                    <span class="movablespan">
+                        Movable Asset
+                    </span>
+                </div>
+
+
+                <div fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="20px"
+                    style="padding-left: 20px;">
+                    <div fxLayout="column" fxLayoutAlign="start start">
+                        <span class="todayspan">Today</span>
+                        <span class="founddiv">104 Found</span>
+                    </div>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="100px"
+                    style="padding-left: 20px;">
+                    <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                        <div fxLayout="column " fxLayoutAlign="start start">
+                            <span class="todayspan">More than a Day</span>
+                            <span class="founddiv">23 Found</span>
+                        </div>
+                    </div>
+                    <div style="justify-content: flex-end;" fxLayoutAlign="end end">
+                        <img src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg" class="spacearrowmovable">
+                    </div>
+                </div>
+
+                <!-- <div fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="20px"
+                    style="padding-left: 20px;">
+                    <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="130px">
+                        <div fxLayout="column " fxLayoutAlign="start start">
+                            <span class="todayspan">More than a Day</span>
+                            <span class="founddiv">23 Found</span>
+                        </div>
+                        <img src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg" class="spacearrowmovable">
+                    </div>
+                </div> -->
+
+                <!-- <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <div fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="20px"
+                        style="padding-left: 20px;">
+                        <div fxLayout="column " fxLayoutAlign="start start">
+                            <span class="todayspan">More than a Day</span>
+                            <span class="founddiv">23 Found</span>
+                        </div>
+                    </div>
+                    <img src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg" class="spacearrowmovable">
+                </div> -->
+
+            </div>
         </div>
 
-    </div>
-    <mat-grid-list [cols]="breakpoint" rowHeight="1:2.5" (window:resize)="onResize($event)">
-        
-            <mat-grid-tile colspan="2">
-
-                <div class="gap">
-                    <div fxLayout="column" style="width: 100%;">
-
-                        <div fxLayout="column" style="width: 100%;">
-                            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="60px">
-                                <div fxLayout="column" fxLayoutGap="6px">
-                                    <div fxLayout="row" fxLayoutGap="5px">
-                                        <img class="sett1" src="./assets/Images/spaces.svg">
-                                        <span class="spacesspan">
-                                            Spaces
-                                        </span>
-                                    </div>
-
-                                    <div fxLayout="column" fxLayoutGap="5px" fxLayoutAlign="start start"
-                                        style="padding-left: 10px !important;">
-                                        <img src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg"
-                                            class="spacearrow">
-                                        <span fxFlex="50" class="spacespancolumn">
-                                            37 Found
-                                        </span>
-                                        <span fxFlex="50" class="spacespancolumn2">
-                                            Occupied
-                                        </span>
-
-                                    </div>
-
-                                </div>
-                                <div fxLayout="row" fxLayoutGap="10px" style="margin-top: 0.5rem;" fxFlex="40">
-                                    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
-                                        [plotOptions]="chartOptions.plotOptions" [fill]="chartOptions.fill">
-                                    </apx-chart>
-                                </div>
-
-                            </div>
-                            <div class="inprogressdiv" style="display: flex;justify-content: center;">
-                                <span class="inprogressspan">
-                                    05 working in Progress
-                                </span>
-                            </div>
-                            <div fxLayout="row" class="twelvepercent">
-                                +12%
-                            </div>
-                        </div>
-                        <div style="height: 20px;"></div>
-
-                        <div>
-                            <mat-divider class="vert_divider"></mat-divider>
-                        </div>
-
-                        <div fxLayout="row" style="width: 100%;margin-top: 0.5rem;">
-                            <div fxLayout="column" fxLayoutAlign="start start">
-                                <div fxLayout="row" fxLayoutAlign="space-evenly center">
-                                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
-                                        <img class="sett" src="./assets/Images/parking.svg">
-                                        <span class="parkingspan">
-                                            Parking Space
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div fxLayout="row" fxLayoutAlign="space-around center" style="margin-top: -1rem;">
-                                    <img style="transform: scale(0.6);" src="./assets/Images/house.png">
-                                    <div fxLayout="column" fxLayoutAlign="end end" fxLayoutGap="10px"
-                                        style="display: flex; justify-content: flex-end;">
-                                        <div style="justify-content: flex-end;display: flex;">
-                                            <img src="./assets/Union 4.svg">
-                                        </div>
-                                        <span class="totalparkingpspace">
-                                            12 Space
-                                        </span>
-                                        <span class="slotreserved">
-                                            56 slots reserved
-                                        </span>
-                                        <div class="slotavailablediv" style="display: flex;justify-content: flex-end;">
-                                            <span class="slotavailable">
-                                                10 Slot Available
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </mat-grid-tile>
-
-            <mat-grid-tile colspan="2" rowspan="2">
-                <div fxLayout="column " style="width: 85%;height: 100%;">
-                    <div fxLayout="column " fxLayoutGap="20px"
-                        style="background-color: #f9f8fe;margin-top: -10px !important;padding: 15px;">
-                        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" style="padding-top: 10px;">
-                            <img class="maintenanceimage" src="./assets/Images/maintence.svg">
-                            <span class="maintenancespan">
-                                Maintenance Report
-                            </span>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="space-around center">
-                            <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="8px">
-                                <div fxLayout="column" fxLayoutGap="4px">
-                                    <div fxLayout="row" fxLayoutGap="5px">
-                                        <span class="openspan">
-                                            Open
-                                        </span>
-                                        <div class="circle"></div>
-                                    </div>
-                                    <div class="opennumber">
-                                        43
-                                    </div>
-                                </div>
-
-                                <div fxLayout="column">
-                                    <div fxLayout="row" fxLayoutGap="5px">
-                                        <span class="openspan">
-                                            Delayed
-                                        </span>
-                                        <div class="circle2"></div>
-                                    </div>
-                                    <div class="opennumber">
-                                        10
-                                    </div>
-                                </div>
-                            </div>
-                            <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="8px">
-                                <div fxLayout="column" fxLayoutGap="4px">
-                                    <div fxLayout="row" fxLayoutGap="5px">
-                                        <span class="openspan">
-                                            On Time
-                                        </span>
-                                        <div class="circle1"></div>
-                                    </div>
-                                    <div class="opennumber">
-                                        45
-                                    </div>
-                                </div>
-                                <div fxLayout="column">
-                                    <div fxLayout="row" fxLayoutGap="5px">
-                                        <span class="openspan">
-                                            Completed
-                                        </span>
-                                        <div class="circle3"></div>
-                                    </div>
-                                    <div class="opennumber">
-                                        86
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div fxLayout="column" class="expiryleasesdiv">
-
-                            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px"
-                                style="padding-top: 10px;">
-                                <img class="maintenanceimage" src="./assets/Images/Expiry_Leases.svg">
-                                <span class="maintenancespan">
-                                    Expiry Leases
-                                </span>
-                            </div>
-
-                            <div fxLayout="row" style="width: 100%;">
-
-                                <div fxFlex="100" id="chart">
-                                    <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
-                                        [labels]="chartOptions1.labels" [legend]="chartOptions1.legend"
-                                        [grid]="chartOptions1.grid" [plotOptions]="chartOptions1.plotOptions"
-                                        [responsive]="chartOptions1.responsive" [dataLabels]="chartOptions1.dataLabels"
-                                        [fill]="chartOptions1.fill"></apx-chart>
-                                </div>
-
-                            </div>
-                            <div fxLayout="column" fxLayoutAlign="center center" class="graphcondiv">
-                                <span class="opennumbergraphdiv">
-                                    40
-                                </span>
-                                <span class="openspangraphdiv">
-                                    Completed
-                                </span>
-                            </div>
-                            <div style="height: 30px;"></div>
-
-                            <div fxLayout="column" fxFlex="30">
-
-                                <div *ngIf="isDisplay" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()"
-                                    fxLayout="row" fxLayoutAlign="space-evenly" class="hoveringdiv11">
-                                    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="30px"
-                                        style="height: 80%;margin-top: 0.5rem;">
-                                        <div fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
-                                            <span class="opennumber">
-                                                8
-                                            </span>
-                                            <div class="orange"></div>
-                                            <span class="openspan">
-                                                High
-                                            </span>
-                                        </div>
-                                        <div fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
-                                            <span class="opennumber">
-                                                16
-                                            </span>
-                                            <div class="purple"></div>
-                                            <span class="openspan">
-                                                Medium
-                                            </span>
-                                        </div>
-                                        <div fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
-                                            <span class="opennumber">
-                                                32
-                                            </span>
-                                            <div class="blue"></div>
-                                            <span class="openspan">
-                                                Low
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div fxLayout="row" fxLayoutGap="20px" fxLayout.xs="column" class="hoveringdiv"
-                                    *ngIf="isDisplayhover" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()">
-
-                                    <div fxLayout="column" fxLayoutAlign="end end" fxLayoutGap="20px" fxFlex="100">
-                                        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="10px">
-                                            <img class="sett1flip"
-                                                src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg">
-                                            <span class="flipspan">
-                                                30 days
-                                            </span>
-                                        </div>
-
-                                        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="10px">
-                                            <img class="sett1flip"
-                                                src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg">
-                                            <span class="flipspan">
-                                                30-60 days
-                                            </span>
-                                        </div>
-
-                                        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="10px">
-                                            <img class="sett1flip"
-                                                src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg">
-                                            <span class="flipspan">
-                                                60 days
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="height: 30px;"></div>
-                            <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" (click)="leaseclk()"
-                                style="cursor: pointer;">
-                                <span class="seedetailsdiv">
-                                    See Details
-                                </span>
-                                <img src="./assets/Union 71.svg" class="union71image">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </mat-grid-tile>
-
-            <mat-grid-tile colspan="2">
-                <div fxLayout="column" fxFlex fxLayoutGap="10px" class="neww" style="width: 100%;margin-top: 0.1rem;">
-                    <div fxLayout="column" style="padding: 10px;border: solid 1px #f5f5f5;" class="occupantdivision"
-                        fxLayoutGap="25px">
-                        <div fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%;">
-                            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
-                                <img class="sett" src="./assets/Images/occupants.svg">
-                                <span class="occupantspan">
-                                    Occupants
-                                </span>
-                            </div>
-                            <div fxLayout="row">
-                                <img src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg" class="spacearrow2">
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutAlign="space-between center">
-                            <div fxLayout="column">
-                                <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="7px">
-                                    <span class="insidecampus">
-                                        Inside Campus
-                                    </span>
-                                    <img src="./assets/Images/equaltwo.svg">
-                                </div>
-                                <span class="insidecampusnumber">
-                                    45000
-                                </span>
-                            </div>
-
-                            <div fxLayout="column">
-                                <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="7px">
-                                    <span class="insidecampus">
-                                        Entry Gate
-                                    </span>
-                                    <img src="./assets/Images/Polygon 105.svg" class="polygonimge">
-                                </div>
-                                <span class="insidecampusnumber">
-                                    45000
-                                </span>
-                            </div>
-
-                            <div fxLayout="column">
-                                <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="7px">
-                                    <span class="insidecampus">
-                                        Exit Gate
-                                    </span>
-                                    <img src="./assets/Images/Polygon 106.svg" class="polygonimge">
-                                </div>
-                                <span class="insidecampusnumber">
-                                    45000
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div fxLayout="column" fxLayoutGap="30px" style="padding: 10px;border: solid 1px #f5f5f5;"
-                        class="transactiondiv">
-                        <div fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%;">
-                            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
-                                <img class="setttrans" src="./assets/Images/trans.svg">
-                                <span class="occupantspan">
-                                    Recent Transactions
-                                </span>
-                            </div>
-                            <div fxLayout="row">
-                                <img src="./assets/Images/Filter.svg" class="spacearrow2">
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="15px" class="scrolldivi">
-                            <div fxLayout="row" fxLayoutGap="2px">
-                                <div>
-                                    <mat-icon class="recievecall"> call_received
-                                    </mat-icon>
-                                </div>
-                                <div fxLayout="column">
-                                    <span
-                                        style="font-size: 12px;color: #2c2c2c;font-family: 'poppins-semi' !important;">+$786
-                                    </span>
-                                    <span
-                                        style="font-size: 12px;color: #999999;font-family: 'poppins-semi' !important;">Refund</span>
-                                </div>
-                            </div>
-
-                            <div fxLayout="row" fxLayoutGap="2px">
-                                <div>
-                                    <mat-icon class="recievecallred"> call_made</mat-icon>
-                                </div>
-                                <div fxLayout="column">
-                                    <span
-                                        style="font-size: 12px;color: #2c2c2c;font-family: 'poppins-semi' !important;">-$250
-                                    </span>
-                                    <span
-                                        style="font-size: 12px;color: #999999;font-family: 'poppins-semi' !important;">Electronic</span>
-                                </div>
-                            </div>
-
-                            <div fxLayout="row" fxLayoutGap="2px">
-                                <div>
-                                    <mat-icon class="recievecall"> call_received
-                                    </mat-icon>
-                                </div>
-                                <div fxLayout="column">
-                                    <span
-                                        style="font-size: 12px;color: #2c2c2c;font-family: 'poppins-semi' !important;">+$786
-                                    </span>
-                                    <span
-                                        style="font-size: 12px;color: #999999;font-family: 'poppins-semi' !important;">Refund</span>
-                                </div>
-                            </div>
-
-                            <div fxLayout="row" fxLayoutGap="2px">
-                                <div>
-                                    <mat-icon class="recievecall"> call_received
-                                    </mat-icon>
-                                </div>
-                                <div fxLayout="column">
-                                    <span
-                                        style="font-size: 12px;color: #2c2c2c;font-family: 'poppins-semi' !important;">+$786
-                                    </span>
-                                    <span
-                                        style="font-size: 12px;color: #999999;font-family: 'poppins-semi' !important;">Refund</span>
-                                </div>
-                            </div>
-
-                            <div fxLayout="row" fxLayoutGap="2px">
-                                <div>
-                                    <mat-icon class="recievecall"> call_received
-                                    </mat-icon>
-                                </div>
-                                <div fxLayout="column">
-                                    <span
-                                        style="font-size: 12px;color: #2c2c2c;font-family: 'poppins-semi' !important;">+$786
-                                    </span>
-                                    <span
-                                        style="font-size: 12px;color: #999999;font-family: 'poppins-semi' !important;">Refund</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div fxLayout="row" fxLayoutAlign="space-between center">
-                            <div class="resbox2">
-                                <div fxLayout="row" fxLayoutGap="10px">
-                                    <span><img class="equal1" src="./assets/Images/income.svg"></span>
-                                    <span
-                                        style="font-size: 12px;color: #1ecc61; font-family: 'poppins-semi' !important;">Receive
-                                        Payments
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
-                                <span class="viewall">
-                                    View All
-                                </span>
-                                <mat-icon class="navicon">navigate_next</mat-icon>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </mat-grid-tile>
-
-            <mat-grid-tile colspan="2" class="fourthchild">
-
-                <div fxLayout="column" fxLayoutAlign="start start" class="movablediv" fxLayoutGap="20px">
-                    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px">
-                        <img class="movableimage" src="./assets/Images/movable.svg ">
-                        <span class="movablespan">
-                            Movable Asset
+        <div fxFlex="28">
+            <div fxLayout="column " style="width: 100%;height: 100%;" class="secondrowdivision">
+                <div fxLayout="column " fxLayoutGap="10px" style="background-color: #f9f8fe;padding: 15px;">
+                    <!-- class="secondrowdivision2row"up -->
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" style="padding-top: 3px;">
+                        <img class="maintenanceimage" src="./assets/Images/maintence.svg">
+                        <span class="maintenancespan">
+                            Maintenance Report
                         </span>
                     </div>
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="8px">
+                            <div fxLayout="column" fxLayoutGap="4px">
+                                <div fxLayout="row" fxLayoutGap="5px">
+                                    <span class="openspan">
+                                        Open
+                                    </span>
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="opennumber">
+                                    43
+                                </div>
+                            </div>
 
-
-                    <div fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="20px"
-                        style="padding-left: 20px;">
-                        <div fxLayout="column" fxLayoutAlign="start start">
-                            <span class="todayspan">Today</span>
-                            <span class="founddiv">104 Found</span>
+                            <div fxLayout="column">
+                                <div fxLayout="row" fxLayoutGap="5px">
+                                    <span class="openspan">
+                                        Delayed
+                                    </span>
+                                    <div class="circle2"></div>
+                                </div>
+                                <div class="opennumber">
+                                    10
+                                </div>
+                            </div>
+                        </div>
+                        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="8px">
+                            <div fxLayout="column" fxLayoutGap="4px">
+                                <div fxLayout="row" fxLayoutGap="5px">
+                                    <span class="openspan">
+                                        On Time
+                                    </span>
+                                    <div class="circle1"></div>
+                                </div>
+                                <div class="opennumber">
+                                    45
+                                </div>
+                            </div>
+                            <div fxLayout="column">
+                                <div fxLayout="row" fxLayoutGap="5px">
+                                    <span class="openspan">
+                                        Completed
+                                    </span>
+                                    <div class="circle3"></div>
+                                </div>
+                                <div class="opennumber">
+                                    86
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="20px"
-                        style="padding-left: 20px;">
-                        <div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="130px">
-                            <div fxLayout="column " fxLayoutAlign="start start">
-                                <span class="todayspan">More than a Day</span>
-                                <span class="founddiv">23 Found</span>
+                    <div fxLayout="column" class="expiryleasesdiv">
+
+                        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" style="padding-top: 10px;">
+                            <img class="maintenanceimage" src="./assets/Images/Expiry_Leases.svg">
+                            <span class="maintenancespan">
+                                Expiry Leases
+                            </span>
+                        </div>
+
+                        <div fxLayout="row" style="width: 100%;">
+
+                            <div fxFlex="100" fxLayoutAlign="center" id="chart">
+                                <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
+                                    [labels]="chartOptions1.labels" [legend]="chartOptions1.legend"
+                                    [grid]="chartOptions1.grid" [plotOptions]="chartOptions1.plotOptions"
+                                    [responsive]="chartOptions1.responsive" [dataLabels]="chartOptions1.dataLabels"
+                                    [fill]="chartOptions1.fill" class="maintenancechart"></apx-chart>
                             </div>
-                            <img src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg" class="spacearrowmovable">
+
+                        </div>
+                        <div fxLayout="column" fxLayoutAlign="center center" class="graphcondiv">
+                            <span class="opennumbergraphdiv">
+                                40
+                            </span>
+                            <span class="openspangraphdiv">
+                                Completed
+                            </span>
+                        </div>
+
+                        <div fxLayout="column" fxFlex="30" style="min-width: 150px;">
+
+                            <div fxLayout="row" fxLayoutAlign="space-evenly" class="hoveringdiv11">
+                                <!-- *ngIf="isDisplay" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()" -->
+                                <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px"
+                                    class="statushovering">
+                                    <div fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
+                                        <span class="opennumber">
+                                            8
+                                        </span>
+                                        <div class="orange"></div>
+                                        <span class="openspan">
+                                            High
+                                        </span>
+                                    </div>
+                                    <div fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
+                                        <span class="opennumber">
+                                            16
+                                        </span>
+                                        <div class="purple"></div>
+                                        <span class="openspan">
+                                            Medium
+                                        </span>
+                                    </div>
+                                    <div fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
+                                        <span class="opennumber">
+                                            32
+                                        </span>
+                                        <div class="blue"></div>
+                                        <span class="openspan">
+                                            Low
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div fxLayout="row" fxLayoutGap="20px" fxLayout.xs="column" class="hoveringdiv"
+                                *ngIf="isDisplayhover" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()">
+
+                                <div fxLayout="column" fxLayoutAlign="end end" fxLayoutGap="10px" fxFlex="100">
+                                    <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="10px">
+                                        <img class="sett1flip"
+                                            src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg">
+                                        <span class="flipspan">
+                                            30 days
+                                        </span>
+                                    </div>
+
+                                    <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="10px">
+                                        <img class="sett1flip"
+                                            src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg">
+                                        <span class="flipspan">
+                                            30-60 days
+                                        </span>
+                                    </div>
+
+                                    <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="10px">
+                                        <img class="sett1flip"
+                                            src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg">
+                                        <span class="flipspan">
+                                            60 days
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" (click)="leaseclk()"
+                            style="cursor: pointer;padding: 12px 0;">
+                            <span class="seedetailsdiv">
+                                See Details
+                            </span>
+                            <img src="./assets/Union 71.svg" class="union71image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div fxLayout="column" fxFlex="40" class="secondrowdivision3">
+            <div fxLayout="column" fxFlex fxLayoutGap="15px" class="neww secondrowdivision3"
+                style="width: 100%;margin-top: 0.1rem;">
+                <div fxLayout="column" style="padding: 10px;border: solid 1px #f5f5f5;"
+                    class="occupantdivision secondrowdivision" fxLayoutGap="25px">
+                    <div fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%;">
+                        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                            <img class="sett" src="./assets/Images/occupants.svg">
+                            <span class="occupantspan">
+                                Occupants
+                            </span>
+                        </div>
+                        <div fxLayout="row">
+                            <img src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg" class="spacearrow2">
+                        </div>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="column">
+                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="7px">
+                                <span class="insidecampus">
+                                    Inside Campus
+                                </span>
+                                <img src="./assets/Images/equaltwo.svg">
+                            </div>
+                            <span class="insidecampusnumber">
+                                45000
+                            </span>
+                        </div>
+
+                        <div fxLayout="column">
+                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="7px">
+                                <span class="insidecampus">
+                                    Entry Gate
+                                </span>
+                                <img src="./assets/Images/Polygon 105.svg" class="polygonimge">
+                            </div>
+                            <span class="insidecampusnumber">
+                                45000
+                            </span>
+                        </div>
+
+                        <div fxLayout="column">
+                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="7px">
+                                <span class="insidecampus">
+                                    Exit Gate
+                                </span>
+                                <img src="./assets/Images/Polygon 106.svg" class="polygonimge">
+                            </div>
+                            <span class="insidecampusnumber">
+                                45000
+                            </span>
                         </div>
                     </div>
                 </div>
 
-            </mat-grid-tile>
-
-
-            <mat-grid-tile colspan="2" class="fifthchild">
-                <div fxLayout="column" style="padding: 5px;border: solid 2px #f5f5f5;width: 100%;height: 50%;">
-                    <div fxLayout="row" fxLayoutAlign="space-evenly center">
-
-                        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
-                            <span class="thismonth">
-                                This Month
-                            </span>
-                            <span class="foundmonth">
-                                28 Found
+                <div fxLayout="column" fxLayoutGap="30px" style="padding: 10px;border: solid 1px #f5f5f5;"
+                    class="transactiondiv secondrowdivision">
+                    <div fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%;">
+                        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                            <img class="setttrans" src="./assets/Images/trans.svg">
+                            <span class="occupantspan">
+                                Recent Transactions
                             </span>
                         </div>
-                        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
-                            <span class="thismonth">
-                                Last Month
+                        <div fxLayout="row">
+                            <img src="./assets/Images/Filter.svg" class="spacearrow2">
+                        </div>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="15px" class="scrolldivi">
+                        <div fxLayout="row" fxLayoutGap="2px">
+                            <div>
+                                <mat-icon class="recievecall"> call_received
+                                </mat-icon>
+                            </div>
+                            <div fxLayout="column">
+                                <span class="transactionamounts">+$786 </span>
+                                <span class="transactionamountrefund">Refund</span>
+                            </div>
+                        </div>
+
+                        <div fxLayout="row" fxLayoutGap="2px">
+                            <div>
+                                <mat-icon class="recievecallred"> call_made</mat-icon>
+                            </div>
+                            <div fxLayout="column">
+                                <span
+                                    style="font-size: 12px;color: #2c2c2c;font-family: 'poppins-semi' !important;">-$250
+                                </span>
+                                <span
+                                    style="font-size: 12px;color: #999999;font-family: 'poppins-semi' !important;">Electronic</span>
+                            </div>
+                        </div>
+
+                        <div fxLayout="row" fxLayoutGap="2px">
+                            <div>
+                                <mat-icon class="recievecall"> call_received
+                                </mat-icon>
+                            </div>
+                            <div fxLayout="column">
+                                <span
+                                    style="font-size: 12px;color: #2c2c2c;font-family: 'poppins-semi' !important;">+$786
+                                </span>
+                                <span
+                                    style="font-size: 12px;color: #999999;font-family: 'poppins-semi' !important;">Refund</span>
+                            </div>
+                        </div>
+
+                        <div fxLayout="row" fxLayoutGap="2px">
+                            <div>
+                                <mat-icon class="recievecall"> call_received
+                                </mat-icon>
+                            </div>
+                            <div fxLayout="column">
+                                <span
+                                    style="font-size: 12px;color: #2c2c2c;font-family: 'poppins-semi' !important;">+$786
+                                </span>
+                                <span
+                                    style="font-size: 12px;color: #999999;font-family: 'poppins-semi' !important;">Refund</span>
+                            </div>
+                        </div>
+
+                        <div fxLayout="row" fxLayoutGap="2px">
+                            <div>
+                                <mat-icon class="recievecall"> call_received
+                                </mat-icon>
+                            </div>
+                            <div fxLayout="column">
+                                <span
+                                    style="font-size: 12px;color: #2c2c2c;font-family: 'poppins-semi' !important;">+$786
+                                </span>
+                                <span
+                                    style="font-size: 12px;color: #999999;font-family: 'poppins-semi' !important;">Refund</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div class="resbox2" fxLayout="row" fxLayoutGap="10px">
+                            <span>
+                                <img class="equal1" src="./assets/Images/income.svg">
                             </span>
-                            <span class="foundmonth">
-                                35 Found
+                            <span
+                                style="font-size: 10px;color: #4fcf80; font-family: 'poppins-semi' !important;">Receive
+                                Payments
                             </span>
                         </div>
 
+                        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px"
+                            style="cursor: pointer;">
+                            <span class="viewall">
+                                View All
+                            </span>
+                            <mat-icon class="navicon">navigate_next</mat-icon>
+                        </div>
+                    </div>
+                </div>
+
+                <div fxLayout="column" class="performancediv secondrowdivision">
+                    <div fxLayout="row" fxLayoutAlign="space-between center" style="padding: 0 12px;">
+                        <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
+                            <span class="performancespan">
+                                Performance
+                            </span>
+                            <span class="performancespan2">
+                                No. Of Sites
+                            </span>
+                        </div>
                         <span class="goodspan">
                             Good
                         </span>
                     </div>
-
-
                     <div fxFlex="100">
                         <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart"
                             [dataLabels]="chartOptions2.dataLabels" [plotOptions]="chartOptions2.plotOptions"
                             [yaxis]="chartOptions2.yaxis" [grid]="chartOptions2.grid" [fill]="chartOptions2.fill"
-                            [stroke]="chartOptions2.stroke" [xaxis]="chartOptions2.xaxis"></apx-chart>
+                            [stroke]="chartOptions2.stroke" [xaxis]="chartOptions2.xaxis" class="performancechart">
+                        </apx-chart>
                     </div>
                 </div>
-            </mat-grid-tile>
-    </mat-grid-list>
+            </div>
+        </div>
 
+    </div>
 
 </div>
-<div *ngIf="changetolease" fxFlex="100" fxLayoutGap="3%" style="width: 100%;padding-left: 20px;">
+<div *ngIf="changetolease" fxFlex="100" fxLayoutGap="3%" style="width: 100%;">
     <app-leasemanagement></app-leasemanagement>
 </div>

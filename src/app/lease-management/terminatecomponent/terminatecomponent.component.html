@@ -186,7 +186,7 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Rent due if any</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput formControlName="Rentdue" type="number" class="forminputedit">
+                                    <input matInput formControlName="Rentdue" type="number" class="forminputedit" (keydown)="decimalOnly($event)">
                                     <mat-error *ngIf="Terminateformgroup.get('Rentdue').hasError('required')"
                                         class="erroredits">
                                         Rentdue is required
@@ -207,7 +207,7 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Maintenance due if any</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput formControlName="Maintenancedue" type="number"
+                                    <input matInput formControlName="Maintenancedue" type="number" (keydown)="decimalOnly($event)"
                                         class="forminputedit">
                                     <mat-error *ngIf="Terminateformgroup.get('Maintenancedue').hasError('required')"
                                         class="erroredits">
@@ -229,7 +229,7 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Damage Recovery</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput formControlName="DamageRecovery" type="number"
+                                    <input matInput formControlName="DamageRecovery" type="number" (keydown)="decimalOnly($event)"
                                         class="forminputedit">
                                     <mat-error *ngIf="Terminateformgroup.get('DamageRecovery').hasError('required')"
                                         class="erroredits">
@@ -250,7 +250,7 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Advance Balance to Be settled</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput formControlName="AdvanceBalance" type="number"
+                                    <input matInput formControlName="AdvanceBalance" type="number" (keydown)="decimalOnly($event)"
                                         class="forminputedit">
                                     <mat-error *ngIf="Terminateformgroup.get('AdvanceBalance').hasError('required')"
                                         class="erroredits">
