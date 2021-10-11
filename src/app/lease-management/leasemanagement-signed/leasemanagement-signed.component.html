@@ -1,15 +1,15 @@
 <div fxLayout="column" fxFlex="100" class="bgouter">
 
   <div fxFlex fxLayout="row" fxLayoutGap="10px">
-    <div fxFlex="70" class="btn_bg" fxLayout="row">
+    <div fxFlex="70" class="btn_bg cursor" fxLayout="row" >
       <div matRipple class="ripple_outer" (click)="openDialogrenew()">
-        <label class="new_txt">Renew</label>
+        <span class="new_txt">Renew</span>
     </div>
     <div matRipple class="ripple_outer"  (click)="openDialogvacate()">
-        <label class="new_txt">Vacate</label>
+        <span class="new_txt">Vacate</span>
       </div>
       <div matRipple class="ripple_outer" (click)="openDialogterminate()">
-        <label class="new_txt">Terminate</label>
+        <span class="new_txt">Terminate</span>
     </div>
  
       <!-- <button mat-flat-button class="Renew_btn" (click)="openDialogrenew()" >Renew</button>
@@ -25,19 +25,11 @@
     </div>
     <div style="margin-top: 0px;" fxLayoutAlign="flex-end" fxFlex="20">
       <button mat-button class="upload_btn2" (click)="uploadDocument()">
-        <!-- [style.background-color]="btn_name==='Upload Document'?'#4410ff':'red'" (click)="uploadDocument()"-->
         {{btn_name}}
       </button>
     </div>
 
   </div>
-  <!-- <div fxFlex fxLayout="row" fxLayoutGap="10px">
-     
-      <div fxFlex="25" fxLayout="row" class="btn_bg">
-        <mat-icon matSuffix class="serachicon_search">search</mat-icon>
-        <input matInput class="search_input1" placeholder="Search Document">
-      </div>
-     </div> -->
   <div style="height: 10px;">
 
   </div>
@@ -240,10 +232,18 @@
             </tr>
           </table>
         </div>
-
+     
       </div>
-
-
+      <!-- <div flex fxLayoutAlign="center center" class="TableFooter" style="margin-top: 20px;"
+      *ngIf="!AllLeases.length">
+      <mat-icon  class="infoicon">
+        info
+      </mat-icon>
+      <span class="nodata">The table does not contain any records</span>
+    </div> -->
+    <div  flex fxLayoutAlign="center center"  *ngIf="!AllLeases.length">
+      <img src="./assets/Empty.svg"  style="height: 419px;">
+    </div>
     </mat-sidenav-content>
 
     <mat-sidenav-content *ngIf="valueupload" style="overflow-y: scroll;">

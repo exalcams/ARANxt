@@ -8,9 +8,9 @@ import { SnackBarStatus } from './notification-snackbar-status-enum';
   styleUrls: ['./notification-snack-bar.component.scss']
 })
 export class NotificationSnackBarComponent {
-
-  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  
+  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   constructor(public snackBar: MatSnackBar) { }
 

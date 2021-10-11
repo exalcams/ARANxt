@@ -1,24 +1,24 @@
 <div class="bg">
     <p class="title"> Lease Document Management System</p>
     <div fxLayout="row">
-        <div (click)="selectedPage='draft';selection.clear();"
+        <div (click)="closePage('draft');selection.clear();"
             [ngClass]="selectedPage=='draft' ? 'main_buttons' : 'main_buttons_not_seklected' ">
             Draft
 
         </div>
-        <div style="margin-left: 10px;" (click)="selectedPage='signed';selection.clear();"
+        <div style="margin-left: 10px;" (click)="closePage('signed');selection.clear();"
             [ngClass]="selectedPage=='signed' ? 'main_buttons' : 'main_buttons_not_seklected' ">
             Signed
         </div>
-        <div style="margin-left: 10px;" (click)="selectedPage='expiry';selection.clear();"
+        <div style="margin-left: 10px;" (click)="closePage('expiry');selection.clear();"
             [ngClass]="selectedPage=='expiry' ? 'main_buttons' : 'main_buttons_not_seklected' ">
             About To Expiry
         </div>
-        <div style="margin-left: 10px;" (click)="selectedPage='underNotice';selection.clear();"
+        <div style="margin-left: 10px;" (click)="closePage('underNotice');selection.clear();"
             [ngClass]="selectedPage=='underNotice' ? 'main_buttons' : 'main_buttons_not_seklected' ">
             Under Notice
         </div>
-        <div style="margin-left: 10px;" (click)="selectedPage='terminate';selection.clear();"
+        <div style="margin-left: 10px;" (click)="closePage('terminate');selection.clear();"
             [ngClass]="selectedPage=='terminate' ? 'main_buttons' : 'main_buttons_not_seklected' ">
             Terminated
         </div>
@@ -27,17 +27,17 @@
     <div *ngIf="selectedPage=='draft'">
         <div class="neweditdiv" fxLayout="row" fxLayoutAlign="space-evenly center" style="margin-top: 13px;" fxLayoutGap="16px">
             <div fxLayout="row" class="tab1" fxLayoutAlign="start center">
-                <div matRipple class="ripple_outer" fxLayoutAlign="center center" (click)="selectedPage='new';">
-                    <label class="new_txt">New</label>
+                <div matRipple class="ripple_outer" fxLayoutAlign="center center" (click)="selectedPage='new';newLeaseDraft.documentContent=null">
+                    <span class="new_txt">New</span>
                 </div>
-                <div matRipple class="ripple_outer" fxLayoutAlign="center center" (click)="openMultiDraftEditor()">
-                    <label class="new_txt">Edit</label>
+                <div matRipple class="ripple_outer" fxLayoutAlign="center center" (click)="openMultiDraftEditor();">
+                    <span class="new_txt">Edit</span>
                 </div>
                 <div matRipple class="ripple_outer" fxLayoutAlign="center center" (click)="DeleteLeaseDrafts()">
-                    <label class="new_txt">Delete</label>
+                    <span class="new_txt">Delete</span>
                 </div>
                 <div matRipple class="ripple_outer"  fxLayoutAlign="center center" (click)="DownloadLeaseDrafts()">
-                    <label class="new_txt">Download</label>
+                    <span class="new_txt">Download</span>
                 </div>
                 <!-- <button mat-flat-button class="Renew_btn" (click)="selectedPage='new'">New</button>
                 <button mat-flat-button class="Renew_btn" (click)="openMultiDraftEditor()">Edit</button>
@@ -57,6 +57,7 @@
             <div class="neweditdiv1 uploadfiles" fxLayout="row">
                 <ngx-dropzone accept=".doc , .docx" (change)="onSelect($event)" class="dropzonengx" multiple="false">
                     <ngx-dropzone-label class="dragdrop-label">Drag and Drop file here</ngx-dropzone-label>
+                    
                     <ngx-dropzone-preview *ngFor="let f of files" [removable]="true"
                         style=" min-height: 41px !important; " (removed)="onRemove(f)" class="drag-preview">
                         <ngx-dropzone-label class="dragdrop-label_2">{{ f.name }}</ngx-dropzone-label>
@@ -99,15 +100,15 @@
             <table mat-table [dataSource]="dataSource" matSort>
                 <ng-container matColumnDef="select" sticky>
                     <th mat-header-cell *matHeaderCellDef>
-                        <mat-checkbox (change)="$event ? masterToggle() : null" color="primary"
+                        <mat-checkbox (change)="$event ? masterToggle() : null" #checkbox1 color="primary"
                             [checked]="selection.hasValue() && isAllSelected()"
                             [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
                         </mat-checkbox>
                     </th>
                     <td mat-cell *matCellDef="let row;index as i;">
                         <div fxLayout="row" fxLayoutAlign="start center">
-                            <mat-checkbox (click)="$event.stopPropagation()" color="primary"
-                                (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                            <mat-checkbox (click)="$event.stopPropagation();" #checkbox color="primary"
+                                (change)="$event ? selection.toggle(row) : null;row.highlighted = checkbox.checked;getrow(row)" [checked]="selection.isSelected(row)"
                                 [aria-label]="checkboxLabel(row)">
                             </mat-checkbox>
                         </div>
@@ -158,10 +159,21 @@
                     </td>
                 </ng-container>
 
-                <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color: #f3f3f4;"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;" style="border-bottom-style: none;"></tr>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"  style="background-color: #f3f3f4;"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{highlight3: row.highlighted}"  
+                style="border-bottom-style: none;"></tr>
 
             </table>
+            <!-- <div flex fxLayoutAlign="center center" class="TableFooter" style="margin-top: 20px;"
+            *ngIf="!LeaseDrafts.length">
+            <mat-icon  class="infoicon">
+              info
+            </mat-icon>
+            <span class="nodata">The table does not contain any records</span>
+          </div> -->
+          <div  flex fxLayoutAlign="center center"   *ngIf="!LeaseDrafts.length">
+            <img src="./assets/Empty.svg"  style="height: 419px;">
+          </div>
         </div>
     </div>
     <div *ngIf="selectedPage=='signed'">
@@ -197,9 +209,8 @@
             <!-- <button mat-raised-button class="saveBtn" (click)="saveNewDraft()">Save</button>
             <button mat-raised-button class="saveBtn" (click)="close">close</button> -->
         </div>
-        <ck-editor name="richEditor" [(ngModel)]="newLeaseDraft.documentContent" skin="moono-lisa" language="en"
+        <ck-editor name="richEditor" [(ngModel)]="newLeaseDraft.documentContent" skin="moono-lisa" language="en" (change)="neweditorchange=true"
             [fullPage]="true" [config]="editorConfig" class="editor"></ck-editor>
-
     </div>
     <div *ngIf="selectedPage=='edit'" class="ckeditor_outer">
         <div fxLayout="row" fxLayoutGap="8px">
@@ -220,10 +231,11 @@
                         </div>
                     </div>
                 </div>
-                <ck-editor *ngIf="editor1" name="richEditor1" [(ngModel)]="leaseDraft1.documentContent"
+                <ck-editor *ngIf="editor1" name="richEditor1" [(ngModel)]="leaseDraft1.documentContent" (change)="editor1change=true"
                     skin="moono-lisa" language="en" [fullPage]="true" [config]="editorConfig" class="editor">
                 </ck-editor>
             </div>
+            
             <div fxLayout="column">
                 <div fxLayout="row" fxLayoutAlign="end center" *ngIf="editor2" class="submit-area">
                     <div fxLayout="row">
@@ -241,7 +253,7 @@
                         </div>
                     </div>
                 </div>
-                <ck-editor *ngIf="editor2" name="richEditor2" [(ngModel)]="leaseDraft2.documentContent"
+                <ck-editor *ngIf="editor2" name="richEditor2" [(ngModel)]="leaseDraft2.documentContent" (change)="editor2change=true"
                     skin="moono-lisa" language="en" [fullPage]="true" [config]="editorConfig" class="editor">
                 </ck-editor>
             </div>

@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, Validators,FormBuilder, FormArray, FormControl, ValidatorFn, AbstractControl } from '@angular/forms';
+import { FormGroup, Validators,FormBuilder, FormArray, FormControl, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -9,7 +9,7 @@ import { LeaseManagement } from '../Model/Leasemanagement';
 import { NotificationSnackBarComponent } from '../notification/notification-snack-bar/notification-snack-bar.component';
 import { SnackBarStatus } from '../notification/notification-snack-bar/notification-snackbar-status-enum';
 import { LeaseManagementService } from '../service/lease-management.service';
-
+import * as moment from "moment"
 @Component({
   selector: 'app-upload-signed-dialog',
   templateUrl: './upload-signed-dialog.component.html',
@@ -40,13 +40,12 @@ export class UploadSignedDialogComponent implements OnInit {
   this.SignedDocumentDetailsForm = this.formBuilder.group({
     Client: ['',Validators.required],
     FileName : ['',Validators.required],
-    CreatedOn: ['',[Validators.required,Validators.pattern('^([0-9]{4,10})([.][0-9]{1,2})?$' )]],
-    // ExpiryDate: ['',[Validators.required,Validators.pattern("([1-9]|0[1-9]|[12][0-9]|3[01])[-]([1-9]|0[1-9]|1[012])[-](19|20)dd$")]],
+    CreatedOn: ['',[Validators.required,this.invalidDateValidatorFn]],
     ExpiryDate: ['',[Validators.required,this.invalidDateValidatorFn]],
 
     TotalDeposit : ['',[Validators.required,Validators.pattern('^([0-9]{4,10})([.][0-9]{1,2})?$' )]],
     Rental: ['',[Validators.required,Validators.pattern('^([0-9]{4,10})([.][0-9]{1,2})?$' )]],
-    BankName: ['', Validators.required],
+    BankName: ['' ,[Validators.required,Validators.pattern('^[a-zA-Z]+$')]],
     HolderName : ['',[Validators.required,Validators.pattern('^[a-zA-Z]+$')]],
     AccountNo : ['',[Validators.required,Validators.pattern('^([0-9]{9,16})?$')]],
     ModeofTransfer : ['', Validators.required],
@@ -134,6 +133,7 @@ onRemove(event): void {
     this.SignedDocumentDetailsForm.reset()
       this.spinner.hide();
       this.notificationSnackBarComponent.openSnackBar('Uploaded  successfully', SnackBarStatus.success);
+      this.dialogRef.close(false);
     
  
     },
@@ -167,6 +167,35 @@ onRemove(event): void {
       return false;
     }
     return true;
+  }
+  AlphabetsonlyOnly(event): boolean {
+    // this.AmountSelected();
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode === 8 || charCode === 9 || charCode === 13 || charCode === 46
+      || charCode === 37 || charCode === 39 || charCode === 123 || charCode === 190) {
+      return true;
+    }
+    else if (charCode < 65 || charCode > 90) {
+      return false;
+    }
+    return true;
+  }
+  CustomDateValidator(control: FormControl): ValidationErrors | null {
+
+    const format = "MM/dd/YYYY";
+  
+    const val = moment(control.value, format, true);
+  
+  
+  
+    if (!val.isValid()) {
+  
+      return { invalidDate: true };
+  
+    }
+  
+    return null;
+  
   }
   ShowValidationErrors(formGroup: FormGroup): void {
     Object.keys(formGroup.controls).forEach(key => {

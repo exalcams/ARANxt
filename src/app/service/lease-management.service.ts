@@ -65,6 +65,10 @@ export class LeaseManagementService {
     return this.http.get(`${this.baseAddress}api/Lease/GetLeaseDraftDocument?documentID=${documentID}`)
       .pipe(catchError(this.errorHandler));
   }
+  GetLeaseDraftById(documentID :number): Observable<any> {
+    return this.http.get(`${this.baseAddress}api/Lease/GetLeaseDraftById?documentID=${documentID}`)
+      .pipe(catchError(this.errorHandler));
+  }
   GetFileFromLink(link: string) {
     return this.http.get(`${link}`, { responseType: 'blob' })
       .pipe(catchError(this.errorHandler));
