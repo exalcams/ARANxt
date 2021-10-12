@@ -96,20 +96,23 @@ export class TerminatecomponentComponent implements OnInit {
  // validation codes
 
   openShiftDialog() {
-    const dialogRef = this.dialog.open(ShiftConfirmationComponent, {
-      panelClass: 'upload-signed-dialog',
-      data: this.leaseData.clientName,
-      width: '630px',
-      // maxWidth: '85.5vw ',
-      // height: '80%',
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.shiftConfirmation = result;
-        console.log("shift dialog data", result);
-        this.Postterminatedetails(true);
-      }
-    });
+    if(this.Terminateformgroup.valid){
+      const dialogRef = this.dialog.open(ShiftConfirmationComponent, {
+        panelClass: 'upload-signed-dialog',
+        data: this.leaseData.clientName,
+        width: '630px',
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.shiftConfirmation = result;
+          console.log("shift dialog data", result);
+          this.Postterminatedetails(true);
+        }
+      });
+    }
+    else{
+      this.ShowValidationErrors(this.Terminateformgroup)
+    }
   }
 
   Postterminatedetails(isShift: boolean = false) {

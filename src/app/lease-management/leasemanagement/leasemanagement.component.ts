@@ -679,7 +679,58 @@ export class LeasemanagementComponent implements OnInit {
 
     }
   }
+
+  else if(eve=='vacated')
+    {
+      if(this.neweditorchange || this.editor1change ||this.editor2change)
+      {
+      const dialogConfig: MatDialogConfig = {
+        data: {
+          title: "Close",
+          body: "Are you sure , you want to close without saving",
+        },
+        panelClass: 'close-dialog',
+        width: '379px',
+        maxWidth: '85.5vw ',
+        height: '195px',
+        disableClose: true
+      };
+      const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
+      // this.selectedPage='draft';
+  
+      dialogRef.afterClosed().subscribe(result => {
+        if (  result == "yes" ) {
+          this.selectedPage='vacated';
+          this.editor1change=false;
+          this.editor2change=false;
+          this.neweditorchange=false;
+          // this.savedNewLease=new LeaseDraft();;
+          this.savednewLeaseHasval=false;
+          this.removeSelectedRows();
+
+          this.selection.clear();
+          this.cdr.detectChanges();
+         
+
+        }
+      })
+    }
+    else{
+      this.selectedPage='vacated';
+      this.editor1change=false;
+      this.editor2change=false;
+      this.neweditorchange=false;
+      // this.savedNewLease=new LeaseDraft();;
+      this.savednewLeaseHasval=false;
+      this.removeSelectedRows();
+
+      this.selection.clear();
+      this.cdr.detectChanges();
+    
+
+    }
   }
+}
   closeDraft(eve)
   {
     if(eve == 'editor2' )

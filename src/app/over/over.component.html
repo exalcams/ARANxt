@@ -249,12 +249,14 @@
                         </div>
 
                         <div fxLayout="column" fxFlex="30" style="min-width: 150px;">
-
-                            <div fxLayout="row" fxLayoutAlign="space-evenly" class="hoveringdiv11">
-                                <!-- *ngIf="isDisplay" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()" -->
-                                <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px"
-                                    class="statushovering">
-                                    <div fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
+                            <div (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()" class="signal-wrapper"
+                                [ngClass]="{'signal-wrapper1':expiryisopen}">
+                                <!-- <div fxLayout="row" fxLayoutAlign="space-evenly" class="hoveringdiv11 "> -->
+                                <!-- *ngIf="isDisplay" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()" 
+                                    (click)="ToggleExpiry()" expiryisopen-->
+                                <div fxLayout="row" fxLayoutAlign="space-evenly center" class="signal-container"
+                                [@openClose]="expiryisopen?'open':'close'">
+                                    <div class="animedivision">
                                         <span class="opennumber">
                                             8
                                         </span>
@@ -263,7 +265,7 @@
                                             High
                                         </span>
                                     </div>
-                                    <div fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
+                                    <div class="animedivision">
                                         <span class="opennumber">
                                             16
                                         </span>
@@ -272,7 +274,7 @@
                                             Medium
                                         </span>
                                     </div>
-                                    <div fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
+                                    <div class="animedivision">
                                         <span class="opennumber">
                                             32
                                         </span>
@@ -282,35 +284,39 @@
                                         </span>
                                     </div>
                                 </div>
-                            </div>
-                            <div fxLayout="row" fxLayoutGap="20px" fxLayout.xs="column" class="hoveringdiv"
-                                *ngIf="isDisplayhover" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()">
-
-                                <div fxLayout="column" fxLayoutAlign="end end" fxLayoutGap="10px" fxFlex="100">
-                                    <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="10px">
-                                        <img class="sett1flip"
-                                            src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg">
+                                <!-- </div> -->
+                                <!-- <div fxLayout="row" fxLayoutGap="20px" fxLayout.xs="column" class="hoveringdiv"> -->
+                                <!-- *ngIf="isDisplayhover" -->
+                                <div fxLayout="column" fxLayoutAlign="end end" fxLayoutGap="10px" fxFlex="100"
+                                    class="signal-table">
+                                    <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="3px"
+                                        class="signal-row">
+                                        <!-- <img class="sett1flip" src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg"> -->
+                                        <!-- <img src="./assets/Union 71.svg" class="union30days"> -->
+                                        <mat-icon class="union30days">keyboard_arrow_left</mat-icon>
                                         <span class="flipspan">
                                             30 days
                                         </span>
                                     </div>
 
-                                    <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="10px">
-                                        <img class="sett1flip"
-                                            src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg">
+                                    <div fxLayout="row" fxLayoutAlign="space-evenly center" class="signal-row">
+                                        <!-- <img class="sett1flip" src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg"> -->
                                         <span class="flipspan">
                                             30-60 days
                                         </span>
                                     </div>
 
-                                    <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="10px">
-                                        <img class="sett1flip"
-                                            src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg">
+                                    <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="3px"
+                                        class="signal-row">
+                                        <!-- <img class="sett1flip" src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg"> -->
+                                        <!-- <img src="./assets/Union 71.svg" class="union60days"> -->
+                                        <mat-icon class="union60days">keyboard_arrow_right</mat-icon>
                                         <span class="flipspan">
                                             60 days
                                         </span>
                                     </div>
                                 </div>
+                                <!-- </div> -->
                             </div>
                         </div>
                         <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" (click)="leaseclk()"
@@ -412,11 +418,9 @@
                                 <mat-icon class="recievecallred"> call_made</mat-icon>
                             </div>
                             <div fxLayout="column">
-                                <span
-                                    style="font-size: 12px;color: #2c2c2c;font-family: 'poppins-semi' !important;">-$250
+                                <span class="transactionamounts">-$250
                                 </span>
-                                <span
-                                    style="font-size: 12px;color: #999999;font-family: 'poppins-semi' !important;">Electronic</span>
+                                <span class="transactionamountrefund">Electronic</span>
                             </div>
                         </div>
 
@@ -426,11 +430,9 @@
                                 </mat-icon>
                             </div>
                             <div fxLayout="column">
-                                <span
-                                    style="font-size: 12px;color: #2c2c2c;font-family: 'poppins-semi' !important;">+$786
+                                <span class="transactionamounts">+$786
                                 </span>
-                                <span
-                                    style="font-size: 12px;color: #999999;font-family: 'poppins-semi' !important;">Refund</span>
+                                <span class="transactionamountrefund">Refund</span>
                             </div>
                         </div>
 
@@ -440,11 +442,9 @@
                                 </mat-icon>
                             </div>
                             <div fxLayout="column">
-                                <span
-                                    style="font-size: 12px;color: #2c2c2c;font-family: 'poppins-semi' !important;">+$786
+                                <span class="transactionamounts">+$786
                                 </span>
-                                <span
-                                    style="font-size: 12px;color: #999999;font-family: 'poppins-semi' !important;">Refund</span>
+                                <span class="transactionamountrefund">Refund</span>
                             </div>
                         </div>
 
@@ -454,11 +454,9 @@
                                 </mat-icon>
                             </div>
                             <div fxLayout="column">
-                                <span
-                                    style="font-size: 12px;color: #2c2c2c;font-family: 'poppins-semi' !important;">+$786
+                                <span class="transactionamounts">+$786
                                 </span>
-                                <span
-                                    style="font-size: 12px;color: #999999;font-family: 'poppins-semi' !important;">Refund</span>
+                                <span class="transactionamountrefund">Refund</span>
                             </div>
                         </div>
                     </div>

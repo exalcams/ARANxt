@@ -22,6 +22,10 @@
             [ngClass]="selectedPage=='terminate' ? 'main_buttons' : 'main_buttons_not_seklected' ">
             Terminated
         </div>
+        <div style="margin-left: 10px;" (click)="closePage('vacated');selection.clear();"
+            [ngClass]="selectedPage=='vacated' ? 'main_buttons' : 'main_buttons_not_seklected' ">
+            Vacated
+        </div>
     </div>
     <!-- <br> -->
     <div *ngIf="selectedPage=='draft'">
@@ -187,6 +191,9 @@
     </div>
     <div *ngIf="selectedPage=='terminate'">
         <app-terminate></app-terminate>
+    </div>
+    <div *ngIf="selectedPage=='vacated'">
+        <app-leasemanagement-vacated></app-leasemanagement-vacated>
     </div>
 
     <div *ngIf="selectedPage=='new'" class="ckeditor_outer">

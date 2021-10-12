@@ -137,6 +137,7 @@ export class VacatecomponentComponent implements OnInit {
         this.spinner.hide();
         console.log("vacate uploaded");
         this.notificationSnackBarComponent.openSnackBar('Uploaded in successfully', SnackBarStatus.success);
+        this.dialogRef.close()
       },
         err => {
           console.log(err);
