@@ -11,7 +11,7 @@ import { LeaseManagementService } from 'src/app/service/lease-management.service
 import { SpaceService } from 'src/app/space/space.service';
 import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/notification-snackbar-status-enum';
 import { UserData } from '../leasemanagement/leasemanagement.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UploadSignedDialogComponent } from 'src/app/upload-signed-dialog/upload-signed-dialog.component';
 import { VacatecomponentComponent } from '../vacatecomponent/vacatecomponent.component';
 import { RenewcomponentComponent } from '../renewcomponent/renewcomponent.component';
@@ -21,6 +21,7 @@ import { SendMailDialogComponent } from 'src/app/send-mail-dialog/send-mail-dial
 import { MatDrawer } from '@angular/material/sidenav';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { CloseDialogComponent } from 'src/app/close-dialog/close-dialog.component';
 @Component({
   selector: 'app-leasemanagement-signed',
   templateUrl: './leasemanagement-signed.component.html',
@@ -353,7 +354,7 @@ export class LeasemanagementSignedComponent implements OnInit {
     if (bulletcolor == "terminated"){
       return "#6e6d7a"
     }
-    if (bulletcolor =="vacated"){
+    if (bulletcolor =="undernotice"){
       return "#faa542"
     }
     if (bulletcolor == "signed"){
@@ -384,7 +385,9 @@ export class LeasemanagementSignedComponent implements OnInit {
 
 
   openDialogvacate() {
-    if (this.Checked) {
+    if (this.Checked && this.Renewdialogdata.status=="signed" ) {
+      console.log("Renewdialogdata",this.Renewdialogdata);
+      
       const dialogRef = this.dialog.open(VacatecomponentComponent, {
         panelClass: 'upload-vacate-dialog',
         data: this.Renewdialogdata,
@@ -396,6 +399,11 @@ export class LeasemanagementSignedComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         console.log(`Dialog result: ${result}`);
       });
+    }
+    else if(this.Checked && this.Renewdialogdata.status!="signed")
+    {
+      this.notificationSnackBarComponent.openSnackBar('The lease cannot be vaccated', SnackBarStatus.warning);
+     
     }
     else {
 
@@ -412,7 +420,7 @@ export class LeasemanagementSignedComponent implements OnInit {
 
   }
   openDialogrenew() {
-    if (this.Checked) {
+    if (this.Checked  && this.Renewdialogdata.status=="signed") {
 
       const dialogRef = this.dialog.open(RenewcomponentComponent, {
         panelClass: 'upload-renew-dialog',
@@ -427,6 +435,11 @@ export class LeasemanagementSignedComponent implements OnInit {
         console.log(`Dialog result: ${result}`);
       });
     }
+    else if(this.Checked && this.Renewdialogdata.status!="signed")
+    {
+      this.notificationSnackBarComponent.openSnackBar('The lease cannot be renewed', SnackBarStatus.warning);
+  
+    }
     else {
 
       this.notificationSnackBarComponent.openSnackBar('Please select a lease', SnackBarStatus.warning);
@@ -434,7 +447,7 @@ export class LeasemanagementSignedComponent implements OnInit {
     }
   }
   openDialogterminate() {
-    if (this.Checked) {
+    if (this.Checked && ((this.Renewdialogdata.status=="signed")||(this.Renewdialogdata.status=="undernotice"))) {
       const dialogRef = this.dialog.open(TerminatecomponentComponent, {
         panelClass: 'upload-terminate-dialog',
         data: this.Renewdialogdata,
@@ -446,6 +459,11 @@ export class LeasemanagementSignedComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         console.log(`Dialog result: ${result}`);
       });
+    }
+    else if(this.Renewdialogdata.status=="signed"|| this.Renewdialogdata.status=="undernotice")
+    {
+      this.notificationSnackBarComponent.openSnackBar('The lease cannot be terminated', SnackBarStatus.warning);
+    
     }
     else {
 
@@ -515,21 +533,46 @@ export class LeasemanagementSignedComponent implements OnInit {
     this.sideNavStatus = event;
   }
 
-  Deleteleaserow(documentID){
+  Deleteleaserow(leaseID){
     
-    this.spinner.show();
+    
     this.sideNavStatus=true;
-    this.service.DeleteLeaseManagement(documentID).subscribe((x) => {
-      this.sideNavStatus=false;
-      console.log(x);
-      this.GetAllLeases()
-      this.spinner.hide();
-      this.notificationSnackBarComponent.openSnackBar('Deleted  successfully', SnackBarStatus.success);
-    },
-      err => {
-        this.spinner.hide();
-        console.log(err);
+    // 
+    const dialogConfig: MatDialogConfig = {
+      data: {
+        title: "Delete",
+        body: "Are you sure , you want to delete",
+      },
+      panelClass: 'close-dialog',
+      width: '24%',
+      maxWidth: '85.5vw ',
+      height: '195px',
+      disableClose: true
+    };
+    const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == "yes") {
+        this.spinner.show();
+        this.service.DeleteLeaseManagement(leaseID).subscribe((x) => {
+          this.sideNavStatus=false;
+          console.log(x);
+          this.GetAllLeases()
+          this.spinner.hide();
+          this.notificationSnackBarComponent.openSnackBar('Deleted  successfully', SnackBarStatus.success);
+        },
+          err => {
+            this.spinner.hide();
+            console.log(err);
+    
+          })
+      }
+        },
+          err => {
+            console.log(err);
+            this.spinner.hide();
+          });
+      }
 
-      })
-  }
+    // 
+ 
 }

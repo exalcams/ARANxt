@@ -5,7 +5,7 @@ import { LeaseManagement, LeaseRenew } from 'src/app/Model/Leasemanagement';
 import { NotificationSnackBarComponent } from 'src/app/notification/notification-snack-bar/notification-snack-bar.component';
 import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/notification-snackbar-status-enum';
 import { LeaseManagementService } from 'src/app/service/lease-management.service';
-
+import { saveAs } from 'file-saver';
 @Component({
   selector: 'app-renewcomponent',
   templateUrl: './renewcomponent.component.html',
@@ -28,6 +28,9 @@ export class RenewcomponentComponent implements OnInit {
   files: any;
   filename: any;
   i: number = 0;
+  selectedDocId: number;
+  selecteddocName: any;
+  newbool: boolean;
   constructor(public dialogRef: MatDialogRef<RenewcomponentComponent>, private service: LeaseManagementService, private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any,) {
     this.leaseData = this.data;
     this.leaseID = this.data.leaseID;
@@ -100,7 +103,7 @@ export class RenewcomponentComponent implements OnInit {
         })
     }
     else if (!this.files && this.Vacateformgroup.valid) {
-      this.notificationSnackBarComponent.openSnackBar('File need to be Uploaded', SnackBarStatus.danger);
+      this.notificationSnackBarComponent.openSnackBar('File need to be Uploaded', SnackBarStatus.success);
     }
     else if (!this.Vacateformgroup.valid) {
       this.Vacateformgroup.setErrors({ item: true })
@@ -159,21 +162,43 @@ export class RenewcomponentComponent implements OnInit {
     console.log("this.files", this.files);
 
   }
-  loadData(row: LeaseRenew): void {
-    console.log("loaddata call");
-
+  loadData(row: LeaseRenew,docName:any): void {
+    console.log("loaddata call",row);
+this.newbool=true
     this.selectedID = row.renewalID;
-    this.Vacateformgroup.patchValue({
-      RenewOn: row.renewedOn,
-      Validfor: row.validFor,
-      NewExpiryDate: row.expiryDate,
-      RevisedRent: row.revisedRent,
-      Revisedratio: row.revisedRatio
-    });
+  this.selectedDocId=row.documentID;
+this.selecteddocName=docName;
+ 
+      this.Vacateformgroup.patchValue({
+        RenewOn: row.renewedOn,
+        Validfor: row.validFor,
+        NewExpiryDate: row.expiryDate,
+        RevisedRent: row.revisedRent,
+        Revisedratio: row.revisedRatio,
+
+      });
+      this.filename=docName;
+    
+  
   }
+  DownloadLeaseDocument()
+{
+ 
+      this.service.DownloadLeaseDocument(this.selectedDocId).subscribe((res)=>{
+       
+        let blob:any = new Blob([res], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+        saveAs(blob, `${this.selecteddocName}.docx`);
+        console.log(`${this.selecteddocName} downloaded`);
+      },
+      err=>{
+        console.log(err);
+      });
+}
   newlease(): void {
     this.Vacateformgroup.reset();
     this.selectedID = null;
+    this.newbool=false;
+    this.filename=null;
   }
 
   GetRemainingDays(expiry) {

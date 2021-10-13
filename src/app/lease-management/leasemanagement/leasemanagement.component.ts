@@ -163,9 +163,14 @@ export class LeasemanagementComponent implements OnInit {
     
     this.selection.selected.forEach(item => {
        console.log(this.LeaseDrafts.findIndex(d => d === item));
-       item.highlighted=false
+   if(item.highlighted)
+   {
+    item.highlighted=false
+
+   }
+       
      });
-     this.selection = new SelectionModel<Element>(true, []);
+    //  this.selection = new SelectionModel<Element>(true, []);
   }
   getrow(eve)
   {
@@ -423,8 +428,8 @@ export class LeasemanagementComponent implements OnInit {
         }
       }
     });
-  
   }
+
   closePage(eve)
   {
     if(eve=='signed')
@@ -439,7 +444,7 @@ export class LeasemanagementComponent implements OnInit {
           body: "Are you sure , you want to close without saving",
         },
         panelClass: 'close-dialog',
-        width: '328px',
+        width: '24%',
         maxWidth: '85.5vw ',
         height: '192px',
         disableClose: true
@@ -490,7 +495,7 @@ export class LeasemanagementComponent implements OnInit {
           body: "Are you sure , you want to close without saving",
         },
         panelClass: 'close-dialog',
-        width: '379px',
+        width: '24%',
         maxWidth: '85.5vw ',
         height: '195px',
         disableClose: true
@@ -523,7 +528,6 @@ export class LeasemanagementComponent implements OnInit {
       // this.savedNewLease=new LeaseDraft();;
       this.savednewLeaseHasval=false;
       this.removeSelectedRows();
-
       this.selection.clear();
       this.cdr.detectChanges();
     
@@ -540,7 +544,7 @@ export class LeasemanagementComponent implements OnInit {
           body: "Are you sure , you want to close without saving",
         },
         panelClass: 'close-dialog',
-        width: '379px',
+        width: '24%',
         maxWidth: '85.5vw ',
         height: '195px',
         disableClose: true
@@ -589,7 +593,7 @@ export class LeasemanagementComponent implements OnInit {
           body: "Are you sure , you want to close without saving",
         },
         panelClass: 'close-dialog',
-        width: '379px',
+        width: '24%',
         maxWidth: '85.5vw ',
         height: '195px',
         disableClose: true
@@ -639,7 +643,7 @@ export class LeasemanagementComponent implements OnInit {
           body: "Are you sure , you want to close without saving",
         },
         panelClass: 'close-dialog',
-        width: '379px',
+        width: '24%',
         maxWidth: '85.5vw ',
         height: '195px',
         disableClose: true
@@ -743,7 +747,7 @@ export class LeasemanagementComponent implements OnInit {
               body: "Are you sure , you want to close without saving",
             },
             panelClass: 'close-dialog',
-            width: '379px',
+            width: '24%',
             maxWidth: '85.5vw ',
             height: '195px',
             disableClose: true
@@ -800,7 +804,7 @@ export class LeasemanagementComponent implements OnInit {
           body: "Are you sure , you want to close without saving",
         },
         panelClass: 'close-dialog',
-        width: '379px',
+        width: '24%',
         maxWidth: '85.5vw ',
         height: '195px',
         disableClose: true
@@ -856,7 +860,7 @@ export class LeasemanagementComponent implements OnInit {
         body: "Are you sure , you want to close without saving",
       },
       panelClass: 'close-dialog',
-      width: '379px',
+      width: '24%',
       maxWidth: '85.5vw ',
       height: '195px',
       disableClose: true
@@ -1005,7 +1009,7 @@ export class LeasemanagementComponent implements OnInit {
           body: "Are you sure , you want to delete",
         },
         panelClass: 'close-dialog',
-        width: '379px',
+        width: '24%',
         maxWidth: '85.5vw ',
         height: '195px',
         disableClose: true

@@ -136,8 +136,11 @@ export class VacatecomponentComponent implements OnInit {
       this.service.VocateLease(signeddetail).subscribe((x) => {
         this.spinner.hide();
         console.log("vacate uploaded");
+        this.Vacateformgroup.reset();
+        
         this.notificationSnackBarComponent.openSnackBar('Uploaded in successfully', SnackBarStatus.success);
-        this.dialogRef.close()
+        this.dialogRef.close();
+     
       },
         err => {
           console.log(err);

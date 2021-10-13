@@ -97,5 +97,6 @@ export class LeaseRenew extends CommonClass{
     expiryDate:Date;
     revisedRent:number;
     revisedRatio:number;
+    documentID:number;
 
 }

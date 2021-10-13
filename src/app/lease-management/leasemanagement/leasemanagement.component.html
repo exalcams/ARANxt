@@ -164,7 +164,7 @@
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"  style="background-color: #f3f3f4;"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{highlight3: row.highlighted}"  
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="openDratEdtitor(row)" [ngClass]="{highlight3: row.highlighted}"  
                 style="border-bottom-style: none;"></tr>
 
             </table>
@@ -175,8 +175,9 @@
             </mat-icon>
             <span class="nodata">The table does not contain any records</span>
           </div> -->
-          <div  flex fxLayoutAlign="center center"   *ngIf="!LeaseDrafts.length">
-            <img src="./assets/Empty.svg"  style="height: 419px;">
+          <div  flex fxLayoutAlign="center center" fxLayout="column" *ngIf="!LeaseDrafts.length">
+            <img src="./assets/Empty.svg"  style="height: 150px;">
+            <label class="nodata">The table does not contain any records</label>
           </div>
         </div>
     </div>
@@ -204,13 +205,13 @@
                     <mat-icon
                         style="font-family: 'Material Icons';font-size: 15px;text-align-last: center; line-height: 24px;">
                         save</mat-icon>
-                    <label class="save_label">Save</label>
+                    <span class="save_label">Save</span>
                 </div>
                 <div fxLayout="row" matRipple class="icon_outer" (click)="closeDraft('new')">
                     <mat-icon
                         style="font-family: 'Material Icons';font-size: 13px;text-align-last: center; line-height: 24px;">
                         clear</mat-icon>
-                    <label class="save_label">Close</label>
+                    <span class="save_label">Close</span>
                 </div>
             </div>
             <!-- <button mat-raised-button class="saveBtn" (click)="saveNewDraft()">Save</button>
@@ -228,13 +229,13 @@
                             <mat-icon
                                 style="font-family: 'Material Icons';font-size: 15px;text-align-last: center; line-height: 24px;">
                                 save</mat-icon>
-                            <label class="save_label">Save</label>
+                            <span class="save_label">Save</span>
                         </div>
                         <div fxLayout="row" matRipple class="icon_outer" (click)="closeDraft('editor1')">
                             <mat-icon
                                 style="font-family: 'Material Icons';font-size: 13px;text-align-last: center; line-height: 24px;">
                                 clear</mat-icon>
-                            <label class="save_label">Close</label>
+                            <span class="save_label">Close</span>
                         </div>
                     </div>
                 </div>
@@ -250,13 +251,13 @@
                             <mat-icon
                                 style="font-family: 'Material Icons';font-size: 15px;text-align-last: center; line-height: 24px;">
                                 save</mat-icon>
-                            <label class="save_label">Save</label>
+                            <span class="save_label">Save</span>
                         </div>
                         <div fxLayout="row" matRipple class="icon_outer" (click)="closeDraft('editor2')">
                             <mat-icon
                                 style="font-family: 'Material Icons';font-size: 13px;text-align-last: center; line-height: 24px;">
                                 clear</mat-icon>
-                            <label class="save_label">Close</label>
+                            <span class="save_label">Close</span>
                         </div>
                     </div>
                 </div>

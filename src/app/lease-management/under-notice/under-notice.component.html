@@ -215,8 +215,9 @@
           </mat-icon>
           <span class="nodata">The table does not contain any records</span>
         </div> -->
-        <div  flex fxLayoutAlign="center center"  *ngIf="!underNoticeLeases.length">
-          <img src="./assets/Empty.svg"  style="height: 419px;">
+        <div  flex fxLayoutAlign="center center" fxLayout="column" *ngIf="!underNoticeLeases.length">
+          <img src="./assets/Empty.svg"  style="height: 150px;">
+          <label class="nodata">The table does not contain any records</label>
         </div>
     </mat-sidenav-content>
   </mat-sidenav-container>

@@ -211,7 +211,7 @@
                   </div>
 
                   <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px"
-                   class="pointer" (click)="Deleteleaserow(row.documentID);">
+                   class="pointer" (click)="Deleteleaserow(row.leaseID);">
                     <img src="./assets/iconmonstr-trash-can-28.svg" class="actionstable">
                     <span class="actionsspan">Delete</span>
                   </div>
@@ -241,8 +241,9 @@
       </mat-icon>
       <span class="nodata">The table does not contain any records</span>
     </div> -->
-    <div  flex fxLayoutAlign="center center"  *ngIf="!AllLeases.length">
-      <img src="./assets/Empty.svg"  style="height: 419px;">
+    <div  flex fxLayoutAlign="center center" fxLayout="column" *ngIf="!AllLeases.length">
+      <img src="./assets/Empty.svg"  style="height: 150px;">
+      <label class="nodata">The table does not contain any records</label>
     </div>
     </mat-sidenav-content>
 
