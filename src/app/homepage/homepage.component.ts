@@ -24,25 +24,34 @@ declare const annyang: any;
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss'],
   animations: [
-    trigger('fadeSlideInOut_one', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(10px)' }),
-        animate('500ms', style({ opacity: 1, transform: 'translateY(0)' })),
+    trigger('openClose', [
+      state('open', style({
+        width: '200px'
+      })),
+      state('closed', style({
+        width: '64px'
+      })),
+      transition('open => closed', [
+        animate('.2s')
       ]),
-
+      transition('closed => open', [
+        animate('.2s')
+      ]),
     ]),
-
-    trigger('fadeSlideInOut', [
-
-      state('none, void', style({
-        opacity: 0, transform: 'translateY(10px)'
+    trigger('marginAlign', [
+      state('open', style({
+        marginLeft: '433px'
       })),
-      state('maximum', style({
-        opacity: 1, transform: 'translateY(0)'
+      state('closed', style({
+        marginLeft: '297px'
       })),
-      transition('none => maximum', animate('0.8s'))
-    ]),
-
+      transition('open => closed', [
+        animate('.2s')
+      ]),
+      transition('closed => open', [
+        animate('.2s')
+      ]),
+    ])
   ],
   encapsulation: ViewEncapsulation.None,
 })
@@ -81,10 +90,15 @@ export class HomepageComponent implements OnInit {
   setInterval = setInterval;
   getspace: string[] = [];
   speech: boolean;
-  selectedNode:string="";
-  selectedNodePath:string="";
+  selectedNode: string = "";
+  selectedNodePath: string = "";
+  isFolded: boolean = false;
 
-  constructor(public dialog: MatDialog, private router: Router, private services: SpaceService, private ngZone: NgZone) {
+  constructor(
+    public dialog: MatDialog,
+    private router: Router,
+    private services: SpaceService,
+    private ngZone: NgZone) {
 
   }
 
@@ -181,7 +195,7 @@ export class HomepageComponent implements OnInit {
       this.TREE_DATA = <TreeItem[]>data;
       this.treeSource.data = this.treeConstruct(this.TREE_DATA);
       console.log("tree data", this.TREE_DATA);
-      this.selectedNode=this.TREE_DATA[0].name;
+      this.selectedNode = this.TREE_DATA[0].name;
     });
     this.Space = '';
     this.SubSpace = '';
@@ -469,12 +483,15 @@ export class HomepageComponent implements OnInit {
     this.isLeasemanagement = false;
 
   }
-  setSelectedNode(node){
+  setSelectedNode(node) {
     console.log(node);
-    this.selectedNode=node.name;
-    console.log("tree source",this.treeSource.data);
+    this.selectedNode = node.name;
+    console.log("tree source", this.treeSource.data);
   }
-  setNodePath(node:TreeItem){
-    
+  setNodePath(node: TreeItem) {
+
+  }
+  toggleSideMenu() {
+    this.isFolded = !this.isFolded;
   }
 }

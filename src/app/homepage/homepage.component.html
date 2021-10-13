@@ -1,20 +1,19 @@
-<mat-drawer-container style="height: 100%;" autosize="true">
+<mat-drawer-container style="height: 100%;">
     <mat-drawer mode="side" opened class="size" style="border-right: 1px solid rgb(242, 242, 242);">
         <div fxLayout="row" fxLayoutAlign=" none" fxFlex="100">
 
-
-            <div (window:resize)="onResize($event)" *ngIf="fullmenu" fxLayout="column" class="sidenav_1">
+            <div fxLayout="column" [@openClose]="!isFolded ? 'open' : 'closed'" class="sidenav_1 test" [ngClass]="{'sidenav_1_short':isFolded}">
                 <div fxLayoutAlign="center" style="padding: 12px;">
-                    <img class="ara_img" src="./assets/ara_img.png">
+                    <img *ngIf="isFolded" width="20px" src="./assets/short_ara.png">
+                    <img *ngIf="!isFolded" class="ara_img" src="./assets/ara_img.png">
                 </div>
                 <div class="divider"></div>
                 <div fxFlex class="menu_container">
                     <div class="menu">Menu</div>
 
-
                     <div fxLayout="row" [ngClass]="overview_bool==true?'inner_menus_home_highlight':'inner_menus_home'"
                         (click)="home_clik()">
-                        <div style="margin-left: 9%;">
+                        <div style="margin-left: 8px;">
                             <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==false"
                                 src="./assets/dashboard_icon.svg">
                             <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==true"
@@ -22,21 +21,21 @@
 
                         </div>
                         <div [ngClass]="overview_bool==true?'inner_menus_highlight':'inner_menus'"
-                            style="margin-left: 16px;">Home</div>
+                            style="margin-left: 16px;" *ngIf="!isFolded">Home</div>
                     </div>
 
                     <div fxLayout="row" class="inner_menus_home">
-                        <div style="margin-left: 9%;">
+                        <div style="margin-left: 8px;">
                             <img style="width: 14px;vertical-align: middle;" src="./assets/models.svg">
                         </div>
-                        <div class="inner_menus" style="margin-left: 16px;">Models</div>
+                        <div class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded">Models</div>
                     </div>
 
                     <div fxLayout="row" class="inner_menus_home">
-                        <div style="margin-left: 9%;">
+                        <div style="margin-left: 8px;">
                             <img style="width: 14px;vertical-align: middle;" src="./assets/rental_icon.svg">
                         </div>
-                        <div class="inner_menus" style="margin-left: 16px;">Rental</div>
+                        <div class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded">Rental</div>
                     </div>
 
 
@@ -44,30 +43,29 @@
 
 
                     <div fxLayout="row" class="inner_menus_home">
-                        <div style="margin-left: 9%;">
+                        <div style="margin-left: 8px;">
                             <img style="width: 14px;vertical-align: middle;" src="./assets/chatbot_icon.svg">
                         </div>
-                        <div class="inner_menus" style="margin-left: 16px;">Chat Bot</div>
+                        <div class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded">Chat Bot</div>
                     </div>
 
                     <div fxLayout="row" class="inner_menus_home">
-                        <div style="margin-left: 9%;">
+                        <div style="margin-left: 8px;">
                             <img style="width: 14px;vertical-align: middle;" src="./assets/privacy_icon.svg">
                         </div>
-                        <div class="inner_menus" style="margin-left: 16px;">Privacy Policy</div>
+                        <div class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded">Privacy Policy</div>
                     </div>
-                    <!-- <div fxLayout="row" class="inner_menus_home" (click)="isLeasemanagement=!isLeasemanagement;"> -->
                     <div fxLayout="row" (click)="leaseclk()"
                         [ngClass]="overview_bool==false?'inner_menus_home_highlight':'inner_menus_home'">
 
-                        <div style="margin-left: 9%;">
+                        <div style="margin-left: 8px;">
                             <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==true"
                                 src="./assets/date-expired_ash.svg">
                             <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==false"
                                 src="./assets/date-expired_blue.svg">
                         </div>
                         <div [ngClass]="overview_bool==false?'inner_menus_highlight':'inner_menus'"
-                            style="margin-left: 16px;">Lease</div>
+                            style="margin-left: 16px;" *ngIf="!isFolded">Lease</div>
                     </div>
                 </div>
                 <!-- <div>
@@ -85,71 +83,29 @@
                 </div> -->
                 <div fxFlex></div>
                 <div class="user-panel">
-                    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px" style="padding: 8px;">
+                    <div fxLayout="row" fxLayoutAlign="center center" style="padding: 8px;" [style.gap]="isFolded?'0px':'16px'">
                         <img style="height: 28px;" src="./assets/face.png">
-                        <label style="color: #394256;
+                        <label *ngIf="!isFolded" style="color: #394256;
                         font-size: 11px;font-weight:500 ;font-family: poppins-med;">{{currentUser}}</label>
-                        <img src="assets/Images/userActive.svg" width="8px">
+                        <img src="assets/Images/userActive.svg" width="8px" class="activity-img">
                     </div>
-                    <div fxLayout="row" style="padding:0px 8px 8px;" fxLayoutAlign="center" fxLayoutGap="16px">
+                    <div fxLayout="row" fxLayoutGap="16px" style="padding:0px 8px 8px;cursor: pointer;" fxLayoutAlign="center" (click)="logout()">
                         <div>
                             <img src="./assets/logout_ash.svg" style="width: 12px;">
                         </div>
-                        <div style="color: #394256;
-                       font-size: 11px;cursor: pointer;font-weight:500 ;font-family: poppins-med;" (click)="logout()">
+                        <div *ngIf="!isFolded" style="color: #394256;
+                       font-size: 11px;font-weight:500 ;font-family: poppins-med;">
                             Logout
                         </div>
                     </div>
                 </div>
 
                 <div style="padding:4px 12px 12px 12px;" fxLayout="row" fxLayoutAlign="end center">
-                    <img style="width: 12px;cursor: pointer;" (click)="slidemenuforbig()"
+                    <img *ngIf="!isFolded" style="width: 12px;cursor: pointer;" (click)="toggleSideMenu()"
                         src="./assets/slide_close_arrow.svg">
+                    <img *ngIf="isFolded" style="width: 10px;cursor: pointer;" src="./assets/expand_arrow.svg" alt="expand" (click)="toggleSideMenu()">
                 </div>
             </div>
-            <div *ngIf="shortmenu" fxLayout="column" fxLayoutAlign="start center"
-                class="sidenav_1_short ">
-                <div>
-                    <img style="width: 18px;margin-top:12px;" src="./assets/short_ara.png">
-                </div>
-                <div style="margin-top:60px ;">
-                    <img class="small_icons" matTooltipClass='red-tooltip' matTooltip="Home"
-                        [matTooltipPosition]="'right'" src="./assets/dashboard_icon.svg">
-                </div>
-                <div style="margin-top:15px ;">
-                    <img class="small_icons_selected" matTooltipClass='red-tooltip' matTooltip="Models"
-                        [matTooltipPosition]="'right'" src="./assets/models.svg">
-                </div>
-                <div style="margin-top:15px ; " fxLayout="row" fxLayoutAlign="center center">
-                    <img class="small_icons" matTooltipClass='red-tooltip' matTooltip="Rental"
-                        [matTooltipPosition]="'right'" src="./assets/rental_icon.svg">
-                </div>
-
-                <div style="margin-top: 15px;" fxLayout="row" fxLayoutAlign="center center">
-                    <mat-divider class="divider_small"></mat-divider>
-                </div>
-
-                <div style="margin-top:15px ;">
-                    <img class="small_icons" matTooltipClass='red-tooltip' matTooltip="Chatbot"
-                        [matTooltipPosition]="'right'" src="./assets/chatbot_icon.svg">
-                </div>
-                <div style="margin-top:15px ;">
-                    <img class="small_icons" src="./assets/privacy_icon.svg">
-                </div>
-                <div style="margin-top:15px ;">
-                    <img class="small_icons" matTooltipClass='red-tooltip' matTooltip="Logout"
-                        [matTooltipPosition]="'right'" (click)="logout()" src="./assets/logout_ash.svg">
-                </div>
-
-                <div style="position: absolute;bottom: 0px;margin-bottom: 10px;" fxLayout="row"
-                    fxLayoutAlign="center center">
-                    <img style="width: 12px;cursor: pointer;" (click)="slidemenuforsmall()"
-                        src="./assets/slide_close_arrow.svg">
-                </div>
-
-            </div>
-
-
             <!-- sidenav 2 starts here -->
             <div fxLayout="column" class="sidenav_2">
                 <div fxLayout="row" fxLayoutAlign="space-between center" class="model_bg">
@@ -191,6 +147,7 @@
                                             </mat-icon>
                                         </button>
                                         {{node.name}}
+                                        <div fxFlex></div>
                                         <button type="button" [matMenuTriggerFor]="menu1" mat-icon-button
                                             (click)="showSelected(node.name)">
                                             <mat-icon inline="true">add</mat-icon>
@@ -205,9 +162,9 @@
                                         </mat-menu>
                                     </div>
                                 </li>
-                                <ul [class.children-invisible]="!treeControl.isExpanded(node)">
+                                <!-- <ul [class.children-invisible]="!treeControl.isExpanded(node)">
                                     <ng-container matTreeNodeOutlet></ng-container>
-                                </ul>
+                                </ul> -->
                             </mat-tree-node>
                         </mat-tree>
                     </div>
@@ -219,7 +176,7 @@
 
     </mat-drawer>
 
-    <mat-drawer-content style="background-color: white;">
+    <mat-drawer-content style="background-color: white;" [@marginAlign]="!isFolded ? 'open' : 'closed'">
         <mat-toolbar class="toolbar_class">
             <div class="sidenav_3">
                 <div fxLayout="row" fxLayoutAlign="space-between center" class="header_row">
