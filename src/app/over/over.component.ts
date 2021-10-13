@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 // import { NgCircleProgressModule } from 'ng-circle-progress';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 import {
   ApexNonAxisChartSeries,
   ApexPlotOptions,
@@ -60,9 +61,26 @@ export type ChartOptions2 = {
 @Component({
   selector: 'app-over',
   templateUrl: './over.component.html',
-  styleUrls: ['./over.component.scss']
+  styleUrls: ['./over.component.scss'],
+  animations: [
+    trigger('openClose', [
+      state('open', style({
+        width: '180px'
+      })),
+      state('close', style({
+        width: '60px'
+      })),
+      transition('open => close', [
+        animate('0.2s')
+      ]),
+      transition('close => open', [
+        animate('0.2s')
+      ]),
+    ])
+  ]
 })
 export class OverComponent implements OnInit {
+  expiryisopen: boolean = false;
   public chartOptions: ChartOptions;
   public chartOptions1: ChartOptions1;
   public chartOptions2: ChartOptions2;
@@ -289,14 +307,7 @@ export class OverComponent implements OnInit {
 
 
 
-  mouseEnter() {
-    this.isDisplayhover = true;
-    this.isDisplay = false;
-  }
-  mouseLeave() {
-    this.isDisplay = true;
-    this.isDisplayhover = false;
-  }
+
   navigate() {
     this.router.navigate(['leasemanagement']);
 
@@ -313,5 +324,22 @@ export class OverComponent implements OnInit {
   dashclk() {
     this.changetolease = false;
     this.changetodashboard = true
+  }
+
+
+  ToggleExpiry() {
+    this.expiryisopen = !this.expiryisopen;
+  }
+  mouseEnter() {
+    this.isDisplayhover = true;
+    this.isDisplay = false;
+    this.expiryisopen = true;
+    // this.isDisplay = !this.isDisplay;
+  }
+  mouseLeave() {
+    // this.isDisplay = true;
+    // this.isDisplayhover = false;
+    this.isDisplayhover = !this.isDisplayhover;
+    this.expiryisopen = false;
   }
 }

@@ -30,7 +30,11 @@ export class ShiftConfirmationComponent implements OnInit {
     this.ShiftConformationForm = this.formBuilder.group({
       Penalty: ['', [Validators.required, this.nameValidator, Validators.pattern(/^([0-9]{4,10})([.][0-9]{1,2})?$/)]],
       From: ['', Validators.required],
+      To:[''],
       Remarks: ['', Validators.required]
+    });
+    this.ShiftConformationForm.get('From').valueChanges.subscribe((value)=>{
+      this.ShiftConformationForm.get('To').setValue(this.fromToOptions.filter(x=>x!=value)[0]);
     });
   }
 // validation codes
