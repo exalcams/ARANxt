@@ -164,7 +164,7 @@
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"  style="background-color: #f3f3f4;"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="openDratEdtitor(row)" [ngClass]="{highlight3: row.highlighted}"  
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="openDratEdtitor(row)" [ngClass]="{highlight3:selection.isSelected(row)}"  
                 style="border-bottom-style: none;"></tr>
 
             </table>

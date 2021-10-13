@@ -98,7 +98,7 @@
                         <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="10px">
                             <span class="formspan">Notice period</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
-                                <input matInput formControlName="NoticePeriod" class="placeholdertext">
+                                <input matInput formControlName="NoticePeriod" class="placeholdertext" (keydown)="decimalOnly($event)">
                                 <label matSuffix class="font">months</label>
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('NoticePeriod').hasError('required')">
                                     Notice period is required
@@ -240,6 +240,10 @@
                                 <input matInput formControlName="IFSCCode" class="placeholdertext">
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('IFSCCode').hasError('required')">
                                     IFSC code is required
+                                </mat-error>
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('IFSCCode').touched && !SignedDocumentDetailsForm.get('IFSCCode').hasError('required')
+                                && SignedDocumentDetailsForm.get('IFSCCode').hasError('pattern')">
+                                    Enter a valid  IFSC code
                                 </mat-error>
                             </mat-form-field>
                         </div>

@@ -33,14 +33,14 @@
     }
     
     .labelcss{
-        font-size: 11px;
+        font-size: 10px;
         color: #0d0c22;
         font-family: 'poppins-semi' !important;
         justify-content: left;
         text-align: left;
     }
     .labelcssvalue{
-        font-size: 11px;
+        font-size: 10px;
         color: #838383;
         font-family: 'poppins-semi' !important;
         text-align: left;
@@ -56,7 +56,7 @@
     }
     .formspan{
         color: #0d0c22;
-        font-size: 12px;
+        font-size: 10px;
         font-family: 'poppins-semi' !important;
         // justify-content: left;
     }
@@ -93,13 +93,17 @@
         background-color: #4410ff !important;
         color: #ffffff !important;
         width: 100%;
-        font-size: 12px;
+        font-size: 10px;
+        height: 27px;
+        line-height: normal;
       }
       .savebtnfooter{
         background-color: #4410ff !important;
         color: #ffffff !important;
         width: 20%;
-        font-size: 12px;
+        font-size: 10px;
+        height: 27px;
+        line-height: normal;
       }
     .actions{
         height: 5vh !important;
@@ -134,7 +138,7 @@
     .toolbar{
         background-color: white;
         // height: 30px;
-        padding: 16px 24px;
+        padding: 0px 24px;
         padding-bottom: 0;
       }
 
@@ -208,6 +212,18 @@
     font-size: 12px;
     color: black;
     font-weight: bold;
+    padding: 10px;
+
+}
+.filename_blue
+{
+    
+    font-size: 12px;
+    color: #1e8bed;
+    font-weight: bold;
+    /* padding: 10px; */
+    line-height: normal;
+
 
 }
 .filename_outer
@@ -215,6 +231,7 @@
     height: 10px;
     align-self: center;
     margin-top: 10px;
+    cursor: pointer;
 }
 .date
 {
@@ -227,21 +244,24 @@
 .newbtn
 {
     background-color: #4410ff !important;
-    color: #ffffff !important;
-    width: 47%;
-    font-size: 11px;
-    height: 33px;
+        color: #ffffff !important;
+        width: 31%;
+        font-size: 10px;
+        height: 25px;
+        line-height: normal;
     margin-bottom: 16px;
 }
-.highlightfileblue
-{
-    color: #1e8bed;
-    cursor: pointer;
-}
-.highlightfileblack
-{
-    color: balck;
-    cursor: pointer;
+.forminputedit{
+    color: #0d0c22 !important;
+    font-size: 10px !important;
+    font-family: 'poppins-semi' !important;
+  }
+  .textarea
+  {
+  min-height: 10px;
+  }
+  .actionstable{
+    height: 14px;
 }
 }
 

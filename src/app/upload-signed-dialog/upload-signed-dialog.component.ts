@@ -27,8 +27,10 @@ export class UploadSignedDialogComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<DraftDialogComponent>,private service: LeaseManagementService, public snackBar: MatSnackBar,public _datePipe:DatePipe,   private spinner: NgxSpinnerService,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-  ) {   this.notificationSnackBarComponent = new NotificationSnackBarComponent(this.snackBar);}
+    @Inject(MAT_DIALOG_DATA) public data: any, ) 
+    {   
+    this.notificationSnackBarComponent = new NotificationSnackBarComponent(this.snackBar);
+    }
 
   ngOnInit(): void {
     this.SignedFormGroup();
@@ -49,7 +51,7 @@ export class UploadSignedDialogComponent implements OnInit {
     HolderName : ['',[Validators.required,Validators.pattern('^[a-zA-Z]+$')]],
     AccountNo : ['',[Validators.required,Validators.pattern('^([0-9]{9,16})?$')]],
     ModeofTransfer : ['', Validators.required],
-    IFSCCode : ['',Validators.required],
+    IFSCCode : ['',[Validators.required,Validators.pattern('^[A-Z]{4}0[A-Z0-9]{6}$')]],
     // AdvanceRequest : ['', Validators.required],
     Maintenance:['',[Validators.required,Validators.pattern('^([0-9]{4,10})([.][0-9]{1,2})?$')]],
     Electrical:['',Validators.required],
@@ -172,7 +174,7 @@ onRemove(event): void {
     // this.AmountSelected();
     const charCode = (event.which) ? event.which : event.keyCode;
     if (charCode === 8 || charCode === 9 || charCode === 13 || charCode === 46
-      || charCode === 37 || charCode === 39 || charCode === 123 || charCode === 190) {
+      || charCode === 37 || charCode === 39 || charCode === 123 || charCode === 190 || charCode === 32) {
       return true;
     }
     else if (charCode < 65 || charCode > 90) {

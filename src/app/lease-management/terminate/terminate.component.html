@@ -5,7 +5,7 @@
     <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="30">
       <div fxLayout="row" class="btn_bg2" fxFlex="100">
         <mat-icon matSuffix class="serachicon_search">search</mat-icon>
-        <input matInput class="search_input1 forminputedit" placeholder="Search Document" (keyup)="applyFilter($event)">
+        <input matInput class="search_input1 forminputedit" placeholder="Search Document"  autocomplete="off" (keyup)="applyFilter($event)">
       </div>
     </div>
   </div>

@@ -68,7 +68,6 @@ export class LeasemanagementComponent implements OnInit {
   editor2: boolean = false;
   draftdata_filter: any[] = [];
   matripple_centered = true;
-
   notificationSnackBarComponent: NotificationSnackBarComponent;
   @Output() toggleFold: EventEmitter<boolean> = new EventEmitter<boolean>();
   closedialog: string = 'yes';
@@ -83,7 +82,6 @@ export class LeasemanagementComponent implements OnInit {
   toggleSideNav(value: boolean) {
     this.toggleFold.emit(!value);
   }
-
   newLeaseDraft: LeaseDraft = new LeaseDraft();
   leaseDraft1: LeaseDraft = new LeaseDraft();
   leaseDraft2: LeaseDraft = new LeaseDraft();
@@ -101,7 +99,7 @@ export class LeasemanagementComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllDrafts();
-   
+    
     this.editorConfig = {
       height: window.innerHeight - 328 + 'px',
 
@@ -117,7 +115,7 @@ export class LeasemanagementComponent implements OnInit {
       this.draftdata_filter = this.LeaseDrafts;
       this.selection = new SelectionModel<any>(true, []);
       this.spinner.hide();
-      console.log("LeaseDrafts", res);
+      // console.log("LeaseDrafts", res);
     },
       err => {
         this.spinner.hide();
@@ -145,33 +143,29 @@ export class LeasemanagementComponent implements OnInit {
       console.log("checkboxes",myCheckboxes);
   }
   highlight2(row) {
-    console.log(row)
+    // console.log(row)
     this.selectedRowIndex2 = row.documentID;
-    console.log(this.selectedRowIndex2);
+    // console.log(this.selectedRowIndex2);
   }
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: UserData): string {
     if (!row) {
-      console.log("row",row);
+      // console.log("row",row);
       
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.Documentname + 1}`;
   }
-  removeSelectedRows() {
+  // removeSelectedRows() {
+  //   this.selection.selected.forEach(item => {
+     
+  //  if(item.highlighted)
+  //  {
+  //   item.highlighted=false
+  //  }   
+  //    });
    
-    
-    this.selection.selected.forEach(item => {
-       console.log(this.LeaseDrafts.findIndex(d => d === item));
-   if(item.highlighted)
-   {
-    item.highlighted=false
-
-   }
-       
-     });
-    //  this.selection = new SelectionModel<Element>(true, []);
-  }
+  // }
   getrow(eve)
   {
     this.seletedrows_array.push(eve)
@@ -229,7 +223,7 @@ export class LeasemanagementComponent implements OnInit {
     // let fileID = "1QMOPHcNxzlLTFlwbQa1n5t_WU3yMsN5R";
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID, signInOptions)
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         const dialogRef = this.dialog.open(GDriveComponent,
           {
             panelClass: "g-drive-dialog",
@@ -290,7 +284,7 @@ export class LeasemanagementComponent implements OnInit {
 
   saveNewDraft() {
     this.editor_mode=1
-    console.log("savednewlease",this.savedNewLease);
+    // console.log("savednewlease",this.savedNewLease);
     
    if(this.savednewLeaseHasval)
    {
@@ -441,7 +435,7 @@ export class LeasemanagementComponent implements OnInit {
       const dialogConfig: MatDialogConfig = {
         data: {
           title: "Close",
-          body: "Are you sure , you want to close without saving",
+          body: "Are you sure want to close without saving",
         },
         panelClass: 'close-dialog',
         width: '24%',
@@ -460,7 +454,7 @@ export class LeasemanagementComponent implements OnInit {
           this.neweditorchange=false;
           // this.savedNewLease=new LeaseDraft();
           this.savednewLeaseHasval=false;
-          this.removeSelectedRows();
+      
           this.selection.clear();
          
           this.cdr.detectChanges();
@@ -477,7 +471,7 @@ export class LeasemanagementComponent implements OnInit {
       // this.checkbox.nativeElement=null;
       // this.savedNewLease=new LeaseDraft();;
       this.savednewLeaseHasval=false;
-      this.removeSelectedRows();
+
       this.selection.clear();
      
       this.cdr.detectChanges();
@@ -492,7 +486,7 @@ export class LeasemanagementComponent implements OnInit {
       const dialogConfig: MatDialogConfig = {
         data: {
           title: "Close",
-          body: "Are you sure , you want to close without saving",
+          body: "Are you sure  want to close without saving",
         },
         panelClass: 'close-dialog',
         width: '24%',
@@ -511,7 +505,7 @@ export class LeasemanagementComponent implements OnInit {
           this.neweditorchange=false;
           // this.savedNewLease=new LeaseDraft();
           this.savednewLeaseHasval=false;
-          this.removeSelectedRows();
+      
           this.selection.clear();
         
           this.cdr.detectChanges();
@@ -527,7 +521,7 @@ export class LeasemanagementComponent implements OnInit {
       this.neweditorchange=false;
       // this.savedNewLease=new LeaseDraft();;
       this.savednewLeaseHasval=false;
-      this.removeSelectedRows();
+
       this.selection.clear();
       this.cdr.detectChanges();
     
@@ -541,7 +535,7 @@ export class LeasemanagementComponent implements OnInit {
       const dialogConfig: MatDialogConfig = {
         data: {
           title: "Close",
-          body: "Are you sure , you want to close without saving",
+          body: "Are you sure  want to close without saving",
         },
         panelClass: 'close-dialog',
         width: '24%',
@@ -560,7 +554,7 @@ export class LeasemanagementComponent implements OnInit {
           // this.savedNewLease=new LeaseDraft();;
           this.savednewLeaseHasval=false;
           this.neweditorchange=false;
-          this.removeSelectedRows();
+        
 
           this.selection.clear();
           this.cdr.detectChanges();
@@ -575,7 +569,7 @@ export class LeasemanagementComponent implements OnInit {
       this.neweditorchange=false;
       // this.savedNewLease=new LeaseDraft();;
       this.savednewLeaseHasval=false;
-      this.removeSelectedRows();
+      
 
       this.selection.clear();
       this.cdr.detectChanges();
@@ -590,7 +584,7 @@ export class LeasemanagementComponent implements OnInit {
       const dialogConfig: MatDialogConfig = {
         data: {
           title: "Close",
-          body: "Are you sure , you want to close without saving",
+          body: "Are you sure want to close without saving",
         },
         panelClass: 'close-dialog',
         width: '24%',
@@ -609,8 +603,7 @@ export class LeasemanagementComponent implements OnInit {
           this.neweditorchange=false;
           // this.savedNewLease=new LeaseDraft();;
           this.savednewLeaseHasval=false;
-          this.removeSelectedRows();
-
+        
           this.selection.clear();
           this.cdr.detectChanges();
          
@@ -625,7 +618,7 @@ export class LeasemanagementComponent implements OnInit {
       this.neweditorchange=false;
       // this.savedNewLease=new LeaseDraft();;
       this.savednewLeaseHasval=false;
-      this.removeSelectedRows();
+   
 
       this.selection.clear();
       this.cdr.detectChanges();
@@ -640,7 +633,7 @@ export class LeasemanagementComponent implements OnInit {
       const dialogConfig: MatDialogConfig = {
         data: {
           title: "Close",
-          body: "Are you sure , you want to close without saving",
+          body: "Are you sure  to close without saving",
         },
         panelClass: 'close-dialog',
         width: '24%',
@@ -659,7 +652,7 @@ export class LeasemanagementComponent implements OnInit {
           this.neweditorchange=false;
           // this.savedNewLease=new LeaseDraft();;
           this.savednewLeaseHasval=false;
-          this.removeSelectedRows();
+     
 
           this.selection.clear();
           this.cdr.detectChanges();
@@ -675,7 +668,7 @@ export class LeasemanagementComponent implements OnInit {
       // this.savedNewLease=new LeaseDraft();;
       this.savednewLeaseHasval=false;
       this.neweditorchange=false;
-      this.removeSelectedRows();
+      
 
       this.selection.clear();
       this.cdr.detectChanges();
@@ -691,7 +684,7 @@ export class LeasemanagementComponent implements OnInit {
       const dialogConfig: MatDialogConfig = {
         data: {
           title: "Close",
-          body: "Are you sure , you want to close without saving",
+          body: "Are you sure  want to close without saving",
         },
         panelClass: 'close-dialog',
         width: '379px',
@@ -710,7 +703,7 @@ export class LeasemanagementComponent implements OnInit {
           this.neweditorchange=false;
           // this.savedNewLease=new LeaseDraft();;
           this.savednewLeaseHasval=false;
-          this.removeSelectedRows();
+         
 
           this.selection.clear();
           this.cdr.detectChanges();
@@ -726,8 +719,7 @@ export class LeasemanagementComponent implements OnInit {
       this.neweditorchange=false;
       // this.savedNewLease=new LeaseDraft();;
       this.savednewLeaseHasval=false;
-      this.removeSelectedRows();
-
+     
       this.selection.clear();
       this.cdr.detectChanges();
     
@@ -744,7 +736,7 @@ export class LeasemanagementComponent implements OnInit {
       const dialogConfig: MatDialogConfig = {
             data: { 
               title: "Close",
-              body: "Are you sure , you want to close without saving",
+              body: "Are you sure  want to close without saving",
             },
             panelClass: 'close-dialog',
             width: '24%',
@@ -763,7 +755,7 @@ export class LeasemanagementComponent implements OnInit {
                     }
                     else if(result == "yes"  && !this.editor1) {
                       this.selectedPage = "draft";
-                      this.removeSelectedRows();
+                   
 
                             this.selection.clear();
                             this.editor2change=false;
@@ -786,7 +778,7 @@ export class LeasemanagementComponent implements OnInit {
           {
             this.selectedPage = "draft";
             this.editor2change=false;
-            this.removeSelectedRows();
+        
 
             this.selection.clear();
             this.cdr.detectChanges();
@@ -801,7 +793,7 @@ export class LeasemanagementComponent implements OnInit {
       const dialogConfig: MatDialogConfig = {
         data: {
           title: "Close",
-          body: "Are you sure , you want to close without saving",
+          body: "Are you sure  want to close without saving",
         },
         panelClass: 'close-dialog',
         width: '24%',
@@ -821,7 +813,7 @@ export class LeasemanagementComponent implements OnInit {
                 {
                   this.selectedPage = "draft";
                   this.editor1change=false;
-                  this.removeSelectedRows();
+             
 
                   this.selection.clear();
                   this.cdr.detectChanges();
@@ -844,7 +836,7 @@ export class LeasemanagementComponent implements OnInit {
       this.selectedPage = "draft";
       this.editor1change=false;
       console.log(this.dataSource);
-      this.removeSelectedRows();
+    
       this.selection.clear();
       this.cdr.detectChanges();
      
@@ -857,7 +849,7 @@ export class LeasemanagementComponent implements OnInit {
     const dialogConfig: MatDialogConfig = {
       data: {
         title: "Close",
-        body: "Are you sure , you want to close without saving",
+        body: "Are you sure  want to close without saving",
       },
       panelClass: 'close-dialog',
       width: '24%',
@@ -873,7 +865,7 @@ export class LeasemanagementComponent implements OnInit {
           this.neweditorchange=false;
           // this.savedNewLease=null;
           this.savednewLeaseHasval=false;
-          this.removeSelectedRows();
+      
           this.selection.clear();
           this.cdr.detectChanges();
                    }
@@ -884,7 +876,7 @@ export class LeasemanagementComponent implements OnInit {
   else if(!this.neweditorchange ){
     this.selectedPage = "draft";
     this.neweditorchange=false;
-    this.removeSelectedRows();
+ 
 
           this.selection.clear();
           // this.savedNewLease=null;
@@ -1006,7 +998,7 @@ export class LeasemanagementComponent implements OnInit {
       const dialogConfig: MatDialogConfig = {
         data: {
           title: "Delete",
-          body: "Are you sure , you want to delete",
+          body: "Are you sure  want to delete",
         },
         panelClass: 'close-dialog',
         width: '24%',

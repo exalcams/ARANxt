@@ -1,11 +1,12 @@
 import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LeaseManagement, LeaseRenew } from 'src/app/Model/Leasemanagement';
-import { NotificationSnackBarComponent } from 'src/app/notification/notification-snack-bar/notification-snack-bar.component';
-import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/notification-snackbar-status-enum';
 import { LeaseManagementService } from 'src/app/service/lease-management.service';
 import { saveAs } from 'file-saver';
+import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/notification-snackbar-status-enum';
+import { NotificationSnackBarComponent } from 'src/app/notification/notification-snack-bar/notification-snack-bar.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-renewcomponent',
   templateUrl: './renewcomponent.component.html',
@@ -15,7 +16,7 @@ import { saveAs } from 'file-saver';
 export class RenewcomponentComponent implements OnInit {
   Vacateformgroup: FormGroup;
   toppings = new FormControl();
-  notificationSnackBarComponent: NotificationSnackBarComponent;
+
   leaseData: LeaseManagement = new LeaseManagement();
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   leaseID: any;
@@ -30,11 +31,14 @@ export class RenewcomponentComponent implements OnInit {
   i: number = 0;
   selectedDocId: number;
   selecteddocName: any;
+  notificationSnackBarComponent: NotificationSnackBarComponent;
   newbool: boolean;
-  constructor(public dialogRef: MatDialogRef<RenewcomponentComponent>, private service: LeaseManagementService, private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any,) {
+  constructor(public dialogRef: MatDialogRef<RenewcomponentComponent>, public snackBar: MatSnackBar, private service: LeaseManagementService, private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any,) {
     this.leaseData = this.data;
     this.leaseID = this.data.leaseID;
     console.log("dialogData", this.leaseData);
+    this.notificationSnackBarComponent = new NotificationSnackBarComponent(this.snackBar);
+    
   }
 
   ngOnInit(): void {
@@ -62,10 +66,10 @@ export class RenewcomponentComponent implements OnInit {
   }
   SignedFormGroup(): void {
     this.Vacateformgroup = this.formBuilder.group({
-      RenewOn: ['', Validators.required],
-      Validfor: ['', Validators.required],
+      RenewOn: ['',[Validators.required,this.invalidDateValidatorFn]],
+      Validfor: ['',[Validators.required,Validators.pattern('^[0-9]+$')]],
       NewExpiryDate: ['', Validators.required],
-      RevisedRent: ['', Validators.required],
+      RevisedRent: ['',[Validators.required,Validators.pattern('^([0-9]{4,10})([.][0-9]{1,2})?$')]],
       Revisedratio: ['', Validators.required],
       Remarks: ['', Validators.required]
     });
@@ -80,7 +84,32 @@ export class RenewcomponentComponent implements OnInit {
   public setRow(_index: number) {
     this.selectedIndex = _index;
   }
-
+  decimalOnly(event): boolean {
+    // this.AmountSelected();
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode === 8 || charCode === 9 || charCode === 13 || charCode === 46
+      || charCode === 37 || charCode === 39 || charCode === 123 || charCode === 190) {
+      return true;
+    }
+    else if (charCode < 48 || charCode > 57) {
+      return false;
+    }
+    return true;
+  }
+  invalidDateValidatorFn(): ValidatorFn {
+    let invalidDate
+   var a =  (control: AbstractControl): { [key: string]: any } => {
+  
+      const date = new Date(control.value);
+  
+      invalidDate= !control.value || date.getMonth === undefined;
+    
+      return invalidDate ? { 'invalidDate': { value: control.value } } : null;
+  
+    };
+    console.log("invaliddate",invalidDate);
+  return a
+  }
   Renew(): void {
     const renew = new LeaseRenew();
     renew.leaseID = this.leaseID;
@@ -92,10 +121,8 @@ export class RenewcomponentComponent implements OnInit {
 
     if ((this.Vacateformgroup.valid) && (this.files)) {
       this.service.RenewLease(renew, this.files).subscribe((x) => {
-        console.log(x);
-        this.notificationSnackBarComponent.openSnackBar('Uploaded in successfully', SnackBarStatus.success);
+        console.log(x);        
         this.Vacateformgroup.reset();
-
       },
         err => {
           console.log(err);
@@ -103,7 +130,7 @@ export class RenewcomponentComponent implements OnInit {
         })
     }
     else if (!this.files && this.Vacateformgroup.valid) {
-      this.notificationSnackBarComponent.openSnackBar('File need to be Uploaded', SnackBarStatus.success);
+      this.notificationSnackBarComponent.openSnackBar('plaese upload document', SnackBarStatus.warning);
     }
     else if (!this.Vacateformgroup.valid) {
       this.Vacateformgroup.setErrors({ item: true })
@@ -187,7 +214,7 @@ this.selecteddocName=docName;
       this.service.DownloadLeaseDocument(this.selectedDocId).subscribe((res)=>{
        
         let blob:any = new Blob([res], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
-        saveAs(blob, `${this.selecteddocName}.docx`);
+        saveAs(blob, `${this.selecteddocName}.pdf`);
         console.log(`${this.selecteddocName} downloaded`);
       },
       err=>{
