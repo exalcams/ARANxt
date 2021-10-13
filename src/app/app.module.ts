@@ -10,7 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatRadioModule} from '@angular/material/radio';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSidenavModule, MAT_DRAWER_DEFAULT_AUTOSIZE} from '@angular/material/sidenav';
 
 import { MatTableModule } from '@angular/material/table';
 import {MatMenuModule} from '@angular/material/menu';
