@@ -83,12 +83,22 @@ export class VacatecomponentComponent implements OnInit {
       return { ptDate: true };
     return null;
   }
+  // invalidDateValidatorFn(): ValidatorFn {
+  //   return (control: AbstractControl): { [key: string]: any } => {
+  //     const date = new Date(control.value);
+  //     const invalidDate = !control.value || date.getMonth === undefined;
+  //     return invalidDate ? { 'invalidDate': { value: control.value } } : null;
+  //   };
+  // }
   invalidDateValidatorFn(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } => {
+    let invalidDate
+    var a =  (control: AbstractControl): { [key: string]: any } => {
       const date = new Date(control.value);
-      const invalidDate = !control.value || date.getMonth === undefined;
+      invalidDate= !control.value || date.getMonth === undefined;
       return invalidDate ? { 'invalidDate': { value: control.value } } : null;
     };
+    console.log("invaliddate",invalidDate);
+  return a
   }
   decimalOnly(event): boolean {
     // this.AmountSelected();
@@ -101,6 +111,24 @@ export class VacatecomponentComponent implements OnInit {
       return false;
     }
     return true;
+  }
+  // Only Integer Numbers ((charCode === 65 || charCode === 66 || charCode ===67 || charCode === 68 || charCode ===69
+      // || charCode === 70 || charCode ===71 || charCode === 72 || charCode ===73 || charCode === 74 || charCode ===75
+      // || charCode === 76 || charCode ===77 || charCode === 78 || charCode ===79 || charCode === 80 || charCode ===81
+      // || charCode === 82 || charCode ===83 || charCode === 84 || charCode ===85 || charCode === 86 || charCode ===87
+      // || charCode === 88 || charCode ===89 || charCode ===90))
+  keyPressNumbers(event) {
+    var charCode = (event.which) ? event.which : event.keyCode;
+    // Only Numbers 0-9
+    if ((charCode < 48 || charCode > 57 )) {
+      event.preventDefault();
+      return false;
+    } else {
+      //  if ((charCode >= 32 || charCode <= 47)){
+      //   return true;
+      // }
+      return true;
+    }
   }
  // validation codes
 
