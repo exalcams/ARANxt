@@ -8,7 +8,7 @@ import { LeaseManagementService } from 'src/app/service/lease-management.service
 import { NgxSpinnerService } from 'ngx-spinner';
 import { saveAs } from 'file-saver';
 import { SendMailDialogComponent } from 'src/app/send-mail-dialog/send-mail-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { NotificationSnackBarComponent } from 'src/app/notification/notification-snack-bar/notification-snack-bar.component';
 import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/notification-snackbar-status-enum';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -16,6 +16,7 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { VacatecomponentComponent } from '../vacatecomponent/vacatecomponent.component';
 import { RenewcomponentComponent } from '../renewcomponent/renewcomponent.component';
 import { TerminatecomponentComponent } from '../terminatecomponent/terminatecomponent.component';
+import { CloseDialogComponent } from 'src/app/close-dialog/close-dialog.component';
 @Component({
   selector: 'app-leasemanagement-expiry',
   templateUrl: './leasemanagement-expiry.component.html',
@@ -398,21 +399,41 @@ openDialogterminate() {
 //     })
 // }
 Deleteleaserow(documentID){
-    
-  this.spinner.show();
+  // 
   this.sideNavStatus=true;
-  this.service.DeleteLeaseManagement(documentID).subscribe((x) => {
-    this.sideNavStatus=false;
-    console.log(x);
-    this.GetExpiryLeases()
-    this.spinner.hide();
-    this.notificationSnackBarComponent.openSnackBar('Deleted  successfully', SnackBarStatus.success);
-  },
-    err => {
+  const dialogConfig: MatDialogConfig = {
+    data: {
+      title: "Delete",
+      body: "Are you sure , you want to delete",
+    },
+    panelClass: 'close-dialog',
+    width: '24%',
+    maxWidth: '85.5vw ',
+    height: '195px',
+    disableClose: true
+  };
+  const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
+  dialogRef.afterClosed().subscribe(result => {
+    if(result=="yes")
+    {
+    this.spinner.show();
+    this.service.DeleteLeaseManagement(documentID).subscribe((x) => {
+      this.sideNavStatus=false;
+      console.log(x);
+      this.GetExpiryLeases()
       this.spinner.hide();
-      console.log(err);
+      this.notificationSnackBarComponent.openSnackBar('Deleted  successfully', SnackBarStatus.success);
+    },
+      err => {
+        this.spinner.hide();
+        console.log(err);
+  
+      })
+    }
+  })
+  // 
+    
 
-    })
 }
 
 }

@@ -34,7 +34,7 @@
                     <div fxLayout="column" class="firstdiv" fxLayoutGap="8px">
                         <div fxLayout="column" fxLayoutGap="8px" style="padding: 16px;cursor: pointer;"
                             *ngFor="let item of renewalById" [ngClass]="{'highlight':item.renewalID==selectedID}"
-                            (click)="loadData(item)">
+                            (click)="loadData(item,leaseData.documentName)">
                             <div fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%;">
                                 <span class="name">
                                     {{leaseData.clientName?leaseData.clientName:'-'}}
@@ -156,14 +156,14 @@
                 <div fxFlex="60" fxLayout="row">
                     <form [formGroup]="Vacateformgroup" style="width: 80%;" autocomplete="off">
                         <div fxLayout="column" style="width:100% !important;padding: 10px 10px;">
-                            <div *ngIf="selectedID">
+                            <div *ngIf="newbool">
                                 <button mat-raised-button class="newbtn" type="button" color="primary" (click)="newlease()">New</button>
 
                             </div>
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Renew On</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput [matDatepicker]="dp1" placeholder="Enter RenewOn"
+                                    <input matInput [matDatepicker]="dp1"
                                         formControlName="RenewOn">
                                     <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
                                     <mat-datepicker #dp1 disabled="false"></mat-datepicker>
@@ -173,7 +173,7 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Valid for</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="Enter Months" type="number" formControlName="Validfor">
+                                    <input matInput  type="number" formControlName="Validfor">
                                    
                                 </mat-form-field>
                             </div>
@@ -181,7 +181,7 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">New Expiry Date</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput [matDatepicker]="dp2" disabled placeholder="New Expiry Date"
+                                    <input matInput [matDatepicker]="dp2" disabled 
                                         formControlName="NewExpiryDate">
                                     <mat-datepicker-toggle matSuffix disabled [for]="dp2"></mat-datepicker-toggle>
                                     <mat-datepicker #dp2 disabled="false"></mat-datepicker>
@@ -192,7 +192,7 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Revised Rent</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="Revised Rent" formControlName="RevisedRent">
+                                    <input matInput  formControlName="RevisedRent">
                                 </mat-form-field>
                               
                             </div>
@@ -200,7 +200,7 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Revised ratio</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="Revised ratio" formControlName="Revisedratio">
+                                    <input matInput  formControlName="Revisedratio">
                                 </mat-form-field>
                                
                             </div>
@@ -210,7 +210,7 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Remarks</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput placeholder="Remarks" formControlName="Remarks">
+                                    <input matInput  formControlName="Remarks">
                                    
                                 </mat-form-field>
                             </div>
@@ -219,8 +219,8 @@
                                 <button mat-raised-button *ngIf="!selectedID" class="savebtn" type="button"
                                     color="primary" (click)="fileInput1.click()">Upload</button>
                             </div>
-                            <div class="filename_outer">
-                                <p class="filename">{{filename}}
+                            <div class="filename_outer" (click)="DownloadLeaseDocument()" style="cursor: pointer;">
+                                <p class="filename"  [ngClass]="newbool==true?'highlightfileblue':'highlightfileblack'">{{filename}}
                                 </p>
                             </div>
                             <!-- <div style="height: 10px;"> </div>
@@ -240,7 +240,7 @@
 
                         </div>
                     </form>
-                    <input hidden type="file" #fileInput1 id="file_id" accept=".doc , .docx , .pdf"
+                    <input hidden type="file" #fileInput1 id="file_id" accept=".pdf"
                         (change)="handleFileInput($event)" />
 
                 </div>
@@ -253,7 +253,6 @@
 
     <mat-dialog-actions class="m-0 p-16 footer" fxLayoutAlign="center center" fxLayoutGap="8px">
         <button mat-raised-button class="savebtnfooter" type="button" color="primary" (click)="Renew()">Renew</button>
-
     </mat-dialog-actions>
 
 </div>

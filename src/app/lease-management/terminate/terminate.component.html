@@ -202,15 +202,16 @@
         </div>
 
       </div>
-      <!-- <div flex fxLayoutAlign="center center" class="TableFooter" style="margin-top: 20px;"
+      <!-- <div flex fxLayoutAlign="center center"  class="TableFooter" style="margin-top: 20px;"
       *ngIf="!terminatedLeases.length">
       <mat-icon  class="infoicon">
         info
       </mat-icon>
       <span class="nodata">The table does not contain any records</span>
     </div> -->
-<div  flex fxLayoutAlign="center center"  *ngIf="!terminatedLeases.length">
-  <img src="./assets/Empty.svg"  style="height: 419px;">
+<div  flex fxLayoutAlign="center center" fxLayout="column" *ngIf="!terminatedLeases.length">
+  <img src="./assets/Empty.svg"  style="height: 150px;">
+  <label class="nodata">The table does not contain any records</label>
 </div>
     </mat-sidenav-content>
   </mat-sidenav-container>

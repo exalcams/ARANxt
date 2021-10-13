@@ -44,7 +44,7 @@
 
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('CreatedOn').touched && 
                                 SignedDocumentDetailsForm.get('CreatedOn').hasError('required')">
-                                    Creation Date is required
+                                   Enter a valid date
                                 </mat-error>
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('CreatedOn').touched && !SignedDocumentDetailsForm.get('CreatedOn').hasError('required')
                                 && SignedDocumentDetailsForm.get('CreatedOn').hasError('invalidDate')">
@@ -70,7 +70,7 @@
                                 <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
                                 <mat-datepicker #dp2 disabled="false"></mat-datepicker> -->
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('ExpiryDate').hasError('required')">
-                                    Expiry date is required
+                                    Enter a valid date
                                 </mat-error>
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('ExpiryDate').touched && !SignedDocumentDetailsForm.get('ExpiryDate').hasError('required')
                                 &&SignedDocumentDetailsForm.get('ExpiryDate').hasError('pattern')">

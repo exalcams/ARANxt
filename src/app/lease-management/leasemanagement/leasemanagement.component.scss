@@ -54,7 +54,8 @@
     outline: none;
 }
 ::placeholder {
-    color: #98abc4;
+    color: #acacac;
+ 
     font-size: 10px;
     margin-left:10px
 }
@@ -284,7 +285,8 @@ tr.mat-header-row {
 }
 .ripple_outer
 {
-    width: 58px;
+    // width: 58px;
+    padding:16px;
     height: 100%;
     text-align-last: center;
 }
