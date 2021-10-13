@@ -41,9 +41,17 @@ body { margin: 0; font-family:  'poppins' !important  }
       }
       
       .warning {
-        background-color: #ee9a2c !important;
+        background: rgb(235, 229, 255) !important;
+        color: rgb(38, 0, 156);
       }
       
       .info {
         background-color: #1992ce !important;
+      }
+      .mat-simple-snackbar {
+        font-family: 'poppins-semi';
+        font-size: 11px !important;
+      }
+      .mat-snack-bar-container {
+        min-width: 272px !important;
       }

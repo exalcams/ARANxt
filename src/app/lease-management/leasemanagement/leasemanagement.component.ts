@@ -36,8 +36,9 @@ const ELEMENT_DATA: UserData[] = [
   styleUrls: ['./leasemanagement.component.scss']
 })
 export class LeasemanagementComponent implements OnInit {
+  @Output() switchSideNav=new EventEmitter();
   displayedColumns: string[] = ['select', 'documentOwner', 'documentType', 'documentName', 'createdOn', 'modifiedOn', 'actions'];
-  dataSource = new MatTableDataSource<any>([]);
+  dataSource =new MatTableDataSource<any>([]);
   selection = new SelectionModel<any>(true, []);
   // tslint:disable-next-line:variable-name
 
@@ -78,7 +79,7 @@ export class LeasemanagementComponent implements OnInit {
   closebool: boolean;
   newDraftSavedStatus: boolean;
   objeve: any;
-  seletedrows_array: any;
+  seletedrows_array: any[]=[];
   toggleSideNav(value: boolean) {
     this.toggleFold.emit(!value);
   }
@@ -91,6 +92,7 @@ export class LeasemanagementComponent implements OnInit {
   selectedRowIndex2 = -1;
     
   editorConfig: any;
+  isDataLoaded:boolean=false;
   constructor(private dialog: MatDialog, private service: LeaseManagementService,
     private spinner: NgxSpinnerService, private cdr: ChangeDetectorRef,
     private snackBar: MatSnackBar, private socialAuthService: SocialAuthService) {
@@ -114,6 +116,7 @@ export class LeasemanagementComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.LeaseDrafts);
       this.draftdata_filter = this.LeaseDrafts;
       this.selection = new SelectionModel<any>(true, []);
+      this.isDataLoaded=true;
       this.spinner.hide();
       // console.log("LeaseDrafts", res);
     },
@@ -150,7 +153,6 @@ export class LeasemanagementComponent implements OnInit {
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: UserData): string {
     if (!row) {
-      // console.log("row",row);
       
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
@@ -265,7 +267,7 @@ export class LeasemanagementComponent implements OnInit {
       this.openDraftDialog(2);
     }
     else {
-      this.notificationSnackBarComponent.openSnackBar("please attach document", SnackBarStatus.warning);
+      this.notificationSnackBarComponent.openSnackBar("Please attach document", SnackBarStatus.warning);
     }
   }
 
@@ -1025,7 +1027,7 @@ export class LeasemanagementComponent implements OnInit {
     }
 
     else {
-      this.notificationSnackBarComponent.openSnackBar("please select a document", SnackBarStatus.warning);
+      this.notificationSnackBarComponent.openSnackBar("Please select a document", SnackBarStatus.warning);
     }
   }
   decimalOnly(event): boolean {
@@ -1055,7 +1057,7 @@ export class LeasemanagementComponent implements OnInit {
       });
     }
     else {
-      this.notificationSnackBarComponent.openSnackBar("please select a document", SnackBarStatus.warning);
+      this.notificationSnackBarComponent.openSnackBar("Please select a document", SnackBarStatus.warning);
     }
   }
  
@@ -1082,5 +1084,8 @@ export class LeasemanagementComponent implements OnInit {
           });
       }
     });
+  }
+  sideNavStatus($event){
+    this.switchSideNav.emit($event);
   }
 }

@@ -377,7 +377,7 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Remarks</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput formControlName="Remarks" class="forminputedit">
+                                    <textarea matInput formControlName="Remarks" class="forminputedit"></textarea>
                                     <mat-error *ngIf="Terminateformgroup.get('Remarks').hasError('required')"
                                         class="erroredits">
                                         Remarks is required

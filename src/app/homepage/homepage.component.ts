@@ -488,10 +488,10 @@ export class HomepageComponent implements OnInit {
     this.selectedNode = node.name;
     console.log("tree source", this.treeSource.data);
   }
-  setNodePath(node: TreeItem) {
-
-  }
   toggleSideMenu() {
     this.isFolded = !this.isFolded;
+  }
+  switchSideMenu(value:boolean){
+    this.isFolded=value;
   }
 }

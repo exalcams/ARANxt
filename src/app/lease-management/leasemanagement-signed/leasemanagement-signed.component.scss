@@ -84,13 +84,6 @@
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
     background-color: black;
   }
-  .mat-cell, .mat-header-cell {
-    border: none !important;
-    font-size: 11px;
-    padding: 0px 25px 0px 0;
-    color:#6e6d7a;
-    font-weight: 600px;
-  }
   .upload_btn
   {
     color: white;
@@ -281,7 +274,7 @@
   margin-top: 22px;
 }
 tr.mat-header-row {
-  // height: 35px;
+  height: 35px;
 }
 .viewdetails_arrow
 {
@@ -308,17 +301,6 @@ mat-sidenav{
 height: 100% !important;
 }
 
-
-td{
-  font-size: 10px !important;
-}
-th{
-  font-size: 10px !important;
-  font-family: 'poppins-semi' !important;
-}
-tr{
-// height: 40px !important;
-}
 .mat-row {
   height: auto;
   min-width: max-content !important;
@@ -326,19 +308,6 @@ tr{
 
 .mat-cell {
   padding: 8px 8px 8px 0;
-}
-
-.mat-cell, .mat-header-cell {
-  border: none !important;
-  font-size: 10px;
-}
-
-tr{
-  // background-color: #f4f3f4;
-  border-bottom-style:none;
-}
-td{
-  background-color: white;
 }
 
 // .labelcss{
@@ -413,11 +382,6 @@ td{
   line-height: 3.5;
 
 }
-tr{
-  // background-color: #f4f3f4;
-  // border-bottom-style:none;
-}
-
 
 .mat-sidenav-backdrop.mat-sidenav-shown{
   background-color: transparent !important;
@@ -456,6 +420,7 @@ tr{
 .mat-cell, .mat-header-cell {
   border: none !important;
   color:#6e6d7a;
+  font-size: 11px;
 }
 ::placeholder {
   color: #98abc4;
@@ -499,7 +464,7 @@ tr{
 }
 .ripple_outer
 {
-  width: 58px;
+  padding-left: 16px;
   color: #6e6d7a;
   height: 100%;
   text-align-last: center;
@@ -535,4 +500,7 @@ tr{
 {
   color: #1b56ca;
   font-size: 23px;
+}
+*{
+  font-family: 'poppins-semi';
 }

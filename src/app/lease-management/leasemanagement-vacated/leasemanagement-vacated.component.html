@@ -26,7 +26,7 @@
           <div class="form_bg" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
   
             <mat-toolbar class="arrowtoolbar" fxLayout="row" fxLayoutAlign="start center">
-              <img class="toggleimage"   (click)="drawer.toggle()" src="./assets/slide_close_arrow.svg">
+              <img class="toggleimage"   (click)="drawer.toggle();toggleSideNav();" src="./assets/slide_close_arrow.svg">
             </mat-toolbar> 
   
             <div fxLayout="row" fxFlex="100" class="clientview">
@@ -215,8 +215,8 @@
             </mat-icon>
             <span class="nodata">The table does not contain any records</span>
           </div> -->
-          <div  flex fxLayoutAlign="center center"  *ngIf="!underNoticeLeases.length">
-            <img src="./assets/Empty.svg"  style="height: 419px;">
+          <div  flex fxLayoutAlign="center center"  *ngIf="!underNoticeLeases.length && isDataLoaded">
+            <img src="./assets/Empty.svg"  style="height: 150px;">
           </div>
       </mat-sidenav-content>
     </mat-sidenav-container>

@@ -1,6 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
@@ -30,12 +30,13 @@ export interface PeriodicElement {
   styleUrls: ['./terminate.component.scss']
 })
 export class TerminateComponent implements OnInit {
-  
+  @Output() sideNavToggle = new EventEmitter();
   displayedColumns: string[] = ['ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action'];
   dataSource = new MatTableDataSource<any>([]);
   selection = new SelectionModel<any>(true, []);
   selectedRowIndex: any;
   days=new Date();
+  isDataLoaded:boolean=false;
   // tslint:disable-next-line:typedef-whitespace
   // tslint:disable-next-line:variable-name
   btn_name: any = 'Upload Document';
@@ -71,6 +72,7 @@ export class TerminateComponent implements OnInit {
       console.log("terminated",data);
       this.terminatedLeases=<LeaseManagement[]>data;
       this.dataSource=new MatTableDataSource(this.terminatedLeases);
+      this.isDataLoaded=true;
       this.spinner.hide();
     },
     err=>{
@@ -297,6 +299,7 @@ docdata(ind){
  {
   this.sidenav.toggle();
  }
+ this.sideNavToggle.emit(true);
 }
 openDialog() {
   const dialogRef = this.dialog.open(ShiftConfirmationComponent,{
@@ -365,5 +368,8 @@ Deleteleaserow(documentID){
   })
     // 
  
+}
+toggleSideNav(){
+  this.sideNavToggle.emit(false);
 }
 }

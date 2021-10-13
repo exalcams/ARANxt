@@ -1,6 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
@@ -29,13 +29,14 @@ export interface PeriodicElement {
   encapsulation: ViewEncapsulation.None
 })
 export class LeasemanagementVacatedComponent implements OnInit {
-
+  @Output() sideNavToggle = new EventEmitter();
   displayedColumns: string[] = ['ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action'];
   dataSource = new MatTableDataSource<any>([]);
   selection = new SelectionModel<any>(true, []);
   selectedRowIndex: any;
   selectedRowIndex2 = -1;
   days=new Date();
+  isDataLoaded:boolean=false;
   // tslint:disable-next-line:typedef-whitespace
   // tslint:disable-next-line:variable-name
   btn_name: any = 'Upload Document';
@@ -67,7 +68,7 @@ export class LeasemanagementVacatedComponent implements OnInit {
       console.log("under notice",data);
       this.underNoticeLeases=<LeaseManagement[]>data;
       this.dataSource=new MatTableDataSource(this.underNoticeLeases);
-      
+      this.isDataLoaded=true;
       this.spinner.hide();
     },
     err=>{
@@ -199,6 +200,7 @@ docdata(ind){
      {
       this.sidenav.toggle();
      }
+     this.sideNavToggle.emit(true);
 }
 upload(): void{
   this.uploadVisible = false;
@@ -328,5 +330,8 @@ Deleteleaserow(documentID){
       console.log(err);
 
     })
+}
+toggleSideNav(){
+  this.sideNavToggle.emit(false);
 }
 }
