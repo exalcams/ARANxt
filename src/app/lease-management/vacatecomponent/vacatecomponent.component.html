@@ -110,10 +110,19 @@
                                 <span class="formspan" fxFlex="50">Proposed date</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
                                     <input matInput formControlName="Proposeddate" [matDatepicker]="picker1"
-                                        class="forminputedit">
-                                    <mat-error *ngIf="Vacateformgroup.get('Proposeddate').hasError('required')"
+                                        class="forminputedit"  >
+                                    <!-- <mat-error *ngIf="Vacateformgroup.get('Proposeddate').hasError('required')"
                                         class="erroredits">
+                                        type="text" (keypress)="keyPressNumbers($event)"
                                         Proposeddate (mm/dd/yyyy format) is required
+                                    </mat-error> -->
+                                    <mat-error *ngIf="Vacateformgroup.get('Proposeddate').touched && 
+                                    Vacateformgroup.get('Proposeddate').hasError('required')"  class="erroredits">
+                                        Enter a valid date
+                                    </mat-error>
+                                    <mat-error *ngIf="Vacateformgroup.get('Proposeddate').touched && !Vacateformgroup.get('Proposeddate').hasError('required')
+                                    && Vacateformgroup.get('Proposeddate').hasError('invalidDate')"  class="erroredits">
+                                        Enter a valid date
                                     </mat-error>
                                     <!-- <mat-error *ngIf="Vacateformgroup.get('Proposeddate').hasError('VacatecomponentComponent.Date')" class="erroredits">
                                             mm/dd/yyyy format  is required
@@ -130,10 +139,18 @@
                                 <span class="formspan" fxFlex="50">Accepted date</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
                                     <input matInput formControlName="Accepteddate" [matDatepicker]="picker2"
-                                        class="forminputedit">
-                                    <mat-error *ngIf="Vacateformgroup.get('Accepteddate').hasError('required')"
+                                        class="forminputedit"  >
+                                    <!-- <mat-error *ngIf="Vacateformgroup.get('Accepteddate').hasError('required')"
                                         class="erroredits">
                                         Accepteddate (mm/dd/yyyy format) is required
+                                    </mat-error> -->
+                                    <mat-error *ngIf="Vacateformgroup.get('Accepteddate').touched && 
+                                    Vacateformgroup.get('Accepteddate').hasError('required')"  class="erroredits">
+                                        Enter a valid date
+                                    </mat-error>
+                                    <mat-error *ngIf="Vacateformgroup.get('Accepteddate').touched && !Vacateformgroup.get('Accepteddate').hasError('required')
+                                    && Vacateformgroup.get('Accepteddate').hasError('invalidDate')"  class="erroredits">
+                                        Enter a valid date
                                     </mat-error>
                                     <!-- <mat-error *ngIf="Vacateformgroup.get('Accepteddate').hasError('VacatecomponentComponent.Date')" class="erroredits">
                                             mm/dd/yyyy format  is required
@@ -147,10 +164,18 @@
                                 <span class="formspan" fxFlex="50">Inspection date</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
                                     <input matInput formControlName="Inspectiondate" [matDatepicker]="picker3"
-                                        class="forminputedit">
-                                    <mat-error *ngIf="Vacateformgroup.get('Inspectiondate').hasError('required')"
+                                        class="forminputedit"  >
+                                    <!-- <mat-error *ngIf="Vacateformgroup.get('Inspectiondate').hasError('required')"
                                         class="erroredits">
                                         Inspectiondate (mm/dd/yyyy format) is required
+                                    </mat-error> -->
+                                    <mat-error *ngIf="Vacateformgroup.get('Inspectiondate').touched && 
+                                    Vacateformgroup.get('Inspectiondate').hasError('required')"  class="erroredits">
+                                        Enter a valid date
+                                    </mat-error>
+                                    <mat-error *ngIf="Vacateformgroup.get('Inspectiondate').touched && !Vacateformgroup.get('Inspectiondate').hasError('required')
+                                    && Vacateformgroup.get('Inspectiondate').hasError('invalidDate')"  class="erroredits">
+                                        Enter a valid date
                                     </mat-error>
                                     <!-- <mat-error *ngIf="Vacateformgroup.get('Inspectiondate').hasError('VacatecomponentComponent.Date')" class="erroredits">
                                             mm/dd/yyyy format  is required
@@ -268,10 +293,18 @@
                                 <span class="formspan" fxFlex="50">Expected Date To transfer</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
                                     <input matInput formControlName="ExpectedDate" [matDatepicker]="picker4"
-                                        class="forminputedit">
-                                    <mat-error *ngIf="Vacateformgroup.get('ExpectedDate').hasError('required')"
+                                        class="forminputedit"  >
+                                    <!-- <mat-error *ngIf="Vacateformgroup.get('ExpectedDate').hasError('required')"
                                         class="erroredits">
                                         ExpectedDate (mm/dd/yyyy format) is required
+                                    </mat-error> -->
+                                    <mat-error *ngIf="Vacateformgroup.get('ExpectedDate').touched && 
+                                    Vacateformgroup.get('ExpectedDate').hasError('required')"  class="erroredits">
+                                        Enter a valid date
+                                    </mat-error>
+                                    <mat-error *ngIf="Vacateformgroup.get('ExpectedDate').touched && !Vacateformgroup.get('ExpectedDate').hasError('required')
+                                    && Vacateformgroup.get('ExpectedDate').hasError('invalidDate')"  class="erroredits">
+                                        Enter a valid date
                                     </mat-error>
                                     <!-- <mat-error *ngIf="Vacateformgroup.get('ExpectedDate').hasError('VacatecomponentComponent.Date')"  class="erroredits">
                                             mm/dd/yyyy format  is required

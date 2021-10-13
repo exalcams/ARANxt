@@ -74,12 +74,26 @@ export class TerminatecomponentComponent implements OnInit {
       return { invalidName: true };
     }
   }
+  // invalidDateValidatorFn(): ValidatorFn {
+  //   return (control: AbstractControl): { [key: string]: any } => {
+  //     const date = new Date(control.value);
+  //     const invalidDate = !control.value || date.getMonth === undefined;
+  //     return invalidDate ? { 'invalidDate': { value: control.value } } : null;
+  //   };
+  // }
   invalidDateValidatorFn(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } => {
+    let invalidDate
+   var a =  (control: AbstractControl): { [key: string]: any } => {
+  
       const date = new Date(control.value);
-      const invalidDate = !control.value || date.getMonth === undefined;
+  
+      invalidDate= !control.value || date.getMonth === undefined;
+    
       return invalidDate ? { 'invalidDate': { value: control.value } } : null;
+  
     };
+    console.log("invaliddate",invalidDate);
+  return a
   }
   decimalOnly(event): boolean {
     // this.AmountSelected();

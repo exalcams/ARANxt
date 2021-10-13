@@ -1,25 +1,26 @@
+.dashboarddivision{
+    gap: 16px;
+}
+.secondDivision{
+    min-width: 236px;
+    width: 28%;
+}
+.rowdivisionwidth{
+    gap: 16px;
+    width: 30%;
+}
+.secondrowdivision3{
+    min-width: 200px !important;
+    width: 42%;
+    flex:1;
+}
 .gap {
-    margin-top: 0% !important;
-    height: 310px;
     background-color: #ffffff;
     border-radius: 4px;
     box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.12);
-    padding: 15px;
-    // width: 80%;
-    // min-width: 200px !important;
+    width: 100%;
     min-width: 200px !important;
-    // max-width: 320px !important;
-    max-width: 300px !important;
-    justify-content: center;
 }
-
-// #chart {
-//     padding: 0;
-//     width: 100%;
-//     position: relative;
-//     bottom: 10px;
-//     min-width: 60px;
-// }
 .dot1 {
     width: 20%;
     position: relative;
@@ -85,43 +86,33 @@
     height: 17.2px;
 }
 
-.circle {
-    width: 80px;
-    height: 80px;
-    background: red;
-    border-radius: 50%;
-}
 
 .circle {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background: #571fff;
     border-radius: 50%;
-    margin-top: 4px;
 }
 
 .circle1 {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background: #ffcf00;
     border-radius: 50%;
-    margin-top: 4px;
 }
 
 .circle2 {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background: #d93011;
     border-radius: 50%;
-    margin-top: 4px;
 }
 
 .circle3 {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background: #00ba53;
     border-radius: 50%;
-    margin-top: 4px;
 }
 
 .move {
@@ -289,7 +280,6 @@
     // width: 95%;
     width: 100%;
     height: 180px ;
-    max-width: 265px !important;
 }
 .movablespan{
     font-size: 11px;
@@ -334,7 +324,6 @@
     border-radius: 4px;
     padding: 10px;
     width: 100%;
-    min-height: 350px;
 }
 .graphcondiv{
     position: relative;
@@ -501,14 +490,7 @@ margin-top: -2rem;
     font-size: 8px;
     font-family: 'poppins-semi' !important;
 }
-.chartpercent{
-    color: #00ba53;
-    position: absolute;
-    margin-left: 7.7rem;
-    padding: 48px;
-    font-size: 10px;
-    font-family: 'poppins-semi' !important;
-}
+
 .spacearrowmovable{
     transform: scale(0.7);
     align-self: right;
@@ -534,11 +516,11 @@ margin-top: -2rem;
 // }
 .secondrowdivision{
     min-width: 180px !important;
-    max-width: 330px !important;
+    width: 100%;
 }
 .secondrowdivision2row{
     min-width: 180px !important;
-    max-width: 270px !important;
+    width: 100%;
     min-height: 500px;
 }
 .performancechart{
@@ -555,10 +537,6 @@ margin-top: -2rem;
     font-size: 10px;
     color: #999999;
     font-family: 'poppins-semi' !important;
-}
-.secondrowdivision3{
-    min-width: 200px !important;
-    max-width: 340px !important;
 }
 
 .signal-wrapper{
@@ -595,6 +573,7 @@ margin-top: -2rem;
 .signal-wrapper1{
     cursor: pointer;
     .signal-container{
+        // animation: opened 3s backwards;
         height: 90px;
         flex-direction: column !important;
         display: flex !important;
@@ -610,6 +589,14 @@ margin-top: -2rem;
             }
         }
     }
+    // @keyframes opened {
+    //     0% {
+    //         width:185px;
+    //     }
+    //     100% {
+    //         width:60px !important;
+    //     }
+    // }
     .signal-table{
         display: flex !important;
         flex-direction: column !important;
@@ -654,3 +641,33 @@ margin-top: -2rem;
 //         transform: translateX(0%);
 //     }
 // }
+@media only screen and (max-width: 959px) {
+    .secondDivision{
+        width: 100%;
+    }
+    .rowdivisionwidth{
+        width: 100%;
+    }
+    .secondrowdivision3{
+        width: 100%;
+    }
+}
+
+
+
+// @media only screen and (min-width: 1920px,) and ( max-width: 2400px) {
+//     body {
+//     display: flex;
+
+//     }
+// }
+.chart-container{
+    .chartpercent{
+        color: #00ba53;
+        position: absolute;
+        font-size: 10px;
+        font-family: 'poppins-semi' !important;
+        margin-top: -68px;
+        margin-left: 30px;
+    }
+}

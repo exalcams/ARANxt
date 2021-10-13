@@ -14,15 +14,13 @@
 
     <div style="height: 20px;"></div>
 
-    <div fxLayout="row" fxLayout.sm="column" fxFlex="100" fxLayoutAlign="start start" fxLayoutGap="16px">
+    <div fxLayout="row" fxLayout.sm="column" class="dashboarddivision">
 
-        <div fxFlex="31" fxLayout="column" fxLayoutAlign="space-evenly center" fxLayoutGap="20px"
-            class="rowdivisionwidth">
+        <div fxLayout="column" fxFlex.sm="100" class="rowdivisionwidth" fxLayoutAlign="space-between">
             <div class="gap">
-                <div fxLayout="column" style="width: 100%;">
-
+                <div fxLayout="column" style="width: 100%;padding: 16px;padding-bottom: 24px;">
                     <div fxLayout="column" style="width: 100%;">
-                        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="60px">
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
                             <div fxLayout="column" fxLayoutGap="6px">
                                 <div fxLayout="row" fxLayoutGap="5px">
                                     <img class="sett1" src="./assets/Images/spaces.svg">
@@ -43,10 +41,13 @@
                                 </div>
 
                             </div>
-                            <div fxLayout="row" fxLayoutGap="10px" style="margin-top: 0.5rem;" fxFlex="40">
+                            <div class="chart-container">
                                 <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
                                     [plotOptions]="chartOptions.plotOptions" [fill]="chartOptions.fill">
                                 </apx-chart>
+                                <div fxLayout="row" class="chartpercent">
+                                    +12%
+                                </div>
                             </div>
 
                         </div>
@@ -55,9 +56,7 @@
                                 05 working in Progress
                             </span>
                         </div>
-                        <div fxLayout="row" class="chartpercent">
-                            +12%
-                        </div>
+
                     </div>
                     <div style="height: 20px;"></div>
 
@@ -65,9 +64,9 @@
                         <mat-divider class="vert_divider"></mat-divider>
                     </div>
 
-                    <div fxLayout="row" style="width: 100%;margin-top: 0.5rem;">
-                        <div fxLayout="column" fxLayoutAlign="start start">
-                            <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                    <div fxLayout="row">
+                        <div fxLayout="column" style="width: 100%;">
+                            <div fxLayout="row" fxLayoutAlign="start center">
                                 <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
                                     <img class="sett" src="./assets/Images/parking.svg">
                                     <span class="parkingspan">
@@ -76,13 +75,12 @@
                                 </div>
                             </div>
 
-                            <div fxLayout="row" fxLayoutAlign="start center" style="margin-top: -1rem;">
+                            <div fxLayout="row" fxLayoutAlign="space-between center">
                                 <div>
-                                    <img style="transform: scale(0.5);" src="./assets/Images/house.png">
+                                    <img width="64px" src="./assets/Images/house.png">
                                 </div>
-                                <div fxLayout="column" fxLayoutAlign="start end" fxLayoutGap="10px"
-                                    style="display: flex; justify-content: flex-end;">
-                                    <div style="justify-content: flex-end;display: flex;">
+                                <div fxLayout="column" fxLayoutAlign="start end" fxLayoutGap="10px">
+                                    <div>
                                         <img src="./assets/Union 4.svg">
                                     </div>
                                     <span class="totalparkingpspace">
@@ -157,9 +155,10 @@
             </div>
         </div>
 
-        <div fxFlex="28">
+        <div class="secondDivision" fxLayoutAlign="space-between">
             <div fxLayout="column " style="width: 100%;height: 100%;" class="secondrowdivision">
-                <div fxLayout="column " fxLayoutGap="10px" style="background-color: #f9f8fe;padding: 15px;">
+                <div fxLayout="column " fxLayoutAlign="space-between"
+                    style="background-color: #f9f8fe;padding: 15px;min-height: 558px;">
                     <!-- class="secondrowdivision2row"up -->
                     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" style="padding-top: 3px;">
                         <img class="maintenanceimage" src="./assets/Images/maintence.svg">
@@ -168,9 +167,9 @@
                         </span>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="space-around center">
-                        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="8px">
+                        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="12px">
                             <div fxLayout="column" fxLayoutGap="4px">
-                                <div fxLayout="row" fxLayoutGap="5px">
+                                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
                                     <span class="openspan">
                                         Open
                                     </span>
@@ -182,7 +181,7 @@
                             </div>
 
                             <div fxLayout="column">
-                                <div fxLayout="row" fxLayoutGap="5px">
+                                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
                                     <span class="openspan">
                                         Delayed
                                     </span>
@@ -193,9 +192,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="8px">
+                        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="12px">
                             <div fxLayout="column" fxLayoutGap="4px">
-                                <div fxLayout="row" fxLayoutGap="5px">
+                                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
                                     <span class="openspan">
                                         On Time
                                     </span>
@@ -206,7 +205,7 @@
                                 </div>
                             </div>
                             <div fxLayout="column">
-                                <div fxLayout="row" fxLayoutGap="5px">
+                                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
                                     <span class="openspan">
                                         Completed
                                     </span>
@@ -219,7 +218,7 @@
                         </div>
                     </div>
 
-                    <div fxLayout="column" class="expiryleasesdiv">
+                    <div fxLayout="column" fxLayoutAlign="space-evenly" class="expiryleasesdiv">
 
                         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" style="padding-top: 10px;">
                             <img class="maintenanceimage" src="./assets/Images/Expiry_Leases.svg">
@@ -248,14 +247,14 @@
                             </span>
                         </div>
 
-                        <div fxLayout="column" fxFlex="30" style="min-width: 150px;">
+                        <div fxLayout="column" style="min-width: 150px;">
                             <div (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()" class="signal-wrapper"
                                 [ngClass]="{'signal-wrapper1':expiryisopen}">
                                 <!-- <div fxLayout="row" fxLayoutAlign="space-evenly" class="hoveringdiv11 "> -->
                                 <!-- *ngIf="isDisplay" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()" 
-                                    (click)="ToggleExpiry()" expiryisopen-->
+                                    (click)="ToggleExpiry()" expiryisopen  [@openClose]="expiryisopen?'open':'close'"-->
                                 <div fxLayout="row" fxLayoutAlign="space-evenly center" class="signal-container"
-                                [@openClose]="expiryisopen?'open':'close'">
+                                    [@openClose]="expiryisopen?'open':'close'">
                                     <div class="animedivision">
                                         <span class="opennumber">
                                             8
@@ -331,8 +330,8 @@
             </div>
         </div>
 
-        <div fxLayout="column" fxFlex="40" class="secondrowdivision3">
-            <div fxLayout="column" fxFlex fxLayoutGap="15px" class="neww secondrowdivision3"
+        <div fxLayout="column" class="secondrowdivision3">
+            <div fxLayout="column" fxLayoutAlign="space-between" class="neww secondrowdivision3"
                 style="width: 100%;margin-top: 0.1rem;">
                 <div fxLayout="column" style="padding: 10px;border: solid 1px #f5f5f5;"
                     class="occupantdivision secondrowdivision" fxLayoutGap="25px">
@@ -496,7 +495,7 @@
                             Good
                         </span>
                     </div>
-                    <div fxFlex="100">
+                    <div fxFlex="100" style="overflow: auto;">
                         <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart"
                             [dataLabels]="chartOptions2.dataLabels" [plotOptions]="chartOptions2.plotOptions"
                             [yaxis]="chartOptions2.yaxis" [grid]="chartOptions2.grid" [fill]="chartOptions2.fill"
@@ -508,7 +507,6 @@
         </div>
 
     </div>
-
 </div>
 <div *ngIf="changetolease" fxFlex="100" fxLayoutGap="3%" style="width: 100%;">
     <app-leasemanagement></app-leasemanagement>
