@@ -1,3 +1,6 @@
+*{
+  font-family: 'poppins-semi';
+}
 .btn_bg
 {
     border-radius: 4px;
@@ -74,14 +77,6 @@
 
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
     background-color: black;
-  }
-  .mat-cell, .mat-header-cell {
-    border: none !important;
-    font-size: 11px;
-    padding: 0px 25px 0px 0;
-    color:
-    #6e6d7a;
-    font-weight: 600px;
   }
   .upload_btn
   {
@@ -259,7 +254,7 @@
   margin-top: 22px;
 }
 tr.mat-header-row {
-  // height: 35px;
+  height: 35px;
 }
 .viewdetails_arrow
 {
@@ -297,17 +292,6 @@ tr.mat-header-row {
 //   background-color: inherit;
 //   text-align: center;
 // }
-
-th{
- 
-  // flex-direction: column;
-
-}
-tr{
-  // height: 50px !important;
-  // line-height: normal;
-  // width: max-content;
-}
 
 ::-webkit-input-placeholder{
   font-size: 10px;
@@ -392,16 +376,6 @@ tr{
   line-height: 3.5;
 }
 
-td{
-  font-size: 10px !important;
-}
-th{
-  font-size: 10px !important;
-  font-family: 'poppins-semi' !important;
-}
-tr{
-// height: 40px !important;
-}
 .mat-row {
   height: auto;
   min-width: max-content !important;
@@ -410,18 +384,6 @@ tr{
   padding: 8px 8px 8px 0;
 }
 
-.mat-cell, .mat-header-cell {
-  border: none !important;
-  font-size: 10px;
-}
-
-tr{
-  // background-color: #f4f3f4;
-  // border-bottom-style:none;
-}
-td{
-  // background-color: white;
-}
 
 .form_bg
   {
@@ -468,6 +430,7 @@ td{
 .mat-cell, .mat-header-cell {
   border: none !important;
   color:#6e6d7a;
+  font-size: 11px;
 }
 ::placeholder {
   color: #98abc4;

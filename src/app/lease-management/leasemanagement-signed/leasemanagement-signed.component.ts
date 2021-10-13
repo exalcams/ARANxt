@@ -1,6 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { DatePipe } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild, ViewEncapsulation, } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
@@ -29,10 +29,12 @@ import { CloseDialogComponent } from 'src/app/close-dialog/close-dialog.componen
   encapsulation: ViewEncapsulation.None
 })
 export class LeasemanagementSignedComponent implements OnInit {
+  @Output() sideNavToggle = new EventEmitter();
   displayedColumns: string[] = ['select', 'ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action'];
   valueforrenewdialog = 0;
   dataSource = new MatTableDataSource<any>([]);
   selection = new SelectionModel<any>(true, []);
+  isDataLoaded:boolean=false;
   SelectedSpace: any[] = [];
   selectedRowIndex2 = -1;
   @ViewChild('fileInput1') fileInput1: ElementRef;
@@ -76,6 +78,7 @@ export class LeasemanagementSignedComponent implements OnInit {
 
       console.log("getallleases", data);
       this.dataSource = new MatTableDataSource(this.AllLeases);
+      this.isDataLoaded=true;
       // if(this.AllLeases.length>0){
       //   this.loadallsigneddocuments(this.AllLeases[0]);
       // }
@@ -360,6 +363,9 @@ export class LeasemanagementSignedComponent implements OnInit {
     if (bulletcolor == "signed"){
       return "#3ec725"
     }
+    if(bulletcolor=="vacated"){
+      return "#1b56ca"
+    }
     if (bulletcolor == "signed" && expiryforsigned <=30 ){
       return "red"
     }
@@ -416,6 +422,7 @@ export class LeasemanagementSignedComponent implements OnInit {
     console.log(this.valueforrenewdialog)
     this.Checked = true;
     this.Renewdialogdata = row;
+    this.sideNavToggle.emit(true);
     // if(this.selection.selected)
 
   }
@@ -574,5 +581,8 @@ export class LeasemanagementSignedComponent implements OnInit {
       }
 
     // 
+    toggleSideNav(){
+      this.sideNavToggle.emit(false);
+    }
  
 }

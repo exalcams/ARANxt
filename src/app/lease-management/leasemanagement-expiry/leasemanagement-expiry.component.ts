@@ -1,6 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { DatePipe } from '@angular/common';
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { LeaseDocument, LeaseManagement } from 'src/app/Model/Leasemanagement';
@@ -24,13 +24,14 @@ import { CloseDialogComponent } from 'src/app/close-dialog/close-dialog.componen
   encapsulation: ViewEncapsulation.None
 })
 export class LeasemanagementExpiryComponent implements OnInit {
+  @Output() sideNavToggle = new EventEmitter();
   displayedColumns: string[] = [ 'ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action'];
   clientdata: LeaseManagement;
   dataSource = new MatTableDataSource<any>([]);
   selection = new SelectionModel<any>(true, []);
   selectedRowIndex: any;
   selectedRowIndex2 = -1;
-  
+  isDataLoaded:boolean=false
   // tslint:disable-next-line:typedef-whitespace
   // tslint:disable-next-line:variable-name
   btn_name: any = 'Upload Document';
@@ -142,8 +143,10 @@ GetExpiryLeases(){
   this.spinner.show();
   this.service.GetExpiryLeases().subscribe((data)=>{
     this.Mlease=<any[]>data;
+   
     console.log("expiry" ,data);
     this.dataSource=new MatTableDataSource(this.Mlease);
+    this.isDataLoaded=true;
     if(this.Mlease.length>0){
       this.loadallsigneddocuments(this.Mlease[0]);
     }
@@ -341,6 +344,7 @@ openDialogvacate() {
 go(row) {
   this.Checked = true;
   this.Renewdialogdata = row;
+  this.sideNavToggle.emit(true);
   // if(this.selection.selected)
 
 }
@@ -434,6 +438,9 @@ Deleteleaserow(documentID){
   // 
     
 
+}
+toggleSideNav(){
+  this.sideNavToggle.emit(false);
 }
 
 }

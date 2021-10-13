@@ -250,7 +250,7 @@
             </div>
         </div>
         <div *ngIf="isLeasemanagement">
-            <app-leasemanagement></app-leasemanagement>
+            <app-leasemanagement (switchSideNav)="switchSideMenu($event)"></app-leasemanagement>
         </div>
 
     </mat-drawer-content>

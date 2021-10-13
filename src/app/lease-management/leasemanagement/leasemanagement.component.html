@@ -121,33 +121,33 @@
 
                 <ng-container matColumnDef="documentOwner">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Document owner </th>
-                    <td mat-cell *matCellDef="let row"> {{row.documentOwner}} </td>
+                    <td mat-cell *matCellDef="let row" class="datarow"> {{row.documentOwner}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="documentType">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Document type </th>
-                    <td mat-cell *matCellDef="let row"> {{row.documentType}} </td>
+                    <td mat-cell *matCellDef="let row" class="datarow"> {{row.documentType}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="documentName">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Document name </th>
-                    <td mat-cell *matCellDef="let row"> {{row.documentName}} </td>
+                    <td mat-cell *matCellDef="let row" class="datarow"> {{row.documentName}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="createdOn">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Created on </th>
-                    <td mat-cell *matCellDef="let row"> {{row.createdOn | date:'dd/MM/yyyy'}} </td>
+                    <td mat-cell *matCellDef="let row" class="datarow"> {{row.createdOn | date:'dd/MM/yyyy'}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="modifiedOn">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Modified on </th>
-                    <td mat-cell *matCellDef="let row"> {{row.modifiedOn | date:'dd/MM/yyyy'}} </td>
+                    <td mat-cell *matCellDef="let row" class="datarow"> {{row.modifiedOn | date:'dd/MM/yyyy'}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="actions">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: -webkit-center;"> Actions
                     </th>
-                    <td mat-cell *matCellDef="let row">
+                    <td mat-cell *matCellDef="let row" class="datarow">
                         <div fxLayout="row" fxLayoutAlign="space-evenly center">
                             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px" class="pointer"
                                 (click)="openSendMailDialog(row.documentID)">
@@ -175,26 +175,26 @@
             </mat-icon>
             <span class="nodata">The table does not contain any records</span>
           </div> -->
-          <div  flex fxLayoutAlign="center center" fxLayout="column" *ngIf="!LeaseDrafts.length">
+          <div  flex fxLayoutAlign="center center" fxLayout="column" *ngIf="!LeaseDrafts.length && isDataLoaded">
             <img src="./assets/Empty.svg"  style="height: 150px;">
             <label class="nodata">The table does not contain any records</label>
           </div>
         </div>
     </div>
     <div *ngIf="selectedPage=='signed'">
-        <app-leasemanagement-signed></app-leasemanagement-signed>
+        <app-leasemanagement-signed (sideNavToggle)="sideNavStatus($event)"></app-leasemanagement-signed>
     </div>
     <div *ngIf="selectedPage=='expiry'">
-        <app-leasemanagement-expiry></app-leasemanagement-expiry>
+        <app-leasemanagement-expiry (sideNavToggle)="sideNavStatus($event)"></app-leasemanagement-expiry>
     </div>
     <div *ngIf="selectedPage=='underNotice'">
-        <app-under-notice></app-under-notice>
+        <app-under-notice (sideNavToggle)="sideNavStatus($event)"></app-under-notice>
     </div>
     <div *ngIf="selectedPage=='terminate'">
-        <app-terminate></app-terminate>
+        <app-terminate (sideNavToggle)="sideNavStatus($event)"></app-terminate>
     </div>
     <div *ngIf="selectedPage=='vacated'">
-        <app-leasemanagement-vacated></app-leasemanagement-vacated>
+        <app-leasemanagement-vacated (sideNavToggle)="sideNavStatus($event)"></app-leasemanagement-vacated>
     </div>
 
     <div *ngIf="selectedPage=='new'" class="ckeditor_outer">
