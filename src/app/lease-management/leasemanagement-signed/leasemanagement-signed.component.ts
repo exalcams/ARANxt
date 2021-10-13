@@ -541,7 +541,7 @@ export class LeasemanagementSignedComponent implements OnInit {
     const dialogConfig: MatDialogConfig = {
       data: {
         title: "Delete",
-        body: "Are you sure , you want to delete",
+        body: "Are you sure  want to delete",
       },
       panelClass: 'close-dialog',
       width: '24%',

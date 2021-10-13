@@ -1,16 +1,17 @@
 <div class="dialog-content-wrapper">
     <mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="space-between center">
         <label class="title">{{dialogData.title}}</label>
+        <img class="closeimages" src="assets/32178.svg" (click)="close()">
     </mat-toolbar>
 
 
     <mat-dialog-content class="content" fusePerfectScrollbar>
-        {{dialogData.body}}
+      <p>{{dialogData.body}}</p>  
       
     </mat-dialog-content>
     
     <mat-dialog-actions class="m-0 p-16 footer" fxLayoutAlign="end center" fxLayoutGap="8px">
-        <button mat-raised-button class="savebtn" type="button" color="primary" (click)="Yes()">Yes</button>
-        <button mat-raised-button type="button" (click)="close()">No</button>
+        <button mat-raised-button class="savebtn btn" type="button" color="primary"  (click)="Yes()">Yes</button>
+        <button mat-raised-button type="button" class="btn" (click)="close()">No</button>
     </mat-dialog-actions>
 </div>

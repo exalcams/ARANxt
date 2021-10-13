@@ -23,7 +23,7 @@
     }
     .title{
         @extend .poppins;
-        font-size: 14px;
+        font-size: 12px;
         color: #2c2c2e;
     }
     .footer{
@@ -36,6 +36,9 @@
     .savebtn{
       background-color: #4410ff !important;
       color: #ffffff !important;
+      height: 29px;
+    line-height: inherit;
+    font-size: 10px;
     }
     .list{
       padding: 10px;
@@ -44,6 +47,12 @@
       word-wrap: break-word;
       cursor: pointer;
       border-radius: 4px;
+    }
+    .btn
+    {
+      height: 29px;
+    line-height: inherit;
+    font-size: 10px;
     }
     .list:hover{
       border: 2px solid #5f2cff !important;
@@ -56,16 +65,23 @@
     .form{
         padding: 0 16px;
         .fields{
-          font-size: 12px;
+          font-size: 10px;
           @extend .poppins;
         }
     }
     .radio-group{
       margin-bottom: 24px;
       .radio{
-        font-size: 12px;
+        font-size: 10px;
         @extend .poppins;
       }
+      .closeimages{
+        cursor: pointer;
+        width: 9px;
+        justify-content: right;
+        text-align: right;
+        align-items: flex-end;
+    }
     }
   }
   
