@@ -19,7 +19,7 @@
     }
     .toolbar{
       background-color: #f4f4fb;
-      height: 56px;
+      height: 42px;
     }
     .title{
         @extend .poppins;
@@ -47,6 +47,17 @@
       text-align: right;
       align-items: flex-end;
   }
+  .chip.mat-standard-chip {
+    transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    padding: 7px 12px;
+    font-size: 10px;
+    border-radius: 16px;
+    align-items: center;
+    cursor: default;
+    min-height: 20px;
+    height: 1px;
+}
     .btn
     {
       height: 29px;
