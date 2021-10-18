@@ -34,7 +34,7 @@ export class LeasemanagementSignedComponent implements OnInit {
   valueforrenewdialog = 0;
   dataSource = new MatTableDataSource<any>([]);
   selection = new SelectionModel<any>(true, []);
-  isDataLoaded:boolean=false;
+  isDataLoaded: boolean = false;
   SelectedSpace: any[] = [];
   selectedRowIndex2 = -1;
   @ViewChild('fileInput1') fileInput1: ElementRef;
@@ -78,7 +78,7 @@ export class LeasemanagementSignedComponent implements OnInit {
 
       console.log("getallleases", data);
       this.dataSource = new MatTableDataSource(this.AllLeases);
-      this.isDataLoaded=true;
+      this.isDataLoaded = true;
       // if(this.AllLeases.length>0){
       //   this.loadallsigneddocuments(this.AllLeases[0]);
       // }
@@ -353,20 +353,20 @@ export class LeasemanagementSignedComponent implements OnInit {
       return "red"
     }
   }
-  bulletcolorwidth(bulletcolor,expiryforsigned){
-    if (bulletcolor == "terminated"){
+  bulletcolorwidth(bulletcolor, expiryforsigned) {
+    if (bulletcolor == "terminated") {
       return "#6e6d7a"
     }
-    if (bulletcolor =="undernotice"){
+    if (bulletcolor == "undernotice") {
       return "#faa542"
     }
-    if (bulletcolor == "signed"){
+    if (bulletcolor == "signed") {
       return "#3ec725"
     }
-    if(bulletcolor=="vacated"){
+    if (bulletcolor == "vacated") {
       return "#1b56ca"
     }
-    if (bulletcolor == "signed" && expiryforsigned <=30 ){
+    if (bulletcolor == "signed" && expiryforsigned <= 30) {
       return "red"
     }
   }
@@ -382,8 +382,7 @@ export class LeasemanagementSignedComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
-      if(!result)
-      {
+      if (!result) {
         this.GetAllLeases();
       }
     });
@@ -391,9 +390,9 @@ export class LeasemanagementSignedComponent implements OnInit {
 
 
   openDialogvacate() {
-    if (this.Checked && this.Renewdialogdata.status=="signed" ) {
-      console.log("Renewdialogdata",this.Renewdialogdata);
-      
+    if (this.Checked && this.Renewdialogdata.status == "signed") {
+      console.log("Renewdialogdata", this.Renewdialogdata);
+
       const dialogRef = this.dialog.open(VacatecomponentComponent, {
         panelClass: 'upload-vacate-dialog',
         data: this.Renewdialogdata,
@@ -406,10 +405,9 @@ export class LeasemanagementSignedComponent implements OnInit {
         console.log(`Dialog result: ${result}`);
       });
     }
-    else if(this.Checked && this.Renewdialogdata.status!="signed")
-    {
+    else if (this.Checked && this.Renewdialogdata.status != "signed") {
       this.notificationSnackBarComponent.openSnackBar('The lease cannot be vaccated', SnackBarStatus.warning);
-     
+
     }
     else {
 
@@ -427,7 +425,7 @@ export class LeasemanagementSignedComponent implements OnInit {
 
   }
   openDialogrenew() {
-    if (this.Checked  && this.Renewdialogdata.status=="signed") {
+    if (this.Checked && this.Renewdialogdata.status == "signed") {
 
       const dialogRef = this.dialog.open(RenewcomponentComponent, {
         panelClass: 'upload-renew-dialog',
@@ -442,10 +440,9 @@ export class LeasemanagementSignedComponent implements OnInit {
         console.log(`Dialog result: ${result}`);
       });
     }
-    else if(this.Checked && this.Renewdialogdata.status!="signed")
-    {
+    else if (this.Checked && this.Renewdialogdata.status != "signed") {
       this.notificationSnackBarComponent.openSnackBar('The lease cannot be renewed', SnackBarStatus.warning);
-  
+
     }
     else {
 
@@ -454,7 +451,7 @@ export class LeasemanagementSignedComponent implements OnInit {
     }
   }
   openDialogterminate() {
-    if (this.Checked && ((this.Renewdialogdata.status=="signed")||(this.Renewdialogdata.status=="undernotice"))) {
+    if (this.Checked && ((this.Renewdialogdata.status == "signed") || (this.Renewdialogdata.status == "undernotice"))) {
       const dialogRef = this.dialog.open(TerminatecomponentComponent, {
         panelClass: 'upload-terminate-dialog',
         data: this.Renewdialogdata,
@@ -467,10 +464,9 @@ export class LeasemanagementSignedComponent implements OnInit {
         console.log(`Dialog result: ${result}`);
       });
     }
-    else if(this.Renewdialogdata.status=="signed"|| this.Renewdialogdata.status=="undernotice")
-    {
+    else if (this.Renewdialogdata.status == "signed" || this.Renewdialogdata.status == "undernotice") {
       this.notificationSnackBarComponent.openSnackBar('The lease cannot be terminated', SnackBarStatus.warning);
-    
+
     }
     else {
 
@@ -496,9 +492,9 @@ export class LeasemanagementSignedComponent implements OnInit {
   }
   DownloadLeaseDocument(row) {
 
-    this.sideNavStatus=true;
+    this.sideNavStatus = true;
     this.service.DownloadLeaseDocument(row.documentID).subscribe((res) => {
-      this.sideNavStatus=false;
+      this.sideNavStatus = false;
       let blob: any = new Blob([res], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
       saveAs(blob, `${row.documentName}.docx`);
       console.log(`${row.documentName} downloaded`);
@@ -506,8 +502,6 @@ export class LeasemanagementSignedComponent implements OnInit {
       err => {
         console.log(err);
       });
-
-
   }
   openSendMailDialog(documentID) {
     // this.sideNavStatus=true;
@@ -519,14 +513,14 @@ export class LeasemanagementSignedComponent implements OnInit {
     );
     dialogRef.disableClose = true;
     dialogRef.afterClosed().subscribe(res => {
-      this.sideNavStatus=false;
+      this.sideNavStatus = false;
       if (res) {
         console.log("send-mail-dialog", res);
         this.spinner.show();
         this.service.SendMailFromLease(res).subscribe(() => {
           console.log("Mail sent");
           this.notificationSnackBarComponent.openSnackBar("email has been sent", SnackBarStatus.success);
-        
+
           this.spinner.hide();
         },
           err => {
@@ -540,11 +534,8 @@ export class LeasemanagementSignedComponent implements OnInit {
     this.sideNavStatus = event;
   }
 
-  Deleteleaserow(leaseID){
-    
-    
-    this.sideNavStatus=true;
-    // 
+  Deleteleaserow(leaseID) {
+    this.sideNavStatus = true;
     const dialogConfig: MatDialogConfig = {
       data: {
         title: "Delete",
@@ -558,10 +549,11 @@ export class LeasemanagementSignedComponent implements OnInit {
     };
     const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(result => {
+      this.sideNavStatus = false;
       if (result == "yes") {
         this.spinner.show();
         this.service.DeleteLeaseManagement(leaseID).subscribe((x) => {
-          this.sideNavStatus=false;
+          this.sideNavStatus = false;
           console.log(x);
           this.GetAllLeases()
           this.spinner.hide();
@@ -570,19 +562,19 @@ export class LeasemanagementSignedComponent implements OnInit {
           err => {
             this.spinner.hide();
             console.log(err);
-    
+
           })
       }
-        },
-          err => {
-            console.log(err);
-            this.spinner.hide();
-          });
-      }
+    },
+      err => {
+        console.log(err);
+        this.spinner.hide();
+      });
+  }
 
-    // 
-    toggleSideNav(){
-      this.sideNavToggle.emit(false);
-    }
- 
+  // 
+  toggleSideNav() {
+    this.sideNavToggle.emit(false);
+  }
+
 }
