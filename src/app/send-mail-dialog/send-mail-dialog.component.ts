@@ -24,9 +24,9 @@ export class SendMailDialogComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.form = this.fb.group({
-      toMail: [[], [Validators.required]],
-      cc: [[]],
-      bcc: [[]],
+      toMail: [[], [Validators.required,Validators.email],],
+      cc: [[],Validators.email],
+      bcc: [[],Validators.email],
       subject: [''],
       body: [''],
       documentID: [this.data.documentID]

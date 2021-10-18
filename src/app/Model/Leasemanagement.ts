@@ -10,7 +10,7 @@ export class LeaseManagement  extends CommonClass
     clientName:string;
     documentID:number;
     documentName:string;
-    signedOn: Date ;
+    signedOn: Date |string  ;
     expiryDate: Date |string ;
     totalDeposit: number;
     rental: number;

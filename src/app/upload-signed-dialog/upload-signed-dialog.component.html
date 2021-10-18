@@ -26,8 +26,7 @@
                         <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="10px">
                             <span class="formspan">File name</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
-                                <input matInput formControlName="FileName" class="placeholdertext "
-                                    (keydown)="AlphabetsonlyOnly($event)">
+                                <input matInput formControlName="FileName" class="placeholdertext "  >
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('FileName').hasError('required')">
                                     File name is required
                                 </mat-error>
@@ -37,7 +36,7 @@
                         <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="10px">
                             <span class="formspan">Creation Date</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
-                                <input matInput [matDatepicker]="picker3" formControlName="CreatedOn" fxFlex>
+                                <input matInput [matDatepicker]="picker3" #creationdate formControlName="CreatedOn" fxFlex>
                                 <img src="assets/calendar_upload.svg" width="16px" class="cursor"
                                     (click)="picker3.open()">
                                 <mat-datepicker #picker3></mat-datepicker>
@@ -59,7 +58,7 @@
                         <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="10px">
                             <span class="formspan">Expiry date</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
-                                <input matInput [matDatepicker]="picker4" formControlName="ExpiryDate" fxFlex>
+                                <input matInput [matDatepicker]="picker4"  formControlName="ExpiryDate" fxFlex>
                                 <img src="assets/calendar_upload.svg" width="16px" class="cursor"
                                     (click)="picker4.open()">
                                 <mat-datepicker #picker4></mat-datepicker>

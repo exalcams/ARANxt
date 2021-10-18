@@ -23,6 +23,7 @@ export class UploadSignedDialogComponent implements OnInit {
   modeoftransfer:any[]=["cash","online"];
   modetransfer_selected:any;
   date_input:any;
+  minDate = new Date();
   NUMERIC_PATTREN = '^([0-9]{4,10})([.][0-9]{1,2})?$';
 
   constructor(private formBuilder: FormBuilder,
@@ -112,7 +113,9 @@ onRemove(event): void {
       const signeddetail = new LeaseManagement();
     signeddetail.clientName = this.SignedDocumentDetailsForm.get('Client').value;
     signeddetail.documentName = this.SignedDocumentDetailsForm.get('FileName').value;
-    signeddetail.createdOn = this.SignedDocumentDetailsForm.get('CreatedOn').value;
+    // signeddetail.createdOn = this.SignedDocumentDetailsForm.get('CreatedOn').value;
+    signeddetail.createdOn = this._datePipe.transform(this.SignedDocumentDetailsForm.get('CreatedOn').value, 'yyyy-MM-dd');
+
     signeddetail.expiryDate = this._datePipe.transform(this.SignedDocumentDetailsForm.get('ExpiryDate').value, 'yyyy-MM-dd');
     signeddetail.totalDeposit = this.SignedDocumentDetailsForm.get('TotalDeposit').value;
     signeddetail.rental = this.SignedDocumentDetailsForm.get('Rental').value;

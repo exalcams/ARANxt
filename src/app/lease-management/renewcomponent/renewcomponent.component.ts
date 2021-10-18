@@ -169,9 +169,9 @@ export class RenewcomponentComponent implements OnInit {
 
   }
 
-  ExpiryCalculation(value: number): void {
+  ExpiryCalculation(value: string): void {
 
-    let months = value;
+    let months =  Number(value);
     let renew = this.Vacateformgroup.get("RenewOn").value;
     let newdate = new Date();
     newdate.setDate(renew.getDate());

@@ -8,7 +8,7 @@
         <form fxLayout="column" class="form" [formGroup]="form" autocomplete="off" novalidate>
             <mat-form-field appearance="fill" class="fields">
                 <mat-chip-list #chipList formControlName="toMail" > 
-                    <mat-chip *ngFor="let to of toList.value" [selectable]="selectable"
+                    <mat-chip *ngFor="let to of toList.value" class="chip" [selectable]="selectable"
                              [removable]="removable" (removed)="remove(to,'to')">
                       {{to}}
                       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
@@ -40,7 +40,7 @@
                     (matChipInputTokenEnd)="add($event,'cc')">
                 </mat-chip-list>
                 <span matPrefix class="field-prefix">CC :&nbsp;&nbsp;</span>
-                <mat-error *ngIf="form.get('cc').hasError('mail')">
+                <mat-error *ngIf="form.get('cc').touched && form.get('cc').hasError('email')">
                     Please enter valid email id
                 </mat-error>
             </mat-form-field>
