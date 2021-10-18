@@ -1,26 +1,27 @@
 <div fxLayout="column" fxFlex="100" class="bgouter">
 
   <div fxFlex fxLayout="row" fxLayoutGap="10px">
-    <div fxFlex="70" class="btn_bg cursor" fxLayout="row" >
+    <div fxFlex="70" class="btn_bg cursor" fxLayout="row">
       <div matRipple class="ripple_outer" (click)="openDialogrenew()">
         <span class="new_txt">Renew</span>
-    </div>
-    <div matRipple class="ripple_outer"  (click)="openDialogvacate()">
+      </div>
+      <div matRipple class="ripple_outer" (click)="openDialogvacate()">
         <span class="new_txt">Vacate</span>
       </div>
       <div matRipple class="ripple_outer" (click)="openDialogterminate()">
         <span class="new_txt">Terminate</span>
-    </div>
- 
+      </div>
+
       <!-- <button mat-flat-button class="Renew_btn" (click)="openDialogrenew()" >Renew</button>
       <button mat-flat-button class="Renew_btn" (click)="openDialogvacate()">Vacate</button>
       <button mat-flat-button class="Renew_btn" (click)="openDialogterminate()">Terminate</button> -->
-    
+
     </div>
     <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="30">
       <div fxLayout="row" class="btn_bg2" fxFlex="100">
         <mat-icon matSuffix class="serachicon_search">search</mat-icon>
-        <input matInput class="search_input1 forminputedit"  autocomplete="off" placeholder="Search Document" (keyup)="applyFilter($event)">
+        <input matInput class="search_input1 forminputedit" autocomplete="off" placeholder="Search Document"
+          (keyup)="applyFilter($event)">
       </div>
     </div>
     <div style="margin-top: 0px;" fxLayoutAlign="flex-end" fxFlex="20">
@@ -47,7 +48,7 @@
           <mat-toolbar class="arrowtoolbar" fxLayout="row" fxLayoutAlign="start center">
             <img class="toggleimage" (click)="drawer.toggle();toggleSideNav();" src="./assets/slide_close_arrow.svg">
           </mat-toolbar>
-           
+
           <div fxLayout="row" fxFlex="100" class="clientview">
             <div fxFlex="50" class="labelcss">Client Name</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="variableclient">{{variableclient}}</div>
@@ -205,19 +206,19 @@
                   </div>
 
                   <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px"
-                    (click)="sideNavStatus=true">
+                    (click)="sideNavStatus=true;openSendMailDialog(row.documentID)">
                     <img src="./assets/iconmonstr-paper-plane-2 (2).svg" class="actionstable">
-                    <span class="actionsspan" (click)="openSendMailDialog(row.documentID);">Send</span>
+                    <span class="actionsspan">Send</span>
                   </div>
 
-                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px"
-                   class="pointer" (click)="Deleteleaserow(row.leaseID);">
+                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px" class="pointer"
+                    (click)="Deleteleaserow(row.leaseID);">
                     <img src="./assets/iconmonstr-trash-can-28.svg" class="actionstable">
                     <span class="actionsspan">Delete</span>
                   </div>
                   <!-- <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
                     <img src="./assets/iconmonstr-product-10.svg" class="actionstable">
-                    <span class="actionsspan">Review</span>
+                    <span class="actionsspan" (click)="openSendMailDialog(row.documentID);">Review </span>
                   </div> -->
                 </div>
               </td>
@@ -232,7 +233,7 @@
             </tr>
           </table>
         </div>
-     
+
       </div>
       <!-- <div flex fxLayoutAlign="center center" class="TableFooter" style="margin-top: 20px;"
       *ngIf="!AllLeases.length">
@@ -241,10 +242,10 @@
       </mat-icon>
       <span class="nodata">The table does not contain any records</span>
     </div> -->
-    <div  flex fxLayoutAlign="center center" fxLayout="column" *ngIf="!AllLeases.length && isDataLoaded">
-      <img src="./assets/Empty.svg"  style="height: 150px;">
-      <label class="nodata">The table does not contain any records</label>
-    </div>
+      <div flex fxLayoutAlign="center center" fxLayout="column" *ngIf="!AllLeases.length && isDataLoaded">
+        <img src="./assets/Empty.svg" style="height: 150px;">
+        <label class="nodata">The table does not contain any records</label>
+      </div>
     </mat-sidenav-content>
 
     <mat-sidenav-content *ngIf="valueupload" style="overflow-y: scroll;">

@@ -330,6 +330,7 @@ Deleteleaserow(documentID){
   };
   const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
   dialogRef.afterClosed().subscribe(result => {
+    this.sideNavStatus = false;
     if (result == "yes") {
       this.spinner.show();
      
