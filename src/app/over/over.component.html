@@ -252,9 +252,10 @@
                                 [ngClass]="{'signal-wrapper1':expiryisopen}">
                                 <!-- <div fxLayout="row" fxLayoutAlign="space-evenly" class="hoveringdiv11 "> -->
                                 <!-- *ngIf="isDisplay" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()" 
+                                     (mouseenter)="onenter()" (mouseleave)="onleave()" 
                                     (click)="ToggleExpiry()" expiryisopen  [@openClose]="expiryisopen?'open':'close'"-->
                                 <div fxLayout="row" fxLayoutAlign="space-evenly center" class="signal-container"
-                                    [@openClose]="expiryisopen?'open':'close'">
+                                    [@openClose]="!expiryisopen?'open':'close'">
                                     <div class="animedivision">
                                         <span class="opennumber">
                                             8

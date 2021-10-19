@@ -65,10 +65,10 @@ export type ChartOptions2 = {
   animations: [
     trigger('openClose', [
       state('open', style({
-        width: '180px'
+        width: '100%'
       })),
       state('close', style({
-        width: '60px'
+        width: '40%'
       })),
       transition('open => close', [
         animate('0.2s')
@@ -305,18 +305,13 @@ export class OverComponent implements OnInit {
     this.breakpoint = (event.target.innerWidth <= 600) ? 1 : 6;
   }
 
-
-
-
   navigate() {
     this.router.navigate(['leasemanagement']);
 
   }
-
   gotoleasemanagement() {
     this.router.navigate(["leasemanagement"])
   }
-
   leaseclk() {
     this.changetolease = true;
     this.changetodashboard = false
@@ -325,7 +320,6 @@ export class OverComponent implements OnInit {
     this.changetolease = false;
     this.changetodashboard = true
   }
-
 
   ToggleExpiry() {
     this.expiryisopen = !this.expiryisopen;
@@ -342,4 +336,22 @@ export class OverComponent implements OnInit {
     this.isDisplayhover = !this.isDisplayhover;
     this.expiryisopen = false;
   }
+
+  onenter(event) {
+    event.style({ width: "185px", animate: "5s" });
+    this.onenter1(event)
+  }
+  onleave(event) {
+    event.style({ width: "60px", animate: "5s" });
+    this.onleave1(event)
+  }
+  onenter1(event) {
+    if (event != 0) {
+      event.style({ width: "0px", animate: "5s" });
+    }
+  }
+  onleave1(event) {
+    event.style({ width: "125px", animate: "5s" });
+  }
+
 }

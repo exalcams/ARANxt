@@ -21,7 +21,7 @@ export class TerminatecomponentComponent implements OnInit {
   Terminateformgroup: FormGroup;
   toppings = new FormControl();
   fromToOptions: string[] = ["person1", "person2"];
-  modeoftransferoptions:string[]=["Cash","Online"]
+  modeoftransferoptions: string[] = ["Cash", "Online"]
   notificationSnackBarComponent: NotificationSnackBarComponent;
   leaseData: LeaseManagement = new LeaseManagement();
   visible = true;
@@ -49,10 +49,10 @@ export class TerminatecomponentComponent implements OnInit {
       Accepteddate: ['', [Validators.required, this.invalidDateValidatorFn]],
       Inspectiondate: ['', [Validators.required, this.invalidDateValidatorFn]],
       Inspectedby: ['', Validators.required],
-      Rentdue: ['',  [Validators.required, this.nameValidator, Validators.pattern(/^([0-9]{4,10})([.][0-9]{1,2})?$/)]],
+      Rentdue: ['', [Validators.required, this.nameValidator, Validators.pattern(/^([0-9]{4,10})([.][0-9]{1,2})?$/)]],
       Maintenancedue: ['', [Validators.required, this.nameValidator, Validators.pattern(/^([0-9]{4,10})([.][0-9]{1,2})?$/)]],
-      DamageRecovery: ['',  [Validators.required, this.nameValidator,Validators.pattern(/^([0-9]{4,10})([.][0-9]{1,2})?$/)]],
-      AdvanceBalance: ['',  [Validators.required, this.nameValidator,Validators.pattern(/^([0-9]{4,10})([.][0-9]{1,2})?$/)]],
+      DamageRecovery: ['', [Validators.required, this.nameValidator, Validators.pattern(/^([0-9]{4,10})([.][0-9]{1,2})?$/)]],
+      AdvanceBalance: ['', [Validators.required, this.nameValidator, Validators.pattern(/^([0-9]{4,10})([.][0-9]{1,2})?$/)]],
       ExpectedDate: ['', [Validators.required, this.invalidDateValidatorFn]],
       Modeoftransfer: ['', Validators.required],
       ReturnableAssets: ['', Validators.required],
@@ -60,7 +60,7 @@ export class TerminatecomponentComponent implements OnInit {
       Remarks: ['', Validators.required],
     });
   }
-  
+
   // validation codes
   static Date(control: FormControl): { [key: string]: any } {
     let ptDatePattern = /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g;
@@ -83,17 +83,13 @@ export class TerminatecomponentComponent implements OnInit {
   // }
   invalidDateValidatorFn(): ValidatorFn {
     let invalidDate
-   var a =  (control: AbstractControl): { [key: string]: any } => {
-  
+    var a = (control: AbstractControl): { [key: string]: any } => {
       const date = new Date(control.value);
-  
-      invalidDate= !control.value || date.getMonth === undefined;
-    
+      invalidDate = !control.value || date.getMonth === undefined;
       return invalidDate ? { 'invalidDate': { value: control.value } } : null;
-  
     };
-    console.log("invaliddate",invalidDate);
-  return a
+    console.log("invaliddate", invalidDate);
+    return a
   }
   decimalOnly(event): boolean {
     // this.AmountSelected();
@@ -107,10 +103,10 @@ export class TerminatecomponentComponent implements OnInit {
     }
     return true;
   }
- // validation codes
+  // validation codes
 
   openShiftDialog() {
-    if(this.Terminateformgroup.valid){
+    if (this.Terminateformgroup.valid) {
       const dialogRef = this.dialog.open(ShiftConfirmationComponent, {
         panelClass: 'upload-signed-dialog',
         data: this.leaseData.clientName,
@@ -124,7 +120,7 @@ export class TerminatecomponentComponent implements OnInit {
         }
       });
     }
-    else{
+    else {
       this.ShowValidationErrors(this.Terminateformgroup)
     }
   }
