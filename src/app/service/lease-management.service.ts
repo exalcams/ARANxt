@@ -80,8 +80,8 @@ export class LeaseManagementService {
     formData.append('ClientName', signeddetail.clientName);
     formData.append('DocumentName', signeddetail.documentName);
     // formData.append('CreatedOn', signeddetail.createdOn .toString());
-    formData.append('SignedOn', signeddetail.signedOn.toLocaleString());
-    formData.append('ExpiryDate', signeddetail.expiryDate.toString());
+    formData.append('SignedOn',signeddetail.signedOn.toString());
+    formData.append('ExpiryDate',signeddetail.expiryDate.toString());
     formData.append('TotalDeposit', signeddetail.totalDeposit.toString());
     formData.append('Rental', signeddetail.rental.toString());
     formData.append('Manintenace', signeddetail.manintenace.toString());
@@ -129,8 +129,16 @@ export class LeaseManagementService {
     return this.http.get(`${this.baseAddress}api/Lease/GetNoticePeriodLeases`)
     .pipe(catchError(this.errorHandler));
   }
+  GetVaccatedLeases(){
+    return this.http.get(`${this.baseAddress}api/Lease/GetVaccatedLeases`)
+    .pipe(catchError(this.errorHandler));
+  }
   GetTerminatedLeases(){
     return this.http.get(`${this.baseAddress}api/Lease/GetTerminatedLeases`)
+    .pipe(catchError(this.errorHandler));
+  }
+  GetBankNameByBankCode( BankCode:string){
+    return this.http.get(`${this.baseAddress}api/Lease/GetBankNameByBankCode?BankCode=${BankCode}`)
     .pipe(catchError(this.errorHandler));
   }
   RenewLease(lease: LeaseRenew,selectedFiles: File): Observable<any> {
@@ -142,6 +150,7 @@ export class LeaseManagementService {
     formData.append('ValidFor', lease.validFor.toLocaleString());
     formData.append('RevisedRent', lease.revisedRent.toLocaleString());
     formData.append('RevisedRatio', lease.revisedRatio.toLocaleString());
+    formData.append('RenewalID', lease.renewalID.toLocaleString());
 
     return this.http.post<any>(this.baseAddress + 'api/Lease/RenewLease', formData,
       // {

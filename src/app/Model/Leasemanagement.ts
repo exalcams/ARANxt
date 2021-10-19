@@ -10,8 +10,8 @@ export class LeaseManagement  extends CommonClass
     clientName:string;
     documentID:number;
     documentName:string;
-    signedOn: Date |string  ;
-    expiryDate: Date |string ;
+    signedOn:Date|string|null;
+    expiryDate:Date|string|null;
     totalDeposit: number;
     rental: number;
     bankName: string;
@@ -98,5 +98,14 @@ export class LeaseRenew extends CommonClass{
     revisedRent:number;
     revisedRatio:number;
     documentID:number;
+
+}
+export class LeaseBankDetalis extends CommonClass{
+
+    bankCode:string;
+    bankName:string;
+    bankCity:string;
+    bankCountry:string;
+    bankBranch:string;
 
 }

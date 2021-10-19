@@ -2,7 +2,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { LeaseManagement } from 'src/app/Model/Leasemanagement';
@@ -13,6 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SendMailDialogComponent } from 'src/app/send-mail-dialog/send-mail-dialog.component';
 import { saveAs } from 'file-saver';
 import { MatDrawer } from '@angular/material/sidenav';
+import { CloseDialogComponent } from 'src/app/close-dialog/close-dialog.component';
 export interface PeriodicElement {
   select: string;
   ClientName: string;
@@ -64,7 +65,7 @@ export class LeasemanagementVacatedComponent implements OnInit {
   }
   GetUnderNoticeLeased(){
     this.spinner.show();
-    this.service.GetNoticePeriodLeases().subscribe((data)=>{
+    this.service.GetVaccatedLeases().subscribe((data)=>{
       console.log("under notice",data);
       this.underNoticeLeases=<LeaseManagement[]>data;
       this.dataSource=new MatTableDataSource(this.underNoticeLeases);
@@ -316,20 +317,46 @@ drawerToggled(event){
 // }
 Deleteleaserow(documentID){
     
-  this.spinner.show();
+  // this.spinner.show();
+  // this.sideNavStatus=true;
+  // this.service.DeleteLeaseManagement(documentID).subscribe((x) => {
+  //   this.sideNavStatus=false;
+  //   console.log(x);
+  //   this.GetUnderNoticeLeased()
+  //   this.spinner.hide();
+  //   this.notificationSnackBarComponent.openSnackBar('Deleted  successfully', SnackBarStatus.success);
   this.sideNavStatus=true;
-  this.service.DeleteLeaseManagement(documentID).subscribe((x) => {
-    this.sideNavStatus=false;
-    console.log(x);
-    this.GetUnderNoticeLeased()
-    this.spinner.hide();
-    this.notificationSnackBarComponent.openSnackBar('Deleted  successfully', SnackBarStatus.success);
-  },
-    err => {
-      this.spinner.hide();
-      console.log(err);
-
-    })
+  const dialogConfig: MatDialogConfig = {
+    data: {
+      title: "Delete",
+      body: "Are you sure want to delete",
+    },
+    panelClass: 'close-dialog',
+    width: '24%',
+    maxWidth: '85.5vw ',
+    height: '195px',
+    disableClose: true
+  };
+  const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
+  dialogRef.afterClosed().subscribe(result => {
+    this.sideNavStatus = false;
+    if (result == "yes") {
+      this.spinner.show();
+     
+      this.service.DeleteLeaseManagement(documentID).subscribe((x) => {
+        this.sideNavStatus=false;
+        console.log(x);
+        this.GetUnderNoticeLeased()
+        this.spinner.hide();
+        this.notificationSnackBarComponent.openSnackBar('Deleted  successfully', SnackBarStatus.success);
+      },
+        err => {
+          this.spinner.hide();
+          console.log(err);
+    
+        })
+    }})
+  
 }
 toggleSideNav(){
   this.sideNavToggle.emit(false);

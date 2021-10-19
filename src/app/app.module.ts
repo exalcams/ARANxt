@@ -23,7 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSelectModule} from '@angular/material/select';
@@ -198,7 +198,7 @@ import { LoginslideComponent } from './loginslide/loginslide.component';
     MatListModule,
     MatRippleModule
   ],
-  providers: [AuthService,DatePipe,
+  providers: [AuthService,DatePipe ,{provide: MAT_DATE_LOCALE , useValue: 'en-IN'},
     // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
     FuseNavigationService,MasterService,MenuUpdataionService,LeaseManagementService,
     {

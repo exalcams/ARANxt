@@ -204,17 +204,14 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Rent due if any</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input type="number" matInput formControlName="Rentdue" class="forminputedit"
+                                    <input  matInput formControlName="Rentdue" class="forminputedit"
                                         (keydown)="decimalOnly($event)">
 
                                     <mat-error *ngIf="Vacateformgroup.get('Rentdue').hasError('required')"
                                         class="erroredits">
                                         Rentdue is required
                                     </mat-error>
-                                    <mat-error *ngIf="Vacateformgroup.controls['Rentdue'].hasError('invalidName')"
-                                        class="erroredits">
-                                        No special character
-                                    </mat-error>
+                                   
                                     <mat-error *ngIf="Vacateformgroup.get('Rentdue').touched && !Vacateformgroup.get('Rentdue').hasError('required')
                             &&Vacateformgroup.get('Rentdue').hasError('pattern')" class="erroredits">
                                         Enter a valid amount
@@ -225,17 +222,13 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Maintenance due if any</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input type="number" matInput formControlName="Maintenancedue" class="forminputedit"
+                                    <input matInput formControlName="Maintenancedue" class="forminputedit"
                                         (keydown)="decimalOnly($event)">
                                     <mat-error *ngIf="Vacateformgroup.get('Maintenancedue').hasError('required')"
                                         class="erroredits">
                                         Maintenancedue is required
                                     </mat-error>
-                                    <mat-error
-                                        *ngIf="Vacateformgroup.controls['Maintenancedue'].hasError('invalidName')"
-                                        class="erroredits">
-                                        No special character
-                                    </mat-error>
+                                   
                                     <mat-error *ngIf="Vacateformgroup.get('Maintenancedue').touched && !Vacateformgroup.get('Maintenancedue').hasError('required')
                                         &&Vacateformgroup.get('Maintenancedue').hasError('pattern')"
                                         class="erroredits">
@@ -248,17 +241,13 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Damage Recovery</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input type="number" matInput formControlName="DamageRecovery" class="forminputedit"
+                                    <input  matInput formControlName="DamageRecovery" class="forminputedit"
                                         (keydown)="decimalOnly($event)">
                                     <mat-error *ngIf="Vacateformgroup.get('DamageRecovery').hasError('required')"
                                         class="erroredits">
                                         DamageRecovery is required
                                     </mat-error>
-                                    <mat-error
-                                        *ngIf="Vacateformgroup.controls['DamageRecovery'].hasError('invalidName')"
-                                        class="erroredits">
-                                        No special character
-                                    </mat-error>
+                                   
                                     <mat-error *ngIf="Vacateformgroup.get('DamageRecovery').touched && !Vacateformgroup.get('DamageRecovery').hasError('required')
                                         &&Vacateformgroup.get('DamageRecovery').hasError('pattern')"
                                         class="erroredits">
@@ -270,17 +259,13 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Advance Balance to Be settled</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input type="number" matInput formControlName="AdvanceBalance" class="forminputedit"
+                                    <input  matInput formControlName="AdvanceBalance" class="forminputedit"
                                         (keydown)="decimalOnly($event)">
                                     <mat-error *ngIf="Vacateformgroup.get('AdvanceBalance').hasError('required')"
                                         class="erroredits">
                                         AdvanceBalance is required
                                     </mat-error>
-                                    <mat-error
-                                        *ngIf="Vacateformgroup.controls['AdvanceBalance'].hasError('invalidName')"
-                                        class="erroredits">
-                                        No special character
-                                    </mat-error>
+                               
                                     <mat-error *ngIf="Vacateformgroup.get('AdvanceBalance').touched && !Vacateformgroup.get('AdvanceBalance').hasError('required')
                                         &&Vacateformgroup.get('AdvanceBalance').hasError('pattern')"
                                         class="erroredits">
