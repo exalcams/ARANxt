@@ -543,13 +543,13 @@ margin-top: -2rem;
     flex-direction: row;
     display: flex;
     padding-left: 8px !important;
+    overflow: hidden;
     .signal-container{
+        overflow: hidden;
         flex-direction: row;
         display: flex;
         box-sizing: border-box;
-        flex: 1 1 0%;
         margin-top: 2rem;
-        width: 185px;
         height: 90px;
         font-family: 'poppins-semi' !important;
         box-shadow: 0 3px 6px rgba(69, 106, 248, 0.18) 0;
@@ -573,7 +573,8 @@ margin-top: -2rem;
 .signal-wrapper1{
     cursor: pointer;
     .signal-container{
-        // animation: opened 3s backwards;
+        // animation: opened 3s ease;
+        // transition: opened 5s ease;
         height: 90px;
         flex-direction: column !important;
         display: flex !important;
@@ -591,7 +592,7 @@ margin-top: -2rem;
     }
     // @keyframes opened {
     //     0% {
-    //         width:185px;
+    //         width:185px !important;
     //     }
     //     100% {
     //         width:60px !important;
