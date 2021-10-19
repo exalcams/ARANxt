@@ -11,6 +11,7 @@ import { DatePipe } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/notification-snackbar-status-enum';
+import * as moment from 'moment';
 @Component({
   selector: 'app-terminatecomponent',
   templateUrl: './terminatecomponent.component.html',
@@ -49,10 +50,10 @@ export class TerminatecomponentComponent implements OnInit {
       Accepteddate: ['', [Validators.required, this.invalidDateValidatorFn]],
       Inspectiondate: ['', [Validators.required, this.invalidDateValidatorFn]],
       Inspectedby: ['', Validators.required],
-      Rentdue: ['', [Validators.required, this.nameValidator, Validators.pattern(/^([0-9]{4,10})([.][0-9]{1,2})?$/)]],
-      Maintenancedue: ['', [Validators.required, this.nameValidator, Validators.pattern(/^([0-9]{4,10})([.][0-9]{1,2})?$/)]],
-      DamageRecovery: ['', [Validators.required, this.nameValidator, Validators.pattern(/^([0-9]{4,10})([.][0-9]{1,2})?$/)]],
-      AdvanceBalance: ['', [Validators.required, this.nameValidator, Validators.pattern(/^([0-9]{4,10})([.][0-9]{1,2})?$/)]],
+      Rentdue: ['',[Validators.required, Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$')]],
+      Maintenancedue: ['', [Validators.required, this.nameValidator, Validators.pattern(/^([0-9]{4,100})([.][0-9]{1,2})?$/)]],
+      DamageRecovery: ['', [Validators.required, this.nameValidator, Validators.pattern(/^([0-9]{4,100})([.][0-9]{1,2})?$/)]],
+      AdvanceBalance: ['', [Validators.required, this.nameValidator, Validators.pattern(/^([0-9]{4,100})([.][0-9]{1,2})?$/)]],
       ExpectedDate: ['', [Validators.required, this.invalidDateValidatorFn]],
       Modeoftransfer: ['', Validators.required],
       ReturnableAssets: ['', Validators.required],
@@ -61,7 +62,7 @@ export class TerminatecomponentComponent implements OnInit {
     });
   }
 
-  // validation codes
+  // validation codes  Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$' )
   static Date(control: FormControl): { [key: string]: any } {
     let ptDatePattern = /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g;
     if (!control.value.match(ptDatePattern))
@@ -91,6 +92,17 @@ export class TerminatecomponentComponent implements OnInit {
     console.log("invaliddate", invalidDate);
     return a
   }
+  // dateValidatornew(control: FormControl): { [s: string]: boolean } {
+  //   let invalidddddate
+  //   if (control.value) {
+  //     const date = moment(control.value);
+  //     const today = moment();
+  //     if (date.isBefore(today)) {
+  //       return { 'invalidDate': true }
+  //     }
+  //   }
+  //   return null;
+  // }
   decimalOnly(event): boolean {
     // this.AmountSelected();
     const charCode = (event.which) ? event.which : event.keyCode;

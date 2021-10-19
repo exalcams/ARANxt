@@ -67,7 +67,7 @@ export class RenewcomponentComponent implements OnInit {
   SignedFormGroup(): void {
     this.Vacateformgroup = this.formBuilder.group({
       RenewOn: ['',[Validators.required,this.invalidDateValidatorFn]],
-      Validfor: ['',[Validators.required,Validators.pattern('^[0-9]+$')]],
+      Validfor: ['',Validators.required,],
       NewExpiryDate: ['', Validators.required],
       RevisedRent: ['',[Validators.required,Validators.pattern('^([0-9]{4,10})([.][0-9]{1,2})?$')]],
       Revisedratio: ['', Validators.required],
@@ -172,8 +172,11 @@ export class RenewcomponentComponent implements OnInit {
   ExpiryCalculation(value: string): void {
 
     let months =  Number(value);
-    let renew = this.Vacateformgroup.get("RenewOn").value;
+    let renew=null;
+    renew= this.Vacateformgroup.get("RenewOn").value;
     let newdate = new Date();
+    console.log("renew",renew);
+    
     newdate.setDate(renew.getDate());
     newdate.setMonth(newdate.getMonth() + months);
     let formattedDate = newdate.toISOString().slice(0, 10);
@@ -223,6 +226,7 @@ this.selecteddocName=docName;
 }
   newlease(): void {
     this.Vacateformgroup.reset();
+    this.Vacateformgroup.get("RenewOn").setValue(null)
     this.selectedID = null;
     this.newbool=false;
     this.filename=null;

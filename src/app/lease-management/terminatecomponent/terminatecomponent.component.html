@@ -112,26 +112,19 @@
                                 <mat-form-field appearance="legacy" fxFlex="50">
                                     <input matInput formControlName="Proposeddate" [matDatepicker]="picker1"
                                         class="forminputedit">
-                                    <!-- <mat-error *ngIf="Terminateformgroup.get('Proposeddate').hasError('required')"
-                                        class="erroredits">
-                                        Proposeddate (mm/dd/yyyy format) is required
-                                    </mat-error> -->
+
+
                                     <mat-error *ngIf="Terminateformgroup.get('Proposeddate').touched && 
-                                    Terminateformgroup.get('Proposeddate').hasError('required')" class="erroredits">
-                                        Enter a valid date
+                                    Terminateformgroup.get('Proposeddate').hasError('required') " class="erroredits">
+                                        Enter a valid date (mm/dd/yyyy)
                                     </mat-error>
                                     <mat-error *ngIf="Terminateformgroup.get('Proposeddate').touched && !Terminateformgroup.get('Proposeddate').hasError('required')
                                     && Terminateformgroup.get('Proposeddate').hasError('invalidDate')"
                                         class="erroredits">
-                                        Enter a valid date
+                                        Enter a valid date (mm/dd/yyyy)
                                     </mat-error>
-                                    <!-- <mat-error
-                                        *ngIf="Terminateformgroup.get('Proposeddate').hasError('TerminatecomponentComponent.Date')" class="erroredits">
-                                        mm/dd/yyyy format is required
-                                    </mat-error> -->
-                                    <!-- <mat-error *ngIf="Terminateformgroup.controls['Proposeddate'].hasError('ptDate')">
-                                            mm/dd/yyyy format  is required
-                                        </mat-error> -->
+
+
                                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                                     <mat-datepicker #picker1></mat-datepicker>
                                 </mat-form-field>
@@ -148,12 +141,12 @@
                                     </mat-error> -->
                                     <mat-error *ngIf="Terminateformgroup.get('Accepteddate').touched && 
                                     Terminateformgroup.get('Accepteddate').hasError('required')" class="erroredits">
-                                        Enter a valid date
+                                    Enter a valid date (mm/dd/yyyy)
                                     </mat-error>
                                     <mat-error *ngIf="Terminateformgroup.get('Accepteddate').touched && !Terminateformgroup.get('Accepteddate').hasError('required')
                                     && Terminateformgroup.get('Accepteddate').hasError('invalidDate')"
                                         class="erroredits">
-                                        Enter a valid date
+                                        Enter a valid date (mm/dd/yyyy)
                                     </mat-error>
                                     <!-- <mat-error
                                         *ngIf="Terminateformgroup.get('Accepteddate').hasError('TerminatecomponentComponent.Date')" class="erroredits">
@@ -175,12 +168,12 @@
                                     </mat-error> -->
                                     <mat-error *ngIf="Terminateformgroup.get('Inspectiondate').touched && 
                                     Terminateformgroup.get('Inspectiondate').hasError('required')" class="erroredits">
-                                        Enter a valid date
+                                    Enter a valid date (mm/dd/yyyy)
                                     </mat-error>
                                     <mat-error *ngIf="Terminateformgroup.get('Inspectiondate').touched && !Terminateformgroup.get('Inspectiondate').hasError('required')
                                     && Terminateformgroup.get('Inspectiondate').hasError('invalidDate')"
                                         class="erroredits">
-                                        Enter a valid date
+                                        Enter a valid date (mm/dd/yyyy)
                                     </mat-error>
                                     <!-- <mat-error
                                         *ngIf="Terminateformgroup.get('Inspectiondate').hasError('TerminatecomponentComponent.Date')" class="erroredits">
@@ -220,12 +213,12 @@
                                         Rentdue is required
                                     </mat-error>
 
-                                    <mat-error *ngIf="Terminateformgroup.controls['Rentdue'].hasError('invalidName')"
+                                    <!-- <mat-error *ngIf="Terminateformgroup.controls['Rentdue'].hasError('invalidName')"
                                         class="erroredits">
                                         No special character
-                                    </mat-error>
+                                    </mat-error> -->
                                     <mat-error *ngIf="Terminateformgroup.get('Rentdue').touched && !Terminateformgroup.get('Rentdue').hasError('required')
-                            &&Terminateformgroup.get('Rentdue').hasError('pattern')" class="erroredits">
+                            && Terminateformgroup.get('Rentdue').hasError('pattern')" class="erroredits">
                                         Enter a valid amount
                                     </mat-error>
 
@@ -307,12 +300,12 @@
                                     </mat-error> -->
                                     <mat-error *ngIf="Terminateformgroup.get('ExpectedDate').touched && 
                                     Terminateformgroup.get('ExpectedDate').hasError('required')" class="erroredits">
-                                        Enter a valid date
+                                    Enter a valid date (mm/dd/yyyy)
                                     </mat-error>
                                     <mat-error *ngIf="Terminateformgroup.get('ExpectedDate').touched && !Terminateformgroup.get('ExpectedDate').hasError('required')
                                     && Terminateformgroup.get('ExpectedDate').hasError('invalidDate')"
                                         class="erroredits">
-                                        Enter a valid date
+                                        Enter a valid date (mm/dd/yyyy)
                                     </mat-error>
                                     <!-- <mat-error
                                         *ngIf="Terminateformgroup.get('ExpectedDate').hasError('TerminatecomponentComponent.Date')" class="erroredits">

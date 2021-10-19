@@ -98,6 +98,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatRippleModule} from '@angular/material/core';
 import { CloseDialogComponent } from './close-dialog/close-dialog.component';
 import { LeasemanagementVacatedComponent } from './lease-management/leasemanagement-vacated/leasemanagement-vacated.component';
+import { LoginslideComponent } from './loginslide/loginslide.component';
 
 @NgModule({
   declarations: [
@@ -150,7 +151,8 @@ import { LeasemanagementVacatedComponent } from './lease-management/leasemanagem
     TerminatecomponentComponent,
     ShiftConfirmationComponent,
     CloseDialogComponent,
-    LeasemanagementVacatedComponent
+    LeasemanagementVacatedComponent,
+    LoginslideComponent
   ],
   imports: [
     MatGridListModule,
