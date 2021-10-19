@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200.658" height="66.854">
+    <defs>
+        <style>
+            .cls-1{fill:#4db151}.cls-2{fill:#1f009e}
+        </style>
+    </defs>
+    <g id="Group_8200" data-name="Group 8200" transform="translate(-50 -34.182)">
+        <g id="Group_8184" data-name="Group 8184" transform="translate(50 34.182)">
+            <g id="Group_32" data-name="Group 32">
+                <path id="Rectangle_6038" data-name="Rectangle 6038" class="cls-1" transform="translate(35.198)" d="M0 0h3.428v16.342H0z"/>
+                <path id="Rectangle_6037" data-name="Rectangle 6037" class="cls-1" transform="rotate(90 19.313 19.313)" d="M0 0h3.533v29.712H0z"/>
+                <path id="Rectangle_6036" data-name="Rectangle 6036" class="cls-1" transform="translate(8.914)" d="M0 0h3.428v22.579H0z"/>
+                <path id="Rectangle_6032" data-name="Rectangle 6032" class="cls-2" transform="translate(0 21.526)" d="M0 0h3.461v37.931H0z"/>
+                <path id="Rectangle_6034" data-name="Rectangle 6034" class="cls-2" transform="translate(17.88 21.526)" d="M0 0h3.461v43.621H0z"/>
+                <path id="Rectangle_6039" data-name="Rectangle 6039" class="cls-1" transform="translate(27.108 13.371)" d="M0 0h3.461v53.483H0z"/>
+                <path id="Rectangle_6033" data-name="Rectangle 6033" class="cls-2" transform="rotate(90 .65 20.69)" d="M0 0h3.414v21.341H0z"/>
+                <path id="Rectangle_6041" data-name="Rectangle 6041" class="cls-2" transform="rotate(90 17.828 31.199)" d="M0 0h3.414v6.921H0z"/>
+                <path id="Rectangle_6042" data-name="Rectangle 6042" class="cls-2" transform="translate(46.055 13.371)" d="M0 0h3.462v46.055H0z"/>
+                <path id="Path_7051" data-name="Path 7051" class="cls-1" d="M0 0h2.971v11.474H0z" transform="rotate(90 12.608 25.979)"/>
+            </g>
+            <path id="Rectangle_8206" data-name="Rectangle 8206" class="cls-2" transform="translate(34.452 24.881)" d="M0 0h3.828v3.828H0z"/>
+            <path id="Rectangle_8207" data-name="Rectangle 8207" class="cls-1" transform="translate(7.656 32.537)" d="M0 0h3.828v3.828H0z"/>
+        </g>
+        <text id="ARANxt" transform="translate(183.658 86.182)" style="font-size:34px;font-family:Geometric415BT-BlackA,Geometr415 Blk BT;font-weight:800;fill:#1f009e"><tspan x="-66.86" y="0">A</tspan><tspan y="0" style="font-size:54px">R</tspan><tspan y="0">A</tspan><tspan class="cls-1" y="0">Nxt</tspan></text>
+    </g>
+</svg>

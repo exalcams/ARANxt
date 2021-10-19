@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="89.817" height="30.36">
+    <defs>
+        <style>
+            .cls-1{fill:#acacac}
+        </style>
+    </defs>
+    <g id="Group_8575" data-name="Group 8575" transform="translate(-50 -34.182)">
+        <g id="Group_8184" data-name="Group 8184" transform="translate(50 34.182)">
+            <g id="Group_32" data-name="Group 32">
+                <path id="Rectangle_6038" data-name="Rectangle 6038" class="cls-1" transform="translate(15.984)" d="M0 0h1.557v7.421H0z"/>
+                <path id="Rectangle_6037" data-name="Rectangle 6037" class="cls-1" transform="rotate(90 8.77 8.77)" d="M0 0h1.605v13.493H0z"/>
+                <path id="Rectangle_6036" data-name="Rectangle 6036" class="cls-1" transform="translate(4.048)" d="M0 0h1.557v10.254H0z"/>
+                <path id="Rectangle_6032" data-name="Rectangle 6032" class="cls-1" transform="translate(0 9.775)" d="M0 0h1.572v17.226H0z"/>
+                <path id="Rectangle_6034" data-name="Rectangle 6034" class="cls-1" transform="translate(8.12 9.775)" d="M0 0h1.572v19.809H0z"/>
+                <path id="Rectangle_6039" data-name="Rectangle 6039" class="cls-1" transform="translate(12.311 6.072)" d="M0 0h1.572v24.288H0z"/>
+                <path id="Rectangle_6033" data-name="Rectangle 6033" class="cls-1" transform="rotate(90 .295 9.396)" d="M0 0h1.55v9.691H0z"/>
+                <path id="Rectangle_6041" data-name="Rectangle 6041" class="cls-1" transform="rotate(90 8.096 14.168)" d="M0 0h1.55v3.143H0z"/>
+                <path id="Rectangle_6042" data-name="Rectangle 6042" class="cls-1" transform="translate(20.915 6.072)" d="M0 0h1.572v20.915H0z"/>
+                <path id="Path_7051" data-name="Path 7051" class="cls-1" d="M0 0h1.349v5.211H0z" transform="rotate(90 5.725 11.798)"/>
+            </g>
+            <path id="Rectangle_8206" data-name="Rectangle 8206" class="cls-1" transform="translate(15.646 11.299)" d="M0 0h1.738v1.738H0z"/>
+            <path id="Rectangle_8207" data-name="Rectangle 8207" class="cls-1" transform="translate(3.477 14.776)" d="M0 0h1.738v1.738H0z"/>
+        </g>
+        <text id="ARANxt" transform="translate(109.817 56.182)" style="font-size:15px;font-family:Geometric415BT-BlackA,Geometr415 Blk BT;font-weight:800;fill:#acacac"><tspan x="-29.235" y="0">A</tspan><tspan y="0" style="font-size:23px">R</tspan><tspan y="0">ANxt</tspan></text>
+    </g>
+</svg>
