@@ -321,7 +321,7 @@ export class LeasemanagementComponent implements OnInit {
   }
 
   saveDraft1() {
-
+    this.editor1change=false
     this.service.GetLeaseDraftById(this.leaseDraft1.documentID).subscribe(res => {
       if(res)
       {      
@@ -359,6 +359,7 @@ export class LeasemanagementComponent implements OnInit {
   }
 
   saveDraft2() {
+    this.editor2change=false
     this.service.GetLeaseDraftById(this.leaseDraft2.documentID).subscribe(res => {
       if(res)
       {      

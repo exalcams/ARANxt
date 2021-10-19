@@ -118,11 +118,16 @@ export class RenewcomponentComponent implements OnInit {
     renew.validFor = this.Vacateformgroup.get('Validfor').value;
     renew.revisedRent = this.Vacateformgroup.get('RevisedRent').value;
     renew.revisedRatio = this.Vacateformgroup.get('Revisedratio').value;
+   
+      renew.renewalID=this.renewalById.length;
 
+    
     if ((this.Vacateformgroup.valid) && (this.files)) {
       this.service.RenewLease(renew, this.files).subscribe((x) => {
         console.log(x);        
         this.Vacateformgroup.reset();
+        this.notificationSnackBarComponent.openSnackBar('Renewed Sucessfully', SnackBarStatus.warning);
+        this.GetLeaseRenewals();
         this.filename=""
       },
         err => {

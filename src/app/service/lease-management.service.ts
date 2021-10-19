@@ -150,6 +150,7 @@ export class LeaseManagementService {
     formData.append('ValidFor', lease.validFor.toLocaleString());
     formData.append('RevisedRent', lease.revisedRent.toLocaleString());
     formData.append('RevisedRatio', lease.revisedRatio.toLocaleString());
+    formData.append('RenewalID', lease.renewalID.toLocaleString());
 
     return this.http.post<any>(this.baseAddress + 'api/Lease/RenewLease', formData,
       // {
