@@ -206,7 +206,7 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Rent due if any</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput formControlName="Rentdue" type="number" class="forminputedit"
+                                    <input matInput formControlName="Rentdue" class="forminputedit"
                                         (keydown)="decimalOnly($event)">
                                     <mat-error *ngIf="Terminateformgroup.get('Rentdue').hasError('required')"
                                         class="erroredits">
@@ -218,7 +218,7 @@
                                         No special character
                                     </mat-error> -->
                                     <mat-error *ngIf="Terminateformgroup.get('Rentdue').touched && !Terminateformgroup.get('Rentdue').hasError('required')
-                            && Terminateformgroup.get('Rentdue').hasError('pattern')" class="erroredits">
+                            &&Terminateformgroup.get('Rentdue').hasError('pattern')" >
                                         Enter a valid amount
                                     </mat-error>
 
@@ -250,17 +250,13 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Damage Recovery</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput formControlName="DamageRecovery" type="number"
+                                    <input matInput formControlName="DamageRecovery" 
                                         (keydown)="decimalOnly($event)" class="forminputedit">
                                     <mat-error *ngIf="Terminateformgroup.get('DamageRecovery').hasError('required')"
                                         class="erroredits">
                                         DamageRecovery is required
                                     </mat-error>
-                                    <mat-error
-                                        *ngIf="Terminateformgroup.controls['DamageRecovery'].hasError('invalidName')"
-                                        class="erroredits">
-                                        No special character
-                                    </mat-error>
+                                  
                                     <mat-error *ngIf="Terminateformgroup.get('DamageRecovery').touched && !Terminateformgroup.get('DamageRecovery').hasError('required')
                             &&Terminateformgroup.get('DamageRecovery').hasError('pattern')" class="erroredits">
                                         Enter a valid amount
@@ -271,17 +267,13 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Advance Balance to Be settled</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput formControlName="AdvanceBalance" type="number"
+                                    <input matInput formControlName="AdvanceBalance" 
                                         (keydown)="decimalOnly($event)" class="forminputedit">
                                     <mat-error *ngIf="Terminateformgroup.get('AdvanceBalance').hasError('required')"
                                         class="erroredits">
                                         AdvanceBalance is required
                                     </mat-error>
-                                    <mat-error
-                                        *ngIf="Terminateformgroup.controls['AdvanceBalance'].hasError('invalidName')"
-                                        class="erroredits">
-                                        No special character
-                                    </mat-error>
+                                  
                                     <mat-error *ngIf="Terminateformgroup.get('AdvanceBalance').touched && !Terminateformgroup.get('AdvanceBalance').hasError('required')
                             &&Terminateformgroup.get('AdvanceBalance').hasError('pattern')" class="erroredits">
                                         Enter a valid amount

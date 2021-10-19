@@ -1,17 +1,15 @@
 <div class="dialog-content-wrapper">
-    <!-- <mat-toolbar class="toolbar" fxLayout="row">
-        <div fxFlex="100" class="div_toolbar" fxLayoutAlign="space-between center">
-            <label class="fontcolor_dark">Shift Confirmation</label>
-            <img class="close_hover close" src="assets/32178.svg" (click)="close()">
-        </div>
-    </mat-toolbar> -->
-    <mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px">
+    
+    <!-- <mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px">
         <span class="vacatespan">
             Shift Confirmation
         </span>
         <img (click)="close()" class="closeimages" src="assets/Close.svg">
+    </mat-toolbar> -->
+    <mat-toolbar class="shifttoolbar" fxLayout="row" fxLayoutAlign="space-between center">
+        <label class="title">Upload Signed Document</label>
+        <img class="close_hover close" src="assets/Close.svg" (click)="close()">
     </mat-toolbar>
-
     <mat-dialog-content class="content" fusePerfectScrollbar>
         <div fxLayout="row">
             <div fxFlex="50" class="img_div">
@@ -25,7 +23,7 @@
                                 <p class="fontcolor_dark">Penalty</p>
                             </div>
                             <mat-form-field appearance="outline" class="form_field_cls">
-                                <input matInput placeholder="Enter penality if any" formControlName="Penalty"
+                                <input matInput placeholder="Enter penality if any" autocomplete="off" formControlName="Penalty"
                                     type="number" class="forminputedit" (keydown)="decimalOnly($event)">
                                 <mat-error *ngIf="ShiftConformationForm.get('Penalty').hasError('required')"
                                     class="erroredits">

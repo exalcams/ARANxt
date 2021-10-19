@@ -67,15 +67,15 @@ export class RenewcomponentComponent implements OnInit {
   SignedFormGroup(): void {
     this.Vacateformgroup = this.formBuilder.group({
       RenewOn: ['',[Validators.required,this.invalidDateValidatorFn]],
-      Validfor: ['',Validators.required,],
+      Validfor: ['',Validators.required],
       NewExpiryDate: ['', Validators.required],
       RevisedRent: ['',[Validators.required,Validators.pattern('^([0-9]{4,10})([.][0-9]{1,2})?$')]],
       Revisedratio: ['', Validators.required],
       Remarks: ['', Validators.required]
     });
     this.Vacateformgroup.get('Validfor').valueChanges.subscribe((value) => {
-      console.log(this.Vacateformgroup.value);
-      if (value && value != "") {
+      console.log("validforchange",this.Vacateformgroup.value);
+      if (value && value != "" && !this.newbool) {
         this.ExpiryCalculation(value);
       }
     })
@@ -123,6 +123,7 @@ export class RenewcomponentComponent implements OnInit {
       this.service.RenewLease(renew, this.files).subscribe((x) => {
         console.log(x);        
         this.Vacateformgroup.reset();
+        this.filename=""
       },
         err => {
           console.log(err);
@@ -226,7 +227,8 @@ this.selecteddocName=docName;
 }
   newlease(): void {
     this.Vacateformgroup.reset();
-    this.Vacateformgroup.get("RenewOn").setValue(null)
+    console.log("newlease",this.Vacateformgroup.get("RenewOn").value);
+    
     this.selectedID = null;
     this.newbool=false;
     this.filename=null;

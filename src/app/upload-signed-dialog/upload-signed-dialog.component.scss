@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
   }
-  .toolbar{
+  .toolbar_upload{
     background-color: #f4f4fb;
     height: 56px;
   }
@@ -88,8 +88,10 @@
       padding: 0 16px;
   }
   .placeholdertext{
-      font-size: 10px;
-      font-family: 'poppins' !important;
+    font-size: 10px;
+    font-family: "poppins" !important;
+    color: black;
+    font-weight: 700;
     }
   //   .placeholdertext::placeholder{
   //     font-size: 12px !important;
@@ -184,9 +186,10 @@ width: 32%;
   align-items: center;
 }
 .form_field_cls{
-width: 54%;
+  width: 54%;
   font-size: 10px;
-  font-family: 'poppins';
+  font-family: "poppins";
+  color: black !important
 }
 .formspan{
 color: #383744;

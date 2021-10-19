@@ -5,7 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DraftDialogComponent } from '../draft-dialog/draft-dialog.component';
-import { LeaseManagement } from '../Model/Leasemanagement';
+import { LeaseBankDetalis, LeaseManagement } from '../Model/Leasemanagement';
 import { NotificationSnackBarComponent } from '../notification/notification-snack-bar/notification-snack-bar.component';
 import { SnackBarStatus } from '../notification/notification-snack-bar/notification-snackbar-status-enum';
 import { LeaseManagementService } from '../service/lease-management.service';
@@ -23,7 +23,7 @@ export class UploadSignedDialogComponent implements OnInit {
   modeoftransfer:any[]=["cash","online"];
   modetransfer_selected:any;
   date_input:any;
-  minDate = new Date();
+ 
   NUMERIC_PATTREN = '^([0-9]{4,10})([.][0-9]{1,2})?$';
 
   constructor(private formBuilder: FormBuilder,
@@ -42,25 +42,31 @@ export class UploadSignedDialogComponent implements OnInit {
   
   this.SignedDocumentDetailsForm = this.formBuilder.group({
     Client: ['',Validators.required],
-    FileName : ['',Validators.required],
-    CreatedOn: ['',[Validators.required,this.invalidDateValidatorFn]],
+    FileName :  ['',[Validators.required,Validators.pattern('[a-zA-Z0-9](?:[a-zA-Z0-9 ._-]*[a-zA-Z0-9])?\.[a-zA-Z0-9_-]+$' )]],
+    CreatedOn:['',[Validators.required,this.invalidDateValidatorFn]],
     ExpiryDate: ['',[Validators.required,this.invalidDateValidatorFn]],
 
-    TotalDeposit : ['',[Validators.required,Validators.pattern('^([0-9]{4,10})([.][0-9]{1,2})?$' )]],
-    Rental: ['',[Validators.required,Validators.pattern('^([0-9]{4,10})([.][0-9]{1,2})?$' )]],
-    BankName: ['' ,[Validators.required,Validators.pattern('^[a-zA-Z]+$')]],
-    HolderName : ['',[Validators.required,Validators.pattern('^[a-zA-Z]+$')]],
+    TotalDeposit : ['',[Validators.required,Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$' )]],
+    Rental: ['',[Validators.required,Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$' )]],
+    BankName: [''],
+    HolderName : ['',[Validators.required]],
     AccountNo : ['',[Validators.required,Validators.pattern('^([0-9]{9,16})?$')]],
     ModeofTransfer : ['', Validators.required],
     IFSCCode : ['',[Validators.required,Validators.pattern('^[A-Z]{4}0[A-Z0-9]{6}$')]],
     // AdvanceRequest : ['', Validators.required],
-    Maintenance:['',[Validators.required,Validators.pattern('^([0-9]{4,10})([.][0-9]{1,2})?$')]],
-    Electrical:['',Validators.required],
+    Maintenance:['',[Validators.required,Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$')]],
+    Electrical: ['',[Validators.required,Validators.pattern('^[A-Za-z0-9 ]+$' )]],
     Condition: ['',Validators.required],
     Remarks: ['',Validators.required],
     // NoticePeriod: ['',Validators.required],
     NoticePeriod: ['',[Validators.required,Validators.pattern('^[0-9]+$')]],
   });
+  // this.SignedDocumentDetailsForm.get('IFSCCode').valueChanges.subscribe((value) => {
+ 
+  //   if (value && value != "") {
+  //     this.GetBankNameByBankCode(value);
+  //   }
+  // })
 }
 invalidDateValidatorFn(): ValidatorFn {
   let invalidDate
@@ -76,22 +82,36 @@ invalidDateValidatorFn(): ValidatorFn {
   console.log("invaliddate",invalidDate);
 return a
 }
-Date_func(eve)
+GetBankNameByBankCode()
 {
-  let ptDatePattern =   /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g;
-       if (eve.target.value.match(ptDatePattern))
-        {
-          this.SignedDocumentDetailsForm.get("CreatedOn").setErrors({dt:true})
-        }
-else
-{
-  this.SignedDocumentDetailsForm.get("CreatedOn").markAsUntouched();
-  this.SignedDocumentDetailsForm.get("CreatedOn").valid;
-  this.SignedDocumentDetailsForm.get("CreatedOn").setErrors({dt:null})
+  const a=this.SignedDocumentDetailsForm.get('IFSCCode').value
+  this.service.GetBankNameByBankCode(a).subscribe((res:LeaseBankDetalis)=>{
+    console.log("res",res);
+    const bankName=res.bankName
+    this.SignedDocumentDetailsForm.get("BankName").setValue(bankName);
+  },
+  err => {
+    console.log(err);
+    
+  })
 }
+
+// Date_func(eve)
+// {
+//   let ptDatePattern =   /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g;
+//        if (eve.target.value.match(ptDatePattern))
+//         {
+//           this.SignedDocumentDetailsForm.get("CreatedOn").setErrors({dt:true})
+//         }
+// else
+// {
+//   this.SignedDocumentDetailsForm.get("CreatedOn").markAsUntouched();
+//   this.SignedDocumentDetailsForm.get("CreatedOn").valid;
+//   this.SignedDocumentDetailsForm.get("CreatedOn").setErrors({dt:null})
+// }
  
 
-}
+// }
 onSelect(event): void {
   console.log(event);
   this.files=[];
@@ -114,16 +134,16 @@ onRemove(event): void {
     signeddetail.clientName = this.SignedDocumentDetailsForm.get('Client').value;
     signeddetail.documentName = this.SignedDocumentDetailsForm.get('FileName').value;
     // signeddetail.createdOn = this.SignedDocumentDetailsForm.get('CreatedOn').value;
-    signeddetail.createdOn = this._datePipe.transform(this.SignedDocumentDetailsForm.get('CreatedOn').value, 'yyyy-MM-dd');
+    // signeddetail.createdOn = this._datePipe.transform(this.SignedDocumentDetailsForm.get('CreatedOn').value, 'dd-MM-yyyy');
+    signeddetail.signedOn = this._datePipe.transform(this.SignedDocumentDetailsForm.get('CreatedOn').value, 'dd-MM-yyyy');
 
-    signeddetail.expiryDate = this._datePipe.transform(this.SignedDocumentDetailsForm.get('ExpiryDate').value, 'yyyy-MM-dd');
+    signeddetail.expiryDate = this._datePipe.transform(this.SignedDocumentDetailsForm.get('ExpiryDate').value, 'dd-MM-yyyy');
     signeddetail.totalDeposit = this.SignedDocumentDetailsForm.get('TotalDeposit').value;
     signeddetail.rental = this.SignedDocumentDetailsForm.get('Rental').value;
     signeddetail.manintenace = this.SignedDocumentDetailsForm.get('Maintenance').value;
     signeddetail.electrical = this.SignedDocumentDetailsForm.get('Electrical').value;
     signeddetail.condition = this.SignedDocumentDetailsForm.get('Condition').value;
     signeddetail.remarks = this.SignedDocumentDetailsForm.get('Remarks').value;
-    signeddetail.signedOn = this.SignedDocumentDetailsForm.get('CreatedOn').value;
     signeddetail.bankName = this.SignedDocumentDetailsForm.get('BankName').value;
     signeddetail.holderName = this.SignedDocumentDetailsForm.get('HolderName').value;
     signeddetail.accountNo = this.SignedDocumentDetailsForm.get('AccountNo').value;
@@ -152,7 +172,7 @@ onRemove(event): void {
     else if(!this.files[0] && this.SignedDocumentDetailsForm.valid)
   {
     this.spinner.hide();
-    this.notificationSnackBarComponent.openSnackBar('File need to be Uploaded', SnackBarStatus.danger);
+    this.notificationSnackBarComponent.openSnackBar('File need to be Uploaded', SnackBarStatus.warning);
   }
   else if(!this.SignedDocumentDetailsForm.valid)
   {

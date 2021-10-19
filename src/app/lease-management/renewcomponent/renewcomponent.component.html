@@ -166,7 +166,8 @@
                                 <span class="formspan" fxFlex="50">Renew On</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
                                     <input matInput [matDatepicker]="dp1" class="forminputedit"
-                                        formControlName="RenewOn">
+                                        formControlName="RenewOn" 
+                                        >
                                     <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
                                     <mat-datepicker #dp1 disabled="false"></mat-datepicker>
                                     <mat-error *ngIf="Vacateformgroup.get('RenewOn').hasError('required')">
@@ -176,6 +177,7 @@
                                     &&Vacateformgroup.get('RenewOn').hasError('pattern')">
                                         Enter a valid date
                                     </mat-error>
+
                                 </mat-form-field>
                             </div>
 
@@ -251,21 +253,7 @@
                             </span>  
                                 <img src="./assets/download_ash.svg" class="actionstable">
                             </div>
-                            <!-- <div style="height: 10px;"> </div>
-                            <div class="messagediv">
-                                <div>
-                                    <img src="./assets/New-message-rafiki.png" class="messageimage">
-                                </div>
-                                <div fxLayout="column" fxLayoutAlign="space-around center">
-                                    <div class="messagespan">
-                                        Message Status
-                                    </div>
-                                    <div class="current">
-                                        Currently No Message
-                                    </div>
-                                </div>
-                            </div> -->
-
+                          
                         </div>
                     </form>
                     <input hidden type="file" #fileInput1 id="file_id" accept=".pdf"

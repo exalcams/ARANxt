@@ -403,6 +403,9 @@ export class LeasemanagementSignedComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
         console.log(`Dialog result: ${result}`);
+        if (!result) {
+          this.GetAllLeases();
+        }
       });
     }
     else if (this.Checked && this.Renewdialogdata.status != "signed") {
@@ -438,6 +441,9 @@ export class LeasemanagementSignedComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
         console.log(`Dialog result: ${result}`);
+        if (!result) {
+          this.GetAllLeases();
+        }
       });
     }
     else if (this.Checked && this.Renewdialogdata.status != "signed") {
@@ -462,9 +468,12 @@ export class LeasemanagementSignedComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
         console.log(`Dialog result: ${result}`);
+        if (!result) {
+          this.GetAllLeases();
+        }
       });
     }
-    else if (this.Renewdialogdata.status == "signed" || this.Renewdialogdata.status == "undernotice") {
+    else if (this.Renewdialogdata.status == "signed" || this.Renewdialogdata.status == "undernotice" || this.Renewdialogdata.status == "terminated") {
       this.notificationSnackBarComponent.openSnackBar('The lease cannot be terminated', SnackBarStatus.warning);
 
     }
