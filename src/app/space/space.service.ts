@@ -87,6 +87,12 @@ export class SpaceService {
         return this._httpClient.get<any>(`${this.baseUrlVsign1}api/Space/GetSpace?Spacename=${Spacename}`)
             .pipe(catchError(this.errorHandler));
     }
+    
+    GetCompanyById(clientId: number): Observable<any | string> {
+        return this._httpClient.get<any>(`${this.baseUrlVsign1}api/Space/GetCompanyById?clientId=${clientId}`)
+            .pipe(catchError(this.errorHandler));
+    }
+
     ARA_SiteLink(site: SiteLink) {
         return this._httpClient.post<any>(this.baseUrlVsign1 + "api/Space/PostSitedetail", site
         )

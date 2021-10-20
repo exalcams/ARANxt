@@ -1,72 +1,113 @@
-<form autocomplete="off" [formGroup]="SiteForm">
-<div fxFlex="100" fxLayout="column" fxLayoutGap="30px">
-<div fxFlex="80" fxLayout="row" fxLayoutGap="50px">
-    <div fxLayout="column" fxFlex="45" fxLayoutGap="20px" class="main" >
-        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span fxFlex="30">Site
-                Name</span><span fxFlex="70">
-                <input class="input_cls" formControlName="Site" matInput placeholder=" Enter Site Name">
-            </span>
-        </div>
-        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
-                fxFlex="30">Title</span><span fxFlex="70">
-                <input class="input_cls" formControlName="Title" matInput placeholder=" Enter Title">
-            </span>
-        </div>
-        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
-                fxFlex="30">Tax1</span><span fxFlex="70">
-                <input class="input_cls" formControlName="Tax1" matInput placeholder=" Enter Tax1">
-            </span>
-        </div>
-        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
-                fxFlex="30">Tax2</span><span fxFlex="70">
-                <input class="input_cls" formControlName="Tax2" matInput placeholder=" Enter Tax2">
-            </span>
-        </div>
-        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
-                fxFlex="30">Tax3</span><span fxFlex="70">
-                <input class="input_cls" formControlName="Tax3" matInput placeholder=" Enter Tax3">
-            </span>
-        </div>
-       
-    </div>
+<div class="dialog-content-wrapper">
+    <mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+        <label class="title">Site Creation</label>
+        <img class="closeimages" src="assets/32178.svg" (click)="close()">
+    </mat-toolbar>
 
-    <div fxLayout="column" fxFlex="45" fxLayoutGap="20px"  class="main">
-        <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
-            fxFlex="30">Category</span><span fxFlex="70">
-            <input class="input_cls"  formControlName="Category" matInput placeholder=" Enter Category">
-        </span>
-    </div>
-    <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
-            fxFlex="30">Company</span>
-            <span fxFlex="70">
-                    <select class="input_cls" formControlName="Company">
-                        <option value="" disabled selected hidden>Select Company</option>
-                        <option class="input_cls" *ngFor="let country of Company"
-                            fxLayoutAlign="center center"  [ngValue]="country.company">
-                            {{country.company}}</option>
-                    </select>
-            <!-- <input class="input_cls" formControlName="Company" matInput placeholder=" Enter Company"> -->
-        </span>
-    </div>
-    <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
-            fxFlex="30">ProfitCenter</span><span fxFlex="70">
-            <input class="input_cls" formControlName="ProfitCenter" matInput placeholder=" Enter ProfitCenter">
-        </span>
-    </div>
-    <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
-            fxFlex="30">ObjType</span><span fxFlex="70">
-            <input class="input_cls" formControlName="ObjType" matInput placeholder=" Enter ObjType">
-        </span>
-    </div>
-    </div>
+    <mat-dialog-content class="content" fusePerfectScrollbar>
+        <form autocomplete="off" [formGroup]="SiteForm">
+            <div fxFlex="100" fxLayout="column" fxLayoutGap="30px">
+                <div fxFlex="80" fxLayout="row" fxLayoutGap="50px">
+                    <div fxLayout="column" fxFlex="50" fxLayoutGap="5px" class="main">
+                        <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                            <span class="formspan">Site Name</span>
+                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                <input matInput formControlName="Site" type="text" class="placeholdertext "
+                                    class="input_fontsize" >
+                                <mat-error *ngIf="SiteForm.get('Site').hasError('required')">
+                                    Site name is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
 
-    <div fxLayout="column">
-        <div><img class="close_hover" (click)="close()" src="./assets/Images/close.svg"></div>
-    </div>
-</div>
-<div fxLayout="row" fxFlex="20" fxLayoutAlign="center center" >
-    <button (click)="submit()" mat-flat-button color="primary">Create</button>
-</div>
-</div>
-</form>
+                        <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                            <span class="formspan">Tax1</span>
+                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                <input matInput formControlName="Tax1" type="text" class="placeholdertext "
+                                    class="input_fontsize" >
+                                <mat-error *ngIf="SiteForm.get('Tax1').hasError('required')">
+                                    Tax1 is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
 
+                        <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                            <span class="formspan">Tax2</span>
+                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                <input matInput formControlName="Tax2" type="text" class="placeholdertext "
+                                    class="input_fontsize" >
+                                    <mat-error *ngIf="SiteForm.get('Tax2').hasError('required')">
+                                        Tax2 is required
+                                    </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                            <span class="formspan">Tax3</span>
+                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                <input matInput formControlName="Tax3" type="text" class="placeholdertext "
+                                    class="input_fontsize" >
+                                    <mat-error *ngIf="SiteForm.get('Tax3').hasError('required')">
+                                        Tax3 is required
+                                    </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div fxLayout="column" fxFlex="50" fxLayoutGap="5px" class="main">
+
+                        <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                            <span class="formspan">Category</span>
+                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                <input matInput formControlName="Category" type="text" class="placeholdertext "
+                                    class="input_fontsize" >
+                                    <mat-error *ngIf="SiteForm.get('Category').hasError('required')">
+                                        Category is required
+                                    </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                            <span class="formspan">Company</span>
+                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                <mat-select formControlName="Company" class="placeholdertext">
+                                    <mat-option *ngFor="let option of CompanyById" class="placeholdertext"
+                                        [value]="option.company">
+                                        {{option.title}}</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="SiteForm.get('Company').hasError('required')">
+                                    Company is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                            <span class="formspan">ProfitCenter</span>
+                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                <input matInput formControlName="ProfitCenter" type="text" class="placeholdertext "
+                                    class="input_fontsize" >
+                                    <mat-error *ngIf="SiteForm.get('ProfitCenter').hasError('required')">
+                                        ProfitCenter is required
+                                    </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                            <span class="formspan">ObjType</span>
+                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                <input matInput formControlName="ObjType" type="text" class="placeholdertext "
+                                    class="input_fontsize" >
+                                    <mat-error *ngIf="SiteForm.get('ObjType').hasError('required')">
+                                        ObjType is required
+                                    </mat-error>
+                            </mat-form-field>
+                        </div>
+                      
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="m-0 p-16 footer" fxLayoutAlign="end center" fxLayoutGap="8px">
+        <button mat-raised-button class="savebtn" color="primary" (click)="submit()">Create</button>
+        <button mat-raised-button type="button" class="btn" (click)="close()">Close</button>
+    </mat-dialog-actions>
+</div>

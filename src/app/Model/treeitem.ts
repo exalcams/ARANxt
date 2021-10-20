@@ -1,5 +1,6 @@
 export interface TreeItem {
     name: string;
+    id:number;
     parent: string;
     type:string;
     children?: TreeItem[];
@@ -7,6 +8,6 @@ export interface TreeItem {
 
 export interface FlatNode {
     expandable: boolean;
-    name: string;
+    name: any;
     level: number;
 }

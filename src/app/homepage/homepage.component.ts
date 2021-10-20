@@ -75,7 +75,7 @@ export class HomepageComponent implements OnInit {
   divhide1: boolean = true;
   divhide2: boolean = true;
   as: any;
-  parents: string[] = []
+  parents: any[] = []
   fullmenu = true; shortmenu = false; state: string = 'none';
   title = 'ARA';
   bool8: boolean;
@@ -88,9 +88,9 @@ export class HomepageComponent implements OnInit {
   ChildNode: string;
   isLeasemanagement = false;
   setInterval = setInterval;
-  getspace: string[] = [];
+  getspace: any[] = [];
   speech: boolean;
-  selectedNode: string = "";
+  selectedNode: any ;
   selectedNodePath: string = "";
   isFolded: boolean = false;
 
@@ -116,8 +116,6 @@ export class HomepageComponent implements OnInit {
   treeSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
   hasChild = (_: number, node: FlatNode) => node.expandable;
-
-
   initializeVoiceRecognitionCallback(): void {
     annyang.addCallback('error', (err: any) => {
       if (err.error === 'network') {
@@ -196,6 +194,8 @@ export class HomepageComponent implements OnInit {
       this.treeSource.data = this.treeConstruct(this.TREE_DATA);
       console.log("tree data", this.TREE_DATA);
       this.selectedNode = this.TREE_DATA[0].name;
+      console.log("selectedNode",this.selectedNode);
+      
     });
     this.Space = '';
     this.SubSpace = '';
@@ -215,7 +215,7 @@ export class HomepageComponent implements OnInit {
     return constructedTree;
   }
   constructTree(constructedTree, treeObj, assigned) {
-    if (treeObj.parent == null) {
+    if (treeObj.parent == 0) {
       treeObj.children = [];
       constructedTree.push(treeObj);
       return true;
@@ -253,7 +253,7 @@ export class HomepageComponent implements OnInit {
 
   }
 
-  test(node: string) {
+  test(node: any) {
     // this.getspace = true;
     var parent = this.TREE_DATA.find(x => x.name == node);
     if (parent.parent == null) {
@@ -279,16 +279,16 @@ export class HomepageComponent implements OnInit {
     // console.log(parent.name);
   }
 
-  GetChild(parent: string) {
+  GetChild(parent: any) {
     this.TREE_DATA.forEach(element => {
       if (element.parent == null)
         this.parents.push(element.name)
     })
     let check = this.parents.includes(parent)
     if (check) {
-      let child: string[] = []
+      let child: any[] = []
       for (let i = 0; i < this.TREE_DATA.length; i++) {
-        if (this.TREE_DATA[i].name.includes(parent)) {
+        if (this.TREE_DATA[i].name.toString().includes(parent)) {
           let children = this.TREE_DATA[i].children
           children.forEach(element => {
             child.push(element.name)
