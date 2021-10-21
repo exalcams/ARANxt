@@ -31,7 +31,8 @@ export class LoginslideComponent implements OnInit {
   action = true;
   setAutoHide = true;
   autoHide = 2000;
-
+  hide: boolean = true;
+  hiding: boolean;
   addExtraClass: false;
   notificationSnackBarComponent: NotificationSnackBarComponent;
   IsProgressBarVisibile: boolean;
@@ -236,5 +237,11 @@ export class LoginslideComponent implements OnInit {
     localStorage.setItem('menuItemsData', JSON.stringify(this.navigation));
     // Update the service in order to update menu
     this._menuUpdationService.PushNewMenus(this.navigation);
+  }
+  hider() {
+    this.hide = false;
+  }
+  hider2() {
+    this.hide = true;
   }
 }

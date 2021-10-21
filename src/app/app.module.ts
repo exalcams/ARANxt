@@ -99,7 +99,7 @@ import {MatRippleModule} from '@angular/material/core';
 import { CloseDialogComponent } from './close-dialog/close-dialog.component';
 import { LeasemanagementVacatedComponent } from './lease-management/leasemanagement-vacated/leasemanagement-vacated.component';
 import { LoginslideComponent } from './loginslide/loginslide.component';
-
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 @NgModule({
   declarations: [
     AppComponent,
@@ -187,6 +187,7 @@ import { LoginslideComponent } from './loginslide/loginslide.component';
     MatTreeModule,
     FlexLayoutModule,HttpClientModule,MatSnackBarModule,
     GaugeModule.forRoot(),
+    MatCarouselModule,
     AgmCoreModule.forRoot({
       apiKey: '',
      
