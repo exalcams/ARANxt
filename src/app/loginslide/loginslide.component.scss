@@ -6,17 +6,11 @@
         overflow: hidden;
         background: url(/assets/Group8579@3x.webp) no-repeat;
         background-size: cover;
+        
         #login-intro {
-            padding: 128px;
-
-            // @include media-breakpoint('sm') {
-            //     padding: 128px 64px;
-            // }
-
             .logo {
                 width: 128px;
             }
-           
             .title {
                 font-size: 30px;
                 font-weight: 600;
@@ -24,11 +18,77 @@
                 line-height: 1;
                 color: #1f009e;
             }
-
             .description {
                 padding-top: 16px;
                 font-size: 14px;
                 max-width: 600px;
+            }
+            .finaldiv{
+                .powerdbyspan{
+                    color: #0d0c22;
+                    font-size: 10px;
+                    font-family: 'poppins-semi' !important;
+                    padding-top: 3px;
+                }
+            }
+            .slideshow-div{
+                padding-left: 40px;
+                width: 600px;
+                height: 500px;
+                overflow-x: hidden;
+                .mat-carousel{
+                    width: 100%;
+                    height: 500px !important;
+                    .mat-carousel-slide{
+                        height: 300px;
+                        width: 300px;
+                        padding: 20px;
+                    }
+                    .carousel{
+                        height: 500px !important;
+                    }
+                    .carousel-list[_ngcontent-dus-c314]{
+                        height: 400px !important;
+                        width: 100%;
+                        list-style: none;
+                        display: flex;
+                        position: relative;
+                        margin: 0;
+                        padding: 0;
+                        .slideingpart{
+                            width: 100%;height: 100% !important;
+                            .slidespan1{
+                                color: #acacac !important;
+                                font-size: 10px !important;
+                                font-family: 'poppins-semi' !important;
+                                word-wrap: break-word !important;
+                            }
+                        }
+                        .slideimage1{
+                            width: 100%;
+                            height: 80%;
+                            // object-fit: cover;
+                            display: block;
+                        }
+                        .image1{
+                            background-color: white; 
+                            width: 100px;
+                            height: 100px;
+                        }
+                        .carousel-indicators[_ngcontent-tuo-c314] > button .mat-focus-indicator.mat-mini-fab-icon.mat-button-base.mat-primary.ng-star-inserted[_ngcontent-tuo-c314] {
+                            width: 6px !important;
+                            height: 6px !important;
+                            margin: 7.5px !important;
+                        }
+                        button {
+
+                        .mat-focus-indicator .mat-mini-fab-icon .mat-button-base .mat-primary .ng-star-inserted{
+                           width: 6px !important;
+                           height: 6px !important;
+                       }
+                    }
+                    }
+                }
             }
         }
 
@@ -38,7 +98,7 @@
             max-width: 450px;
             overflow: auto;
             -webkit-overflow-scrolling: touch;
-            margin: 4% 8%;
+            // margin: 2% 8%;
             // height: 85%;
             height: 530px;
             border-radius: 4px;
@@ -94,6 +154,61 @@
                     color: #acacac;
                     padding-top: 10px !important;
                 }
+                .inputdivision{
+                    background-color: #f4f4f4;
+                    height: 35px;
+                    border-radius: 4px;
+                }
+               .inputform{
+                   color: #0d0c22;
+                   font-size: 10px;
+                   width: 83%;
+                   padding-left: 23px;
+                   font-family: 'poppins-semi' !important;
+                   line-height: 3.5;
+                   border: none;
+                   background: transparent;
+               }
+               .inputform:focus{
+                outline: none;
+               }
+              .inputform::placeholder{
+                font-size: 10px !important;
+                font-family: 'poppins-semi' !important;
+                color: #acacac !important;
+              }
+              .show{
+                 transform: scale(0.6);
+                 cursor: pointer;
+              }
+                // .btn_bg2{
+                //     background-color: #f4f4f4;
+                // }
+                // .search_input1{
+                //     height: 25px;
+                //     width: 80%;
+                //     border-radius: 3px;
+                //     color: #acacac;
+                //     align-self: center;
+                //     font-family: 'poppins-semi' !important;
+                //     font-size: 12px;
+                //     font-weight: 500;
+                //     border: none;
+                //     background: transparent;
+                // }
+                // .search_input1:focus{
+                //     outline: none;
+                // }
+                .forminputedit{
+                    color: #0d0c22 !important;
+                    font-size: 10px !important;
+                    font-family: 'poppins-semi' !important;
+                  }
+                .usernamespan{
+                    color: #0d0c22;
+                    font-size: 12px;
+                    font-family: 'poppins-semi' !important;
+                }
                 
                 .description {
                     padding-top: 8px;
@@ -145,22 +260,21 @@
                         color: #0d0c22;
                         font-size: 10px;
                         font-family: 'poppins-semi' !important;
+                        cursor: pointer;
                     }
                 }
             .buttondiv{
                 text-align: -webkit-center;
                 padding-top: 5px;
                 .submit-button {
-                    width: 60%;
-                    height: 32px;
+                    width: 65%;
+                    height: 28px;
                     display: block;
                     background-color: #1f009e !important;
-                    .loginButton{
-                        font-family: 'poppins-semi' !important;
-                        font-size: 11px;
-                        line-height: normal;
-                        color: #ffffff;
-                    }        
+                    font-family: 'poppins-semi' !important;
+                    font-size: 11px;
+                    line-height: normal;
+                    color: #ffffff;      
                 }
             }
                 .choicediv{
@@ -182,6 +296,9 @@
                     font-size: 10px;
                     font-family: 'poppins-semi' !important;
                 }
+                .pointer{
+                    cursor: pointer;
+                }
             }
             .signupdiv{
                 padding-top: 30px;
@@ -199,6 +316,7 @@
                     color: #0d0c22;
                     font-size: 10px;
                     font-family: 'poppins-semi' !important;
+                    cursor: pointer;
                 }
                 .arawhiteimage{
                     transform: scale(0.5);
@@ -286,4 +404,4 @@
            
         }
     }
-
+    

@@ -1,4 +1,4 @@
-<div id="login" class="inner-scroll normal" fxLayout="row" fxLayoutAlign="start">
+<div id="login" class="inner-scroll normal" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="50px">
 
     <!-- <div id="login-intro" fxFlex fxHide fxShow.gt-xs>
 
@@ -7,10 +7,10 @@
     <div id="login-form-wrapper" fusePerfectScrollbar>
 
         <div id="login-form">
-            <div class="logo" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+            <div class="logo" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
                 <!-- <img src="assets/images/rfq/Exalca_Logo.jpg" width="100px"> -->
                 <span class="welcomespan"> WELCOME TO </span>
-                <img src="../../assets\Group 8200.png" style="width: 100px;height: 40px;">
+                <img src="../../assets\Group 8200.png" style="width: 100px;height: 35px;">
             </div>
             <div class="title">Sign In</div>
             <!-- <div class="border"></div> -->
@@ -18,23 +18,46 @@
             <div class="subTitel">Please Sign In to Continue</div>
 
             <form name="loginForm" [formGroup]="loginForm" novalidate>
+                <!-- <div>
+                    <span class="usernamespan"> User Name</span>
+                    <mat-form-field  appearance="outline">
+                        <input matInput formControlName="userName">
+                        <mat-error *ngIf="loginForm.get('userName').hasError('required')">
+                            User name is required
+                        </mat-error>
+                    </mat-form-field>
+                </div> -->
+                <div fxLayout="column" fxLayoutAlign="start" fxLayoutGap="20px">
+                    <div fxLayout="column" fxLayoutAlign="space-between" fxLayoutGap="8px">
+                        <span class="usernamespan"> User Name</span>
+                        <div class="inputdivision">
+                            <input autocomplete="off" matInput formControlName="userName" class="inputform "
+                                placeholder="Enter Username">
+                        </div>
+                    </div>
+                    <div fxLayout="column" fxLayoutAlign="space-between" fxLayoutGap="8px">
+                        <span class="usernamespan">Password</span>
+                        <div class="inputdivision" fxLayout="row" fxLayoutAlign="start center">
+                            <input autocomplete="off" matInput formControlName="password" class="inputform"
+                                placeholder="Enter Password" [type]="hide ? 'password' : 'text'">
+                            <!-- <mat-icon class="show" (click)="hide=!hide;">{{hide ? 'visibility' : 'visibility_off'}}
+                            </mat-icon> -->
 
-                <mat-form-field appearance="outline">
-                    <mat-label>User Name</mat-label>
-                    <input matInput formControlName="userName">
-                    <mat-error *ngIf="loginForm.get('userName').hasError('required')">
-                        User name is required
-                    </mat-error>
-                </mat-form-field>
+                            <img src="../../assets/38488.svg" *ngIf="hide==true" (click)="hider()" class="show">
+                            <img src="../../assets/eyeopen.svg" class="show" *ngIf="hide==false" (click)="hider2()">
 
-                <mat-form-field appearance="outline">
-                    <mat-label>Password</mat-label>
-                    <input matInput type="password" formControlName="password">
-                    <mat-error>
-                        Password is required
-                    </mat-error>
-                </mat-form-field>
-
+                        </div>
+                    </div>
+                </div>
+                <!-- <div>
+                    <span class="usernamespan">Password</span>
+                    <mat-form-field appearance="outline">
+                        <input matInput type="password" formControlName="password">
+                        <mat-error>
+                            Password is required
+                        </mat-error>
+                    </mat-form-field>
+                </div> -->
                 <!-- <div class="remember-forgot-password" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end center">
             <span class="forgot-password" (click)="OpenForgetPasswordLinkDialog()">
               Forgot Password?
@@ -47,7 +70,7 @@
             </div>
             <div class="buttondiv">
                 <button mat-raised-button class="submit-button" aria-label="LOGIN" (click)="LoginClicked()">
-                    <span class="loginButton">Log In</span>
+                    Log In
                 </button>
             </div>
             <div class="choicediv">
@@ -56,11 +79,11 @@
                 </span>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-evenly" class="choicesoptiondiv">
-                <div fxLayout="row" fxLayoutAlign="start center">
+                <div fxLayout="row" fxLayoutAlign="start center" class="pointer">
                     <img src="../../assets/2993685_brand_brands_google_logo_logos_icon.svg" class="imageschoice">
                     <span class="google">Google</span>
                 </div>
-                <div fxLayout="row" fxLayoutAlign="start center">
+                <div fxLayout="row" fxLayoutAlign="start center" class="pointer">
                     <img src="../../assets/_x32_43-outlook.svg" class="imageschoice">
                     <span class="google">Outlook</span>
                 </div>
@@ -69,7 +92,7 @@
                 <span class="newto">
                     New to
                 </span>
-                <!-- <img src="../../assets/Group 8575.svg" class="arawhiteimage"> -->
+                <img src="../../assets/Group 8575.png" width="55px">
                 <span class="signupdiv2">
                     Please,
                 </span>
@@ -84,7 +107,66 @@
 
 
     </div>
-    <div id="login-intro" fxFlex fxHide fxShow.gt-xs>
+    <div id="login-intro" fxFlex fxHide fxShow.gt-xs fxFlex="50">
+        <div fxLayout="column" fxLayoutAlign="center" style="width: 100%;">
+            <mat-carousel class="sliderpart" timings="800ms ease-in" [autoplay]="true" interval="2000" color="primary"
+                proportion="25" slides="5" [loop]="true" [hideArrows]="true" [hideIndicators]="false"
+                [useKeyboard]="true" [useMouseWheel]="false" orientation="ltr" maintainAspectRatio="false"
+                slideHeight="100%">
+                <mat-carousel-slide #matCarouselSlide overlayColor="white " [hideOverlay]="false"
+                    class="carouselslide1">
+                    <div class="slideingpart" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
+                        <!-- class="slideimage1" class="slidespan1" -->
+                        <img src="../../assets/Mask Group 59.webp" width="50%">
+                        <span
+                            style="font-size: 10px !important; color: #acacac !important; font-family: 'poppins-semi' !important;word-wrap: break-word !important;text-align-last: center;">
+                            A building management system (BMS), otherwise known as a building
+                            automation system (BAS),
+                        </span>
+                    </div>
+                </mat-carousel-slide>
+                <mat-carousel-slide #matCarouselSlide overlayColor="white" [hideOverlay]="false" class="carouselslide1">
+                    <div class="slideingpart" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="70px">
+                        <img src="../../assets/Pipeline maintenance-pana.webp" style="background-color: white;"
+                            width="50%">
+                        <span
+                            style="font-size: 10px !important; color: #acacac !important; font-family: 'poppins-semi' !important;word-wrap: break-word !important;text-align-last: center;">
+                            Computer-based control system installed in buildings that controls and
+                            monitors the building’s mechanical and electrical equipment such as ventilation,
+                            lighting, power systems, fire systems, and security systems.
+                        </span>
+                    </div>
+                </mat-carousel-slide>
+                <mat-carousel-slide #matCarouselSlide overlayColor="white" [hideOverlay]="false" class="carouselslide1">
+                    <div class="slideingpart" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="40px">
+                        <img src="../../assets/House searching-pana.webp" style="background-color: white;" width="50%">
+                        <span
+                            style="font-size: 10px !important; color: #acacac !important; font-family: 'poppins-semi' !important;word-wrap: break-word !important;text-align-last: center;">
+                            Hardware. DDC-Direct digital controller. Sensors. Actuators
+                        </span>
+                    </div>
+                </mat-carousel-slide>
+                <mat-carousel-slide #matCarouselSlide overlayColor="white" [hideOverlay]="false" class="carouselslide1">
+                    <div class="slideingpart" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
+                        <img src="../../assets/Control Panel-bro.webp" style="background-color: white;" width="50%">
+                        <span
+                            style="font-size: 10px !important; color: #acacac !important; font-family: 'poppins-semi' !important;word-wrap: break-word !important;text-align-last: center;">
+                            Control Panel is adding or removing hardware and software, controlling user accounts,
+                            changing accessibility options, and accessing networking settings.
+                        </span>
+                    </div>
+                </mat-carousel-slide>
+            </mat-carousel>
+
+            <div>
+                <div fxLayout="row" fxLayoutAlign="center center" class="finaldiv" fxLayoutGap="5px">
+                    <span class="powerdbyspan">
+                        Powered by
+                    </span>
+                    <img src="../../assets/Group 8319 (1).svg" width="100px" height="20px">
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
