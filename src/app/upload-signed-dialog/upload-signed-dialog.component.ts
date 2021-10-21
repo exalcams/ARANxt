@@ -133,10 +133,7 @@ onRemove(event): void {
       const signeddetail = new LeaseManagement();
     signeddetail.clientName = this.SignedDocumentDetailsForm.get('Client').value;
     signeddetail.documentName = this.SignedDocumentDetailsForm.get('FileName').value;
-    // signeddetail.createdOn = this.SignedDocumentDetailsForm.get('CreatedOn').value;
-    // signeddetail.createdOn = this._datePipe.transform(this.SignedDocumentDetailsForm.get('CreatedOn').value, 'dd-MM-yyyy');
     signeddetail.signedOn = this._datePipe.transform(this.SignedDocumentDetailsForm.get('CreatedOn').value, 'dd-MM-yyyy');
-
     signeddetail.expiryDate = this._datePipe.transform(this.SignedDocumentDetailsForm.get('ExpiryDate').value, 'dd-MM-yyyy');
     signeddetail.totalDeposit = this.SignedDocumentDetailsForm.get('TotalDeposit').value;
     signeddetail.rental = this.SignedDocumentDetailsForm.get('Rental').value;
@@ -148,9 +145,11 @@ onRemove(event): void {
     signeddetail.holderName = this.SignedDocumentDetailsForm.get('HolderName').value;
     signeddetail.accountNo = this.SignedDocumentDetailsForm.get('AccountNo').value;
     signeddetail.modeOfTransfer = this.SignedDocumentDetailsForm.get('ModeofTransfer').value;
-    // signeddetail.advance = this.SignedDocumentDetailsForm.get('AdvanceRequest').value;
     signeddetail.ifsc = this.SignedDocumentDetailsForm.get('IFSCCode').value;
     signeddetail.noticePeriod = this.SignedDocumentDetailsForm.get('NoticePeriod').value;
+    signeddetail.site = 0;
+    signeddetail.space=0;
+    signeddetail.asset=0;
 
    console.log("upload");
    
@@ -186,6 +185,18 @@ onRemove(event): void {
     const charCode = (event.which) ? event.which : event.keyCode;
     if (charCode === 8 || charCode === 9 || charCode === 13 || charCode === 46
       || charCode === 37 || charCode === 39 || charCode === 123 || charCode === 190) {
+      return true;
+    }
+    else if (charCode < 48 || charCode > 57) {
+      return false;
+    }
+    return true;
+  }
+  decimalOnlyWithoutDot(event): boolean {
+    // this.AmountSelected();
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode === 8 || charCode === 9 || charCode === 13 || charCode === 46
+      || charCode === 37 || charCode === 39 || charCode === 123 ) {
       return true;
     }
     else if (charCode < 48 || charCode > 57) {

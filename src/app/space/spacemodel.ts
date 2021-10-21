@@ -86,7 +86,7 @@ export class ARA_Space {
     ParentID: string;
 }
 export class SiteLink{
-    Site:string;
+    Site:number;
     Title:string;
     Tax1:string;
     Tax2:string;

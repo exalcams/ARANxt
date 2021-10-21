@@ -4,9 +4,9 @@ import { CommonClass } from "./Common";
 export class LeaseManagement  extends CommonClass
 {
     leaseID:number;
-    site: string;
-    space:string;
-    asset:string;
+    site: number;
+    space:number;
+    asset:number;
     clientName:string;
     documentID:number;
     documentName:string;

@@ -96,6 +96,10 @@ export class LeaseManagementService {
     formData.append('IFSC', signeddetail.ifsc);
     formData.append('Advance', signeddetail.advance);
     formData.append('NoticePeriod', signeddetail.noticePeriod.toString());
+    formData.append('Site', signeddetail.site.toString());
+    formData.append('Space', signeddetail.space.toString());
+    formData.append('Asset', signeddetail.asset.toString());
+
     return this.http.post<any>(this.baseAddress + 'api/Lease/UploadNewLease', formData,
       // {
       //   headers: new HttpHeaders({

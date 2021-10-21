@@ -17,8 +17,9 @@ export class DialogComponent implements OnInit {
     this.dialog.open(SiteComponent, {
       // width: '50%',
       // height: '40%',
-      height: '50%',
+      // height: '50%',
       width: '50%',
+      panelClass: "site"
     });
   }
 
