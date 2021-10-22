@@ -39,7 +39,7 @@
         padding: 8px; background-color: #f2eff8; }
 .inner_menus_home_highlight{
     width: 170px;background-color: #ebe5ff; margin-left: 14px; border-radius: 4px;
-    padding: 5px; cursor: pointer;margin-bottom: 4px;
+    padding: 6px; cursor: pointer;margin-bottom: 4px;
 }
 .small_icons{
      width: 14px; cursor: pointer;
@@ -49,12 +49,12 @@
     margin-left: 14px;
     border-radius: 4px;
     cursor: pointer;
-    padding: 5px;
+    padding: 6px;
     margin-bottom: 4px;
 }
     .inner_menus_home:hover{
         border-radius: 4px; cursor: pointer;
-        padding: 5px; background-color: #f2eff8;
+        padding: 6px; background-color: #f2eff8;
     }
 .inner_menus_home::selection{
     background-color: #ebe5ff;color: #26009c;
@@ -92,8 +92,8 @@
     width: 90%;outline: none;
 }
 .menu_container{
-    min-height: calc(100vh - 182px);
-    max-height: calc(100vh - 182px);
+    min-height: calc(100vh - 208px);
+    max-height: calc(100vh - 208px);
     overflow-y: auto;
 }
 .tree-container{
@@ -212,4 +212,11 @@ mat-tree {
       margin: 0 0 12px;
       border:1px solid #f3f3f4;
       width: 100%;
+  }
+  .logo-container{
+    color: #acacac;
+    font-size: 8px;
+    .logo{
+        width: 80px;
+    }
   }
