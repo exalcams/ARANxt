@@ -12,6 +12,7 @@ import { EnergyConsumptionComponent } from './energy-consumption/energy-consumpt
 import { FinishComponent } from './finish/finish.component';
 import { FireAlarmComponent } from './fire-alarm/fire-alarm.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { HomescreenComponent } from './homescreen/homescreen.component';
 import { HvacComponent } from './hvac/hvac.component';
 import { LeasemanagementComponent } from './lease-management/leasemanagement/leasemanagement.component';
 import { LoginComponent } from './login/login.component';
@@ -120,6 +121,10 @@ const routes: Routes = [
 {
   path:'loginslide',
   component:LoginslideComponent
+},
+{
+  path:'homescreen',
+  component:HomescreenComponent
 },
 // {
 //   path:"leasemanagement",

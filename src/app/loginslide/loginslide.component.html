@@ -17,10 +17,10 @@
 
             <div class="subTitel">Please Sign In to Continue</div>
 
-            <form name="loginForm" [formGroup]="loginForm" novalidate>
+            <form name="loginForm" [formGroup]="loginForm" novalidate (ngSubmit)="LoginClicked()">
                 <!-- <div>
                     <span class="usernamespan"> User Name</span>
-                    <mat-form-field  appearance="outline">
+                    <mat-form-field  appearance="outline"> (ngSubmit)="onSubmit(this.loginForm.value)"
                         <input matInput formControlName="userName">
                         <mat-error *ngIf="loginForm.get('userName').hasError('required')">
                             User name is required
@@ -64,15 +64,17 @@
             </span>
           </div> -->
 
-            </form>
+            
             <div class="forgetpassworddiv" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end center">
                 <span class="forgetpassword">Forgot Password ?</span>
             </div>
             <div class="buttondiv">
-                <button mat-raised-button class="submit-button" aria-label="LOGIN" (click)="LoginClicked()">
+                <button mat-raised-button class="submit-button" aria-label="LOGIN"
+                    type="submit">
                     Log In
                 </button>
             </div>
+        </form>
             <div class="choicediv">
                 <span class="choicespan">
                     ( or ) Login with

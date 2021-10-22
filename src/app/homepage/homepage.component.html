@@ -2,7 +2,8 @@
     <mat-drawer mode="side" opened class="size" style="border-right: 1px solid rgb(242, 242, 242);">
         <div fxLayout="row" fxLayoutAlign=" none" fxFlex="100">
 
-            <div fxLayout="column" [@openClose]="!isFolded ? 'open' : 'closed'" class="sidenav_1 test" [ngClass]="{'sidenav_1_short':isFolded}">
+            <div fxLayout="column" [@openClose]="!isFolded ? 'open' : 'closed'" class="sidenav_1 test"
+                [ngClass]="{'sidenav_1_short':isFolded}">
                 <div fxLayoutAlign="center" style="padding: 12px;">
                     <img *ngIf="isFolded" width="20px" src="./assets/short_ara.png">
                     <img *ngIf="!isFolded" class="ara_img" src="./assets/ara_img.png">
@@ -24,11 +25,13 @@
                             style="margin-left: 16px;" *ngIf="!isFolded">Home</div>
                     </div>
 
-                    <div fxLayout="row" class="inner_menus_home">
+                    <div fxLayout="row" class="inner_menus_home" (click)="leaseclk()"
+                        [ngClass]="overview_bool==false?'inner_menus_home_highlight':'inner_menus_home'">
                         <div style="margin-left: 8px;">
                             <img style="width: 14px;vertical-align: middle;" src="./assets/models.svg">
                         </div>
-                        <div class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded">Models</div>
+                        <div class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded"
+                            [ngClass]="overview_bool==false?'inner_menus_highlight':'inner_menus'">Models</div>
                     </div>
 
                     <div fxLayout="row" class="inner_menus_home">
@@ -83,13 +86,15 @@
                 </div> -->
                 <div fxFlex></div>
                 <div class="user-panel">
-                    <div fxLayout="row" fxLayoutAlign="center center" style="padding: 8px;" [style.gap]="isFolded?'0px':'16px'">
+                    <div fxLayout="row" fxLayoutAlign="center center" style="padding: 8px;"
+                        [style.gap]="isFolded?'0px':'16px'">
                         <img style="height: 28px;" src="./assets/face.png">
                         <label *ngIf="!isFolded" style="color: #394256;
                         font-size: 11px;font-weight:500 ;font-family: poppins-med;">{{currentUser}}</label>
                         <img src="assets/Images/userActive.svg" width="8px" class="activity-img">
                     </div>
-                    <div fxLayout="row" fxLayoutGap="16px" style="padding:0px 8px 8px;cursor: pointer;" fxLayoutAlign="center" (click)="logout()">
+                    <div fxLayout="row" fxLayoutGap="16px" style="padding:0px 8px 8px;cursor: pointer;"
+                        fxLayoutAlign="center" (click)="logout()">
                         <div>
                             <img src="./assets/logout_ash.svg" style="width: 12px;">
                         </div>
@@ -103,7 +108,8 @@
                 <div style="padding:4px 12px 12px 12px;" fxLayout="row" fxLayoutAlign="end center">
                     <img *ngIf="!isFolded" style="width: 12px;cursor: pointer;" (click)="toggleSideMenu()"
                         src="./assets/slide_close_arrow.svg">
-                    <img *ngIf="isFolded" style="width: 10px;cursor: pointer;" src="./assets/expand_arrow.svg" alt="expand" (click)="toggleSideMenu()">
+                    <img *ngIf="isFolded" style="width: 10px;cursor: pointer;" src="./assets/expand_arrow.svg"
+                        alt="expand" (click)="toggleSideMenu()">
                 </div>
             </div>
             <!-- sidenav 2 starts here -->
@@ -135,11 +141,13 @@
 
                     <div class="tree-container">
                         <mat-tree [dataSource]="treeSource" [treeControl]="treeControl" [trackBy]="trackBy">
-                            
+
                             <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding
-                                matTreeNodePaddingIndent="8px" class="example-tree-node" [ngStyle]="{'background-color':selectedNode == node.name ? '#ebe5ff' : '#f9f8fe' }">
-                                <li class="mat-tree-node" style="cursor: pointer;"   (click)="setSelectedNode(node)">
-                                    <div class="mat-tree-node" [ngStyle]="{'color':selectedNode == node.name ? '#26009c' : 'inherit' }">
+                                matTreeNodePaddingIndent="8px" class="example-tree-node"
+                                [ngStyle]="{'background-color':selectedNode == node.name ? '#ebe5ff' : '#f9f8fe' }">
+                                <li class="mat-tree-node" style="cursor: pointer;" (click)="setSelectedNode(node)">
+                                    <div class="mat-tree-node"
+                                        [ngStyle]="{'color':selectedNode == node.name ? '#26009c' : 'inherit' }">
                                         <button mat-icon-button matTreeNodeToggle recursive="true"
                                             [attr.aria-label]="'toggle ' + node.name">
                                             <mat-icon class="mat-icon-rtl-mirror" *ngIf="node.expandable">
