@@ -58,6 +58,11 @@ body { margin: 0; font-family:  'poppins' !important  }
       .carousel {
         height: 70vh !important;
     }
+    .carousel-indicators > button {
+      width: 6px !important;
+      height: 6px !important;
+      margin: 7.5px;
+  }
 
   //   .carousel-indicators[_ngcontent-tuo-c314] > button[_ngcontent-tuo-c314] {
   //     width: 6px !important;

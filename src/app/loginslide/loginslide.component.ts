@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -16,7 +16,8 @@ import { FuseNavigationService } from '../service/navigation.service';
 @Component({
   selector: 'app-loginslide',
   templateUrl: './loginslide.component.html',
-  styleUrls: ['./loginslide.component.scss']
+  styleUrls: ['./loginslide.component.scss'],
+  encapsulation:ViewEncapsulation.None
 })
 export class LoginslideComponent implements OnInit {
   loginForm: FormGroup;
