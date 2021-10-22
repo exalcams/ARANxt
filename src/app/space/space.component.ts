@@ -1,4 +1,4 @@
-import { Component, ElementRef, NgZone, OnInit } from '@angular/core';
+import { Component, ElementRef, NgZone, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { FinishComponent } from '../finish/finish.component';
@@ -94,7 +94,8 @@ const ELEMENT_DATA3: ContractData[] = [
 @Component({
   selector: 'app-space',
   templateUrl: './space.component.html',
-  styleUrls: ['./space.component.scss']
+  styleUrls: ['./space.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SpaceComponent implements OnInit {
   public GeneralForm: FormGroup;
@@ -524,7 +525,7 @@ export class SpaceComponent implements OnInit {
         width: '50%',
       }
     );
-    this.GeneralSpaceView.Space = this.GeneralForm.get('spaceName').value;
+    this.GeneralSpaceView.Title = this.GeneralForm.get('spaceName').value;
     this.GeneralSpaceView.ObjType = this.GeneralForm.get('objectType').value;
     this.GeneralSpaceView.Site = this.GeneralForm.get('siteName').value;
     this.GeneralSpaceView.PartnerID = this.GeneralForm.get('partnerID').value;
