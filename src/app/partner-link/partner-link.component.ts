@@ -28,21 +28,22 @@ export class PartnerLinkComponent implements OnInit {
 
   }
   close():void {
-    this.dialogRef.close();
+    this.dialogRef.close("");
   }
   Save(){
     this.PartnerLinkView.PartnerType = this.PartnerLinkForm.get('PartnerType').value;
     this.PartnerLinkView.PartnerID = this.PartnerLinkForm.get('PartnerID').value;
     this.PartnerLinkView.StartDate = this.PartnerLinkForm.get('StartDate').value;
     this.PartnerLinkView.EndDate = this.PartnerLinkForm.get('EndDate').value;
-    this.service.PartnerLink(this.PartnerLinkView).subscribe((x) => {
-      console.log(x);
-      this.dialogRef.close();
-    },
-      err => {
-        console.log(err);
-        this.dialogRef.close();
-      })
+    this.dialogRef.close(this.PartnerLinkView);
+    // this.service.PartnerLink(this.PartnerLinkView).subscribe((x) => {
+    //   console.log(x);
+    //   this.dialogRef.close();
+    // },
+    //   err => {
+    //     console.log(err);
+    //     this.dialogRef.close();
+    //   })
   }
 }
 

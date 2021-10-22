@@ -39,13 +39,14 @@ export class ContractLinkComponent implements OnInit {
     this.ContractLinkView.CoverValue = this.ContractLinkForm.get('CoverValue').value;
     this.ContractLinkView.Vendor = this.ContractLinkForm.get('Vendor').value;
     this.ContractLinkView.Exclusions = this.ContractLinkForm.get('Exclusions').value;
-    this.service.ContractLink(this.ContractLinkView).subscribe((x) => {
-      console.log(x);
-      this.dialogRef.close();
-    },
-      err => {
-        console.log(err);
-        this.dialogRef.close();
-      })
+    this.dialogRef.close(this.ContractLinkView);
+    // this.service.ContractLink(this.ContractLinkView).subscribe((x) => {
+    //   console.log(x);
+    //   this.dialogRef.close();
+    // },
+    //   err => {
+    //     console.log(err);
+    //     this.dialogRef.close();
+    //   })
   }
 }

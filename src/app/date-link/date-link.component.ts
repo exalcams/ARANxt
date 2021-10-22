@@ -32,15 +32,16 @@ export class DateLinkComponent implements OnInit {
   Save(){
     this.DateLinkView.Date = this.DateLinkForm.get('StartDate').value;
     this.DateLinkView.Item = "Site";
-    this.DateLinkView.Time = this.DateLinkForm.get('Time').value;
+    this.DateLinkView.Time =this.DateLinkForm.get('StartDate').value;
     this.DateLinkView.TimeStamp = this.DateLinkForm.get('TimeStamp').value;
-    this.service.DateLink(this.DateLinkView).subscribe((x) => {
-      console.log(x);
-      this.dialogRef.close();
-    },
-      err => {
-        console.log(err);
-        this.dialogRef.close();
-      })
+    this.dialogRef.close(this.DateLinkView)
+    // this.service.DateLink(this.DateLinkView).subscribe((x) => {
+    //   console.log(x);
+    //   this.dialogRef.close();
+    // },
+    //   err => {
+    //     console.log(err);
+    //     this.dialogRef.close();
+    //   })
   }
 }

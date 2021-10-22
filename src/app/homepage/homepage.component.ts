@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, NgZone, OnDestroy, OnInit, Output, View
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { ArrayDataSource } from '@angular/cdk/collections';
 import { NestedTreeControl } from '@angular/cdk/tree';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 // import { DialogComponent } from './dialog/dialog.component';
 import { Router } from '@angular/router';
 // import { ViewAnalyticsComponent } from './view-analytics/view-analytics.component';
@@ -95,6 +95,7 @@ export class HomepageComponent implements OnInit {
   selectedNode: any ;
   selectedNodePath: string = "";
   isFolded: boolean = false;
+  selectedId: any;
 
   constructor(
     public dialog: MatDialog,
@@ -222,7 +223,9 @@ export class HomepageComponent implements OnInit {
       treeObj.children = [];
       constructedTree.push(treeObj);
       return true;
-    } else if (treeObj.parent == constructedTree.name) {
+    } 
+    // else if (treeObj.parent == constructedTree.name) {
+    else if (treeObj.parent == constructedTree.id) {
       treeObj.children = [];
       constructedTree.children.push(treeObj);
       return true;
@@ -451,18 +454,18 @@ export class HomepageComponent implements OnInit {
     this.router.navigate(["leasemanagement"])
   }
   spaceclicked() {
-    const dialogRef = this.dialog.open(SpaceComponent, {
-      // panelClass: 'full-width-dialog',
-      // width: '100%',
-      // maxWidth: '85.5vw ',
-      // height: '93%',
+    const dialogConfig: MatDialogConfig = {
+      data: {
+       id: this.selectedId
+      },
       panelClass: 'full-width-dialog',
       width: '100%',
       maxWidth: '85.5vw ',
       height: '600px',
       disableClose: true
-
-    });
+    };
+  
+    const dialogRef = this.dialog.open(SpaceComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(() => {
       this.UpdateTree();
     })
@@ -493,6 +496,7 @@ export class HomepageComponent implements OnInit {
   setSelectedNode(node) {
     console.log("node",node);
     this.selectedNode = node.name;
+    this.selectedId=node.id
     console.log("tree source", this.treeSource.data);
   }
   toggleSideMenu() {

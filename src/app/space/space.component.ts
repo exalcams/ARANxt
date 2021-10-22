@@ -1,17 +1,18 @@
-import { Component, ElementRef, NgZone, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Component, ElementRef, Inject, NgZone, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { FinishComponent } from '../finish/finish.component';
 import { MapsAPILoader } from '@agm/core';
 import { ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SpaceService } from '../space/space.service';
-import { AddrLink, ARA_Space, AreaLink, ContractLink, DateLink, DocumentLink, LocLink, PartnerLink, SiteLink } from '../space/spacemodel';
+import { AddrLink, ARA_Space, ARA_SpaceAll, AreaLink, ContractLink, DateLink, DocumentLink, LocLink, PartnerLink, SiteLink } from '../space/spacemodel';
 import { typeWithParameters } from '@angular/compiler/src/render3/util';
 import { PartnerLinkComponent } from '../partner-link/partner-link.component';
 import { DateLinkComponent } from '../date-link/date-link.component';
 import { ContractLinkComponent } from '../contract-link/contract-link.component';
 import { LoginService } from '../login.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 interface Food {
   value: string;
   viewValue: string;
@@ -104,6 +105,10 @@ export class SpaceComponent implements OnInit {
   AddressLinkView: AddrLink = new AddrLink();
   DocLinkView: DocumentLink = new DocumentLink();
   GeneralSpaceView: ARA_Space = new ARA_Space();
+  Space_All: ARA_SpaceAll = new ARA_SpaceAll();
+  PartnerLinkView: PartnerLink = new PartnerLink();
+  ContractLinkView: ContractLink = new ContractLink();
+  DateLinkView: DateLink = new DateLink();
   PartnerLink: any[] = [];
   DocLink: any[] = [];
   DateLink: any[] = [];
@@ -111,9 +116,9 @@ export class SpaceComponent implements OnInit {
   ARASite: SiteLink[] = [];
   SiteName: any[] = [];
   title: string = 'AGM project';
-  progress=12.5;
+  progress = 12.5;
   steps = 8;
-  progressvalue:any;
+  progressvalue: any;
   latitude: any;
   longitude: any;
   zoom: number;
@@ -194,9 +199,10 @@ export class SpaceComponent implements OnInit {
   parentID: any;
   @ViewChild('search')
   public searchElementRef: ElementRef;
-
+  // @Inject(MAT_DIALOG_DATA) public dialogData: any,
+  // public dialogRef: MatDialogRef<CloseDialogComponent>,
   constructor(public dialog: MatDialog, private mapsAPILoader: MapsAPILoader, public form: FormBuilder,
-    private service: SpaceService,
+    private service: SpaceService, @Inject(MAT_DIALOG_DATA) public dialogData: any,
     private ngZone: NgZone, public dialogRef: MatDialogRef<SpaceComponent>, public nav: LoginService) { this.nav.islogin(true); }
   private setCurrentLocation() {
     if ('geolocation' in navigator) {
@@ -527,7 +533,7 @@ export class SpaceComponent implements OnInit {
     );
     this.GeneralSpaceView.Title = this.GeneralForm.get('spaceName').value;
     this.GeneralSpaceView.ObjType = this.GeneralForm.get('objectType').value;
-    this.GeneralSpaceView.Site = this.GeneralForm.get('siteName').value;
+    // this.GeneralSpaceView.Site = this.GeneralForm.get('siteName').value;
     this.GeneralSpaceView.PartnerID = this.GeneralForm.get('partnerID').value;
     this.GeneralSpaceView.Category = this.GeneralForm.get('category').value;
     this.GeneralSpaceView.CostCenter = this.GeneralForm.get('costCenter').value;
@@ -576,6 +582,79 @@ export class SpaceComponent implements OnInit {
     this.dialogRef.close();
 
   }
+  SpaceAllSave(): void {
+    this.dialog.open(FinishComponent,
+      {
+        height: '450px',
+        width: '50%',
+      }
+    );
+    this.GeneralSpaceGetData();
+    this.LocationSpaceGetData();
+    this.SpaceSpaceGetData();
+    this.AddressSpaceGetData();
+    this.Space_All.ARA_space = this.GeneralSpaceView
+    this.Space_All.locLink = this.LocLinkView;
+    this.Space_All.docLink = this.DocLinkView;
+    this.Space_All.partnerLink = this.PartnerLinkView;
+    this.Space_All.areaLink = this.AreaLinkView;
+    this.Space_All.addrLink = this.AddressLinkView;
+
+    this.Space_All.dateLink = this.DateLinkView;
+    this.Space_All.contractLink = this.ContractLinkView;
+
+    console.log("allSpace", this.Space_All);
+    this.service.SpaceAllSave(this.Space_All).subscribe((x) => {
+      console.log(x);
+
+    },
+      err => {
+        // this.spinner.hide();
+        console.log(err);
+
+      })
+  }
+  GeneralSpaceGetData() {
+    this.GeneralSpaceView.Title = this.GeneralForm.get('spaceName').value;
+    this.GeneralSpaceView.ObjType = this.GeneralForm.get('objectType').value;
+    this.GeneralSpaceView.Site = this.dialogData.id;
+    this.GeneralSpaceView.PartnerID = this.GeneralForm.get('partnerID').value;
+    // this.GeneralSpaceView.PartnerID = 1;
+    this.GeneralSpaceView.Category = this.GeneralForm.get('category').value;
+    this.GeneralSpaceView.CostCenter = this.GeneralForm.get('costCenter').value;
+    // this.GeneralSpaceView.ParentID = this.parentID;
+    this.GeneralSpaceView.ParentID =  this.dialogData.id;
+
+  }
+  LocationSpaceGetData() {
+    this.LocLinkView.Long = this.LocationForm.get('Longitude').value.toString();
+    // this.LocLinkView.Long ="5636";
+
+    this.LocLinkView.ToLat = this.LocationForm.get('ToLatitude').value;
+    this.LocLinkView.FromLat = this.LocationForm.get('FromLatitude').value;
+    this.LocLinkView.FromLong = this.LocationForm.get('FromLongitude').value;
+    this.LocLinkView.ToLong = this.LocationForm.get('ToLongitude').value;
+    this.LocLinkView.Lat = this.LocationForm.get('Latitude').value.toString();
+    // this.LocLinkView.Lat = "14";
+
+  }
+  SpaceSpaceGetData() {
+    this.AreaLinkView.TotalArea = this.SpaceForm.get('TotalSpace').value;
+    this.AreaLinkView.RentableArea = this.SpaceForm.get('RentableSpace').value;
+    this.AreaLinkView.Breath = this.SpaceForm.get('Breath').value;
+    this.AreaLinkView.Volume = this.SpaceForm.get('Volume').value;
+    this.AreaLinkView.CarpetArea = this.SpaceForm.get('CarpetSpace').value;
+    this.AreaLinkView.Length = this.SpaceForm.get('Length').value;
+    this.AreaLinkView.Height = this.SpaceForm.get('Height').value;
+  }
+  AddressSpaceGetData() {
+    this.AddressLinkView.AddrLine1 = this.AddressForm.get('AddressLine1').value;
+    this.AddressLinkView.AddrLine2 = this.AddressForm.get('AddressLine2').value;
+    this.AddressLinkView.AddrLine3 = this.AddressForm.get('AddressLine3').value;
+    this.AddressLinkView.Country = this.AddressForm.get('Country').value;
+    this.AddressLinkView.PinCode = this.AddressForm.get('Pincode').value;
+    this.AddressLinkView.State = this.AddressForm.get('State').value;
+  }
   onFileSelected(event) {
     if (event.target.files.length > 0) {
       var unit = "";
@@ -606,15 +685,12 @@ export class SpaceComponent implements OnInit {
       this.DocumentLinkDataSource = new MatTableDataSource(this.DocLink);
       console.log(this.DocumentLinkDataSource, 'DocLink');
 
-      // console.log(ext);
-      // console.log(file);
-      // console.log(size + unit);
-      this.service.DocumentLocLink(this.DocLinkView).subscribe((x) => {
-        console.log(x);
-      },
-        err => {
-          console.log(err);
-        })
+      // this.service.DocumentLocLink(this.DocLinkView).subscribe((x) => {
+      //   console.log(x);
+      // },
+      //   err => {
+      //     console.log(err);
+      //   })
     }
   }
   OpenPartnerdialogue() {
@@ -624,11 +700,25 @@ export class SpaceComponent implements OnInit {
       //   width: '650px',
       // }
     );
+    dialogRef.afterClosed().subscribe(result => {
+      // if (  !result ) {
+
+      this.PartnerLinkView = result;
+      console.log("partner", this.PartnerLinkView);
+
+      // }
+    })
   }
   OpenDateLinkDialogue() {
     const dialogRef = this.dialog.open(DateLinkComponent,
 
     );
+    dialogRef.afterClosed().subscribe(result => {
+      // if (  !result ) {   
+      this.DateLinkView = result;
+      console.log("Date", this.DateLinkView);
+      // }
+    })
   }
   OpenContractLinkDialogue() {
     const dialogRef = this.dialog.open(ContractLinkComponent,
@@ -637,28 +727,34 @@ export class SpaceComponent implements OnInit {
         width: '100%',
       }
     );
+    dialogRef.afterClosed().subscribe(result => {
+      // if (  !result ) {   
+      this.ContractLinkView = result;
+      console.log("contrct", this.ContractLinkView);
+      // }
+    })
   }
   close(): void {
     this.dialogRef.close();
   }
 
-progressbar(){
-  this.progress = this.progress + 12.5;
-  this.progressvalue = this.progress
- this.stepsforprogressminus()
-}
-stepsforprogressminus(){
-  this.steps = this.steps-1
-}
+  progressbar() {
+    this.progress = this.progress + 12.5;
+    this.progressvalue = this.progress
+    this.stepsforprogressminus()
+  }
+  stepsforprogressminus() {
+    this.steps = this.steps - 1
+  }
 
 
-stepsforprogress(){
-  this.steps = this.steps+1
-}
-progressbarminus(){
-  this.progress = this.progress - 12.5;
-  this.progressvalue = this.progress
-  this.stepsforprogress()
-}
+  stepsforprogress() {
+    this.steps = this.steps + 1
+  }
+  progressbarminus() {
+    this.progress = this.progress - 12.5;
+    this.progressvalue = this.progress
+    this.stepsforprogress()
+  }
 
 }

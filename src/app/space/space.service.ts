@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, Subject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AreaLink, LocLink, AddrLink, DocumentLink, ARA_Space, PartnerLink, DateLink, ContractLink, SiteLink, ARA_Asset } from './spacemodel';
+import { AreaLink, LocLink, AddrLink, DocumentLink, ARA_Space, PartnerLink, DateLink, ContractLink, SiteLink, ARA_Asset, ARA_SpaceAll } from './spacemodel';
 import { LeaseDocument, LeaseManagement } from '../Model/Leasemanagement';
 import { AuthService } from '../service/auth.service';
 @Injectable({
@@ -53,6 +53,10 @@ export class SpaceService {
     }
     ContractLink(ContractLink: ContractLink) {
         return this._httpClient.post<any>(this.baseUrlVsign1 + "api/Space/PostContractLink", ContractLink
+        )
+    }
+    SpaceAllSave(Space_All: ARA_SpaceAll) {
+        return this._httpClient.post<any>(this.baseUrlVsign1 + "api/Space/SpaceAllSave", Space_All
         )
     }
     GetParterLink(): Observable<any | string> {
