@@ -10,6 +10,7 @@
                 </div>
                 <div class="divider"></div>
                 <div fxFlex class="menu_container">
+                    <div class="menu">Menu</div>
 
                     <div fxLayout="row" [ngClass]="overview_bool==true?'inner_menus_home_highlight':'inner_menus_home'"
                         (click)="home_clik()">
@@ -40,18 +41,8 @@
                         <div class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded">Rental</div>
                     </div>
 
-                    <div fxLayout="row" (click)="leaseclk()"
-                        [ngClass]="overview_bool==false?'inner_menus_home_highlight':'inner_menus_home'">
 
-                        <div style="margin-left: 8px;">
-                            <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==true"
-                                src="./assets/date-expired_ash.svg">
-                            <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==false"
-                                src="./assets/date-expired_blue.svg">
-                        </div>
-                        <div [ngClass]="overview_bool==false?'inner_menus_highlight':'inner_menus'"
-                            style="margin-left: 16px;" *ngIf="!isFolded">Lease</div>
-                    </div>
+                    <div style="margin-top:12px;margin-bottom: 12px;" class="menu">Others</div>
 
 
                     <div fxLayout="row" class="inner_menus_home">
@@ -67,7 +58,18 @@
                         </div>
                         <div class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded">Privacy Policy</div>
                     </div>
-                    
+                    <div fxLayout="row" (click)="leaseclk()"
+                        [ngClass]="overview_bool==false?'inner_menus_home_highlight':'inner_menus_home'">
+
+                        <div style="margin-left: 8px;">
+                            <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==true"
+                                src="./assets/date-expired_ash.svg">
+                            <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==false"
+                                src="./assets/date-expired_blue.svg">
+                        </div>
+                        <div [ngClass]="overview_bool==false?'inner_menus_highlight':'inner_menus'"
+                            style="margin-left: 16px;" *ngIf="!isFolded">Lease</div>
+                    </div>
                 </div>
                 <!-- <div>
                     <img class="building" src="./assets/building.png">
@@ -84,14 +86,15 @@
                 </div> -->
                 <div fxFlex></div>
                 <div class="user-panel">
-                    <div fxLayout="row" fxLayoutAlign="start center" style="padding: 8px 16px;" [style.gap]="isFolded?'0px':'16px'">
+                    <div fxLayout="row" fxLayoutAlign="center center" style="padding: 8px;"
+                        [style.gap]="isFolded?'0px':'16px'">
                         <img style="height: 28px;" src="./assets/face.png">
                         <label *ngIf="!isFolded" style="color: #394256;
                         font-size: 11px;font-weight:500 ;font-family: poppins-med;">{{currentUser}}</label>
-                        <div fxFlex></div>
                         <img src="assets/Images/userActive.svg" width="8px" class="activity-img">
                     </div>
-                    <div fxLayout="row" fxLayoutGap="24px" style="padding:0px 24px 8px;cursor: pointer;" fxLayoutAlign="start center" (click)="logout()">
+                    <div fxLayout="row" fxLayoutGap="16px" style="padding:0px 8px 8px;cursor: pointer;"
+                        fxLayoutAlign="center" (click)="logout()">
                         <div>
                             <img src="./assets/logout_ash.svg" style="width: 12px;">
                         </div>
@@ -102,12 +105,7 @@
                     </div>
                 </div>
 
-                <div style="padding:4px 12px 12px 12px;" fxLayout="row" fxLayoutAlign="space-between end">
-                    <div class="logo-container" fxLayout="column" *ngIf="!isFolded">
-                        <span>Powered by</span>
-                        <img src="assets/Images/exalca_logo.svg" alt="logo" class="logo">
-                    </div>
-                    <div fxFlex *ngIf="isFolded"></div>
+                <div style="padding:4px 12px 12px 12px;" fxLayout="row" fxLayoutAlign="end center">
                     <img *ngIf="!isFolded" style="width: 12px;cursor: pointer;" (click)="toggleSideMenu()"
                         src="./assets/slide_close_arrow.svg">
                     <img *ngIf="isFolded" style="width: 10px;cursor: pointer;" src="./assets/expand_arrow.svg"
@@ -163,8 +161,8 @@
                                             <mat-icon inline="true">add</mat-icon>
                                         </button>
                                         <mat-menu #menu1="matMenu" yPosition="below" class="menuclass">
-                                            <button mat-menu-item (click)="spaceclicked()">
-                                                <span >Space</span>
+                                            <button mat-menu-item>
+                                                <span (click)="spaceclicked()">Space</span>
                                             </button>
                                             <button mat-menu-item>
                                                 <span (click)="assetsclicked()">Asset</span>

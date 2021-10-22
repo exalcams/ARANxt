@@ -32,7 +32,8 @@
                         <span class="usernamespan"> User Name</span>
                         <div class="inputdivision">
                             <input autocomplete="off" matInput formControlName="userName" class="inputform "
-                                placeholder="Enter Username">
+                                placeholder="Enter Username" required>
+                           
                         </div>
                     </div>
                     <div fxLayout="column" fxLayoutAlign="space-between" fxLayoutGap="8px">
@@ -42,7 +43,7 @@
                                 placeholder="Enter Password" [type]="hide ? 'password' : 'text'">
                             <!-- <mat-icon class="show" (click)="hide=!hide;">{{hide ? 'visibility' : 'visibility_off'}}
                             </mat-icon> -->
-
+                            
                             <img src="../../assets/38488.svg" *ngIf="hide==true" (click)="hider()" class="show">
                             <img src="../../assets/eyeopen.svg" class="show" *ngIf="hide==false" (click)="hider2()">
 
@@ -64,17 +65,16 @@
             </span>
           </div> -->
 
-            
-            <div class="forgetpassworddiv" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end center">
-                <span class="forgetpassword">Forgot Password ?</span>
-            </div>
-            <div class="buttondiv">
-                <button mat-raised-button class="submit-button" aria-label="LOGIN"
-                    type="submit">
-                    Log In
-                </button>
-            </div>
-        </form>
+
+                <div class="forgetpassworddiv" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end center">
+                    <span class="forgetpassword">Forgot Password ?</span>
+                </div>
+                <div class="buttondiv">
+                    <button mat-raised-button class="submit-button" aria-label="LOGIN" type="submit">
+                        Log In
+                    </button>
+                </div>
+            </form>
             <div class="choicediv">
                 <span class="choicespan">
                     ( or ) Login with
@@ -119,7 +119,7 @@
                     class="carouselslide1">
                     <div class="slideingpart" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
                         <!-- class="slideimage1" class="slidespan1" -->
-                        <img src="../../assets/Mask Group 59.webp" width="50%">
+                        <img src="../../assets/Mask Group 59.png" width="50%">
                         <span
                             style="font-size: 10px !important; color: #acacac !important; font-family: 'poppins-semi' !important;word-wrap: break-word !important;text-align-last: center;">
                             A building management system (BMS), otherwise known as a building
@@ -129,7 +129,7 @@
                 </mat-carousel-slide>
                 <mat-carousel-slide #matCarouselSlide overlayColor="white" [hideOverlay]="false" class="carouselslide1">
                     <div class="slideingpart" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="70px">
-                        <img src="../../assets/Pipeline maintenance-pana.webp" style="background-color: white;"
+                        <img src="../../assets/Pipeline maintenance-pana.png" style="background-color: white;"
                             width="50%">
                         <span
                             style="font-size: 10px !important; color: #acacac !important; font-family: 'poppins-semi' !important;word-wrap: break-word !important;text-align-last: center;">
@@ -141,7 +141,7 @@
                 </mat-carousel-slide>
                 <mat-carousel-slide #matCarouselSlide overlayColor="white" [hideOverlay]="false" class="carouselslide1">
                     <div class="slideingpart" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="40px">
-                        <img src="../../assets/House searching-pana.webp" style="background-color: white;" width="50%">
+                        <img src="../../assets/House searching-pana.png" style="background-color: white;" width="50%">
                         <span
                             style="font-size: 10px !important; color: #acacac !important; font-family: 'poppins-semi' !important;word-wrap: break-word !important;text-align-last: center;">
                             Hardware. DDC-Direct digital controller. Sensors. Actuators
@@ -150,7 +150,7 @@
                 </mat-carousel-slide>
                 <mat-carousel-slide #matCarouselSlide overlayColor="white" [hideOverlay]="false" class="carouselslide1">
                     <div class="slideingpart" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
-                        <img src="../../assets/Control Panel-bro.webp" style="background-color: white;" width="50%">
+                        <img src="../../assets/Control Panel-bro.png" style="background-color: white;" width="50%">
                         <span
                             style="font-size: 10px !important; color: #acacac !important; font-family: 'poppins-semi' !important;word-wrap: break-word !important;text-align-last: center;">
                             Control Panel is adding or removing hardware and software, controlling user accounts,
