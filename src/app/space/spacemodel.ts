@@ -2,9 +2,9 @@ export class Common{
 
 }
 export class LocLink {
-    AppID: any;
-    Object:any;
-    SRNo : any;
+    AppID: number;
+    Object:string;
+    SRNo : string;
     Lat:string;
     Long:string;
     FromLat:string;
@@ -13,9 +13,9 @@ export class LocLink {
     ToLong:string;
 }
 export class AreaLink{
-    AppID: any;
-    Object:any;
-    TotalArea : any;
+    AppID: number;
+    Object:string;
+    TotalArea : string;
     CarpetArea:string;
     RentableArea:string;
     Length:string;
@@ -24,9 +24,9 @@ export class AreaLink{
     Volume:string;
 }
 export class AddrLink{
-    AppID: any;
-    Object:any;
-    AddrLine1 : any;
+    AppID: number;
+    Object:string;
+    AddrLine1 : string;
     AddrLine2:string;
     AddrLine3:string;
     Country:string;
@@ -34,8 +34,8 @@ export class AddrLink{
     State:string;
 }
 export class DocumentLink{
-    AppID: any;
-    Object: any;
+    AppID:number;
+    Object: string;
     FileName: string;
     FileSize: string;
     FileExt: string;
@@ -46,7 +46,7 @@ export class DocumentLink{
     AttID: string;
 }
 export class PartnerLink{
-    AppID:any;
+    AppID:number;
     Object: string;
     PartnerType: string;
     PartnerID: string;
@@ -54,7 +54,7 @@ export class PartnerLink{
     EndDate: Date;
 }
 export class DateLink{
-    AppID: any;
+    AppID: number;
     Object: string;
     DateID: string;
     Item: string;
@@ -63,7 +63,7 @@ export class DateLink{
     TimeStamp: string;
 }
 export class ContractLink{
-    AppID: any;
+    AppID: number;
     Object: string;
     Type: string;
     StartDate: Date;
@@ -79,11 +79,18 @@ export class ARA_Space {
     Space: number;
     Title: string;
     ObjType: string;
-    PartnerID: string;
+    PartnerID: number;
     Category: string;
     CostCenter: string;
-    Site: string;
-    ParentID: string;
+    Site: number;
+    ParentID: number;
+    //new
+    LocLink:string;
+    DocLink:string;
+    PartnerLink:string;
+    AreaLink:string;
+    AddrLink:string;
+    DateLink:string
 }
 export class SiteLink{
     Site:number;
@@ -124,11 +131,11 @@ export class ARA_Company {
 export class ARA_SpaceAll
 {
     ARA_space:ARA_Space;
-    addrLink:AddrLink;
     locLink:LocLink;
     docLink:DocumentLink;
     partnerLink:PartnerLink;
-    areaLink:AreaLink;
+     areaLink:AreaLink;
+    addrLink:AddrLink;
     contractLink:ContractLink;
     dateLink:DateLink;
 }
