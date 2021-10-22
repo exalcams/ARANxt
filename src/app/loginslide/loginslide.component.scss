@@ -403,5 +403,11 @@
             }
            
         }
+        .mat-mini-fab.mat-primary {
+            background-color: rgba(0,0,0,.12);
+        }
+        .mat-mini-fab.mat-button-disabled.mat-button-disabled {
+            background-color: #26009c;
+        }
     }
     

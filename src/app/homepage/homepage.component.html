@@ -25,13 +25,11 @@
                             style="margin-left: 16px;" *ngIf="!isFolded">Home</div>
                     </div>
 
-                    <div fxLayout="row" class="inner_menus_home" (click)="leaseclk()"
-                        [ngClass]="overview_bool==false?'inner_menus_home_highlight':'inner_menus_home'">
+                    <div fxLayout="row" class="inner_menus_home">
                         <div style="margin-left: 8px;">
                             <img style="width: 14px;vertical-align: middle;" src="./assets/models.svg">
                         </div>
-                        <div class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded"
-                            [ngClass]="overview_bool==false?'inner_menus_highlight':'inner_menus'">Models</div>
+                        <div class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded">Models</div>
                     </div>
 
                     <div fxLayout="row" class="inner_menus_home">
