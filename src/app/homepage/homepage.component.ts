@@ -75,6 +75,8 @@ export class HomepageComponent implements OnInit {
   divhide1: boolean = true;
   divhide2: boolean = true;
   as: any;
+  models:boolean =false;
+  notmodels:boolean = true;
   parents: any[] = []
   fullmenu = true; shortmenu = false; state: string = 'none';
   title = 'ARA';
@@ -498,5 +500,13 @@ export class HomepageComponent implements OnInit {
   }
   switchSideMenu(value:boolean){
     this.isFolded=value;
+  }
+  modelsclk(){
+    this.models=true;
+    this.notmodels=false;
+  }
+  notmodelsclk(){
+    this.notmodels=true;
+    this.models=false
   }
 }

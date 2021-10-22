@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36.241" height="36.26" viewBox="0 0 36.241 36.26">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #0d0c22;
+      }
+
+      .cls-1 {
+        opacity: 0.1;
+      }
+    </style>
+  </defs>
+  <g id="Group_8478" data-name="Group 8478" transform="translate(-880 -381.24)">
+    <path id="Path_7015" data-name="Path 7015" class="cls-1" d="M14.792,6.132c9.123,14.737,14.792.474,14.792,8.643A14.792,14.792,0,0,1,0,14.775C0,6.606,5.669-8.6,14.792,6.132Z" transform="matrix(0.966, 0.259, -0.259, 0.966, 887.652, 381.283)"/>
+    <g id="_510929_building_home_house_start_icon" data-name="510929_building_home_house_start_icon" transform="translate(876.837 374.505)">
+      <path id="Path_9161" data-name="Path 9161" class="cls-2" d="M26.777,28.547,31.033,32.8v3.81h-1.52V32.965H24.04v3.648H22.52V32.8l4.256-4.256m0-2.15L21,32.174v5.96h4.56V34.485h2.432v3.648h4.56v-5.96L26.777,26.4Z" transform="translate(-4.493 -7.862)"/>
+      <path id="Path_9162" data-name="Path 9162" class="cls-2" d="M22.283,15.1l-7.739,7.739,1.075,1.075,6.664-6.665,6.664,6.665,1.075-1.075Z" transform="translate(0)"/>
+    </g>
+  </g>
+</svg>

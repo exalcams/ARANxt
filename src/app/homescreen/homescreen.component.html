@@ -1,1 +1,293 @@
-<p>homescreen works!</p>
+<div fxLayout="column" class="overviewdiv">
+    <div fxLayout="column" fxFlex="100" *ngIf="changetodashboard">
+        <div class="nocontent-div"></div>
+
+        <div fxLayout="row" fxLayout.sm="column" class="dashboarddivision">
+
+            <div fxLayout="column" fxFlex.sm="100" class="rowdivisionwidth" fxLayoutAlign="space-between">
+                <div class="gap">
+                    <div fxLayout="column" class="rowdivision-nested1" fxLayoutAlign="start" fxLayoutGap="20px">
+                        <div fxLayout="column" fxLayoutGap="10px">
+                            <span class="topicspan">
+                                Overview
+                            </span>
+                            <span class="adminspan">
+                                Hello Admin, Welcome Back!
+                            </span>
+                        </div>
+
+                        <mat-divider class="dividerclass"></mat-divider>
+
+                        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="3px">
+                            <span class="infospan">
+                                Any kind of informations related to
+                                we can show Visually here.
+                            </span>
+                            <img src="../../assets/Group 8575.png" width="55px" height="20px">
+                        </div>
+                        <!-- <div class="group59image"> -->
+                            <img src="../../assets/Mask Group 59.png"  class="fist-image-overview">
+                        <!-- </div> -->
+
+                    </div>
+                </div>
+                <div fxLayout="column" fxLayoutAlign="start start" class="movablediv" fxLayoutGap="10px">
+                    <div fxLayout="row" fxLayoutAlign="space-between" class="movableinnerdiv">
+                        <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5px">
+                            <img class="movableimage" src="./assets/Group 8229.svg">
+                            <span class="movablespan">
+                                Recent Notifications
+                            </span>
+                        </div>
+                        <img src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg" class="spacearrowmovable">
+                    </div>
+                    <div>
+                        <div fxLayout="row" fxLayoutGap="5px" class="movablediv-nesteddiv2">
+                            <div fxLayout="column" class="allimages">
+                                <img src="../../assets/Ellipse 908.svg" class="ellipse-1">
+                                <img src="../../assets/Line 437.svg" class="lineimage">
+                                <img src="../../assets/Ellipse 908.svg" style="transform: scale(0.7);"
+                                    class="ellipse-1">
+                                <img src="../../assets/Line 437.svg" class="lineimage2">
+                            </div>
+
+                            <div fxLayout="column" fxLayoutGap="10px" class="maintenance-total-div">
+                                <div fxLayout="column" fxLayoutAlign="space-evenly">
+                                    <span class="statusspan">
+                                        Maintenance status
+                                    </span>
+                                    <span class="escalatorspan">
+                                        Escalator motor problem has been fixed
+                                    </span>
+                                </div>
+                                <div fxLayout="column" fxLayoutAlign="space-evenly">
+                                    <span class="statusspan">
+                                        Alert
+                                    </span>
+                                    <span class="escalatorspan">
+                                        New alert has been received in info Alert
+                                    </span>
+                                </div>
+                            </div>
+                            <!-- <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+                                <img src="../../assets/Ellipse 908.svg" class="ellipse-1">
+                                <span class="statusspan">
+                                    Maintenance status
+                                </span>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="28px" class="escalator-div">
+                                <img src="../../assets/Line 437.svg" class="lineimage">
+                                <span class="escalatorspan">
+                                    Escalator motor problem has been fixed
+                                </span>
+                            </div> -->
+                        </div>
+                        <div fxLayout="column" fxLayoutAlign="space-evenly" fxLayoutGap="0px" class="alert-div">
+                            <!-- <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+                                <img src="../../assets/Ellipse 908.svg" style="transform: scale(0.7);"
+                                    class="ellipse-1">
+                                <span class="statusspan">
+                                    Alert
+                                </span>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="28px" class="escalator-div">
+                                <img src="../../assets/Line 437.svg" class="lineimage2">
+                                <span class="escalatorspan">
+                                    New alert has been received in info Alert
+                                </span>
+                            </div> -->
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="secondDivision" fxLayoutAlign="space-between">
+                <div fxLayout="column " style="width: 100%;height: 100%;" class="secondrowdivision">
+                    <div fxLayout="column " fxLayoutAlign="space-between" style="padding: 15px;min-height: 558px;"
+                        class="backgroundblurdiv" fxLayoutGap="8px">
+                        <!-- class="secondrowdivision2row"up -->
+
+                        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" style="padding-top: 3px;">
+                            <div class="total-split-div" fxLayout="row" fxLayoutAlign="start">
+                                <div class="split1 split-indivudual" fxLayout="column" fxLayoutAlign="start"
+                                    fxLayoutGap="10px">
+                                    <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="3px">
+                                        <span class="weatherspan">
+                                            Weather
+                                        </span>
+                                        <div class="blueroumd"></div>
+                                    </div>
+                                    <div fxLayout="column" fxLayoutAlign="start">
+                                        <span class="locationspan">
+                                            Coimbatore, India.
+                                        </span>
+                                        <span class="locationspan">
+                                            Wednesday, 04:23 PM
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="split1 split-indivudual2" fxLayout="column" fxLayoutAlign="start center">
+                                    <img src="../../assets/2995001_cloud_cloudy_sun_weather_summer_icon.svg"
+                                        style="transform: scale(0.7);">
+                                    <span class="degreespan">
+                                        27 °C
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="overalldiv-contents" fxLayoutGap="5px">
+                            <div fxLayout="column" fxLayoutAlign="space-evenly" class="overall-seconddiv">
+                                <div fxLayout="column" fxLayoutAlign="space-evenly" class="nesteddiv1"
+                                    fxLayoutGap="10px">
+                                    <div fxLayout="row" fxLayoutAlign="space-between" class="inner-nested1">
+                                        <div fxLayout="row" fxLayoutAlign="start start" class="first-nested"
+                                            fxLayoutGap="5px">
+                                            <span class="overallspan">
+                                                Overall
+                                            </span>
+                                            <span class="totalmodelsspan">
+                                                Total Models
+                                            </span>
+                                        </div>
+                                        <img src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg"
+                                            class="spacearrowmovable">
+                                    </div>
+                                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                                        <div fxLayout="row" fxLayoutAlign="start center" style="margin-left: -6px;">
+                                            <img src="../../assets/Group 8478.svg" style="transform: scale(0.7);">
+                                            <span class="sitespan">
+                                                Site
+                                            </span>
+                                        </div>
+                                        <span class="sitenumber">
+                                            03
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div fxLayout="column" fxLayoutAlign="space-evenly" class="overall-seconddiv">
+                                <div fxLayout="row" fxLayoutAlign="space-between center">
+                                    <div fxLayout="row" fxLayoutAlign="start center">
+                                        <img src="../../assets/Group 8479.svg" style="transform: scale(0.6);">
+                                        <span class="sitespan">
+                                            Space
+                                        </span>
+                                    </div>
+                                    <span class="sitenumber" style="padding-right: 10px;">
+                                        128
+                                    </span>
+                                </div>
+                            </div>
+                            <div fxLayout="column" fxLayoutAlign="space-evenly" class="overall-seconddiv">
+                                <div fxLayout="row" fxLayoutAlign="space-between center">
+                                    <div fxLayout="row" fxLayoutAlign="start center">
+                                        <img src="../../assets/Group 8480.svg" style="transform: scale(0.6);">
+                                        <span class="sitespan">
+                                            Asset
+                                        </span>
+                                    </div>
+                                    <span class="sitenumber" style="padding-right: 10px;">
+                                        12000
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-evenly" class="expiryleasesdiv" fxLayoutGap="5px">
+                            <div fxFlex="60" fxLayout="column" fxLayoutAlign="space-evenly">
+                                <span class="rental-span">
+                                    Rental
+                                </span>
+                                <div fxLayout="column">
+                                    <span class="rental-fields-span">
+                                        Rental Fields & features
+                                    </span>
+                                    <span class="rental-fields-span">
+                                        Are coming soon.
+                                    </span>
+                                    <span class="rental-fields-span">
+                                        Stay tuned
+                                    </span>
+                                </div>
+
+                                <div fxLayout="column" fxLayoutAlign="start start">
+                                    <span class="vaccinated-span">
+                                        #Getvaccinated
+                                    </span>
+                                    <span class="hashtag-span">
+                                        #ARANxt
+                                    </span>
+                                </div>
+                            </div>
+                            <div fxFlex="40">
+                                <div fxLayout="row" fxLayoutAlign="end end" class="arrow-div-image">
+                                    <img src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg"
+                                        class="spacearrowmovable">
+                                </div>
+
+                                <img src="../../assets/Empty-cuate (1).svg" class="empty-cuate-image">
+                            </div>
+                            <!-- <div fxLayout="row" fxLayoutAlign="space-between" class="rental-top-div-1">
+                                <span class="rental-span">
+                                    Rental
+                                </span>
+                                <img src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg"
+                                    class="spacearrowmovable">
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="space-between" class="rental-top-div-2">
+                                <div fxLayout="column" fxLayoutAlign="start start" class="total-rental-div"
+                                    fxLayoutGap="10px" fxFlex="50">
+                                    <div fxLayout="column">
+                                        <span class="rental-fields-span">
+                                            Rental Fields & features
+                                        </span>
+                                        <span class="rental-fields-span">
+                                            Are coming soon.
+                                        </span>
+                                        <span class="rental-fields-span">
+                                            Stay tuned
+                                        </span>
+                                    </div>
+
+                                    <div fxLayout="column" fxLayoutAlign="start start">
+                                        <span class="vaccinated-span">
+                                            #Getvaccinated
+                                        </span>
+                                        <span class="hashtag-span">
+                                            #ARANxt
+                                        </span>
+                                    </div>
+                                </div>
+                                <div fxFlex="40" class="empty-cuate-div">
+                                    <img src="../../assets/Empty-cuate (1).svg" class="empty-cuate-image">
+                                </div>
+
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div fxLayout="column" class="secondrowdivision3">
+                <div fxLayout="column" fxLayoutAlign="space-between" class="neww secondrowdivision3">
+                    <div fxLayout="row" fxLayoutAlign="start center">
+                        <img src="../../assets/Group 8362.svg">
+                        <span class="employees">
+                            Employees
+                        </span>
+                        <span class="employees2">
+                            ( 28 )
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div *ngIf="changetolease" fxFlex="100" fxLayoutGap="3%" style="width: 100%;">
+        <app-leasemanagement></app-leasemanagement>
+    </div>
+</div>
