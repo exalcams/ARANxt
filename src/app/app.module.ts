@@ -100,6 +100,7 @@ import { CloseDialogComponent } from './close-dialog/close-dialog.component';
 import { LeasemanagementVacatedComponent } from './lease-management/leasemanagement-vacated/leasemanagement-vacated.component';
 import { LoginslideComponent } from './loginslide/loginslide.component';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
+import { HomescreenComponent } from './homescreen/homescreen.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -152,7 +153,8 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
     ShiftConfirmationComponent,
     CloseDialogComponent,
     LeasemanagementVacatedComponent,
-    LoginslideComponent
+    LoginslideComponent,
+    HomescreenComponent
   ],
   imports: [
     MatGridListModule,
