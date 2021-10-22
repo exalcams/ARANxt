@@ -105,21 +105,25 @@ const routes: Routes = [
     path: 'energy',
     component:EnergyConsumptionComponent
   },
-  {
-    path:'login',
-    component:LoginComponent
-  },
+  // {
+  //   path:'login',
+  //   component:LoginComponent
+  // },
 
- {
-  path: "",
-  component:LoginComponent
-},
+//  {
+//   path: "",
+//   component:LoginComponent
+// },
 {
   path:"homepage",
   component:HomepageComponent
 },
 {
-  path:'loginslide',
+  path:'',
+  component:LoginslideComponent
+},
+{
+  path:'login',
   component:LoginslideComponent
 },
 {

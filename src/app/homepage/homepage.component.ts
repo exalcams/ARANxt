@@ -107,6 +107,7 @@ export class HomepageComponent implements OnInit {
       expandable: !!node.children && node.children.length > 0,
       name: node.name,
       level: level,
+      id:node.id
     };
   }
   treeControl = new FlatTreeControl<FlatNode>(
@@ -449,11 +450,15 @@ export class HomepageComponent implements OnInit {
   }
   spaceclicked() {
     const dialogRef = this.dialog.open(SpaceComponent, {
+      // panelClass: 'full-width-dialog',
+      // width: '100%',
+      // maxWidth: '85.5vw ',
+      // height: '93%',
       panelClass: 'full-width-dialog',
-      position: { top: '3%', right: '1%' },
       width: '100%',
       maxWidth: '85.5vw ',
-      height: '93%',
+      height: '600px',
+      disableClose: true
 
     });
     dialogRef.afterClosed().subscribe(() => {
@@ -484,7 +489,7 @@ export class HomepageComponent implements OnInit {
 
   }
   setSelectedNode(node) {
-    console.log(node);
+    console.log("node",node);
     this.selectedNode = node.name;
     console.log("tree source", this.treeSource.data);
   }

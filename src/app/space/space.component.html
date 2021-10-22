@@ -1,4 +1,4 @@
-<mat-toolbar class="toolbar_cls" fxLayout="row" fxLayoutAlign="space-between center">
+<!-- <mat-toolbar class="toolbar_cls" fxLayout="row" fxLayoutAlign="space-between center">
     <div fxLayout="row" fxLayoutAlign="start center">
         <span class="spacecreationheading">
             Your Creating Multiple Space inside the Space
@@ -8,17 +8,21 @@
 
         <img class="close_hover close" src="assets/32178.svg" (click)="close()">
     </div>
+</mat-toolbar> -->
+<mat-toolbar class="toolbar_cls" fxLayout="row" fxLayoutAlign="space-between center">
+    <label class="title"> Your Creating Multiple Space inside the Space</label>
+    <img class="closeimages" src="assets/32178.svg" (click)="close()">
 </mat-toolbar>
-<mat-drawer-container style="height: 94%;margin-top: 2%;">
-    <mat-drawer mode="side" opened class="size" style="border-right: 1px solid #f9f9f9;padding-right: 10px;">
-        <div fxLayout="column">
+<mat-drawer-container style="height: 91%;margin-top: 2%;">
+    <mat-drawer mode="side" opened class="size_space" style="border-right: 1px solid #f9f9f9;padding-right: 10px;">
+        <div fxLayout="column" style="height:100%">
 
             <div>
                 <button class="Btn_cls">
                     +
                 </button>
             </div>
-            <div fxLayout="column" class="bg_cls" fxLayoutAlign="center start" fxLayoutGap="5px">
+            <div fxLayout="column" class="bg_cls" style="text-align-last: auto;" fxLayoutAlign="center start" fxLayoutGap="5px">
                 <div class="spacename">
                     Space Name
                 </div>
@@ -38,7 +42,7 @@
                             <img width="65px" height="40px !important" style="mix-blend-mode: multiply !important;"
                                 src="assets/Image 157.png">
                         </div>
-                        <div style="font-size: 12px;font-weight: 600;">
+                        <div style="font-size: 10px;font-weight: 600;">
                             General
                         </div>
                     </div>
@@ -48,7 +52,7 @@
                             <img width="65px" height="40px !important" style="mix-blend-mode: multiply !important;"
                                 src="./assets/location.png">
                         </div>
-                        <div style="font-size: 12px;font-weight: 600;">
+                        <div style="font-size: 10px;font-weight: 600;">
                             Location
                         </div>
                     </div>
@@ -58,7 +62,7 @@
                             <img width="65px" height="40px !important" style="mix-blend-mode: multiply !important;"
                                 src="assets/Image 160.png">
                         </div>
-                        <div style="font-size: 12px;font-weight: 600;">
+                        <div style="font-size: 10px;font-weight: 600;">
                             Document
                         </div>
                     </div>
@@ -68,7 +72,7 @@
                             <img width="65px" height="40px !important" style="mix-blend-mode: multiply !important;"
                                 src="assets/Image 159.png">
                         </div>
-                        <div style="font-size: 12px;font-weight: 600;">
+                        <div style="font-size: 10px;font-weight: 600;">
                             Partner
                         </div>
                     </div>
@@ -78,7 +82,7 @@
                             <img width="65px" height="40px !important" style="mix-blend-mode: multiply !important;"
                                 src="assets/Image 161.png">
                         </div>
-                        <div style="font-size: 12px;font-weight: 600;">
+                        <div style="font-size: 10px;font-weight: 600;">
                             Space
                         </div>
                     </div>
@@ -88,7 +92,7 @@
                             <img width="65px" height="40px !important" style="mix-blend-mode: multiply !important;"
                                 src="assets/Image 162.png">
                         </div>
-                        <div style="font-size: 12px;font-weight: 600;">
+                        <div style="font-size: 10px;font-weight: 600;">
                             Address
                         </div>
                     </div>
@@ -98,7 +102,7 @@
                             <img width="65px" height="40px !important" style="mix-blend-mode: multiply !important;"
                                 src="assets/date.png">
                         </div>
-                        <div style="font-size: 12px;font-weight: 600;">
+                        <div style="font-size: 10px;font-weight: 600;">
                             Date
                         </div>
                     </div>
@@ -108,27 +112,54 @@
                             <img width="65px" height="40px !important" style="mix-blend-mode: multiply !important;"
                                 src="assets/contract.png">
                         </div>
-                        <div style="font-size: 12px;font-weight: 600;">
+                        <div style="font-size: 10px;font-weight: 600;">
                             Contract
                         </div>
                     </div>
                 </div>
             </div>
             <div *ngIf="General==true?'selectedIndex':false" style="overflow: auto;height: 400px;">
-                <div fxLayout="column" style="padding: 7px;overflow: auto;">
-                    <div fxLayout="row">
+                <div fxLayout="column" style="padding: 27px;overflow: auto;">
+                    <div fxLayout="row" style="width: 22%; padding-left: 49px ;">
                         <span class="create">Create Space Details</span>
                     </div>
                     <form autocomplete="off" [formGroup]="GeneralForm">
                         <div fxLayout="row" style="width: 100%;margin-top: 15px;padding: 10px 55px;" fxLayoutGap="55px">
-                            <div fxLayout="column" fxFlex="50" fxLayoutGap="20px">
-                                <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
-                                        fxFlex="30">Space Name</span><span fxFlex="70">
-                                        <input class="input_cls" formControlName="spaceName" matInput
-                                            placeholder=" Enter Space Name">
-                                    </span>
+                            <div fxLayout="column" fxFlex="50" fxLayoutGap="1px">
+                                <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                                    <span class="formspan">Space Name</span>
+                                    <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                        <input matInput formControlName="spaceName" type="text" class="placeholdertext "
+                                            >
+                                        <mat-error *ngIf="GeneralForm.get('spaceName').hasError('required')">
+                                            Site name is required
+                                        </mat-error>
+                                    </mat-form-field>
                                 </div>
-                                <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;">
+                                <!-- <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                                    <span
+                                        fxFlex="30">Space Name</span><span fxFlex="70">
+                                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                        <input class="placeholdertext" formControlName="spaceName" matInput
+                                          >
+                                            </mat-form-field>
+                                    </span>
+                                </div> -->
+                                <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                                    <span class="formspan">Object Type</span>
+                                    <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                        <mat-select formControlName="objectType" class="placeholdertext">
+                                            <mat-option *ngFor="let option of ObjectType" class="placeholdertext"
+                                                [value]="option">
+                                                {{option}}</mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="GeneralForm.get('objectType').hasError('required')">
+                                            Object Type is required
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                
+                                <!-- <div fxLayout="row" class="spaceOuterdiv">
                                     <span fxFlex="30">Object Type</span>
                                     <span fxFlex="70">
                                         <select class="input_cls" formControlName="objectType" style="font-size: 12px;">
@@ -139,27 +170,37 @@
                                                 {{country}}</option>
                                         </select>
                                     </span>
+                                </div> -->
+                                <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                                    <span class="formspan">Partner ID</span>
+                                    <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                        <input matInput formControlName="partnerID" type="text" class="placeholdertext "
+                                            >
+                                        <mat-error *ngIf="GeneralForm.get('partnerID').hasError('required')">
+                                            Partner ID is required
+                                        </mat-error>
+                                    </mat-form-field>
                                 </div>
-                                <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
-                                        fxFlex="30">Site Name</span>
-                                    <span fxFlex="70">
-                                        <select class="input_cls" formControlName="siteName" style="font-size: 12px;">
-                                            <option value="" disabled selected hidden>Select siteName</option>
-                                            <option class="input_cls" *ngFor="let country of ARASite"
-                                                fxLayoutAlign="center center" [ngValue]="country.site">
-                                                {{country.site}}</option>
-                                        </select>
-                                        <!-- <input class="input_cls" formControlName="siteName" matInput
-                                            placeholder=" Enter Site Name"> -->
-                                    </span>
-                                </div>
-                                <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                <!-- <div fxLayout="row" class="spaceOuterdiv"><span
                                         fxFlex="30">Partner ID</span><span fxFlex="70">
                                         <input class="input_cls" formControlName="partnerID" matInput
                                             placeholder=" Enter Partner ID">
                                     </span>
+                                </div> -->
+                                <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                                    <span class="formspan">Category</span>
+                                    <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                        <mat-select formControlName="category" class="placeholdertext">
+                                            <mat-option *ngFor="let option of Catagories" class="placeholdertext"
+                                                [value]="option.name">
+                                                {{option.name}}</mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="GeneralForm.get('objectType').hasError('required')">
+                                            Category is required
+                                        </mat-error>
+                                    </mat-form-field>
                                 </div>
-                                <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;">
+                                <!-- <div fxLayout="row" class="spaceOuterdiv">
                                     <span fxFlex="30">Category</span>
                                     <span fxFlex="70">
                                         <select class="input_cls" formControlName="category" style="font-size: 12px;">
@@ -170,19 +211,39 @@
                                         </select>
                                     </span>
 
+                                </div> -->
+                                <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                                    <span class="formspan">Cost Center</span>
+                                    <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                        <input matInput formControlName="costCenter" type="text" class="placeholdertext "
+                                            >
+                                        <mat-error *ngIf="GeneralForm.get('costCenter').hasError('required')">
+                                            Cost Center is required
+                                        </mat-error>
+                                    </mat-form-field>
                                 </div>
-                                <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                <!-- <div fxLayout="row" class="spaceOuterdiv"><span
                                         fxFlex="30">Cost Center</span><span fxFlex="70">
                                         <input class="input_cls" formControlName="costCenter" matInput
                                             placeholder=" Enter Cost Center">
                                     </span>
+                                </div> -->
+                                <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                                    <span class="formspan">Description</span>
+                                    <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                        <input matInput formControlName="description" type="text" class="placeholdertext "
+                                            >
+                                        <mat-error *ngIf="GeneralForm.get('description').hasError('required')">
+                                            Description is required
+                                        </mat-error>
+                                    </mat-form-field>
                                 </div>
-                                <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                                <!-- <div fxLayout="row" class="spaceOuterdiv"><span
                                         fxFlex="30">Description</span><span fxFlex="70">
                                         <input class="input_cls" formControlName="description" matInput
                                             placeholder=" Enter Description">
                                     </span>
-                                </div>
+                                </div> -->
 
                             </div>
                             <div fxLayout="column" fxFlex="50" fxLayoutGap="20px">
@@ -196,58 +257,85 @@
             <div *ngIf="Location==true?'selectedIndex':false">
                 <div style="width: 100%;margin-top: 15px;padding: 10px 55px;" fxLayoutGap="55px">
                     <div fxLayout="column" fxFlex="50">
-                        <!-- <h1>Angular Google Map Get Current Location Example - ItSolutionStuff.com</h1> -->
+                        
 
                         <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
                             <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true">
                             </agm-marker>
                         </agm-map>
 
-                        <!-- <h5>Address: {{address1}}</h5>
-                        <div>Latitude: {{latitude}}</div>
-                        <div>Longitude: {{longitude}}</div> -->
+                    
                     </div>
                     <form autocomplete="off" fxFlex [formGroup]="LocationForm">
-                        <div fxLayout="column" fxFlex="100" fxLayoutGap="20px">
+                        <div fxLayout="column" fxFlex="100" fxLayoutGap="1px">
 
 
-
-                            <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                            <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                                <span class="formspan">Latitude</span>
+                                <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                    <input matInput formControlName="Latitude" type="text" [ngModel]="latitude" class="placeholdertext "  >     </mat-form-field>
+                            </div>
+                            <!-- <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">Latitude</span><span fxFlex="70">
                                     <input class="input_cls" formControlName="Latitude" matInput
                                         placeholder=" Enter Latitude" [ngModel]="latitude">
                                 </span>
+                            </div> -->
+                            <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                                <span class="formspan">Longitude</span>
+                                <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                    <input matInput formControlName="Longitude" type="text" [ngModel]="longitude" class="placeholdertext "  >     </mat-form-field>
                             </div>
-                            <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                            <!-- <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">Longitude</span><span fxFlex="70">
                                     <input class="input_cls" formControlName="Longitude" matInput
                                         placeholder=" Enter Longitude" [ngModel]="longitude">
                                 </span>
+                            </div> -->
+                            <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                                <span class="formspan">From Latitude</span>
+                                <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                    <input matInput formControlName="FromLatitude" type="text"  class="placeholdertext "> </mat-form-field>
                             </div>
-                            <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                            <!-- <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">From Latitude</span><span fxFlex="70">
                                     <input class="input_cls" formControlName="FromLatitude" matInput
                                         placeholder=" Enter From Latitude">
                                 </span>
+                            </div> -->
+                            <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                                <span class="formspan">To Latitude</span>
+                                <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                    <input matInput formControlName="ToLatitude" type="text"  class="placeholdertext "> </mat-form-field>
                             </div>
-                            <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                            <!-- <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">To Latitude</span><span fxFlex="70">
                                     <input class="input_cls" formControlName="ToLatitude" matInput
                                         placeholder=" Enter To Latitude">
                                 </span>
+                            </div> -->
+                            <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                                <span class="formspan">From Longitude</span>
+                                <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                    <input matInput formControlName="FromLongitude" type="text"  class="placeholdertext "> </mat-form-field>
                             </div>
-                            <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                            <!-- <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">From Longitude</span><span fxFlex="70">
                                     <input class="input_cls" formControlName="FromLongitude" matInput
                                         placeholder=" Enter From Longitude">
                                 </span>
+                            </div> -->
+                            <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                                <span class="formspan">To Longitude</span>
+                                <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                    <input matInput formControlName="ToLongitude" type="text"  class="placeholdertext "> </mat-form-field>
                             </div>
-                            <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                            <!-- <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
                                     fxFlex="30">To Longitude</span><span fxFlex="70">
                                     <input class="input_cls" formControlName="ToLongitude" matInput
                                         placeholder=" Enter To Longitude">
                                 </span>
-                            </div>
+                            </div> -->
 
                         </div>
                     </form>
@@ -369,24 +457,10 @@
 
                                 </div>
                             </div>
-
-
-
-
                         </div>
-                        <div fxFlex="10"></div>
-                        <!-- <div fxLayout="row">
-                        <div fxFlex="25" ></div>
-                        <div fxFlex="60" style="margin-top:15px;" >
-                    <img class="j5" src="./assets/docu.png" style="width:12px;height:auto" />
-                    <span class="docu">Add Documents</span>
+                        <div fxFlex="10"></div>                    
                     </div>
-                    <div fxFlex="15"  ></div> -->
-                    </div>
-
-
                 </div>
-
             </div>
             <div *ngIf="Partner==true">
                 <div fxLayout="column" style="padding: 20px 10px 10px 10px;width: 100%;">
@@ -425,12 +499,7 @@
                                 <th mat-header-cell *matHeaderCellDef> Partner Type </th>
                                 <td mat-cell *matCellDef="let element">
                                     {{element.partnerType}}
-                                    <!-- <select class="input_cls1">
-                                        <option [ngValue]="null">Select Type</option>
-                                        <option class="input_cls" *ngFor="let country of countries"
-                                            fxLayoutAlign="center center" [ngValue]="country.id">
-                                            {{country.name}}</option>
-                                    </select> -->
+                                    
                                 </td>
                             </ng-container>
                             <!-- Position Column -->
@@ -774,8 +843,7 @@
                 </div>
             </div>
             <mat-toolbar style="width: 100%; position: absolute; bottom: 0;height: 35px;
-            
-            padding: 0px;">
+                     padding: 0px;">
                 <div fxLayout="row" fxLayoutGap='10px' style="margin-top:-15px;" class="footer">
 
                     <div class="estimate">Estimated Steps to Complete : {{steps}} Steps

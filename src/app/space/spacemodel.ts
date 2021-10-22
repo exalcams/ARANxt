@@ -76,7 +76,7 @@ export class ContractLink{
     Inclusion: string;
 }
 export class ARA_Space {
-    Space: string;
+    Space: number;
     Title: string;
     ObjType: string;
     PartnerID: string;
@@ -120,4 +120,15 @@ export class ARA_Company {
     Company: string;
     Title: string;
     Client: string;
+}
+export class ARA_SpaceAll
+{
+    ARA_space:ARA_Space;
+    addrLink:AddrLink;
+    locLink:LocLink;
+    docLink:DocumentLink;
+    partnerLink:PartnerLink;
+    areaLink:AreaLink;
+    contractLink:ContractLink;
+    dateLink:DateLink;
 }
