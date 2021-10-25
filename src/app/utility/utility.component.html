@@ -1,14 +1,12 @@
 <div fxLayout="column" class="whole">
-    <div fxLayout="row" fxLayoutAlign="space-between center"  class="tool">
-        <div fxLayout="row" fxLayoutGap="20px" fxFlexOffset="1" class="addbtndiv">
+    <div fxLayout="row" fxLayoutAlign="space-between" class="tool">
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px" class="addbtndiv">
             <img src="../../assets/Images/gear.svg" class="gearimg">
-            <p>Maintenance Report</p>
-            <button mat-flat-button class="addbtn">
-                <span class="addtxt"> ADD </span>
-            </button>
+            <span class="maintenance-span">Maintenance Report</span>
+
         </div>
-        <div fxLayout="row" fxLayoutGap="20px" class="togglediv">
-            <p class="maintainmode">Maintenance Mode</p>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" class="togglediv">
+            <span class="maintainmode">Maintenance Mode</span>
             <div class="parent">
                 <mat-slide-toggle size="large" class="toggle"></mat-slide-toggle>
             </div>
@@ -18,150 +16,195 @@
     <mat-tab-group>
         <mat-tab>
 
-
-            <ng-template mat-tab-label>
-                <div class="label" fxLayout="row" fxFlexOffset="8" fxLayoutAlign="space-between center">
-                    <div fxLayout="column" fxFlex="85" class="schedulename">
-                        <p class="daily">Daily</p>
-                        <div fxLayout="row" fxLayoutGap="30px">
-                            <p class="pending">Pending</p>
-                            <span class="twelve">12</span>
+            <ng-template mat-tab-label class="daily-ngtemplate">
+                <div class="label" fxLayout="row" fxLayoutAlign="space-between center">
+                    <div fxLayout="column" fxLayoutAlign="start start" class="schedulename">
+                        <span class="daily">Daily</span>
+                        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10px">
+                            <span class="pending">Pending</span>
+                            <div class="twelve">
+                                <span class="pending-numberclass">12</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div fxFlex="15">
+                    <div class="downarrow-image">
                         <img *ngIf="tabindex == 0" src="../../assets/Images/DownArrowDark.svg">
                     </div>
                 </div>
             </ng-template>
 
-            <div fxLayout="column">
-                <div fxLayout="row" fxFlex="100">
-                    <div fxFlex="30" fxLayout="column">
-                        <div fxLayout="row " fxLayoutAlign="space-between center">
-                            <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
-                                <p>Elevation</p>
-                                <p class="lift">Lift 1</p>
+            <div fxLayout="column" class="daily-templatediv-1">
+                <div fxLayout="row" fxFlex="100" class="daily-templatediv-innerdiv1">
+                    <div fxFlex="30" fxLayout="column" class="daily-templatediv-nesteddiv1">
+                        <div fxLayout="row " fxLayoutAlign="space-between center" class="elevator-topdiv">
+                            <div fxLayout="column" class="elevationdiv">
+                                <span class="elevation-span">Elevation</span>
+                                <span class="lift">Lift 1</span>
                             </div>
                             <img src="../../assets/Images/building1.png" class="liftbuilding">
                         </div>
-                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
-                            <p fxFlexOffset="6">Lift Buttons</p>
-                            <mat-slide-toggle class="slide"></mat-slide-toggle>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                            <p fxFlexOffset="6">Alarm Buttons</p>
-                            <mat-slide-toggle class="slide"></mat-slide-toggle>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                            <p fxFlexOffset="6">Telephone</p>
-                            <mat-slide-toggle class="slide"></mat-slide-toggle>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                            <p fxFlexOffset="6">Ventilation Fan</p>
-                            <mat-slide-toggle class="slide"></mat-slide-toggle>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                            <p fxFlexOffset="6">Door Sensor</p>
-                            <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                            <p fxFlexOffset="6">Elevator Car</p>
-                            <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                        <div fxLayout="column" fxLayoutAlign="start start" class="buttons-elevator" fxLayoutGap="10px">
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Lift Buttons</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Alarm Buttons</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Telephone</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Ventilation Fan</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Door Sensor</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Elevator Car</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div fxFlex="5">
-                        <mat-divider [vertical]="true"></mat-divider>
+                        <mat-divider [vertical]="true" class="divider-elevator"></mat-divider>
                     </div>
-                    <div fxFlex="30" fxLayout="column">
-                        <div fxLayout="row" fxLayoutAlign="space-between center">
-                            <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
-                                <p>Elevation</p>
-                                <p class="lift">Lift 2</p>
+                    <div fxFlex="30" fxLayout="column" class="daily-templatediv-nesteddiv1">
+                        <div fxLayout="row " fxLayoutAlign="space-between center" class="elevator-topdiv">
+                            <div fxLayout="column" class="elevationdiv">
+                                <span class="elevation-span">Elevation</span>
+                                <span class="lift">Lift 1</span>
                             </div>
                             <img src="../../assets/Images/building1.png" class="liftbuilding">
                         </div>
-                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
-                            <p fxFlexOffset="6">Lift Buttons</p>
-                            <mat-slide-toggle class="slide"></mat-slide-toggle>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                            <p fxFlexOffset="6">Alarm Buttons</p>
-                            <mat-slide-toggle class="slide"></mat-slide-toggle>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                            <p fxFlexOffset="6">Telephone</p>
-                            <mat-slide-toggle class="slide"></mat-slide-toggle>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                            <p fxFlexOffset="6">Ventilation Fan</p>
-                            <mat-slide-toggle class="slide"></mat-slide-toggle>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                            <p fxFlexOffset="6">Door Sensor</p>
-                            <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                            <p fxFlexOffset="6">Elevator Car</p>
-                            <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                        <div fxLayout="column" fxLayoutAlign="start start" class="buttons-elevator" fxLayoutGap="10px">
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Lift Buttons</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Alarm Buttons</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Telephone</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Ventilation Fan</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Door Sensor</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Elevator Car</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div fxFlex="5">
-                        <mat-divider [vertical]="true"></mat-divider>
+                        <mat-divider [vertical]="true" class="divider-elevator"></mat-divider>
                     </div>
-                    <div fxFlex="30" fxLayout="column">
-                        <div fxLayout="row" fxLayoutAlign="space-between center">
-                            <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
-                                <p>Elevation</p>
-                                <p class="lift">Lift 3</p>
+                    <div fxFlex="30" fxLayout="column" class="daily-templatediv-nesteddiv1">
+                        <div fxLayout="row " fxLayoutAlign="space-between center" class="elevator-topdiv">
+                            <div fxLayout="column" class="elevationdiv">
+                                <span class="elevation-span">Elevation</span>
+                                <span class="lift">Lift 1</span>
                             </div>
                             <img src="../../assets/Images/building1.png" class="liftbuilding">
                         </div>
-                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
-                            <p fxFlexOffset="6">Lift Buttons</p>
-                            <mat-slide-toggle class="slide"></mat-slide-toggle>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                            <p fxFlexOffset="6">Alarm Buttons</p>
-                            <mat-slide-toggle class="slide"></mat-slide-toggle>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                            <p fxFlexOffset="6">Telephone</p>
-                            <mat-slide-toggle class="slide"></mat-slide-toggle>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                            <p fxFlexOffset="6">Ventilation Fan</p>
-                            <mat-slide-toggle class="slide"></mat-slide-toggle>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                            <p fxFlexOffset="6">Door Sensor</p>
-                            <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                            <p fxFlexOffset="6">Elevator Car</p>
-                            <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                        <div fxLayout="column" fxLayoutAlign="start start" class="buttons-elevator" fxLayoutGap="10px">
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Lift Buttons</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Alarm Buttons</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Telephone</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Ventilation Fan</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Door Sensor</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Elevator Car</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </mat-tab>
 
         <mat-tab>
-            <ng-template mat-tab-label>
-                <div class="label" fxLayout="row wrap" fxFlexOffset="6" fxFlex="100"
-                    fxLayoutAlign="space-between center">
-                    <div fxLayout="column" fxFlex="65" class="schedulename">
-                        <p class="daily">Weekly</p>
-                        <div fxLayout="row" fxLayoutGap="30px">
-                            <p class="pending">Pending</p>
-                            <span class="twelve">12</span>
+            <ng-template mat-tab-label class="daily-ngtemplate">
+                <div class="label" fxLayout="row" fxLayoutAlign="space-between center">
+                    <div fxLayout="column" fxLayoutAlign="start start" class="schedulename">
+                        <span class="daily">Weekly</span>
+                        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10px">
+                            <span class="pending">Pending</span>
+                            <div class="twelve">
+                                <span class="pending-numberclass">12</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="newdiv" fxFlex="20">
-                        <p>New</p>
+                    <div fxFlex="2"></div>
+                    <div class="newdiv" fxFlex="28">
+                        <span class="new-span">New</span>
                     </div>
-                    <div fxFlex="15">
+                    <div class="downarrow-image">
                         <img *ngIf="tabindex == 0" src="../../assets/Images/DownArrowDark.svg">
                     </div>
                 </div>
@@ -285,18 +328,22 @@
         </mat-tab>
 
         <mat-tab>
-            <ng-template mat-tab-label>
-                <div class="label" fxLayout="row" fxFlexOffset="8" fxLayoutAlign="space-between center">
-                    <div fxLayout="column" class="schedulename" fxFlex="65">
-                        <p class="daily">Monthly</p>
-                        <div fxLayout="row" fxLayoutGap="30px">
-                            <p class="pending">Completed</p>
+            <ng-template mat-tab-label class="daily-ngtemplate">
+                <div class="label" fxLayout="row" fxLayoutAlign="space-between center">
+                    <div fxLayout="column" fxLayoutAlign="start start" class="schedulename">
+                        <span class="daily">Monthly</span>
+                        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10px">
+                            <span class="pending">Completed</span>
+                            <!-- <div class="twelve">
+                                <span class="pending-numberclass">12</span>
+                            </div> -->
                         </div>
                     </div>
-                    <div class="newdiv" fxFlex="20">
-                        <p>New</p>
+                    <div fxFlex="2"></div>
+                    <div class="newdiv" fxFlex="28">
+                        <span class="new-span">New</span>
                     </div>
-                    <div fxFlex="15">
+                    <div class="downarrow-image">
                         <img *ngIf="tabindex == 0" src="../../assets/Images/DownArrowDark.svg">
                     </div>
                 </div>
@@ -449,17 +496,19 @@
         </mat-tab>
 
         <mat-tab>
-            <ng-template mat-tab-label>
-                <div class="label" fxLayout="row" fxFlexOffset="8" fxLayoutAlign="space-between center">
-                    <div fxLayout="column" fxFlex="85" class="schedulename">
-                        <p class="daily">6 Months Once</p>
-                        <div fxLayout="row" fxLayoutGap="30px">
-                            <p class="pending">Pending</p>
-                            <span class="twelve">16</span>
+            <ng-template mat-tab-label class="daily-ngtemplate">
+                <div class="label" fxLayout="row" fxLayoutAlign="space-between center">
+                    <div fxLayout="column" fxLayoutAlign="start start" class="schedulename">
+                        <span class="daily">6 Months Once</span>
+                        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10px">
+                            <span class="pending">Pending</span>
+                            <div class="twelve">
+                                <span class="pending-numberclass">16</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div fxFlex="15">
+                    <div class="downarrow-image">
                         <img *ngIf="tabindex == 0" src="../../assets/Images/DownArrowDark.svg">
                     </div>
                 </div>
@@ -615,17 +664,19 @@
         </mat-tab>
 
         <mat-tab>
-            <ng-template mat-tab-label>
-                <div class="label" fxLayout="row" fxFlexOffset="8" fxLayoutAlign="space-between center">
-                    <div fxLayout="column" fxFlex="85" class="schedulename">
-                        <p class="daily">Yearly</p>
-                        <div fxLayout="row" fxLayoutGap="30px">
-                            <p class="pending">Pending</p>
-                            <span class="twelve">26</span>
+            <ng-template mat-tab-label class="daily-ngtemplate">
+                <div class="label" fxLayout="row" fxLayoutAlign="space-between center">
+                    <div fxLayout="column" fxLayoutAlign="start start" class="schedulename">
+                        <span class="daily">Yearly</span>
+                        <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10px">
+                            <span class="pending">Pending</span>
+                            <div class="twelve">
+                                <span class="pending-numberclass">26</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div fxFlex="15">
+                    <div class="downarrow-image">
                         <img *ngIf="tabindex == 0" src="../../assets/Images/DownArrowDark.svg">
                     </div>
                 </div>
@@ -635,8 +686,5 @@
             </div>
         </mat-tab>
     </mat-tab-group>
-    
-</div> 
 
-
-
+</div>

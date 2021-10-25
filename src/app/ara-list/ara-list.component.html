@@ -1,24 +1,34 @@
 <div fxLayout="row" class="maindiv">
-    <div fxFlex="2" class="emptydiv"></div>
-    <div fxFlex="75" fxLayout="column" fxLayoutGap="20px">
-        <div fxFlexOffset="-1"></div>
-        <div fxLayout="row" fxLayoutGap="20px">
-            <span class="topic">List</span>
-            <span class="spacer"></span>
-            <img class="filter_img" src="./assets/iconfinder_Icon_filter_hor_outline_6637739 (2).svg">
-            <input matInput class="text" type="text" placeholder="Search" (keyup)="applyFilter($event)" #input
-                autocomplete="off">
+    <div fxLayout="column" fxLayoutGap="8px" class="classification-div">
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="class-seconddiv">
+            <span class="topic">Lorea Ipsum</span>
+            <div fxLayout="row" fxLayoutAlign="space-around center" class="class-seconddiv-2" fxLayoutGap="6px">
+                <img class="filter_img" src="./assets/iconfinder_Icon_filter_hor_outline_6637739 (2).svg">
+                <!-- <input matInput class="text" type="text" placeholder="Search" (keyup)="applyFilter($event)" #input
+                    autocomplete="off" class="input-class"> -->
+                <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="72">
+                    <div fxLayout="row" class="btn_bg2" fxFlex="100" fxLayoutGap="5px">
+                        <mat-icon matSuffix class="serachicon_search">search</mat-icon>
+                        <input matInput class="search_input1 forminputedit" autocomplete="off" type="text"
+                            placeholder="Search" (keyup)="applyFilter($event)" #input>
+                    </div>
+                </div>
+                <div fxLayout="row" class="btn_bg3" fxLayoutAlign="center center" fxFlex="18">
+                    <span class="add-class">
+                        ADD
+                    </span>
+                </div>
+            </div>
 
         </div>
-       
+
         <!-- table -->
 
         <div class="autoscroll example">
             <table mat-table [dataSource]="dataSource" style="width: 100%;">
 
                 <ng-container matColumnDef="photos">
-                    <th mat-header-cell *matHeaderCellDef
-                        style="text-align: left; height: 30px;border-bottom: 15px solid white;"> Photos </th>
+                    <th mat-header-cell *matHeaderCellDef class="headertable-class"> Photos </th>
                     <td mat-cell *matCellDef="let element;index as i" style="width: 10%;text-align: left;">
                         <img *ngIf="element.name=='AC'" src="./assets/Image 87.jpg">
                         <img *ngIf="element.name=='Cleaner'" src="./assets/Image 93.png">
@@ -29,45 +39,38 @@
                 </ng-container>
 
                 <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef
-                        style="text-align: left; height: 30px;border-bottom: 15px solid white;"> Name </th>
+                    <th mat-header-cell *matHeaderCellDef class="headertable-class"> Name </th>
                     <td mat-cell *matCellDef="let element" style="width: 10%;text-align: left;">
                         {{element.name}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="date">
-                    <th mat-header-cell *matHeaderCellDef
-                        style="text-align: left;border-bottom: 15px solid white; height: 30px"> Date </th>
+                    <th mat-header-cell *matHeaderCellDef class="headertable-class"> Date </th>
                     <td mat-cell *matCellDef="let element" style="width: 10%;text-align: left;"> {{element.date}}
                     </td>
                 </ng-container>
                 <ng-container matColumnDef="category">
-                    <th mat-header-cell *matHeaderCellDef
-                        style="text-align: left;border-bottom: 15px solid white; height: 30px"> Category </th>
+                    <th mat-header-cell *matHeaderCellDef class="headertable-class"> Category </th>
                     <td mat-cell *matCellDef="let element" style="width: 10%;text-align: left;"> {{element.category}}
                     </td>
                 </ng-container>
                 <ng-container matColumnDef="brand">
-                    <th mat-header-cell *matHeaderCellDef
-                        style="text-align: left;border-bottom: 15px solid white; height: 30px"> Brand </th>
+                    <th mat-header-cell *matHeaderCellDef class="headertable-class"> Brand </th>
                     <td mat-cell *matCellDef="let element" style="width: 10%;text-align: left;"> {{element.brand}}
                     </td>
                 </ng-container>
                 <ng-container matColumnDef="value">
-                    <th mat-header-cell *matHeaderCellDef
-                        style="text-align: left; border-bottom: 15px solid white;height: 30px">Value</th>
+                    <th mat-header-cell *matHeaderCellDef class="headertable-class">Value</th>
                     <td mat-cell *matCellDef="let element" style="width: 10%;text-align: left;">
                         {{element.value}} </td>
                 </ng-container>
                 <ng-container matColumnDef="status">
-                    <th mat-header-cell *matHeaderCellDef
-                        style="text-align: left;border-bottom: 15px solid white; height: 10px">Status </th>
+                    <th mat-header-cell *matHeaderCellDef class="headertable-class2">Status </th>
                     <td mat-cell *matCellDef="let element" style="width: 10%;text-align: left;">
                         {{element.status}} </td>
                 </ng-container>
                 <ng-container matColumnDef="assertid">
-                    <th mat-header-cell *matHeaderCellDef
-                        style="text-align: left;border-bottom: 15px solid white; height: 10px">Assert I'D</th>
+                    <th mat-header-cell *matHeaderCellDef class="headertable-class2">Assert I'D</th>
                     <td mat-cell *matCellDef="let element" style="width: 10%;text-align: left;">
                         {{element.assertid}} </td>
                 </ng-container>
@@ -78,13 +81,11 @@
             </table>
         </div>
     </div>
-    <div fxFlex="4" fxLayoutAlign="center center" class="emptydiv">
+    <!-- <div fxFlex="4" fxLayoutAlign="center center" class="emptydiv">
         <mat-divider vertical class="vert_divider"></mat-divider>
+    </div> -->
 
-    </div>
-
-    <div fxFlex="19" fxLayout="column" fxLayoutGap="5px" >
-        <!-- style="height: 50%;" -->
+    <!-- <div fxFlex="19" fxLayout="column" fxLayoutGap="5px" >
         <div fxFlexOffset="15"></div>
 
         <div fxLayout="row" fxLayoutGap="10px">
@@ -139,8 +140,6 @@
             <div fxLayout="column" style="width: 100%;">
                 <div fxLayout="row" fxLayoutAlign="space-between center">
                     <span class="assert">Good</span>
-                    <!-- *ngIf="status_res==1" -->
-                    <!-- <span *ngIf="status_res==2"class="assert">Bad</span> -->
                     <span class="assert">80%</span>
                 </div>
                 <mat-progress-bar  *ngIf="status_res==1" class="green" mode="determinate" value="80"></mat-progress-bar>
@@ -151,7 +150,6 @@
         <mat-card class="card" fxLayout="column">
 
 
-            <!-- {{as}} -->
             <span *ngIf="res==1">An air conditioner is a system that is used to cool down a space by removing heat from
                 the space and moving it to some outside area.</span>
             <span *ngIf="res==2">Removes stubborn grease, stain and dirt. Disinfect from dust mites, germs, bacteria,
@@ -168,5 +166,5 @@
             <img class="end_img" src="./assets/Group 8046.svg">
            
         </div>
-    </div>
+    </div> -->
 </div>
