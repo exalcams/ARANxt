@@ -913,8 +913,8 @@
 
                     </div>
                 </form> -->
-
                 </div>
+
                 <div *ngIf="Date==true" class="outer_height">
                     <div fxLayout="column" style="padding: 20px 10px 10px 10px;width: 100%;">
                         <div fxLayout="row" style="width: 100%;">
@@ -927,7 +927,7 @@
                                         style="margin-top: -0.22rem;">
                                         <div>
                                             <img style="vertical-align: -webkit-baseline-middle;
-                    width: 24px;" src="./assets/search.svg">
+                                width: 24px;" src="./assets/search.svg">
                                         </div>
                                         <div>
                                             <input class="input_field" matInput placeholder="Search">
@@ -1003,7 +1003,7 @@
                             <div fxFlex="56" style="padding-left: 10px;">
                                 <span style="font-size: 12px;color: #0d0c22;font-weight: bold;">Contract Links</span>
                             </div>
-                            <div fxLayout="row" fxLayoutGap="10px" fxFlex="100" >
+                            <div fxLayout="row" fxLayoutGap="10px" fxFlex="100">
                                 <div fxLayout="row" class="btn_bg2" fxFlex="55">
                                     <mat-icon matSuffix class="serachicon_search">search</mat-icon>
                                     <input matInput class="search_input1 forminputedit" autocomplete="off"
@@ -1037,18 +1037,18 @@
                                     </td>
                                 </ng-container>
                                 <ng-container matColumnDef="title">
-                                    <th mat-header-cell *matHeaderCellDef> Title 
+                                    <th mat-header-cell *matHeaderCellDef> Title
                                     </th>
                                     <td mat-cell *matCellDef="let element" class="datarow"> {{element.title}} </td>
                                 </ng-container>
                                 <ng-container matColumnDef="startDate">
                                     <th mat-header-cell *matHeaderCellDef> Starting Date
-                                         
+
                                     </th>
                                     <td mat-cell *matCellDef="let element" class="datarow"> {{element.startDate}} </td>
                                 </ng-container>
                                 <ng-container matColumnDef="endDate">
-                                    <th mat-header-cell *matHeaderCellDef>Ending Date 
+                                    <th mat-header-cell *matHeaderCellDef>Ending Date
                                     </th>
                                     <td mat-cell *matCellDef="let element" class="datarow"> {{element.endDate}} </td>
                                 </ng-container>
@@ -1064,7 +1064,7 @@
                                 </ng-container>
 
                                 <ng-container matColumnDef="exclusions">
-                                    <th mat-header-cell *matHeaderCellDef> Exclusions 
+                                    <th mat-header-cell *matHeaderCellDef> Exclusions
                                     </th>
                                     <td mat-cell *matCellDef="let element" class="datarow"> {{element.exclusions}} </td>
                                 </ng-container>
@@ -1075,12 +1075,12 @@
                                     </td>
                                 </ng-container> -->
 
-<!-- 
+                                <!-- 
                                 <tr mat-header-row *matHeaderRowDef="displayedColumns2 sticky:true">
                                 </tr>
                                 <tr mat-row *matRowDef="let row; columns: displayedColumns2;index as i;"
                                     class="hover_class" on-mouseover="hoveredIndex=i"></tr> -->
-                                    <tr mat-header-row *matHeaderRowDef="displayedColumns2"
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns2"
                                     style="background-color: #f3f3f4;height: 37px;"></tr>
                                 <tr mat-row *matRowDef="let row; columns: displayedColumns2;"
                                     style="border-bottom-style: none;cursor: pointer;"></tr>
