@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SpaceService } from '../space/space.service';
@@ -7,7 +7,8 @@ import { ContractLink } from '../space/spacemodel';
 @Component({
   selector: 'app-contract-link',
   templateUrl: './contract-link.component.html',
-  styleUrls: ['./contract-link.component.scss']
+  styleUrls: ['./contract-link.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ContractLinkComponent implements OnInit {
   ContractLinkForm: FormGroup;

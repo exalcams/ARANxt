@@ -1,4 +1,98 @@
-<div style="overflow: auto;height: 250px;">
+
+<div class="dialog-content-wrapper">
+    <mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+        <label class="title">Create Partner Link Details</label>
+        <img class="closeimages" src="assets/32178.svg" (click)="close()">
+    </mat-toolbar>
+
+    <mat-dialog-content class="content" fusePerfectScrollbar>
+        <form autocomplete="off" [formGroup]="PartnerLinkForm">
+            <div fxLayout="row" style="width: 100%;">
+                <div fxLayout="column" fxFlex="50" style="align-items: center;">
+                    <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                        <span class="formspan">Partner Type</span>
+                        <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                            <input matInput formControlName="PartnerType" type="text"
+                                class="placeholdertext ">
+                                <mat-error *ngIf="PartnerLinkForm.get('PartnerType').hasError('required')">
+                                    Partner Type is required
+                                </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                        <span class="formspan">Partner ID</span>
+                        <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                            <input matInput formControlName="PartnerID" type="text"
+                                class="placeholdertext ">
+                                <mat-error *ngIf="PartnerLinkForm.get('PartnerID').hasError('required')">
+                                    Partner ID is required
+                                </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                        <span class="formspan">Start Date</span>
+                        <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                            <input matInput formControlName="StartDate" type="text"
+                                class="placeholdertext ">
+                                <mat-error *ngIf="PartnerLinkForm.get('StartDate').hasError('required')">
+                                    Start Date is required
+                                </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                        <span class="formspan">End Date</span>
+                        <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                            <input matInput formControlName="EndDate" type="text"
+                                class="placeholdertext ">
+                                <mat-error *ngIf="PartnerLinkForm.get('EndDate').hasError('required')">
+                                    End Date is required
+                                </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <!-- <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                            fxFlex="30">Partner ID</span><span fxFlex="70">
+                            <input class="input_cls" formControlName="PartnerID" matInput
+                                placeholder=" Enter Partner ID">
+                        </span>
+                    </div>
+                    <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
+                            fxFlex="30">Start Date</span><span fxFlex="70">
+                            <input class="input_cls" formControlName="StartDate" fxFlex matInput [matDatepicker]="picker1"
+                                placeholder=" Enter Start Date">
+                                <img src="assets/calenderblue.svg" width="16px"
+                                class="clickable" (click)="picker1.open()">
+                                <mat-datepicker #picker1></mat-datepicker>
+                        </span>
+                    </div>
+                    <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span fxFlex="30">End
+                            Date</span><span fxFlex="70">
+                            <input class="input_cls" formControlName="EndDate" matInput fxFlex matInput [matDatepicker]="picker2" placeholder=" Enter End Date">
+                            <img src="assets/calenderblue.svg" width="16px"
+                                class="clickable" (click)="picker2.open()">
+                                <mat-datepicker #picker2></mat-datepicker>
+                        </span>
+                    </div> -->
+                </div>
+                <div fxLayout="column" fxFlex="50" style="align-items: center;">
+                    <img style="width: 60%;" src="assets/general space.png" />
+                </div>
+            </div>
+
+
+        </form>
+    </mat-dialog-content>
+    
+    <mat-dialog-actions class="m-0 p-16 footer" fxLayoutAlign="center center" fxLayoutGap="8px">
+        <button mat-raised-button class="savebtn" type="button" color="primary" (click)="Save()">Save</button>
+     
+    </mat-dialog-actions>
+</div>
+
+
+
+
+<!-- <div style="overflow: auto;height: 250px;">
     <div fxLayout="column" style="padding: 7px;overflow: auto;">
         <div fxLayout="row" fxLayoutAlign="space-between center">
             <span class="create">Create Partner Link Details</span>
@@ -48,4 +142,4 @@
 </div>
 <mat-dialog-actions fxLayoutAlign="center center">
     <button mat-flat-button color="primary" (click)="Save()">Save</button>
-</mat-dialog-actions>
+</mat-dialog-actions> -->
