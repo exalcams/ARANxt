@@ -90,7 +90,7 @@
                         <div fxLayout="row " fxLayoutAlign="space-between center" class="elevator-topdiv">
                             <div fxLayout="column" class="elevationdiv">
                                 <span class="elevation-span">Elevation</span>
-                                <span class="lift">Lift 1</span>
+                                <span class="lift">Lift 2</span>
                             </div>
                             <img src="../../assets/Images/building1.png" class="liftbuilding">
                         </div>
@@ -137,10 +137,10 @@
                         <mat-divider [vertical]="true" class="divider-elevator"></mat-divider>
                     </div>
                     <div fxFlex="30" fxLayout="column" class="daily-templatediv-nesteddiv1">
-                        <div fxLayout="row " fxLayoutAlign="space-between center" class="elevator-topdiv">
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="elevator-topdiv">
                             <div fxLayout="column" class="elevationdiv">
                                 <span class="elevation-span">Elevation</span>
-                                <span class="lift">Lift 1</span>
+                                <span class="lift">Lift 3</span>
                             </div>
                             <img src="../../assets/Images/building1.png" class="liftbuilding">
                         </div>
@@ -210,121 +210,157 @@
                 </div>
             </ng-template>
 
-
-            <div fxLayout="row" fxFlex="100">
-                <div fxFlex="30" fxLayout="column">
-                    <div fxLayout="row" fxLayoutAlign="space-between center">
-                        <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
-                            <p>Elevation</p>
-                            <p class="lift">Lift 1</p>
+            <div fxLayout="column" class="daily-templatediv-1">
+                <div fxLayout="row" fxFlex="100" class="daily-templatediv-innerdiv1">
+                    <div fxFlex="30" fxLayout="column" class="daily-templatediv-nesteddiv1">
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="elevator-topdiv">
+                            <div fxLayout="column" class="elevationdiv">
+                                <span class="elevation-span">Elevation</span>
+                                <span class="lift">Lift 1</span>
+                            </div>
+                            <img src="../../assets/Images/building1.png" class="liftbuilding">
                         </div>
-                        <img src="../../assets/Images/building1.png" class="liftbuilding">
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
-                        <p fxFlexOffset="6">Fire Alarm</p>
-                        <mat-slide-toggle class="slide"></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Emergrncy Sensor</p>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6" style="color: #c2bedf">P Sensor</p>
-                        <mat-slide-toggle class="slide"></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6" style="color: #c2bedf">S Sensor</p>
-                        <mat-slide-toggle class="slide"></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Joints</p>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6" style="color: #c2bedf">Nut</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6" style="color: #c2bedf">Bolt</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                </div>
-                <div fxFlex="5">
-                    <mat-divider [vertical]="true"></mat-divider>
-                </div>
-                <div fxFlex="30" fxLayout="column">
-                    <div fxLayout="row" fxLayoutAlign="space-between center">
-                        <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
-                            <p>Elevation</p>
-                            <p class="lift">Lift 1</p>
+                        <div fxLayout="column" fxLayoutAlign="start start" class="buttons-elevator" fxLayoutGap="10px">
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Fire Alarm</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Emergrncy Sensor</span>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50" style="color: #c2bedf">P Sensor</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50" style="color: #c2bedf">S Sensor</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Joints</span>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50" style="color: #c2bedf">Nut</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50" style="color: #c2bedf">Bolt</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
                         </div>
-                        <img src="../../assets/Images/building1.png" class="liftbuilding">
                     </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
-                        <p fxFlexOffset="6">Fire Alarm</p>
-                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    <div fxFlex="5">
+                        <mat-divider [vertical]="true" class="divider-elevator"></mat-divider>
                     </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Emergrncy Sensor</p>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6" style="color: #c2bedf">P Sensor</p>
-                        <mat-slide-toggle class="slide"></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6" style="color: #c2bedf">S Sensor</p>
-                        <mat-slide-toggle class="slide"></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Joints</p>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6" style="color: #c2bedf">Nut</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6" style="color: #c2bedf">Bolt</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                </div>
-                <div fxFlex="5">
-                    <mat-divider [vertical]="true"></mat-divider>
-                </div>
-                <div fxFlex="30" fxLayout="column">
-                    <div fxLayout="row" fxLayoutAlign="space-between center">
-                        <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
-                            <p>Elevation</p>
-                            <p class="lift">Lift 1</p>
+                    <div fxFlex="30" fxLayout="column" class="daily-templatediv-nesteddiv1">
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="elevator-topdiv">
+                            <div fxLayout="column" class="elevationdiv">
+                                <span class="elevation-span">Elevation</span>
+                                <span class="lift">Lift 2</span>
+                            </div>
+                            <img src="../../assets/Images/building1.png" class="liftbuilding">
                         </div>
-                        <img src="../../assets/Images/building1.png" class="liftbuilding">
+                        <div fxLayout="column" fxLayoutAlign="start start" class="buttons-elevator" fxLayoutGap="10px">
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Fire Alarm</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Emergrncy Sensor</span>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50" style="color: #c2bedf">P Sensor</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50" style="color: #c2bedf">S Sensor</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Joints</span>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50" style="color: #c2bedf">Nut</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50" style="color: #c2bedf">Bolt</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
-                        <p fxFlexOffset="6">Fire Alarm</p>
-                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    <div fxFlex="5">
+                        <mat-divider [vertical]="true" class="divider-elevator"></mat-divider>
                     </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Emergrncy Sensor</p>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6" style="color: #c2bedf">P Sensor</p>
-                        <mat-slide-toggle class="slide"></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6" style="color: #c2bedf">S Sensor</p>
-                        <mat-slide-toggle class="slide"></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Joints</p>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6" style="color: #c2bedf">Nut</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6" style="color: #c2bedf">Bolt</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    <div fxFlex="30" fxLayout="column" class="daily-templatediv-nesteddiv1">
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="elevator-topdiv">
+                            <div fxLayout="column" class="elevationdiv">
+                                <span class="elevation-span">Elevation</span>
+                                <span class="lift">Lift 3</span>
+                            </div>
+                            <img src="../../assets/Images/building1.png" class="liftbuilding">
+                        </div>
+                        <div fxLayout="column" fxLayoutAlign="start start" class="buttons-elevator" fxLayoutGap="10px">
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Fire Alarm</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Emergrncy Sensor</span>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50" style="color: #c2bedf">P Sensor</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50" style="color: #c2bedf">S Sensor</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Joints</span>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50" style="color: #c2bedf">Nut</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50" style="color: #c2bedf">Bolt</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </mat-tab>
 
         <mat-tab>
@@ -349,147 +385,208 @@
                 </div>
             </ng-template>
 
-
-            <div fxLayout="row" fxFlex="100">
-                <div fxFlex="30" fxLayout="column">
-                    <div fxLayout="row" fxLayoutAlign="space-between center">
-                        <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
-                            <p>Escalator</p>
-                            <p class="lift">Floor 1</p>
+            <div fxLayout="column" class="daily-templatediv-1">
+                <div fxLayout="row" fxFlex="100" class="daily-templatediv-innerdiv1">
+                    <div fxFlex="30" fxLayout="column" class="daily-templatediv-nesteddiv1">
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="elevator-topdiv">
+                            <div fxLayout="column" class="elevationdiv">
+                                <span class="elevation-span">Escalator</span>
+                                <span class="lift">Floor 1</span>
+                            </div>
+                            <img src="../../assets/Images/escalator.png" class="liftbuilding">
                         </div>
-                        <img src="../../assets/Images/escalator.png" class="escalator">
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
-                        <p fxFlexOffset="6">Motor Bearing</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Shaft</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Belt</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Chain Drive</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Brush</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Roller Wheels</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Guide Rails</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Speed Governor</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Controller</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                </div>
-                <div fxFlex="5">
-                    <mat-divider [vertical]="true"></mat-divider>
-                </div>
-                <div fxFlex="30" fxLayout="column">
-                    <div fxLayout="row" fxLayoutAlign="space-between center">
-                        <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
-                            <p>Escalator</p>
-                            <p class="lift">Floor 2</p>
+                        <div fxLayout="column" fxLayoutAlign="start start" class="buttons-elevator" fxLayoutGap="10px">
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Motor Bearing</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Shaft</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Belt</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Chain Drive</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Brush</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Roller Wheels</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Guide Rails</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Speed Governor</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Controller</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
                         </div>
-                        <img src="../../assets/Images/escalator.png" class="escalator">
                     </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
-                        <p fxFlexOffset="6">Motor Bearing</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    <div fxFlex="5">
+                        <mat-divider [vertical]="true" class="divider-elevator"></mat-divider>
                     </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Shaft</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Belt</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Chain Drive</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Brush</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Roller Wheels</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Guide Rails</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Speed Governor</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Controller</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                </div>
-                <div fxFlex="5">
-                    <mat-divider [vertical]="true"></mat-divider>
-                </div>
-                <div fxFlex="30" fxLayout="column">
-                    <div fxLayout="row" fxLayoutAlign="space-between center">
-                        <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
-                            <p>Escalator</p>
-                            <p class="lift">Floor 3</p>
+                    <div fxFlex="30" fxLayout="column" class="daily-templatediv-nesteddiv1">
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="elevator-topdiv">
+                            <div fxLayout="column" class="elevationdiv">
+                                <span class="elevation-span">Escalator</span>
+                                <span class="lift">Floor 2</span>
+                            </div>
+                            <img src="../../assets/Images/escalator.png" class="liftbuilding">
                         </div>
-                        <img src="../../assets/Images/escalator.png" class="escalator">
+                        <div fxLayout="column" fxLayoutAlign="start start" class="buttons-elevator" fxLayoutGap="10px">
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Motor Bearing</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Shaft</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Belt</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Chain Drive</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Brush</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Roller Wheels</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Guide Rails</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Speed Governor</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Controller</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
-                        <p fxFlexOffset="6">Motor Bearing</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    <div fxFlex="5">
+                        <mat-divider [vertical]="true" class="divider-elevator"></mat-divider>
                     </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Shaft</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Belt</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Chain Drive</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Brush</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Roller Wheels</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Guide Rails</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Speed Governor</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Controller</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    <div fxFlex="30" fxLayout="column" class="daily-templatediv-nesteddiv1">
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="elevator-topdiv">
+                            <div fxLayout="column" class="elevationdiv">
+                                <span class="elevation-span">Escalator</span>
+                                <span class="lift">Floor 3</span>
+                            </div>
+                            <img src="../../assets/Images/escalator.png" class="liftbuilding">
+                        </div>
+                        <div fxLayout="column" fxLayoutAlign="start start" class="buttons-elevator" fxLayoutGap="10px">
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Motor Bearing</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Shaft</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Belt</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Chain Drive</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Brush</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Roller Wheels</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Guide Rails</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Speed Governor</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Controller</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -513,151 +610,211 @@
                     </div>
                 </div>
             </ng-template>
-            <div fxLayout="row" fxFlex="100">
-                <div fxFlex="30" fxLayout="column">
-                    <div fxLayout="row" fxLayoutAlign="space-between center">
-                        <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
-                            <p>Elevation</p>
-                            <p class="lift">Lift 1</p>
+            <div fxLayout="column" class="daily-templatediv-1">
+                <div fxLayout="row" fxFlex="100" class="daily-templatediv-innerdiv1">
+                    <div fxFlex="30" fxLayout="column" class="daily-templatediv-nesteddiv1">
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="elevator-topdiv">
+                            <div fxLayout="column" class="elevationdiv">
+                                <span class="elevation-span">Elevation</span>
+                                <span class="lift">Lift 1</span>
+                            </div>
+                            <img src="../../assets/Images/building1.png" class="liftbuilding">
                         </div>
-                        <img src="../../assets/Images/building1.png" class="liftbuilding">
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
-                        <p fxFlexOffset="6">Motor Bearing</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Shaft</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Belt</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
+                        <div fxLayout="column" fxLayoutAlign="start start" class="buttons-elevator" fxLayoutGap="10px">
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Motor Bearing</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Shaft</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Belt</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
 
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Brush</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Steel Wire</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Sheave Groove</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Guide Rails</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Speed Governor</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Roller Wheels</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-
-
-                </div>
-                <div fxFlex="5">
-                    <mat-divider [vertical]="true"></mat-divider>
-                </div>
-                <div fxFlex="30" fxLayout="column">
-                    <div fxLayout="row" fxLayoutAlign="space-between center">
-                        <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
-                            <p>Elevation</p>
-                            <p class="lift">Lift 2</p>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Brush</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Steel Wire</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Sheave Groove</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Guide Rails</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Speed Governor</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Roller Wheels</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
                         </div>
-                        <img src="../../assets/Images/building1.png" class="liftbuilding">
                     </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
-                        <p fxFlexOffset="6">Motor Bearing</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                    <div fxFlex="5">
+                        <mat-divider [vertical]="true" class="divider-elevator"></mat-divider>
                     </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Shaft</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Belt</p>
-                        <mat-slide-toggle class="slide"></mat-slide-toggle>
-                    </div>
-
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Brush</p>
-                        <mat-slide-toggle class="slide"></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Steel Wire</p>
-                        <mat-slide-toggle class="slide"></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Sheave Groove</p>
-                        <mat-slide-toggle class="slide"></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Guide Rails</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Speed Governor</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Roller Wheels</p>
-                        <mat-slide-toggle class="slide" checked></mat-slide-toggle>
-                    </div>
-                </div>
-                <div fxFlex="5">
-                    <mat-divider [vertical]="true"></mat-divider>
-                </div>
-                <div fxFlex="30" fxLayout="column">
-                    <div fxLayout="row" fxLayoutAlign="space-between center">
-                        <div fxLayout="column" class="elevationdiv" fxFlexOffset="4">
-                            <p>Elevation</p>
-                            <p class="lift">Lift 3</p>
+                    <div fxFlex="30" fxLayout="column" class="daily-templatediv-nesteddiv1">
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="elevator-topdiv">
+                            <div fxLayout="column" class="elevationdiv">
+                                <span class="elevation-span">Elevation</span>
+                                <span class="lift">Lift 2</span>
+                            </div>
+                            <img src="../../assets/Images/building1.png" class="liftbuilding">
                         </div>
-                        <img src="../../assets/Images/building1.png" class="liftbuilding">
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew">
-                        <p fxFlexOffset="6">Motor Bearing</p>
-                        <mat-slide-toggle class="slide"></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Shaft</p>
-                        <mat-slide-toggle class="slide"></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Belt</p>
-                        <mat-slide-toggle class="slide"></mat-slide-toggle>
-                    </div>
+                        <div fxLayout="column" fxLayoutAlign="start start" class="buttons-elevator" fxLayoutGap="10px">
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Motor Bearing</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Shaft</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Belt</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
 
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Brush</p>
-                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Brush</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Steel Wire</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Sheave Groove</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Guide Rails</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Speed Governor</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Roller Wheels</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide" checked></mat-slide-toggle>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Steel Wire</p>
-                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    <div fxFlex="5">
+                        <mat-divider [vertical]="true" class="divider-elevator"></mat-divider>
                     </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Sheave Groove</p>
-                        <mat-slide-toggle class="slide"></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Guide Rails</p>
-                        <mat-slide-toggle class="slide"></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Speed Governor</p>
-                        <mat-slide-toggle class="slide"></mat-slide-toggle>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="commonnew" fxFlexOffset="3">
-                        <p fxFlexOffset="6">Roller Wheels</p>
-                        <mat-slide-toggle class="slide"></mat-slide-toggle>
+                    <div fxFlex="30" fxLayout="column" class="daily-templatediv-nesteddiv1">
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="elevator-topdiv">
+                            <div fxLayout="column" class="elevationdiv">
+                                <span class="elevation-span">Elevation</span>
+                                <span class="lift">Lift 3</span>
+                            </div>
+                            <img src="../../assets/Images/building1.png" class="liftbuilding">
+                        </div>
+                        <div fxLayout="column" fxLayoutAlign="start start" class="buttons-elevator" fxLayoutGap="10px">
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Motor Bearing</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Shaft</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Belt</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Brush</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Steel Wire</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Sheave Groove</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Guide Rails</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Speed Governor</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                            <div fxLayout="row" class="commonnew">
+                                <span class="buttons-span-elevator" fxFlex="50">Roller Wheels</span>
+                                <div class="toggle-slide-elevator" fxFlex="50">
+                                    <mat-slide-toggle class="slide"></mat-slide-toggle>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

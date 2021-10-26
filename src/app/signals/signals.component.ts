@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { SelectedRow } from 'src/app/Model/Object'
@@ -65,7 +65,7 @@ const LIST_DATA: List[] = [
 @Component({
   selector: 'app-signals',
   templateUrl: './signals.component.html',
-  styleUrls: ['./signals.component.scss']
+  styleUrls: ['./signals.component.scss'],
 })
 export class SignalsComponent implements OnInit {
   selection = new SelectionModel<List>(true, []);
@@ -93,7 +93,7 @@ SelectedRow: SelectedRow[] = [];
   isExpand: boolean=true;
   constructor(private router: Router) {
     this.chartOptions = {
-      series: [80],
+      series: [76.6],
       chart: {
         height: 155,
         type: "radialBar"
@@ -112,15 +112,15 @@ SelectedRow: SelectedRow[] = [];
               offsetY: 20,
               show: true,
               color: "#888",
-              fontSize: "12px",
-              fontFamily:"poppins"
+              fontSize: "10px",
+              fontFamily:"poppins-semi"
             },
             value: {
               offsetY: -15,
               color: "#111",
               fontSize: "14px",
               fontWeight:600,
-              fontFamily:"poppins",
+              fontFamily:"poppins-semi",
               show: true
             }
           }
@@ -138,23 +138,18 @@ SelectedRow: SelectedRow[] = [];
         {
           name: "Desktops",
           data: [10,80,35,55,8,80]
-         
-          
         },
         {
           name: "Desktops",
           data: [45,87,53,55,80,9]
-        
         },
         {
           name: "Desktops",
           data: [1,98,39,54,85,19]
-        
         },
         {
           name: "Desktops",
           data: [23,38,52,57,48,29]
-        
         }
       ],
       
@@ -169,14 +164,12 @@ SelectedRow: SelectedRow[] = [];
           enabled: false
         }
       },
-      
       dataLabels: {
         enabled: false
       },
       stroke: {
         curve: "smooth",
         width: [2,0,0,0],
-        
       },
       legend: {
         show: false},
@@ -215,19 +208,17 @@ SelectedRow: SelectedRow[] = [];
           text: "Signals",
           style: {
             color:'#acacac',
-            fontSize: '12px',
-            fontFamily: 'poppins',
-            fontWeight: 600,
-            
+            fontSize: '10px',
+            fontFamily: 'poppins-semi',
+            fontWeight: 500,
         },
         },
         labels: {
-         
           style: {
             colors:"#acacac",
             fontSize: '10px',
-            fontFamily: 'poppins',
-            fontWeight: 600,
+            fontFamily: 'poppins-semi',
+            fontWeight: 500,
           }
         },
         min: 0,
@@ -236,12 +227,11 @@ SelectedRow: SelectedRow[] = [];
       },
       xaxis: {
         labels: {
-         
           style: {
             colors:"#acacac",
             fontSize: '10px',
-            fontFamily: 'poppins',
-            fontWeight: 600,
+            fontFamily: 'poppins-semi',
+            fontWeight: 500,
           }
         },
         categories: [
