@@ -262,7 +262,7 @@ export class HomepageComponent implements OnInit {
   test(node: any) {
     // this.getspace = true;
     var parent = this.TREE_DATA.find(x => x.name == node);
-    if (parent.parent == null) {
+    if (parent.parent == 0) {
       // console.log("parent",node);
       localStorage.setItem('Assertparent', node);
       return;
@@ -461,7 +461,7 @@ export class HomepageComponent implements OnInit {
       panelClass: 'full-width-dialog',
       width: '100%',
       maxWidth: '85.5vw ',
-      height: '600px',
+      height: '557px',
       disableClose: true
     };
   

@@ -1,5 +1,5 @@
 import { Component, ElementRef, Inject, NgZone, OnInit, ViewEncapsulation } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { FinishComponent } from '../finish/finish.component';
 import { MapsAPILoader } from '@agm/core';
@@ -106,6 +106,7 @@ export class SpaceComponent implements OnInit {
   DocLinkView: DocumentLink = new DocumentLink();
   GeneralSpaceView: ARA_Space = new ARA_Space();
   Space_All: ARA_SpaceAll = new ARA_SpaceAll();
+  SpaceList: ARA_SpaceAll[] = [];
   PartnerLinkView: PartnerLink = new PartnerLink();
   ContractLinkView: ContractLink = new ContractLink();
   DateLinkView: DateLink = new DateLink();
@@ -125,12 +126,12 @@ export class SpaceComponent implements OnInit {
   address1: string;
   private geoCoder;
   selectedFood1: string | undefined;
-  displayedColumns: string[] = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
-  displayedColumns2: string[] = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'icon'];
+  DocumentdisplayedColumns: string[] = ['fileName', 'fileSize', 'fileExt', 'user', 'date', 'time', 'attID', ];
+  displayedColumns2: string[] = ['type', 'title', 'startDate', 'endDate', 'coverValue', 'vendor', 'exclusions'];
   dataSource1 = new MatTableDataSource(ELEMENT_DATA);
   dataSource2 = new MatTableDataSource(ELEMENT_DATA3);
   dataSourceDate = new MatTableDataSource(ELEMENT_DATA2);
-  displayedColumns1 = ['fav', 'position', 'name', 'weight', 'icon'];
+  displayedColumns1 = ['partnerType', 'partnerID', 'startDate', 'endDate'];
   HeaderDetailsDataSource: MatTableDataSource<PartnerLink>;
   DocumentLinkDataSource: MatTableDataSource<DocumentLink>;
   DateLinkDataSource: MatTableDataSource<DateLink>;
@@ -184,7 +185,12 @@ export class SpaceComponent implements OnInit {
     { id: 2, name: "Kerala" },
 
   ];
-  ObjectType = ["A", "B", "C"];
+  // ObjectType = ["A", "B", "C"];
+    ObjectType = [
+      {name:'A'},
+      {name:'B'},
+      {name:'C'}
+    ];
   Catagories = [
     { name: "Electrical Distribution" },
     { name: "Energy Consumption" },
@@ -241,19 +247,35 @@ export class SpaceComponent implements OnInit {
     });
     this.parentID = localStorage.getItem('ParentID')
     this.GetDocumentDetails();
-    this.GetParterLink();
-    this.GetDateLink();
-    this.GetContractLink();
+    // this.GetParterLink();
+    // this.GetDateLink();
+    // this.GetContractLink();
     this.GetARASite();
+    this.GetSpaceBySite();
     this.InitializeGeneralform();
     this.InitializeLocationform();
     this.InitializeAddressform();
     this.InitializeSpaceform();
+ 
   }
   GetARASite() {
     this.service.GetARASite().subscribe(
       (res) => {
         this.ARASite = res as SiteLink[];
+        console.log("ARASite",this.ARASite);
+        
+      }
+    );
+  }
+  GetSpaceBySite()
+  {
+    this.service.GetSpaceBySite(this.dialogData.id).subscribe(
+      (res) => {
+        console.log("res",res);
+        
+        this.SpaceList = res as ARA_SpaceAll[];
+        console.log("SpaceList",this.SpaceList);
+       
       }
     );
   }
@@ -268,17 +290,20 @@ export class SpaceComponent implements OnInit {
     //   }
     // );
   }
-  GetParterLink() {
-    this.service.GetParterLink().subscribe(
-      (data) => {
-        if (data) {
-          this.PartnerLink = data;
-          this.HeaderDetailsDataSource = new MatTableDataSource(this.PartnerLink);
+  // GetParterLink() {
+  //   this.service.GetParterLink().subscribe(
+  //     (data) => {
+  //       if (data) {
+  //         this.PartnerLink = data;
+  //         console.log("partnerlink",this.PartnerLink);
+          
+  //         this.HeaderDetailsDataSource = new MatTableDataSource(this.PartnerLink);
 
-        }
-      }
-    );
-  }
+
+  //       }
+  //     }
+  //   );
+  // }
   GetDateLink() {
     this.service.GetDateLink().subscribe(
       (data) => {
@@ -290,17 +315,17 @@ export class SpaceComponent implements OnInit {
       }
     );
   }
-  GetContractLink() {
-    this.service.GetContractLink().subscribe(
-      (data) => {
-        if (data) {
-          this.ContractLink = data;
-          this.ContractLinkDataSource = new MatTableDataSource(this.ContractLink);
-          //this.isProgressBarVisibile = false;
-        }
-      }
-    );
-  }
+  // GetContractLink() {
+  //   this.service.GetContractLink().subscribe(
+  //     (data) => {
+  //       if (data) {
+  //         this.ContractLink = data;
+  //         this.ContractLinkDataSource = new MatTableDataSource(this.ContractLink);
+  //         //this.isProgressBarVisibile = false;
+  //       }
+  //     }
+  //   );
+  // }
   InitializeGeneralform() {
     this.GeneralForm = this.form.group({
       spaceName: ['', [Validators.required]],
@@ -352,6 +377,56 @@ export class SpaceComponent implements OnInit {
   //       }
   //     }
   // }
+  listselected(SpaceSelected)
+  {
+    console.log("SpaceSelected",SpaceSelected);
+    this.general();
+    this.GeneralForm.disable();
+    this.GeneralForm.patchValue({
+      spaceName: SpaceSelected.arA_space.title,
+      objectType: SpaceSelected.arA_space.objType,
+      partnerID: SpaceSelected.arA_space.partnerID,
+      category: SpaceSelected.arA_space.category,
+      costCenter: SpaceSelected.arA_space.costCenter,
+    });
+    this.LocationForm.disable();
+    this.LocationForm.patchValue({
+      Latitude: SpaceSelected.locLink.lat,
+      Longitude: SpaceSelected.locLink.long,
+      FromLatitude: SpaceSelected.locLink.fromLat,
+      ToLatitude: SpaceSelected.locLink.toLat,
+      FromLongitude: SpaceSelected.locLink.fromLong,
+      ToLongitude: SpaceSelected.locLink.toLong,
+    });
+    
+    this.SpaceForm.disable();
+   
+    this.SpaceForm.patchValue({
+      TotalSpace: SpaceSelected.areaLink.totalArea,
+      RentableSpace: SpaceSelected.areaLink.rentableArea,
+      Breath: SpaceSelected.areaLink.breath,
+      Volume: SpaceSelected.areaLink.volume,
+      CarpetSpace: SpaceSelected.areaLink.carpetArea,
+      Length: SpaceSelected.areaLink.length,
+      Height: SpaceSelected.areaLink.height,
+    });
+    this.AddressForm.disable();
+    this.AddressForm.patchValue({
+      AddressLine1: SpaceSelected.addrLink.addrLine1,
+      AddressLine2: SpaceSelected.addrLink.addrLine2,
+      AddressLine3: SpaceSelected.addrLink.addrLine3,
+      Country: SpaceSelected.addrLink.country,
+      Pincode: SpaceSelected.addrLink.pinCode,
+      State: SpaceSelected.addrLink.state,
+    });
+    this.DocLink.push(SpaceSelected.docLink)
+    this.DocumentLinkDataSource = new MatTableDataSource(this.DocLink);
+    console.log(this.DocumentLinkDataSource, 'DocLink');
+    this.PartnerLink.push(SpaceSelected.partnerLink);
+    this.HeaderDetailsDataSource = new MatTableDataSource(this.PartnerLink);
+    this.ContractLink.push(SpaceSelected.contractLink) ;
+    this.ContractLinkDataSource = new MatTableDataSource(this.ContractLink);
+  }
   general() {
     this.General = true;
     this.Location = false;
@@ -393,7 +468,7 @@ export class SpaceComponent implements OnInit {
     this.previous = true;
     this.next = true;
     this.finish = false;
-    this.GetParterLink();
+    // this.GetParterLink();
   }
   partner() {
     this.General = false;
@@ -408,7 +483,7 @@ export class SpaceComponent implements OnInit {
     this.previous = true;
     this.next = true;
     this.finish = false;
-    this.GetParterLink();
+    // this.GetParterLink();
   }
   space() {
     this.General = false;
@@ -452,7 +527,7 @@ export class SpaceComponent implements OnInit {
     this.previous = true;
     this.next = true;
     this.finish = false;
-    this.GetContractLink();
+    // this.GetContractLink();
   }
   contract() {
     this.General = false;
@@ -525,10 +600,14 @@ export class SpaceComponent implements OnInit {
     this.progressbarminus()
   }
   Finishpopup() {
+   
     this.dialog.open(FinishComponent,
       {
-        height: '450px',
+        panelClass: 'finish',
         width: '50%',
+        maxWidth: '85.5vw ',
+        height: "351px",
+        disableClose: true
       }
     );
     this.GeneralSpaceView.Title = this.GeneralForm.get('spaceName').value;
@@ -583,12 +662,29 @@ export class SpaceComponent implements OnInit {
 
   }
   SpaceAllSave(): void {
-    this.dialog.open(FinishComponent,
-      {
-        height: '450px',
+    const dialogConfig: MatDialogConfig = {
+      data: {
+        spacename: this.GeneralForm.get('spaceName').value,
+        
+      },
+      panelClass: 'finish',
         width: '50%',
-      }
-    );
+        maxWidth: '85.5vw ',
+        height: '351px',
+        disableClose: true
+    };
+    
+    // this.dialog.open(FinishComponent,
+    //   {
+    //     // height: '450px',
+    //     // width: '50%',
+    //     panelClass: 'finish',
+    //     width: '50%',
+    //     maxWidth: '85.5vw ',
+    //     height: '351px',
+    //     disableClose: true
+    //   }
+    // );
     this.GeneralSpaceGetData();
     this.LocationSpaceGetData();
     this.SpaceSpaceGetData();
@@ -606,7 +702,7 @@ export class SpaceComponent implements OnInit {
     console.log("allSpace", this.Space_All);
     this.service.SpaceAllSave(this.Space_All).subscribe((x) => {
       console.log(x);
-
+      const dialogRef = this.dialog.open(FinishComponent,dialogConfig);
     },
       err => {
         // this.spinner.hide();
@@ -695,10 +791,13 @@ export class SpaceComponent implements OnInit {
   }
   OpenPartnerdialogue() {
     const dialogRef = this.dialog.open(PartnerLinkComponent,
-      // {
-      //   height: '450px',
-      //   width: '650px',
-      // }
+      {
+        panelClass: 'partner',
+        width: '44%',
+        maxWidth: '85.5vw ',
+        height: '294px',
+        disableClose: true
+      }
     );
     dialogRef.afterClosed().subscribe(result => {
       // if (  !result ) {
@@ -723,8 +822,9 @@ export class SpaceComponent implements OnInit {
   OpenContractLinkDialogue() {
     const dialogRef = this.dialog.open(ContractLinkComponent,
       {
-        height: '450px',
-        width: '100%',
+        height: '328px',
+        width: '54%',
+        panelClass: "contractlink"
       }
     );
     dialogRef.afterClosed().subscribe(result => {

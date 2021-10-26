@@ -1,28 +1,123 @@
-<!-- <div style="overflow: auto;height: 500px;">
-    <div fxLayout="column" style="padding: 7px;overflow: auto;">
-        <div fxLayout="row" fxLayoutAlign="space-between center">
-            <span class="create">Create Contract Link Details</span>
-            <span> <img class="close_hover close" src="assets/32178.svg" (click)="close()"></span>
-        </div>
-        <form autocomplete="off" [formGroup]="ContractLinkForm">
-            <div fxLayout="row" style="width: 100%;margin-top: 15px;padding: 10px 55px;" fxLayoutGap="55px">
-                <div fxLayout="column" fxFlex="50" fxLayoutGap="20px">
+<div class="dialog-content-wrapper">
+    <mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+        <label class="title">
+            Create Contract Link Details</label>
+        <img class="closeimages" src="assets/32178.svg" (click)="close()">
+    </mat-toolbar>
+</div>
 
+<mat-dialog-content class="content" fusePerfectScrollbar>
+    <form autocomplete="off" [formGroup]="ContractLinkForm">
+        <div fxLayout="row" style="width: 100%;">
+            <div fxLayout="column" fxFlex="50" fxLayoutGap="5px">
+                <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                    <span class="formspan"> Type</span>
+                    <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                        <mat-select formControlName="Type" class="placeholdertext">
+                            <mat-option *ngFor="let option of Type" class="placeholdertext" [value]="option">
+                                {{option}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="ContractLinkForm.get('Type').hasError('required')">
+                            Type is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                    <span class="formspan">Title</span>
+                    <mat-form-field [floatLabel]="'never'" appearance="legacy"
+                        class="form_field_cls">
+                        <input matInput formControlName="Title" type="text"
+                            class="placeholdertext ">
+                        <mat-error *ngIf="ContractLinkForm.get('Title').hasError('required')">
+                            Title is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+               
+                <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                    <span class="formspan">Start Date</span>
+                    <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                        <input matInput [matDatepicker]="picker3"  formControlName="StartDate" fxFlex>
+                        <img src="assets/calendar_upload.svg" width="16px" class="cursor"
+                            (click)="picker3.open()">
+                        <mat-datepicker #picker3></mat-datepicker>
+                
+                        <mat-error *ngIf="ContractLinkForm.get('StartDate').hasError('required')">
+                            Start Date is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <!-- <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span fxFlex="30">Start
+                        Date</span><span fxFlex="70">
+                        <input class="input_cls" formControlName="StartDate" fxFlex matInput [matDatepicker]="picker1"
+                            placeholder=" Enter Start Date">
+                        <img src="assets/calenderblue.svg" width="16px" class="clickable" (click)="picker1.open()">
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </span>
+                </div> -->
+                <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                    <span class="formspan">End Date</span>
+                    <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                        <input matInput [matDatepicker]="picker4"  formControlName="EndDate" fxFlex>
+                        <img src="assets/calendar_upload.svg" width="16px" class="cursor"
+                            (click)="picker4.open()">
+                        <mat-datepicker #picker4></mat-datepicker>
+                
+                        <mat-error *ngIf="ContractLinkForm.get('EndDate').hasError('required')">
+                            End Date is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <!-- <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span fxFlex="30">End
+                        Date</span><span fxFlex="70">
+                        <input class="input_cls" formControlName="EndDate" fxFlex matInput [matDatepicker]="picker2"
+                            placeholder=" Enter End Date">
+                        <img src="assets/calenderblue.svg" width="16px" class="clickable" (click)="picker2.open()">
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </span>
+                </div> -->
+               
+            </div>
+            <div fxLayout="column" fxFlex="50" fxLayoutGap="5px">
 
-
-
-
-
-                    <div fxLayout="column" fxFlex="50" fxLayoutGap="20px">
-                        <img style="width: 60%;" src="assets/general space.png" />
-                    </div>
+                <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                    <span class="formspan">Cover Value</span>
+                    <mat-form-field [floatLabel]="'never'" appearance="legacy"
+                        class="form_field_cls">
+                        <input matInput formControlName="CoverValue" type="text"
+                            class="placeholdertext ">
+                        <mat-error *ngIf="ContractLinkForm.get('CoverValue').hasError('required')">
+                            Cover Value is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                    <span class="formspan">Vendor</span>
+                    <mat-form-field [floatLabel]="'never'" appearance="legacy"
+                        class="form_field_cls">
+                        <input matInput formControlName="Vendor" type="text"
+                            class="placeholdertext ">
+                        <mat-error *ngIf="ContractLinkForm.get('Vendor').hasError('required')">
+                            Vendor is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                    <span class="formspan">Exclusions</span>
+                    <mat-form-field [floatLabel]="'never'" appearance="legacy"
+                        class="form_field_cls">
+                        <input matInput formControlName="Exclusions" type="text"
+                            class="placeholdertext ">
+                        <mat-error *ngIf="ContractLinkForm.get('Exclusions').hasError('required')">
+                            Exclusions is required
+                        </mat-error>
+                    </mat-form-field>
                 </div>
             </div>
-
-        </form>
-    </div>
-</div> -->
-<div>
+        </div>
+    </form>
+</mat-dialog-content>
+<!-- <div>
     <div fxLayout="row" fxLayoutAlign="space-between center">
         <span class="create">Create Contract Link Details</span>
         <span> <img class="close_hover close" src="assets/32178.svg" (click)="close()"></span>
@@ -85,12 +180,12 @@
         </div>
     </form>
 
-</div>
+</div> -->
 
 <mat-dialog-actions fxLayoutAlign="center center">
-    
 
-<button mat-flat-button color="primary" (click)="Save()">Save</button>
+
+    <button mat-flat-button color="primary" class="savebtn" (click)="Save()">Save</button>
 
 
 </mat-dialog-actions>

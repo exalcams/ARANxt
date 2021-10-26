@@ -1,7 +1,7 @@
 export interface TreeItem {
     name: string;
     id:number;
-    parent: string;
+    parent: number;
     type:string;
     children?: TreeItem[];
 }

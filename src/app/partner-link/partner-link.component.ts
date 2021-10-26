@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SpaceService } from '../space/space.service';
@@ -7,7 +7,8 @@ import { PartnerLink } from '../space/spacemodel';
 @Component({
   selector: 'app-partner-link',
   templateUrl: './partner-link.component.html',
-  styleUrls: ['./partner-link.component.scss']
+  styleUrls: ['./partner-link.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PartnerLinkComponent implements OnInit {
   PartnerLinkForm: FormGroup;

@@ -43,6 +43,15 @@ export class SpaceService {
         return this._httpClient.post<any>(this.baseUrlVsign1 + "api/Space/PostGeneralSpace", Space
         )
     }
+    // GetSpaceBySite(Space: number) {
+    //     return this._httpClient.post<any>(this.baseUrlVsign1 + "api/Space/GetSpaceBySite", Space
+    //     )
+    // }
+    GetSpaceBySite(site: number): Observable<any>
+     {
+        return this._httpClient.get<any>(`${this.baseUrlVsign1}api/Space/GetSpaceBySite?site=${site}`)
+            .pipe(catchError(this.errorHandler));
+    }
     PartnerLink(PartnerLink: PartnerLink) {
         return this._httpClient.post<any>(this.baseUrlVsign1 + "api/Space/PostPartnerLink", PartnerLink
         )
@@ -59,6 +68,7 @@ export class SpaceService {
         return this._httpClient.post<any>(this.baseUrlVsign1 + "api/Space/SpaceAllSave", Space_All
         )
     }
+  
     GetParterLink(): Observable<any | string> {
         return this._httpClient.get<any>(this.baseUrlVsign1 + "api/Space/GetPartnerLink")
             .pipe(catchError(this.errorHandler));

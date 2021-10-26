@@ -1,37 +1,45 @@
-<div fxLayout="row" fxFlex="100" style="height: 400px;">
-    <!-- 1st row -->
-<div fxLayout="column" fxFlex="45"   style="width:100%;align-items: center;justify-content: center;">
-    <!-- <div fxFlex="10"></div> -->
-    <span><img class="st1" src="./assets/Images/submitted.png"></span>
-</div>
-<!-- 2nd row -->
-<div fxLayout="column" fxFlex="45" fxLayoutGap="20px" style="width:100%;align-items: center;justify-content: center;">
+<div class="dialog-content-wrapper">
+    <mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="end center">
+        <!-- <label class="title">Upload Document</label> -->
+        <img class="closeimages" src="assets/32178.svg" (click)="close()">
+    </mat-toolbar>
+    <div fxLayout="row" fxFlex="100" style="height: 400px;">
 
-<div fxLayout="column" fxLayoutGap="3px">
-<span style=" font-size: 12px;color: #7169ff;font-weight: 500;">
-    Successfully Created Space Name
-</span>
-<!-- <span style="color: #0d0c22;font-size: 12px;font-weight: 500;">Lorea Ipsum</span> -->
-</div>
+        <div fxLayout="column" fxFlex="45" style="width:100%;align-items: center;justify-content: center;">
 
-<div fxLayout="column" fxLayoutGap="9px">
-<div style="width: 210px;height: 35px; background-color: #fbedf6;padding: 3px;"><span style="position: relative;top: 7px;font-size: 12px;font-weight: bold;color: #884770;">&nbsp;&nbsp;&nbsp;&nbsp;Copy & Create New Site </span>   &nbsp;&nbsp;<span><img class="st" src="./assets/Images/uparrow.svg"></span></div>
-<div style="width: 210px;height: 35px;background-color: #fbedf6;padding: 3px;"><span style="position: relative;top: 7px;font-size: 12px;font-weight: bold;color: #884770;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create New Site </span> &nbsp;&nbsp;<span><img class="st" src="./assets/Images/uparrow.svg"></span></div>
-<div style="width: 210px;height: 35px;background-color: #fbedf6;padding: 3px;"><span style="position: relative;top: 7px;font-size: 12px;font-weight: bold;color: #884770;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create Assert </span> &nbsp;&nbsp;<span><img class="st" src="./assets/Images/uparrow.svg"></span></div>
-</div>
-
-</div>
-<!-- 3rd row -->
-<div fxLayout="column" fxFlex="10" fxLayoutAlign="space-between center" >
-    <div style="display: flex;justify-content: flex-end;"><img class="close_hover close" src="./assets/Images/close.svg" mat-dialog-close></div>
-    <!-- <div class="curve"></div> -->
-    <div fxLayoutAlign="end">
-        <div fxLayout class="done_outer">
-          <button class="green_outer" mat-button (click)="close()">Done !</button>
-         
-          </div>
+            <span><img class="st1" src="./assets/Images/submitted.png"></span>
         </div>
-</div>
-<!-- 4th row -->
+
+        <div fxLayout="column" fxFlex="45" fxLayoutGap="20px"
+            style="width:100%;align-items: center;justify-content: center;">
+
+            <div fxLayout="column" fxLayoutGap="3px">
+                <span style=" font-size: 12px;color: #7169ff;font-weight: 500;">
+                    <!-- Successfully Created Space Name -->
+                    {{data.spacename}} is Successfully Created
+                </span>
+
+            </div>
+
+            <div fxLayout="column" fxLayoutGap="9px">
+                <div style="width: 210px;height: 35px; background-color: #fbedf6;padding: 3px;"><span
+                        style="position: relative;top: 7px;font-size: 12px;font-weight: bold;color: #884770;">&nbsp;&nbsp;&nbsp;&nbsp;Copy
+                        & Create New Site </span> &nbsp;&nbsp;<span><img class="st"
+                            src="./assets/Images/uparrow.svg"></span></div>
+                <div style="width: 210px;height: 35px;background-color: #fbedf6;padding: 3px;"><span
+                        style="position: relative;top: 7px;font-size: 12px;font-weight: bold;color: #884770;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create
+                        New Site </span> &nbsp;&nbsp;<span><img class="st" src="./assets/Images/uparrow.svg"></span>
+                </div>
+                <div style="width: 210px;height: 35px;background-color: #fbedf6;padding: 3px;"><span
+                        style="position: relative;top: 7px;font-size: 12px;font-weight: bold;color: #884770;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Create
+                        Assert </span> &nbsp;&nbsp;<span><img class="st" src="./assets/Images/uparrow.svg"></span></div>
+            </div>
+        </div>
+    </div>
+
+    <mat-dialog-actions class="m-0 p-16 footer done"  fxLayoutAlign="end center" fxLayoutGap="8px">
+
+        <button class="green_outer" mat-button (click)="close()">Done !</button>
+    </mat-dialog-actions>
 
 </div>
