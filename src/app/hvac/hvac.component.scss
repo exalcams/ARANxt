@@ -83,11 +83,12 @@ border-radius: 4px;
     border-radius: 4px;
     }
     .label{
-        font-size: 12px;
+        font-size: 10px;
         font-weight: 600;
     }
     .label1{
-        padding: 5px 15px;
+        padding-top: 0px !important;
+        height: 40px;
     }
     .Line-284 {
         width: 451px;
@@ -96,11 +97,11 @@ border-radius: 4px;
         border: solid 1px #f9f9f9;
       }
       .Label_12{
-        font-size: 16px;
+        font-size: 12px;
         font-weight: bold;
         font-stretch: normal;
         font-style: normal;
-        line-height: 1.19;
+        line-height: normal;
         letter-spacing: normal;
         text-align: left;
         color: #206be9;
@@ -115,41 +116,43 @@ border-radius: 4px;
         border-radius: 8px;
     }
     .label23{
-      font-size: 12px;
+      font-size: 10px;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.19;
+  line-height: normal;
   letter-spacing: normal;
   text-align: left;
   color: #6e6d7a;
     }
     .label23_1{
-      font-size: 11px;
+      font-size: 10px;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.19;
+  line-height: normal;
   letter-spacing: normal;
   text-align: left;
   color: #acacac;
     }
     .la_cls{
-      font-size: 12px;
-      font-weight: bold;
+      font-size: 10px;
+      font-family: 'poppins-semi' !important;
       font-stretch: normal;
       font-style: normal;
       // line-height: 1.19;
+      line-height: normal;
       letter-spacing: normal;
       text-align: left;
       color: #0d0c22;
     }
     .Vi_cls{
-      font-size: 12px;
+      font-size: 10px;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
   // line-height: 1.19;
+  line-height: normal;
   letter-spacing: normal;
   text-align: left;
   color: #7169ff;
@@ -284,4 +287,227 @@ border-radius: 4px;
 }
 .onclickdiv1:active{
   border: #86aeff;
+}
+
+
+.asset-details-sidenav{
+  font-size: 12px;
+  font-weight: bold;
+  text-align: right;
+  cursor: pointer;
+}
+.ed-first{
+  width:100%;
+  height:90%;
+  padding-top:15px;
+}
+.ed-second{
+  width:97%;
+  height:90%;
+  padding-top:15px;
+}
+.ed-third{
+  width: 100%;
+  margin-left: 15px;
+  height: 70vh;
+  overflow: auto;
+}
+
+.txt_class-status{
+  font-weight: 500;
+  font-size: 10px;
+  font-family: "poppins-semi" !important;
+  color: #0d0c22;
+}
+.txt_class-high{
+  font-weight: 500;
+  font-size: 10px;
+  font-family: "poppins-semi" !important;
+  color: #acacac;
+}
+.divider{
+  opacity: 0.18;
+  border-bottom: solid 1px #6d50ff;
+  width: 90%;
+}
+
+.selected-area{
+  background-color: #f9f8fe;
+  padding: 10px;
+  text-align: left;
+}
+.txt_class-selected-area{
+  font-weight: 500;
+  font-size: 10px;
+  font-family: "poppins-semi" !important;
+  color: #0d0c22;
+}
+.selected-area-flow{
+  padding-top: 10px;
+  cursor: pointer;
+}
+
+.second-selected-flow{
+  background-color: #eceff1;
+  padding: 10px;
+  height: 24px;
+}
+.dot_list1{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 3px;
+  background-color: #ffba00;
+}
+
+.image46-css{
+  text-align: left;
+  width: 180px;
+}
+
+.dot-normal{
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin: 6px;
+  background-color: #4db151;
+}
+.dot-high{
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin: 6px;
+  background-color: #e50000;
+}
+.divider-overall{
+  color: #f9f9f9;
+  width: 2px;
+  height: 120%;
+  position: relative;
+  top: 20%;
+}
+
+.divider-class{
+  width: 100%;
+}
+.selected-zone-div{
+  background-color: #fbedf6;
+  padding: 10px;
+  text-align: left;
+  padding: 10px;
+}
+
+.txt_class-zone{
+  color:#884770;
+  font-weight: 600;
+  font-size: 10px;
+  font-family: "poppins-semi" !important;
+}
+.txt_class-area{
+  color:#c49bb6;
+  font-weight: 600;
+  font-size: 10px;
+  font-family: "poppins-semi" !important;
+}
+.divider-overall{
+  color: #f9f9f9;
+  width: 2px;
+  height: 120%;
+  position: relative;
+  top: 20%;
+}
+.asset{
+  color: #0e0d22 !important;
+}
+.arrow-months{
+  transform: scale(0.7);
+  cursor: pointer;
+}
+.energyusage-label{
+  color: #0d0c22;
+  font-size: 10px;
+  font-weight: 500;
+}
+.energy-answer{
+  margin-left: 10px;
+  color: #0d0c22;
+  font-size: 18px;
+  font-weight: 600;
+}
+.electrical-divider{
+  width: 90%;
+  color: #f9f9f9;
+  height: 2px;
+  position: relative;
+}
+.clientview{
+  text-align: left !important;
+  justify-content: left;
+  justify-self: left;
+  width: 100%;
+  padding-left: 10px;
+}
+
+.pointer{
+  cursor: pointer;
+}
+// .down-asset div{
+//   padding: 6px;
+// }
+.room-temp{
+  color: #0e0d22;
+  font-family: "poppins-semi" !important;
+  padding-top: 5px;
+}
+.group-8131{
+  cursor: pointer;
+}
+.graph-div{
+  height: 150px; 
+  background-color:#fff ;
+  padding: 10px;
+}
+.graphinner-div{
+  height: 100%;
+}
+.below-graph-div{
+  padding-top: 6px;
+}
+.clientview-new{
+  text-align: left !important;
+  justify-content: left;
+  justify-self: left;
+  width: 100%;
+}
+.inner-div-tools{
+  padding: 8px 0px;
+  // width: 100%;
+  width: 55%;
+  height: 100%;
+}
+.water-flow-div{
+  height: 140px;
+  background-color: #ebe6ff;
+  width: 100% !important;
+}
+.paddingfortop{
+  padding-top: 6px;
+}
+.second-width-div{
+  width: 45%;
+}
+.water-flow-seconddiv{
+  height: 140px;
+  width: 100% !important;
+}
+.water-second-nested{
+  text-align: left !important;
+  justify-content: left;
+  justify-self: left;
+  width: 100%;
+}
+.coilunit{
+  color: #0d0c22;
+  font-size: 10px;
+  font-family: "poppins-semi" !important;
 }

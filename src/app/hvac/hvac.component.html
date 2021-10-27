@@ -2,12 +2,10 @@
     <mat-sidenav #drawer class="example-sidenav " position="end" mode="over">
         <div fxLayout="column" style="padding: 10px 0px 0px 0px;">
             <div fxLayout="row" fxLayoutGap="8px">
-
-                <div fxFlex="86" style=" font-size: 14px;font-weight: bold;text-align: right;">
+                <div fxFlex="86" class="asset-details-sidenav" (click)="drawer.toggle()">
                     <p>Asset Details</p>
                 </div>
-
-                <div fxFlex="12" (click)="drawer.toggle()">
+                <div fxFlex="12">
                     <div fxFlex="69">
                         <img src="./assets/iconfinder_city_3_3078506 selected.png">
                     </div>
@@ -15,7 +13,6 @@
                         <p class="badge">2</p>
                     </div>
                 </div>
-
             </div>
             <div fxLayout="column" fxLayoutGap="15px" style="padding: 23px 12px 0px 12px;overflow-y: scroll;  ">
                 <div fxLayout="row" fxLayoutAlign="space-evenly center">
@@ -38,7 +35,6 @@
                     Pack of 2
                 </div>
                 <br>
-
                 <div fxLayout="row" fxLayoutGap="10px">
                     <div class="brand_lab">
                         Brand :
@@ -76,422 +72,338 @@
                     </button>
                 </div>
             </div>
-
-            <!-- <div fxLayout="row" id="footerCard">
-                <div fxLayout fxLayoutAlign="end">
-                    <div>
-                        <button mat-flat-button style="font-size: 12px;
-            font-family: 'poppins-semi' !important;">Check Out Similar
-                            Products</button>
-                    </div>
-                    <div>
-                        <button class="SaveBtn" mat-raised-button>Go To Amazon</button>
-
-                    </div>
-                </div>
-            </div> -->
         </div>
     </mat-sidenav>
+
     <mat-sidenav-content>
-
-
-
-
-        <div style="width:100%;height:90%;padding-top:15px" fxLayout="column">
-
-
-
-            <!-- <nav mat-tab-nav-bar>
-        <div style="height: 50px;margin-left: 15px;width:97%;overflow-y: scroll;display: -webkit-inline-box;">
-
-            <div class="Toolbar_button Toolbar_button1" routerLink="/Electrical">
-                <p style="margin-top: 3px;">Electrical distribution</p>
-            </div>
-            <div class="Toolbar_button1 Toolbar_button">
-                <p style="margin-top: 3px;">Energy Consumption</p>
-            </div>
-            <div class="Toolbar_button1 Toolbar_button" routerLink="/hvac">
-                <p style="margin-top: 3px;">HVAC</p>
-            </div>
-            <div class="Toolbar_button1 Toolbar_button" routerLink="/water">
-                <p style="margin-top: 3px;">Water Consumption</p>
-            </div>
-            <div class="Toolbar_button1 Toolbar_button">
-                <p style="margin-top: 3px;">Power Resource</p>
-            </div>
-            <div class="Toolbar_button1 Toolbar_button">
-                <p style="margin-top: 3px;">Parking Access Control</p>
-            </div>
-            <div class="Toolbar_button1 Toolbar_button">
-                <p style="margin-top: 3px;">CCTV</p>
-            </div>
-            <div class="Toolbar_button1 Toolbar_button" routerLink="/fire">
-                <p style="margin-top: 3px;">Fire Alarm</p>
-            </div>
-            <div class="Toolbar_button1 Toolbar_button" routerLink="/others">
-                <p style="margin-top: 3px;">Others</p>
-            </div>
-
-
-        </div>
-      </nav> -->
-
-            <div fxLayout="row" fxFlex style="width: 98%;margin-left: 15px;" fxLayoutGap="20px">
-                <div style="height: 100%;text-align: center; " fxFlex="25" fxLayout="column">
-                    <div style="height: 50px;">
-                        <div fxLayout="row" fxLayout="space-between center" style="margin: 10px;">
-                            <div fxFlex="20">
-                                <p class="txt_class">Status</p>
-                            </div>
-                            <div fxLayout="row" fxFlex="80" fxLayoutGap="10px" style="padding-left: 25px;">
-                                <p class="txt_class" style="color: #acacac;">Active</p>
-                                <p class="dot" style="background-color:#4db151; "></p>
-
-                                <p class="txt_class" style="color: #acacac;">InActive</p>
-                                <p class="dot" style="background-color: #e50000;"></p>
-
-                            </div>
-                        </div>
-                        <div style="background-color: #f9f8fe;text-align: left;height: 435px;">
-                            <p class="txt_class" style="padding-left: 20px;padding-top: 10px;padding-bottom: 10px;">
-                                Selected
-                                Area flow chart</p>
-                            <p class="divider" style="margin-top: -13px;
-                    margin-left: 10px;"></p>
-                            <div fxLayout="column" style="height: 220px;overflow-y: auto;">
-                                <div fxLayout="column" [ngClass]="i>-1?'hover_cls2':'hover_cls'"
-                                    *ngFor="let area of SelectedArea;let i = index"
-                                    style="margin: 10px;cursor: pointer;" (click)="SelectedSpace(area)">
-                                    <div style="padding: 1px;height: 30px;" fxLayoutAlign="start center">
-                                        <div fxLayout="row" fxLayout="space-between center"
-                                            style="width: 100%;padding: 0px 10px;">
-
-                                            <div fxLayout="row" fxFlex="80" fxLayoutAlign="start center">
-                                                <img src="../../assets/1015595.svg" style="width: 15px;height: 15px;">
-
-                                                <p class="txt_class" style="margin:0px 0px 0px 10px !important;">
-                                                    {{area}}</p>
-                                            </div>
-                                            <div fxLayout="row" fxFlex="20">
-                                                <p class="dot_list1" *ngIf="i==0"></p>
-                                                <p class="dot_list"></p>
-                                            </div>
-                                        </div>
+        <div class="ed-first">
+            <div class="ed-second">
+                <div fxLayout="row" fxLayoutGap="20px" class="ed-third">
+                    <div style="height: 100%;text-align: center; " fxFlex="24" fxLayout="column">
+                        <div style="height: 50px;">
+                            <div fxLayout="row" fxLayoutAlign="start center" style="padding-top: 6px;"
+                                fxLayoutGap="10px">
+                                <div fxFlex="20">
+                                    <span class="txt_class-status">Status</span>
+                                </div>
+                                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="80" fxLayoutGap="5px">
+                                    <div fxLayout="row" fxLayoutAlign="start center">
+                                        <span class="txt_class-high">Active</span>
+                                        <span class="dot-normal"></span>
                                     </div>
-
+                                    <div fxLayout="row" fxLayoutAlign="start center">
+                                        <span class="txt_class-high">In-Active</span>
+                                        <span class="dot-high"></span>
+                                    </div>
                                 </div>
                             </div>
-                            <div style="padding-left: 15px;">
-                                <img src="../../assets/Image 112.png" width="210px" height="150px">
-                            </div>
                         </div>
-                    </div>
-                </div>
-                <div fxFlex="20">
-                    <div style="background-color: #fbedf6;text-align: left;height: 485px;">
-                        <div fxLayout="row" style="padding: 10px 10px;">
-                            <p class="txt_class" style="color:#884770;margin-left: 5px;">Select Zone</p>
-                            <p style="width: 35%;"></p>
-                            <p class="txt_class" style="color:#c49bb6">Area</p>
-                        </div>
-
-                        <p class="divider" style="margin-top: -13px;
-                margin-left: 10px;"></p>
-                        <div fxLayout="column" style="height: 415px;overflow-y: auto;">
-                            <div fxLayout="column" [ngClass]="i>-1?'hover_cls1':'hover_cls'" fxLayoutAlign="center"
-                                *ngFor="let area of Area;let i = index" style="margin: 5px 5px;padding: 0px 15px;"
-                                (click)="SelectedSubSpace(area.space)">
-                                <div style="padding: 1px;height: 30px;" fxLayoutAlign="start center">
-                                    <div fxLayout="row" fxLayout="space-between center" style="width: 100%;">
-
-                                        <div fxLayout="row" fxFlex="80" fxLayoutAlign="start center">
-                                            <img src="../../assets/1015595.svg" style="width: 15px;height: 15px;">
-
-                                            <p class="txt_class" style="margin:0px 0px 0px 10px !important;">
-                                                {{area.space}}</p>
+                        <div class="selected-area" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10px">
+                            <span class="txt_class-selected-area">Selected Area flow chart</span>
+                            <mat-divider class="divider-class"></mat-divider>
+                            <div fxLayout="column" *ngFor="let area of SelectedArea;let i = index"
+                                (click)="SelectedSpace(area)" class="selected-area-flow">
+                                <div class="second-selected-flow">
+                                    <div fxLayout="row" fxLayout="space-between center">
+                                        <div fxLayout="row" fxFlex="80">
+                                            <img src="../../assets/Images/Electrocution.svg"
+                                                style="width: 15px;height: 15px;">
+                                            <span class="txt_class" style="margin-left:10px">{{area}}</span>
                                         </div>
                                         <div fxLayout="row" fxFlex="20">
-                                            <p class="dot_list1" *ngIf="i==0"></p>
-                                            <p class="dot_list"></p>
+                                            <span class="dot_list1" *ngIf="i==0"></span>
+                                            <span class="dot_list"></span>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="padding-top: 10px;">
+                                <img src="../../assets/Images/Image 46.png" class="image46-css">
+                            </div>
+                        </div>
+                    </div>
+                    <div style="height: 100%;" fxFlex="23">
+                        <div class="selected-zone-div" fxLayout="column" fxLayoutAlign="start" fxLayoutGap="10px">
+                            <div fxLayout="row" fxLayoutAlign="space-between center">
+                                <span class="txt_class-zone">Select Zone</span>
+                                <span class="txt_class-area">Area</span>
+                            </div>
+                            <mat-divider class="divider-class"></mat-divider>
+                            <div fxLayout="column" *ngFor="let area of Area;let i = index" style="margin: 10px;">
+                                <div style="background-color: #fdf3f9b3;padding: 10px;height: 24px;cursor: pointer;"
+                                    (click)="SelectedSubSpace(area.space)">
+                                    <div fxLayout="row" fxLayout="space-between center">
+                                        <div fxLayout="row" fxFlex="80">
+                                            <img src="../../assets/Images/Electrocution.svg"
+                                                style="width: 15px;height: 15px;">
+                                            <span class="txt_class" style="margin-left:10px">{{area.space}}</span>
+                                        </div>
+                                        <div fxLayout="row" fxFlex="20">
+                                            <span class="dot_list1" *ngIf="i==0"></span>
+                                            <span class="dot_list"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <mat-divider [vertical]="true" class="divider-overall"></mat-divider>
+
+                    <div fxFlex="53" fxLayout="column">
+                        <div fxLayout="row" fxLayoutAlign="end center" *ngIf="assert" (click)="drawer.toggle()">
+                            <mat-icon>keyboard_arrow_left</mat-icon>
+                            <img src="assets/iconfinder_city_3_3078506.svg" style="margin-right: 5px;cursor: pointer;"
+                                (click)="assertdetails(1)">
+                            <div class="label pointer">Assert Details</div>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="end center" *ngIf="!assert" (click)="drawer.toggle()">
+                            <mat-icon>keyboard_arrow_up</mat-icon>
+                            <img src="assets/iconfinder_city_3_3078506.svg" style="margin-right: 5px;"
+                                (click)="assertdetails(2)">
+                            <div class="label">Assert Details</div>
+                        </div>
+                        <div fxLayout="column" *ngIf="assert" class="down-asset div">
+                            <div fxLayout="row" class="label room-temp" fxLayoutAlign="center center">
+                                Room Temperature Controller
+                            </div>
+                            <div fxLayout="row" class="label1" fxLayoutAlign="space-between center">
+                                <div fxLayout="row" fxLayoutGap="10px">
+                                    <div class="label">
+                                        Humadity
+                                    </div>
+                                    <img src="assets/Group 8131.svg">
+                                </div>
+                                <div>
+                                    <div *ngIf="bar">
+                                        <mat-icon style="color: #c0d6fd;" (click)="barchart(1)" class="group-8131">
+                                            more_horiz</mat-icon>
+                                    </div>
+
+                                    <div *ngIf="!bar">
+                                        <mat-icon style="color: #0d0c22;" (click)="barchart(2)" class="group-8131">
+                                            more_horiz</mat-icon>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="bar" class="graph-div">
+                                <div fxLayout="row" fxLayoutAlign="end center" class="hvacslidediv" fxLayoutGap="16px">
+                                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                                        <img src="assets/Exclusion 23.svg">
+                                        <label class="Label_12"> 60%</label>
+                                    </div>
+                                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                                        <img src="assets/Group 8133.svg">
+                                        <label class="Label_12"> Air</label>
+                                    </div>
+                                    <mat-slide-toggle class="silder"></mat-slide-toggle>
+                                </div>
+                                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px"
+                                    class="graphinner-div">
+                                    <div>
+                                        <img src="assets/Group 8317.svg">
+                                    </div>
+                                    <div>
+                                        <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                                            [plotOptions]="chartOptions.plotOptions" [labels]="chartOptions.labels"
+                                            [colors]="chartOptions.colors" [stroke]="chartOptions.stroke"></apx-chart>
+                                    </div>
+                                    <div>
+                                        <img src="assets/Group 8316.svg">
                                     </div>
                                 </div>
 
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div fxFlex="47" fxLayout="column">
-                    <div fxLayout="row" fxLayoutAlign="end center" *ngIf="assert" (click)="drawer.toggle()">
-                        <mat-icon>keyboard_arrow_left</mat-icon>
-                        <img src="assets/iconfinder_city_3_3078506.svg" style="margin-right: 5px;"
-                            (click)="assertdetails(1)">
-                        <div class="label">Assert Details</div>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="end center" *ngIf="!assert" (click)="drawer.toggle()">
-                        <mat-icon>keyboard_arrow_up</mat-icon>
-                        <img src="assets/iconfinder_city_3_3078506.svg" style="margin-right: 5px;"
-                            (click)="assertdetails(2)">
-                        <div class="label">Assert Details</div>
-                    </div>
-                    <div fxLayout="column" *ngIf="assert">
-                        <div fxLayout="row" class="label" fxLayoutAlign="center center">
-                            Room Temperature Controller
-                        </div>
-                        <div fxLayout="row" class="label1" fxLayoutAlign="space-between center">
-                            <div fxLayout="row" fxLayoutGap="10px">
-                                <div class="label">
-                                    Humadity
-                                </div>
-                                <img src="assets/Group 8131.svg">
-                            </div>
-                            <div>
-                                <div *ngIf="bar">
-                                    <mat-icon style="color: #c0d6fd;" (click)="barchart(1)">more_horiz</mat-icon>
-                                </div>
-
-                                <div *ngIf="!bar">
-                                    <mat-icon style="color: #0d0c22;" (click)="barchart(2)">more_horiz</mat-icon>
+                            <div *ngIf="!bar" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+                                <div id="chart">
+                                    <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
+                                        [dataLabels]="chartOptions1.dataLabels"
+                                        [plotOptions]="chartOptions1.plotOptions" [xaxis]="chartOptions1.xaxis"
+                                        [yaxis]="chartOptions1.yaxis" [grid]="chartOptions1.grid">
+                                    </apx-chart>
                                 </div>
                             </div>
-                        </div>
-                        <div *ngIf="bar" style="height: 150px; background-color:#fff ;">
-                            <div fxLayout="row" fxLayoutAlign="end center" class="hvacslidediv" fxLayoutGap="8px">
-                                <img src="assets/Exclusion 23.svg">
-                                <label class="Label_12"> 60%</label>
-                                <img src="assets/Group 8133.svg">
-                                <label class="Label_12"> Air</label>
-                                <mat-slide-toggle class="silder"></mat-slide-toggle>
-                            </div>
-                            <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
-                                <div>
-                                    <img src="assets/Group 8317.svg">
-
+                            <div fxLayout="column" fxLayoutAlign="start" fxLayoutGap="6px" class="below-graph-div">
+                                <div fxLayoutAlign="center center" class="label paddingfortop">
+                                    Typical HVAC System Overview
                                 </div>
-                                <div>
-                                    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
-                                        [plotOptions]="chartOptions.plotOptions" [labels]="chartOptions.labels"
-                                        [colors]="chartOptions.colors" [stroke]="chartOptions.stroke"></apx-chart>
-                                </div>
-                                <div>
-                                    <img src="assets/Group 8316.svg">
-                                </div>
-                            </div>
-
-                        </div>
-                        <div *ngIf="!bar" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
-                            <div id="chart">
-                                <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
-                                    [dataLabels]="chartOptions1.dataLabels" [plotOptions]="chartOptions1.plotOptions"
-                                    [xaxis]="chartOptions1.xaxis"></apx-chart>
-                            </div>
-                        </div>
-                        <div class="Line-284"></div>
-                        <div fxLayoutAlign="center center" class="label" style="margin-top: 10px;">
-                            Typical HVAC System Overview
-                        </div>
-                        <div style="height: 190px;overflow-y: auto;padding: 10px;">
-                            <div fxLayout="row">
-                                <div fxFlex="50" fxLayout="column" fxLayoutGap="20px">
-                                    <div fxLayout="row" fxLayoutAlign="space-evenly center">
-                                        <div class="label23">
-                                            Chiller
-                                        </div>
-                                        <div fxLayout="column">
-                                            <div class="label23_1">
-                                                850.0 kW
+                                <div fxLayout="row" fxLayoutAlign="start" class="paddingfortop">
+                                    <div fxLayout="column" fxLayoutAlign="start start" class="inner-div-tools"
+                                        fxLayoutGap="14px">
+                                        <div fxLayout="row" fxFlex="100" class="clientview-new" fxLayoutGap="10px">
+                                            <div class="label23" fxFlex="30">
+                                                Chiller
                                             </div>
-                                            <div class="label23">
-                                                Water Cool / Air Cool
+                                            <div fxLayout="column" fxFlex="60" fxLayoutGap="4px">
+                                                <div class="label23_1">
+                                                    850.0 kW
+                                                </div>
+                                                <div class="label23">
+                                                    Water Cool / Air Cool
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div fxLayout="row" fxLayoutAlign="space-evenly center">
-                                        <div class="label23">
-                                            AHU
-                                        </div>
-                                        <div fxLayout="column">
-                                            <div class="label23_1">
-                                                1000 m /h
+                                        <div fxLayout="row" fxFlex="100" class="clientview-new" fxLayoutGap="10px">
+                                            <div class="label23" fxFlex="30">
+                                                AHU
                                             </div>
-                                            <div class="label23">
-                                                Suspended / vertical
+                                            <div fxLayout="column" fxFlex="60" fxLayoutGap="4px">
+                                                <div class="label23_1">
+                                                    1000 m /h
+                                                </div>
+                                                <div class="label23">
+                                                    Suspended / vertical
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div fxLayout="row" fxLayoutAlign="space-around center">
-                                        <div class="label23">
-                                            Air Duct
-                                        </div>
-                                        <div fxLayout="column">
-                                            <div class="label23_1">
+                                        <div fxLayout="row" fxFlex="100" class="clientview-new" fxLayoutGap="10px">
+                                            <div class="label23" fxFlex="30">
+                                                Air Duct
+                                            </div>
+                                            <div class="label23_1" fxFlex="60">
                                                 800 - 1000 fpm
                                             </div>
-                                            <!-- <div class="label23">
-                                    Suspended / vertical
-                                </div> -->
                                         </div>
-                                    </div>
-                                    <div fxLayout="row" fxLayoutAlign="space-around center">
-                                        <div class="label23">
-                                            Air Filter
-                                        </div>
-                                        <div fxLayout="column">
-                                            <div class="label23_1">
+                                        <div fxLayout="row" fxFlex="100" class="clientview-new" fxLayoutGap="10px">
+                                            <div class="label23" fxFlex="30">
+                                                Air Filter
+                                            </div>
+                                            <div class="label23_1" fxFlex="60">
                                                 400 - 700 fpm
                                             </div>
-                                            <!-- <div class="label23">
-                                    Suspended / vertical
-                                </div> -->
                                         </div>
-                                    </div>
-                                    <div fxLayout="row" fxLayoutAlign="space-around center">
-                                        <div class="label23">
-                                            Air Cleaner
-                                        </div>
-                                        <div fxLayout="column">
-                                            <div class="label23_1">
+                                        <div fxLayout="row" fxFlex="100" class="clientview-new" fxLayoutGap="10px">
+                                            <div class="label23" fxFlex="30">
+                                                Air Cleaner
+                                            </div>
+                                            <div class="label23_1" fxFlex="60">
                                                 700 - 750 fpm
                                             </div>
-                                            <!-- <div class="label23">
-                                    Suspended / vertical
-                                </div> -->
                                         </div>
-                                    </div>
-                                    <div fxLayout="row" fxLayoutAlign="space-around center">
-                                        <div class="label23">
-                                            Bypass Air
-                                        </div>
-                                        <div fxLayout="column">
-                                            <div class="label23_1">
-                                                Upto 35% Allowed
+                                        <div fxLayout="row" fxFlex="100" class="clientview-new" fxLayoutGap="10px">
+                                            <div class="label23" fxFlex="30">
+                                                Bypass Air
                                             </div>
-                                            <div class="label23">
-                                                CAV / VAV
+                                            <div fxLayout="column" fxFlex="60" fxLayoutGap="4px">
+                                                <div class="label23_1">
+                                                    Upto 35% Allowed
+                                                </div>
+                                                <div class="label23">
+                                                    CAV / VAV
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div fxLayout="row" fxLayoutAlign="space-around center">
-                                        <div class="label23">
-                                            Power
-                                        </div>
-                                        <div fxLayout="column">
-                                            <div class="label23_1">
-                                                3500 Watts
+                                        <div fxLayout="row" fxFlex="100" class="clientview-new" fxLayoutGap="10px">
+                                            <div class="label23" fxFlex="30">
+                                                Power
                                             </div>
-                                            <div class="label23">
-                                                Cooling
+                                            <div fxLayout="column" fxFlex="60" fxLayoutGap="4px">
+                                                <div class="label23_1">
+                                                    3500 Watts
+                                                </div>
+                                                <div class="label23">
+                                                    Cooling
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div fxFlex="50">
-                                    <div fxLayout="column">
-                                        <div fxLayout="column" style="height: 150px;background-color: 
-                            #ebe6ff;margin: 5px 25px;" fxLayoutAlign="center center">
-                                            <div fxFlex="50" fxLayout="column" fxLayoutAlign="center center">
+                                    <div fxLayout="column" fxLayoutAlign="start" class="second-width-div">
+                                        <div fxLayout="column" fxLayoutAlign="center center" class="water-flow-div">
+                                            <div fxFlex="50" fxLayout="column" fxLayoutAlign="center center"
+                                                fxlayoutGap="10px">
                                                 <div class="la_cls">
                                                     Condenser Water Flow
                                                 </div>
-                                                <div fxLayout="row" fxLayoutGap="20px">
-                                                    <div class="Vi_cls">
-                                                        Supply
+                                                <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="8px"
+                                                    style="padding-top: 4px;">
+                                                    <div fxLayout="row" fxLayoutGap="20px">
+                                                        <div class="Vi_cls">
+                                                            Supply
+                                                        </div>
+                                                        <div class="Vi_cls">
+                                                            32 ^C
+                                                        </div>
                                                     </div>
-                                                    <div class="Vi_cls">
-                                                        32 ^C
-                                                    </div>
-                                                </div>
-                                                <div fxLayout="row" fxLayoutGap="20px">
-                                                    <div class="Vi_cls">
-                                                        Return
-                                                    </div>
-                                                    <div class="Vi_cls">
-                                                        32 ^C
+                                                    <div fxLayout="row" fxLayoutGap="20px">
+                                                        <div class="Vi_cls">
+                                                            Return
+                                                        </div>
+                                                        <div class="Vi_cls">
+                                                            32 ^C
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div fxFlex="50" fxLayout="column" fxLayoutAlign="center center">
+                                            <div fxFlex="50" fxLayout="column" fxLayoutAlign="center center"
+                                                fxlayoutGap="10px">
                                                 <div class="la_cls">
                                                     Chiller Temperature
                                                 </div>
-                                                <div fxLayout="row" fxLayoutGap="20px">
-                                                    <div class="Vi_cls">
-                                                        Supply
+                                                <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="8px"
+                                                    style="padding-top: 4px;">
+                                                    <div fxLayout="row" fxLayoutGap="20px">
+                                                        <div class="Vi_cls">
+                                                            Supply
+                                                        </div>
+                                                        <div class="Vi_cls">
+                                                            32 ^C
+                                                        </div>
                                                     </div>
-                                                    <div class="Vi_cls">
-                                                        32 ^C
-                                                    </div>
-                                                </div>
-                                                <div fxLayout="row" fxLayoutGap="20px">
-                                                    <div class="Vi_cls">
-                                                        Return
-                                                    </div>
-                                                    <div class="Vi_cls">
-                                                        32 ^C
+                                                    <div fxLayout="row" fxLayoutGap="20px">
+                                                        <div class="Vi_cls">
+                                                            Return
+                                                        </div>
+                                                        <div class="Vi_cls">
+                                                            32 ^C
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
-                                        <div class="la_cls" fxLayoutAlign="center center" style="margin-bottom: 10px;">
-                                            Coil Unit
-                                        </div>
-                                        <div fxLayout="row" fxLayoutAlign="space-evenly center"
-                                            style="margin-bottom: 10px;">
-                                            <div class="label23">
-                                                Condenser
+                                        <div fxLayout="column" fxLayoutAlign="center center"
+                                            class="water-flow-seconddiv" fxLayoutGap="10px">
+                                            <div class="coilunit">
+                                                Coil Unit
                                             </div>
-                                            <div fxLayout="column">
-                                                <div class="label23_1">
-                                                    Max 1000 fpm
+                                            <div fxLayout="column" fxLayoutAlugn="start start" fxLayoutGap="10px">
+                                                <div fxLayout="row" fxFlex="100" class="water-second-nested"
+                                                    fxLayoutGap="10px">
+                                                    <div class="label23" fxFlex="40"> Condenser</div>
+                                                    <div class="label23_1" fxFlex="60"> Max 1000 fpm</div>
                                                 </div>
-                                                <!-- <div class="label23">
-                                        Suspended / vertical
-                                    </div> -->
-                                            </div>
-                                        </div>
-                                        <div fxLayout="row" fxLayoutAlign="space-evenly center"
-                                            style="margin-bottom: 10px;">
-                                            <div class="label23">
-                                                Evaporator
-                                            </div>
-                                            <div fxLayout="column">
-                                                <div class="label23_1">
-                                                    400 - 600 fpm
+                                                <div fxLayout="row" fxFlex="100" class="water-second-nested"
+                                                    fxLayoutGap="10px">
+                                                    <div class="label23" fxFlex="40"> Evaporator</div>
+                                                    <div class="label23_1" fxFlex="60"> 400 - 600 fpm</div>
                                                 </div>
-                                                <!-- <div class="label23">
-                                        Suspended / vertical
-                                    </div> -->
-                                            </div>
-                                        </div>
-                                        <div fxLayout="row" fxLayoutAlign="space-evenly center">
-                                            <div class="label23">
-                                                Heating
-                                            </div>
-                                            <div fxLayout="column">
-                                                <div class="label23_1">
-                                                    700 fpm
-                                                </div>
-                                                <div class="label23">
-                                                    Water to Air
+                                                <div fxLayout="row" fxFlex="100" class="water-second-nested"
+                                                    fxLayoutGap="10px">
+                                                    <div class="label23" fxFlex="40"> Heating
+                                                    </div>
+                                                    <div fxLayout="column" fxFlex="60" fxLayoutGap="4px">
+                                                        <div class="label23_1">
+                                                            700 fpm
+                                                        </div>
+                                                        <div class="label23">
+                                                            Water to Air
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
-
                             </div>
                         </div>
-                    </div>
-                    <div *ngIf="!assert">
-                        <div fxLayout="column">
-                            <div fxLayoutAlign="end center">
-                                <div class="bg_cls" fxLayoutAlign="center center">
-                                    <img width="30px" src="assets/electrical_trips.jpg">
-                                </div>
-                                <div class="bg_cls" fxLayoutAlign="center center">
-                                    <img width="30px" src="assets/electrical_trips.jpg">
+                        <div *ngIf="!assert">
+                            <div fxLayout="column">
+                                <div fxLayoutAlign="end center">
+                                    <div class="bg_cls" fxLayoutAlign="center center">
+                                        <img width="30px" src="assets/electrical_trips.jpg">
+                                    </div>
+                                    <div class="bg_cls" fxLayoutAlign="center center">
+                                        <img width="30px" src="assets/electrical_trips.jpg">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -499,6 +411,5 @@
                 </div>
             </div>
         </div>
-
     </mat-sidenav-content>
 </mat-sidenav-container>

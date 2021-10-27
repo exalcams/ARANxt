@@ -122,26 +122,38 @@ color: #6e6d7a;
   background-color: #ffffff;
 }
 .label{
-    font-size: 12px;
+    font-size: 10px;
     font-weight: 600;
+    font-family: 'poppins-semi' !important;
 }
 .label23{
-    font-size: 12px;
+    font-size: 10px;
 font-weight: bold;
 font-stretch: normal;
 font-style: normal;
-line-height: 1.19;
+line-height: normal;
 letter-spacing: normal;
 text-align: left;
 color: #6e6d7a;
+font-family: 'poppins-semi' !important;
   }
   .label23_1{
-    font-size: 12px;
+    font-size: 10px;
 font-weight: 500;
 font-stretch: normal;
 font-style: normal;
-line-height: 1.19;
+line-height: normal;
 letter-spacing: normal;
 text-align: left;
 color: #acacac;
+font-family: 'poppins-semi' !important;
   }
+.elevator-span-div{
+  font-size: 10px;
+  font-family: 'poppins-semi' !important;
+  color: #394550;
+}
+.lift{
+  font-size: 12px !important;
+  font-weight: 600 !important;
+}

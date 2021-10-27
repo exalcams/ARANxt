@@ -10,73 +10,65 @@
                     <div>
                         <div fxLayoutAlign="center center">
                             <button class="btn_task" (click)="addtask()">
-                                <span>+ Add Task </span>
+                                <span class="add-task">+ Add Task </span>
                             </button>
                         </div>
-                        <!-- <mat-grid-list cols="3"  rowHeight="100px" >
-                            <mat-grid-tile *ngFor="let tile of tiles" column-gap= "20px" [style.background]="tile.color">
-                                {{tile.text}}
-                                <div fxLayout="row" fxLayoutAlign="start start">
-                                    <div>sf</div>
-                                    <div>sfd</div>
-                                </div>
-                            </mat-grid-tile>
-                        </mat-grid-list> -->
-
 
                     </div>
                     <div fxLayout="row" class="flex-row-container">
-                        <div fxLayout="column" class="flex-row-item" *ngFor="let tile of tiles"  style=" margin-bottom: 20px;overflow-y: auto;   padding: 5px 15px 5px 15px;">
+                        <div fxLayout="column" class="flex-row-item" *ngFor="let tile of tiles"
+                            style="overflow-y: auto;padding: 15px 15px 15px 15px;">
                             <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
                                 <div class="cls_name">
                                     Long Text Lorem Ipsum Lorem
                                     Ipsum Dummy text
                                 </div>
                                 <div>
-                                    <img src="assets/Images/option.svg">
+                                    <img src="assets/Images/option.svg" class="dot-image">
                                 </div>
                             </div>
                             <br>
-                            <div fxLayout="row" fxLayoutGap="20px">
-                                <div class="cls_loc">
+                            <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+                                <div class="cls_loc" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
                                     <img src="assets/loc_img.svg">
-                                    <label>Location</label>
+                                    <label class="location-span">Location</label>
                                 </div>
-                                <div class="cls_loc">
+                                <div class="cls_loc" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
                                     <img src="assets/iconfinder_Calendar_728916.svg">
-                                    <label>02/09/2021</label>
+                                    <label class="location-span">02/09/2021</label>
                                 </div>
                             </div>
-                            <div fxLayoutAlign="end center">
+                            <div fxLayoutAlign="end center" class="percentage">
                                 80%
                             </div>
                             <div>
-                                <mat-progress-bar  class="passwordStatusBarColor" value="40"></mat-progress-bar>
+                                <mat-progress-bar class="passwordStatusBarColor" value="40"></mat-progress-bar>
                             </div>
-                            <div fxLayout="row" fxLayoutAlign="space-between center">
-                                <div class="Rectangle-7499" >
+                            <div fxLayout="row" fxLayoutAlign="space-between center" style="padding-top: 20px;">
+                                <div class="Rectangle-7499">
                                     Lorem Ipsum
                                 </div>
-                                <div fxLayout="row" fxLayoutAlign="center center">
+                                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="6px">
                                     <label class="cls_loc">Assign</label>
                                     <img width="30px" src="assets/Group 8311.svg" (click)="search()">
                                 </div>
                             </div>
-                         
-                                <div fxLayout="row" *ngIf="searchbutton"  class="main_input_field2" fxLayoutAlign="start center">
-                                    <div>
-                                        <img style="vertical-align: -webkit-baseline-middle;
+
+                            <div fxLayout="row" *ngIf="searchbutton" class="main_input_field2"
+                                fxLayoutAlign="start center">
+                                <div>
+                                    <img style="vertical-align: -webkit-baseline-middle;
                                         width: 24px;" src="./assets/search.svg">
-                                    </div>
-                                    <div fxFlex>
-                                        <input class="input_field1" matInput placeholder="Search by I’d ">
-                                    </div>
-                                    <!-- <div>
+                                </div>
+                                <div fxFlex>
+                                    <input class="input_field1" matInput placeholder="Search by I’d ">
+                                </div>
+                                <!-- <div>
                                         <img style="vertical-align: middle; margin-left: -66%;width: 8px;"
                                             src="./assets/mic.svg">
                                     </div> -->
-                                </div>
-                            
+                            </div>
+
                         </div>
                     </div>
                     <div class="footer">

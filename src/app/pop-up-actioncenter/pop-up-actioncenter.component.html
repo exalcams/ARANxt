@@ -5,13 +5,13 @@
                 <div fxLayout="row" fxLayoutGap="20px">
 
                     <div fxLayout="row" fxLayoutGap="38px" fxLayoutAlign="center center">
-                        <label>Name</label>
+                        <label class="label-css">Name</label>
                         <input style="border: none;height: 25px;outline: none;">
                     </div>
 
                     <!-- <mat-form-field appearance="outline"> -->
                     <div>
-                        <label>Choose a date</label>
+                        <label class="label-css">Choose a date</label>
                         <input [matDatepicker]="picker"
                             style="margin-left: 20px;border:none;height: 25px;outline: none;">
                         <mat-datepicker-toggle matSuffix [for]="picker" style="    margin-left: -35px;">
@@ -25,12 +25,12 @@
                 </div>
                 <div fxLayout="row" fxLayoutGap="20px">
                     <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
-                        <label>Location</label>
+                        <label class="label-css">Location</label>
                         <input style="border: none;height: 25px;outline: none;">
                     </div>
 
                     <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
-                        <label>Assign</label>
+                        <label class="label-css">Assign</label>
                         <img width="30px" src="assets/Group 8311.svg" (click)="search()">
                         <div fxLayout="row" *ngIf="searchbutton" class="main_input_field1">
                             <div>

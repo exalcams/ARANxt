@@ -1,41 +1,5 @@
-
 <div style="width:100%;height:90%;padding-top:15px" fxLayout="column">
 
-
-     <!-- <nav mat-tab-nav-bar>
-        <div style="height: 50px;margin-left: 15px;width:97%;overflow-y: scroll;display: -webkit-inline-box;">
-
-            <div class="Toolbar_button Toolbar_button1" routerLink="/Electrical">
-                <p style="margin-top: 3px;">Electrical distribution</p>
-            </div>
-            <div class="Toolbar_button1 Toolbar_button">
-                <p style="margin-top: 3px;">Energy Consumption</p>
-            </div>
-            <div class="Toolbar_button1 Toolbar_button" routerLink="/hvac">
-                <p style="margin-top: 3px;">HVAC</p>
-            </div>
-            <div class="Toolbar_button1 Toolbar_button" routerLink="/water">
-                <p style="margin-top: 3px;">Water Consumption</p>
-            </div>
-            <div class="Toolbar_button1 Toolbar_button">
-                <p style="margin-top: 3px;">Power Resource</p>
-            </div>
-            <div class="Toolbar_button1 Toolbar_button">
-                <p style="margin-top: 3px;">Parking Access Control</p>
-            </div>
-            <div class="Toolbar_button1 Toolbar_button">
-                <p style="margin-top: 3px;">CCTV</p>
-            </div>
-            <div class="Toolbar_button1 Toolbar_button" routerLink="/fire">
-                <p style="margin-top: 3px;">Fire Alarm</p>
-            </div>
-            <div class="Toolbar_button1 Toolbar_button" routerLink="/others">
-                <p style="margin-top: 3px;">Others</p>
-            </div>
-
-
-        </div>
-      </nav> -->
     <div fxLayout="column">
         <div fxLayoutAlign="center center" fxLayout="row" fxLayoutGap="20px">
             <div [ngClass]="Lift==true?'tab1':'tab'" style="cursor: pointer;" fxLayout="column"
@@ -43,7 +7,7 @@
                 <div>
                     <img height="25px" [src]="Lift==true? 'assets/lift2.svg':'assets/lift1.svg'">
                 </div>
-                <div>
+                <div class="elevator-span-div">
                     Elevator
                 </div>
             </div>
@@ -52,7 +16,7 @@
                 <div>
                     <img height="25px" [src]="Escalator==true?'assets/escalator1.svg':'assets/escalator.svg'">
                 </div>
-                <div>
+                <div class="elevator-span-div">
                     Escalator
                 </div>
             </div>
@@ -60,13 +24,13 @@
                 <div>
                     <img height="25px" src="assets/Group 8237.svg">
                 </div>
-                <div>
+                <div class="elevator-span-div">
                     Add
                 </div>
             </div>
         </div>
-        <div *ngIf="Lift" fxLayout="column" style="padding:  5% 6%;" >
-            <div class="label" style="margin-bottom: 15px;">
+        <div *ngIf="Lift" fxLayout="column" style="padding:  5% 6%;">
+            <div class="label lift" style="margin-bottom: 15px;">
                 Lift Control System
             </div>
             <div fxLayout="row">
@@ -108,34 +72,34 @@
                     </div>
                     <div fxFlex="50" fxLayout="column" fxLayoutGap="15px" *ngFor="let e of elevator">
                         <div class="label23_1">
-                           {{e.type}}
+                            {{e.type}}
                         </div>
                         <div class="label23_1">
-                           {{e.motor}}
+                            {{e.motor}}
                         </div>
                         <div class="label23_1">
                             {{e.temperature}}
                         </div>
                         <div class="label23_1">
-                          {{e.systemVoltage}}
-                        </div >
-                        <div class="label23_1">
-                           {{e.guideShoes}}
+                            {{e.systemVoltage}}
                         </div>
                         <div class="label23_1">
-                           {{e.suspensionRope}}
+                            {{e.guideShoes}}
                         </div>
                         <div class="label23_1">
-                           {{e.compensation}}
+                            {{e.suspensionRope}}
                         </div>
                         <div class="label23_1">
-                           {{e.ventilationFab}}
+                            {{e.compensation}}
                         </div>
                         <div class="label23_1">
-                          {{e.capacity}}
+                            {{e.ventilationFab}}
                         </div>
                         <div class="label23_1">
-                           {{e.weight}}
+                            {{e.capacity}}
+                        </div>
+                        <div class="label23_1">
+                            {{e.weight}}
                         </div>
                         <div class="label23_1">
                             {{e.energencySwitch}}
@@ -143,17 +107,16 @@
                     </div>
                 </div>
                 <div fxFlex="70" style="padding: 50px;height: 300px;">
-                    <img [src]="imgSrc" width="100%" height="150%"
-                    
-                    (mouseover)="onMouseOver()" (mouseout)="onMouseOut()">
+                    <img [src]="imgSrc" width="100%" height="150%" (mouseover)="onMouseOver()"
+                        (mouseout)="onMouseOut()">
                 </div>
             </div>
         </div>
         <div *ngIf="Escalator" fxLayout="column" style="padding:  5% 6%;">
-            <div class="label" style="margin-bottom: 15px;">
+            <div class="label lift" style="margin-bottom: 15px;">
                 Escalator Control System
             </div>
-            <div fxLayout="row" >
+            <div fxLayout="row">
                 <div fxFlex="30">
                     <div fxFlex="50" fxLayout="column" fxLayoutGap="15px">
                         <div class="label23">
@@ -180,40 +143,39 @@
                         <div class="label23">
                             Emergency Btn
                         </div>
-                        
+
                     </div>
                     <div fxFlex="50" fxLayout="column" fxLayoutGap="15px" *ngFor="let ele of esclator">
                         <div class="label23_1">
-                         {{ele.motor}}
+                            {{ele.motor}}
                         </div>
                         <div class="label23_1">
                             {{ele.systemVoltage}}
                         </div>
                         <div class="label23_1">
-                          {{ele.guideRollers}}
+                            {{ele.guideRollers}}
                         </div>
                         <div class="label23_1">
                             {{ele.capacity}}
-                        </div >
+                        </div>
                         <div class="label23_1">
                             {{ele.weight}}
                         </div>
                         <div class="label23_1">
-                           {{ele.speed}}
+                            {{ele.speed}}
                         </div>
                         <div class="label23_1">
-                          {{ele.inclination}}
+                            {{ele.inclination}}
                         </div>
                         <div class="label23_1">
-                           {{ele.energencySwitch}}
+                            {{ele.energencySwitch}}
                         </div>
-                        
+
                     </div>
                 </div>
                 <div fxFlex="70" style="padding: 50px;height: 300px;">
-                    <img [src]="imgSrc1" width="100%" height="150%"
-                    
-                    (mouseover)="onMouseOver1()" (mouseout)="onMouseOut2()">
+                    <img [src]="imgSrc1" width="100%" height="150%" (mouseover)="onMouseOver1()"
+                        (mouseout)="onMouseOut2()">
                 </div>
             </div>
         </div>

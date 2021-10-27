@@ -177,24 +177,28 @@
     border-radius: 8px;
 }
 .label23{
-  font-size: 12px;
+  font-size: 10px;
 font-weight: bold;
 font-stretch: normal;
 font-style: normal;
-line-height: 1.19;
+line-height: normal;
+line-height: normal;
 letter-spacing: normal;
 text-align: left;
 color: #6e6d7a;
+font-family: "poppins-semi" !important;
 }
 .label23_1{
-  font-size: 11px;
+  font-size: 10px;
 font-weight: 500;
 font-stretch: normal;
 font-style: normal;
-line-height: 1.19;
+line-height: normal;
+line-height: normal;
 letter-spacing: normal;
 text-align: left;
 color: #acacac;
+font-family: "poppins-semi" !important;
 }
 .la_cls{
   font-size: 12px;
@@ -483,4 +487,12 @@ color: #7169ff;
   justify-self: left;
   width: 100%;
   padding-left: 10px;
+}
+
+.consumption-graph{
+  height: 140px; 
+  background-image: linear-gradient(to bottom, #c8d2ff -341%, rgba(255, 255, 255, 0));
+}
+.paddingtotop{
+  padding-top: 6px;
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ApexNonAxisChartSeries,
+import {
+  ApexNonAxisChartSeries,
   ApexPlotOptions,
-  ApexChart, 
+  ApexChart,
   ApexStroke,
   ApexAxisChartSeries,
   ApexXAxis,
@@ -11,14 +12,15 @@ import { ApexNonAxisChartSeries,
   ApexMarkers,
   ApexYAxis,
   ApexLegend,
-  ApexFill} from 'ng-apexcharts';
+  ApexFill
+} from 'ng-apexcharts';
 import { SpaceService } from '../space/space.service';
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
   chart: ApexChart;
   labels: string[];
-  colors:string[];
-  stroke:ApexStroke;
+  colors: string[];
+  stroke: ApexStroke;
   plotOptions: ApexPlotOptions;
 };
 export type ChartOptions1 = {
@@ -27,13 +29,15 @@ export type ChartOptions1 = {
   dataLabels: ApexDataLabels;
   plotOptions: ApexPlotOptions;
   xaxis: ApexXAxis;
+  yaxis: ApexYAxis;
+  grid: ApexGrid;
 };
 @Component({
   selector: 'app-hvac',
   templateUrl: './hvac.component.html',
   styleUrls: ['./hvac.component.scss'],
-  encapsulation:ViewEncapsulation.None
-  
+  encapsulation: ViewEncapsulation.None
+
 })
 export class HvacComponent implements OnInit {
   public chartOptions: ChartOptions;
@@ -41,9 +45,9 @@ export class HvacComponent implements OnInit {
   // @ViewChild("chart") chart: ChartComponent;
   public chartOptions1: ChartOptions1;
   assert: boolean = true;
-  Area:any[];
-  SelectedArea:any[];
-  child : string[]=[];
+  Area: any[];
+  SelectedArea: any[];
+  child: string[] = [];
   setInterval = setInterval;
   constructor(private service: SpaceService) {
     this.chartOptions1 = {
@@ -55,7 +59,10 @@ export class HvacComponent implements OnInit {
       ],
       chart: {
         type: "bar",
-        height: 185
+        height: 185,
+        toolbar: {
+          show: false
+        }
       },
       plotOptions: {
         bar: {
@@ -67,28 +74,50 @@ export class HvacComponent implements OnInit {
       },
       xaxis: {
         categories: [
-          "South Korea",
-          "Canada",
-          "United Kingdom",
-          "Netherlands",
-          "Italy",
-          "France",
-          "Japan",
-          "United States",
-          "China",
-          "Germany"
-        ]
+          "18",
+          "19",
+          "20",
+          "19",
+          "30",
+          "29",
+          "28",
+          "19",
+          "21",
+          "27"
+        ],
+        labels: {
+          style: {
+            colors: ['#6e6d7a'],
+            fontSize: '10px',
+            fontFamily: "poppins-semi",
+            fontWeight: 400,
+          },
+        }
+      },
+      yaxis: {
+        show: false,
+        labels: {
+          style: {
+            colors: ['#6e6d7a'],
+            fontSize: '10px',
+            fontFamily: "poppins-semi",
+            fontWeight: 400,
+          },
+        }
+      },
+      grid: {
+        show: false
       }
     };
     this.chartOptions = {
       series: [80],
       chart: {
         height: 185,
-        width:150,
+        width: 150,
         type: "radialBar",
         offsetY: -20,
       },
-      colors:["#c3d8fd"],
+      colors: ["#c3d8fd"],
       plotOptions: {
         radialBar: {
           startAngle: -125,
@@ -96,32 +125,32 @@ export class HvacComponent implements OnInit {
           hollow: {
             margin: 20,
             size: "70%",
-            
+
             // image: 'assets/Group 8319.svg',
             // imageWidth: 44,
             // imageHeight: 44,
             // imageClipped: false
           },
-         
+
           dataLabels: {
-            
-           // showOn: "always",
+
+            // showOn: "always",
             name: {
               offsetY: -10,
               show: true,
               color: "#888",
-              fontSize: "12px",
-              fontFamily:"poppins"
+              fontSize: "10px",
+              fontFamily: "poppins-semi"
             },
             value: {
               offsetY: -5,
-              
+
               color: "#111",
-              fontSize: "14px",
-              fontWeight:600,
-              fontFamily:"poppins",
+              fontSize: "12px",
+              fontWeight: 600,
+              fontFamily: "poppins-semi",
               show: true,
-              
+
             }
           }
         }
@@ -131,54 +160,51 @@ export class HvacComponent implements OnInit {
       },
       labels: ["Goal"]
     };
-    
-   }
+
+  }
 
   ngOnInit(): void {
-    setInterval(() => this.GetARASpace(),300);
+    setInterval(() => this.GetARASpace(), 300);
     // this.SelectedArea=["Area 1","Area 2"];
     // this.Area=["Area B1","Area B2","Area G1","Area F1","Area F3","Area F2","Area F4","Area F2","Area F4"]
 
   }
-  GetARASpace() 
-  {
+  GetARASpace() {
     let n = localStorage.getItem('Spaces')
     this.child = JSON.parse(n)
-    this.SelectedArea =  this.child ;
+    this.SelectedArea = this.child;
 
   }
-  SelectedSpace(SelectedArea){
-    localStorage.setItem('Space',SelectedArea);
+  SelectedSpace(SelectedArea) {
+    localStorage.setItem('Space', SelectedArea);
     this.service.GetSpaceDetail(SelectedArea).subscribe(
       (data) => {
         this.Area = data;
-        console.log(data);   
+        console.log(data);
       }
     );
   }
-  SelectedSubSpace(SubSpace){
-    localStorage.setItem('SubSpace',SubSpace);
+  SelectedSubSpace(SubSpace) {
+    localStorage.setItem('SubSpace', SubSpace);
     console.log(SubSpace);
-    
+
   }
 
-barchart(a :any){
-  if(a == 1)
-  {
-  this.bar=false;
+  barchart(a: any) {
+    if (a == 1) {
+      this.bar = false;
+    }
+    else {
+      this.bar = true;
+    }
   }
-  else{
-    this.bar=true;
+  assertdetails(a: any) {
+    if (a == 1) {
+      this.assert = false;
+    }
+    else {
+      this.assert = true;
+    }
+
   }
-}
-assertdetails(a :any){
-  if(a == 1)
-  {
-    this.assert=false;
-  }
-  else{
-    this.assert=true;
-  }
-  
-}
 }
