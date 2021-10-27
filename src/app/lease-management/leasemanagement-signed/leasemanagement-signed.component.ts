@@ -504,8 +504,8 @@ export class LeasemanagementSignedComponent implements OnInit {
     this.sideNavStatus = true;
     this.service.DownloadLeaseDocument(row.documentID).subscribe((res) => {
       this.sideNavStatus = false;
-      let blob: any = new Blob([res], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
-      saveAs(blob, `${row.documentName}.docx`);
+      let blob: any = new Blob([res], { type: 'application/pdf' });
+      saveAs(blob, `${row.documentName}.pdf`);
       console.log(`${row.documentName} downloaded`);
     },
       err => {

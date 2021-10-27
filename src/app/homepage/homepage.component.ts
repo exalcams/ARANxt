@@ -195,8 +195,9 @@ export class HomepageComponent implements OnInit {
     this.ass = localStorage.getItem('ass');
     this.services.Getsitehierarchy().subscribe(data => {
       this.TREE_DATA = <TreeItem[]>data;
-      this.treeSource.data = this.treeConstruct(this.TREE_DATA);
       console.log("tree data", this.TREE_DATA);
+      this.treeSource.data = this.treeConstruct(this.TREE_DATA);
+      
       this.selectedNode = this.TREE_DATA[0].name;
       console.log("selectedNode",this.selectedNode);
       
