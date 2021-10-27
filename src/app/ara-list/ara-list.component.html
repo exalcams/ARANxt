@@ -28,7 +28,7 @@
             <table mat-table [dataSource]="dataSource" style="width: 100%;">
 
                 <ng-container matColumnDef="photos">
-                    <th mat-header-cell *matHeaderCellDef class="headertable-class"> Photos </th>
+                    <th mat-header-cell *matHeaderCellDef class="headertable-class align-class"> Photos </th>
                     <td mat-cell *matCellDef="let element;index as i" style="width: 10%;text-align: left;">
                         <img *ngIf="element.name=='AC'" src="./assets/Image 87.jpg">
                         <img *ngIf="element.name=='Cleaner'" src="./assets/Image 93.png">

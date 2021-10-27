@@ -1,32 +1,34 @@
-.mat-tab-group {
+.control-panel-class-tab.mat-tab-group {
+  padding: 10px;
   .mat-tab-header {
     height: 10% !important;
+    .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
+      display: none !important;
+    }
     .mat-ink-bar{
       display: none;
   }
     .mat-tab-label-container {
+      box-shadow: 0 2px 6px 0 #eaf1fa;
       left: 0px; // if you need to use it on mobile - set left position to 0
       width: 100%;
       height:100%;
       border-bottom: none;
-      background-color: #f9f8fe;
-  
         .mat-tab-labels {   
+          box-shadow: 0 2px 6px 0 #eaf1fa;
           overflow: scroll !important;
-          place-content: space-evenly !important;       
-          // some tweaks for tabs - up to you
+          place-content: space-evenly !important;  
           .mat-tab-label {
-            // min-width: 20% !important;
             padding: 1% !important;
             margin: 0px !important;
-            // text-transform: uppercase;
-            color: black;
+            font-size: 10px;
+            font-family: "poppins-semi" !important;
+            color: #6e6d7a;
             font-weight: 500;
-            min-width: 158px !important;
+            min-width: 150px !important;
             border-bottom: none;
             height: 30px !important ;         
             margin-top: 0px !important;
-            // margin-bottom: 13px !important;
             opacity: 1 !important;
           }
           .mat-tab-label-active{
@@ -43,7 +45,7 @@
             border-radius: 4px;
           }
           .mat-tab-header {
-            border-bottom: none;
+            border-bottom: none !important;
         }
         }
       
@@ -54,3 +56,15 @@
   background-color: white !important;
 }
 
+.mat-tab-nav-bar, .mat-tab-header{
+  border-bottom: none !important  ;
+}
+.total-controlpanel{
+  width:100%;
+  height:90%;
+}
+.total-controlpanel-second{
+  width:100%;
+  height:100%;
+  padding-top:15px
+}

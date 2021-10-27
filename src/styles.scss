@@ -63,6 +63,9 @@ body { margin: 0; font-family:  'poppins' !important  }
       height: 6px !important;
       margin: 7.5px;
   }
+  .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
+    display: none !important;
+  }
 
   //   .carousel-indicators[_ngcontent-tuo-c314] > button[_ngcontent-tuo-c314] {
   //     width: 6px !important;

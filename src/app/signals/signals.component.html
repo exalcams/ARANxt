@@ -1,97 +1,80 @@
-<div style="width:98%;height: 90%;margin-top: 9px;margin-left: 10px;" fxLayout="column">
+<div fxLayout="column" class="overall-main-div">
 
-    <div *ngIf="isExpand" style="width:97%;height:100%;background-color: #f9f8fe;;margin-left: 10px;" fxLayout="row"
-        fxFlex="30">
-
-        <div fxFlex="18" fxLayout="column" style="margin: 13px 0px 0px 25px;">
-            <span style="margin-top: 12px;" class="txt_class">Overall Status</span>
-            <span class="txt_class">
-                Info</span>
-
+    <div *ngIf="isExpand" fxLayout="row" class="overall-hide-topdiv" fxLayoutAlign="start center">
+        <div fxFlex="19" fxLayout="column" fxLayoutAlign="start" class="status-div">
+            <span class="txt_class-hide">Overall Status</span>
+            <span class="txt_class-hide">
+                Info
+            </span>
             <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
                 [plotOptions]="chartOptions.plotOptions" [labels]="chartOptions.labels" [colors]="chartOptions.colors"
-                [stroke]="chartOptions.stroke"></apx-chart>
+                [stroke]="chartOptions.stroke" class="overallchart-css">
+            </apx-chart>
+        </div>
+        <!-- <div fxFlex="2" class="divider-space">
+        </div> -->
 
-        </div>
-        <div fxFlex="2" style="padding-top: 30px;opacity: 0.12;width: 1px;
-        border-left: solid 1px #0d0055; margin-top: 40px;
-    margin-bottom: 20px;">
-            <!-- <p style="height: 70%;opacity: 0.12;width: 1px;
-        border: solid 1px #0d0055;"></p> -->
-        </div>
-        <div fxFlex="60" fxLayout="row">
+        <mat-divider [vertical]="true" class="divider-elevator"></mat-divider>
+
+        <div fxFlex="65" fxLayout="row" class="signals-div-css">
             <div fxFlex="70">
                 <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart" [xaxis]="chartOptions1.xaxis"
                     [yaxis]="chartOptions1.yaxis" [dataLabels]="chartOptions1.dataLabels" [grid]="chartOptions1.grid"
                     [markers]="chartOptions1.markers" [stroke]="chartOptions1.stroke" [legend]="chartOptions1.legend">
                 </apx-chart>
             </div>
-            <div fxFlex="30" style="margin-top: 22px;text-align: center;">
-                <span style="font-weight: 600;font-size: 12px;">Last 6 Months</span>
-                <img src="../../assets/Images/Group 8270.svg" style="width: 15px;
-         height: 15;margin-left: 5px;">
-                <div style="margin: 20px;">
+            <div fxFlex="30" class="second-part-div" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="20px">
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                    <span class="last-months-span">Last 6 Months</span>
+                    <img src="../../assets/Images/Group 8270.svg" class="down-arrow-image">
+                </div>
+                <div>
                     <div fxLayout="row" fxLayoutGap="10px">
-                        <span class="dot_legend" style="background-color: #47cb2a;"></span>
-
+                        <span class="dot_legend color1"></span>
                         <span class="Chart_legend"> Success Alert!</span>
                     </div>
                     <div fxLayout="row" fxLayoutGap="10px">
-                        <span class="dot_legend" style="background-color: #fc9c18"></span>
-
+                        <span class="dot_legend color2"></span>
                         <span class="Chart_legend"> Warning Alert!</span>
                     </div>
                     <div fxLayout="row" fxLayoutGap="10px">
-                        <span class="dot_legend" style="background-color: #0a6dfb;"></span>
+                        <span class="dot_legend color3"></span>
                         <span class="Chart_legend">Info Alert!</span>
-
                     </div>
                     <div fxLayout="row" fxLayoutGap="10px">
-                        <span class="dot_legend" style="background-color: #f8383f;"></span>
+                        <span class="dot_legend color4"></span>
                         <span class="Chart_legend">Danger Alert!</span>
-
                     </div>
-
                 </div>
             </div>
         </div>
-        <div fxFlex="20" style="margin: 20px;padding: 10px;background-color: white;box-shadow: 0 5px 15px 0 #cedfff;"
-            fxLayout="column" fxLayoutAlign="space-between center">
-            <!-- <div > -->
-            <div fxFlex="50" style="margin-top: 10px;width: 60%;">
-
+        <div fxFlex="18" fxLayout="column" fxLayoutAlign="space-between center" class="availability-div"
+            fxLayoutGap="5px">
+            <div fxFlex="50" class="innerdiv-availability">
                 <div fxLayout="row" fxLayoutAlign="space-between center">
-                    <img src="../../assets/Images/Group 8267.svg" style="width: 30px;
-                   height: 30px;">
-                    <span style="font-size: 10px;opacity: .5;font-weight: 600;"> Available</span>
+                    <img src="../../assets/Images/Group 8267.svg" style="width: 30px;height: 30px;">
+                    <span class="available-span-last"> Available</span>
                     <span class="dot"></span>
                 </div>
-                <span class="txt_class">18 Technician's</span>
+                <span class="txt_class-technician">18 Technician's</span>
             </div>
-            <div fxFlex="50" style="margin-top: 10px;width: 60%;">
-                <div fxLayout="row" fxLayoutAlign="space-between  center">
-                    <img src="../../assets/Images/Group 8268.svg" style="width: 30px;
-                height: 20px;">
-                    <span style="font-size: 10px;opacity: .5;font-weight: 600;">&nbsp;in&nbsp;Progress</span>
-                    <span class="dot" style="background-color: #ec6c61;"></span>
+            <div fxFlex="50" class="innerdiv-availability">
+                <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <img src="../../assets/Images/Group 8268.svg" style="width: 30px;height: 20px;">
+                    <span class="available-span-last"> In Progress</span>
+                    <span class="dot2"></span>
                 </div>
-                <span class="txt_class">18 Technician's</span>
+                <span class="txt_class-technician">18 Technician's</span>
             </div>
         </div>
-        <!-- </div> -->
-        <!-- <div style="background-color: white;padding: 10px;">
-               
-        </div> -->
     </div>
 
-    <div fxFlex="70" style="width:97%;height:100%;margin-left: 10px;">
-        <!-- search box -->
-        <div style="width:100%;height: 30px;margin-top: 20px;" fxLayout="row">
-            <div fxLayout="row" fxLayoutGap="25px" style="width:86%;margin-top: 5px;">
-                <span class="txt_class">Notifications</span>
-
-                <div fxLayout="row" class="main_input_field1">
-                    <div fxFlex="10" style="margin-left: 5px;">
+    <div fxFlex="70" class="downcontent-div">
+        <div fxLayout="row" class="downcontent-innerdiv" fxLayoutAlign="space-evenly center">
+            <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center" class="nested-div-downcontent">
+                <span class="txt_class-notifixcations_span">Notifications</span>
+                <!-- <div fxLayout="row" class="main_input_field1">
+                    <div fxFlex="10" style="padding-left: 5px;">
                         <img style="vertical-align: -webkit-baseline-middle;width: 24px;" src="./assets/search.svg">
                     </div>
                     <div fxFlex="85">
@@ -101,21 +84,28 @@
                     <div fxFlex="5">
                         <img style="vertical-align: middle; margin-left: -66%;width: 8px;" src="./assets/mic.svg">
                     </div>
+                </div> -->
+                <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="50">
+                    <div fxLayout="row" class="btn_bg2" fxFlex="100">
+                        <mat-icon matSuffix class="serachicon_search">search</mat-icon>
+                        <input matInput class="search_input1 forminputedit" autocomplete="off"
+                            placeholder="Search by I’d or Name" (keyup)="applyFilter($event)">
+                        <img src="./assets/mic.svg" class="voice-image">
+                    </div>
                 </div>
                 <img class="filter_img" src="./assets/iconfinder_Icon_filter_hor_outline_6637739 (2).svg">
             </div>
-            <div fxLayout="row" class="main_buttons_side1" (click)="Expand()" fxLayoutGap="10px">
-                <div>
-                    <img style="vertical-align: sub;margin-left: 4px;width: 13px;
-            height: 12px;" src="../../assets/Images/Group 7527.svg">
+            <div fxLayout="row" class="main_buttons_side1" fxLayoutAlign="start center" (click)="Expand()">
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" style="padding-left: 5px;"
+                    class="expand-div-hover">
+                    <img class="expand-image" src="../../assets/Images/Group 7527.svg">
+                    <img src="../../assets/expand_active.svg" class="expand-image2">
+                    <span class="expand-span">Expand View</span>
                 </div>
-                <div>Expand View</div>
-
-
             </div>
         </div>
-        <!-- buttons -->
-        <div style="width:100%;height: 35px;margin-top: 20px;" fxLayout="row" fxLayoutGap="20px">
+
+        <div fxLayout="row" fxLayoutGap="20px" class="alert-div">
             <div fxFlex="23" fxLayoutAlign="center center" class="button_info_active" fxLayoutGap="10px">
                 <span class="txt_class_Infobutton">Info alert!</span>
                 <div class="colorbox_button">{{InfoAlert}}</div>
@@ -134,7 +124,7 @@
             </div>
         </div>
         <!-- tabel -->
-        <div class="autoscroll example" style="margin-top: 20px;">
+        <div class="autoscroll example">
             <table mat-table [dataSource]="dataSource" style="width: 100%;">
                 <ng-container matColumnDef="check">
                     <th mat-header-cell *matHeaderCellDef
@@ -168,11 +158,13 @@
                 <ng-container matColumnDef="Catalogue">
                     <th mat-header-cell *matHeaderCellDef
                         style="text-align: left;border-bottom: 15px solid white; height: 30px"> Catalogue </th>
-                    <td mat-cell *matCellDef="let element" style="width: 10%;text-align: left; color: #00b94d;">
-                        <span style="font-size: 12px;">
-                            View
-                        </span>
-                        <mat-icon style="font-size: 12px;margin-top:1px">remove_red_eye</mat-icon>
+                    <td mat-cell *matCellDef="let element" class="view-css">
+                        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" style="cursor: pointer;">
+                            <span class="view-span">
+                                View
+                            </span>
+                            <mat-icon class="icon-eye">remove_red_eye</mat-icon>
+                        </div>
                     </td>
                 </ng-container>
                 <ng-container matColumnDef="Location">
@@ -202,12 +194,14 @@
                 <ng-container matColumnDef="Menu">
                     <th mat-header-cell *matHeaderCellDef
                         style="text-align: left;border-bottom: 15px solid white; height: 10px"></th>
-                    <td mat-cell *matCellDef="let element;index as i" style="width: 5%;text-align: left;">
-                        <mat-icon [matMenuTriggerFor]="menu">more_vert</mat-icon>
-                        <mat-menu #menu="matMenu">
-                            <button mat-menu-item (click)="MovetoDanger(i)">Move to Danger!</button>
-                            <button mat-menu-item (click)="MovetoWarning(i)">Move to Warning!</button>
-                            <button mat-menu-item (click)="Deleterow(i)">Delete</button>
+                    <td mat-cell *matCellDef="let element;index as i" class="menu-table-part">
+                        <mat-icon [matMenuTriggerFor]="menu" class="menu-icon">more_vert</mat-icon>
+                        <mat-menu #menu="matMenu" class="menu-table-menu">
+                            <button mat-menu-item (click)="MovetoDanger(i)" class="menu-table-button">Move to
+                                Danger!</button>
+                            <button mat-menu-item (click)="MovetoWarning(i)" class="menu-table-button">Move to
+                                Warning!</button>
+                            <button mat-menu-item (click)="Deleterow(i)" class="menu-table-button">Delete</button>
                         </mat-menu>
                     </td>
                 </ng-container>

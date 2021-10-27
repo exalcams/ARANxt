@@ -2,162 +2,149 @@
     <mat-card class="Cert_section">
         <span class="Cert_title">Certificates</span>
         <div class="inner_content" fxLayout="row" fxLayoutGap="20px">
-            <mat-card style="width:80px" class="mat-elevation-z" >
-                <div style="height:100%;" >
-                  
-                <div >
-                   
-                 <img src="assets/Group 8233.svg" (click)="fileInput1.click()" width="35px" height="35px" style="margin: 20px;" >
-                 <input hidden type="file" #fileInput1 id="file" (change)="handleFileInput($event)"/>
-             
+            <mat-card style="width:80px" class="mat-elevation-z">
+                <div style="height:100%;">
+                    <div>
+                        <img src="assets/Group 8233.svg" (click)="fileInput1.click()" width="35px" height="35px"
+                            class="addimage-file">
+                        <input hidden type="file" #fileInput1 id="file" (change)="handleFileInput($event)" />
+                    </div>
                 </div>
-               
-               </div>
-           </mat-card>
-           <div  fxLayout="row" class="card_div"  fxLayoutGap="20px"  >
-           <mat-card fxLayout="column" style="width:130px"  *ngFor="let file of fileToUpload;let i = index" class="Card_class">
-            <div style="height: 100%;width:130px">
-                <div class="card_Img_div" >
-                    
-                    <img src="assets/cert1.png" style="width: 108px;height: 74px;">
-                </div>
-                <div style="padding: 10px;height: 27%;">
-                <div style="height: 70%;">
-                    <mat-form-field class="certName_text" *ngIf="editClicked>-1 && i==editClicked" >
-                        <input matInput class="mat_form" (keyup.enter)="input_changed()" [(ngModel)]="file.Name"  value="{{file.Name}}">
-                    </mat-form-field>
-                    <p *ngIf="i!=editClicked" class="certName_text">{{file.Name}}</p>
-                   
-                    
-                </div>
-                <div style="height: 30%;margin-top:8px" fxLayout="row" fxLayoutAlign="space-between">
-                    <p class="year_font">2020</p>
-                   
-                        <span [matMenuTriggerFor]="menu"  style="text-align: end;color: #797777;font-size: 18px;"  class="material-icons">
-                            more_vert
-                            </span>
-                      
-                      <mat-menu #menu="matMenu">
-                        <button (click)="RemoveItem_cert(i)" mat-menu-item>
-                        <span class="font">Remove</span>
-                        </button>
-                        <button mat-menu-item (click)="edit_cert(i)">
-                        <span class="font" >Edit</span>
-                        </button>
-                      </mat-menu>
-                </div>
-                </div>
-            
-            </div>
             </mat-card>
-           
-        </div>
+            <div fxLayout="row" class="card_div" fxLayoutGap="20px">
+                <mat-card fxLayout="column" *ngFor="let file of fileToUpload;let i = index" class="Card_class">
+                    <div class="card-nestedclass">
+                        <div class="card_Img_div">
+                            <img src="assets/cert1.png" class="cetificate-image">
+                        </div>
+                        <div class="second-div-edit">
+                            <div class="form-field-div">
+                                <mat-form-field class="certName_text" *ngIf="editClicked>-1 && i==editClicked">
+                                    <input matInput class="mat_form" (keyup.enter)="input_changed()"
+                                        [(ngModel)]="file.Name" value="{{file.Name}}">
+                                </mat-form-field>
+                                <span *ngIf="i!=editClicked" class="certName_text">{{file.Name}}</span>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="space-between" class="top-menu-div">
+                                <span class="year_font">2020</span>
+                                <span [matMenuTriggerFor]="menu" class="material-icons">
+                                    more_vert
+                                </span>
+                                <mat-menu #menu="matMenu" class="menu-items-tag">
+                                    <button (click)="RemoveItem_cert(i)" mat-menu-item class="menu-item-css">
+                                        <span class="font">Remove</span>
+                                    </button>
+                                    <button mat-menu-item (click)="edit_cert(i)" class="menu-item-css">
+                                        <span class="font">Edit</span>
+                                    </button>
+                                </mat-menu>
+                            </div>
+                        </div>
+
+                    </div>
+                </mat-card>
+
+            </div>
         </div>
     </mat-card>
     <mat-card class="Cert_section1">
         <span class="Cert_title">Confidential</span>
         <div class="inner_content" fxLayout="row" fxLayoutGap="20px">
-            <mat-card style="width:80px" class="mat-elevation-z" >
-                <div style="height:100%;" >
-                  
-                <div >
-                   
-                 <img src="assets/Group 8233.svg" (click)="fileInput2.click()" width="35px" height="35px" style="margin: 20px;" >
-                 <input hidden type="file" #fileInput2 id="file" (change)="handleFileInput_conf($event)"/>
-             
+            <mat-card style="width:80px" class="mat-elevation-z">
+                <div style="height:100%;">
+                    <div>
+                        <img src="assets/Group 8233.svg" (click)="fileInput2.click()" width="35px" height="35px"
+                            class="addimage-file">
+                        <input hidden type="file" #fileInput2 id="file" (change)="handleFileInput_conf($event)" />
+                    </div>
                 </div>
-               
-               </div>
-           </mat-card>
-           <div  fxLayout="row" class="card_div"  fxLayoutGap="20px"  >
-           <mat-card fxLayout="column" style="width:130px"  *ngFor="let file of fileToUpload_conf;let i=index" class="Card_class">
-            <div style="height: 100%;width:130px">
-                <div  class="card_Img_div">
-                   
-                    <img src="assets/sec_cert1.jpg" style="height:74px;width: 74px;">
-                </div>
-                <div style="padding: 8px;height: 27%;">
-                <div style="height: 70%;">
-                    <mat-form-field class="certName_text" *ngIf="editClicked_conf>-1 && i==editClicked_conf" >
-                        <input matInput class="mat_form" (keyup.enter)="input_changed()" [(ngModel)]="file.Name"  value="{{file.Name}}">
-                    </mat-form-field>
-                    <p *ngIf="i!=editClicked_conf" class="certName_text">{{file.Name}}</p>
-                </div>
-                <div style="height: 30%;margin-top:5px" fxLayout="row" fxLayoutAlign="space-between">
-                    <p class="year_font">2020</p>
-                   
-                        <span [matMenuTriggerFor]="menu"  style="text-align: end;color: #797777;font-size: 18px;"  class="material-icons">
-                            more_vert
-                            </span>
-                      
-                      <mat-menu #menu="matMenu">
-                        <button (click)="RemoveItem_conf(i)" mat-menu-item>
-                        <span class="font">Remove</span>
-                        </button>
-                        <button mat-menu-item (click)="edit_conf(i)">
-                        <span class="font" >Edit</span>
-                        </button>
-                      </mat-menu>
-                </div>
-                </div>
-            
-            </div>
             </mat-card>
-           
-        </div>
+            <div fxLayout="row" class="card_div" fxLayoutGap="20px">
+                <mat-card fxLayout="column" *ngFor="let file of fileToUpload_conf;let i=index" class="Card_class">
+                    <div class="card-nestedclass">
+                        <div class="card_Img_div">
+                            <img src="assets/sec_cert1.jpg" class="cetificate-image">
+                        </div>
+                        <div class="second-div-edit">
+                            <div class="form-field-div">
+                                <mat-form-field class="certName_text"
+                                    *ngIf="editClicked_conf>-1 && i==editClicked_conf">
+                                    <input matInput class="mat_form" (keyup.enter)="input_changed()"
+                                        [(ngModel)]="file.Name" value="{{file.Name}}">
+                                </mat-form-field>
+                                <span *ngIf="i!=editClicked_conf" class="certName_text">{{file.Name}}</span>
+                            </div>
+                            <div class="top-menu-div" fxLayout="row" fxLayoutAlign="space-between">
+                                <span class="year_font">2020</span>
+                                <span [matMenuTriggerFor]="menu" class="material-icons">
+                                    more_vert
+                                </span>
+                                <mat-menu #menu="matMenu" class="menu-items-tag">
+                                    <button (click)="RemoveItem_conf(i)" mat-menu-item class="menu-item-css">
+                                        <span class="font">Remove</span>
+                                    </button>
+                                    <button mat-menu-item (click)="edit_conf(i)" class="menu-item-css">
+                                        <span class="font">Edit</span>
+                                    </button>
+                                </mat-menu>
+                            </div>
+                        </div>
+
+                    </div>
+                </mat-card>
+
+            </div>
         </div>
     </mat-card>
     <mat-card class="Cert_section1">
         <span class="Cert_title">Billings</span>
         <div class="inner_content" fxLayout="row" fxLayoutGap="20px">
-            <mat-card style="width:80px" class="mat-elevation-z" >
-                <div style="height:100%;" >
-                  
-                <div >
-                   
-                 <img src="assets/Group 8233.svg" (click)="fileInput3.click()" width="35px" height="35px" style="margin: 20px;" >
-                 <input hidden type="file" #fileInput3 id="file" (change)="handleFileInput_bill($event)"/>
-             
+            <mat-card style="width:80px" class="mat-elevation-z">
+                <div style="height:100%;">
+                    <div>
+                        <img src="assets/Group 8233.svg" (click)="fileInput3.click()" width="35px" height="35px"
+                            class="addimage-file">
+                        <input hidden type="file" #fileInput3 id="file" (change)="handleFileInput_bill($event)" />
+                    </div>
                 </div>
-               
-               </div>
-           </mat-card>
-           <div  fxLayout="row" class="card_div"  fxLayoutGap="20px"  >
-           <mat-card fxLayout="column" style="width:130px"  *ngFor="let file of fileToUpload_bill;let i=index" class="Card_class">
-            <div style="height: 100%;width:130px">
-                <div  class="card_Img_div">
-                    <img src="assets/inv.jfif" style="width: 76px;height:70px;">
-               </div>
-                <div style="padding: 8px;height: 27%;">
-                <div style="height: 70%;">
-                    <mat-form-field class="certName_text" *ngIf="editClicked_bill>-1 && i==editClicked_bill" >
-                        <input matInput class="mat_form" (keyup.enter)="input_changed()" [(ngModel)]="file.Name"  value="{{file.Name}}">
-                    </mat-form-field>
-                    <p *ngIf="i!=editClicked_bill" class="certName_text">{{file.Name}}</p>
-                </div>
-                <div style="height: 30%;margin-top:5px" fxLayout="row" fxLayoutAlign="space-between">
-                    <p class="year_font">2020</p>
-                   
-                        <span [matMenuTriggerFor]="menu"  style="text-align: end;color: #797777;font-size: 18px;"  class="material-icons">
-                            more_vert
-                            </span>
-                      
-                      <mat-menu #menu="matMenu">
-                        <button (click)="RemoveItem_bill(i)" mat-menu-item>
-                        <span class="font">Remove</span>
-                        </button>
-                        <button mat-menu-item  (click)="edit_bill(i)">
-                        <span class="font">Edit</span>
-                        </button>
-                      </mat-menu>
-                </div>
-                </div>
-            
-            </div>
             </mat-card>
+
+            <div fxLayout="row" class="card_div" fxLayoutGap="20px">
+                <mat-card fxLayout="column" *ngFor="let file of fileToUpload_bill;let i=index"
+                    class="Card_class">
+                    <div class="card-nestedclass">
+                        <div class="card_Img_div">
+                            <img src="assets/inv.jfif" style="width: 76px;height:70px;">
+                        </div>
+                        <div class="second-div-edit">
+                            <div class="form-field-div">
+                                <mat-form-field class="certName_text"
+                                    *ngIf="editClicked_bill>-1 && i==editClicked_bill">
+                                    <input matInput class="mat_form" (keyup.enter)="input_changed()"
+                                        [(ngModel)]="file.Name" value="{{file.Name}}">
+                                </mat-form-field>
+                                <span *ngIf="i!=editClicked_bill" class="certName_text">{{file.Name}}</span>
+                            </div>
+                            <div class="top-menu-div" fxLayout="row" fxLayoutAlign="space-between">
+                                <span class="year_font">2020</span>
+                                <span [matMenuTriggerFor]="menu" class="material-icons">
+                                    more_vert
+                                </span>
+                                <mat-menu #menu="matMenu" class="menu-items-tag">
+                                    <button (click)="RemoveItem_bill(i)" mat-menu-item class="menu-item-css">
+                                        <span class="font">Remove</span>
+                                    </button>
+                                    <button mat-menu-item (click)="edit_bill(i)" class="menu-item-css">
+                                        <span class="font">Edit</span>
+                                    </button>
+                                </mat-menu>
+                            </div>
+                        </div>
+
+                    </div>
+                </mat-card>
+            </div>
            
-        </div>
         </div>
     </mat-card>
 </div>
-
