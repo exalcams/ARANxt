@@ -101,6 +101,7 @@ import { LeasemanagementVacatedComponent } from './lease-management/leasemanagem
 import { LoginslideComponent } from './loginslide/loginslide.component';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { HomescreenComponent } from './homescreen/homescreen.component';
+import { SplashScreenComponent } from './splash-screen/splash-screen.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -154,7 +155,8 @@ import { HomescreenComponent } from './homescreen/homescreen.component';
     CloseDialogComponent,
     LeasemanagementVacatedComponent,
     LoginslideComponent,
-    HomescreenComponent
+    HomescreenComponent,
+    SplashScreenComponent
   ],
   imports: [
     MatGridListModule,

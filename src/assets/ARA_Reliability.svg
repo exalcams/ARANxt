@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="722.301" height="233.646" viewBox="0 0 722.301 233.646">
+  <g id="Group_8602" data-name="Group 8602" transform="translate(-598.85 -428.354)">
+    <g id="Group_8200" data-name="Group 8200" transform="translate(548.85 394.172)">
+      <text id="R" transform="translate(465.3 207.182)" fill="#1f009e" font-size="180" font-family="Geometric415BT-BlackA, Geometr415 Blk BT" font-weight="800"><tspan x="-114.697" y="0">R</tspan></text>
+    </g>
+    <text id="ANxt" transform="translate(1032.15 600.646)" fill="#1f009e" font-size="128" font-family="Geometric415BT-BlackA, Geometr415 Blk BT" font-weight="800"><tspan x="0" y="0">A</tspan><tspan y="0" fill="#49a94d">Nxt</tspan></text>
+    <text id="A" transform="translate(810.149 600.646)" fill="#1f009e" font-size="128" font-family="Geometric415BT-BlackA, Geometr415 Blk BT" font-weight="800"><tspan x="0" y="0">A</tspan></text>
+    <g id="Group_8598" data-name="Group 8598" transform="translate(598.85 428.354)">
+      <g id="Group_32" data-name="Group 32" transform="translate(0 0)">
+        <rect id="Rectangle_6038" data-name="Rectangle 6038" width="11.451" height="54.583" transform="translate(117.561 0)" fill="#4db151"/>
+        <rect id="Rectangle_6037" data-name="Rectangle 6037" width="11.802" height="99.24" transform="translate(129.013) rotate(90)" fill="#4db151"/>
+        <rect id="Rectangle_6036" data-name="Rectangle 6036" width="11.451" height="75.414" transform="translate(29.772 0)" fill="#4db151"/>
+        <rect id="Rectangle_6032" data-name="Rectangle 6032" width="11.559" height="126.691" transform="translate(0 71.896)" fill="#1f009e"/>
+        <rect id="Rectangle_6034" data-name="Rectangle 6034" width="11.559" height="145.694" transform="translate(59.72 71.896)" fill="#1f009e"/>
+        <rect id="Rectangle_6039" data-name="Rectangle 6039" width="11.559" height="178.634" transform="translate(90.543 44.658)" fill="#4db151"/>
+        <rect id="Rectangle_6033" data-name="Rectangle 6033" width="11.402" height="71.279" transform="translate(71.279 66.934) rotate(90)" fill="#1f009e"/>
+        <rect id="Rectangle_6041" data-name="Rectangle 6041" width="11.402" height="23.117" transform="translate(163.749 44.658) rotate(90)" fill="#1f009e"/>
+        <rect id="Rectangle_6042" data-name="Rectangle 6042" width="11.562" height="153.823" transform="translate(153.823 44.659)" fill="#1f009e"/>
+        <path id="Path_7051" data-name="Path 7051" d="M0,0H9.924V38.323H0Z" transform="translate(128.882 44.659) rotate(90)" fill="#4db151"/>
+      </g>
+      <rect id="Rectangle_8206" data-name="Rectangle 8206" width="12.785" height="12.785" transform="translate(115.072 83.104)" fill="#1f009e"/>
+      <rect id="Rectangle_8207" data-name="Rectangle 8207" width="12.785" height="12.785" transform="translate(25.57 108.674)" fill="#4db151"/>
+    </g>
+    <text id="Reliability_Achieved" data-name="Reliability Achieved" transform="translate(1167 655)" fill="#acacac" font-size="32" font-family="HelveticaNeue, Helvetica Neue"><tspan x="-138.96" y="0">Reliability Achieved</tspan></text>
+  </g>
+</svg>
