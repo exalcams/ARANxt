@@ -3,11 +3,11 @@
         <div fxLayout="column" style="padding: 10px 0px 0px 0px;">
             <div fxLayout="row" fxLayoutGap="8px">
 
-                <div fxFlex="86" style=" font-size: 14px;font-weight: bold;text-align: right;">
+                <div fxFlex="86" class="asset-details-sidenav" (click)="drawer.toggle()">
                     <p>Asset Details</p>
                 </div>
 
-                <div fxFlex="12" (click)="drawer.toggle()">
+                <div fxFlex="12" >
                     <div fxFlex="69">
                         <img src="./assets/iconfinder_city_3_3078506 selected.png">
                     </div>
@@ -17,7 +17,7 @@
                 </div>
 
             </div>
-            <div fxLayout="column" fxLayoutGap="15px" style="padding: 23px 12px 0px 12px;overflow-y: scroll;  ">
+            <div fxLayout="column" fxLayoutGap="15px" style="padding: 23px 12px 0px 12px;overflow-y: scroll;">
                 <div fxLayout="row" fxLayoutAlign="space-evenly center">
                     <div class="electricboard_img ">
                         <img src="./assets/Group 8489.png">
@@ -94,156 +94,91 @@
     </mat-sidenav>
     <mat-sidenav-content>
 
-        <div style="width:100%;height:90%;padding-top:15px">
-
-            <div style="width:97%;height:90%;padding-top:15px">
-
-                <!-- <nav mat-tab-nav-bar>
-            <div style="height: 50px;margin-left: 15px;width:97%;overflow-y: scroll;display: -webkit-inline-box;">
-
-                <div class="Toolbar_button Toolbar_button1" routerLink="/Electrical">
-                    <p style="margin-top: 3px;">Electrical distribution</p>
-                </div>
-                <div class="Toolbar_button1 Toolbar_button">
-                    <p style="margin-top: 3px;">Energy Consumption</p>
-                </div>
-                <div class="Toolbar_button1 Toolbar_button" routerLink="/hvac">
-                    <p style="margin-top: 3px;">HVAC</p>
-                </div>
-                <div class="Toolbar_button1 Toolbar_button" routerLink="/water">
-                    <p style="margin-top: 3px;">Water Consumption</p>
-                </div>
-                <div class="Toolbar_button1 Toolbar_button">
-                    <p style="margin-top: 3px;">Power Resource</p>
-                </div>
-                <div class="Toolbar_button1 Toolbar_button">
-                    <p style="margin-top: 3px;">Parking Access Control</p>
-                </div>
-                <div class="Toolbar_button1 Toolbar_button">
-                    <p style="margin-top: 3px;">CCTV</p>
-                </div>
-                <div class="Toolbar_button1 Toolbar_button" routerLink="/fire">
-                    <p style="margin-top: 3px;">Fire Alarm</p>
-                </div>
-                <div class="Toolbar_button1 Toolbar_button" routerLink="/others">
-                    <p style="margin-top: 3px;">Others</p>
-                </div>
-    
-    
-            </div>
-          </nav> -->
-
-                <div fxLayout="row" style="width: 100%;margin-left: 15px;height: 70vh;overflow-y: auto;"
-                    fxLayoutGap="20px">
-
-                    <!--Select Area-->
-
-                    <div style="text-align: center; " fxFlex="25" fxLayout="column">
-                        <div style="height: 5vh;">
-                            <div fxLayout="row" fxLayout="space-between center" style="margin: 10px;">
+        <div class="ed-first">
+            <div class="ed-second">
+                <div fxLayout="row" fxLayoutGap="20px" class="ed-third">
+                    <div style="height: 100%;text-align: center; " fxFlex="25" fxLayout="column">
+                        <div style="height: 50px;">
+                            <div fxLayout="row" fxLayoutAlign="start center" style="padding-top: 6px;"
+                                fxLayoutGap="10px">
                                 <div fxFlex="20">
-                                    <p class="txt_class">Status</p>
+                                    <span class="txt_class-status">Status</span>
                                 </div>
-                                <div fxLayout="row" fxFlex="80" fxLayoutGap="10px">
-                                    <!-- <div fxLayout="row"   fxLayout="space-between center"> -->
-
-                                    <p class="txt_class" fxFlexOffset="2" style="color: #acacac;">Active</p>
-                                    <p class="dot" style="background-color: #4db151;"></p>
-                                    <!-- <div fxLayout="row"   fxLayout="space-between center"> -->
-
-                                    <p class="txt_class" style="color: #acacac;">In Active</p>
-                                    <p class="dot" style="background-color: red;"></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="background-color: #f9f8fe;padding: 10px;text-align: left;height: 63vh;">
-                            <p class="txt_class">Select Area flow chart</p>
-                            <p class="divider"></p>
-                            <div style="overflow: auto;height: 40vh;">
-                                <div fxLayout="column" *ngFor="let area of SelectedArea;let i = index"
-                                    style="margin: 10px;cursor: pointer;" (click)="SelectedSpace(area)">
-                                    <div style="background-color: #eceff1;padding: 10px;height: 24px;">
-                                        <div fxLayout="row" fxLayout="space-between center">
-
-                                            <div fxLayout="row" fxFlex="80">
-                                                <img src="../../assets/Images/thunder.svg"
-                                                    style="width: 15px;height: 15px;">
-
-                                                <p class="txt_class" style="margin-left:10px">{{area}}</p>
-                                            </div>
-                                            <div fxLayout="row" fxFlex="20">
-                                                <p class="dot_list"></p>
-                                            </div>
-                                        </div>
+                                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="80" fxLayoutGap="5px">
+                                    <div fxLayout="row" fxLayoutAlign="start center">
+                                        <span class="txt_class-high">Active</span>
+                                        <span class="dot-normal"></span>
+                                    </div>
+                                    <div fxLayout="row" fxLayoutAlign="start center">
+                                        <span class="txt_class-high">In-Active</span>
+                                        <span class="dot-high"></span>
                                     </div>
 
                                 </div>
                             </div>
-                            <div fxLayoutAlign="center center">
-                                <img src="../../assets/Images/parking_vector.png" width="180px" height="100px">
+                        </div>
+                        <div class="selected-area" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="10px">
+                            <span class="txt_class-selected-area">Selected Area flow chart</span>
+                            <mat-divider class="divider-class"></mat-divider>
+                            <div fxLayout="column" *ngFor="let area of SelectedArea;let i = index"
+                                (click)="SelectedSpace(area)" class="selected-area-flow">
+                                <div class="second-selected-flow">
+                                    <div fxLayout="row" fxLayout="space-between center">
+
+                                        <div fxLayout="row" fxFlex="80">
+                                            <img src="../../assets/Images/Electrocution.svg"
+                                                style="width: 15px;height: 15px;">
+
+                                            <span class="txt_class" style="margin-left:10px">{{area}}</span>
+                                        </div>
+                                        <div fxLayout="row" fxFlex="20">
+                                            <span class="dot_list1" *ngIf="i==0"></span>
+                                            <span class="dot_list"></span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <div style="padding-top: 10px;">
+                                <img src="../../assets/Images/Image 46.png" class="image46-css">
+                            </div>
+                            <!-- <app-root (messageEvent)="receiveMessage($event)"></app-root> -->
                         </div>
                     </div>
 
-                    <!--Select Zone-->
-
-                    <div fxFlex="20">
-                        <div
-                            style="background-color: #fbedf6;padding: 10px;text-align: left;height: 68vh;overflow: auto;">
-                            <div fxLayout="row">
-                                <p class="txt_class" style="color:#884770;margin-left: 5px;">Select Zone</p>
-                                <p style="width: 35%;"></p>
-                                <p class="txt_class" style="color:#c49bb6">Area</p>
+                    <div style="height: 100%;" fxFlex="24">
+                        <div class="selected-zone-div" fxLayout="column" fxLayoutAlign="start" fxLayoutGap="10px">
+                            <div fxLayout="row" fxLayoutAlign="space-between center">
+                                <span class="txt_class-zone">Select Zone</span>
+                                <span class="txt_class-area">Area</span>
                             </div>
-
-                            <p class="divider"></p>
+                            <mat-divider class="divider-class"></mat-divider>
                             <div fxLayout="column" *ngFor="let area of Area;let i = index" style="margin: 10px;">
-                                <div style="background-color: #fdf3f9b3;padding: 10px;height: 24px;"
+                                <div style="background-color: #fdf3f9b3;padding: 10px;height: 24px;cursor: pointer;"
                                     (click)="SelectedSubSpace(area.space)">
                                     <div fxLayout="row" fxLayout="space-between center">
 
                                         <div fxLayout="row" fxFlex="80">
-                                            <img src="../../assets/Images/thunder.svg"
+                                            <img src="../../assets/Images/Electrocution.svg"
                                                 style="width: 15px;height: 15px;">
 
-                                            <p class="txt_class" style="margin-left:10px">{{area.space}}</p>
+                                            <span class="txt_class" style="margin-left:10px">{{area.space}}</span>
                                         </div>
                                         <div fxLayout="row" fxFlex="20">
-                                            <!-- <p class="dot_list1" *ngIf="i==0"></p> -->
-                                            <p class="dot_list"></p>
+                                            <span class="dot_list1" *ngIf="i==0"></span>
+                                            <span class="dot_list"></span>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
 
-                    <!--Select Zone-->
+                    <mat-divider [vertical]="true" class="divider-overall"></mat-divider>
 
-                    <div fxFlex="5">
-                        <p
-                            style="border-right: 2px solid #f9f9f9; height: 500px; position: relative; top: 35px; left: -15px;">
-                        </p>
-                    </div>
-
-                    <div fxFlex="50" style="height: 68vh; overflow: auto;">
+                    <div fxFlex="44" style="height: 100%;" fxLayout="column">
                         <div fxLayout="column" fxLayoutGap="20px">
 
-                            <!-- <div fxLayout="row" fxLayoutAlign="end end" style="line-height: 0;cursor: pointer;">
 
-                        <mat-icon>expand_more</mat-icon>
-
-
-                        <p>
-                            <img src="../../assets/Images/iconfinder_city_3_3078506@3x.png" matBadge="1" width="15px"
-                                height="15px" style="margin-bottom: -5px;">
-                            <span matBadge="1" matBadgeOverlap="true"></span>
-                        </p>
-                        <p class="txt_class" style="position: relative; left: 5px;">Assert Details</p>
-
-                    </div> -->
                             <div fxLayout="row" fxLayoutAlign="end end" style="line-height: 0;cursor: pointer;"
                                 fxLayoutGap="10px" (click)="drawer.toggle()">
                                 <mat-icon>keyboard_arrow_left</mat-icon>
@@ -255,7 +190,7 @@
                             </div>
 
                             <div fxLayout="row" fxLayoutAlign="center center">
-                                <p style="font-weight: bold;">Parking Zone Overview</p>
+                                <p class="parking-zone">Parking Zone Overview</p>
                             </div>
 
                             <div fxLayout="row">
@@ -266,19 +201,19 @@
                                 <div fxlayout="column" fxFlex="50">
                                     <div fxLayout="row" fxLayoutGap="15px">
                                         <div fxLayout="column" fxLayoutGap="15px">
-                                            <p style="float: left;font-weight: bold;font-size: 12px;">Total Vehicles</p>
-                                            <p style="float: left;font-weight: bold;font-size: 12px;">Available Slot</p>
-                                            <p style="float: left;font-weight: bold;font-size: 12px;">Capacity</p>
-                                            <p style="float: left;font-weight: bold;font-size: 12px;">Total Booth</p>
+                                            <p class="totalvehicle">Total Vehicles</p>
+                                            <p class="totalvehicle">Available Slot</p>
+                                            <p class="totalvehicle">Capacity</p>
+                                            <p class="totalvehicle">Total Booth</p>
                                         </div>
                                         <div fxLayout="column" fxLayoutGap="15px">
-                                            <p style="float: left;color: #acacac;font-weight: bold;font-size: 12px;">
+                                            <p class="totalvehicle-ans">
                                                 {{p.totalVehicles}}</p>
-                                            <p style="float: left;color: #acacac;font-weight: bold;font-size: 12px;">
+                                            <p class="totalvehicle-ans">
                                                 {{p.availableSeats}}</p>
-                                            <p style="float: left;color: #acacac;font-weight: bold;font-size: 12px;">
+                                            <p class="totalvehicle-ans">
                                                 {{p.capacity}}</p>
-                                            <p style="float: left;color: #acacac;font-weight: bold;font-size: 12px;">
+                                            <p class="totalvehicle-ans">
                                                 {{p.totalBooth}}</p>
                                         </div>
                                     </div>
@@ -286,24 +221,24 @@
 
                                 <div fxlayout="column" fxFlex="50">
                                     <div fxLaout="row" fxLayoutAlign="center center">
-                                        <p style="font-weight: bold; font-size: 24px;">Booth 1</p>
+                                        <p  class="booth1">Booth 1</p>
                                     </div>
                                     <div fxLayout="row" fxLayoutAlign="space-around center">
                                         <div fxLayout="column" fxLayoutAlign="center center">
-                                            <p style="font-weight: bold; font-size: 12px;">{{p.entryVehicles}}</p>
-                                            <p style="font-weight: bold; font-size: 12px;">Entry</p>
+                                            <p class="evtryanswer">{{p.entryVehicles}}</p>
+                                            <p class="evtryanswer">Entry</p>
                                         </div>
                                         <div fxLayout="column" fxLayoutAlign="center center">
-                                            <p style="font-weight: bold; font-size: 12px;">{{p.exitVehicles}}</p>
-                                            <p style="font-weight: bold; font-size: 12px;">Exit</p>
+                                            <p class="evtryanswer">{{p.exitVehicles}}</p>
+                                            <p class="evtryanswer">Exit</p>
                                         </div>
                                     </div>
                                     <div fxLaout="row" fxLayoutAlign="center center">
-                                        <p style="font-weight: bold; font-size: 24px;">Booth 2</p>
+                                        <p class="booth1">Booth 2</p>
                                     </div>
                                     <div fxLayout="column" fxLayoutAlign="center center">
-                                        <p style="font-weight: bold; font-size: 12px;">{{p.entryVehicles}}</p>
-                                        <p style="font-weight: bold; font-size: 12px;">Entry</p>
+                                        <p class="evtryanswer">{{p.entryVehicles}}</p>
+                                        <p class="evtryanswer">Entry</p>
                                     </div>
                                 </div>
                             </div>

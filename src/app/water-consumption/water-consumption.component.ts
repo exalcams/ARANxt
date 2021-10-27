@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApexNonAxisChartSeries,
+import {
+  ApexNonAxisChartSeries,
   ApexPlotOptions,
-  ApexChart, 
+  ApexChart,
   ApexStroke,
   ApexAxisChartSeries,
   ApexXAxis,
@@ -11,29 +12,30 @@ import { ApexNonAxisChartSeries,
   ApexMarkers,
   ApexYAxis,
   ApexLegend,
-  ApexFill} from 'ng-apexcharts';
+  ApexFill
+} from 'ng-apexcharts';
 import { SpaceService } from '../space/space.service';
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
   chart: ApexChart;
   labels: string[];
-  colors:string[];
-  stroke:ApexStroke;
+  colors: string[];
+  stroke: ApexStroke;
   plotOptions: ApexPlotOptions;
 };
 export type ChartOptions1 = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
   xaxis: ApexXAxis;
-  yaxis:ApexYAxis;
+  yaxis: ApexYAxis;
   dataLabels: ApexDataLabels;
   grid: ApexGrid;
   stroke: ApexStroke;
   title: ApexTitleSubtitle;
-  markers:ApexMarkers;
- // colors:string[], 
-  legend:ApexLegend,
- 
+  markers: ApexMarkers;
+  // colors:string[], 
+  legend: ApexLegend,
+
 
 };
 @Component({
@@ -44,57 +46,58 @@ export type ChartOptions1 = {
 export class WaterConsumptionComponent implements OnInit {
   public chartOptions: ChartOptions;
   public chartOptions1: ChartOptions1;
+  assert: boolean = true;
   constructor(private service: SpaceService) {
     this.chartOptions1 = {
-     
       series: [
         // {
         //   name: "Desktops",
         //   data: [10,80,35,55,8,80,34]
-         
-          
+
+
         // },
         {
           name: "Desktops",
-          data: [45,87,53,55,80,9]
-        
+          data: [45, 87, 53, 55, 80, 9]
+
         },
         // {
         //   name: "Desktops",
         //   data: [1,98,39,54,85,19,34]
-        
+
         // },
         // {
         //   name: "Desktops",
         //   data: [23,38,52,57,48,29,61]
-        
+
         // },
-        
+
       ],
-      
+
       chart: {
         toolbar: {
           show: false,
-        }, 
+        },
         height: 110,
         width: '100%',
-        offsetY:20,
+        offsetY: 20,
         type: "line",
         zoom: {
           enabled: false
         }
       },
-      
+
       dataLabels: {
         enabled: false
       },
       stroke: {
         curve: "smooth",
-        width: [2,0,0,0],
-        
+        width: [2, 0, 0, 0],
+
       },
       legend: {
-        show: false},
+        show: false
+      },
       title: {
         text: "Product Trends by Month",
         align: "left"
@@ -102,25 +105,25 @@ export class WaterConsumptionComponent implements OnInit {
       grid: {
         xaxis: {
           lines: {
-              show: true
+            show: true
           }
-      },   
-      yaxis: {
+        },
+        yaxis: {
           lines: {
-              show: false
+            show: false
           }
-      },
+        },
         row: {
           colors: [], // takes an array which will be repeated on columns 
           opacity: 0.5
         },
         column: {
-          colors: [ ], // takes an array which will be repeated on columns 
+          colors: [], // takes an array which will be repeated on columns 
           opacity: 0.5
-      }, 
+        },
       },
       markers: {
-        size: [5,4,4,4],
+        size: [5, 4, 4, 4],
         hover: {
           size: 5
         }
@@ -129,19 +132,19 @@ export class WaterConsumptionComponent implements OnInit {
         title: {
           text: "",
           style: {
-            color:'#acacac',
-            fontSize: '12px',
-            fontFamily: 'poppins',
+            color: '#acacac',
+            fontSize: '10px',
+            fontFamily: 'poppins-semi',
             fontWeight: 600,
-            
-        },
+
+          },
         },
         labels: {
-         
+
           style: {
-            colors:"#acacac",
+            colors: "#acacac",
             fontSize: '10px',
-            fontFamily: 'poppins',
+            fontFamily: 'poppins-semi',
             fontWeight: 600,
           }
         },
@@ -151,11 +154,11 @@ export class WaterConsumptionComponent implements OnInit {
       },
       xaxis: {
         labels: {
-         
+
           style: {
-            colors:"#acacac",
+            colors: "#acacac",
             fontSize: '10px',
-            fontFamily: 'poppins',
+            fontFamily: 'poppins-semi',
             fontWeight: 600,
           }
         },
@@ -170,21 +173,21 @@ export class WaterConsumptionComponent implements OnInit {
         ]
       }
     };
-    
-   }
-   Area:any[];
-   SelectedArea:any[];
-   child : string[]=[];
-   Water: any[] =[];
-   setInterval = setInterval;
+
+  }
+  Area: any[];
+  SelectedArea: any[];
+  child: string[] = [];
+  Water: any[] = [];
+  setInterval = setInterval;
   ngOnInit(): void {
-    setInterval(() => this.GetARASpace(),50);
+    setInterval(() => this.GetARASpace(), 50);
     this.GetWaterConsumption();
     // this.SelectedArea=["Sump ","Over Head"];
     // this.Area=["Area B1","Area B2","Area G1","Area F1","Area F3","Area F2","Area F4","Area F2","Area F4"]
 
   }
-  GetWaterConsumption(){
+  GetWaterConsumption() {
     this.service.GetWaterConsumption().subscribe(
       (data) => {
         if (data) {
@@ -194,25 +197,32 @@ export class WaterConsumptionComponent implements OnInit {
       }
     );
   }
-  GetARASpace() 
-  {
+  GetARASpace() {
     let n = localStorage.getItem('Spaces')
     this.child = JSON.parse(n)
-    this.SelectedArea =  this.child ;
+    this.SelectedArea = this.child;
 
   }
-  SelectedSpace(SelectedArea){
-    localStorage.setItem('Space',SelectedArea);
+  SelectedSpace(SelectedArea) {
+    localStorage.setItem('Space', SelectedArea);
     this.service.GetSpaceDetail(SelectedArea).subscribe(
       (data) => {
         this.Area = data;
-        console.log(data);   
+        console.log(data);
       }
     );
   }
-  SelectedSubSpace(SubSpace){
-    localStorage.setItem('SubSpace',SubSpace);
+  SelectedSubSpace(SubSpace) {
+    localStorage.setItem('SubSpace', SubSpace);
     console.log(SubSpace);
+  }
+  assertdetails(a: any) {
     
-  } 
+    if (a == 1) {
+      this.assert = false;
+    }
+    else {
+      this.assert = true;
+    }
+  }
 }

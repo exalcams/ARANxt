@@ -19,7 +19,7 @@ export class ParkingAccessComponent implements OnInit {
   SelectedArea: any[];
   child: string[] = [];
   setInterval = setInterval;
-  GetParkingAccessControl(){
+  GetParkingAccessControl() {
     this.service.GetParkingAccessControl().subscribe(
       (data) => {
         if (data) {

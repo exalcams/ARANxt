@@ -174,118 +174,163 @@
                     <mat-divider [vertical]="true" class="divider-overall"></mat-divider>
 
                     <div style="height: 100%;" fxFlex="40" fxLayout="column">
-                        <div fxLayout="column" fxLayoutGap="10px">
+                        <div fxLayout="column" fxLayoutGap="2px">
                             <div fxLayout="row" (click)="drawer.toggle()" fxLayoutAlign="end center"
                                 style="line-height: 0;cursor: pointer;" fxLayoutGap="5px">
                                 <mat-icon>keyboard_arrow_left</mat-icon>
+
                                 <img src="../../assets/Images/iconfinder_city_3_3078506@3x.png" width="15px"
                                     height="15px" style="margin-right: 5px;">
-                                <div class="txt_class asset">Assert Details</div>
-                            </div>
-                            <div fxLayout="row" class="label" fxLayoutAlign="center center">
-                                Energy Consumption Over View
-                            </div>
-                            <div fxLayout="row" class="label1" fxLayoutAlign="center center" fxLayoutGap="10px">
-                                <div class="label">
-                                    Last 6 Months
-                                </div>
-                                <img src="../../assets/Group 8232.svg" class="arrow-months">
-                            </div>
-                            <div style="height: 150px; background-color:#fff ;">
-                                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
-                                    <div>
-                                        <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
-                                            [xaxis]="chartOptions1.xaxis" [yaxis]="chartOptions1.yaxis"
-                                            [dataLabels]="chartOptions1.dataLabels" [grid]="chartOptions1.grid"
-                                            [markers]="chartOptions1.markers" [stroke]="chartOptions1.stroke"
-                                            [legend]="chartOptions1.legend"></apx-chart>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="Line-284"></div>
-                            <div fxLayoutAlign="center center" fxLayout="column" class="label"
-                                *ngFor="let ele of Electrical">
-                                <div fxLayout="row" fxLayoutAlign="center center">
-                                    <label class="energyusage-label"> Energy Usage </label>
-                                </div>
-                                <div fxLayout="row" fxLayoutAlign="center center">
-                                    <label class="energy-answer">{{ele.energyUsage}}</label>
-                                </div>
-                            </div>
-                            <div style="height: 190px;padding: 10px;" *ngFor="let ele of Electrical">
 
-                                <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="20px"
-                                    style="padding: 20px;">
-                                    <div fxLayout="row" fxFlex="100" class="clientview">
-                                        <div class="label23" fxFlex="50"> Type </div>
-                                        <div class="label23_1" fxFlex="50">
-                                            {{ele.type}}
-                                        </div>
-                                    </div>
-                                    <div fxLayout="row" fxFlex="100" class="clientview">
-                                        <div class="label23" fxFlex="50">
-                                            Stabilizer
-                                        </div>
-                                        <div class="label23_1" fxFlex="50">
-                                            {{ele.stabilizer}}
-                                        </div>
-                                    </div>
-                                    <div fxLayout="row" fxFlex="100" class="clientview">
-                                        <div class="label23" fxFlex="50">
-                                            Capacity
-                                        </div>
-                                        <div class="label23_1" fxFlex="50">
-                                            {{ele.capacity}}
-                                        </div>
-                                    </div>
-                                    <div fxLayout="row" fxFlex="100" class="clientview">
-                                        <div class="label23" fxFlex="50">
-                                            Voltage
-                                        </div>
-                                        <div class="label23_1" fxFlex="50">
-                                            {{ele.voltage}}
-                                        </div>
-                                    </div>
-                                    <div fxLayout="row" fxFlex="100" class="clientview">
-                                        <div class="label23" fxFlexOffset="80px" fxFlex="50">
-                                            Input
-                                        </div>
-                                        <div class="label23_1" fxFlex="50">
-                                            {{ele.inputVoltage}}
-                                        </div>
-                                    </div>
-                                    <div fxLayout="row" fxFlex="100" class="clientview">
-                                        <div class="label23" fxFlex="50" fxFlexOffset="80px">
-                                            Output
-                                        </div>
+                                <div class="txt_class">Assert Details</div>
+                            </div>
 
-                                        <div class="label23_1" fxFlex="50">
-                                            {{ele.outputVoltage}}
+                            <div fxLayout="row" fxLayoutAlign="end end" style="line-height: 0;cursor: pointer;"
+                                fxLayoutGap="10px" (click)="drawer.toggle()">
+                                <mat-icon>keyboard_arrow_down</mat-icon>
+                                <div>
+                                    <img src="../../assets/Images/iconfinder_city_3_3078506@3x.png" width="15px"
+                                        height="15px" style="margin-bottom: 4px;">
+                                </div>
+                                <div fxLayout="row" class="label paddingtotop" fxLayoutAlign="center center">
+                                    Energy Consumption Over View
+                                </div>
+                                <div fxLayout="row" class="label1" fxLayoutAlign="center center">
+                                    <div class="label">
+                                        Last 6 Months
+                                    </div>
+                                </div>
+                                <div class="consumption-graph">
+                                    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+                                        <div>
+                                            <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
+                                                [xaxis]="chartOptions1.xaxis" [yaxis]="chartOptions1.yaxis"
+                                                [dataLabels]="chartOptions1.dataLabels" [grid]="chartOptions1.grid"
+                                                [markers]="chartOptions1.markers" [stroke]="chartOptions1.stroke"
+                                                [legend]="chartOptions1.legend"></apx-chart>
                                         </div>
+                                    </div>
 
+                                </div>
+                                <div fxLayoutAlign="center center" fxLayout="column" class="label"
+                                    *ngFor="let ele of Electrical">
+                                    <div fxLayout="row" fxLayoutAlign="center center">
+                                        <label> Energy Usage </label>
                                     </div>
-                                    <div fxLayout="row" fxFlex="100" class="clientview">
-                                        <div class="label23" fxFlex="50">
-                                            Ampere
-                                        </div>
-                                        <div class="label23_1" fxFlex="50">
-                                            {{ele.ampere}}
-                                        </div>
+                                    <div fxLayout="row" fxLayoutAlign="center center">
+                                        <label style="margin-left: 10px;font-size: 18px;">{{ele.energyUsage}}</label>
                                     </div>
-                                    <div fxLayout="row" fxFlex="100" class="clientview">
-                                        <div class="label23" fxFlex="50">
-                                            Power
+                                </div>
+                                <div style="height: 190px;padding: 10px;padding-top: 0px;"
+                                    *ngFor="let ele of Electrical">
+
+                                    <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="16px"
+                                        style="padding: 20px;">
+                                        <div fxLayout="row" fxFlex="100" class="clientview">
+                                            <div class="label23" fxFlex="50"> Type </div>
+                                            <div class="label23_1" fxFlex="50">
+                                                {{ele.type}}
+                                            </div>
                                         </div>
-                                        <div class="label23_1" fxFlex="50">
-                                            {{ele.power}}
+                                        <div fxLayout="row" fxFlex="100" class="clientview">
+                                            <div class="label23" fxFlex="50">
+                                                Stabilizer
+                                            </div>
+                                            <div class="label23_1" fxFlex="50">
+                                                {{ele.stabilizer}}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div fxLayout="row" fxFlex="100" class="clientview">
-                                        <div class="label23" fxFlex="50">
-                                            Frequency
+                                        <div fxLayout="row" fxFlex="100" class="clientview">
+                                            <div class="label23" fxFlex="50">
+                                                Capacity
+                                            </div>
+                                            <div fxLayout="row" fxLayoutAlign="space-between center">
+                                                <div class="label23">
+                                                    Stabilizer
+                                                </div>
+                                                <div fxLayout="column">
+                                                    <div class="label23_1">
+                                                        {{ele.stabilizer}}
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div fxLayout="row" fxLayoutAlign="space-between center">
+                                                <div class="label23">
+                                                    Capacity
+                                                </div>
+                                                <div fxLayout="column">
+                                                    <div class="label23_1">
+                                                        {{ele.capacity}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+                                                <div class="label23">
+                                                    Voltage
+                                                </div>
+                                                <div fxLayout="column">
+                                                    <div class="label23_1">
+                                                        {{ele.voltage}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div fxLayout="row" fxLayoutAlign="space-between center">
+                                                <div class="label23" fxFlexOffset="55px">
+                                                    Input
+                                                </div>
+                                                <div fxLayout="column">
+                                                    <div class="label23_1">
+                                                        {{ele.inputVoltage}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div fxLayout="row" fxLayoutAlign="space-between center">
+                                                <div class="label23">
+                                                    Ampere
+                                                </div>
+                                                <div fxLayout="column">
+                                                    <div class="label23_1">
+                                                        {{ele.ampere}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div fxLayout="row" fxLayoutAlign="space-between center">
+                                                <div class="label23">
+                                                    Power
+                                                </div>
+                                                <div fxLayout="column">
+                                                    <div class="label23_1">
+                                                        {{ele.power}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div fxLayout="row" fxLayoutAlign="space-between center">
+                                                <div class="label23">
+                                                    Frequency
+                                                </div>
+                                                <div fxLayout="column">
+                                                    <div class="label23_1">
+                                                        {{ele.frequency}}
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
                                         </div>
-                                        <div class="label23_1" fxFlex="50">
-                                            {{ele.frequency}}
+                                        <div fxLayout="column" fxLayoutGap="20px" style="padding: 20px;">
+
+                                            <div fxLayout="row" fxLayoutAlign="space-between center"
+                                                fxFlexOffset="135px" fxLayoutGap="10px">
+                                                <div class="label23">
+                                                    Output
+                                                </div>
+                                                <div fxLayout="column">
+                                                    <div class="label23_1">
+                                                        {{ele.outputVoltage}}
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -293,9 +338,8 @@
                         </div>
                     </div>
                 </div>
+
             </div>
-
         </div>
-
     </mat-sidenav-content>
 </mat-sidenav-container>
