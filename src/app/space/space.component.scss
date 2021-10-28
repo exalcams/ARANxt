@@ -103,6 +103,16 @@
 //   padding: 17px 129.3px 16.3px 130px;
   border-radius: 4px;
   border: solid 2px #f9f8fe;
+  cursor: pointer;
+}
+.nodata
+{
+  font-size: 10px;
+    font-weight: 700;
+}
+.nodata_outer
+{
+    padding:27px;
 }
 .bg_cls{
     width: 100%;

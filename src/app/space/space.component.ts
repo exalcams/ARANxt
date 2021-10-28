@@ -1,4 +1,4 @@
-import { Component, ElementRef, Inject, NgZone, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, Inject, NgZone, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { FinishComponent } from '../finish/finish.component';
@@ -13,84 +13,12 @@ import { DateLinkComponent } from '../date-link/date-link.component';
 import { ContractLinkComponent } from '../contract-link/contract-link.component';
 import { LoginService } from '../login.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-interface Food {
-  value: string;
-  viewValue: string;
-}
-export interface PeriodicElement {
-  one: string;
-  two: string;
-  three: string;
-  four: string;
-  five: string;
-  six: string;
-  seven: string;
-  eight: string;
+import { NotificationSnackBarComponent } from '../notification/notification-snack-bar/notification-snack-bar.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarStatus } from '../notification/notification-snack-bar/notification-snackbar-status-enum';
+import { OthersComponent } from '../others/others.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
-}
-export interface ContractData {
-  one: string;
-  two: string;
-  three: string;
-  four: string;
-  five: string;
-  six: string;
-  seven: string;
-  // eight:string;
-
-}
-export interface Element {
-  name: string;
-  position: any;
-  weight: any;
-  fav: string;
-
-}
-// const ELEMENT_DATA1: Element[] = [
-//   { position: "Enter Partner ID", name: 'DD/MM/YYYY', weight: 'DD/MM/YYYY', fav: "", },
-//   { position: "Enter Partner ID", name: 'DD/MM/YYYY', weight: 'DD/MM/YYYY', fav: "", },
-//   { position: "Enter Partner ID", name: 'DD/MM/YYYY', weight: 'DD/MM/YYYY', fav: "", },
-//   { position: "Enter Partner ID", name: 'DD/MM/YYYY', weight: 'DD/MM/YYYY', fav: "", },
-//   { position: "Enter Partner ID", name: 'DD/MM/YYYY', weight: 'DD/MM/YYYY', fav: "", },
-
-// ];
-const ELEMENT_DATA2: Element[] = [
-  { position: "Enter Partner ID", name: 'DD/MM/YYYY', weight: 'DD/MM/YYYY', fav: "Enter Partner ID", },
-  { position: "Enter Partner ID", name: 'DD/MM/YYYY', weight: 'DD/MM/YYYY', fav: "Enter Partner ID", },
-  { position: "Enter Partner ID", name: 'DD/MM/YYYY', weight: 'DD/MM/YYYY', fav: "Enter Partner ID", },
-  { position: "Enter Partner ID", name: 'DD/MM/YYYY', weight: 'DD/MM/YYYY', fav: "Enter Partner ID", },
-  { position: "Enter Partner ID", name: 'DD/MM/YYYY', weight: 'DD/MM/YYYY', fav: "Enter Partner ID", },
-
-];
-const ELEMENT_DATA: PeriodicElement[] = [
-  { one: 'File Name ', two: 'File Size', three: 'File Ext', four: 'IP', five: 'User', six: 'Date', seven: 'Time', eight: 'Att ID' },
-  { one: 'Data Name ', two: 'File Size', three: 'File Ext', four: 'IP', five: 'User', six: 'Date', seven: 'Time', eight: 'Att ID' },
-  { one: 'File Name ', two: 'File Size', three: 'File Ext', four: 'IP', five: 'User', six: 'Date', seven: 'Time', eight: 'Att ID' },
-  { one: 'Key Name ', two: 'File Size', three: 'File Ext', four: 'IP', five: 'User', six: 'Date', seven: 'Time', eight: 'Att ID' },
-  { one: 'File Name ', two: 'File Size', three: 'File Ext', four: 'IP', five: 'User', six: 'Date', seven: 'Time', eight: 'Att ID' },
-  { one: 'File Name ', two: 'File Size', three: 'File Ext', four: 'IP', five: 'User', six: 'Date', seven: 'Time', eight: 'Att ID' },
-  { one: 'File Name ', two: 'File Size', three: 'File Ext', four: 'IP', five: 'User', six: 'Date', seven: 'Time', eight: 'Att ID' },
-  { one: 'File Name ', two: 'File Size', three: 'File Ext', four: 'IP', five: 'User', six: 'Date', seven: 'Time', eight: 'Att ID' },
-
-  { one: 'Key Name ', two: 'File Size', three: 'File Ext', four: 'IP', five: 'User', six: 'Date', seven: 'Time', eight: 'Att ID' },
-
-
-  { one: 'File Name ', two: 'File Size', three: 'File Ext', four: 'IP', five: 'User', six: 'Date', seven: 'Time', eight: 'Att ID' },
-  { one: 'Data Name ', two: 'File Size', three: 'File Ext', four: 'IP', five: 'User', six: 'Date', seven: 'Time', eight: 'Att ID' },
-];
-const ELEMENT_DATA3: ContractData[] = [
-  { one: '', two: '2:00 AM', three: 'DD/MM/YYYY', four: 'DD/MM/YYYY', five: 'Cover Value', six: 'Vendor', seven: 'Exclusions', },
-  { one: '', two: '2:00 AM', three: 'DD/MM/YYYY', four: 'DD/MM/YYYY', five: 'Cover Value', six: 'Vendor', seven: 'Exclusions', },
-  { one: '', two: '2:00 AM', three: 'DD/MM/YYYY', four: 'DD/MM/YYYY', five: 'Cover Value', six: 'Vendor', seven: 'Exclusions', },
-  { one: '', two: '2:00 AM', three: 'DD/MM/YYYY', four: 'DD/MM/YYYY', five: 'Cover Value', six: 'Vendor', seven: 'Exclusions', },
-  { one: '', two: '2:00 AM', three: 'DD/MM/YYYY', four: 'DD/MM/YYYY', five: 'Cover Value', six: 'Vendor', seven: 'Exclusions', },
-  { one: '', two: '2:00 AM', three: 'DD/MM/YYYY', four: 'DD/MM/YYYY', five: 'Cover Value', six: 'Vendor', seven: 'Exclusions', },
-  { one: '', two: '2:00 AM', three: 'DD/MM/YYYY', four: 'DD/MM/YYYY', five: 'Cover Value', six: 'Vendor', seven: 'Exclusions', },
-  { one: '', two: '2:00 AM', three: 'DD/MM/YYYY', four: 'DD/MM/YYYY', five: 'Cover Value', six: 'Vendor', seven: 'Exclusions', },
-  { one: '', two: '2:00 AM', three: 'DD/MM/YYYY', four: 'DD/MM/YYYY', five: 'Cover Value', six: 'Vendor', seven: 'Exclusions', },
-  { one: '', two: '2:00 AM', three: 'DD/MM/YYYY', four: 'DD/MM/YYYY', five: 'Cover Value', six: 'Vendor', seven: 'Exclusions', },
-
-];
 
 @Component({
   selector: 'app-space',
@@ -126,12 +54,12 @@ export class SpaceComponent implements OnInit {
   address1: string;
   private geoCoder;
   selectedFood1: string | undefined;
-  DocumentdisplayedColumns: string[] = ['fileName', 'fileSize', 'fileExt', 'user', 'date', 'time', 'attID', ];
+  notificationSnackBarComponent: NotificationSnackBarComponent;
+  DocumentdisplayedColumns: string[] = ['fileName', 'fileSize', 'fileExt', 'user', 'date', 'time', 'attID',];
   displayedColumns2: string[] = ['type', 'title', 'startDate', 'endDate', 'coverValue', 'vendor', 'exclusions'];
-  dataSource1 = new MatTableDataSource(ELEMENT_DATA);
-  dataSource2 = new MatTableDataSource(ELEMENT_DATA3);
-  dataSourceDate = new MatTableDataSource(ELEMENT_DATA2);
+
   displayedColumns1 = ['partnerType', 'partnerID', 'startDate', 'endDate'];
+  DatedisplayedColumns = ['StartDate', 'EndDate', 'Time', 'TimeStamp'];
   HeaderDetailsDataSource: MatTableDataSource<PartnerLink>;
   DocumentLinkDataSource: MatTableDataSource<DocumentLink>;
   DateLinkDataSource: MatTableDataSource<DateLink>;
@@ -161,6 +89,11 @@ export class SpaceComponent implements OnInit {
   SpaceForm: FormGroup;
   latitude1: any;
   longitude1: any;
+  PartnerLinkFormValidStatus: any = false;
+  DateLinkFormValidStatus: any = false;
+  ContrctFormValidStatus: any = false;
+  newbool: boolean;
+  listselectedbool: boolean;
 
   onFoodSelection1() {
     console.log(this.selectedFood1);
@@ -168,7 +101,7 @@ export class SpaceComponent implements OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource1.filter = filterValue.trim().toLowerCase();
+    // this.dataSource1.filter = filterValue.trim().toLowerCase();
   }
   countries = [
     { id: 1, name: "Renew" },
@@ -186,11 +119,11 @@ export class SpaceComponent implements OnInit {
 
   ];
   // ObjectType = ["A", "B", "C"];
-    ObjectType = [
-      {name:'A'},
-      {name:'B'},
-      {name:'C'}
-    ];
+  ObjectType = [
+    { name: 'A' },
+    { name: 'B' },
+    { name: 'C' }
+  ];
   Catagories = [
     { name: "Electrical Distribution" },
     { name: "Energy Consumption" },
@@ -207,10 +140,11 @@ export class SpaceComponent implements OnInit {
   public searchElementRef: ElementRef;
   // @Inject(MAT_DIALOG_DATA) public dialogData: any,
   // public dialogRef: MatDialogRef<CloseDialogComponent>,
-  constructor(public dialog: MatDialog, private mapsAPILoader: MapsAPILoader, public form: FormBuilder,
-    private service: SpaceService, @Inject(MAT_DIALOG_DATA) public dialogData: any,
+  constructor(public dialog: MatDialog, private mapsAPILoader: MapsAPILoader, public form: FormBuilder, private snackBar: MatSnackBar,
+    private service: SpaceService,    private spinner: NgxSpinnerService,@Inject(MAT_DIALOG_DATA) public dialogData: any, private cdr: ChangeDetectorRef,
     private ngZone: NgZone, public dialogRef: MatDialogRef<SpaceComponent>, public nav: LoginService) { this.nav.islogin(true); }
   private setCurrentLocation() {
+    this.notificationSnackBarComponent = new NotificationSnackBarComponent(this.snackBar);
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
@@ -245,7 +179,8 @@ export class SpaceComponent implements OnInit {
       this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder;
     });
-    this.parentID = localStorage.getItem('ParentID')
+    this.parentID = localStorage.getItem('ParentID');
+    this.listselectedbool = false;
     this.GetDocumentDetails();
     // this.GetParterLink();
     // this.GetDateLink();
@@ -256,26 +191,25 @@ export class SpaceComponent implements OnInit {
     this.InitializeLocationform();
     this.InitializeAddressform();
     this.InitializeSpaceform();
- 
+
   }
   GetARASite() {
     this.service.GetARASite().subscribe(
       (res) => {
         this.ARASite = res as SiteLink[];
-        console.log("ARASite",this.ARASite);
-        
+        console.log("ARASite", this.ARASite);
+
       }
     );
   }
-  GetSpaceBySite()
-  {
-    this.service.GetSpaceBySite(this.dialogData.id).subscribe(
+  GetSpaceBySite() {
+    this.service.GetSpaceBySite(this.dialogData.selectedid).subscribe(
       (res) => {
-        console.log("res",res);
-        
+        console.log("res", res);
+
         this.SpaceList = res as ARA_SpaceAll[];
-        console.log("SpaceList",this.SpaceList);
-       
+        console.log("SpaceList", this.SpaceList);
+
       }
     );
   }
@@ -296,7 +230,7 @@ export class SpaceComponent implements OnInit {
   //       if (data) {
   //         this.PartnerLink = data;
   //         console.log("partnerlink",this.PartnerLink);
-          
+
   //         this.HeaderDetailsDataSource = new MatTableDataSource(this.PartnerLink);
 
 
@@ -304,17 +238,17 @@ export class SpaceComponent implements OnInit {
   //     }
   //   );
   // }
-  GetDateLink() {
-    this.service.GetDateLink().subscribe(
-      (data) => {
-        if (data) {
-          this.DateLink = data;
-          this.DateLinkDataSource = new MatTableDataSource(this.DateLink);
-          //this.isProgressBarVisibile = false;
-        }
-      }
-    );
-  }
+  // GetDateLink() {
+  //   this.service.GetDateLink().subscribe(
+  //     (data) => {
+  //       if (data) {
+  //         this.DateLink = data;
+  //         this.DateLinkDataSource = new MatTableDataSource(this.DateLink);
+  //         //this.isProgressBarVisibile = false;
+  //       }
+  //     }
+  //   );
+  // }
   // GetContractLink() {
   //   this.service.GetContractLink().subscribe(
   //     (data) => {
@@ -330,7 +264,7 @@ export class SpaceComponent implements OnInit {
     this.GeneralForm = this.form.group({
       spaceName: ['', [Validators.required]],
       objectType: ['', [Validators.required]],
-      siteName: ['', [Validators.required]],
+      // siteName: ['', [Validators.required]],
       partnerID: ['', [Validators.required]],
       category: ['', [Validators.required]],
       costCenter: ['', [Validators.required]],
@@ -377,10 +311,49 @@ export class SpaceComponent implements OnInit {
   //       }
   //     }
   // }
-  listselected(SpaceSelected)
-  {
-    console.log("SpaceSelected",SpaceSelected);
-    this.general();
+  NewSpace() {
+    this.listselectedbool = false;
+    this.generaltab();
+    this.GeneralForm.enable();
+    this.LocationForm.enable();
+    this.SpaceForm.enable();
+    this.AddressForm.enable();
+    this.reset();
+  }
+  reset() {
+    this.GeneralForm.reset();
+    this.LocationForm.reset();
+    this.SpaceForm.reset();
+    this.AddressForm.reset();
+    this.DocLink = [];
+    this.DocumentLinkDataSource = new MatTableDataSource(this.DocLink);
+    this.PartnerLink = [];
+    this.DateLinkFormValidStatus=false;
+    this.PartnerLinkFormValidStatus=false;
+    this.ContrctFormValidStatus=false;
+    this.HeaderDetailsDataSource = new MatTableDataSource(this.PartnerLink);
+    this.ContractLink = [];
+    this.ContractLinkDataSource = new MatTableDataSource(this.ContractLink);
+    this.DateLink = [];
+    this.DateLinkDataSource = new MatTableDataSource(this.DateLink);
+    // this.HeaderDetailsDataSource = null;
+    // this.DocumentLinkDataSource = null;
+    // this.ContractLinkDataSource = null;
+    // this.DateLinkDataSource = null;
+    //  HeaderDetailsDataSource: MatTableDataSource<PartnerLink>;
+    //  DocumentLinkDataSource: MatTableDataSource<DocumentLink>;
+    //  DateLinkDataSource: MatTableDataSource<DateLink>;
+    //  ContractLinkDataSource: MatTableDataSource<ContractLink>;
+
+  }
+  listselected(SpaceSelected) {
+    this.spinner.show();
+    this.reset()
+    this.generaltab();
+    this.listselectedbool = true;
+    
+    console.log("SpaceSelected", SpaceSelected);
+  
     this.GeneralForm.disable();
     this.GeneralForm.patchValue({
       spaceName: SpaceSelected.arA_space.title,
@@ -398,9 +371,9 @@ export class SpaceComponent implements OnInit {
       FromLongitude: SpaceSelected.locLink.fromLong,
       ToLongitude: SpaceSelected.locLink.toLong,
     });
-    
+
     this.SpaceForm.disable();
-   
+
     this.SpaceForm.patchValue({
       TotalSpace: SpaceSelected.areaLink.totalArea,
       RentableSpace: SpaceSelected.areaLink.rentableArea,
@@ -419,15 +392,39 @@ export class SpaceComponent implements OnInit {
       Pincode: SpaceSelected.addrLink.pinCode,
       State: SpaceSelected.addrLink.state,
     });
-    this.DocLink.push(SpaceSelected.docLink)
+    this.DocLink = [];
+    this.DocLink.push(SpaceSelected.docLink);
+    this.DocumentLinkDataSource = null;
     this.DocumentLinkDataSource = new MatTableDataSource(this.DocLink);
-    console.log(this.DocumentLinkDataSource, 'DocLink');
+    this.HeaderDetailsDataSource = null;
+    this.PartnerLink = [];
     this.PartnerLink.push(SpaceSelected.partnerLink);
     this.HeaderDetailsDataSource = new MatTableDataSource(this.PartnerLink);
-    this.ContractLink.push(SpaceSelected.contractLink) ;
+    this.ContractLinkDataSource = null;
+    this.ContractLink = [];
+    this.ContractLink.push(SpaceSelected.contractLink);
     this.ContractLinkDataSource = new MatTableDataSource(this.ContractLink);
+    this.DateLinkDataSource = null;
+    this.DateLink = [];
+    this.DateLink.push(SpaceSelected.dateLink);
+    this.DateLinkDataSource = new MatTableDataSource(this.DateLink);
+    this.spinner.hide();
   }
-  general() {
+  general()
+  {
+    if ((this.GeneralForm.invalid)  && (this.LocationForm.invalid && this.DocumentLinkDataSource == null && !this.PartnerLinkFormValidStatus && this.SpaceForm.invalid && this.AddressForm.invalid && !this.DateLinkFormValidStatus && !this.ContrctFormValidStatus)) {
+      this.generaltab();
+    }
+
+    else if (this.selectedIndex) {
+      var a = this.Others(this.selectedIndex);
+      if (a) {
+        this.generaltab();
+      }
+    }
+  }
+  generaltab() {
+  
     this.General = true;
     this.Location = false;
     this.Document = false;
@@ -440,8 +437,102 @@ export class SpaceComponent implements OnInit {
     this.previous = false;
     this.next = true;
     this.finish = false;
+    // }
+
   }
   location() {
+    if ((this.GeneralForm.valid) && (this.General) && (this.LocationForm.invalid && this.DocumentLinkDataSource == null && !this.PartnerLinkFormValidStatus && this.SpaceForm.invalid && this.AddressForm.invalid && !this.DateLinkFormValidStatus && !this.ContrctFormValidStatus)) {
+      this.locationtab();
+    }
+    else if (this.LocationForm.valid && this.DocumentLinkDataSource != null && this.GeneralForm.valid && this.PartnerLinkFormValidStatus && this.SpaceForm.valid && this.AddressForm.valid && this.DateLinkFormValidStatus && this.ContrctFormValidStatus) {
+
+      this.locationtab();
+    }
+    else if (this.listselectedbool) {
+
+      this.locationtab();
+    }
+    else if (this.GeneralForm.invalid && this.General ) {
+      this.ShowValidationErrors(this.GeneralForm)
+    }
+    else if (this.LocationForm.invalid && this.Location ) {
+      // this.ShowValidationErrors(this.GeneralForm)
+    }
+    else if (this.selectedIndex) {
+      var a = this.Others(this.selectedIndex);
+      if (a) {
+        this.locationtab();
+      }
+    }
+  }
+  Others(eve) {
+    if (eve == "General") {
+      if (this.GeneralForm.valid) {
+        return true;
+      } else {
+        this.ShowValidationErrors(this.GeneralForm);
+        return false;
+      }
+    }
+    if (eve == "Document") {
+      if (this.DocumentLinkDataSource != null) {
+        return true;
+      } else {
+      this.notificationSnackBarComponent.openSnackBar("Please upload a document", SnackBarStatus.warning);
+        return false;
+      }
+    }
+    if (eve == "Partner") {
+      if (this.PartnerLinkFormValidStatus) {
+        return true;
+      } else {
+      this.notificationSnackBarComponent.openSnackBar("Please add new partner", SnackBarStatus.warning);
+
+        return false;
+      }
+    }
+    if (eve == "Location") {
+      if (this.LocationForm.valid) {
+        return true;
+      } else {
+        this.ShowValidationErrors(this.LocationForm);
+        return false;
+      }
+    }
+    if (eve == "Space") {
+      if (this.SpaceForm.valid ) {
+        return true;
+      } else {
+        this.ShowValidationErrors(this.SpaceForm);
+        return false;
+      }
+    }
+    if (eve == "Address") {
+      if (this.AddressForm.valid ) {
+        return true;
+      } else {
+        this.ShowValidationErrors(this.AddressForm);
+        return false;
+      }
+    }
+    if (eve == "Date") {
+      if (this.DateLinkFormValidStatus ) {
+        return true;
+      } else {
+        this.notificationSnackBarComponent.openSnackBar("Please add new DateLink", SnackBarStatus.warning);
+        return false;
+      }
+    }
+    if (eve == "Contract") {
+      if (this.ContrctFormValidStatus ) {
+        return true;
+      } else {
+        this.notificationSnackBarComponent.openSnackBar("Please add new ContractLink", SnackBarStatus.warning);
+        return false;
+      }
+    }
+  }
+  locationtab() {
     this.General = false;
     this.Location = true;
     this.Document = false;
@@ -456,6 +547,34 @@ export class SpaceComponent implements OnInit {
     this.finish = false;
   }
   document() {
+
+    if ((this.LocationForm.valid) && (this.Location) && (this.GeneralForm.valid && this.DocumentLinkDataSource == null && !this.PartnerLinkFormValidStatus && this.SpaceForm.invalid && this.AddressForm.invalid && !this.DateLinkFormValidStatus && !this.ContrctFormValidStatus)) {
+      this.documenttab();
+    }
+    else if (this.LocationForm.valid && this.DocumentLinkDataSource != null && this.GeneralForm.valid && this.PartnerLinkFormValidStatus && this.SpaceForm.valid && this.AddressForm.valid && this.DateLinkFormValidStatus && this.ContrctFormValidStatus) {
+
+      this.documenttab();
+    }
+    else if (this.listselectedbool) {
+
+      this.documenttab();
+    }
+    else if (this.LocationForm.invalid && this.Location) {
+      this.ShowValidationErrors(this.LocationForm)
+    }
+    
+    else if (this.DocumentLinkDataSource == null && this.Document ) {
+      // this.ShowValidationErrors(this.GeneralForm)
+    }
+    else if (this.selectedIndex) {
+      var a = this.Others(this.selectedIndex);
+      if (a) {
+        this.documenttab();
+      }
+    
+    }
+  }
+  documenttab() {
     this.General = false;
     this.Location = false;
     this.Document = true;
@@ -468,80 +587,243 @@ export class SpaceComponent implements OnInit {
     this.previous = true;
     this.next = true;
     this.finish = false;
-    // this.GetParterLink();
   }
-  partner() {
-    this.General = false;
-    this.Location = false;
-    this.Document = false;
-    this.Partner = true;
-    this.Space = false;
-    this.Address = false;
-    this.Date = false;
-    this.Contract = false;
-    this.selectedIndex = "Partner";
-    this.previous = true;
-    this.next = true;
-    this.finish = false;
-    // this.GetParterLink();
+  partner()
+  {
+    if ((this.DocumentLinkDataSource != null) && (this.Document) && (this.GeneralForm.valid && this.LocationForm.valid  && !this.PartnerLinkFormValidStatus && this.SpaceForm.invalid && this.AddressForm.invalid && !this.DateLinkFormValidStatus && !this.ContrctFormValidStatus)) {
+      this.partnertab();
+    }
+    else if (this.LocationForm.valid && this.DocumentLinkDataSource != null && this.GeneralForm.valid && this.PartnerLinkFormValidStatus && this.SpaceForm.valid && this.AddressForm.valid && this.DateLinkFormValidStatus && this.ContrctFormValidStatus) {
+
+      this.partnertab();
+    }
+    else if (this.listselectedbool) {
+
+      this.partnertab();
+    }
+    else if (this.DocumentLinkDataSource == null&& this.Document) {
+      this.notificationSnackBarComponent.openSnackBar("Please upload a document", SnackBarStatus.warning);
+    }
+    
+    else if (!this.PartnerLinkFormValidStatus && this.Partner ) {
+      // this.ShowValidationErrors(this.GeneralForm)
+    }
+    else if (this.selectedIndex) {
+      var a = this.Others(this.selectedIndex);
+      if (a) {
+        this.partnertab();
+      }
+    
+    }
   }
-  space() {
-    this.General = false;
-    this.Location = false;
-    this.Document = false;
-    this.Partner = false;
-    this.Space = true;
-    this.Address = false;
-    this.Date = false;
-    this.Contract = false;
-    this.selectedIndex = "Space";
-    this.previous = true;
-    this.next = true;
-    this.finish = false;
+  partnertab() {
+   
+        this.General = false;
+        this.Location = false;
+        this.Document = false;
+        this.Partner = true;
+        this.Space = false;
+        this.Address = false;
+        this.Date = false;
+        this.Contract = false;
+        this.selectedIndex = "Partner";
+        this.previous = true;
+        this.next = true;
+        this.finish = false;
+      
+  
   }
-  address() {
-    this.General = false;
-    this.Location = false;
-    this.Document = false;
-    this.Partner = false;
-    this.Space = false;
-    this.Address = true;
-    this.Date = false;
-    this.Contract = false;
-    this.selectedIndex = "Address";
-    this.previous = true;
-    this.next = true;
-    this.finish = false;
-    this.GetDateLink();
+  space()
+  {
+    if ((this.PartnerLinkFormValidStatus) && (this.Partner) && (this.GeneralForm.valid && this.LocationForm.valid && this.DocumentLinkDataSource != null  && this.SpaceForm.invalid && this.AddressForm.invalid && !this.DateLinkFormValidStatus && !this.ContrctFormValidStatus)) {
+      this.spacetab();
+    }
+    else if (this.LocationForm.valid && this.DocumentLinkDataSource != null && this.GeneralForm.valid && this.PartnerLinkFormValidStatus && this.SpaceForm.valid && this.AddressForm.valid && this.DateLinkFormValidStatus && this.ContrctFormValidStatus) {
+
+      this.spacetab();
+    }
+    else if (this.listselectedbool) {
+
+      this.spacetab();
+    }
+    else if (!this.PartnerLinkFormValidStatus && this.Partner) {
+      this.notificationSnackBarComponent.openSnackBar("Please add new partner", SnackBarStatus.warning);
+    }
+   
+    else if (this.SpaceForm.invalid && this.Space ) {
+      // this.ShowValidationErrors(this.GeneralForm)
+    }
+    else if (this.selectedIndex) {
+      var a = this.Others(this.selectedIndex);
+      if (a) {
+        this.spacetab();
+      }
+    }
   }
-  date() {
-    this.General = false;
-    this.Location = false;
-    this.Document = false;
-    this.Partner = false;
-    this.Space = false;
-    this.Address = false;
-    this.Date = true;
-    this.Contract = false;
-    this.selectedIndex = "Date";
-    this.previous = true;
-    this.next = true;
-    this.finish = false;
-    // this.GetContractLink();
+  spacetab() {
+
+        this.General = false;
+        this.Location = false;
+        this.Document = false;
+        this.Partner = false;
+        this.Space = true;
+        this.Address = false;
+        this.Date = false;
+        this.Contract = false;
+        this.selectedIndex = "Space";
+        this.previous = true;
+        this.next = true;
+        this.finish = false;
+
+    
   }
-  contract() {
-    this.General = false;
-    this.Location = false;
-    this.Document = false;
-    this.Partner = false;
-    this.Space = false;
-    this.Address = false;
-    this.Date = false;
-    this.Contract = true;
-    this.selectedIndex = "Contract";
-    this.previous = true;
-    this.next = false;
-    this.finish = true;
+  address()
+  {
+    if ((this.SpaceForm.valid) && (this.Space) && (this.GeneralForm.valid && this.LocationForm.valid && this.DocumentLinkDataSource != null  && this.AddressForm.invalid && !this.DateLinkFormValidStatus && !this.ContrctFormValidStatus)) {
+      this.addresstab();
+    }
+    else if (this.LocationForm.valid && this.DocumentLinkDataSource != null && this.GeneralForm.valid && this.PartnerLinkFormValidStatus && this.SpaceForm.valid && this.AddressForm.valid && this.DateLinkFormValidStatus && this.ContrctFormValidStatus) {
+
+      this.addresstab();
+    }
+    else if (this.listselectedbool) {
+
+      this.addresstab();
+    }
+    else if (this.SpaceForm.invalid && this.Space) {
+     this.ShowValidationErrors(this.SpaceForm);
+    }
+ 
+    else if (this.AddressForm.invalid && this.Address ) {
+      // this.ShowValidationErrors(this.GeneralForm)
+    }
+    else if (this.selectedIndex) {
+      var a = this.Others(this.selectedIndex);
+      if (a) {
+        this.addresstab();
+      }
+    }
+  }
+  
+  addresstab() {
+  
+        this.General = false;
+        this.Location = false;
+        this.Document = false;
+        this.Partner = false;
+        this.Space = false;
+        this.Address = true;
+        this.Date = false;
+        this.Contract = false;
+        this.selectedIndex = "Address";
+        this.previous = true;
+        this.next = true;
+        this.finish = false;
+    
+ 
+  }
+  date(){
+    if ((this.AddressForm.valid) && (this.Address) && (this.GeneralForm.valid && this.SpaceForm.valid && this.LocationForm.valid && this.DocumentLinkDataSource != null  && this.SpaceForm.valid && this.AddressForm.valid && !this.DateLinkFormValidStatus && !this.ContrctFormValidStatus)) {
+      this.datetab();
+    }
+    else if (this.LocationForm.valid && this.DocumentLinkDataSource != null && this.GeneralForm.valid && this.PartnerLinkFormValidStatus && this.SpaceForm.valid && this.AddressForm.valid && this.DateLinkFormValidStatus && this.ContrctFormValidStatus) {
+
+      this.datetab();
+    }
+    else if (this.listselectedbool) {
+
+      this.datetab();
+    }
+    else if (this.AddressForm.invalid && this.Address) {
+     this.ShowValidationErrors(this.AddressForm);
+    }
+   
+    else if (!this.DateLinkFormValidStatus && this.Date ) {
+      // this.ShowValidationErrors(this.GeneralForm)
+    }
+    else if (this.selectedIndex) {
+      var a = this.Others(this.selectedIndex);
+      if (a) {
+        this.datetab();
+      }
+    }
+  }
+  datetab() {
+  
+        this.General = false;
+        this.Location = false;
+        this.Document = false;
+        this.Partner = false;
+        this.Space = false;
+        this.Address = false;
+        this.Date = true;
+        this.Contract = false;
+        this.selectedIndex = "Date";
+        this.previous = true;
+        this.next = true;
+        this.finish = false;
+   
+  }
+  contract()
+  {
+    if ((this.DateLinkFormValidStatus) && (this.Date) && (this.GeneralForm.valid && this.SpaceForm.valid && this.LocationForm.valid && this.DocumentLinkDataSource != null  && this.SpaceForm.valid && this.AddressForm.valid  && !this.ContrctFormValidStatus)) {
+      this.contracttab();
+    }
+    else if (this.LocationForm.valid && this.DocumentLinkDataSource != null && this.GeneralForm.valid && this.PartnerLinkFormValidStatus && this.SpaceForm.valid && this.AddressForm.valid && this.DateLinkFormValidStatus && this.ContrctFormValidStatus) {
+
+      this.contracttab();
+    }
+    else if (this.listselectedbool) {
+
+      this.contracttab();
+    }
+    else if (!this.DateLinkFormValidStatus && this.Date) {
+      this.notificationSnackBarComponent.openSnackBar("Please add new DateLink", SnackBarStatus.warning);
+    }
+   
+    else if (!this.ContrctFormValidStatus && this.Contract ) {
+      // this.ShowValidationErrors(this.GeneralForm)
+    }
+    else if (this.selectedIndex) {
+      var a = this.Others(this.selectedIndex);
+      if (a) {
+        this.contracttab();
+      }
+    }
+  }
+  contracttab() {
+
+      this.General = false;
+      this.Location = false;
+      this.Document = false;
+      this.Partner = false;
+      this.Space = false;
+      this.Address = false;
+      this.Date = false;
+      this.Contract = true;
+      this.selectedIndex = "Contract";
+      this.previous = true;
+      this.next = false;
+      this.finish = true;
+   
+  }
+
+  ShowValidationErrors(eve: FormGroup): void {
+    Object.keys(eve.controls).forEach(key => {
+      eve.get(key).markAsTouched();
+      eve.get(key).markAsDirty();
+    });
+  }
+  Nexttab(eve) {
+    if (this.General && eve == "location" && this.LocationForm.invalid) {
+      this.Next();
+    }
+    if (this.Location && eve == "document" && this.DocumentLinkDataSource == null) {
+      this.Next();
+    }
+    if (this.Document && eve == "partner") {
+      this.Next();
+    }
   }
   Next() {
     switch (this.selectedIndex) {
@@ -599,8 +881,9 @@ export class SpaceComponent implements OnInit {
     }
     this.progressbarminus()
   }
+
   Finishpopup() {
-   
+
     this.dialog.open(FinishComponent,
       {
         panelClass: 'finish',
@@ -662,64 +945,60 @@ export class SpaceComponent implements OnInit {
 
   }
   SpaceAllSave(): void {
-    const dialogConfig: MatDialogConfig = {
-      data: {
-        spacename: this.GeneralForm.get('spaceName').value,
-        
-      },
-      panelClass: 'finish',
+    if (this.LocationForm.valid && this.DocumentLinkDataSource != null && this.GeneralForm.valid && this.PartnerLinkFormValidStatus && this.SpaceForm.valid && this.AddressForm.valid && this.DateLinkFormValidStatus && this.ContrctFormValidStatus) {
+
+
+      const dialogConfig: MatDialogConfig = {
+        data: {
+          spacename: this.GeneralForm.get('spaceName').value,
+
+        },
+        panelClass: 'finish',
         width: '50%',
         maxWidth: '85.5vw ',
         height: '351px',
         disableClose: true
-    };
-    
-    // this.dialog.open(FinishComponent,
-    //   {
-    //     // height: '450px',
-    //     // width: '50%',
-    //     panelClass: 'finish',
-    //     width: '50%',
-    //     maxWidth: '85.5vw ',
-    //     height: '351px',
-    //     disableClose: true
-    //   }
-    // );
-    this.GeneralSpaceGetData();
-    this.LocationSpaceGetData();
-    this.SpaceSpaceGetData();
-    this.AddressSpaceGetData();
-    this.Space_All.ARA_space = this.GeneralSpaceView
-    this.Space_All.locLink = this.LocLinkView;
-    this.Space_All.docLink = this.DocLinkView;
-    this.Space_All.partnerLink = this.PartnerLinkView;
-    this.Space_All.areaLink = this.AreaLinkView;
-    this.Space_All.addrLink = this.AddressLinkView;
+      };
+      this.GeneralSpaceGetData();
+      this.LocationSpaceGetData();
+      this.SpaceSpaceGetData();
+      this.AddressSpaceGetData();
+      this.Space_All.ARA_space = this.GeneralSpaceView
+      this.Space_All.locLink = this.LocLinkView;
+      this.Space_All.docLink = this.DocLinkView;
+      this.Space_All.partnerLink = this.PartnerLinkView;
+      this.Space_All.areaLink = this.AreaLinkView;
+      this.Space_All.addrLink = this.AddressLinkView;
 
-    this.Space_All.dateLink = this.DateLinkView;
-    this.Space_All.contractLink = this.ContractLinkView;
+      this.Space_All.dateLink = this.DateLinkView;
+      this.Space_All.contractLink = this.ContractLinkView;
 
-    console.log("allSpace", this.Space_All);
-    this.service.SpaceAllSave(this.Space_All).subscribe((x) => {
-      console.log(x);
-      const dialogRef = this.dialog.open(FinishComponent,dialogConfig);
-    },
-      err => {
-        // this.spinner.hide();
-        console.log(err);
+      console.log("allSpace", this.Space_All);
+      this.service.SpaceAllSave(this.Space_All).subscribe((x) => {
+        console.log(x);
+        this.reset();
+        const dialogRef = this.dialog.open(FinishComponent, dialogConfig);
+      },
+        err => {
+          // this.spinner.hide();
+          console.log(err);
 
-      })
+        })
+    }
+    else   {
+      this.notificationSnackBarComponent.openSnackBar("The form is invalid", SnackBarStatus.warning);
+    }
   }
   GeneralSpaceGetData() {
     this.GeneralSpaceView.Title = this.GeneralForm.get('spaceName').value;
     this.GeneralSpaceView.ObjType = this.GeneralForm.get('objectType').value;
-    this.GeneralSpaceView.Site = this.dialogData.id;
-    this.GeneralSpaceView.PartnerID = this.GeneralForm.get('partnerID').value;
-    // this.GeneralSpaceView.PartnerID = 1;
+    this.GeneralSpaceView.Site = this.dialogData.parentofSelectedid;
+    // this.GeneralSpaceView.PartnerID = this.GeneralForm.get('partnerID').value;
+    this.GeneralSpaceView.PartnerID = 1;
     this.GeneralSpaceView.Category = this.GeneralForm.get('category').value;
     this.GeneralSpaceView.CostCenter = this.GeneralForm.get('costCenter').value;
     // this.GeneralSpaceView.ParentID = this.parentID;
-    this.GeneralSpaceView.ParentID =  this.dialogData.id;
+    this.GeneralSpaceView.ParentID = this.dialogData.selectedid;
 
   }
   LocationSpaceGetData() {
@@ -773,11 +1052,15 @@ export class SpaceComponent implements OnInit {
         size = size / 1000 / 1000 / 1000;
         unit = "gb";
       }
-      this.DocLinkView.FileName = file;
-      this.DocLinkView.FileSize = size + unit;
-      this.DocLinkView.FileExt = ext;
-      this.DocLinkView.User = "User";
+      // this.DocLink=null
+      this.DocLink = [];
+      this.DocLinkView.fileName = file;
+      this.DocLinkView.fileSize = size + unit;
+      this.DocLinkView.fileExt = ext;
+      this.DocLinkView.user = "User";
+      // this.DocLinkView.date=new Date();
       this.DocLink.push(this.DocLinkView);
+      this.DocumentLinkDataSource = null;
       this.DocumentLinkDataSource = new MatTableDataSource(this.DocLink);
       console.log(this.DocumentLinkDataSource, 'DocLink');
 
@@ -801,22 +1084,42 @@ export class SpaceComponent implements OnInit {
     );
     dialogRef.afterClosed().subscribe(result => {
       // if (  !result ) {
+      this.PartnerLink = [];
+      this.cdr.detectChanges();
+      this.PartnerLinkView = result[0].PartnerLinkView;
+      this.PartnerLinkFormValidStatus = result[0].partnerLinkForm;
+      this.HeaderDetailsDataSource = null;
 
-      this.PartnerLinkView = result;
+      this.PartnerLink.push(this.PartnerLinkView);
+      this.HeaderDetailsDataSource = new MatTableDataSource(this.PartnerLink);
       console.log("partner", this.PartnerLinkView);
+      console.log("PartnerLinkFormValidStatus", this.PartnerLinkFormValidStatus);
 
       // }
     })
   }
   OpenDateLinkDialogue() {
     const dialogRef = this.dialog.open(DateLinkComponent,
-
+      {
+        height: '311px',
+        width: '36%',
+        panelClass: "Datelink",
+        maxWidth: '85.5vw ',
+        disableClose: true
+      }
     );
+
     dialogRef.afterClosed().subscribe(result => {
-      // if (  !result ) {   
-      this.DateLinkView = result;
+
+
+      this.DateLinkView = result[0].DateLinkView;
+      this.DateLinkFormValidStatus = result[0].DateLinkForm;
+      this.DateLinkDataSource = null;
+      this.DateLink = []
+      this.DateLink.push(this.DateLinkView);
+      this.DateLinkDataSource = new MatTableDataSource(this.DateLink);
       console.log("Date", this.DateLinkView);
-      // }
+
     })
   }
   OpenContractLinkDialogue() {
@@ -828,10 +1131,14 @@ export class SpaceComponent implements OnInit {
       }
     );
     dialogRef.afterClosed().subscribe(result => {
-      // if (  !result ) {   
-      this.ContractLinkView = result;
+
+      this.ContractLinkView = result[0].ContractLinkView;
+      this.ContrctFormValidStatus = result[0].ContractLinkForm;
+      this.ContractLinkDataSource = null;
+      this.ContractLink = [];
+      this.ContractLink.push(this.ContractLinkView);
+      this.ContractLinkDataSource = new MatTableDataSource(this.ContractLink);
       console.log("contrct", this.ContractLinkView);
-      // }
     })
   }
   close(): void {

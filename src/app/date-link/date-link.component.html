@@ -1,4 +1,79 @@
-<div style="overflow: auto;height: 250px;">
+<div class="dialog-content-wrapper">
+    <mat-toolbar class="toolbar" fxLayout="row" fxLayoutAlign="space-between center">
+        <label class="title">Create Date Link Details</label>
+        <img class="closeimages"  src="assets/32178.svg" (click)="close()">
+    </mat-toolbar>
+
+<mat-dialog-content class="content" fusePerfectScrollbar>
+    <form autocomplete="off" [formGroup]="DateLinkForm">
+        <div fxLayout="column" fxFlex="100"  fxLayoutGap="5px">
+            <!-- <div fxLayout="column" fxFlex="50">         -->
+                <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                    <span class="formspan">Start Date</span>
+                    <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                        <input matInput [matDatepicker]="picker3"  formControlName="StartDate" fxFlex>
+                        <img src="assets/calendar_upload.svg" width="16px" class="cursor"
+                            (click)="picker3.open()">
+                        <mat-datepicker #picker3></mat-datepicker>
+                
+                        <mat-error *ngIf="DateLinkForm.get('StartDate').hasError('required')">
+                            Start Date is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                    <span class="formspan">End Date</span>
+                    <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                        <input matInput [matDatepicker]="picker4"  formControlName="EndDate" fxFlex>
+                        <img src="assets/calendar_upload.svg" width="16px" class="cursor"
+                            (click)="picker4.open()">
+                        <mat-datepicker #picker4></mat-datepicker>
+                
+                        <mat-error *ngIf="DateLinkForm.get('EndDate').hasError('required')">
+                            End Date is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                    <span class="formspan">Time</span>
+                    <mat-form-field [floatLabel]="'never'" appearance="legacy"
+                        class="form_field_cls">
+                        <input matInput formControlName="Time" type="text"
+                            class="placeholdertext ">
+                        <mat-error *ngIf="DateLinkForm.get('Time').hasError('required')">
+                            Time is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
+                    <span class="formspan">Time Stamp</span>
+                    <mat-form-field [floatLabel]="'never'" appearance="legacy"
+                        class="form_field_cls">
+                        <input matInput formControlName="TimeStamp" type="text"
+                            class="placeholdertext ">
+                        <mat-error *ngIf="DateLinkForm.get('TimeStamp').hasError('required')">
+                            Time Stamp is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            <!-- </div> -->
+           
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions fxLayoutAlign="center center">
+
+
+    <button mat-flat-button color="primary" class="savebtn" (click)="Save()">Save</button>
+
+
+</mat-dialog-actions>
+</div>
+
+
+
+<!-- <div style="overflow: auto;height: 250px;">
     <div fxLayout="column" style="padding: 7px;overflow: auto;">
         <div fxLayout="row" fxLayoutAlign="space-between center">
             <span class="create">Create Date Link Details</span>
@@ -45,4 +120,4 @@
 </div>
 <mat-dialog-actions fxLayoutAlign="center center">
     <button mat-flat-button color="primary" (click)="Save()">Save</button>
-</mat-dialog-actions>
+</mat-dialog-actions> -->

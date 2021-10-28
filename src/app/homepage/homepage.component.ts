@@ -57,6 +57,7 @@ declare const annyang: any;
 })
 export class HomepageComponent implements OnInit {
   currentUser: string;
+  // treeControl: FlatTreeControl<FlatTreeNode>;
   voiceActiveSectionDisabled: boolean = true;
   voiceActiveSectionError: boolean = false;
   voiceActiveSectionSuccess: boolean = false;
@@ -96,6 +97,15 @@ export class HomepageComponent implements OnInit {
   selectedNodePath: string = "";
   isFolded: boolean = false;
   selectedId: any;
+  selectedarray: any;
+  duplicateselecetedarray: any[];
+  currentlySelectedId: any;
+  currentlySelectedname: any;
+  parentofSelectedId: any;
+  parentofSelectedname: any;
+  siteofselectedspace: any;
+  sitenameofselectednode: any;
+  siteIDofselectedspace: any;
 
   constructor(
     public dialog: MatDialog,
@@ -194,6 +204,8 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     this.ass = localStorage.getItem('ass');
     this.services.Getsitehierarchy().subscribe(data => {
+      console.log("sitehigherarchy",data);
+      
       this.TREE_DATA = <TreeItem[]>data;
       console.log("tree data", this.TREE_DATA);
       this.treeSource.data = this.treeConstruct(this.TREE_DATA);
@@ -226,7 +238,7 @@ export class HomepageComponent implements OnInit {
       return true;
     } 
     // else if (treeObj.parent == constructedTree.name) {
-    else if (treeObj.parent == constructedTree.id) {
+    else if (treeObj.parent == constructedTree.id ) {
       treeObj.children = [];
       constructedTree.children.push(treeObj);
       return true;
@@ -457,7 +469,8 @@ export class HomepageComponent implements OnInit {
   spaceclicked() {
     const dialogConfig: MatDialogConfig = {
       data: {
-       id: this.selectedId
+       selectedid: this.selectedId,
+       parentofSelectedid:this.siteIDofselectedspace
       },
       panelClass: 'full-width-dialog',
       width: '100%',
@@ -496,10 +509,51 @@ export class HomepageComponent implements OnInit {
   }
   setSelectedNode(node) {
     console.log("node",node);
-    this.selectedNode = node.name;
-    this.selectedId=node.id
+    // this.selectedNode = node.name;
+    // this.selectedId=node.id;
+   
+   this.selectedarray=[];
+   this.selectedarray.push(node)
+ 
+   if(node.level >0)
+   {
+   
+     for(var i=node.level;i>0;i--)
+     {
+     
+        var currentlevel= this.getParent(node);
+        this.selectedarray.push(currentlevel)
+      
+       node=currentlevel;
+     
+     }
+  
+   }
+   this.duplicateselecetedarray=[]
+   var z=0;
+ for(var j=(this.selectedarray.length-1);j>=0;j--)
+ {
+   
+   this.duplicateselecetedarray[z]=this.selectedarray[j]
+   z=z+1;
+ }
+ this.siteIDofselectedspace=this.duplicateselecetedarray[0].id;
+ this.sitenameofselectednode=this.duplicateselecetedarray[0].name
+ this.parentofSelectedId= this.duplicateselecetedarray[this.duplicateselecetedarray.length-1].name;
+ this.parentofSelectedname=this.duplicateselecetedarray[this.duplicateselecetedarray.length-1].id
+   this.selectedNode =this.selectedarray[0].name;
+    this.selectedId=this.selectedarray[0].id;
+    console.log("siteIDofselectedspace",this.siteIDofselectedspace);
+    console.log("sitenameofselectednode",this.sitenameofselectednode);
+    console.log("parentofSelectedId",this.parentofSelectedId);
+    console.log("parentofSelectedname",this.parentofSelectedname);
+    console.log("selectedNode",this.selectedNode);
+    console.log("selectedId",this.selectedId);
+   console.log("selectedarray",this.selectedarray);
+   console.log("duplicateselecetedarray",this.duplicateselecetedarray);
     console.log("tree source", this.treeSource.data);
   }
+
   toggleSideMenu() {
     this.isFolded = !this.isFolded;
   }
@@ -513,5 +567,36 @@ export class HomepageComponent implements OnInit {
   notmodelsclk(){
     this.notmodels=true;
     this.models=false
+  }
+  //
+  expandParents(node) {
+    const parent = this.getParent(node);
+    this.treeControl.expand(parent);
+
+    if (parent && parent.level > 0) {
+      this.expandParents(parent);
+    }
+  }
+
+  /**
+   * Iterate over each node in reverse order and return the first node that has a lower level than the passed node.
+   */
+  getParent(node) {
+    const { treeControl } = this;
+    const currentLevel = treeControl.getLevel(node);
+
+    if (currentLevel < 1) {
+      return null;
+    }
+
+    const startIndex = treeControl.dataNodes.indexOf(node) - 1;
+
+    for (let i = startIndex; i >= 0; i--) {
+      const currentNode = treeControl.dataNodes[i];
+
+      if (treeControl.getLevel(currentNode) < currentLevel) {
+        return currentNode;
+      }
+    }
   }
 }

@@ -32,21 +32,27 @@
                     <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
                         <span class="formspan">Start Date</span>
                         <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
-                            <input matInput formControlName="StartDate" type="text"
-                                class="placeholdertext ">
-                                <mat-error *ngIf="PartnerLinkForm.get('StartDate').hasError('required')">
-                                    Start Date is required
-                                </mat-error>
+                            <input matInput [matDatepicker]="picker3"  formControlName="StartDate" fxFlex>
+                            <img src="assets/calendar_upload.svg" width="16px" class="cursor"
+                                (click)="picker3.open()">
+                            <mat-datepicker #picker3></mat-datepicker>
+                    
+                            <mat-error *ngIf="PartnerLinkForm.get('StartDate').hasError('required')">
+                                Start Date is required
+                            </mat-error>
                         </mat-form-field>
                     </div>
                     <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
                         <span class="formspan">End Date</span>
                         <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
-                            <input matInput formControlName="EndDate" type="text"
-                                class="placeholdertext ">
-                                <mat-error *ngIf="PartnerLinkForm.get('EndDate').hasError('required')">
-                                    End Date is required
-                                </mat-error>
+                            <input matInput [matDatepicker]="picker4"  formControlName="EndDate" fxFlex>
+                            <img src="assets/calendar_upload.svg" width="16px" class="cursor"
+                                (click)="picker4.open()">
+                            <mat-datepicker #picker4></mat-datepicker>
+                    
+                            <mat-error *ngIf="PartnerLinkForm.get('EndDate').hasError('required')">
+                                End Date is required
+                            </mat-error>
                         </mat-form-field>
                     </div>
 
