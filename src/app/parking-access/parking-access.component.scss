@@ -432,11 +432,11 @@ font-size: 14px;
 }
 
 .totalvehicle-ans{
-  float: left;color: #acacac;font-weight: bold;font-size: 12px;
+  float: left;color: #acacac;font-weight: 600;font-size: 10px;
 }
 .booth1{
   font-weight: bold;
-   font-size: 16px;
+   font-size: 18px;
    font-family: "poppins-semi" !important;
    color: #0e0d22;
 }
@@ -444,10 +444,35 @@ font-size: 14px;
   font-weight: bold; 
   font-size: 10px;
   font-family: "poppins-semi" !important;
-  color: #0e0d22;
+  color: #6e6d7a;
 }
 .parking-zone{
   font-size: 12px;
   color: #0e0d22;
   font-family: "poppins-semi" !important;
 }
+.label{
+  font-size: 10px;
+  font-weight: 600 !important;
+  font-family: "poppins-semi" !important;
+  color: #0e0d22;
+}
+.evtryanswer-entry{
+  font-weight: bold; 
+  font-size: 10px;
+  font-family: "poppins-semi" !important;
+  color: #acacac;
+}
+.padding-css{
+  padding-left: 20px;
+}
+
+
+
+
+
+
+
+
+
+

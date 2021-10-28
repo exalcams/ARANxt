@@ -219,24 +219,20 @@
                     </div>
 
                     <div fxLayout="column" fxLayoutAlign="space-evenly" class="expiryleasesdiv">
-
                         <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" style="padding-top: 10px;">
                             <img class="maintenanceimage" src="./assets/Images/Expiry_Leases.svg">
                             <span class="maintenancespan">
                                 Expiry Leases
                             </span>
                         </div>
-
                         <div fxLayout="row" style="width: 100%;">
-
-                            <div fxFlex="100" fxLayoutAlign="center" id="chart">
+                            <div fxFlex="100" fxLayoutAlign="center" id="chart" >
                                 <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
                                     [labels]="chartOptions1.labels" [legend]="chartOptions1.legend"
                                     [grid]="chartOptions1.grid" [plotOptions]="chartOptions1.plotOptions"
                                     [responsive]="chartOptions1.responsive" [dataLabels]="chartOptions1.dataLabels"
                                     [fill]="chartOptions1.fill" class="maintenancechart"></apx-chart>
                             </div>
-
                         </div>
                         <div fxLayout="column" fxLayoutAlign="center center" class="graphcondiv">
                             <span class="opennumbergraphdiv">
@@ -246,8 +242,7 @@
                                 Completed
                             </span>
                         </div>
-
-                        <div fxLayout="column" style="min-width: 150px;">
+                        <div fxLayout="column" style="min-width: 150px;" class="blur-css">
                             <div (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()" class="signal-wrapper"
                                 [ngClass]="{'signal-wrapper1':expiryisopen}">
                                 <!-- <div fxLayout="row" fxLayoutAlign="space-evenly" class="hoveringdiv11 "> -->
@@ -298,14 +293,12 @@
                                             30 days
                                         </span>
                                     </div>
-
                                     <div fxLayout="row" fxLayoutAlign="space-evenly center" class="signal-row">
                                         <!-- <img class="sett1flip" src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg"> -->
                                         <span class="flipspan">
                                             30-60 days
                                         </span>
                                     </div>
-
                                     <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="3px"
                                         class="signal-row">
                                         <!-- <img class="sett1flip" src="./assets/iconfinder_icon-arrow-right-c_211621 (1).svg"> -->
@@ -320,7 +313,7 @@
                             </div>
                         </div>
                         <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px" (click)="leaseclk()"
-                            style="cursor: pointer;padding: 12px 0;">
+                            style="cursor: pointer;padding: 12px 0;" class="blur-css">
                             <span class="seedetailsdiv">
                                 See Details
                             </span>
@@ -348,9 +341,9 @@
                         </div>
                     </div>
 
-                    <div fxLayout="row" fxLayoutAlign="space-between center">
-                        <div fxLayout="column">
-                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="7px">
+                    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="6px">
+                        <div fxLayout="column" fxLayoutGap="6px">
+                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
                                 <span class="insidecampus">
                                     Inside Campus
                                 </span>
@@ -361,27 +354,27 @@
                             </span>
                         </div>
 
-                        <div fxLayout="column">
-                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="7px">
+                        <div fxLayout="column" fxLayoutGap="6px">
+                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
                                 <span class="insidecampus">
                                     Entry Gate
                                 </span>
                                 <img src="./assets/Images/Polygon 105.svg" class="polygonimge">
                             </div>
                             <span class="insidecampusnumber">
-                                45000
+                                56
                             </span>
                         </div>
 
-                        <div fxLayout="column">
-                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="7px">
+                        <div fxLayout="column" fxLayoutGap="6px">
+                            <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
                                 <span class="insidecampus">
                                     Exit Gate
                                 </span>
                                 <img src="./assets/Images/Polygon 106.svg" class="polygonimge">
                             </div>
                             <span class="insidecampusnumber">
-                                45000
+                                78
                             </span>
                         </div>
                     </div>

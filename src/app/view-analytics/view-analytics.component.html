@@ -1,31 +1,32 @@
 <!-- <p>view-analytics works!</p> -->
 <div fxLayout="column">
     <mat-toolbar class="toolbar_class" fxLayout="row" fxLayoutAlign="space-between center">
-        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" style="padding-right: 30px;
-        margin-top: 15px;">
+        <div fxFlex fxLayout="row" fxLayoutAlign="space-between center" class="toolbar-div-css">
             <div fxFlex="20" fxLayoutAlign="center center" class="analytics">
                 Analytics
             </div>
-            <div fxLayout="row" fxLayoutGap="20px">
-                <div fxLayout="row" class="main_input_field" fxLayoutAlign="space-between center">
-                    <div>
-                        <img style="vertical-align: -webkit-baseline-middle;
-    width: 24px;" src="./assets/search.svg">
-                    </div>
-                    <div>
-                        <input class="input_field" matInput placeholder="Search to - do">
-                    </div>
-                    <div>
-                        <img style="vertical-align: middle; margin-left: -66%;width: 8px;" src="./assets/mic.svg">
-                    </div>
+            <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+                <div fxLayout="row" class="main_input_field" fxLayoutAlign="space-around center">
+                    <!-- <img style="vertical-align: -webkit-baseline-middle; width: 24px;" src="./assets/search.svg"> -->
+                    <mat-icon matSuffix class="serachicon_search">search</mat-icon>
+                    <input class="input_field11" matInput placeholder="Search to - do">
+                    <!-- <img style="vertical-align: middle; margin-left: -66%;width: 8px;" src="./assets/mic.svg"> -->
+                    <img src="./assets/mic.svg" class="voice-image">
                 </div>
-                <img (click)="Close()" style="cursor: pointer;width: 20px;
-            margin-top: 15px;" src="assets/Close.svg">
+
+                <!-- <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="50">
+                    <div fxLayout="row" class="btn_bg2" fxFlex="100">
+                        <mat-icon matSuffix class="serachicon_search">search</mat-icon>
+                        <input matInput class="search_input1 forminputedit" autocomplete="off"
+                            placeholder="Search by I’d or Name" (keyup)="applyFilter($event)">
+                        <img src="./assets/mic.svg" class="voice-image">
+                    </div>
+                </div> -->
+                <img (click)="Close()" class="closeclass" src="assets/Close.svg">
             </div>
         </div>
-
     </mat-toolbar>
-    <div fxLayout="row" fxFlex style="height: 500px;margin-top: 4% !important;" fxLayoutGap="20px" >
+    <div fxLayout="row" fxFlex style="height: 500px;margin-top: 4% !important;" fxLayoutGap="20px">
         <div fxFlex="20" fxLayoutAlign="center">
             <div class="rectangle_box" fxLayout="column" fxLayoutAlign="space-between center">
                 <div *ngFor="let item of Analytics" class="hover_class">
@@ -34,44 +35,36 @@
             </div>
         </div>
         <div fxFlex="80" fxlayout="column" class="rectangleBox">
-            <div fxlayout="row" fxLayoutGap="20px" style="margin-bottom: 15px;">
+            <div fxlayout="row" fxLayoutGap="20px" style="padding-bottom: 15px;">
                 <div fxFlex="30">
                     <img style="width: 100%;" src="assets/Overview_img.svg">
                 </div>
                 <div fxFlex="70" class="Graph_cls">
-                    <div fxFlex="70">
+                    <div fxFlex="70" class="graph-css-class">
                         <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart"
                             [xaxis]="chartOptions1.xaxis" [yaxis]="chartOptions1.yaxis"
                             [dataLabels]="chartOptions1.dataLabels" [grid]="chartOptions1.grid"
                             [markers]="chartOptions1.markers" [stroke]="chartOptions1.stroke"
                             [legend]="chartOptions1.legend"></apx-chart>
                     </div>
-                    <div fxFlex="30" style="margin-top: 22px;text-align: center;">
-                        <!-- <span style="font-weight: 600;font-size: 12px;" >Last 6 Months</span>
-                     <img src="../../assets/Images/Group 8270.svg" style="width: 15px;
-                     height: 15;margin-left: 5px;"> -->
+                    <div fxFlex="30" class="after-graph-div">
                         <div style="margin: 20px;">
                             <div fxLayout="row" fxLayoutGap="10px">
-                                <span class="dot_legend" style="background-color: #47cb2a;"></span>
-
+                                <span class="dot_legend color1-alert"></span>
                                 <span class="Chart_legend"> Success Alert!</span>
                             </div>
                             <div fxLayout="row" fxLayoutGap="10px">
-                                <span class="dot_legend" style="background-color: #fc9c18"></span>
-
+                                <span class="dot_legend color2-warning"></span>
                                 <span class="Chart_legend"> Warning Alert!</span>
                             </div>
                             <div fxLayout="row" fxLayoutGap="10px">
-                                <span class="dot_legend" style="background-color: #0a6dfb;"></span>
+                                <span class="dot_legend color3-info"></span>
                                 <span class="Chart_legend">Info Alert!</span>
-
                             </div>
                             <div fxLayout="row" fxLayoutGap="10px">
-                                <span class="dot_legend" style="background-color: #f8383f;"></span>
+                                <span class="dot_legend color4-danger"></span>
                                 <span class="Chart_legend">Danger Alert!</span>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -82,7 +75,6 @@
                         <div fxFlex="25" class="rating_box" fxLayout="column" fxLayoutAlign="space-around center">
                             <div>
                                 <img style="width: 45px;" src="assets/Group 8323.svg">
-
                             </div>
                             <div class="Label_cls1">
                                 $25600
@@ -94,7 +86,6 @@
                         <div fxFlex="25" class="rating_box" fxLayout="column" fxLayoutAlign="space-around center">
                             <div>
                                 <img style="width: 45px;" src="assets/Group 8322.svg">
-
                             </div>
                             <div class="Label_cls1">
                                 $25600
@@ -143,23 +134,18 @@
                 </div>
                 <div fxFlex="30" fxLayout="column" fxLayoutGap="20px">
                     <div class="Rectangle-7690" fxLayout="column">
-                        <div fxLayout="row" fxLayoutAlign="space-between center" style="padding: 10px 10px;">
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="recent-div">
                             <div class="most_cls">
                                 Most Recent
                             </div>
                             <div>
-                                <img style="width: 35px;cursor: pointer;" src="assets/Component 119.svg">
+                                <img src="assets/Component 119.svg" class="horiz-dot">
                             </div>
                         </div>
                         <div>
-                            <apx-chart
-                            [series]="chartOptions.series"
-                            [chart]="chartOptions.chart"
-                            [plotOptions]="chartOptions.plotOptions"
-                            [labels]="chartOptions.labels"
-                            [colors]="chartOptions.colors"
-                            [stroke]="chartOptions.stroke"
-                          ></apx-chart>
+                            <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+                                [plotOptions]="chartOptions.plotOptions" [labels]="chartOptions.labels"
+                                [colors]="chartOptions.colors" [stroke]="chartOptions.stroke"></apx-chart>
                         </div>
                     </div>
                     <div fxLayout="column" fxLayoutGap="20px">
@@ -167,63 +153,49 @@
                             <div class="Trans_cls">
                                 Recent Transactions
                             </div>
-                            <div>
-                                <img src="assets/Filter.svg">
-                            </div>
+                            <img src="assets/Filter.svg" class="recent_image">
                         </div>
-                        <div fxLayout="row" fxLayoutGap="20px">
-                            <div fxLayout="row" fxLayoutGap="10px">
-                                <div style="width: 25px; margin: 7px 0px;">
-                                    <img src="assets/downraising.svg">
+                        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-evenly center" class="scrolldivi">
+                            <div fxLayout="row" fxLayoutGap="2px">
+                                <div>
+                                    <mat-icon class="recievecall"> call_received
+                                    </mat-icon>
                                 </div>
-                                <div fxLayout="column" fxLayoutAlign="space-between center">
-                                    <div class="Cls_bold">
-                                        +$346
-                                    </div>
-                                    <div class="Cls_bold1">
-                                        Refund
-                                    </div>
+                                <div fxLayout="column">
+                                    <span class="transactionamounts">+$786 </span>
+                                    <span class="transactionamountrefund">Refund</span>
                                 </div>
                             </div>
-                            <div fxLayout="row" fxLayoutGap="10px">
-                                <div style="width: 25px; margin: 7px 0px;">
-                                    <img src="assets/upraising.svg">
+                            <div fxLayout="row" fxLayoutGap="2px">
+                                <div>
+                                    <mat-icon class="recievecallred"> call_made
+                                    </mat-icon>
                                 </div>
-                                <div fxLayout="column" fxLayoutAlign="space-between center">
-                                    <div class="Cls_bold">
-                                        -$346
-                                    </div>
-                                    <div class="Cls_bold1">
-                                        Electronic
-                                    </div>
+                                <div fxLayout="column">
+                                    <span class="transactionamounts">+$786 </span>
+                                    <span class="transactionamountrefund">Refund</span>
                                 </div>
                             </div>
                         </div>
-                        <div fxLayout="row" fxLayoutGap="20px">
-                            <div fxLayout="row" fxLayoutGap="10px">
-                                <div style="width: 25px; margin: 7px 0px;">
-                                    <img src="assets/downraising.svg">
+                        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-evenly center" class="scrolldivi">
+                            <div fxLayout="row" fxLayoutGap="2px">
+                                <div>
+                                    <mat-icon class="recievecall"> call_received
+                                    </mat-icon>
                                 </div>
-                                <div fxLayout="column" fxLayoutAlign="space-between center">
-                                    <div class="Cls_bold">
-                                        +$346
-                                    </div>
-                                    <div class="Cls_bold1">
-                                        Refund
-                                    </div>
+                                <div fxLayout="column">
+                                    <span class="transactionamounts">+$786 </span>
+                                    <span class="transactionamountrefund">Refund</span>
                                 </div>
                             </div>
-                            <div fxLayout="row" fxLayoutGap="10px">
-                                <div style="width: 25px; margin: 7px 0px;">
-                                    <img src="assets/downraising.svg">
+                            <div fxLayout="row" fxLayoutGap="2px">
+                                <div>
+                                    <mat-icon class="recievecall"> call_received
+                                    </mat-icon>
                                 </div>
-                                <div fxLayout="column" fxLayoutAlign="space-between center">
-                                    <div class="Cls_bold">
-                                        +$346
-                                    </div>
-                                    <div class="Cls_bold1">
-                                        Balance
-                                    </div>
+                                <div fxLayout="column">
+                                    <span class="transactionamounts">+$786 </span>
+                                    <span class="transactionamountrefund">Refund</span>
                                 </div>
                             </div>
                         </div>

@@ -728,6 +728,8 @@ margin-top: -2rem;
     overflow: hidden;
     background: url(/assets/Group8601.png) no-repeat;
     background-size: cover;
+    padding:15px 15px;
+    height: 596px;
 }
 .locationspan{
     color: #acacac;
@@ -894,8 +896,8 @@ margin-top: -2rem;
     font-family: 'poppins-semi' !important;
 }
 .fist-image-overview{
-    width: 100%;
-    text-align: center;
-    max-height: 230px;
+    width: 90%;
+    align-self: center;
+    max-height: 190px;
     min-height: 50%;
 }

@@ -24,8 +24,6 @@ export class ActionComponent implements OnInit {
     { text: 'One', cols: 3, rows: 1, color: 'lightblue' },
     { text: 'One', cols: 3, rows: 1, color: 'lightblue' },
     { text: 'One', cols: 3, rows: 1, color: 'lightblue' },
-
-
   ];
   employees: Employee[] = [
     { Id: '1', Name: 'Name' },
@@ -34,8 +32,6 @@ export class ActionComponent implements OnInit {
     { Id: '1', Name: 'Name' },
     { Id: '1', Name: 'Name' },
     { Id: '1', Name: 'Name' },
-
-
   ]
   searchbutton: boolean;
   constructor(public dialog: MatDialog) { }

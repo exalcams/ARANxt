@@ -9,6 +9,7 @@ import { SpaceService } from '../space/space.service';
 export class ParkingAccessComponent implements OnInit {
   constructor(private service: SpaceService) { }
   parking: any[] = [];
+  assert: boolean = true;
   ngOnInit(): void {
     setInterval(() => this.GetARASpace(), 50);
     // this.SelectedArea = ["Area 1","Area 2"];
@@ -48,5 +49,16 @@ export class ParkingAccessComponent implements OnInit {
     localStorage.setItem('SubSpace', SubSpace);
     console.log(SubSpace);
 
+  }
+
+  
+  assertdetails(a: any) {
+    
+    if (a == 1) {
+      this.assert = false;
+    }
+    else {
+      this.assert = true;
+    }
   }
 }
