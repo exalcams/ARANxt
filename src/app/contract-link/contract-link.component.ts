@@ -13,6 +13,7 @@ import { ContractLink } from '../space/spacemodel';
 export class ContractLinkComponent implements OnInit {
   ContractLinkForm: FormGroup;
   ContractLinkView: ContractLink = new ContractLink();
+  Obj:any;
   constructor(public dialog: MatDialog, private service: SpaceService,public dialogRef: MatDialogRef<ContractLinkComponent>, public form: FormBuilder) { }
   Type = ["Warranty", "Annual Maintenance Contract", "Insurance"];
   ngOnInit(): void {
@@ -30,17 +31,27 @@ export class ContractLinkComponent implements OnInit {
     });
   }
   close(): void {
-    this.dialogRef.close();
+    this.Obj=[{
+      ContractLinkView:this.ContractLinkView,
+      ContractLinkForm:this.ContractLinkForm.valid
+    }]
+    this.dialogRef.close(this.Obj);
   }
   Save(){
-    this.ContractLinkView.Type = this.ContractLinkForm.get('Type').value;
-    this.ContractLinkView.Title = this.ContractLinkForm.get('Title').value;
-    this.ContractLinkView.StartDate = this.ContractLinkForm.get('StartDate').value;
-    this.ContractLinkView.EndDate = this.ContractLinkForm.get('EndDate').value;
-    this.ContractLinkView.CoverValue = this.ContractLinkForm.get('CoverValue').value;
-    this.ContractLinkView.Vendor = this.ContractLinkForm.get('Vendor').value;
-    this.ContractLinkView.Exclusions = this.ContractLinkForm.get('Exclusions').value;
-    this.dialogRef.close(this.ContractLinkView);
+    this.ContractLinkView.type = this.ContractLinkForm.get('Type').value;
+    this.ContractLinkView.title = this.ContractLinkForm.get('Title').value;
+    this.ContractLinkView.startDate = this.ContractLinkForm.get('StartDate').value;
+    this.ContractLinkView.endDate = this.ContractLinkForm.get('EndDate').value;
+    // this.ContractLinkView.coverValue = this.ContractLinkForm.get('CoverValue').value;
+    this.ContractLinkView.coverValue =1 ;
+
+    this.ContractLinkView.vendor = this.ContractLinkForm.get('Vendor').value;
+    this.ContractLinkView.exclusions = this.ContractLinkForm.get('Exclusions').value;
+    this.Obj=[{
+      ContractLinkView:this.ContractLinkView,
+      ContractLinkForm:this.ContractLinkForm.valid
+    }]
+    this.dialogRef.close(this.Obj);
     // this.service.ContractLink(this.ContractLinkView).subscribe((x) => {
     //   console.log(x);
     //   this.dialogRef.close();

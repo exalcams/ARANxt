@@ -13,6 +13,7 @@ import { PartnerLink } from '../space/spacemodel';
 export class PartnerLinkComponent implements OnInit {
   PartnerLinkForm: FormGroup;
   PartnerLinkView: PartnerLink = new PartnerLink();
+  Obj:any;
   constructor(public dialog: MatDialog, public dialogRef: MatDialogRef<PartnerLinkComponent>, public form: FormBuilder,private service: SpaceService,) { }
 
   ngOnInit(): void {
@@ -29,14 +30,23 @@ export class PartnerLinkComponent implements OnInit {
 
   }
   close():void {
-    this.dialogRef.close("");
+    this.Obj=[{
+       PartnerLinkView:this.PartnerLinkView,
+      partnerLinkForm:this.PartnerLinkForm.valid
+    }]
+    this.dialogRef.close(this.Obj);
   }
   Save(){
-    this.PartnerLinkView.PartnerType = this.PartnerLinkForm.get('PartnerType').value;
-    this.PartnerLinkView.PartnerID = this.PartnerLinkForm.get('PartnerID').value;
-    this.PartnerLinkView.StartDate = this.PartnerLinkForm.get('StartDate').value;
-    this.PartnerLinkView.EndDate = this.PartnerLinkForm.get('EndDate').value;
-    this.dialogRef.close(this.PartnerLinkView);
+    this.PartnerLinkView.partnerType = this.PartnerLinkForm.get('PartnerType').value;
+    this.PartnerLinkView.partnerID = this.PartnerLinkForm.get('PartnerID').value;
+    this.PartnerLinkView.startDate = this.PartnerLinkForm.get('StartDate').value;
+    this.PartnerLinkView.endDate = this.PartnerLinkForm.get('EndDate').value;
+    this.Obj=[{
+      PartnerLinkView:this.PartnerLinkView,
+      partnerLinkForm:this.PartnerLinkForm.valid
+    }]
+    
+    this.dialogRef.close(this.Obj);
     // this.service.PartnerLink(this.PartnerLinkView).subscribe((x) => {
     //   console.log(x);
     //   this.dialogRef.close();

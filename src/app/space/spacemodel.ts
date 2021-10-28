@@ -34,46 +34,46 @@ export class AddrLink{
     State:string;
 }
 export class DocumentLink{
-    AppID:number;
-    Object: string;
-    FileName: string;
-    FileSize: string;
-    FileExt: string;
+    appID:number;
+    object: string;
+    fileName: string;
+    fileSize: string;
+    fileExt: string;
     IP: string;
-    User: string;
-    Date: Date;
-    Time: string;
-    AttID: string;
+    user: string;
+    date: Date;
+    time: string;
+    attID: string;
 }
 export class PartnerLink{
-    AppID:number;
-    Object: string;
-    PartnerType: string;
-    PartnerID: string;
-    StartDate: Date;
-    EndDate: Date;
+    appID:number;
+    object: string;
+    partnerType: string;
+    partnerID: string;
+    startDate: Date;
+    endDate: Date;
 }
 export class DateLink{
-    AppID: number;
-    Object: string;
-    DateID: string;
-    Item: string;
-    Date: Date;
-    Time: Date;
-    TimeStamp: string;
+    appID: number;
+    object: string;
+    dateID: string;
+    item: string;
+    date: Date;
+    time: Date;
+    timeStamp: string;
 }
 export class ContractLink{
-    AppID: number;
-    Object: string;
-    Type: string;
-    StartDate: Date;
-    EndDate: Date;
-    Title: string;
-    Vendor: string;
-    CoverValue: DoubleRange;
-    Cost: DoubleRange;
-    Exclusions: string;
-    Inclusion: string;
+    appID: number;
+    object: string;
+    type: string;
+    startDate: Date;
+    endDate: Date;
+    title: string;
+    vendor: string;
+    coverValue: number;
+    cost: number;
+    exclusions: string;
+    inclusion: string;
 }
 export class ARA_Space {
     Space: number;

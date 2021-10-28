@@ -1,14 +1,3 @@
-<!-- <mat-toolbar class="toolbar_cls" fxLayout="row" fxLayoutAlign="space-between center">
-    <div fxLayout="row" fxLayoutAlign="start center">
-        <span class="spacecreationheading">
-            Your Creating Multiple Space inside the Space
-        </span>
-    </div>
-    <div fxLayoutAlign=" end center">
-
-        <img class="close_hover close" src="assets/32178.svg" (click)="close()">
-    </div>
-</mat-toolbar> -->
 <div class="dialog-content-wrapper">
 
     <mat-toolbar class="toolbar_cls" fxLayout="row" fxLayoutAlign="space-between center">
@@ -20,11 +9,11 @@
             <div fxLayout="column" style="height:100%">
 
                 <div>
-                    <button class="Btn_cls">
+                    <button class="Btn_cls" (click)="NewSpace()">
                         +
                     </button>
                 </div>
-                <div fxLayout="column" class="bg_cls" style="text-align-last: auto;" *ngFor="let space of SpaceList"
+                <div fxLayout="column" class="bg_cls" style="text-align-last: auto;cursor: pointer;" *ngFor="let space of SpaceList"
                     (click)="listselected(space)" fxLayoutAlign="center start" fxLayoutGap="5px">
                     <div fxLayout="row" fxFlex class="spacename" fxLayoutGap="4px">
                         <div class="spacename_list"> Space Name </div>
@@ -44,7 +33,7 @@
                 <div class="List_cls">
                     <div fxLayout="row" fxLayoutGap="5px" style="padding: 15px 50px 15px 15px;">
                         <div [ngClass]="General==true?'General_cls1':'General_cls'" fxFlex="11"
-                            fxLayoutAlign="center center" fxLayout="column" (click)="general()">
+                            fxLayoutAlign="center center" fxLayout="column" (click)="general();" >
                             <div>
                                 <img width="65px" height="40px !important" style="mix-blend-mode: multiply !important;"
                                     src="assets/Image 157.png">
@@ -54,7 +43,7 @@
                             </div>
                         </div>
                         <div [ngClass]="Location==true?'General_cls1':'General_cls'" fxFlex="11"
-                            fxLayoutAlign="center center" fxLayout="column" (click)="location()">
+                            fxLayoutAlign="center center" fxLayout="column" (click)="Nexttab('location');location();">
                             <div>
                                 <img width="65px" height="40px !important" style="mix-blend-mode: multiply !important;"
                                     src="./assets/location.png">
@@ -64,7 +53,7 @@
                             </div>
                         </div>
                         <div [ngClass]="Document==true?'General_cls1':'General_cls'" fxFlex="11"
-                            fxLayoutAlign="center center" fxLayout="column" (click)="document()">
+                            fxLayoutAlign="center center" fxLayout="column" (click)="Nexttab('document');document();">
                             <div>
                                 <img width="65px" height="40px !important" style="mix-blend-mode: multiply !important;"
                                     src="assets/Image 160.png">
@@ -74,7 +63,7 @@
                             </div>
                         </div>
                         <div [ngClass]="Partner==true?'General_cls1':'General_cls'" fxFlex="11"
-                            fxLayoutAlign="center center" fxLayout="column" (click)="partner()">
+                            fxLayoutAlign="center center" fxLayout="column" (click)="Nexttab('partner');partner()">
                             <div>
                                 <img width="65px" height="40px !important" style="mix-blend-mode: multiply !important;"
                                     src="assets/Image 159.png">
@@ -127,11 +116,11 @@
                 </div>
                 <div *ngIf="General==true?'selectedIndex':false" style="overflow: auto;" class="outer_height">
                     <div fxLayout="column" style="padding: 15px;overflow: auto;">
-                        <div fxLayout="row" style="width: 22%; padding-left: 49px ;">
+                        <div fxLayout="row" style="width: 22%; padding-left: 20px ;">
                             <span class="create">Create Space Details</span>
                         </div>
                         <form autocomplete="off" [formGroup]="GeneralForm">
-                            <div fxLayout="row" style="width: 100%;padding: 10px 55px;" fxLayoutGap="55px">
+                            <div fxLayout="row" style="width: 100%;padding: 10px 19px;" fxLayoutGap="55px">
                                 <div fxLayout="column" fxFlex="50" fxLayoutGap="1px">
                                     <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="4px">
                                         <span class="formspan">Space Name</span>
@@ -243,6 +232,9 @@
                                     <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
                                         <input matInput formControlName="Latitude" type="text" [ngModel]="latitude"
                                             class="placeholdertext ">
+                                            <mat-error *ngIf="LocationForm.get('Latitude').hasError('required')">
+                                                Latitude is required
+                                            </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <!-- <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
@@ -256,6 +248,9 @@
                                     <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
                                         <input matInput formControlName="Longitude" type="text" [ngModel]="longitude"
                                             class="placeholdertext ">
+                                            <mat-error *ngIf="LocationForm.get('Longitude').hasError('required')">
+                                                Longitude is required
+                                            </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <!-- <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
@@ -269,6 +264,9 @@
                                     <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
                                         <input matInput formControlName="FromLatitude" type="text"
                                             class="placeholdertext ">
+                                            <mat-error *ngIf="LocationForm.get('FromLatitude').hasError('required')">
+                                                From Latitude is required
+                                            </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <!-- <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
@@ -282,6 +280,9 @@
                                     <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
                                         <input matInput formControlName="ToLatitude" type="text"
                                             class="placeholdertext ">
+                                            <mat-error *ngIf="LocationForm.get('ToLatitude').hasError('required')">
+                                                To Latitude is required
+                                            </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <!-- <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
@@ -295,6 +296,9 @@
                                     <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
                                         <input matInput formControlName="FromLongitude" type="text"
                                             class="placeholdertext ">
+                                            <mat-error *ngIf="LocationForm.get('FromLongitude').hasError('required')">
+                                                From Longitude is required
+                                            </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <!-- <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
@@ -308,6 +312,9 @@
                                     <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
                                         <input matInput formControlName="ToLongitude" type="text"
                                             class="placeholdertext ">
+                                            <mat-error *ngIf="LocationForm.get('ToLongitude').hasError('required')">
+                                                To Longitude is required
+                                            </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <!-- <div fxLayout="row" style="font-size: 12px; color: #0d0c22;font-weight: bold;"><span
@@ -394,7 +401,10 @@
                                     <tr mat-row *matRowDef="let row; columns: DocumentdisplayedColumns;"
                                         style="border-bottom-style: none;cursor: pointer;"></tr>
                                 </table>
-
+                                <div  flex fxLayoutAlign="center center" class="nodata_outer" fxLayout="column" *ngIf="!DocLink.length">
+                                    <img src="./assets/Empty.svg"  style="height: 78px;">
+                                    <label class="nodata">The table does not contain any records</label>
+                                  </div>
                             </div>
                             <!--  -->
                             <!-- <div class=" example tableFixHead">
@@ -599,7 +609,10 @@
                                 <tr mat-row *matRowDef="let row; columns: displayedColumns1;"
                                     style="border-bottom-style: none;cursor: pointer;"></tr>
                             </table>
-
+                            <div  flex fxLayoutAlign="center center" class="nodata_outer" fxLayout="column" *ngIf="!PartnerLink.length">
+                                <img src="./assets/Empty.svg"  style="height: 78px;">
+                                <label class="nodata">The table does not contain any records</label>
+                              </div>
                         </div>
 
                     </div>
@@ -918,81 +931,74 @@
                 <div *ngIf="Date==true" class="outer_height">
                     <div fxLayout="column" style="padding: 20px 10px 10px 10px;width: 100%;">
                         <div fxLayout="row" style="width: 100%;">
-                            <div fxFlex="60" style="padding-left: 10px;">
+                            <div fxFlex="56" style="padding-left: 10px;">
                                 <span style="font-size: 14px;color: #0d0c22;font-weight: bold;">Date Links</span>
                             </div>
-                            <div fxLayout="row" fxLayoutGap="10px">
-                                <div fxLayoutAlign="center center">
-                                    <div fxLayout="row" class="main_input_field" fxLayoutAlign="space-between center"
-                                        style="margin-top: -0.22rem;">
-                                        <div>
-                                            <img style="vertical-align: -webkit-baseline-middle;
-                                width: 24px;" src="./assets/search.svg">
-                                        </div>
-                                        <div>
-                                            <input class="input_field" matInput placeholder="Search">
-                                        </div>
-
-                                    </div>
+                            <div fxLayout="row" fxLayoutGap="10px" fxFlex="100">
+                                <div fxLayout="row" class="btn_bg2" fxFlex="55">
+                                    <mat-icon matSuffix class="serachicon_search">search</mat-icon>
+                                    <input matInput class="search_input1 forminputedit" autocomplete="off"
+                                        placeholder="Search Document" (keyup)="applyFilter($event)">
                                 </div>
-
                                 <div>
                                     <button
                                         style="background-color: #4410ff;  border-radius: 4px;width: 200px;height:30px;align-self: center;color: #ffffff;font-weight: bold;font-size: 12px;"
                                         mat-button (click)="OpenDateLinkDialogue()"><span
-                                            style="position: relative;top:-3px;font-size: 12px;">ADD New
+                                            style="position: relative;top:-3px;font-size: 10px;">ADD New
                                             Date Link</span></button>
                                 </div>
                             </div>
+                          
                         </div>
 
                         <div>
                             <table mat-table [dataSource]="DateLinkDataSource">
-                                <ng-container matColumnDef="fav">
+                                <ng-container matColumnDef="StartDate">
                                     <th mat-header-cell *matHeaderCellDef> Starting Date </th>
                                     <td mat-cell *matCellDef="let element">
-                                        {{element.date}}
-                                        <span><img width="20px" src="assets/calenderblue.svg"></span>
+                                        {{element.date | date:
+                                            'dd.MM.yyyy'}}
+                                       
                                     </td>
                                 </ng-container>
-                                <!-- Position Column -->
-                                <ng-container matColumnDef="position">
+
+                                <ng-container matColumnDef="EndDate">
                                     <th mat-header-cell *matHeaderCellDef> Ending Date </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.date}}
-                                        <span><img width="20px" src="assets/calenderblue.svg"></span>
+                                    <td mat-cell *matCellDef="let element"> {{element.date | date:
+                                        'dd.MM.yyyy'}}
+                                      
                                     </td>
                                 </ng-container>
 
-                                <!-- Name Column -->
-                                <ng-container matColumnDef="name">
+                               
+                                <ng-container matColumnDef="Time">
                                     <th mat-header-cell *matHeaderCellDef> Time </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.time}}
-                                        <span><img width="20px" src="assets/Page-1.svg"></span>
+                                    <td mat-cell *matCellDef="let element"> {{element.time | shortTime:
+                                        'h:mm a'}}
+                                      
                                     </td>
                                 </ng-container>
 
-                                <!-- Weight Column -->
-                                <ng-container matColumnDef="weight">
+                              
+                                <ng-container matColumnDef="TimeStamp">
                                     <th mat-header-cell *matHeaderCellDef> Time Stamp </th>
                                     <td mat-cell *matCellDef="let element"> {{element.timeStamp}}
                                     </td>
                                 </ng-container>
 
-                                <!-- Symbol Column -->
-                                <ng-container matColumnDef="icon">
-                                    <th mat-header-cell *matHeaderCellDef> </th>
-                                    <td mat-cell *matCellDef="let element;index as index">
-                                        <img *ngIf="index==hoveredIndex" src="assets/216658.svg" width="20px">
-                                    </td>
-                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="DatedisplayedColumns"
+                                style="background-color: #f3f3f4;height: 37px;"></tr>
+                            <tr mat-row *matRowDef="let row; columns: DatedisplayedColumns;"
+                                style="border-bottom-style: none;cursor: pointer;"></tr>
 
-
-
-
-                                <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
-                                <tr mat-row *matRowDef="let row; columns: displayedColumns1;index as i;"
-                                    on-mouseover="hoveredIndex=i" class="hover_class"></tr>
+                                <!-- <tr mat-header-row *matHeaderRowDef="DatedisplayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: DatedisplayedColumns;index as i;"
+                                    on-mouseover="hoveredIndex=i" class="hover_class"></tr> -->
                             </table>
+                            <div  flex fxLayoutAlign="center center" class="nodata_outer" fxLayout="column" *ngIf="!DateLink.length">
+                                <img src="./assets/Empty.svg"  style="height: 78px;">
+                                <label class="nodata">The table does not contain any records</label>
+                              </div>
                         </div>
 
                     </div>
@@ -1045,12 +1051,14 @@
                                     <th mat-header-cell *matHeaderCellDef> Starting Date
 
                                     </th>
-                                    <td mat-cell *matCellDef="let element" class="datarow"> {{element.startDate}} </td>
+                                    <td mat-cell *matCellDef="let element" class="datarow"> {{element.startDate | date:
+                                        'dd.MM.yyyy'}} </td>
                                 </ng-container>
                                 <ng-container matColumnDef="endDate">
                                     <th mat-header-cell *matHeaderCellDef>Ending Date
                                     </th>
-                                    <td mat-cell *matCellDef="let element" class="datarow"> {{element.endDate}} </td>
+                                    <td mat-cell *matCellDef="let element" class="datarow"> {{element.endDate | date:
+                                        'dd.MM.yyyy'}} </td>
                                 </ng-container>
                                 <ng-container matColumnDef="coverValue">
                                     <th mat-header-cell *matHeaderCellDef> Cover Value
@@ -1085,6 +1093,10 @@
                                 <tr mat-row *matRowDef="let row; columns: displayedColumns2;"
                                     style="border-bottom-style: none;cursor: pointer;"></tr>
                             </table>
+                            <div  flex fxLayoutAlign="center center" class="nodata_outer" fxLayout="column" *ngIf="!ContractLink.length">
+                                <img src="./assets/Empty.svg"  style="height: 78px;">
+                                <label class="nodata">The table does not contain any records</label>
+                              </div>
                         </div>
                     </div>
                 </div>

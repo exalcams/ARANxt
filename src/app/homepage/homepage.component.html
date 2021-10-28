@@ -161,11 +161,11 @@
                                             <mat-icon inline="true">add</mat-icon>
                                         </button>
                                         <mat-menu #menu1="matMenu" yPosition="below" class="menuclass">
-                                            <button mat-menu-item>
-                                                <span (click)="spaceclicked()">Space</span>
+                                            <button mat-menu-item (click)="spaceclicked()"> 
+                                                <span >Space</span>
                                             </button>
-                                            <button mat-menu-item>
-                                                <span (click)="assetsclicked()">Asset</span>
+                                            <button mat-menu-item (click)="assetsclicked()">
+                                                <span >Asset</span>
                                             </button>
                                         </mat-menu>
                                     </div>
@@ -189,7 +189,8 @@
             <div class="sidenav_3">
                 <div fxLayout="row" fxLayoutAlign="space-between center" class="header_row">
                     <div fxLayout="row" class="header">
-                        <span>{{selectedNode}}</span>
+                        <div>{{selectedNode}}</div>
+                        <!-- <span>{{selectedNode}}</span> -->
                     </div>
                     <div class="header_bold" style="margin-left: 15px;">
                         <div (click)="openDialog()">+</div>
