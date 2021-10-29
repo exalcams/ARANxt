@@ -3,9 +3,10 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { SelectedRow } from 'src/app/Model/Object'
-import { ApexNonAxisChartSeries,
+import {
+  ApexNonAxisChartSeries,
   ApexPlotOptions,
-  ApexChart, 
+  ApexChart,
   ApexStroke,
   ApexAxisChartSeries,
   ApexXAxis,
@@ -15,13 +16,14 @@ import { ApexNonAxisChartSeries,
   ApexMarkers,
   ApexYAxis,
   ApexLegend,
-  ApexFill} from 'ng-apexcharts';
+  ApexFill
+} from 'ng-apexcharts';
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
   chart: ApexChart;
   labels: string[];
-  colors:string[];
-  stroke:ApexStroke;
+  colors: string[];
+  stroke: ApexStroke;
   plotOptions: ApexPlotOptions;
 };
 export interface List {
@@ -38,29 +40,29 @@ export type ChartOptions1 = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
   xaxis: ApexXAxis;
-  yaxis:ApexYAxis;
+  yaxis: ApexYAxis;
   dataLabels: ApexDataLabels;
   grid: ApexGrid;
   stroke: ApexStroke;
   title: ApexTitleSubtitle;
-  markers:ApexMarkers;
- // colors:string[], 
-  legend:ApexLegend,
- 
+  markers: ApexMarkers;
+  // colors:string[], 
+  legend: ApexLegend,
+
 
 };
 const LIST_DATA: List[] = [
-  { AssertId: '209313', AssertName:'AC' , Location:'Voltas', AlertDate:'August 12,2020',AlertCount:'2',Brand:"xx"},
-  { AssertId: '209312', AssertName:'Electrical' , Location:'Voltas', AlertDate:'August 12,2020',AlertCount:'6',Brand:"yy"},
-  { AssertId: '209314', AssertName:'Laptop' , Location:'First', AlertDate:'August 12,2020',AlertCount:'9',Brand:"yy"},
-  { AssertId: '209315', AssertName:'Panel' , Location:'Voltas', AlertDate:'August 12,2020',AlertCount:'1',Brand:"xx"},
-  { AssertId: '209316', AssertName:'AC' , Location:'First', AlertDate:'August 12,2020',AlertCount:'2',Brand:"yy"},
-  { AssertId: '209317', AssertName:'Panel' , Location:'Voltas', AlertDate:'August 12,2020',AlertCount:'2',Brand:"xx"},
-  { AssertId: '209318', AssertName:'AC' , Location:'Voltas', AlertDate:'August 12,2020',AlertCount:'2',Brand:"yy"},
-  { AssertId: '209319', AssertName:'Panel' , Location:'First', AlertDate:'August 12,2020',AlertCount:'3',Brand:"xx"},
-  { AssertId: '209319', AssertName:'AC' , Location:'Voltas', AlertDate:'August 12,2020',AlertCount:'8',Brand:"xx"},
-  { AssertId: '209313', AssertName:'Laptop' , Location:'First', AlertDate:'August 12,2020',AlertCount:'5',Brand:"xx"},
-  { AssertId: '209312', AssertName:'AC' , Location:'Voltas', AlertDate:'August 12,2020',AlertCount:'6',Brand:"yy"},
+  { AssertId: '209313', AssertName: 'AC', Location: 'Voltas', AlertDate: 'August 12,2020', AlertCount: '2', Brand: "xx" },
+  { AssertId: '209312', AssertName: 'Electrical', Location: 'Voltas', AlertDate: 'August 12,2020', AlertCount: '6', Brand: "yy" },
+  { AssertId: '209314', AssertName: 'Laptop', Location: 'First', AlertDate: 'August 12,2020', AlertCount: '9', Brand: "yy" },
+  { AssertId: '209315', AssertName: 'Panel', Location: 'Voltas', AlertDate: 'August 12,2020', AlertCount: '1', Brand: "xx" },
+  { AssertId: '209316', AssertName: 'AC', Location: 'First', AlertDate: 'August 12,2020', AlertCount: '2', Brand: "yy" },
+  { AssertId: '209317', AssertName: 'Panel', Location: 'Voltas', AlertDate: 'August 12,2020', AlertCount: '2', Brand: "xx" },
+  { AssertId: '209318', AssertName: 'AC', Location: 'Voltas', AlertDate: 'August 12,2020', AlertCount: '2', Brand: "yy" },
+  { AssertId: '209319', AssertName: 'Panel', Location: 'First', AlertDate: 'August 12,2020', AlertCount: '3', Brand: "xx" },
+  { AssertId: '209319', AssertName: 'AC', Location: 'Voltas', AlertDate: 'August 12,2020', AlertCount: '8', Brand: "xx" },
+  { AssertId: '209313', AssertName: 'Laptop', Location: 'First', AlertDate: 'August 12,2020', AlertCount: '5', Brand: "xx" },
+  { AssertId: '209312', AssertName: 'AC', Location: 'Voltas', AlertDate: 'August 12,2020', AlertCount: '6', Brand: "yy" },
 ];
 @Component({
   selector: 'app-signals',
@@ -79,18 +81,22 @@ export class SignalsComponent implements OnInit {
     'AlertCount',
     'Brand',
     'Menu',
-    
+
   ];
   data = Object.assign(LIST_DATA);
-dataSource = new MatTableDataSource<List>(this.data);
-InfoAlert:number=0;
-WarningAlert:List[]=[];
-SuccessAlert:number=0;
-DangerAlert:List[]=[];
-SelectedRow: SelectedRow[] = [];
+  dataSource = new MatTableDataSource<List>(this.data);
+  InfoAlert: number = 0;
+  WarningAlert: List[] = [];
+  SuccessAlert: number = 0;
+  DangerAlert: List[] = [];
+  isassign = false;
+  isFolded: boolean = false;
+  isnotassign = true;
+  SelectedRow: SelectedRow[] = [];
+  selectedRowIndex2 = -1;
   public chartOptions: ChartOptions;
   public chartOptions1: ChartOptions1;
-  isExpand: boolean=true;
+  isExpand: boolean = true;
   constructor(private router: Router) {
     this.chartOptions = {
       series: [76.6],
@@ -98,29 +104,29 @@ SelectedRow: SelectedRow[] = [];
         height: 155,
         type: "radialBar"
       },
-      colors:["#28fc49"],
+      colors: ["#28fc49"],
       plotOptions: {
         radialBar: {
           hollow: {
             margin: 20,
             size: "60%"
           },
-         
+
           dataLabels: {
-           // showOn: "always",
+            // showOn: "always",
             name: {
               offsetY: 20,
               show: true,
               color: "#888",
               fontSize: "10px",
-              fontFamily:"poppins-semi"
+              fontFamily: "poppins-semi"
             },
             value: {
               offsetY: -15,
               color: "#111",
               fontSize: "14px",
-              fontWeight:600,
-              fontFamily:"poppins-semi",
+              fontWeight: 600,
+              fontFamily: "poppins-semi",
               show: true
             }
           }
@@ -133,30 +139,30 @@ SelectedRow: SelectedRow[] = [];
     };
     //line
     this.chartOptions1 = {
-     
+
       series: [
         {
           name: "Desktops",
-          data: [10,80,35,55,8,80]
+          data: [10, 80, 35, 55, 8, 80]
         },
         {
           name: "Desktops",
-          data: [45,87,53,55,80,9]
+          data: [45, 87, 53, 55, 80, 9]
         },
         {
           name: "Desktops",
-          data: [1,98,39,54,85,19]
+          data: [1, 98, 39, 54, 85, 19]
         },
         {
           name: "Desktops",
-          data: [23,38,52,57,48,29]
+          data: [23, 38, 52, 57, 48, 29]
         }
       ],
-      
+
       chart: {
         toolbar: {
           show: false,
-        }, 
+        },
         height: 180,
         width: '100%',
         type: "line",
@@ -169,10 +175,11 @@ SelectedRow: SelectedRow[] = [];
       },
       stroke: {
         curve: "smooth",
-        width: [2,0,0,0],
+        width: [2, 0, 0, 0],
       },
       legend: {
-        show: false},
+        show: false
+      },
       title: {
         text: "Product Trends by Month",
         align: "left"
@@ -180,25 +187,25 @@ SelectedRow: SelectedRow[] = [];
       grid: {
         xaxis: {
           lines: {
-              show: true
+            show: true
           }
-      },   
-      yaxis: {
+        },
+        yaxis: {
           lines: {
-              show: false
+            show: false
           }
-      },
+        },
         row: {
           colors: [], // takes an array which will be repeated on columns 
           opacity: 0.5
         },
         column: {
-          colors: [ ], // takes an array which will be repeated on columns 
+          colors: [], // takes an array which will be repeated on columns 
           opacity: 0.5
-      }, 
+        },
       },
       markers: {
-        size: [5,4,4,4],
+        size: [5, 4, 4, 4],
         hover: {
           size: 5
         }
@@ -207,15 +214,15 @@ SelectedRow: SelectedRow[] = [];
         title: {
           text: "Signals",
           style: {
-            color:'#acacac',
+            color: '#acacac',
             fontSize: '10px',
             fontFamily: 'poppins-semi',
             fontWeight: 500,
-        },
+          },
         },
         labels: {
           style: {
-            colors:"#acacac",
+            colors: "#acacac",
             fontSize: '10px',
             fontFamily: 'poppins-semi',
             fontWeight: 500,
@@ -228,7 +235,7 @@ SelectedRow: SelectedRow[] = [];
       xaxis: {
         labels: {
           style: {
-            colors:"#acacac",
+            colors: "#acacac",
             fontSize: '10px',
             fontFamily: 'poppins-semi',
             fontWeight: 500,
@@ -245,7 +252,7 @@ SelectedRow: SelectedRow[] = [];
       }
     };
   }
-  allComplete:any;
+  allComplete: any;
   ngOnInit(): void {
   }
   applyFilter(event: Event) {
@@ -258,21 +265,22 @@ SelectedRow: SelectedRow[] = [];
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
-  assign(){
+  assign() {
     // console.log(this.selection.selected);
     this.SelectedRow = this.selection.selected;
     console.log(this.SelectedRow);
     localStorage.setItem('assignedRows', JSON.stringify(this.SelectedRow));
-    
-    localStorage.setItem('ass','true');
-    this.router.navigate(['/assign']); 
+
+    localStorage.setItem('ass', 'true');
+    // this.router.navigate(['/assign']); 
+
   }
 
-  IsSelected(){
-    
-      console.log(this.selection.selected);
-    
-    
+  IsSelected() {
+
+    console.log(this.selection.selected);
+
+
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
@@ -285,21 +293,38 @@ SelectedRow: SelectedRow[] = [];
     this.selection.select(...this.dataSource.data);
   }
 
-  Deleterow(index:number){
-LIST_DATA.splice(index,1);
-this.data = Object.assign(LIST_DATA);
-this.dataSource = new MatTableDataSource<List>(this.data);
+  Deleterow(index: number) {
+    LIST_DATA.splice(index, 1);
+    this.data = Object.assign(LIST_DATA);
+    this.dataSource = new MatTableDataSource<List>(this.data);
   }
-  MovetoDanger(index:number){
-this.DangerAlert.push(LIST_DATA[index]);
-this.Deleterow(index);
+  MovetoDanger(index: number) {
+    this.DangerAlert.push(LIST_DATA[index]);
+    this.Deleterow(index);
   }
-  MovetoWarning(index:number){
-this.WarningAlert.push(LIST_DATA[index]);
-this.Deleterow(index);
+  MovetoWarning(index: number) {
+    this.WarningAlert.push(LIST_DATA[index]);
+    this.Deleterow(index);
 
   }
-  Expand(){
-    this.isExpand=!this.isExpand;
+  Expand() {
+    this.isExpand = !this.isExpand;
+  }
+
+  isassignclk() {
+    this.isassign = true;
+    this.isnotassign = false
+  }
+  isnotassignclk() {
+    this.isassign = false;
+    this.isnotassign = true;
+  }
+  switchSideMenu(value: boolean) {
+    this.isFolded = value;
+  }
+  highlight2(row) {
+    console.log(row)
+    this.selectedRowIndex2 = row.AssertId;
+    console.log(this.selectedRowIndex2);
   }
 }

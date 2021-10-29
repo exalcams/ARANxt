@@ -33,7 +33,7 @@
                         <div class="inputdivision">
                             <input autocomplete="off" matInput formControlName="userName" class="inputform "
                                 placeholder="Enter Username" required>
-                           
+
                         </div>
                     </div>
                     <div fxLayout="column" fxLayoutAlign="space-between" fxLayoutGap="8px">
@@ -43,7 +43,7 @@
                                 placeholder="Enter Password" [type]="hide ? 'password' : 'text'">
                             <!-- <mat-icon class="show" (click)="hide=!hide;">{{hide ? 'visibility' : 'visibility_off'}}
                             </mat-icon> -->
-                            
+
                             <img src="../../assets/38488.svg" *ngIf="hide==true" (click)="hider()" class="show">
                             <img src="../../assets/eyeopen.svg" class="show" *ngIf="hide==false" (click)="hider2()">
 
@@ -90,17 +90,30 @@
                     <span class="google">Outlook</span>
                 </div>
             </div>
-            <div fxLayout="row" fxLayoutAlign="center" class="signupdiv" fxLayoutGap="5px">
-                <span class="newto">
-                    New to
-                </span>
-                <img src="../../assets/Group 8575.png" width="55px">
-                <span class="signupdiv2">
-                    Please,
-                </span>
-                <span class="signupdiv3">
-                    Sign Up
-                </span>
+            <div fxLayout="row" fxLayoutAlign="center" class="signupdiv" fxLayoutGap="8px">
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5px">
+                    <span class="newto">
+                        New
+                    </span>
+                    <span class="newto">
+                       to
+                    </span>
+                    <span class="newto">
+                      ARANXT ?
+                    </span>
+                </div>
+                <!-- <span class="newto"></span> -->
+                <!-- <img src="../../assets/Group 8575.png" width="55px"> -->
+                <!-- <span class="newto">?</span> -->
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+                    <span class="signupdiv2">
+                        Please
+                    </span>
+                    <!-- <span class="widthclass"></span> -->
+                    <span class="signupdiv3">
+                        Sign Up
+                    </span>
+                </div>
             </div>
 
             <!-- <mat-progress-spinner *ngIf="IsProgressBarVisibile" class="ProgressBarPostion" color="accent"

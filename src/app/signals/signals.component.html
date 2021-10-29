@@ -1,4 +1,4 @@
-<div fxLayout="column" class="overall-main-div">
+<div fxLayout="column" class="overall-main-div" *ngIf="isnotassign">
 
     <div *ngIf="isExpand" fxLayout="row" class="overall-hide-topdiv" fxLayoutAlign="start center">
         <div fxFlex="19" fxLayout="column" fxLayoutAlign="start" class="status-div">
@@ -206,15 +206,23 @@
                     </td>
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="displayedColumns  sticky: true"></tr>
-                <tr mat-row *matRowDef="let row; let element; columns: displayedColumns;"></tr>
+                <tr mat-row *matRowDef="let row; let element; columns: displayedColumns;"
+                style="border-bottom-style: none;cursor: pointer;"
+                [ngClass]="{'highlight3': selectedRowIndex2 == row.AssertId}" (click)="highlight2(row);"></tr>
+                <!-- [ngClass]="{highlight3:selection.isSelected(row)}" -->
                 <tr class="mat-row" *matNoDataRow>
                     <td class="mat-cell" colspan="4">No data matching the filter </td>
                 </tr>
             </table>
         </div>
         <!-- footer -->
-        <div style="width: 100%;height: 40px;    justify-content: flex-end;" fxLayout="row">
-            <button mat-button class="assignbutton" (click)="assign()">Assign ({{selection.selected.length}})</button>
+        <div fxLayout="row" class="assign-div">
+            <button mat-button class="assignbutton" (click)="assign();isassignclk()">Assign
+                ({{selection.selected.length}})</button>
         </div>
     </div>
+</div>
+
+<div *ngIf="isassign">
+    <app-assign (switchSideNav)="switchSideMenu($event)"></app-assign>
 </div>
