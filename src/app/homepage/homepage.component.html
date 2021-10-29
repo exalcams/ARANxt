@@ -189,8 +189,16 @@
             <div class="sidenav_3">
                 <div fxLayout="row" fxLayoutAlign="space-between center" class="header_row">
                     <div fxLayout="row" class="header">
-                        <div>{{selectedNode}}</div>
-                        <!-- <span>{{selectedNode}}</span> -->
+                        <!-- <div>{{selectedNode}}</div> -->
+                        <!-- <div><span>{{option.name}}</span><span>>></span></div> -->
+                        <span  *ngFor="let option of duplicateselecetedarray;let indexOfelement=index;">
+                            <span *ngIf="indexOfelement>0">>></span>
+                           <span>{{option.name}}</span> 
+                        
+                            <!-- <div>{{indexOfelement}}</div> -->
+                        </span>
+                        <!-- <div>>></div> -->
+                      
                     </div>
                     <div class="header_bold" style="margin-left: 15px;">
                         <div (click)="openDialog()">+</div>

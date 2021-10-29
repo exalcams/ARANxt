@@ -30,6 +30,7 @@ export class SpaceComponent implements OnInit {
   public GeneralForm: FormGroup;
   LocLinkView: LocLink = new LocLink();
   AreaLinkView: AreaLink = new AreaLink();
+  @ViewChild('fileInput') fileInputRef:ElementRef;
   AddressLinkView: AddrLink = new AddrLink();
   DocLinkView: DocumentLink = new DocumentLink();
   GeneralSpaceView: ARA_Space = new ARA_Space();
@@ -49,6 +50,7 @@ export class SpaceComponent implements OnInit {
   steps = 8;
   progressvalue: any;
   latitude: any;
+  selectedspaceId:number;
   longitude: any;
   zoom: number;
   address1: string;
@@ -141,7 +143,7 @@ export class SpaceComponent implements OnInit {
   // @Inject(MAT_DIALOG_DATA) public dialogData: any,
   // public dialogRef: MatDialogRef<CloseDialogComponent>,
   constructor(public dialog: MatDialog, private mapsAPILoader: MapsAPILoader, public form: FormBuilder, private snackBar: MatSnackBar,
-    private service: SpaceService,    private spinner: NgxSpinnerService,@Inject(MAT_DIALOG_DATA) public dialogData: any, private cdr: ChangeDetectorRef,
+    private service: SpaceService, private spinner: NgxSpinnerService, @Inject(MAT_DIALOG_DATA) public dialogData: any, private cdr: ChangeDetectorRef,
     private ngZone: NgZone, public dialogRef: MatDialogRef<SpaceComponent>, public nav: LoginService) { this.nav.islogin(true); }
   private setCurrentLocation() {
     this.notificationSnackBarComponent = new NotificationSnackBarComponent(this.snackBar);
@@ -203,15 +205,23 @@ export class SpaceComponent implements OnInit {
     );
   }
   GetSpaceBySite() {
+    this.spinner.show()
     this.service.GetSpaceBySite(this.dialogData.selectedid).subscribe(
       (res) => {
         console.log("res", res);
-
         this.SpaceList = res as ARA_SpaceAll[];
+        this.spinner.hide();
+
         console.log("SpaceList", this.SpaceList);
 
-      }
-    );
+      },
+      err => {
+        this.spinner.hide();
+        this.notificationSnackBarComponent.openSnackBar(err instanceof Object ? 'Something went wrong' : err, SnackBarStatus.danger);
+        console.log(err);
+
+      })
+    
   }
   GetDocumentDetails() {
     // this.service.GetDocLink().subscribe(
@@ -319,18 +329,22 @@ export class SpaceComponent implements OnInit {
     this.SpaceForm.enable();
     this.AddressForm.enable();
     this.reset();
+
   }
   reset() {
     this.GeneralForm.reset();
+    this.progressvalue = 0;
+    this.progress = 12.5;
+    this.steps = 8;
     this.LocationForm.reset();
     this.SpaceForm.reset();
     this.AddressForm.reset();
     this.DocLink = [];
     this.DocumentLinkDataSource = new MatTableDataSource(this.DocLink);
     this.PartnerLink = [];
-    this.DateLinkFormValidStatus=false;
-    this.PartnerLinkFormValidStatus=false;
-    this.ContrctFormValidStatus=false;
+    this.DateLinkFormValidStatus = false;
+    this.PartnerLinkFormValidStatus = false;
+    this.ContrctFormValidStatus = false;
     this.HeaderDetailsDataSource = new MatTableDataSource(this.PartnerLink);
     this.ContractLink = [];
     this.ContractLinkDataSource = new MatTableDataSource(this.ContractLink);
@@ -346,14 +360,26 @@ export class SpaceComponent implements OnInit {
     //  ContractLinkDataSource: MatTableDataSource<ContractLink>;
 
   }
+  fileUpload()
+  {
+    if(!this.listselectedbool)
+    {
+      this.fileInputRef.nativeElement.click();
+    }
+    else if(this.listselectedbool)
+  {
+    this.notificationSnackBarComponent.openSnackBar("You can't upload a document", SnackBarStatus.warning);
+  }
+
+  }
   listselected(SpaceSelected) {
     this.spinner.show();
     this.reset()
     this.generaltab();
     this.listselectedbool = true;
-    
+     this.selectedspaceId=SpaceSelected.arA_space.space;
     console.log("SpaceSelected", SpaceSelected);
-  
+
     this.GeneralForm.disable();
     this.GeneralForm.patchValue({
       spaceName: SpaceSelected.arA_space.title,
@@ -410,12 +436,14 @@ export class SpaceComponent implements OnInit {
     this.DateLinkDataSource = new MatTableDataSource(this.DateLink);
     this.spinner.hide();
   }
-  general()
-  {
-    if ((this.GeneralForm.invalid)  && (this.LocationForm.invalid && this.DocumentLinkDataSource == null && !this.PartnerLinkFormValidStatus && this.SpaceForm.invalid && this.AddressForm.invalid && !this.DateLinkFormValidStatus && !this.ContrctFormValidStatus)) {
+  general() {
+    if ((this.GeneralForm.invalid) && (this.LocationForm.invalid && this.DocumentLinkDataSource == null && !this.PartnerLinkFormValidStatus && this.SpaceForm.invalid && this.AddressForm.invalid && !this.DateLinkFormValidStatus && !this.ContrctFormValidStatus)) {
       this.generaltab();
     }
+    else if (this.listselectedbool) {
 
+      this.generaltab();
+    }
     else if (this.selectedIndex) {
       var a = this.Others(this.selectedIndex);
       if (a) {
@@ -424,7 +452,7 @@ export class SpaceComponent implements OnInit {
     }
   }
   generaltab() {
-  
+
     this.General = true;
     this.Location = false;
     this.Document = false;
@@ -438,10 +466,11 @@ export class SpaceComponent implements OnInit {
     this.next = true;
     this.finish = false;
     // }
-
   }
+
   location() {
     if ((this.GeneralForm.valid) && (this.General) && (this.LocationForm.invalid && this.DocumentLinkDataSource == null && !this.PartnerLinkFormValidStatus && this.SpaceForm.invalid && this.AddressForm.invalid && !this.DateLinkFormValidStatus && !this.ContrctFormValidStatus)) {
+      this.progressbar();
       this.locationtab();
     }
     else if (this.LocationForm.valid && this.DocumentLinkDataSource != null && this.GeneralForm.valid && this.PartnerLinkFormValidStatus && this.SpaceForm.valid && this.AddressForm.valid && this.DateLinkFormValidStatus && this.ContrctFormValidStatus) {
@@ -452,16 +481,20 @@ export class SpaceComponent implements OnInit {
 
       this.locationtab();
     }
-    else if (this.GeneralForm.invalid && this.General ) {
+    else if (this.GeneralForm.invalid && this.General) {
       this.ShowValidationErrors(this.GeneralForm)
     }
-    else if (this.LocationForm.invalid && this.Location ) {
+    else if (this.LocationForm.invalid && this.Location) {
       // this.ShowValidationErrors(this.GeneralForm)
     }
     else if (this.selectedIndex) {
       var a = this.Others(this.selectedIndex);
       if (a) {
+
         this.locationtab();
+        if (this.LocationForm.invalid) {
+          this.progressbar();
+        }
       }
     }
   }
@@ -478,7 +511,7 @@ export class SpaceComponent implements OnInit {
       if (this.DocumentLinkDataSource != null) {
         return true;
       } else {
-      this.notificationSnackBarComponent.openSnackBar("Please upload a document", SnackBarStatus.warning);
+        this.notificationSnackBarComponent.openSnackBar("Please upload a document", SnackBarStatus.warning);
         return false;
       }
     }
@@ -486,7 +519,7 @@ export class SpaceComponent implements OnInit {
       if (this.PartnerLinkFormValidStatus) {
         return true;
       } else {
-      this.notificationSnackBarComponent.openSnackBar("Please add new partner", SnackBarStatus.warning);
+        this.notificationSnackBarComponent.openSnackBar("Please add new partner", SnackBarStatus.warning);
 
         return false;
       }
@@ -500,7 +533,7 @@ export class SpaceComponent implements OnInit {
       }
     }
     if (eve == "Space") {
-      if (this.SpaceForm.valid ) {
+      if (this.SpaceForm.valid) {
         return true;
       } else {
         this.ShowValidationErrors(this.SpaceForm);
@@ -508,7 +541,7 @@ export class SpaceComponent implements OnInit {
       }
     }
     if (eve == "Address") {
-      if (this.AddressForm.valid ) {
+      if (this.AddressForm.valid) {
         return true;
       } else {
         this.ShowValidationErrors(this.AddressForm);
@@ -516,7 +549,7 @@ export class SpaceComponent implements OnInit {
       }
     }
     if (eve == "Date") {
-      if (this.DateLinkFormValidStatus ) {
+      if (this.DateLinkFormValidStatus) {
         return true;
       } else {
         this.notificationSnackBarComponent.openSnackBar("Please add new DateLink", SnackBarStatus.warning);
@@ -524,7 +557,7 @@ export class SpaceComponent implements OnInit {
       }
     }
     if (eve == "Contract") {
-      if (this.ContrctFormValidStatus ) {
+      if (this.ContrctFormValidStatus) {
         return true;
       } else {
         this.notificationSnackBarComponent.openSnackBar("Please add new ContractLink", SnackBarStatus.warning);
@@ -549,6 +582,7 @@ export class SpaceComponent implements OnInit {
   document() {
 
     if ((this.LocationForm.valid) && (this.Location) && (this.GeneralForm.valid && this.DocumentLinkDataSource == null && !this.PartnerLinkFormValidStatus && this.SpaceForm.invalid && this.AddressForm.invalid && !this.DateLinkFormValidStatus && !this.ContrctFormValidStatus)) {
+      this.progressbar();
       this.documenttab();
     }
     else if (this.LocationForm.valid && this.DocumentLinkDataSource != null && this.GeneralForm.valid && this.PartnerLinkFormValidStatus && this.SpaceForm.valid && this.AddressForm.valid && this.DateLinkFormValidStatus && this.ContrctFormValidStatus) {
@@ -562,16 +596,20 @@ export class SpaceComponent implements OnInit {
     else if (this.LocationForm.invalid && this.Location) {
       this.ShowValidationErrors(this.LocationForm)
     }
-    
-    else if (this.DocumentLinkDataSource == null && this.Document ) {
+
+    else if (this.DocumentLinkDataSource == null && this.Document) {
       // this.ShowValidationErrors(this.GeneralForm)
     }
     else if (this.selectedIndex) {
       var a = this.Others(this.selectedIndex);
       if (a) {
         this.documenttab();
+
+        if (this.DocumentLinkDataSource == null) {
+          this.progressbar();
+        }
       }
-    
+
     }
   }
   documenttab() {
@@ -588,9 +626,9 @@ export class SpaceComponent implements OnInit {
     this.next = true;
     this.finish = false;
   }
-  partner()
-  {
-    if ((this.DocumentLinkDataSource != null) && (this.Document) && (this.GeneralForm.valid && this.LocationForm.valid  && !this.PartnerLinkFormValidStatus && this.SpaceForm.invalid && this.AddressForm.invalid && !this.DateLinkFormValidStatus && !this.ContrctFormValidStatus)) {
+  partner() {
+    if ((this.DocumentLinkDataSource != null) && (this.Document) && (this.GeneralForm.valid && this.LocationForm.valid && !this.PartnerLinkFormValidStatus && this.SpaceForm.invalid && this.AddressForm.invalid && !this.DateLinkFormValidStatus && !this.ContrctFormValidStatus)) {
+      this.progressbar();
       this.partnertab();
     }
     else if (this.LocationForm.valid && this.DocumentLinkDataSource != null && this.GeneralForm.valid && this.PartnerLinkFormValidStatus && this.SpaceForm.valid && this.AddressForm.valid && this.DateLinkFormValidStatus && this.ContrctFormValidStatus) {
@@ -601,41 +639,46 @@ export class SpaceComponent implements OnInit {
 
       this.partnertab();
     }
-    else if (this.DocumentLinkDataSource == null&& this.Document) {
+    else if (this.DocumentLinkDataSource == null && this.Document) {
       this.notificationSnackBarComponent.openSnackBar("Please upload a document", SnackBarStatus.warning);
     }
-    
-    else if (!this.PartnerLinkFormValidStatus && this.Partner ) {
+
+    else if (!this.PartnerLinkFormValidStatus && this.Partner) {
       // this.ShowValidationErrors(this.GeneralForm)
     }
     else if (this.selectedIndex) {
       var a = this.Others(this.selectedIndex);
       if (a) {
         this.partnertab();
+
+        if (!this.PartnerLinkFormValidStatus) {
+          this.progressbar();
+        }
+
       }
-    
+
     }
   }
   partnertab() {
-   
-        this.General = false;
-        this.Location = false;
-        this.Document = false;
-        this.Partner = true;
-        this.Space = false;
-        this.Address = false;
-        this.Date = false;
-        this.Contract = false;
-        this.selectedIndex = "Partner";
-        this.previous = true;
-        this.next = true;
-        this.finish = false;
-      
-  
+
+    this.General = false;
+    this.Location = false;
+    this.Document = false;
+    this.Partner = true;
+    this.Space = false;
+    this.Address = false;
+    this.Date = false;
+    this.Contract = false;
+    this.selectedIndex = "Partner";
+    this.previous = true;
+    this.next = true;
+    this.finish = false;
+
+
   }
-  space()
-  {
-    if ((this.PartnerLinkFormValidStatus) && (this.Partner) && (this.GeneralForm.valid && this.LocationForm.valid && this.DocumentLinkDataSource != null  && this.SpaceForm.invalid && this.AddressForm.invalid && !this.DateLinkFormValidStatus && !this.ContrctFormValidStatus)) {
+  space() {
+    if ((this.PartnerLinkFormValidStatus) && (this.Partner) && (this.GeneralForm.valid && this.LocationForm.valid && this.DocumentLinkDataSource != null && this.SpaceForm.invalid && this.AddressForm.invalid && !this.DateLinkFormValidStatus && !this.ContrctFormValidStatus)) {
+      this.progressbar();
       this.spacetab();
     }
     else if (this.LocationForm.valid && this.DocumentLinkDataSource != null && this.GeneralForm.valid && this.PartnerLinkFormValidStatus && this.SpaceForm.valid && this.AddressForm.valid && this.DateLinkFormValidStatus && this.ContrctFormValidStatus) {
@@ -649,37 +692,42 @@ export class SpaceComponent implements OnInit {
     else if (!this.PartnerLinkFormValidStatus && this.Partner) {
       this.notificationSnackBarComponent.openSnackBar("Please add new partner", SnackBarStatus.warning);
     }
-   
-    else if (this.SpaceForm.invalid && this.Space ) {
+
+    else if (this.SpaceForm.invalid && this.Space) {
       // this.ShowValidationErrors(this.GeneralForm)
     }
     else if (this.selectedIndex) {
       var a = this.Others(this.selectedIndex);
       if (a) {
+
+
         this.spacetab();
+        if (this.SpaceForm.invalid) {
+          this.progressbar();
+        }
       }
     }
   }
   spacetab() {
 
-        this.General = false;
-        this.Location = false;
-        this.Document = false;
-        this.Partner = false;
-        this.Space = true;
-        this.Address = false;
-        this.Date = false;
-        this.Contract = false;
-        this.selectedIndex = "Space";
-        this.previous = true;
-        this.next = true;
-        this.finish = false;
+    this.General = false;
+    this.Location = false;
+    this.Document = false;
+    this.Partner = false;
+    this.Space = true;
+    this.Address = false;
+    this.Date = false;
+    this.Contract = false;
+    this.selectedIndex = "Space";
+    this.previous = true;
+    this.next = true;
+    this.finish = false;
 
-    
+
   }
-  address()
-  {
-    if ((this.SpaceForm.valid) && (this.Space) && (this.GeneralForm.valid && this.LocationForm.valid && this.DocumentLinkDataSource != null  && this.AddressForm.invalid && !this.DateLinkFormValidStatus && !this.ContrctFormValidStatus)) {
+  address() {
+    if ((this.SpaceForm.valid) && (this.Space) && (this.GeneralForm.valid && this.LocationForm.valid && this.DocumentLinkDataSource != null && this.AddressForm.invalid && !this.DateLinkFormValidStatus && !this.ContrctFormValidStatus)) {
+      this.progressbar();
       this.addresstab();
     }
     else if (this.LocationForm.valid && this.DocumentLinkDataSource != null && this.GeneralForm.valid && this.PartnerLinkFormValidStatus && this.SpaceForm.valid && this.AddressForm.valid && this.DateLinkFormValidStatus && this.ContrctFormValidStatus) {
@@ -691,39 +739,45 @@ export class SpaceComponent implements OnInit {
       this.addresstab();
     }
     else if (this.SpaceForm.invalid && this.Space) {
-     this.ShowValidationErrors(this.SpaceForm);
+      this.ShowValidationErrors(this.SpaceForm);
     }
- 
-    else if (this.AddressForm.invalid && this.Address ) {
+
+    else if (this.AddressForm.invalid && this.Address) {
       // this.ShowValidationErrors(this.GeneralForm)
     }
     else if (this.selectedIndex) {
       var a = this.Others(this.selectedIndex);
       if (a) {
         this.addresstab();
+        if (this.AddressForm.invalid) {
+          this.progressbar();
+        }
+
+
       }
     }
   }
-  
+
   addresstab() {
-  
-        this.General = false;
-        this.Location = false;
-        this.Document = false;
-        this.Partner = false;
-        this.Space = false;
-        this.Address = true;
-        this.Date = false;
-        this.Contract = false;
-        this.selectedIndex = "Address";
-        this.previous = true;
-        this.next = true;
-        this.finish = false;
-    
- 
+
+    this.General = false;
+    this.Location = false;
+    this.Document = false;
+    this.Partner = false;
+    this.Space = false;
+    this.Address = true;
+    this.Date = false;
+    this.Contract = false;
+    this.selectedIndex = "Address";
+    this.previous = true;
+    this.next = true;
+    this.finish = false;
+
+
   }
-  date(){
-    if ((this.AddressForm.valid) && (this.Address) && (this.GeneralForm.valid && this.SpaceForm.valid && this.LocationForm.valid && this.DocumentLinkDataSource != null  && this.SpaceForm.valid && this.AddressForm.valid && !this.DateLinkFormValidStatus && !this.ContrctFormValidStatus)) {
+  date() {
+    if ((this.AddressForm.valid) && (this.Address) && (this.GeneralForm.valid && this.SpaceForm.valid && this.LocationForm.valid && this.DocumentLinkDataSource != null && this.SpaceForm.valid && this.AddressForm.valid && !this.DateLinkFormValidStatus && !this.ContrctFormValidStatus)) {
+      this.progressbar();
       this.datetab();
     }
     else if (this.LocationForm.valid && this.DocumentLinkDataSource != null && this.GeneralForm.valid && this.PartnerLinkFormValidStatus && this.SpaceForm.valid && this.AddressForm.valid && this.DateLinkFormValidStatus && this.ContrctFormValidStatus) {
@@ -735,38 +789,42 @@ export class SpaceComponent implements OnInit {
       this.datetab();
     }
     else if (this.AddressForm.invalid && this.Address) {
-     this.ShowValidationErrors(this.AddressForm);
+      this.ShowValidationErrors(this.AddressForm);
     }
-   
-    else if (!this.DateLinkFormValidStatus && this.Date ) {
+
+    else if (!this.DateLinkFormValidStatus && this.Date) {
       // this.ShowValidationErrors(this.GeneralForm)
     }
     else if (this.selectedIndex) {
       var a = this.Others(this.selectedIndex);
       if (a) {
+
         this.datetab();
+        if (!this.DateLinkFormValidStatus) {
+          this.progressbar();
+        }
       }
     }
   }
   datetab() {
-  
-        this.General = false;
-        this.Location = false;
-        this.Document = false;
-        this.Partner = false;
-        this.Space = false;
-        this.Address = false;
-        this.Date = true;
-        this.Contract = false;
-        this.selectedIndex = "Date";
-        this.previous = true;
-        this.next = true;
-        this.finish = false;
-   
+
+    this.General = false;
+    this.Location = false;
+    this.Document = false;
+    this.Partner = false;
+    this.Space = false;
+    this.Address = false;
+    this.Date = true;
+    this.Contract = false;
+    this.selectedIndex = "Date";
+    this.previous = true;
+    this.next = true;
+    this.finish = false;
+
   }
-  contract()
-  {
-    if ((this.DateLinkFormValidStatus) && (this.Date) && (this.GeneralForm.valid && this.SpaceForm.valid && this.LocationForm.valid && this.DocumentLinkDataSource != null  && this.SpaceForm.valid && this.AddressForm.valid  && !this.ContrctFormValidStatus)) {
+  contract() {
+    if ((this.DateLinkFormValidStatus) && (this.Date) && (this.GeneralForm.valid && this.SpaceForm.valid && this.LocationForm.valid && this.DocumentLinkDataSource != null && this.SpaceForm.valid && this.AddressForm.valid && !this.ContrctFormValidStatus)) {
+      this.progressbar();
       this.contracttab();
     }
     else if (this.LocationForm.valid && this.DocumentLinkDataSource != null && this.GeneralForm.valid && this.PartnerLinkFormValidStatus && this.SpaceForm.valid && this.AddressForm.valid && this.DateLinkFormValidStatus && this.ContrctFormValidStatus) {
@@ -780,32 +838,36 @@ export class SpaceComponent implements OnInit {
     else if (!this.DateLinkFormValidStatus && this.Date) {
       this.notificationSnackBarComponent.openSnackBar("Please add new DateLink", SnackBarStatus.warning);
     }
-   
-    else if (!this.ContrctFormValidStatus && this.Contract ) {
+
+    else if (!this.ContrctFormValidStatus && this.Contract) {
       // this.ShowValidationErrors(this.GeneralForm)
     }
     else if (this.selectedIndex) {
       var a = this.Others(this.selectedIndex);
       if (a) {
+
         this.contracttab();
+        if (!this.ContrctFormValidStatus) {
+          this.progressbar();
+        }
       }
     }
   }
   contracttab() {
 
-      this.General = false;
-      this.Location = false;
-      this.Document = false;
-      this.Partner = false;
-      this.Space = false;
-      this.Address = false;
-      this.Date = false;
-      this.Contract = true;
-      this.selectedIndex = "Contract";
-      this.previous = true;
-      this.next = false;
-      this.finish = true;
-   
+    this.General = false;
+    this.Location = false;
+    this.Document = false;
+    this.Partner = false;
+    this.Space = false;
+    this.Address = false;
+    this.Date = false;
+    this.Contract = true;
+    this.selectedIndex = "Contract";
+    this.previous = true;
+    this.next = false;
+    this.finish = true;
+
   }
 
   ShowValidationErrors(eve: FormGroup): void {
@@ -814,17 +876,17 @@ export class SpaceComponent implements OnInit {
       eve.get(key).markAsDirty();
     });
   }
-  Nexttab(eve) {
-    if (this.General && eve == "location" && this.LocationForm.invalid) {
-      this.Next();
-    }
-    if (this.Location && eve == "document" && this.DocumentLinkDataSource == null) {
-      this.Next();
-    }
-    if (this.Document && eve == "partner") {
-      this.Next();
-    }
-  }
+  // Nexttab(eve) {
+  //   if (this.General && eve == "location" && this.LocationForm.invalid) {
+  //     this.Next();
+  //   }
+  //   if (this.Location && eve == "document" && this.DocumentLinkDataSource == null) {
+  //     this.Next();
+  //   }
+  //   if (this.Document && eve == "partner") {
+  //     this.Next();
+  //   }
+  // }
   Next() {
     switch (this.selectedIndex) {
       case "General":
@@ -847,11 +909,11 @@ export class SpaceComponent implements OnInit {
         break;
       case "Date":
         this.contract();
-        var val = Math.floor(1000 + Math.random() * 9000);
-        console.log(val);
+        // var val = Math.floor(1000 + Math.random() * 9000);
+        // console.log(val);
         break;
     }
-    this.progressbar()
+    // this.progressbar()
   }
 
   Previous() {
@@ -945,6 +1007,7 @@ export class SpaceComponent implements OnInit {
 
   }
   SpaceAllSave(): void {
+    this.spinner.show()
     if (this.LocationForm.valid && this.DocumentLinkDataSource != null && this.GeneralForm.valid && this.PartnerLinkFormValidStatus && this.SpaceForm.valid && this.AddressForm.valid && this.DateLinkFormValidStatus && this.ContrctFormValidStatus) {
 
 
@@ -975,17 +1038,21 @@ export class SpaceComponent implements OnInit {
 
       console.log("allSpace", this.Space_All);
       this.service.SpaceAllSave(this.Space_All).subscribe((x) => {
+
         console.log(x);
-        this.reset();
+        this.NewSpace();
+        this.spinner.hide();
+
         const dialogRef = this.dialog.open(FinishComponent, dialogConfig);
       },
         err => {
-          // this.spinner.hide();
+          this.spinner.hide();
+          this.notificationSnackBarComponent.openSnackBar(err instanceof Object ? 'Something went wrong' : err, SnackBarStatus.danger);
           console.log(err);
 
         })
     }
-    else   {
+    else {
       this.notificationSnackBarComponent.openSnackBar("The form is invalid", SnackBarStatus.warning);
     }
   }
@@ -1031,6 +1098,7 @@ export class SpaceComponent implements OnInit {
     this.AddressLinkView.State = this.AddressForm.get('State').value;
   }
   onFileSelected(event) {
+   
     if (event.target.files.length > 0) {
       var unit = "";
       // console.log(event.target.files[0].name);
@@ -1071,8 +1139,12 @@ export class SpaceComponent implements OnInit {
       //     console.log(err);
       //   })
     }
+  
+ 
   }
   OpenPartnerdialogue() {
+    if(!this.listselectedbool)
+    {
     const dialogRef = this.dialog.open(PartnerLinkComponent,
       {
         panelClass: 'partner',
@@ -1098,7 +1170,14 @@ export class SpaceComponent implements OnInit {
       // }
     })
   }
+  else if(this.listselectedbool)
+  {
+    this.notificationSnackBarComponent.openSnackBar("You can't upload  partner", SnackBarStatus.warning);
+  }
+  }
   OpenDateLinkDialogue() {
+    if(!this.listselectedbool)
+    {
     const dialogRef = this.dialog.open(DateLinkComponent,
       {
         height: '311px',
@@ -1122,7 +1201,14 @@ export class SpaceComponent implements OnInit {
 
     })
   }
+  else if(this.listselectedbool)
+  {
+    this.notificationSnackBarComponent.openSnackBar("You can't upload  Date", SnackBarStatus.warning);
+  }
+  }
   OpenContractLinkDialogue() {
+    if(!this.listselectedbool)
+    {
     const dialogRef = this.dialog.open(ContractLinkComponent,
       {
         height: '328px',
@@ -1140,6 +1226,11 @@ export class SpaceComponent implements OnInit {
       this.ContractLinkDataSource = new MatTableDataSource(this.ContractLink);
       console.log("contrct", this.ContractLinkView);
     })
+  }
+  else if(this.listselectedbool)
+  {
+    this.notificationSnackBarComponent.openSnackBar("You can't upload  Contract", SnackBarStatus.warning);
+  }
   }
   close(): void {
     this.dialogRef.close();

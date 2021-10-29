@@ -98,7 +98,7 @@ export class HomepageComponent implements OnInit {
   isFolded: boolean = false;
   selectedId: any;
   selectedarray: any;
-  duplicateselecetedarray: any[];
+  duplicateselecetedarray:any=[];
   currentlySelectedId: any;
   currentlySelectedname: any;
   parentofSelectedId: any;
@@ -207,10 +207,15 @@ export class HomepageComponent implements OnInit {
       console.log("sitehigherarchy",data);
       
       this.TREE_DATA = <TreeItem[]>data;
+      // this.duplicateselecetedarray=[];
+      this.duplicateselecetedarray.push(this.TREE_DATA[0]);
       console.log("tree data", this.TREE_DATA);
       this.treeSource.data = this.treeConstruct(this.TREE_DATA);
       
       this.selectedNode = this.TREE_DATA[0].name;
+      
+      console.log("duplicate",this.duplicateselecetedarray);
+      
       console.log("selectedNode",this.selectedNode);
       
     });
@@ -223,6 +228,7 @@ export class HomepageComponent implements OnInit {
   //constructTree recursively iterates through the tree to create nested tree structure.
   //We only need Id and parentId Columns in the flat data to construct this tree properly.
   treeConstruct(treeData) {
+    
     let constructedTree = [];
     for (let i of treeData) {
       let treeObj = i;
@@ -232,36 +238,119 @@ export class HomepageComponent implements OnInit {
     return constructedTree;
   }
   constructTree(constructedTree, treeObj, assigned) {
+
     if (treeObj.parent == 0) {
+
       treeObj.children = [];
+
       constructedTree.push(treeObj);
+
       return true;
-    } 
-    // else if (treeObj.parent == constructedTree.name) {
-    else if (treeObj.parent == constructedTree.id ) {
-      treeObj.children = [];
-      constructedTree.children.push(treeObj);
-      return true;
+
     }
-    else {
-      if (constructedTree.children != undefined) {
-        for (let index = 0; index < constructedTree.children.length; index++) {
-          let constructedObj = constructedTree.children[index];
-          if (assigned == false) {
-            assigned = this.constructTree(constructedObj, treeObj, assigned);
-          }
-        }
-      } else {
-        for (let index = 0; index < constructedTree.length; index++) {
-          let constructedObj = constructedTree[index];
-          if (assigned == false) {
-            assigned = this.constructTree(constructedObj, treeObj, assigned);
-          }
-        }
+
+
+    else if (treeObj.parent == constructedTree.id && treeObj.type == "space" && constructedTree.type =="site" ) {
+
+       
+
+          treeObj.children = [];
+
+          constructedTree.children.push(treeObj);
+
+          return true;
+
       }
-      return false;
-    }
-  }
+
+      else if(treeObj.parent == constructedTree.id && treeObj.type == "subspace" && constructedTree.type =="space")
+
+        {
+
+          treeObj.children = [];
+
+          constructedTree.children.push(treeObj);
+
+          return true;
+
+        }
+        else {
+
+          if (constructedTree.children != undefined) {
+    
+            for (let index = 0; index < constructedTree.children.length; index++) {
+    
+              let constructedObj = constructedTree.children[index];
+    
+              if (assigned == false) {
+    
+                assigned = this.constructTree(constructedObj, treeObj, assigned);
+    
+              }
+    
+            }
+    
+          } else {
+    
+            for (let index = 0; index < constructedTree.length; index++) {
+    
+              let constructedObj = constructedTree[index];
+    
+              if (assigned == false) {
+    
+                assigned = this.constructTree(constructedObj, treeObj, assigned);
+    
+              }
+    
+            }
+    
+          }
+    
+          return false;
+    
+        }
+    
+      }
+  // constructTree(constructedTree, treeObj, assigned) {
+  //   if (treeObj.parent == 0) {
+  //     treeObj.children = [];
+  //     constructedTree.push(treeObj);
+  //     return true;
+  //   } 
+  //   // else if (treeObj.parent == constructedTree.name) {
+  //   else if (treeObj.id == constructedTree.id ) {
+  //     if(treeObj.type == "space" && constructedTree.type =="site")
+  //     {
+  //       treeObj.children = [];
+  //       constructedTree.children.push(treeObj);
+  //       return true;
+  //     }
+  //     else if(treeObj.type == "subspace" && constructedTree.type =="space")
+  //     {
+  //       treeObj.children = [];
+  //       constructedTree.children.push(treeObj);
+  //       return true;
+  //     }
+     
+  //   }
+  //   else {
+  //     if (constructedTree.children != undefined) {
+  //       for (let index = 0; index < constructedTree.children.length; index++) {
+  //         let constructedObj = constructedTree.children[index];
+  //         if (assigned == false) {
+  //           assigned = this.constructTree(constructedObj, treeObj, assigned);
+  //         }
+  //       }
+  //     } else {
+  //       for (let index = 0; index < constructedTree.length; index++) {
+  //         let constructedObj = constructedTree[index];
+  //         if (assigned == false) {
+  //           assigned = this.constructTree(constructedObj, treeObj, assigned);
+  //         }
+  //       }
+  //     }
+  //     return false;
+  //   }
+  // }
 
   showSelected(node) {
     this.node = node;
@@ -474,9 +563,10 @@ export class HomepageComponent implements OnInit {
       },
       panelClass: 'full-width-dialog',
       width: '100%',
-      maxWidth: '85.5vw ',
-      height: '557px',
-      disableClose: true
+      maxWidth: '96.5vw ',
+      height: '589px',
+      disableClose: true,
+      // backdropClass: 'backdropBackground'
     };
   
     const dialogRef = this.dialog.open(SpaceComponent, dialogConfig);
@@ -544,7 +634,7 @@ export class HomepageComponent implements OnInit {
    this.selectedNode =this.selectedarray[0].name;
     this.selectedId=this.selectedarray[0].id;
     console.log("siteIDofselectedspace",this.siteIDofselectedspace);
-    console.log("sitenameofselectednode",this.sitenameofselectednode);
+    // console.log("sitenameofselectednode",this.sitenameofselectednode);
     console.log("parentofSelectedId",this.parentofSelectedId);
     console.log("parentofSelectedname",this.parentofSelectedname);
     console.log("selectedNode",this.selectedNode);
