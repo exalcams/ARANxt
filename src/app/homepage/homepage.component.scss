@@ -178,7 +178,13 @@
   .example-tree-node .example-tree-node { 
     padding:0px; color: #0d0c22;font-size: 11px; font-family: 'poppins-semi' !important;
   }
-
+  .backdropBackground
+  {
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(30px);
+    box-shadow: 0 3px 6px 0 #f7f7f7;
+    // background-color: #fff;
+  }
   .mat-icon-rtl-mirror{font-size: 12px;}
 
 .mat-drawer-content{
