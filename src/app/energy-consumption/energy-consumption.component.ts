@@ -43,6 +43,7 @@ export type ChartOptions1 = {
 })
 export class EnergyConsumptionComponent implements OnInit {
   public chartOptions: ChartOptions;
+  assert: boolean = true;
   public chartOptions1: ChartOptions1;
   constructor(private service: SpaceService) {
     this.chartOptions1 = {
@@ -130,8 +131,8 @@ export class EnergyConsumptionComponent implements OnInit {
           text: "",
           style: {
             color:'#acacac',
-            fontSize: '12px',
-            fontFamily: 'poppins',
+            fontSize: '10px',
+            fontFamily: 'poppins-semi',
             fontWeight: 600,
             
         },
@@ -141,7 +142,7 @@ export class EnergyConsumptionComponent implements OnInit {
           style: {
             colors:"#acacac",
             fontSize: '10px',
-            fontFamily: 'poppins',
+            fontFamily: 'poppins-semi',
             fontWeight: 600,
           }
         },
@@ -155,7 +156,7 @@ export class EnergyConsumptionComponent implements OnInit {
           style: {
             colors:"#acacac",
             fontSize: '10px',
-            fontFamily: 'poppins',
+            fontFamily: 'poppins-semi',
             fontWeight: 600,
           }
         },
@@ -216,5 +217,15 @@ export class EnergyConsumptionComponent implements OnInit {
     localStorage.setItem('SubSpace',SubSpace);
     console.log(SubSpace);
     
+  }
+
+  assertdetails(a: any) {
+    
+    if (a == 1) {
+      this.assert = false;
+    }
+    else {
+      this.assert = true;
+    }
   }
 }

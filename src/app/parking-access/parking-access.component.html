@@ -7,7 +7,7 @@
                     <p>Asset Details</p>
                 </div>
 
-                <div fxFlex="12" >
+                <div fxFlex="12">
                     <div fxFlex="69">
                         <img src="./assets/iconfinder_city_3_3078506 selected.png">
                     </div>
@@ -179,14 +179,17 @@
                         <div fxLayout="column" fxLayoutGap="20px">
 
 
-                            <div fxLayout="row" fxLayoutAlign="end end" style="line-height: 0;cursor: pointer;"
-                                fxLayoutGap="10px" (click)="drawer.toggle()">
+                            <div fxLayout="row" fxLayoutAlign="end center" *ngIf="assert" (click)="drawer.toggle()">
                                 <mat-icon>keyboard_arrow_left</mat-icon>
-                                <div>
-                                    <img src="../../assets/Images/iconfinder_city_3_3078506@3x.png" width="15px"
-                                        height="15px" style="margin-bottom: 4px;">
-                                </div>
-                                <p class="txt_class">Assert Details</p>
+                                <img src="assets/iconfinder_city_3_3078506.svg"
+                                    style="margin-right: 5px;cursor: pointer;" (click)="assertdetails(1)">
+                                <div class="label pointer">Assert Details</div>
+                            </div>
+                            <div fxLayout="row" fxLayoutAlign="end center" *ngIf="!assert" (click)="drawer.toggle()">
+                                <mat-icon>keyboard_arrow_up</mat-icon>
+                                <img src="assets/iconfinder_city_3_3078506.svg" style="margin-right: 5px;"
+                                    (click)="assertdetails(2)">
+                                <div class="label">Assert Details</div>
                             </div>
 
                             <div fxLayout="row" fxLayoutAlign="center center">
@@ -197,7 +200,7 @@
                                 <img width="90%" height="90%" src="../../assets/Images/parking_img.png">
                             </div>
 
-                            <div fxLayout="row" *ngFor="let p of parking">
+                            <div fxLayout="row" fxLayoutAlign="start start" *ngFor="let p of parking" fxFlex="100" style="padding-left: 20px;">
                                 <div fxlayout="column" fxFlex="50">
                                     <div fxLayout="row" fxLayoutGap="15px">
                                         <div fxLayout="column" fxLayoutGap="15px">
@@ -218,28 +221,34 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div  fxLayout="column" class="padding-css">
+                                    <div fxLayout="column">
+                                        <div fxLayout="column" fxLayoutAlign="start center">
+                                            <div fxLaout="row" fxLayoutAlign="center center">
+                                                <p class="booth1">Booth 1</p>
+                                            </div>
+                                            <div fxLayout="row" fxLayoutAlign="space-around center">
+                                                <div fxLayout="column" fxLayoutAlign="center center">
+                                                    <p class="evtryanswer">{{p.entryVehicles}}</p>
+                                                    <p class="evtryanswer-entry">Entry</p>
+                                                </div>
+                                                <div fxLayout="column" fxLayoutAlign="center center">
+                                                    <p class="evtryanswer">{{p.exitVehicles}}</p>
+                                                    <p class="evtryanswer-entry">Exit</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div fxlayout="column" fxFlex="50">
+                                            <div fxLaout="row" fxLayoutAlign="center center">
+                                                <p class="booth1">Booth 2</p>
+                                            </div>
+                                            <div fxLayout="column" fxLayoutAlign="center center">
+                                                <p class="evtryanswer">{{p.entryVehicles}}</p>
+                                                <p class="evtryanswer-entry">Entry</p>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                <div fxlayout="column" fxFlex="50">
-                                    <div fxLaout="row" fxLayoutAlign="center center">
-                                        <p  class="booth1">Booth 1</p>
-                                    </div>
-                                    <div fxLayout="row" fxLayoutAlign="space-around center">
-                                        <div fxLayout="column" fxLayoutAlign="center center">
-                                            <p class="evtryanswer">{{p.entryVehicles}}</p>
-                                            <p class="evtryanswer">Entry</p>
-                                        </div>
-                                        <div fxLayout="column" fxLayoutAlign="center center">
-                                            <p class="evtryanswer">{{p.exitVehicles}}</p>
-                                            <p class="evtryanswer">Exit</p>
-                                        </div>
-                                    </div>
-                                    <div fxLaout="row" fxLayoutAlign="center center">
-                                        <p class="booth1">Booth 2</p>
-                                    </div>
-                                    <div fxLayout="column" fxLayoutAlign="center center">
-                                        <p class="evtryanswer">{{p.entryVehicles}}</p>
-                                        <p class="evtryanswer">Entry</p>
-                                    </div>
                                 </div>
                             </div>
                         </div>

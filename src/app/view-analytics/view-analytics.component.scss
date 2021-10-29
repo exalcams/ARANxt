@@ -1,5 +1,6 @@
 .toolbar_class.mat-toolbar {
-    height: 50px;padding: 0px;
+    height: 50px;
+    padding: 0px;
     position: fixed;
     z-index: 100;
     background-color: #fff;
@@ -13,7 +14,7 @@
      margin-top: 0px !important;
     height: 30px;
  }
- .input_field{outline: none; color: #acacac; font-size:10px; font-family: 'poppins' !important; border: transparent; 
+ .input_field11{outline: none; color: #acacac; font-size:10px; font-family: 'poppins' !important; border: transparent; 
     width: 90%;
     background-color: #fff;
 }
@@ -27,26 +28,24 @@
   background-color: #f9f8fe;
 }
 .hover_class{
-    font-family: Poppins;
-  font-size: 12px;
+    font-family: 'poppins-semi' !important;
+  font-size: 10px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.63;
+  line-height: normal;
   letter-spacing: normal;
   text-align: center;
   color: #0d0c22;
   font-weight: 600;
 }
 .hover_class:hover{
-    background-color: #fff;
+    // background-color: #fff;
     color: #26009c;
     width: 100%;
-    height: 25px;
-    line-height: 2.23;
-    // line-height:-4px;
-    // margin-top: 25px;
-    // place-content: center;
+    // height: 25px;
+    line-height: normal;
+    cursor: pointer;
     border-radius: 4px;
 }
 .rectangleBox{
@@ -73,30 +72,31 @@
   padding: 10px 0px 10px 0px;
 }
 .Expense_chart{
-  // border: solid 2px #f5f5f5;
   box-shadow: 0 2px 6px 0 rgba(69, 106, 248, 0.18);
   height: 250px;
-  // box-shadow: 0 6px 16px 0 rgba(31, 0, 158, 0.12);
   background-color: #ffffff;
+  padding: 10px;
+  padding-bottom: 5px;
+  padding-top: 20px;
 }
 .Label_cls{
-  font-family: Poppins;
-  font-size: 11px;
+  font-family: 'poppins-semi' !important;
+  font-size: 10px;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.63;
+  line-height: normal;
   letter-spacing: normal;
   text-align: center;
   color: #999999;
 }
 .Label_cls1{
-  font-family: Poppins;
+  font-family: 'poppins-semi' !important;
   font-size: 18px;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.67;
+  line-height: normal;
   letter-spacing: normal;
   text-align: center;
   color: #394256;
@@ -118,29 +118,29 @@
   /* background-color: red; */
 }
 .Chart_legend{
-  font-size:10px;color: #acacac;font-weight: 600;
+  font-size:10px;color: #030303;font-weight: 600;
 }
 .amount_cls{
   width: 100%;
-  margin: 0 673.4px 5px 19px;
-  font-family: Poppins;
-  font-size: 14px;
+  font-family: 'poppins-semi';
+  padding-left: 6px;
+  font-size: 12px;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.63;
+  line-height: normal;
   letter-spacing: normal;
   text-align: left;
   color: #394256;
 }
 .Trans_cls{
   // margin: 36px 40px 36px 50px;
-  font-family: Poppins;
-  font-size: 12px;
+  font-family: 'poppins-semi' !important;
+  font-size: 10px;
   font-weight: 500;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.63;
+  line-height: normal;
   letter-spacing: normal;
   text-align: left;
   color: #394256;
@@ -175,12 +175,12 @@
   width: 33.33%;
 }
 .most_cls{
-  font-family: Poppins;
-  font-size: 13px;
+  font-family: 'poppins-semi' !important;
+  font-size: 11px;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.63;
+  line-height: normal;
   letter-spacing: normal;
   text-align: left;
   color: #2c2c2e;
@@ -189,4 +189,150 @@
   font-size: 18px;
   color: #0d0c22;
   font-family: "poppins-semi" !important;
+}
+
+.btn_bg2
+{  height: 30px;
+   border-radius: 4px;
+   background-color: #f3f3f4;
+   width: 55%; 
+   border-radius: 4px;
+    align-items: center;
+}
+
+.main_input_field{
+  border:1px solid #f3f3f4 !important;
+  background-color: #fff;
+  width: 92%;
+   border-radius: 4px;
+   margin-top: 0px !important;
+  height: 30px;
+  align-items: center;
+}
+
+
+
+.serachicon_search
+{
+    color: #acacac;
+    transform: scale(0.7);
+    align-self: center;
+    margin-left: 6px;
+}
+.search_input1{
+    height: 25px;
+    width: 90%;
+    border-radius: 3px;
+    color: #acacac;
+    align-self: center;
+    font-size: 10px;
+    font-weight: 500;
+    border: none;
+    background: transparent;
+    font-family: 'poppins' !important; 
+    background-color: #fff;
+    outline: none;
+}
+.input_field11{outline: none; color: #acacac; font-size:10px; font-family: 'poppins' !important; border: transparent; 
+  width: 90%;
+  background-color: #fff;
+}
+.input_field11::placeholder{
+    color: #acacac !important;
+    font-size: 10px !important;
+}
+.search_input1:focus{
+    outline: none;
+}
+::placeholder {
+    color: #acacac;
+    font-size: 10px !important;
+}
+::-webkit-input-placeholder{
+  color: #acacac;
+    font-size: 10px;
+}
+
+.forminputedit{
+  color: #0d0c22 !important;
+  font-size: 10px !important;
+  font-family: 'poppins-semi' !important;
+}
+
+.voice-image{
+  vertical-align: middle; 
+  width: 8px;
+}
+.closeclass{
+  cursor: pointer;
+  width: 20px;
+  margin-top: 0px;
+}
+.toolbar-div-css{
+  padding-right: 30px;
+  margin-top: 15px;
+}
+.toolbar-2div{
+  align-self: flex-end;
+}
+.after-graph-div{
+  // margin-top: 22px;
+  align-self: end !important;
+}
+.graph-css-class{
+  align-self: center;
+}
+.color1-alert{
+  background-color: #47cb2a;
+}
+.color2-warning{
+  background-color: #fc9c18;
+}
+.color3-info{
+  background-color: #0a6dfb;
+}
+.color4-danger{
+  background-color: #f8383f;
+}
+.horiz-dot{
+  width: 35px;
+  cursor: pointer;
+}
+.recent-div{
+  padding: 10px 10px;
+  padding-left: 20px;
+  padding-right: 15px;
+}
+.recent_image{
+  transform: scale(0.8);
+}
+
+.scrolldivi{
+  overflow-x: auto;
+  min-height: 40px !important;
+  // max-height: 150px;
+}
+
+.recievecall{
+  position: relative;
+  top:10px;
+  color: #1cffb9;
+  font-size: 14px;
+}
+.recievecallred{
+  position: relative;
+  top:10px;
+  color: #f73524;
+  font-size: 14px;
+}
+
+.transactionamounts{
+  font-size: 11px;
+  color: #2c2c2c;
+  font-family: 'poppins-semi' !important;
+}
+.transactionamountrefund{
+  font-size: 10px;
+  color: #999999;
+  font-family: 'poppins-semi' !important;
 }

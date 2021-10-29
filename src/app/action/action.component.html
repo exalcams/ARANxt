@@ -5,15 +5,14 @@
 <div>
     <div fxLayout="row">
         <div fxFlex="100">
-            <mat-tab-group>
-                <mat-tab label="Task Assignment">
+            <mat-tab-group class="tab-grp">
+                <mat-tab label="Task Assignment" class="individual-tabgrp">
                     <div>
                         <div fxLayoutAlign="center center">
                             <button class="btn_task" (click)="addtask()">
                                 <span class="add-task">+ Add Task </span>
                             </button>
                         </div>
-
                     </div>
                     <div fxLayout="row" class="flex-row-container">
                         <div fxLayout="column" class="flex-row-item" *ngFor="let tile of tiles"
@@ -45,15 +44,16 @@
                                 <mat-progress-bar class="passwordStatusBarColor" value="40"></mat-progress-bar>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="space-between center" style="padding-top: 20px;">
-                                <div class="Rectangle-7499">
-                                    Lorem Ipsum
+                                <div class="Rectangle-7499" fxLayoutAlign="center center">
+                                    <span class="lorem-ipsum">
+                                        Lorem Ipsum
+                                    </span>
                                 </div>
                                 <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="6px">
                                     <label class="cls_loc">Assign</label>
-                                    <img width="30px" src="assets/Group 8311.svg" (click)="search()">
+                                    <img width="30px" src="assets/Group 8311.svg" (click)="search()" class="pointer">
                                 </div>
                             </div>
-
                             <div fxLayout="row" *ngIf="searchbutton" class="main_input_field2"
                                 fxLayoutAlign="start center">
                                 <div>
@@ -63,53 +63,39 @@
                                 <div fxFlex>
                                     <input class="input_field1" matInput placeholder="Search by I’d ">
                                 </div>
-                                <!-- <div>
-                                        <img style="vertical-align: middle; margin-left: -66%;width: 8px;"
-                                            src="./assets/mic.svg">
-                                    </div> -->
                             </div>
-
                         </div>
                     </div>
                     <div class="footer">
                         <div fxLayout="column">
-                            <div fxLayoutAlign="space-between center" fxLayout="row"
-                                style="width: 70%;padding: 5px 15px;">
-                                <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10px">
+                            <div fxLayoutAlign="space-between center" fxLayout="row" class="available-footer-div">
+                                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
                                     <div class="ava_cls">
                                         Avaliable
                                     </div>
-                                    <div class="rectangle-box">
-                                        16
+                                    <div class="rectangle-box" fxLayoutAlign="center center">
+                                        <span class="sixteenclass"> 16 </span>
                                     </div>
-                                    <div>
-                                        <img src="assets/Ellipse 799.svg">
-                                    </div>
+                                    <img src="assets/Ellipse 799.svg" class="green_dot">
                                 </div>
-                                <div fxLayoutAlign="center center">
-                                    <div fxLayout="row" class="main_input_field1" fxLayoutAlign="space-between center">
-                                        <div>
-                                            <img style="vertical-align: -webkit-baseline-middle;
-                                            width: 24px;" src="./assets/search.svg">
-                                        </div>
-                                        <div>
-                                            <input class="input_field" matInput placeholder="Search by I’d ">
-                                        </div>
-                                        <div>
-                                            <img style="vertical-align: middle; margin-left: -66%;width: 8px;"
-                                                src="./assets/mic.svg">
-                                        </div>
+                                <div fxLayoutAlign="center center" style="width: 32%;">
+                                    <div fxLayout="row" class="main_input_field" fxLayoutAlign="space-around center">
+                                        <!-- <img style="vertical-align: -webkit-baseline-middle; width: 24px;" src="./assets/search.svg"> -->
+                                        <mat-icon matSuffix class="serachicon_search">search</mat-icon>
+                                        <input class="input_field11" matInput placeholder="Search to - do">
+                                        <!-- <img style="vertical-align: middle; margin-left: -66%;width: 8px;" src="./assets/mic.svg"> -->
+                                        <img src="./assets/mic.svg" class="voice-image">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div fxLayout="row" fxLayoutGap="20px" style="overflow-x: auto;width: 100%;">
-                            <div *ngFor="let employee of employees" fxLayoutAlign="center center" class="div_cls"
+                        <div fxLayout="row" fxLayoutGap="20px" style="overflow-x: scroll;min-width: 80%;">
+                            <div *ngFor="let employee of employees" fxLayoutAlign="start center" class="div_cls"
                                 fxLayoutGap="20px">
                                 <div fxFlex="20">
                                     <img style="height: 28px;" src="./assets/face.png">
                                 </div>
-                                <div fxFlex="80" fxLayout="column">
+                                <div fxFlex="80" fxLayout="column" fxLayoutGap="4px">
                                     <div class="div1_cls">
                                         {{employee.Id}}
                                     </div>
@@ -121,24 +107,23 @@
                         </div>
                     </div>
                 </mat-tab>
-                <mat-tab label="Monitoring"> Content 2 </mat-tab>
-                <mat-tab label="Completion"> Content 3 </mat-tab>
-                <mat-tab>
+                <mat-tab label="Monitoring"></mat-tab>
+                <mat-tab label="Completion"></mat-tab>
+
+                <mat-tab class="last-tab">
                     <ng-template mat-tab-label>
-                        <button mat-icon-button [matMenuTriggerFor]="Menu" style="    margin-left: -95px;"
-                            class="cloneIcon">
-                            <!-- <mat-icon>more_vert</mat-icon> -->
+                        <button mat-icon-button [matMenuTriggerFor]="Menu" class="cloneIcon">
                             + Add More Actions
                         </button>
                         {{label}}
                     </ng-template>
 
-                    <mat-menu #Menu="matMenu" style="height: 60px;">
-                        <button mat-menu-item>Correction</button>
-                        <button mat-menu-item>Preventive</button>
-                        <button mat-menu-item>RCA</button>
-                        <button mat-menu-item>General</button>
-                        <button mat-menu-item>Notices</button>
+                    <mat-menu #Menu="matMenu" class="top-menu">
+                        <button mat-menu-item class="top-menu-content">Correction</button>
+                        <button mat-menu-item class="top-menu-content">Preventive</button>
+                        <button mat-menu-item class="top-menu-content">RCA</button>
+                        <button mat-menu-item class="top-menu-content">General</button>
+                        <button mat-menu-item class="top-menu-content">Notices</button>
 
                     </mat-menu>
 

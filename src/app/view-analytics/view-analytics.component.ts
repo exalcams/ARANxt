@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import * as ApexCharts from 'apexcharts';
-import { ApexNonAxisChartSeries,
+import {
+  ApexNonAxisChartSeries,
   ApexPlotOptions,
-  ApexChart, 
+  ApexChart,
   ApexStroke,
   ApexAxisChartSeries,
   ApexXAxis,
@@ -13,45 +14,46 @@ import { ApexNonAxisChartSeries,
   ApexMarkers,
   ApexYAxis,
   ApexLegend,
-  ApexFill} from 'ng-apexcharts';
-  export type ChartOptions1 = {
-    series: ApexAxisChartSeries;
-    chart: ApexChart;
-    xaxis: ApexXAxis;
-    yaxis:ApexYAxis;
-    dataLabels: ApexDataLabels;
-    grid: ApexGrid;
-    stroke: ApexStroke;
-    title: ApexTitleSubtitle;
-    markers:ApexMarkers;
-   // colors:string[], 
-    legend:ApexLegend,
-   
-  
-  };
-  export type ChartOptions2 = {
-    series: ApexAxisChartSeries;
-    chart: ApexChart;
-    xaxis: ApexXAxis;
-    yaxis:ApexYAxis;
-    dataLabels: ApexDataLabels;
-    grid: ApexGrid;
-    stroke: ApexStroke;
-    title: ApexTitleSubtitle;
-    markers:ApexMarkers;
-   // colors:string[], 
-    legend:ApexLegend,
-   
-  
-  };
-  export type ChartOptions = {
-    series: ApexNonAxisChartSeries;
-    chart: ApexChart;
-    labels: string[];
-    colors:string[];
-    stroke:ApexStroke;
-    plotOptions: ApexPlotOptions;
-  };
+  ApexFill
+} from 'ng-apexcharts';
+export type ChartOptions1 = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  xaxis: ApexXAxis;
+  yaxis: ApexYAxis;
+  dataLabels: ApexDataLabels;
+  grid: ApexGrid;
+  stroke: ApexStroke;
+  title: ApexTitleSubtitle;
+  markers: ApexMarkers;
+  // colors:string[], 
+  legend: ApexLegend,
+
+
+};
+export type ChartOptions2 = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  xaxis: ApexXAxis;
+  yaxis: ApexYAxis;
+  dataLabels: ApexDataLabels;
+  grid: ApexGrid;
+  stroke: ApexStroke;
+  title: ApexTitleSubtitle;
+  markers: ApexMarkers;
+  // colors:string[], 
+  legend: ApexLegend,
+
+
+};
+export type ChartOptions = {
+  series: ApexNonAxisChartSeries;
+  chart: ApexChart;
+  labels: string[];
+  colors: string[];
+  stroke: ApexStroke;
+  plotOptions: ApexPlotOptions;
+};
 @Component({
   selector: 'app-view-analytics',
   templateUrl: './view-analytics.component.html',
@@ -64,58 +66,51 @@ export class ViewAnalyticsComponent implements OnInit {
   public chartOptions1: ChartOptions1;
   public chartOptions2: ChartOptions2;
   public chartOptions: ChartOptions;
-Analytics=['Overview','Spend Analysis','Electrical Consumption','Water Consumption','Product Suggestions','Common Faults']
-  constructor(public dialogRef: MatDialogRef<ViewAnalyticsComponent>) { 
+  Analytics = ['Overview', 'Spend Analysis', 'Electrical Consumption', 'Water Consumption', 'Product Suggestions', 'Common Faults']
+  constructor(public dialogRef: MatDialogRef<ViewAnalyticsComponent>) {
     this.chartOptions1 = {
-     
       series: [
         {
           name: "Desktops",
-          data: [10,80,35,55,8,80,34]
-         
-          
+          data: [10, 80, 35, 55, 8, 80, 34]
         },
         {
           name: "Desktops",
-          data: [45,87,53,55,80,9,56]
-        
+          data: [45, 87, 53, 55, 80, 9, 56]
         },
         {
           name: "Desktops",
-          data: [1,98,39,54,85,19,34]
-        
+          data: [1, 98, 39, 54, 85, 19, 34]
         },
         {
           name: "Desktops",
-          data: [23,38,52,57,48,29,61]
-        
+          data: [23, 38, 52, 57, 48, 29, 61]
         },
-        
       ],
-      
       chart: {
         toolbar: {
           show: false,
-        }, 
+        },
         height: 110,
         width: '100%',
-        offsetY:20,
+        offsetY: 20,
         type: "line",
         zoom: {
           enabled: false
         }
       },
-      
+
       dataLabels: {
         enabled: false
       },
       stroke: {
         curve: "smooth",
-        width: [2,0,0,0],
-        
+        width: [2, 0, 0, 0],
+
       },
       legend: {
-        show: false},
+        show: false
+      },
       title: {
         text: "Product Trends by Month",
         align: "left"
@@ -123,25 +118,25 @@ Analytics=['Overview','Spend Analysis','Electrical Consumption','Water Consumpti
       grid: {
         xaxis: {
           lines: {
-              show: true
+            show: true
           }
-      },   
-      yaxis: {
+        },
+        yaxis: {
           lines: {
-              show: false
+            show: false
           }
-      },
+        },
         row: {
           colors: [], // takes an array which will be repeated on columns 
           opacity: 0.5
         },
         column: {
-          colors: [ ], // takes an array which will be repeated on columns 
+          colors: [], // takes an array which will be repeated on columns 
           opacity: 0.5
-      }, 
+        },
       },
       markers: {
-        size: [5,4,4,4],
+        size: [5, 4, 4, 4],
         hover: {
           size: 5
         }
@@ -150,20 +145,20 @@ Analytics=['Overview','Spend Analysis','Electrical Consumption','Water Consumpti
         title: {
           text: "",
           style: {
-            color:'#acacac',
-            fontSize: '12px',
-            fontFamily: 'poppins',
-            fontWeight: 600,
-            
-        },
+            color: '#030303',
+            fontSize: '10px',
+            fontFamily: 'poppins-semi',
+            fontWeight: 500,
+
+          },
         },
         labels: {
-         
+
           style: {
-            colors:"#acacac",
+            colors: "#030303",
             fontSize: '10px',
-            fontFamily: 'poppins',
-            fontWeight: 600,
+            fontFamily: 'poppins-semi',
+            fontWeight: 500,
           }
         },
         min: 0,
@@ -172,12 +167,12 @@ Analytics=['Overview','Spend Analysis','Electrical Consumption','Water Consumpti
       },
       xaxis: {
         labels: {
-         
+
           style: {
-            colors:"#acacac",
+            colors: "#030303",
             fontSize: '10px',
-            fontFamily: 'poppins',
-            fontWeight: 600,
+            fontFamily: 'poppins-semi',
+            fontWeight: 500,
           }
         },
         categories: [
@@ -193,36 +188,32 @@ Analytics=['Overview','Spend Analysis','Electrical Consumption','Water Consumpti
     };
     //Expense chart
     this.chartOptions2 = {
-     
       series: [
         {
           name: "Desktops",
-          data: [10,80,35,55]
-         
-          
+          data: [10, 80, 35, 55]
         },
         {
           name: "Desktops",
-          data: [45,87,53,55]
-        
+          data: [45, 87, 53, 55]
         },
         // {
         //   name: "Desktops",
         //   data: [1,98,39,54,85,19,34]
-        
+
         // },
         // {
         //   name: "Desktops",
         //   data: [23,38,52,57,48,29,61]
-        
+
         // },
-        
+
       ],
-      
+
       chart: {
         toolbar: {
           show: false,
-        }, 
+        },
         height: 190,
         width: '100%',
         type: "line",
@@ -230,17 +221,17 @@ Analytics=['Overview','Spend Analysis','Electrical Consumption','Water Consumpti
           enabled: false
         }
       },
-      
       dataLabels: {
         enabled: false
       },
       stroke: {
         curve: "smooth",
-        width: [2,0,0,0],
-        
+        width: [2, 0, 0, 0],
+
       },
       legend: {
-        show: false},
+        show: false
+      },
       title: {
         text: "Product Trends by Month",
         align: "left"
@@ -248,25 +239,25 @@ Analytics=['Overview','Spend Analysis','Electrical Consumption','Water Consumpti
       grid: {
         xaxis: {
           lines: {
-              show: true
+            show: true
           }
-      },   
-      yaxis: {
+        },
+        yaxis: {
           lines: {
-              show: false
+            show: false
           }
-      },
+        },
         row: {
           colors: [], // takes an array which will be repeated on columns 
           opacity: 0.5
         },
         column: {
-          colors: [ ], // takes an array which will be repeated on columns 
+          colors: [], // takes an array which will be repeated on columns 
           opacity: 0.5
-      }, 
+        },
       },
       markers: {
-        size: [5,4,4,4],
+        size: [5, 4, 4, 4],
         hover: {
           size: 5
         }
@@ -275,20 +266,18 @@ Analytics=['Overview','Spend Analysis','Electrical Consumption','Water Consumpti
         title: {
           text: "",
           style: {
-            color:'#acacac',
-            fontSize: '12px',
-            fontFamily: 'poppins',
-            fontWeight: 600,
-            
-        },
+            color: '#999999',
+            fontSize: '10px',
+            fontFamily: 'poppins-semi',
+            fontWeight: 500,
+          },
         },
         labels: {
-         
           style: {
-            colors:"#acacac",
+            colors: "#999999",
             fontSize: '10px',
-            fontFamily: 'poppins',
-            fontWeight: 600,
+            fontFamily: 'poppins-semi',
+            fontWeight: 500,
           }
         },
         min: 0,
@@ -299,21 +288,18 @@ Analytics=['Overview','Spend Analysis','Electrical Consumption','Water Consumpti
         title: {
           text: " Last 4 Months",
           style: {
-            color:'#acacac',
-            fontSize: '12px',
-            fontFamily: 'poppins',
-            fontWeight: 600,
-            
-        },
-        },
-        
-        labels: {
-         
-          style: {
-            colors:"#acacac",
+            color: '#999999',
             fontSize: '10px',
-            fontFamily: 'poppins',
-            fontWeight: 600,
+            fontFamily: 'poppins-semi',
+            fontWeight: 500,
+          },
+        },
+        labels: {
+          style: {
+            colors: "#999999",
+            fontSize: '10px',
+            fontFamily: 'poppins-semi',
+            fontWeight: 500,
           }
         },
         categories: [
@@ -321,7 +307,6 @@ Analytics=['Overview','Spend Analysis','Electrical Consumption','Water Consumpti
           "Feb",
           "Mar",
           "Apr",
-          
         ]
       }
     };
@@ -368,7 +353,7 @@ Analytics=['Overview','Spend Analysis','Electrical Consumption','Water Consumpti
     //   },
     //   labels: ["Progress"]
     // };
-    
+
     // new ApexCharts(document.querySelector("#chart1"), options1).render();
 
     this.chartOptions = {
@@ -379,7 +364,7 @@ Analytics=['Overview','Spend Analysis','Electrical Consumption','Water Consumpti
         type: "radialBar",
         offsetY: -20,
       },
-      colors:["#dd5049"],
+      colors: ["#dd5049"],
       plotOptions: {
         radialBar: {
           startAngle: -125,
@@ -387,32 +372,32 @@ Analytics=['Overview','Spend Analysis','Electrical Consumption','Water Consumpti
           hollow: {
             margin: 20,
             size: "70%",
-            
+
             image: 'assets/Group 8319.svg',
             imageWidth: 44,
             imageHeight: 44,
             imageClipped: false
           },
-         
+
           dataLabels: {
-            
-           // showOn: "always",
+
+            // showOn: "always",
             name: {
               offsetY: 60,
               show: true,
               color: "#888",
-              fontSize: "12px",
-              fontFamily:"poppins"
+              fontSize: "10px",
+              fontFamily: "poppins-semi"
             },
             value: {
               offsetY: 25,
-              
+
               color: "#111",
-              fontSize: "14px",
-              fontWeight:600,
-              fontFamily:"poppins",
+              fontSize: "12px",
+              fontWeight: 600,
+              fontFamily: "poppins-semi",
               show: true,
-              
+
             }
           }
         }
@@ -422,12 +407,12 @@ Analytics=['Overview','Spend Analysis','Electrical Consumption','Water Consumpti
       },
       labels: ["Spend Amount "]
     };
-    
+
   }
 
   ngOnInit(): void {
   }
-  Close():void{
+  Close(): void {
     this.dialogRef.close();
   }
 
