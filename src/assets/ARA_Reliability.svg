@@ -21,6 +21,6 @@
       <rect id="Rectangle_8206" data-name="Rectangle 8206" width="12.785" height="12.785" transform="translate(115.072 83.104)" fill="#1f009e"/>
       <rect id="Rectangle_8207" data-name="Rectangle 8207" width="12.785" height="12.785" transform="translate(25.57 108.674)" fill="#4db151"/>
     </g>
-    <text id="Reliability_Achieved" data-name="Reliability Achieved" transform="translate(1167 655)" fill="#acacac" font-size="32" font-family="HelveticaNeue, Helvetica Neue"><tspan x="-138.96" y="0">Reliability Achieved</tspan></text>
+    <text id="Reliability_Achieved" data-name="Reliability Achieved" transform="translate(1167 655)" fill="#acacac" font-size="32" font-family="Geometric415BT-A;"><tspan x="-138.96" y="0">Reliability Achieved</tspan></text>
   </g>
 </svg>

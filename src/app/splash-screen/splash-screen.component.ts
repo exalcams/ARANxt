@@ -27,7 +27,7 @@ export class SplashScreenComponent implements OnInit {
   private _init(): void {
     // Get the splash screen element
     this.splashScreenEl = this.element.nativeElement;
-
+    this.show();
     // If the splash screen element exists...
     if (this.splashScreenEl) {
       // Hide it on the first NavigationEnd event
@@ -54,7 +54,7 @@ export class SplashScreenComponent implements OnInit {
             opacity: '0',
             zIndex: '99999'
           }),
-          animate('400ms ease', style({ opacity: '1' }))
+          animate('800ms ease', style({ opacity: '1' }))
         ]).create(this.splashScreenEl);
 
     setTimeout(() => {
