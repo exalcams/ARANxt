@@ -19,6 +19,10 @@ import { ViewAnalyticsComponent } from '../view-analytics/view-analytics.compone
 import { SpaceComponent } from '../space/space.component';
 import { AssetsComponent } from '../assets/assets.component';
 declare const annyang: any;
+interface Item {
+  siteOfSelectedItem: number;
+  slecetedId: number;
+}
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -55,6 +59,7 @@ declare const annyang: any;
   ],
   encapsulation: ViewEncapsulation.None,
 })
+
 export class HomepageComponent implements OnInit {
   currentUser: string;
   // treeControl: FlatTreeControl<FlatTreeNode>;
@@ -76,8 +81,9 @@ export class HomepageComponent implements OnInit {
   divhide1: boolean = true;
   divhide2: boolean = true;
   as: any;
-  models:boolean =false;
-  notmodels:boolean = true;
+  ItemToChild: number[] = [];
+  models: boolean = false;
+  notmodels: boolean = true;
   parents: any[] = []
   fullmenu = true; shortmenu = false; state: string = 'none';
   title = 'ARA';
@@ -93,12 +99,12 @@ export class HomepageComponent implements OnInit {
   setInterval = setInterval;
   getspace: any[] = [];
   speech: boolean;
-  selectedNode: any ;
+  selectedNode: any;
   selectedNodePath: string = "";
   isFolded: boolean = false;
   selectedId: any;
   selectedarray: any;
-  duplicateselecetedarray:any=[];
+  duplicateselecetedarray: any = [];
   currentlySelectedId: any;
   currentlySelectedname: any;
   parentofSelectedId: any;
@@ -106,7 +112,8 @@ export class HomepageComponent implements OnInit {
   siteofselectedspace: any;
   sitenameofselectednode: any;
   siteIDofselectedspace: any;
-
+  selectedType: any;
+  @Input() item = '';
   constructor(
     public dialog: MatDialog,
     private router: Router,
@@ -120,7 +127,8 @@ export class HomepageComponent implements OnInit {
       expandable: !!node.children && node.children.length > 0,
       name: node.name,
       level: level,
-      id:node.id
+      id: node.id,
+      type: node.type
     };
   }
   treeControl = new FlatTreeControl<FlatNode>(
@@ -204,20 +212,22 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     this.ass = localStorage.getItem('ass');
     this.services.Getsitehierarchy().subscribe(data => {
-      console.log("sitehigherarchy",data);
-      
+      console.log("sitehigherarchy", data);
+
       this.TREE_DATA = <TreeItem[]>data;
       // this.duplicateselecetedarray=[];
       this.duplicateselecetedarray.push(this.TREE_DATA[0]);
       console.log("tree data", this.TREE_DATA);
       this.treeSource.data = this.treeConstruct(this.TREE_DATA);
-      
+
       this.selectedNode = this.TREE_DATA[0].name;
-      
-      console.log("duplicate",this.duplicateselecetedarray);
-      
-      console.log("selectedNode",this.selectedNode);
-      
+
+      console.log("duplicate", this.duplicateselecetedarray);
+
+      console.log("selectedNode", this.selectedNode);
+      this.ItemToChild.push(this.duplicateselecetedarray[0].id);
+
+
     });
     this.Space = '';
     this.SubSpace = '';
@@ -228,7 +238,7 @@ export class HomepageComponent implements OnInit {
   //constructTree recursively iterates through the tree to create nested tree structure.
   //We only need Id and parentId Columns in the flat data to construct this tree properly.
   treeConstruct(treeData) {
-    
+
     let constructedTree = [];
     for (let i of treeData) {
       let treeObj = i;
@@ -250,66 +260,64 @@ export class HomepageComponent implements OnInit {
     }
 
 
-    else if (treeObj.parent == constructedTree.id && treeObj.type == "space" && constructedTree.type =="site" ) {
+    else if (treeObj.parent == constructedTree.id && treeObj.type == "space" && constructedTree.type == "site") {
 
-       
 
-          treeObj.children = [];
 
-          constructedTree.children.push(treeObj);
+      treeObj.children = [];
 
-          return true;
+      constructedTree.children.push(treeObj);
 
-      }
+      return true;
 
-      else if(treeObj.parent == constructedTree.id && treeObj.type == "subspace" && constructedTree.type =="space")
+    }
 
-        {
+    else if (treeObj.parent == constructedTree.id && ((treeObj.type == "subspace" && constructedTree.type == "space") || (treeObj.type == "subspace" && constructedTree.type == "subspace"))) {
 
-          treeObj.children = [];
+      treeObj.children = [];
 
-          constructedTree.children.push(treeObj);
+      constructedTree.children.push(treeObj);
 
-          return true;
+      return true;
 
-        }
-        else {
+    }
+    else {
 
-          if (constructedTree.children != undefined) {
-    
-            for (let index = 0; index < constructedTree.children.length; index++) {
-    
-              let constructedObj = constructedTree.children[index];
-    
-              if (assigned == false) {
-    
-                assigned = this.constructTree(constructedObj, treeObj, assigned);
-    
-              }
-    
-            }
-    
-          } else {
-    
-            for (let index = 0; index < constructedTree.length; index++) {
-    
-              let constructedObj = constructedTree[index];
-    
-              if (assigned == false) {
-    
-                assigned = this.constructTree(constructedObj, treeObj, assigned);
-    
-              }
-    
-            }
-    
+      if (constructedTree.children != undefined) {
+
+        for (let index = 0; index < constructedTree.children.length; index++) {
+
+          let constructedObj = constructedTree.children[index];
+
+          if (assigned == false) {
+
+            assigned = this.constructTree(constructedObj, treeObj, assigned);
+
           }
-    
-          return false;
-    
+
         }
-    
+
+      } else {
+
+        for (let index = 0; index < constructedTree.length; index++) {
+
+          let constructedObj = constructedTree[index];
+
+          if (assigned == false) {
+
+            assigned = this.constructTree(constructedObj, treeObj, assigned);
+
+          }
+
+        }
+
       }
+
+      return false;
+
+    }
+
+  }
   // constructTree(constructedTree, treeObj, assigned) {
   //   if (treeObj.parent == 0) {
   //     treeObj.children = [];
@@ -330,7 +338,7 @@ export class HomepageComponent implements OnInit {
   //       constructedTree.children.push(treeObj);
   //       return true;
   //     }
-     
+
   //   }
   //   else {
   //     if (constructedTree.children != undefined) {
@@ -558,8 +566,9 @@ export class HomepageComponent implements OnInit {
   spaceclicked() {
     const dialogConfig: MatDialogConfig = {
       data: {
-       selectedid: this.selectedId,
-       parentofSelectedid:this.siteIDofselectedspace
+        selectedid: this.selectedId,
+        parentofSelectedid: this.siteIDofselectedspace,
+        selectedtype: this.selectedType
       },
       panelClass: 'full-width-dialog',
       width: '100%',
@@ -568,7 +577,7 @@ export class HomepageComponent implements OnInit {
       disableClose: true,
       // backdropClass: 'backdropBackground'
     };
-  
+
     const dialogRef = this.dialog.open(SpaceComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(() => {
       this.UpdateTree();
@@ -598,65 +607,80 @@ export class HomepageComponent implements OnInit {
 
   }
   setSelectedNode(node) {
-    console.log("node",node);
+    console.log("node", node);
     // this.selectedNode = node.name;
     // this.selectedId=node.id;
-   
-   this.selectedarray=[];
-   this.selectedarray.push(node)
- 
-   if(node.level >0)
-   {
-   
-     for(var i=node.level;i>0;i--)
-     {
-     
-        var currentlevel= this.getParent(node);
+
+    this.selectedarray = [];
+    this.selectedarray.push(node)
+
+    if (node.level > 0) {
+
+      for (var i = node.level; i > 0; i--) {
+
+        var currentlevel = this.getParent(node);
         this.selectedarray.push(currentlevel)
-      
-       node=currentlevel;
-     
-     }
-  
-   }
-   this.duplicateselecetedarray=[]
-   var z=0;
- for(var j=(this.selectedarray.length-1);j>=0;j--)
- {
-   
-   this.duplicateselecetedarray[z]=this.selectedarray[j]
-   z=z+1;
- }
- this.siteIDofselectedspace=this.duplicateselecetedarray[0].id;
- this.sitenameofselectednode=this.duplicateselecetedarray[0].name
- this.parentofSelectedId= this.duplicateselecetedarray[this.duplicateselecetedarray.length-1].name;
- this.parentofSelectedname=this.duplicateselecetedarray[this.duplicateselecetedarray.length-1].id
-   this.selectedNode =this.selectedarray[0].name;
-    this.selectedId=this.selectedarray[0].id;
-    console.log("siteIDofselectedspace",this.siteIDofselectedspace);
-    // console.log("sitenameofselectednode",this.sitenameofselectednode);
-    console.log("parentofSelectedId",this.parentofSelectedId);
-    console.log("parentofSelectedname",this.parentofSelectedname);
-    console.log("selectedNode",this.selectedNode);
-    console.log("selectedId",this.selectedId);
-   console.log("selectedarray",this.selectedarray);
-   console.log("duplicateselecetedarray",this.duplicateselecetedarray);
+
+        node = currentlevel;
+
+      }
+
+    }
+    //reversing and storing the value in Hierarchy
+    this.duplicateselecetedarray = []
+    var z = 0;
+    for (var j = (this.selectedarray.length - 1); j >= 0; j--) {
+
+      this.duplicateselecetedarray[z] = this.selectedarray[j]
+      z = z + 1;
+    }
+    this.siteIDofselectedspace = this.duplicateselecetedarray[0].id;
+    this.sitenameofselectednode = this.duplicateselecetedarray[0].name;
+
+    if (this.duplicateselecetedarray.length == 1) {
+      this.parentofSelectedId = 0;
+      this.parentofSelectedname = "";
+
+    }
+    else if (this.duplicateselecetedarray.length > 1) {
+      this.parentofSelectedId = this.duplicateselecetedarray[this.duplicateselecetedarray.length - 2].id;
+      this.parentofSelectedname = this.duplicateselecetedarray[this.duplicateselecetedarray.length - 2].name;
+    }
+    this.ItemToChild = []
+    
+    this.selectedNode = this.selectedarray[0].name;
+    this.selectedId = this.selectedarray[0].id;
+    this.selectedType = this.selectedarray[0].type;
+    this.ItemToChild.push(this.siteIDofselectedspace);
+    if(this.selectedType=="space" || this.selectedType=="subspace")
+    {
+      this.ItemToChild.push(this.selectedId);
+    }
+    
+    console.log("siteIDofselectedspace", this.siteIDofselectedspace);
+    console.log("sitenameofselectednode", this.sitenameofselectednode);
+    console.log("parentofSelectedId", this.parentofSelectedId);
+    console.log("parentofSelectedname", this.parentofSelectedname);
+    console.log("selectedNode", this.selectedNode);
+    console.log("selectedId", this.selectedId);
+    console.log("selectedType", this.selectedType);
+    console.log("higherArchyofSelectedNode", this.duplicateselecetedarray);
     console.log("tree source", this.treeSource.data);
   }
 
   toggleSideMenu() {
     this.isFolded = !this.isFolded;
   }
-  switchSideMenu(value:boolean){
-    this.isFolded=value;
+  switchSideMenu(value: boolean) {
+    this.isFolded = value;
   }
-  modelsclk(){
-    this.models=true;
-    this.notmodels=false;
+  modelsclk() {
+    this.models = true;
+    this.notmodels = false;
   }
-  notmodelsclk(){
-    this.notmodels=true;
-    this.models=false
+  notmodelsclk() {
+    this.notmodels = true;
+    this.models = false
   }
   //
   expandParents(node) {

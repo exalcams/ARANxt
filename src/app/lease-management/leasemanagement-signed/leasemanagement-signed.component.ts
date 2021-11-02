@@ -1,6 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { DatePipe } from '@angular/common';
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild, ViewEncapsulation, } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild, ViewEncapsulation, } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
@@ -11,7 +11,7 @@ import { LeaseManagementService } from 'src/app/service/lease-management.service
 import { SpaceService } from 'src/app/space/space.service';
 import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/notification-snackbar-status-enum';
 import { UserData } from '../leasemanagement/leasemanagement.component';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UploadSignedDialogComponent } from 'src/app/upload-signed-dialog/upload-signed-dialog.component';
 import { VacatecomponentComponent } from '../vacatecomponent/vacatecomponent.component';
 import { RenewcomponentComponent } from '../renewcomponent/renewcomponent.component';
@@ -28,7 +28,7 @@ import { CloseDialogComponent } from 'src/app/close-dialog/close-dialog.componen
   styleUrls: ['./leasemanagement-signed.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class LeasemanagementSignedComponent implements OnInit {
+export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
   @Output() sideNavToggle = new EventEmitter();
   displayedColumns: string[] = ['select', 'ClientName', 'FileName', 'DaysRemaining', 'ExpiryDate', 'Action'];
   valueforrenewdialog = 0;
@@ -60,6 +60,13 @@ export class LeasemanagementSignedComponent implements OnInit {
   sideNavStatus: boolean;
   state: string = 'default';
   @ViewChild('drawer') sidenav: MatDrawer;
+  @Input() item: number[];
+  SiteId: any;
+
+  SiteSpaceOfSeleceted :number[] = [];
+
+  SpaceId: any;
+
   constructor(private formBuilder: FormBuilder, private datepipe: DatePipe, private service: LeaseManagementService,
     // tslint:disable-next-line:align
     private spinner: NgxSpinnerService, public snackBar: MatSnackBar, public dialog: MatDialog) {
@@ -69,8 +76,30 @@ export class LeasemanagementSignedComponent implements OnInit {
   ngOnInit(): void {
     this.SignedFormGroup();
     this.GetAllLeases();
+    this.GetNodeFromLease(this.item);
+  }  
+  ngOnChanges(changes: SimpleChanges): void {
+    // console.log("onchangesDecoratorValue",this.item);
+    console.log("changes", changes.item.currentValue);
+    this.GetNodeFromLease(changes.item.currentValue);
   }
+  GetNodeFromLease(eve) {
+    this.SiteSpaceOfSeleceted=[];
+    // console.log("decoratorvalue",  this.item);
+    if (eve.length > 0) {
+      if (eve[0]) {
+        this.SiteId = eve[0];
+        this.SiteSpaceOfSeleceted.push(eve[0]);
+        console.log("SiteId", this.SiteId);
+      }
+       if (eve[1]) {
+        this.SpaceId = eve[1];
+        this.SiteSpaceOfSeleceted.push(eve[1]);
+        console.log("SpaceId", this.SpaceId);
 
+      }
+    }
+  }
   GetAllLeases() {
     this.spinner.show();
     this.service.GetAllSignedLeases().subscribe((data) => {
@@ -371,14 +400,23 @@ export class LeasemanagementSignedComponent implements OnInit {
     }
   }
   openDialog() {
-    const dialogRef = this.dialog.open(UploadSignedDialogComponent, {
+    const dialogConfig: MatDialogConfig = {
+      data: {
+        SiteId: this.SiteId,
+        SpaceId: this.SpaceId,
+      },
       panelClass: 'upload-signed-dialog',
       // position: { top: '3%', right: '3%' },
       width: '951px',
       maxWidth: '85.5vw ',
+      disableClose: true
       // height: '90%',
+    };
+    const dialogRef = this.dialog.open(UploadSignedDialogComponent, dialogConfig);
+    // const dialogRef = this.dialog.open(UploadSignedDialogComponent, {
+      
 
-    });
+    // });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
