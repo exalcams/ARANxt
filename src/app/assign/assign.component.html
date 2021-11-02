@@ -1,95 +1,116 @@
 <div fxLayout="column">
     <div fxLayout="row" fxFlex style="padding: 15px;">
-        <div fxLayout="column" fxFlex="45">
-            <span><mat-icon routerLink="/homepage" style="cursor: pointer;">keyboard_backspace</mat-icon>&nbsp;<span style="font-size: 12px;position: relative;top: -8px;color: #0d0c22;font-weight: 600;">Assign&nbsp;({{assignRows.length}})</span></span>
+        <div fxLayout="row" fxLayoutAlign="start center" fxFlex="40" fxLayoutGap="14px">
+            <mat-icon routerLink="/signals" class="arrow_space">keyboard_backspace</mat-icon>
+            <span class="assign-span">Assign&nbsp;({{assignRows.length}})</span>
         </div>
-        <div fxLayout="row" fxFlex="55" fxLayoutAlign="space-between center">
-            <div fxLayout="row" fxLayoutGap="10px">
-                <span class="ava"><b>Available Technicians</b></span>
-                <div fxLayout="row" fxLayoutGap="10px">
-                    <span><button class="but1"><span class="num"><b>12</b></span></button>
-                    </span>
-                    <span><img class="dot1" src="./assets/Images/dot1.png"></span>
+        <div fxLayout="row" fxFlex="60" fxLayoutAlign="space-between center">
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="6px">
+                <div class="ava_cls">
+                    Available Technicians
+                </div>
+                <div class="rectangle-box" fxLayoutAlign="center center">
+                    <span class="sixteenclass"> 16 </span>
+                </div>
+                <img src="assets/Ellipse 799.svg" class="green_dot">
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="60">
+                <div fxLayout="row" class="btn_bg2" fxFlex="100">
+                    <mat-icon matSuffix class="serachicon_search">search</mat-icon>
+                    <input matInput class="search_input1 forminputedit" autocomplete="off"
+                        placeholder="Search by I’d or Name" #input (keyup)="applyFilter($event)">
+                    <!-- (keyup)="applyFilter($event)" -->
+                    <img src="./assets/mic.svg" class="voice-image">
                 </div>
             </div>
-
-            <div fxLayout="row" fxLayoutGap="10px">
-                <!-- <div> -->
-                <div class="searchbox" style="background-color: #f3f3f4 !important;"><input class="search_input1" matInput placeholder=" Search by Emp I'd or Name" #input>
-                </div>
-                <!-- <span class="box2"><img src="../../assets/dynamic/search.svg" class="search"></span> -->
-                <!-- </div> -->
-                <span class="box2"><mat-icon class="search">search</mat-icon></span>
-            </div>
-
         </div>
     </div>
 
     <div fxLayout="row" fxFlex="100">
-        <div fxLayout="column" fxFlex="45" style="padding: 10px;">
+        <div fxLayout="column" fxFlex="50" class="table-top-1-div">
             <div class="gtt example">
                 <table mat-table [dataSource]="dataSource" class="example-container">
-
-
-                    <ng-container matColumnDef="select">
-                        <th mat-header-cell *matHeaderCellDef>
-                            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                    <!-- <ng-container matColumnDef="select">
+                        <th mat-header-cell *matHeaderCellDef class="header-top-row">
+                            <mat-checkbox (change)="$event ? masterToggle() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                [aria-label]="checkboxLabel()">
                             </mat-checkbox>
                         </th>
                         <td mat-cell *matCellDef="let row">
-                            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                            <mat-checkbox (click)="$event.stopPropagation()"
+                                (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                                [aria-label]="checkboxLabel(row)">
                             </mat-checkbox>
                         </td>
+                    </ng-container> -->
+                    <ng-container matColumnDef="select" sticky>
+                        <th mat-header-cell *matHeaderCellDef>
+                            <mat-checkbox (change)="$event ? masterToggle() : null" #checkbox1 color="primary"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                [aria-label]="checkboxLabel()">
+                            </mat-checkbox>
+                        </th>
+                        <td mat-cell *matCellDef="let row;index as i;">
+                            <div fxLayout="row" fxLayoutAlign="start center">
+                                <mat-checkbox (click)="$event.stopPropagation();" #checkbox color="primary"
+                                    (change)="$event ? selection.toggle(row) : null;row.highlighted = checkbox.checked;"
+                                    [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                                </mat-checkbox>
+                            </div>
+                        </td>
                     </ng-container>
-
 
                     <ng-container matColumnDef="position">
                         <th mat-header-cell *matHeaderCellDef> Assert I'D </th>
                         <td mat-cell *matCellDef="let element"> {{element.AssertId}} </td>
                     </ng-container>
-
-
+                    <!-- {{element.AssertId}}
+                    {{element.AssertName}}
+                    {{element.Location}}
+                    {{element.Brand}} -->
                     <ng-container matColumnDef="name">
                         <th mat-header-cell *matHeaderCellDef>Assert Name </th>
                         <td mat-cell *matCellDef="let element"> {{element.AssertName}} </td>
                     </ng-container>
-
 
                     <ng-container matColumnDef="weight">
                         <th mat-header-cell *matHeaderCellDef> Location </th>
                         <td mat-cell *matCellDef="let element"> {{element.Location}} </td>
                     </ng-container>
 
-
                     <ng-container matColumnDef="symbol">
                         <th mat-header-cell *matHeaderCellDef> Brand </th>
                         <td mat-cell *matCellDef="let element"> {{element.Brand}} </td>
                     </ng-container>
 
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"
+                        style="background-color: #f3f3f4;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" style="border-bottom-style: none;"
+                        [ngClass]="{'highlight3': selectedRowIndex2 == row.AssertId}"
+                        (click)="selection.toggle(row);highlight2(row);">
                     </tr>
                 </table>
             </div>
         </div>
-
-        <div fxLayout="column" fxFlex="55">
+        <mat-divider [vertical]="true" class="divider-overall"></mat-divider>
+        <div fxLayout="column" fxFlex="50">
             <mat-card class="whoc" fxLayout="column" fxLayoutGap="20px">
-
-                <div class="scroll">
-                    <div fxLayout="row" fxLayoutGap="20px" class="index">
-                        <mat-card *ngFor="let employee of dataSourceSS;index as i" (click)="onSelectCard(i)" [ngClass]="{'card-selected mat-elevation-z4': selected1== i } " class="car">
-                            <div fxLayout="row" fxLayoutGap="15px">
-                                <img class="img2" src="./assets/Images/Ellipse 172@3x.png">
-                                <div fxLayout="column">
-                                    <span class="emp"><b>{{employee}}</b></span>
-                                    <span class="exp">Expert</span>
-                                </div>
+                <div fxLayout="row" fxLayoutGap="16px" class="index">
+                    <mat-card *ngFor="let employee of dataSourceSS;index as i" (click)="onSelectCard(i)"
+                        [ngClass]="{'card-selected mat-elevation-z4': selected1== i }" class="car">
+                        <div fxLayout="row" fxLayoutGap="15px">
+                            <img class="img2" src="./assets/Images/Ellipse 172@3x.png">
+                            <div fxLayout="column">
+                                <span class="emp">{{employee}}</span>
+                                <span class="exp">Expert</span>
                             </div>
-                            <div style="margin-top: 10px;">
-                                <img class="st" src="./assets/Images/star.svg">
-                            </div>
-                            <div fxLayout="column" style="margin-top: 10px;">
+                        </div>
+                        <div>
+                            <img class="st" src="./assets/Images/star.svg">
+                            <div fxLayout="column">
                                 <div fxLayout="row" fxLayoutGap="20px">
                                     <span class="work">Workload</span>
                                     <mat-progress-bar class="progresss" mode="determinate" value="90" color="warn">
@@ -106,10 +127,30 @@
                                     </mat-progress-bar>
                                 </div>
                             </div>
-                        </mat-card>
-                    </div>
+                            <div fxLayout="row" fxLayoutAlign="space-between">
+                                <span class="span-076">
+                                    076
+                                </span>
+                                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px">
+                                    <img src="../../assets/Icons.svg" class="location-icon-image">
+                                    <span class="kilometerspan">
+                                        2 km
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div *ngIf="!showassigned" class="showassigned-div" fxLayout="column"
+                            fxLayoutAlign="space-evenly center"
+                            [ngClass]="{'showassigned-div': selected1== i }">
+                            <span class="span-assigned">
+                                Assigned
+                            </span>
+                            <span class="span-number">
+                                04
+                            </span>
+                        </div> -->
+                    </mat-card>
                 </div>
-
             </mat-card>
         </div>
 
@@ -123,8 +164,12 @@
                 </div>
 
                 <div fxLayout="column" fxFlex="55">
-                    <button *ngIf="!Assign" style="background-color: #f9f8fe;  border-radius: 4px;width: 400px;align-self: center;color: #00ba53;font-weight: bold;font-size: 12px;" mat-button (click)="AssignSuccessfulBt()">Done</button>
-                    <button *ngIf="Assign" routerLink="/homepage"  style="background-color: #00ba53;  height: 2.5em;border-radius: 4px;width: 400px;align-self: center;border:none;color: #f9f8fe;font-weight:600;font-size: 12px;">Assigned Emp I'D Successfully </button>
+                    <button *ngIf="!Assign"
+                        style="background-color: #f9f8fe;  border-radius: 4px;width: 400px;align-self: center;color: #00ba53;font-weight: bold;font-size: 12px;"
+                        mat-button (click)="AssignSuccessfulBt()">Done</button>
+                    <button *ngIf="Assign" routerLink="/homepage"
+                        style="background-color: #00ba53;  height: 2.5em;border-radius: 4px;width: 400px;align-self: center;border:none;color: #f9f8fe;font-weight:600;font-size: 12px;">Assigned
+                        Emp I'D Successfully </button>
                 </div>
 
             </div>

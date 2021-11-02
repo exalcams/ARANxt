@@ -177,6 +177,10 @@
                 font-family: 'poppins-semi' !important;
                 color: #acacac !important;
               }
+              .inputform::-ms-reveal,
+              .inputform::-ms-clear {
+                display: none;
+              }
               .show{
                  transform: scale(0.6);
                  cursor: pointer;
@@ -306,6 +310,9 @@
                     color: #acacac;
                     font-size: 10px;
                     font-family: 'poppins-semi' !important;
+                }
+                .widthclass{
+                    width: 15px;
                 }
                 .signupdiv2{
                     color: #acacac;
