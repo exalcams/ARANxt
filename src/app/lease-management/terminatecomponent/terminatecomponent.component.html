@@ -141,7 +141,7 @@
                                     </mat-error> -->
                                     <mat-error *ngIf="Terminateformgroup.get('Accepteddate').touched && 
                                     Terminateformgroup.get('Accepteddate').hasError('required')" class="erroredits">
-                                    Enter a valid date (mm/dd/yyyy)
+                                        Enter a valid date (mm/dd/yyyy)
                                     </mat-error>
                                     <mat-error *ngIf="Terminateformgroup.get('Accepteddate').touched && !Terminateformgroup.get('Accepteddate').hasError('required')
                                     && Terminateformgroup.get('Accepteddate').hasError('invalidDate')"
@@ -168,7 +168,7 @@
                                     </mat-error> -->
                                     <mat-error *ngIf="Terminateformgroup.get('Inspectiondate').touched && 
                                     Terminateformgroup.get('Inspectiondate').hasError('required')" class="erroredits">
-                                    Enter a valid date (mm/dd/yyyy)
+                                        Enter a valid date (mm/dd/yyyy)
                                     </mat-error>
                                     <mat-error *ngIf="Terminateformgroup.get('Inspectiondate').touched && !Terminateformgroup.get('Inspectiondate').hasError('required')
                                     && Terminateformgroup.get('Inspectiondate').hasError('invalidDate')"
@@ -218,7 +218,7 @@
                                         No special character
                                     </mat-error> -->
                                     <mat-error *ngIf="Terminateformgroup.get('Rentdue').touched && !Terminateformgroup.get('Rentdue').hasError('required')
-                            &&Terminateformgroup.get('Rentdue').hasError('pattern')" >
+                            &&Terminateformgroup.get('Rentdue').hasError('pattern')">
                                         Enter a valid amount
                                     </mat-error>
 
@@ -250,13 +250,13 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Damage Recovery</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput formControlName="DamageRecovery" 
-                                        (keydown)="decimalOnly($event)" class="forminputedit">
+                                    <input matInput formControlName="DamageRecovery" (keydown)="decimalOnly($event)"
+                                        class="forminputedit">
                                     <mat-error *ngIf="Terminateformgroup.get('DamageRecovery').hasError('required')"
                                         class="erroredits">
                                         DamageRecovery is required
                                     </mat-error>
-                                  
+
                                     <mat-error *ngIf="Terminateformgroup.get('DamageRecovery').touched && !Terminateformgroup.get('DamageRecovery').hasError('required')
                             &&Terminateformgroup.get('DamageRecovery').hasError('pattern')" class="erroredits">
                                         Enter a valid amount
@@ -267,13 +267,13 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Advance Balance to Be settled</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput formControlName="AdvanceBalance" 
-                                        (keydown)="decimalOnly($event)" class="forminputedit">
+                                    <input matInput formControlName="AdvanceBalance" (keydown)="decimalOnly($event)"
+                                        class="forminputedit">
                                     <mat-error *ngIf="Terminateformgroup.get('AdvanceBalance').hasError('required')"
                                         class="erroredits">
                                         AdvanceBalance is required
                                     </mat-error>
-                                  
+
                                     <mat-error *ngIf="Terminateformgroup.get('AdvanceBalance').touched && !Terminateformgroup.get('AdvanceBalance').hasError('required')
                             &&Terminateformgroup.get('AdvanceBalance').hasError('pattern')" class="erroredits">
                                         Enter a valid amount
@@ -292,7 +292,7 @@
                                     </mat-error> -->
                                     <mat-error *ngIf="Terminateformgroup.get('ExpectedDate').touched && 
                                     Terminateformgroup.get('ExpectedDate').hasError('required')" class="erroredits">
-                                    Enter a valid date (mm/dd/yyyy)
+                                        Enter a valid date (mm/dd/yyyy)
                                     </mat-error>
                                     <mat-error *ngIf="Terminateformgroup.get('ExpectedDate').touched && !Terminateformgroup.get('ExpectedDate').hasError('required')
                                     && Terminateformgroup.get('ExpectedDate').hasError('invalidDate')"
@@ -329,7 +329,8 @@
                                 <mat-form-field appearance="legacy" fxFlex=50>
                                     <mat-chip-list #chipList formControlName="ReturnableAssets" color="primary">
                                         <mat-chip *ngFor="let asset of assets.value" [selectable]="selectable"
-                                            [removable]="removable" (removed)="remove(asset)" class="forminputedit">
+                                            [removable]="removable" (removed)="remove(asset)"
+                                            class="forminputedit chipcss">
                                             {{asset}}
                                             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                                         </mat-chip>

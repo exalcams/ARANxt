@@ -210,7 +210,7 @@ export class OverComponent implements OnInit {
       series: [
         {
           name: "Free Cash Flow",
-          data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
+          data: [35, 41, 36, 26, 45, 48, 52, 53, 41, 20, 47, 35]
         }
       ],
       chart: {
@@ -218,7 +218,7 @@ export class OverComponent implements OnInit {
           show: false
         },
         type: "bar",
-        height: 100,
+        height: 130,
         foreColor: '#999999',
         fontFamily: 'poppins-semi',
       },
@@ -228,7 +228,18 @@ export class OverComponent implements OnInit {
             position: "top"
           },
           horizontal: false,
-          columnWidth: "30%"
+          columnWidth: "40%",
+          borderRadius: 2,
+          colors: {
+            ranges: [{
+              from: 0,
+              to: 0,
+              color: '#3c6fec'
+            }],
+            backgroundBarColors: [],
+            backgroundBarOpacity: 1,
+            backgroundBarRadius: 0,
+          },
           // endingShape: 'rounded',
           // startingShape:'rounded'
         }
@@ -236,7 +247,7 @@ export class OverComponent implements OnInit {
       dataLabels: {
         enabled: false,
         style: {
-          fontSize: "10px !important",
+          fontSize: "8px !important",
           fontFamily: 'poppins-semi',
           colors: ["#2c2c2e"]
         }
@@ -271,11 +282,14 @@ export class OverComponent implements OnInit {
           "Jun",
           "Jul",
           "Aug",
-          "Sep"],
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"],
 
         labels: {
           style: {
-            fontSize: "10px"
+            fontSize: "8px"
           }
         }
         // position: "top",
