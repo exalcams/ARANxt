@@ -85,12 +85,15 @@ export class ARA_Space {
     Site: number;
     ParentID: number;
     //new
+
     LocLink:string;
     DocLink:string;
     PartnerLink:string;
     AreaLink:string;
     AddrLink:string;
-    DateLink:string
+    DateLink:string;
+    ParentType:string;
+
 }
 export class SiteLink{
     Site:number;

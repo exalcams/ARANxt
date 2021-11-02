@@ -211,9 +211,7 @@ export class SpaceComponent implements OnInit {
         console.log("res", res);
         this.SpaceList = res as ARA_SpaceAll[];
         this.spinner.hide();
-
         console.log("SpaceList", this.SpaceList);
-
       },
       err => {
         this.spinner.hide();
@@ -1066,6 +1064,15 @@ export class SpaceComponent implements OnInit {
     this.GeneralSpaceView.CostCenter = this.GeneralForm.get('costCenter').value;
     // this.GeneralSpaceView.ParentID = this.parentID;
     this.GeneralSpaceView.ParentID = this.dialogData.selectedid;
+    if( this.dialogData.selectedtype=="site")
+    {
+      this.GeneralSpaceView.ParentType="space";
+    }
+   else if( this.dialogData.selectedtype=="space" ||this.dialogData.selectedtype=="subspace" )
+   {
+    this.GeneralSpaceView.ParentType="subspace";
+   }
+
 
   }
   LocationSpaceGetData() {

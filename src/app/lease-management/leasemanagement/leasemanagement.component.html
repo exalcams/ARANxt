@@ -182,7 +182,7 @@
         </div>
     </div>
     <div *ngIf="selectedPage=='signed'">
-        <app-leasemanagement-signed (sideNavToggle)="sideNavStatus($event)"></app-leasemanagement-signed>
+        <app-leasemanagement-signed [item]="SiteSpaceOfSeleceted" (sideNavToggle)="sideNavStatus($event)"></app-leasemanagement-signed>
     </div>
     <div *ngIf="selectedPage=='expiry'">
         <app-leasemanagement-expiry (sideNavToggle)="sideNavStatus($event)"></app-leasemanagement-expiry>

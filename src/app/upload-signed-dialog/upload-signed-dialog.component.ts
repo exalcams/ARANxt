@@ -147,11 +147,12 @@ onRemove(event): void {
     signeddetail.modeOfTransfer = this.SignedDocumentDetailsForm.get('ModeofTransfer').value;
     signeddetail.ifsc = this.SignedDocumentDetailsForm.get('IFSCCode').value;
     signeddetail.noticePeriod = this.SignedDocumentDetailsForm.get('NoticePeriod').value;
-    signeddetail.site = 0;
-    signeddetail.space=0;
+    signeddetail.site =this.data.SiteId;
+    signeddetail.space=this.data.SpaceId;
+
     signeddetail.asset=0;
 
-   console.log("upload");
+   console.log("upload",signeddetail);
    
     this.service.AddSignedFileDetail(signeddetail,this.files[0]).subscribe((x) => {
     this.SignedDocumentDetailsForm.reset()

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy, EventEmitter, Output, ElementRef, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy, EventEmitter, Output, ElementRef, ViewChildren, QueryList, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -23,7 +23,10 @@ export interface UserData {
   CreatedOn: string;
   Actions: any
 }
-
+interface Item {
+  siteOfSelectedItem: number;
+  selectedId: number;
+}
 const ELEMENT_DATA: UserData[] = [
   { Documentname: 'Lease Document For Exalca', Filesize: '1mb', CreatedOn: '15/9/2021', Actions: '', },
   { Documentname: 'Lease Document For Entity Data', Filesize: '1mb', CreatedOn: '17/9/2021', Actions: '', },
@@ -35,11 +38,12 @@ const ELEMENT_DATA: UserData[] = [
   templateUrl: './leasemanagement.component.html',
   styleUrls: ['./leasemanagement.component.scss']
 })
-export class LeasemanagementComponent implements OnInit {
-  @Output() switchSideNav=new EventEmitter();
+export class LeasemanagementComponent implements OnInit, OnChanges {
+  @Output() switchSideNav = new EventEmitter();
   displayedColumns: string[] = ['select', 'documentOwner', 'documentType', 'documentName', 'createdOn', 'modifiedOn', 'actions'];
-  dataSource =new MatTableDataSource<any>([]);
+  dataSource = new MatTableDataSource<any>([]);
   selection = new SelectionModel<any>(true, []);
+  @Input() item: Item[];
   // tslint:disable-next-line:variable-name
 
   // tslint:disable-next-line:variable-name
@@ -54,8 +58,8 @@ export class LeasemanagementComponent implements OnInit {
   search_bool: boolean = false;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChildren('checkbox1') private checkboxs : QueryList<any>;
-  @ViewChildren('checkbox') private checkbox : QueryList<any>;
+  @ViewChildren('checkbox1') private checkboxs: QueryList<any>;
+  @ViewChildren('checkbox') private checkbox: QueryList<any>;
   bool1: Boolean = true;
   // tslint:disable-next-line:ban-types
   bool2: Boolean;
@@ -72,27 +76,30 @@ export class LeasemanagementComponent implements OnInit {
   notificationSnackBarComponent: NotificationSnackBarComponent;
   @Output() toggleFold: EventEmitter<boolean> = new EventEmitter<boolean>();
   closedialog: string = 'yes';
-  neweditorchange:boolean=false;
-  editor1change:boolean=false;
-  editor2change:boolean=false;
+  neweditorchange: boolean = false;
+  editor1change: boolean = false;
+  editor2change: boolean = false;
   editor_mode: number;
   closebool: boolean;
   newDraftSavedStatus: boolean;
   objeve: any;
-  seletedrows_array: any[]=[];
+  seletedrows_array: any[] = [];
+  SiteId: Item;
+  SpaceId: Item;
+  SiteSpaceOfSeleceted :number[] = [];
   toggleSideNav(value: boolean) {
     this.toggleFold.emit(!value);
   }
   newLeaseDraft: LeaseDraft = new LeaseDraft();
   leaseDraft1: LeaseDraft = new LeaseDraft();
   leaseDraft2: LeaseDraft = new LeaseDraft();
-  commonlease:LeaseDraft=new LeaseDraft();
-  savedNewLease:LeaseDraft=new LeaseDraft();
-  savednewLeaseHasval:boolean=false;
+  commonlease: LeaseDraft = new LeaseDraft();
+  savedNewLease: LeaseDraft = new LeaseDraft();
+  savednewLeaseHasval: boolean = false;
   selectedRowIndex2 = -1;
-    
+
   editorConfig: any;
-  isDataLoaded:boolean=false;
+  isDataLoaded: boolean = false;
   constructor(private dialog: MatDialog, private service: LeaseManagementService,
     private spinner: NgxSpinnerService, private cdr: ChangeDetectorRef,
     private snackBar: MatSnackBar, private socialAuthService: SocialAuthService) {
@@ -101,14 +108,38 @@ export class LeasemanagementComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllDrafts();
-    
+
     this.editorConfig = {
       height: window.innerHeight - 328 + 'px',
 
 
     }
-  }
 
+    this.GetFromHome(this.item);
+
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    // console.log("onchangesDecoratorValue",this.item);
+    console.log("changes", changes.item.currentValue);
+    this.GetFromHome(changes.item.currentValue);
+  }
+  GetFromHome(eve) {
+    // console.log("decoratorvalue",  this.item);
+    this.SiteSpaceOfSeleceted=[];
+    if (eve.length > 0) {
+      if (eve[0]) {
+        this.SiteId = eve[0];
+        this.SiteSpaceOfSeleceted.push(eve[0]);
+        console.log("SiteId", this.SiteId);
+      }
+       if (eve[1]) {
+        this.SpaceId = eve[1];
+        this.SiteSpaceOfSeleceted.push(eve[1]);
+        console.log("SpaceId", this.SpaceId);
+
+      }
+    }
+  }
   getAllDrafts() {
     this.spinner.show();
     this.service.GetLeaseDrafts().subscribe(res => {
@@ -116,7 +147,7 @@ export class LeasemanagementComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.LeaseDrafts);
       this.draftdata_filter = this.LeaseDrafts;
       this.selection = new SelectionModel<any>(true, []);
-      this.isDataLoaded=true;
+      this.isDataLoaded = true;
       this.spinner.hide();
       // console.log("LeaseDrafts", res);
     },
@@ -139,11 +170,10 @@ export class LeasemanagementComponent implements OnInit {
 
     this.selection.select(...this.dataSource.data);
   }
-  check()
-  {
-       let myCheckboxes = this.checkboxs.toArray();
-       let checkbox = this.checkbox.toArray();
-      console.log("checkboxes",myCheckboxes);
+  check() {
+    let myCheckboxes = this.checkboxs.toArray();
+    let checkbox = this.checkbox.toArray();
+    console.log("checkboxes", myCheckboxes);
   }
   highlight2(row) {
     // console.log(row)
@@ -153,23 +183,22 @@ export class LeasemanagementComponent implements OnInit {
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: UserData): string {
     if (!row) {
-      
+
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.Documentname + 1}`;
   }
   // removeSelectedRows() {
   //   this.selection.selected.forEach(item => {
-     
+
   //  if(item.highlighted)
   //  {
   //   item.highlighted=false
   //  }   
   //    });
-   
+
   // }
-  getrow(eve)
-  {
+  getrow(eve) {
     this.seletedrows_array.push(eve)
   }
   onSelect(event): void {
@@ -285,119 +314,113 @@ export class LeasemanagementComponent implements OnInit {
   }
 
   saveNewDraft() {
-    this.editor_mode=1
+    this.editor_mode = 1
     // console.log("savednewlease",this.savedNewLease);
-    
-   if(this.savednewLeaseHasval)
-   {
-    this.commonlease.documentOwner=this.savedNewLease.documentOwner;
-    this.commonlease.documentType=this.savedNewLease.documentType;
-    this.commonlease.documentName=this.savedNewLease.documentName;
-    const dialogConfig: MatDialogConfig = {
-      data: {
-        name: this.commonlease.documentName,
-        owner: this.commonlease.documentOwner,
-        type:this.commonlease.documentType
-      },
-      panelClass: "draft-dialog"
-    };
-    const dialogRef = this.dialog.open(DraftDialogComponent,dialogConfig);
-    dialogRef.disableClose = true;
-    dialogRef.afterClosed().subscribe(res => {
-      if(res)
-      {
-        this.leaseDraft1.documentName = res.documentName;
-        this.leaseDraft1.documentOwner = res.documentOwner;
-        this.leaseDraft1.documentType = res.documentType;
-        this.saveLeaseDraft(this.leaseDraft1);
-      }
-     
-    })
-   }
-   else{
-    this.openDraftDialog(1);
 
-   }
+    if (this.savednewLeaseHasval) {
+      this.commonlease.documentOwner = this.savedNewLease.documentOwner;
+      this.commonlease.documentType = this.savedNewLease.documentType;
+      this.commonlease.documentName = this.savedNewLease.documentName;
+      const dialogConfig: MatDialogConfig = {
+        data: {
+          name: this.commonlease.documentName,
+          owner: this.commonlease.documentOwner,
+          type: this.commonlease.documentType
+        },
+        panelClass: "draft-dialog"
+      };
+      const dialogRef = this.dialog.open(DraftDialogComponent, dialogConfig);
+      dialogRef.disableClose = true;
+      dialogRef.afterClosed().subscribe(res => {
+        if (res) {
+          this.leaseDraft1.documentName = res.documentName;
+          this.leaseDraft1.documentOwner = res.documentOwner;
+          this.leaseDraft1.documentType = res.documentType;
+          this.saveLeaseDraft(this.leaseDraft1);
+        }
+
+      })
+    }
+    else {
+      this.openDraftDialog(1);
+
+    }
   }
 
   saveDraft1() {
-    this.editor1change=false
+    this.editor1change = false
     this.service.GetLeaseDraftById(this.leaseDraft1.documentID).subscribe(res => {
-      if(res)
-      {      
-        
-        this.commonlease.documentOwner=res.documentOwner,
-        this.commonlease.documentType=res.documentType,
-        this.commonlease.documentName=res.documentName,
-        console.log("saveDraft1",this.leaseDraft1);
+      if (res) {
 
-       
+        this.commonlease.documentOwner = res.documentOwner,
+          this.commonlease.documentType = res.documentType,
+          this.commonlease.documentName = res.documentName,
+          console.log("saveDraft1", this.leaseDraft1);
+
+
         const dialogConfig: MatDialogConfig = {
           data: {
             name: this.commonlease.documentName,
             owner: this.commonlease.documentOwner,
-            type:this.commonlease.documentType
+            type: this.commonlease.documentType
           },
           panelClass: "draft-dialog"
         };
-        const dialogRef = this.dialog.open(DraftDialogComponent,dialogConfig);
+        const dialogRef = this.dialog.open(DraftDialogComponent, dialogConfig);
         dialogRef.disableClose = true;
         dialogRef.afterClosed().subscribe(res => {
-          if(res)
-          {
+          if (res) {
             this.leaseDraft1.documentName = res.documentName;
             this.leaseDraft1.documentOwner = res.documentOwner;
             this.leaseDraft1.documentType = res.documentType;
             this.saveLeaseDraft(this.leaseDraft1);
           }
-         
+
         })
       }
- 
-    }) 
-    
+
+    })
+
   }
 
   saveDraft2() {
-    this.editor2change=false
+    this.editor2change = false
     this.service.GetLeaseDraftById(this.leaseDraft2.documentID).subscribe(res => {
-      if(res)
-      {      
-        this.commonlease.documentOwner=res.documentOwner,
-        this.commonlease.documentType=res.documentType,
-        this.commonlease.documentName=res.documentName,
-        console.log("saveDraft1",this.leaseDraft1);
+      if (res) {
+        this.commonlease.documentOwner = res.documentOwner,
+          this.commonlease.documentType = res.documentType,
+          this.commonlease.documentName = res.documentName,
+          console.log("saveDraft1", this.leaseDraft1);
 
         // this.openDraftDialog(3);
-      
+
         const dialogConfig: MatDialogConfig = {
           data: {
             name: this.commonlease.documentName,
             owner: this.commonlease.documentOwner,
-            type:this.commonlease.documentType
+            type: this.commonlease.documentType
           },
           panelClass: "draft-dialog"
         };
-        const dialogRef = this.dialog.open(DraftDialogComponent,dialogConfig);
+        const dialogRef = this.dialog.open(DraftDialogComponent, dialogConfig);
         dialogRef.disableClose = true;
         dialogRef.afterClosed().subscribe(res => {
-          if(res)
-          {
+          if (res) {
             this.leaseDraft1.documentName = res.documentName;
             this.leaseDraft1.documentOwner = res.documentOwner;
             this.leaseDraft1.documentType = res.documentType;
             this.saveLeaseDraft(this.leaseDraft1);
           }
-         
+
         })
       }
-    }) 
+    })
     // this.saveLeaseDraft(this.leaseDraft2);
   }
 
 
   openDraftDialog(mode: number) {          //1.save draft  2.upload doc 3.editor
-   
+
     const dialogRef = this.dialog.open(DraftDialogComponent,
       {
         panelClass: "draft-dialog"
@@ -411,11 +434,11 @@ export class LeasemanagementComponent implements OnInit {
           this.newLeaseDraft.documentName = res.documentName;
           this.newLeaseDraft.documentOwner = res.documentOwner;
           this.newLeaseDraft.documentType = res.documentType;
-          console.log("mode1",this.newLeaseDraft);
-          
+          console.log("mode1", this.newLeaseDraft);
+
           this.saveLeaseDraft(this.newLeaseDraft);
         }
-        else if(mode==2){
+        else if (mode == 2) {
           //convert and save lease draft
           var draft = new LeaseDraft();
           draft.documentName = res.documentName;
@@ -427,491 +450,465 @@ export class LeasemanagementComponent implements OnInit {
     });
   }
 
-  closePage(eve)
-  {
-    if(eve=='signed')
-    {
-      if(this.neweditorchange || this.editor1change ||this.editor2change)
-      {
-
-      
-      const dialogConfig: MatDialogConfig = {
-        data: {
-          title: "Close",
-          body: "Are you sure want to close without saving",
-        },
-        panelClass: 'close-dialog',
-        width: '24%',
-        maxWidth: '85.5vw ',
-        height: '192px',
-        disableClose: true
-      };
-      const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
-      // this.selectedPage='draft';
-  
-      dialogRef.afterClosed().subscribe(result => {
-        if (  result == "yes" ) {
-          this.selectedPage='signed';
-          this.editor1change=false;
-          this.editor2change=false;
-          this.neweditorchange=false;
-          // this.savedNewLease=new LeaseDraft();
-          this.savednewLeaseHasval=false;
-      
-          this.selection.clear();
-         
-          this.cdr.detectChanges();
-         
-
-        }
-      })
-    }
-    else{
-      this.selectedPage='signed';
-      this.editor1change=false;
-      this.editor2change=false;
-      this.neweditorchange=false;
-      // this.checkbox.nativeElement=null;
-      // this.savedNewLease=new LeaseDraft();;
-      this.savednewLeaseHasval=false;
-
-      this.selection.clear();
-     
-      this.cdr.detectChanges();
-    
-
-    }
-    }
-    else if(eve=='draft')
-    {
-      if(this.neweditorchange || this.editor1change ||this.editor2change)
-      {
-      const dialogConfig: MatDialogConfig = {
-        data: {
-          title: "Close",
-          body: "Are you sure  want to close without saving",
-        },
-        panelClass: 'close-dialog',
-        width: '24%',
-        maxWidth: '85.5vw ',
-        height: '195px',
-        disableClose: true
-      };
-      const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
-      // this.selectedPage='draft';
-  
-      dialogRef.afterClosed().subscribe(result => {
-        if (  result == "yes" ) {
-          this.selectedPage='draft';
-          this.editor1change=false;
-          this.editor2change=false;
-          this.neweditorchange=false;
-          // this.savedNewLease=new LeaseDraft();
-          this.savednewLeaseHasval=false;
-      
-          this.selection.clear();
-        
-          this.cdr.detectChanges();
-       
-
-        }
-      })
-    }
-    else{
-      this.selectedPage='draft';
-      this.editor1change=false;
-      this.editor2change=false;
-      this.neweditorchange=false;
-      // this.savedNewLease=new LeaseDraft();;
-      this.savednewLeaseHasval=false;
-
-      this.selection.clear();
-      this.cdr.detectChanges();
-    
-
-    }
-    }
-    else if(eve=='expiry')
-    {
-      if(this.neweditorchange || this.editor1change ||this.editor2change)
-      {
-      const dialogConfig: MatDialogConfig = {
-        data: {
-          title: "Close",
-          body: "Are you sure  want to close without saving",
-        },
-        panelClass: 'close-dialog',
-        width: '24%',
-        maxWidth: '85.5vw ',
-        height: '195px',
-        disableClose: true
-      };
-      const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
-      // this.selectedPage='draft';
-  
-      dialogRef.afterClosed().subscribe(result => {
-        if (  result == "yes" ) {
-          this.selectedPage='expiry';
-          this.editor1change=false;
-          this.editor2change=false;
-          // this.savedNewLease=new LeaseDraft();;
-          this.savednewLeaseHasval=false;
-          this.neweditorchange=false;
-        
-
-          this.selection.clear();
-          this.cdr.detectChanges();
-        
-        }
-      })
-    }
-    else{
-      this.selectedPage='expiry';
-      this.editor1change=false;
-      this.editor2change=false;
-      this.neweditorchange=false;
-      // this.savedNewLease=new LeaseDraft();;
-      this.savednewLeaseHasval=false;
-      
-
-      this.selection.clear();
-      this.cdr.detectChanges();
-     
-
-    }
-    }
-    else if(eve=='underNotice')
-    {
-      if(this.neweditorchange || this.editor1change ||this.editor2change)
-      {
-      const dialogConfig: MatDialogConfig = {
-        data: {
-          title: "Close",
-          body: "Are you sure want to close without saving",
-        },
-        panelClass: 'close-dialog',
-        width: '24%',
-        maxWidth: '85.5vw ',
-        height: '195px',
-        disableClose: true
-      };
-      const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
-      // this.selectedPage='draft';
-  
-      dialogRef.afterClosed().subscribe(result => {
-        if (  result == "yes" ) {
-          this.selectedPage='underNotice';
-          this.editor1change=false;
-          this.editor2change=false;
-          this.neweditorchange=false;
-          // this.savedNewLease=new LeaseDraft();;
-          this.savednewLeaseHasval=false;
-        
-          this.selection.clear();
-          this.cdr.detectChanges();
-         
-
-        }
-      })
-    }
-    else{
-      this.selectedPage='underNotice';
-      this.editor1change=false;
-      this.editor2change=false;
-      this.neweditorchange=false;
-      // this.savedNewLease=new LeaseDraft();;
-      this.savednewLeaseHasval=false;
-   
-
-      this.selection.clear();
-      this.cdr.detectChanges();
-    
-
-    }
-    }
-    else if(eve=='terminate')
-    {
-      if(this.neweditorchange || this.editor1change ||this.editor2change)
-      {
-      const dialogConfig: MatDialogConfig = {
-        data: {
-          title: "Close",
-          body: "Are you sure  to close without saving",
-        },
-        panelClass: 'close-dialog',
-        width: '24%',
-        maxWidth: '85.5vw ',
-        height: '195px',
-        disableClose: true
-      };
-      const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
-      // this.selectedPage='draft';
-  
-      dialogRef.afterClosed().subscribe(result => {
-        if (  result == "yes" ) {
-          this.selectedPage='terminate';
-          this.editor1change=false;
-          this.editor2change=false;
-          this.neweditorchange=false;
-          // this.savedNewLease=new LeaseDraft();;
-          this.savednewLeaseHasval=false;
-     
-
-          this.selection.clear();
-          this.cdr.detectChanges();
-        
-
-        }
-      })
-    }
-    else{
-      this.selectedPage='terminate';
-      this.editor1change=false;
-      this.editor2change=false;
-      // this.savedNewLease=new LeaseDraft();;
-      this.savednewLeaseHasval=false;
-      this.neweditorchange=false;
-      
-
-      this.selection.clear();
-      this.cdr.detectChanges();
+  closePage(eve) {
+    if (eve == 'signed') {
+      if (this.neweditorchange || this.editor1change || this.editor2change) {
 
 
-    }
-  }
+        const dialogConfig: MatDialogConfig = {
+          data: {
+            title: "Close",
+            body: "Are you sure want to close without saving",
+          },
+          panelClass: 'close-dialog',
+          width: '24%',
+          maxWidth: '85.5vw ',
+          height: '192px',
+          disableClose: true
+        };
+        const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
+        // this.selectedPage='draft';
 
-  else if(eve=='vacated')
-    {
-      if(this.neweditorchange || this.editor1change ||this.editor2change)
-      {
-      const dialogConfig: MatDialogConfig = {
-        data: {
-          title: "Close",
-          body: "Are you sure  want to close without saving",
-        },
-        panelClass: 'close-dialog',
-        width: '379px',
-        maxWidth: '85.5vw ',
-        height: '195px',
-        disableClose: true
-      };
-      const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
-      // this.selectedPage='draft';
-  
-      dialogRef.afterClosed().subscribe(result => {
-        if (  result == "yes" ) {
-          this.selectedPage='vacated';
-          this.editor1change=false;
-          this.editor2change=false;
-          this.neweditorchange=false;
-          // this.savedNewLease=new LeaseDraft();;
-          this.savednewLeaseHasval=false;
-         
+        dialogRef.afterClosed().subscribe(result => {
+          if (result == "yes") {
+            this.selectedPage = 'signed';
+            this.editor1change = false;
+            this.editor2change = false;
+            this.neweditorchange = false;
+            // this.savedNewLease=new LeaseDraft();
+            this.savednewLeaseHasval = false;
 
-          this.selection.clear();
-          this.cdr.detectChanges();
-         
+            this.selection.clear();
 
-        }
-      })
-    }
-    else{
-      this.selectedPage='vacated';
-      this.editor1change=false;
-      this.editor2change=false;
-      this.neweditorchange=false;
-      // this.savedNewLease=new LeaseDraft();;
-      this.savednewLeaseHasval=false;
-     
-      this.selection.clear();
-      this.cdr.detectChanges();
-    
-
-    }
-  }
-}
-  closeDraft(eve)
-  {
-    if(eve == 'editor2' )
-    {
-      if(this.editor2change)
-      {
-      const dialogConfig: MatDialogConfig = {
-            data: { 
-              title: "Close",
-              body: "Are you sure  want to close without saving",
-            },
-            panelClass: 'close-dialog',
-            width: '24%',
-            maxWidth: '85.5vw ',
-            height: '195px',
-            disableClose: true
-          };
-         
-            const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
-            dialogRef.afterClosed().subscribe(result => {
-              if (  result == "yes"  && this.editor1) {
-                      this.editor2 = false;
-                      this.editor2change=false;
-                      this.cdr.detectChanges();
-                    
-                    }
-                    else if(result == "yes"  && !this.editor1) {
-                      this.selectedPage = "draft";
-                   
-
-                            this.selection.clear();
-                            this.editor2change=false;
-                            this.cdr.detectChanges();
-                        
-
-                    }
-                    // else if(result==false)
-                    // {
-                    //   this.editor2change=false;
-                    // }
-            })
-          }
-          else if(!this.editor2change && this.editor1 ){
-            this.editor2 = false;
-            this.editor2change=false;
             this.cdr.detectChanges();
+
+
           }
-          else if(!this.editor2change && !this.editor1)
-          {
-            this.selectedPage = "draft";
-            this.editor2change=false;
-        
+        })
+      }
+      else {
+        this.selectedPage = 'signed';
+        this.editor1change = false;
+        this.editor2change = false;
+        this.neweditorchange = false;
+        // this.checkbox.nativeElement=null;
+        // this.savedNewLease=new LeaseDraft();;
+        this.savednewLeaseHasval = false;
+
+        this.selection.clear();
+
+        this.cdr.detectChanges();
+
+
+      }
+    }
+    else if (eve == 'draft') {
+      if (this.neweditorchange || this.editor1change || this.editor2change) {
+        const dialogConfig: MatDialogConfig = {
+          data: {
+            title: "Close",
+            body: "Are you sure  want to close without saving",
+          },
+          panelClass: 'close-dialog',
+          width: '24%',
+          maxWidth: '85.5vw ',
+          height: '195px',
+          disableClose: true
+        };
+        const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
+        // this.selectedPage='draft';
+
+        dialogRef.afterClosed().subscribe(result => {
+          if (result == "yes") {
+            this.selectedPage = 'draft';
+            this.editor1change = false;
+            this.editor2change = false;
+            this.neweditorchange = false;
+            // this.savedNewLease=new LeaseDraft();
+            this.savednewLeaseHasval = false;
+
+            this.selection.clear();
+
+            this.cdr.detectChanges();
+
+
+          }
+        })
+      }
+      else {
+        this.selectedPage = 'draft';
+        this.editor1change = false;
+        this.editor2change = false;
+        this.neweditorchange = false;
+        // this.savedNewLease=new LeaseDraft();;
+        this.savednewLeaseHasval = false;
+
+        this.selection.clear();
+        this.cdr.detectChanges();
+
+
+      }
+    }
+    else if (eve == 'expiry') {
+      if (this.neweditorchange || this.editor1change || this.editor2change) {
+        const dialogConfig: MatDialogConfig = {
+          data: {
+            title: "Close",
+            body: "Are you sure  want to close without saving",
+          },
+          panelClass: 'close-dialog',
+          width: '24%',
+          maxWidth: '85.5vw ',
+          height: '195px',
+          disableClose: true
+        };
+        const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
+        // this.selectedPage='draft';
+
+        dialogRef.afterClosed().subscribe(result => {
+          if (result == "yes") {
+            this.selectedPage = 'expiry';
+            this.editor1change = false;
+            this.editor2change = false;
+            // this.savedNewLease=new LeaseDraft();;
+            this.savednewLeaseHasval = false;
+            this.neweditorchange = false;
+
 
             this.selection.clear();
             this.cdr.detectChanges();
-          
 
           }
+        })
+      }
+      else {
+        this.selectedPage = 'expiry';
+        this.editor1change = false;
+        this.editor2change = false;
+        this.neweditorchange = false;
+        // this.savedNewLease=new LeaseDraft();;
+        this.savednewLeaseHasval = false;
+
+
+        this.selection.clear();
+        this.cdr.detectChanges();
+
+
+      }
     }
-    else if(  eve == 'editor1' )
-    {
-      if(this.editor1change)
-      {
-      const dialogConfig: MatDialogConfig = {
-        data: {
-          title: "Close",
-          body: "Are you sure  want to close without saving",
-        },
-        panelClass: 'close-dialog',
-        width: '24%',
-        maxWidth: '85.5vw ',
-        height: '195px',
-        disableClose: true
-      };
-     
+    else if (eve == 'underNotice') {
+      if (this.neweditorchange || this.editor1change || this.editor2change) {
+        const dialogConfig: MatDialogConfig = {
+          data: {
+            title: "Close",
+            body: "Are you sure want to close without saving",
+          },
+          panelClass: 'close-dialog',
+          width: '24%',
+          maxWidth: '85.5vw ',
+          height: '195px',
+          disableClose: true
+        };
+        const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
+        // this.selectedPage='draft';
+
+        dialogRef.afterClosed().subscribe(result => {
+          if (result == "yes") {
+            this.selectedPage = 'underNotice';
+            this.editor1change = false;
+            this.editor2change = false;
+            this.neweditorchange = false;
+            // this.savedNewLease=new LeaseDraft();;
+            this.savednewLeaseHasval = false;
+
+            this.selection.clear();
+            this.cdr.detectChanges();
+
+
+          }
+        })
+      }
+      else {
+        this.selectedPage = 'underNotice';
+        this.editor1change = false;
+        this.editor2change = false;
+        this.neweditorchange = false;
+        // this.savedNewLease=new LeaseDraft();;
+        this.savednewLeaseHasval = false;
+
+
+        this.selection.clear();
+        this.cdr.detectChanges();
+
+
+      }
+    }
+    else if (eve == 'terminate') {
+      if (this.neweditorchange || this.editor1change || this.editor2change) {
+        const dialogConfig: MatDialogConfig = {
+          data: {
+            title: "Close",
+            body: "Are you sure  to close without saving",
+          },
+          panelClass: 'close-dialog',
+          width: '24%',
+          maxWidth: '85.5vw ',
+          height: '195px',
+          disableClose: true
+        };
+        const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
+        // this.selectedPage='draft';
+
+        dialogRef.afterClosed().subscribe(result => {
+          if (result == "yes") {
+            this.selectedPage = 'terminate';
+            this.editor1change = false;
+            this.editor2change = false;
+            this.neweditorchange = false;
+            // this.savedNewLease=new LeaseDraft();;
+            this.savednewLeaseHasval = false;
+
+
+            this.selection.clear();
+            this.cdr.detectChanges();
+
+
+          }
+        })
+      }
+      else {
+        this.selectedPage = 'terminate';
+        this.editor1change = false;
+        this.editor2change = false;
+        // this.savedNewLease=new LeaseDraft();;
+        this.savednewLeaseHasval = false;
+        this.neweditorchange = false;
+
+
+        this.selection.clear();
+        this.cdr.detectChanges();
+
+
+      }
+    }
+
+    else if (eve == 'vacated') {
+      if (this.neweditorchange || this.editor1change || this.editor2change) {
+        const dialogConfig: MatDialogConfig = {
+          data: {
+            title: "Close",
+            body: "Are you sure  want to close without saving",
+          },
+          panelClass: 'close-dialog',
+          width: '379px',
+          maxWidth: '85.5vw ',
+          height: '195px',
+          disableClose: true
+        };
+        const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
+        // this.selectedPage='draft';
+
+        dialogRef.afterClosed().subscribe(result => {
+          if (result == "yes") {
+            this.selectedPage = 'vacated';
+            this.editor1change = false;
+            this.editor2change = false;
+            this.neweditorchange = false;
+            // this.savedNewLease=new LeaseDraft();;
+            this.savednewLeaseHasval = false;
+
+
+            this.selection.clear();
+            this.cdr.detectChanges();
+
+
+          }
+        })
+      }
+      else {
+        this.selectedPage = 'vacated';
+        this.editor1change = false;
+        this.editor2change = false;
+        this.neweditorchange = false;
+        // this.savedNewLease=new LeaseDraft();;
+        this.savednewLeaseHasval = false;
+
+        this.selection.clear();
+        this.cdr.detectChanges();
+
+
+      }
+    }
+  }
+  closeDraft(eve) {
+    if (eve == 'editor2') {
+      if (this.editor2change) {
+        const dialogConfig: MatDialogConfig = {
+          data: {
+            title: "Close",
+            body: "Are you sure  want to close without saving",
+          },
+          panelClass: 'close-dialog',
+          width: '24%',
+          maxWidth: '85.5vw ',
+          height: '195px',
+          disableClose: true
+        };
+
         const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
         dialogRef.afterClosed().subscribe(result => {
-          if (  result == "yes" && this.editor2 ) {
-                  this.editor1 = false;
-                  this.editor1change=false;
-                  this.cdr.detectChanges();
-                }
-                else if( result == "yes" && !this.editor2)
-                {
-                  this.selectedPage = "draft";
-                  this.editor1change=false;
-             
+          if (result == "yes" && this.editor1) {
+            this.editor2 = false;
+            this.editor2change = false;
+            this.cdr.detectChanges();
 
-                  this.selection.clear();
-                  this.cdr.detectChanges();
-                
+          }
+          else if (result == "yes" && !this.editor1) {
+            this.selectedPage = "draft";
 
-                }
-                // else if(result==false)
-                // {
-                //   this.editor1change=false;
-                // }
+
+            this.selection.clear();
+            this.editor2change = false;
+            this.cdr.detectChanges();
+
+
+          }
+          // else if(result==false)
+          // {
+          //   this.editor2change=false;
+          // }
         })
-    }
-    else if(!this.editor1change && this.editor2 ){
-      this.editor1 = false;
-      this.editor1change=false;
-      this.cdr.detectChanges();
-    }
-    else if(!this.editor1change && !this.editor2)
-    {
-      this.selectedPage = "draft";
-      this.editor1change=false;
-      console.log(this.dataSource);
-    
-      this.selection.clear();
-      this.cdr.detectChanges();
-     
-    }
-  }
- else if(eve=='new')
- {
-  if(this.neweditorchange)
-  {
-    const dialogConfig: MatDialogConfig = {
-      data: {
-        title: "Close",
-        body: "Are you sure  want to close without saving",
-      },
-      panelClass: 'close-dialog',
-      width: '24%',
-      maxWidth: '85.5vw ',
-      height: '195px',
-      disableClose: true
-    };
-   
-      const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
-      dialogRef.afterClosed().subscribe(result => {
-        if (  result == "yes"  ) {
-          this.selectedPage = "draft";
-          this.neweditorchange=false;
-          // this.savedNewLease=null;
-          this.savednewLeaseHasval=false;
-      
-          this.selection.clear();
-          this.cdr.detectChanges();
-                   }
+      }
+      else if (!this.editor2change && this.editor1) {
+        this.editor2 = false;
+        this.editor2change = false;
+        this.cdr.detectChanges();
+      }
+      else if (!this.editor2change && !this.editor1) {
+        this.selectedPage = "draft";
+        this.editor2change = false;
 
-              //   }
-      })
-  }
-  else if(!this.neweditorchange ){
-    this.selectedPage = "draft";
-    this.neweditorchange=false;
- 
 
-          this.selection.clear();
-          // this.savedNewLease=null;
-          this.savednewLeaseHasval=false;
-          this.cdr.detectChanges();
+        this.selection.clear();
+        this.cdr.detectChanges();
+
+
+      }
+    }
+    else if (eve == 'editor1') {
+      if (this.editor1change) {
+        const dialogConfig: MatDialogConfig = {
+          data: {
+            title: "Close",
+            body: "Are you sure  want to close without saving",
+          },
+          panelClass: 'close-dialog',
+          width: '24%',
+          maxWidth: '85.5vw ',
+          height: '195px',
+          disableClose: true
+        };
+
+        const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
+        dialogRef.afterClosed().subscribe(result => {
+          if (result == "yes" && this.editor2) {
+            this.editor1 = false;
+            this.editor1change = false;
+            this.cdr.detectChanges();
+          }
+          else if (result == "yes" && !this.editor2) {
+            this.selectedPage = "draft";
+            this.editor1change = false;
+
+
+            this.selection.clear();
+            this.cdr.detectChanges();
+
+
+          }
+          // else if(result==false)
+          // {
+          //   this.editor1change=false;
+          // }
+        })
+      }
+      else if (!this.editor1change && this.editor2) {
+        this.editor1 = false;
+        this.editor1change = false;
+        this.cdr.detectChanges();
+      }
+      else if (!this.editor1change && !this.editor2) {
+        this.selectedPage = "draft";
+        this.editor1change = false;
+        console.log(this.dataSource);
+
+        this.selection.clear();
+        this.cdr.detectChanges();
+
+      }
+    }
+    else if (eve == 'new') {
+      if (this.neweditorchange) {
+        const dialogConfig: MatDialogConfig = {
+          data: {
+            title: "Close",
+            body: "Are you sure  want to close without saving",
+          },
+          panelClass: 'close-dialog',
+          width: '24%',
+          maxWidth: '85.5vw ',
+          height: '195px',
+          disableClose: true
+        };
+
+        const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
+        dialogRef.afterClosed().subscribe(result => {
+          if (result == "yes") {
+            this.selectedPage = "draft";
+            this.neweditorchange = false;
+            // this.savedNewLease=null;
+            this.savednewLeaseHasval = false;
+
+            this.selection.clear();
+            this.cdr.detectChanges();
+          }
+
+          //   }
+        })
+      }
+      else if (!this.neweditorchange) {
+        this.selectedPage = "draft";
+        this.neweditorchange = false;
+
+
+        this.selection.clear();
+        // this.savedNewLease=null;
+        this.savednewLeaseHasval = false;
+        this.cdr.detectChanges();
+      }
+    }
   }
- }
-  }
- 
+
   saveLeaseDraft(draft: LeaseDraft) {
     this.spinner.show();
     this.service.SaveLeaseDraft(draft).subscribe(() => {
       this.spinner.hide();
-     if(this.editor_mode==3 && this.editor1)
-     {
-      this.editor1change=false;
+      if (this.editor_mode == 3 && this.editor1) {
+        this.editor1change = false;
 
-     }
-     else if(this.editor_mode==3 && this.editor2)
-     {
-      this.editor2change=false;
-     }
-     else if(this.editor_mode==1)
-     {
-      this.neweditorchange=false;
-     this.savednewLeaseHasval=true;
-    //  this.savedNewLease=new LeaseDraft();
-      this.savedNewLease.documentType=draft.documentType;
-      this.savedNewLease.documentOwner=draft.documentOwner;
-      this.savedNewLease.documentName=draft.documentName
-     }
-   
+      }
+      else if (this.editor_mode == 3 && this.editor2) {
+        this.editor2change = false;
+      }
+      else if (this.editor_mode == 1) {
+        this.neweditorchange = false;
+        this.savednewLeaseHasval = true;
+        //  this.savedNewLease=new LeaseDraft();
+        this.savedNewLease.documentType = draft.documentType;
+        this.savedNewLease.documentOwner = draft.documentOwner;
+        this.savedNewLease.documentName = draft.documentName
+      }
+
       this.notificationSnackBarComponent.openSnackBar("Saved Sucessfully", SnackBarStatus.success);
       this.getAllDrafts();
       console.log("draft saved");
@@ -937,7 +934,7 @@ export class LeasemanagementComponent implements OnInit {
       });
   }
   openDratEdtitor(row: LeaseDraft) {
-    console.log("row",row);
+    console.log("row", row);
     this.spinner.show();
     this.service.GetLeaseDraftDocument(row.documentID).subscribe(res => {
       this.spinner.hide();
@@ -945,12 +942,12 @@ export class LeasemanagementComponent implements OnInit {
       this.editor1 = true;
       this.editor2 = false;
       this.leaseDraft1 = res;
-      this.editor1change=false;
+      this.editor1change = false;
     },
-    err => {
-      this.spinner.hide();
-      console.log(err);   
-    });
+      err => {
+        this.spinner.hide();
+        console.log(err);
+      });
   }
   openMultiDraftEditor() {
     if (this.selection.selected.length == 0) {
@@ -962,7 +959,7 @@ export class LeasemanagementComponent implements OnInit {
       if (this.selection.selected.length >= 2) {
         this.service.GetLeaseDraftDocument(this.selection.selected[0].documentID).subscribe(res => {
           console.log(" this.leaseDraft1", this.leaseDraft1);
-          
+
           this.leaseDraft1 = res;
           this.editor1 = true;
           this.cdr.detectChanges();
@@ -1061,7 +1058,7 @@ export class LeasemanagementComponent implements OnInit {
       this.notificationSnackBarComponent.openSnackBar("Please select a document", SnackBarStatus.warning);
     }
   }
- 
+
   openSendMailDialog(documentID) {
     const dialogRef = this.dialog.open(SendMailDialogComponent,
       {
@@ -1086,7 +1083,8 @@ export class LeasemanagementComponent implements OnInit {
       }
     });
   }
-  sideNavStatus($event){
+  sideNavStatus($event) {
     this.switchSideNav.emit($event);
   }
+
 }

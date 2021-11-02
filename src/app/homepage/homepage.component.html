@@ -144,7 +144,9 @@
 
                             <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding
                                 matTreeNodePaddingIndent="8px" class="example-tree-node"
-                                [ngStyle]="{'background-color':selectedNode == node.name ? '#ebe5ff' : '#f9f8fe' }">
+                                [ngStyle]="{'background-color':selectedNode == node.name ? '#ebe5ff' : '#f4f4f4' }">
+                                <!-- [ngStyle]="{'background-color':selectedNode == node.name ? '#ebe5ff' : '#f9f8fe' }"> -->
+
                                 <li class="mat-tree-node" style="cursor: pointer;" (click)="setSelectedNode(node)">
                                     <div class="mat-tree-node"
                                         [ngStyle]="{'color':selectedNode == node.name ? '#26009c' : 'inherit' }">
@@ -267,7 +269,7 @@
             </div>
         </div>
         <div *ngIf="isLeasemanagement">
-            <app-leasemanagement (switchSideNav)="switchSideMenu($event)"></app-leasemanagement>
+            <app-leasemanagement [item]="ItemToChild" (switchSideNav)="switchSideMenu($event)"></app-leasemanagement>
         </div>
 
     </mat-drawer-content>
