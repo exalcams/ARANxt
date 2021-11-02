@@ -1,4 +1,4 @@
-import { style, animate, AnimationBuilder, AnimationPlayer } from '@angular/animations';
+import { style, animate, AnimationBuilder, AnimationPlayer, state, transition, trigger } from '@angular/animations';
 import { Component, ElementRef, Inject, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, take } from 'rxjs/operators';
@@ -7,13 +7,27 @@ import { filter, take } from 'rxjs/operators';
   selector: 'splash-screen',
   templateUrl: './splash-screen.component.html',
   styleUrls: ['./splash-screen.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  animations:[
+    trigger('fadeInOut', [
+      state('in', style({
+        opacity: '0'
+      })),
+      state('out', style({
+        opacity: '1'
+      })),
+      transition('in <=> out', [
+        animate('.5s')
+      ])
+    ]),
+  ]
 })
 export class SplashScreenComponent implements OnInit {
 
   splashScreenEl: any;
   player: AnimationPlayer;
   @ViewChild('splash', { static: true }) element: ElementRef;
+  isFaded:boolean=false;
 
   constructor(
     private _animationBuilder: AnimationBuilder,
@@ -22,14 +36,19 @@ export class SplashScreenComponent implements OnInit {
 
   ngOnInit(): void {
     this._init();
+    setTimeout(()=>{
+      this.isFaded=!this.isFaded;
+    },
+    1000);
   }
 
   private _init(): void {
     // Get the splash screen element
     this.splashScreenEl = this.element.nativeElement;
-    this.show();
+
     // If the splash screen element exists...
     if (this.splashScreenEl) {
+      // this.show();
       // Hide it on the first NavigationEnd event
       this._router.events
         .pipe(
@@ -54,7 +73,7 @@ export class SplashScreenComponent implements OnInit {
             opacity: '0',
             zIndex: '99999'
           }),
-          animate('800ms ease', style({ opacity: '1' }))
+          animate('400ms ease', style({ opacity: '1' }))
         ]).create(this.splashScreenEl);
 
     setTimeout(() => {

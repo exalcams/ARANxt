@@ -164,8 +164,8 @@
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"  style="background-color: #f3f3f4;"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="openDratEdtitor(row)" [ngClass]="{highlight3:selection.isSelected(row)}"  
-                style="border-bottom-style: none;"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)" (dblclick)="openDratEdtitor(row)" [ngClass]="{highlight3:selection.isSelected(row)}"  
+                style="border-bottom-style: none;cursor: pointer;"></tr>
 
             </table>
             <!-- <div flex fxLayoutAlign="center center" class="TableFooter" style="margin-top: 20px;"
@@ -201,11 +201,11 @@
 
         <div fxLayout="row" fxLayoutAlign="end center" class="submit-area">
             <div fxLayout="row">
-                <div fxLayout="row" matRipple class="icon_outer" (click)="saveNewDraft()">
+                <div fxLayout="row" matRipple class="icon_outer" (click)="saveNewDraft()" style="margin-right: 12px;">
                     <mat-icon
                         style="font-family: 'Material Icons';font-size: 15px;text-align-last: center; line-height: 24px;">
                         save</mat-icon>
-                    <span class="save_label">Save</span>
+                    <span class="save_label">Save as</span>
                 </div>
                 <div fxLayout="row" matRipple class="icon_outer" (click)="closeDraft('new')">
                     <mat-icon
@@ -229,7 +229,7 @@
                             <mat-icon
                                 style="font-family: 'Material Icons';font-size: 15px;text-align-last: center; line-height: 24px;">
                                 save</mat-icon>
-                            <span class="save_label">Save</span>
+                            <span class="save_label">Save as</span>
                         </div>
                         <div fxLayout="row" matRipple class="icon_outer" (click)="closeDraft('editor1')">
                             <mat-icon
@@ -251,7 +251,7 @@
                             <mat-icon
                                 style="font-family: 'Material Icons';font-size: 15px;text-align-last: center; line-height: 24px;">
                                 save</mat-icon>
-                            <span class="save_label">Save</span>
+                            <span class="save_label">Save as</span>
                         </div>
                         <div fxLayout="row" matRipple class="icon_outer" (click)="closeDraft('editor2')">
                             <mat-icon

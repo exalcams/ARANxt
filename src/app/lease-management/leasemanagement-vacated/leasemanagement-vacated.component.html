@@ -109,7 +109,7 @@
             <div fxFlex="50" class="labelcssvalue" *ngIf="!vRemarks">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">Electrical</div>
+            <div fxFlex="50" class="labelcss">Electrical(RR)</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="vElectrical">{{vElectrical}}</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="!vElectrical">-</div>
           </div>
@@ -180,18 +180,18 @@
                   <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px"
                     (click)="DownloadLeaseDocument(row)">
                     <img src="./assets/download_ash.svg" class="actionstable">
-                    <span class="actionsspan">Download</span>
+                    <!-- <span class="actionsspan">Download</span> -->
                   </div>
 
                   <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px"
                     (click)="sideNavStatus=true;openSendMailDialog(row.documentID)">
                     <img src="./assets/iconmonstr-paper-plane-2 (2).svg" class="actionstable">
-                    <span class="actionsspan">send</span>
+                    <!-- <span class="actionsspan">send</span> -->
                   </div>
                   <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px" class="pointer"
                     (click)="Deleteleaserow(row.documentID);">
                     <img src="./assets/iconmonstr-trash-can-28.svg" class="actionstable">
-                    <span class="actionsspan">Delete</span>
+                    <!-- <span class="actionsspan">Delete</span> -->
                   </div>
                   <!-- <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
                       <img src="./assets/iconmonstr-product-10.svg" class="actionstable">

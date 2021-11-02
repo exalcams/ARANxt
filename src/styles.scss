@@ -37,23 +37,27 @@ body { margin: 0; font-family:  'poppins' !important  }
         padding: 15px 0px 0px 10px;
       }
       .success {
-        background-color: #26b329 !important;
+        background-color: #47cb2a !important;
+        color: #fff;
       }
-      
+        
       .danger {
-        background-color: #d6201d !important;
+        background-color: #f8383f !important;
+        color: #fff;
       }
-      
+        
       .warning {
-        background: rgb(235, 229, 255) !important;
-        color: rgb(38, 0, 156);
+        background: #fc9c18 !important;
+        color: #fff;
       }
-      
+        
       .info {
-        background-color: #1992ce !important;
+        background-color: #0a6dfb !important;
+        color: #fff;
       }
       .mat-simple-snackbar {
-        font-family: 'poppins-semi';
+        font-family: 'Poppins-Medium';
+        font-weight: 500;
         font-size: 11px !important;
       }
       .mat-snack-bar-container {
@@ -69,6 +73,13 @@ body { margin: 0; font-family:  'poppins' !important  }
   }
   .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
     display: none !important;
+  }
+
+  .mat-checkbox-checked.mat-primary .mat-checkbox-background {
+    background-color: #4410ff;
+  }
+  .mat-checkbox-indeterminate.mat-primary .mat-checkbox-background{
+    background-color: #4410ff;
   }
 
   //   .carousel-indicators[_ngcontent-tuo-c314] > button[_ngcontent-tuo-c314] {

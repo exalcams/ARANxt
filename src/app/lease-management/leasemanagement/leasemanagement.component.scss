@@ -305,11 +305,9 @@ tr.mat-header-row {
     font-size: 11px;
 }
 .icon_outer
-{
-    // margin-right: 17px;    
+{   
     align-items: center;
-       height: 24px;
-    width: 67px;
+    height: 24px;
     cursor: pointer;
 }
 .ckeditor_outer
@@ -321,6 +319,7 @@ tr.mat-header-row {
 .highlight3{
     .mat-cell, .mat-header-cell {
       color: #0d0c22;
+      background: #f9f8fe;
     }
     .actionstable{
       filter: brightness(0.5);

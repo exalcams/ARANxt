@@ -9,3 +9,24 @@
     z-index: 99999;
     pointer-events: none;
 }
+.splsh-screen{
+    background: url(/assets/Group8579.png) no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99999;
+    pointer-events: none;
+    .splash-img{
+        width: 20%;
+        position: absolute;
+    }
+    .img1{
+        opacity: 0;
+    }
+    .img2{
+        opacity: 0;
+    }
+}

@@ -446,12 +446,16 @@ export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
         }
       });
     }
-    else if (this.Checked && this.Renewdialogdata.status != "signed") {
-      this.notificationSnackBarComponent.openSnackBar('The lease cannot be vaccated', SnackBarStatus.warning);
-
+    else if (this.Checked && this.Renewdialogdata.status == "vacated") {
+      this.notificationSnackBarComponent.openSnackBar('Can\'t Vacate lease since it is vacated', SnackBarStatus.warning,3000);
+    }
+    else if (this.Checked && this.Renewdialogdata.status == "terminated") {
+      this.notificationSnackBarComponent.openSnackBar('Can\'t Vacate lease since it is terminated', SnackBarStatus.warning,3000);
+    }
+    else if (this.Checked && this.Renewdialogdata.status == "undernotice") {
+      this.notificationSnackBarComponent.openSnackBar('Can\'t Vacate lease since it is in notice period', SnackBarStatus.warning,3000);
     }
     else {
-
       this.notificationSnackBarComponent.openSnackBar('Please select a lease', SnackBarStatus.warning);
       this.Checked = false
     }
@@ -475,8 +479,6 @@ export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
         width: '80%',
 
       });
-
-
       dialogRef.afterClosed().subscribe(result => {
         console.log(`Dialog result: ${result}`);
         if (!result) {
@@ -484,13 +486,17 @@ export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
         }
       });
     }
-    else if (this.Checked && this.Renewdialogdata.status != "signed") {
-      this.notificationSnackBarComponent.openSnackBar('The lease cannot be renewed', SnackBarStatus.warning);
-
+    else if (this.Checked && this.Renewdialogdata.status == "vacated") {
+      this.notificationSnackBarComponent.openSnackBar('Can\'t Renew lease since it is vacated', SnackBarStatus.warning,3000);
+    }
+    else if (this.Checked && this.Renewdialogdata.status == "terminated") {
+      this.notificationSnackBarComponent.openSnackBar('Can\'t Renew lease since it is terminated', SnackBarStatus.warning,3000);
+    }
+    else if (this.Checked && this.Renewdialogdata.status == "undernotice") {
+      this.notificationSnackBarComponent.openSnackBar('Can\'t Renew lease since it is in notice period', SnackBarStatus.warning,3000);
     }
     else {
-
-      this.notificationSnackBarComponent.openSnackBar('Please select a lease', SnackBarStatus.warning);
+      this.notificationSnackBarComponent.openSnackBar('Please select a lease', SnackBarStatus.warning,3000);
       this.Checked = false
     }
   }
@@ -511,12 +517,16 @@ export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
         }
       });
     }
-    else if (this.Renewdialogdata.status == "signed" || this.Renewdialogdata.status == "undernotice" || this.Renewdialogdata.status == "terminated") {
-      this.notificationSnackBarComponent.openSnackBar('The lease cannot be terminated', SnackBarStatus.warning);
-
+    else if (this.Checked && this.Renewdialogdata.status == "vacated") {
+      this.notificationSnackBarComponent.openSnackBar('Can\'t Terminate lease since it is vacated', SnackBarStatus.warning,3000);
+    }
+    else if (this.Checked && this.Renewdialogdata.status == "terminated") {
+      this.notificationSnackBarComponent.openSnackBar('Can\'t Terminate lease since it is terminated', SnackBarStatus.warning,3000);
+    }
+    else if (this.Checked && this.Renewdialogdata.status == "undernotice") {
+      this.notificationSnackBarComponent.openSnackBar('Can\'t Terminate lease since it is in notice period', SnackBarStatus.warning,3000);
     }
     else {
-
       this.notificationSnackBarComponent.openSnackBar('Please select a lease', SnackBarStatus.warning);
       this.Checked = false
     }
@@ -622,6 +632,10 @@ export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
   // 
   toggleSideNav() {
     this.sideNavToggle.emit(false);
+  }
+
+  editSignedDocument(){
+
   }
 
 }

@@ -10,28 +10,29 @@
                 </div>
                 <div class="divider"></div>
                 <div fxFlex class="menu_container">
-                    <div class="menu">Menu</div>
 
-                    <div fxLayout="row" [ngClass]="overview_bool==true?'inner_menus_home_highlight':'inner_menus_home'"
-                        (click)="home_clik()">
+                    <div fxLayout="row" [ngClass]="currentPage=='home'?'inner_menus_home_highlight':'inner_menus_home'"
+                        (click)="currentPage='home';">
                         <div style="margin-left: 8px;">
-                            <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==false"
+                            <img style="width: 14px;vertical-align: middle;" *ngIf="currentPage!='home'"
                                 src="./assets/dashboard_icon.svg">
-                            <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==true"
+                            <img style="width: 14px;vertical-align: middle;" *ngIf="currentPage=='home'"
                                 src="./assets/dashboard_icon_blue.svg">
 
                         </div>
-                        <div [ngClass]="overview_bool==true?'inner_menus_highlight':'inner_menus'"
+                        <div [ngClass]="currentPage=='home'?'inner_menus_highlight':'inner_menus'"
                             style="margin-left: 16px;" *ngIf="!isFolded">Home</div>
                     </div>
 
-                    <div fxLayout="row" class="inner_menus_home" (click)="leaseclk()"
-                     >
-                        <div style="margin-left: 8px;">
+                    <div fxLayout="row" [ngClass]="currentPage=='dashboard'?'inner_menus_home_highlight':'inner_menus_home'"
+                    (click)="currentPage='dashboard';">
+                        <div style="margin-left: 8px;" *ngIf="currentPage!='dashboard'">
                             <img style="width: 14px;vertical-align: middle;" src="./assets/models.svg">
                         </div>
-                        <div class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded"
-                            [ngClass]="overview_bool==false?'inner_menus_highlight':'inner_menus'">Models</div>
+                        <div style="margin-left: 8px;" *ngIf="currentPage=='dashboard'">
+                            <img style="width: 14px;vertical-align: middle;" src="./assets/models-active.svg">
+                        </div>
+                        <div [ngClass]="currentPage=='dashboard'?'inner_menus_highlight':'inner_menus'" class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded">Models</div>
                     </div>
 
                     <div fxLayout="row" class="inner_menus_home">
@@ -58,16 +59,16 @@
                         </div>
                         <div class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded">Privacy Policy</div>
                     </div>
-                    <div fxLayout="row" (click)="leaseclk()"
-                        [ngClass]="overview_bool==false?'inner_menus_home_highlight':'inner_menus_home'">
+                    <div fxLayout="row" (click)="currentPage='lease';"
+                        [ngClass]="currentPage=='lease'?'inner_menus_home_highlight':'inner_menus_home'">
 
                         <div style="margin-left: 8px;">
-                            <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==true"
-                                src="./assets/date-expired_ash.svg">
-                            <img style="width: 14px;vertical-align: middle;" *ngIf="overview_bool==false"
+                            <img style="width: 14px;vertical-align: middle;" *ngIf="currentPage!='lease'"
+                                src="./assets/date-expired.svg">
+                            <img style="width: 14px;vertical-align: middle;" *ngIf="currentPage=='lease'"
                                 src="./assets/date-expired_blue.svg">
                         </div>
-                        <div [ngClass]="overview_bool==false?'inner_menus_highlight':'inner_menus'"
+                        <div [ngClass]="currentPage=='lease'?'inner_menus_highlight':'inner_menus'"
                             style="margin-left: 16px;" *ngIf="!isFolded">Lease</div>
                     </div>
                 </div>
@@ -126,9 +127,9 @@
                     <div class="menu" style="margin: 5% 0% 0% 8%;">
                         Sites
                     </div>
-                    <div style="margin-top: 5%;" fxLayout="row" fxLayoutAlign="center center">
+                    <!-- <div style="margin-top: 5%;" fxLayout="row" fxLayoutAlign="center center">
                         <mat-divider class="divider2"></mat-divider>
-                    </div>
+                    </div> -->
                     <div fxLayout="row" fxLayoutAlign="start center">
                         <div fxLayout="row" class="main_input_field" fxLayoutAlign="start center">
                             <img style="vertical-align: -webkit-baseline-middle;
@@ -144,12 +145,9 @@
 
                             <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding
                                 matTreeNodePaddingIndent="8px" class="example-tree-node"
-                                [ngStyle]="{'background-color':selectedNode == node.name ? '#ebe5ff' : '#f4f4f4' }">
-                                <!-- [ngStyle]="{'background-color':selectedNode == node.name ? '#ebe5ff' : '#f9f8fe' }"> -->
-
+                                [ngStyle]="{'background-color':selectedNode == node.name ? '#f9f8fe' : '#f4f4f4' }">
                                 <li class="mat-tree-node" style="cursor: pointer;" (click)="setSelectedNode(node)">
-                                    <div class="mat-tree-node"
-                                        [ngStyle]="{'color':selectedNode == node.name ? '#26009c' : 'inherit' }">
+                                    <div class="mat-tree-node">
                                         <button mat-icon-button matTreeNodeToggle recursive="true"
                                             [attr.aria-label]="'toggle ' + node.name">
                                             <mat-icon class="mat-icon-rtl-mirror" *ngIf="node.expandable">
@@ -210,29 +208,29 @@
             </div>
         </mat-toolbar>
 
-        <div *ngIf="overview_bool" style="padding: 16px;">
-            <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div *ngIf="currentPage=='dashboard'" style="padding: 12px;">
+            <div fxLayout="row" fxLayoutAlign="space-between center" style="margin-bottom: 12px;">
                 <div fxLayout="row">
-                    <div (click)="func1()"
-                        [ngClass]="bool1 || bool7 == true ? 'main_buttons' : 'main_buttons_not_seklected' ">
+                    <div (click)="currentTab='over';"
+                        [ngClass]="currentTab=='over' ? 'main_buttons' : 'main_buttons_not_seklected' ">
                         Overview </div>
-                    <div style="margin-left: 10px;" (click)="func2()"
-                        [ngClass]="bool2 == true ? 'main_buttons' : 'main_buttons_not_seklected' "> List </div>
-                    <div style="margin-left: 10px;" (click)="func3()"
-                        [ngClass]="bool3 == true ? 'main_buttons' : 'main_buttons_not_seklected' "> Control
+                    <div style="margin-left: 10px;" (click)="currentTab='list';"
+                        [ngClass]="currentTab=='list' ? 'main_buttons' : 'main_buttons_not_seklected' "> List </div>
+                    <div style="margin-left: 10px;" (click)="currentTab='control';"
+                        [ngClass]="currentTab=='control' ? 'main_buttons' : 'main_buttons_not_seklected' "> Control
                         Panel </div>
-                    <div style="margin-left: 10px;" (click)="func4()"
-                        [ngClass]="bool4 == true ? 'main_buttons' : 'main_buttons_not_seklected' "> Utility
+                    <div style="margin-left: 10px;" (click)="currentTab='utility';"
+                        [ngClass]="currentTab=='utility' ? 'main_buttons' : 'main_buttons_not_seklected' "> Utility
                         Building
                     </div>
-                    <div style="margin-left: 10px;" (click)="func5()"
-                        [ngClass]="bool5 == true ? 'main_buttons' : 'main_buttons_not_seklected' "> Documents
+                    <div style="margin-left: 10px;" (click)="currentTab='document';"
+                        [ngClass]="currentTab=='document' ? 'main_buttons' : 'main_buttons_not_seklected' "> Documents
                     </div>
-                    <div class="main_buttons_not_seklected" style="margin-left: 10px;" (click)="func6()"
-                        [ngClass]="bool6 == true ? 'main_buttons' : 'main_buttons_not_seklected' ">
+                    <div class="main_buttons_not_seklected" style="margin-left: 10px;" (click)="currentTab='signals';"
+                        [ngClass]="currentTab=='signals' ? 'main_buttons' : 'main_buttons_not_seklected' ">
                         Signals </div>
-                    <div class="main_buttons_not_seklected" style="margin-left: 10px;" (click)="func7()"
-                        [ngClass]="bool8 == true ? 'main_buttons' : 'main_buttons_not_seklected' ">
+                    <div class="main_buttons_not_seklected" style="margin-left: 10px;" (click)="currentTab='action';"
+                        [ngClass]="currentTab=='action' ? 'main_buttons' : 'main_buttons_not_seklected' ">
                         Action Center
                     </div>
                 </div>
@@ -243,32 +241,36 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="bool1==true || bool7 == true" style="padding: 16px 0 0 0;">
+            
+            <div *ngIf="currentTab=='over'">
                 <app-over></app-over>
             </div>
-            <div *ngIf="bool2==true">
+            <div *ngIf="currentTab=='list'">
                 <app-ara-list></app-ara-list>
             </div>
-            <div *ngIf="ass==true">
+            <div *ngIf="currentTab=='assign'">
                 <app-assign></app-assign>
             </div>
-            <div *ngIf="bool3==true">
+            <div *ngIf="currentTab=='control'">
                 <app-control-pannel></app-control-pannel>
             </div>
-            <div *ngIf="bool4==true">
+            <div *ngIf="currentTab=='utility'">
                 <app-utility></app-utility>
             </div>
-            <div *ngIf="bool5==true">
+            <div *ngIf="currentTab=='document'">
                 <app-document></app-document>
             </div>
-            <div *ngIf="bool6==true">
+            <div *ngIf="currentTab=='signals'">
                 <app-signals></app-signals>
             </div>
-            <div *ngIf="bool8==true" style="padding: 16px 0 0 0;">
+            <div *ngIf="currentTab=='action'">
                 <app-action></app-action>
             </div>
         </div>
-        <div *ngIf="isLeasemanagement">
+        <div *ngIf="currentPage=='home'">
+            <app-homescreen></app-homescreen>
+        </div>
+        <div *ngIf="currentPage=='lease'">
             <app-leasemanagement [item]="ItemToChild" (switchSideNav)="switchSideMenu($event)"></app-leasemanagement>
         </div>
 
