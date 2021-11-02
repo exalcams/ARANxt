@@ -11,7 +11,7 @@
                     <mat-chip *ngFor="let to of toList.value" class="chip" [selectable]="selectable"
                              [removable]="removable" (removed)="remove(to,'to')">
                       {{to}}
-                      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                      <mat-icon matChipRemove *ngIf="removable" class="chip-remove">cancel</mat-icon>
                     </mat-chip>
                     <input [matChipInputFor]="chipList"
                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
@@ -30,7 +30,7 @@
             <mat-form-field appearance="fill" class="fields">
                 <mat-chip-list #chipList2 formControlName="cc">
                     <mat-chip *ngFor="let cc of ccList.value" [selectable]="selectable"
-                             [removable]="removable" (removed)="remove(cc,'cc')">
+                             [removable]="removable" (removed)="remove(cc,'cc')" class="chip">
                       {{cc}}
                       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                     </mat-chip>
@@ -48,7 +48,7 @@
             <mat-form-field appearance="fill" class="fields">
                 <mat-chip-list #chipList3 formControlName="bcc">
                     <mat-chip *ngFor="let bcc of bccList.value" [selectable]="selectable"
-                             [removable]="removable" (removed)="remove(bcc,'bcc')">
+                             [removable]="removable" (removed)="remove(bcc,'bcc')" class="chip">
                       {{bcc}}
                       <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                     </mat-chip>

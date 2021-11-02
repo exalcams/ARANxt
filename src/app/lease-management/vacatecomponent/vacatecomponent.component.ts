@@ -24,7 +24,7 @@ export class VacatecomponentComponent implements OnInit {
   Vacateformgroup: FormGroup;
   toppings = new FormControl();
   fromToOptions: string[] = ["person1", "person2"];
-  modeoftransferoptions:string[]=["Cash","Online"];
+  modeoftransferoptions: string[] = ["Cash", "Online"];
   notificationSnackBarComponent: NotificationSnackBarComponent;
   leaseData: LeaseManagement = new LeaseManagement();
   visible = true;
@@ -50,13 +50,13 @@ export class VacatecomponentComponent implements OnInit {
     this.Vacateformgroup = this.formBuilder.group({
       Proposeddate: ['', [Validators.required, this.invalidDateValidatorFn]],
       Accepteddate: ['', [Validators.required, this.invalidDateValidatorFn]],
-      Inspectiondate: ['', [Validators.required,this.invalidDateValidatorFn]],
+      Inspectiondate: ['', [Validators.required, this.invalidDateValidatorFn]],
       Inspectedby: ['', Validators.required],
-      Rentdue:  ['',[Validators.required,Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$' )]],
-      Maintenancedue: ['',[Validators.required,Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$' )]],
-      DamageRecovery:  ['',[Validators.required,Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$' )]],
-      AdvanceBalance:  ['',[Validators.required,Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$' )]],
-      ExpectedDate: ['', [Validators.required,this.invalidDateValidatorFn]],
+      Rentdue: ['', [Validators.required, Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$')]],
+      Maintenancedue: ['', [Validators.required, Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$')]],
+      DamageRecovery: ['', [Validators.required, Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$')]],
+      AdvanceBalance: ['', [Validators.required, Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$')]],
+      ExpectedDate: ['', [Validators.required, this.invalidDateValidatorFn]],
       Modeoftransfer: ['', Validators.required],
       ReturnableAssets: ['', Validators.required],
       Verifiedby: ['', Validators.required],
@@ -64,7 +64,7 @@ export class VacatecomponentComponent implements OnInit {
     });
   }
 
-//  validation codes
+  //  validation codes
   static Date(control: FormControl): { [key: string]: any } {
     let ptDatePattern = /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g;
     if (!control.value.match(ptDatePattern))
@@ -92,13 +92,13 @@ export class VacatecomponentComponent implements OnInit {
   // }
   invalidDateValidatorFn(): ValidatorFn {
     let invalidDate
-    var a =  (control: AbstractControl): { [key: string]: any } => {
+    var a = (control: AbstractControl): { [key: string]: any } => {
       const date = new Date(control.value);
-      invalidDate= !control.value || date.getMonth === undefined;
+      invalidDate = !control.value || date.getMonth === undefined;
       return invalidDate ? { 'invalidDate': { value: control.value } } : null;
     };
-    console.log("invaliddate",invalidDate);
-  return a
+    console.log("invaliddate", invalidDate);
+    return a
   }
   decimalOnly(event): boolean {
     // this.AmountSelected();
@@ -113,14 +113,14 @@ export class VacatecomponentComponent implements OnInit {
     return true;
   }
   // Only Integer Numbers ((charCode === 65 || charCode === 66 || charCode ===67 || charCode === 68 || charCode ===69
-      // || charCode === 70 || charCode ===71 || charCode === 72 || charCode ===73 || charCode === 74 || charCode ===75
-      // || charCode === 76 || charCode ===77 || charCode === 78 || charCode ===79 || charCode === 80 || charCode ===81
-      // || charCode === 82 || charCode ===83 || charCode === 84 || charCode ===85 || charCode === 86 || charCode ===87
-      // || charCode === 88 || charCode ===89 || charCode ===90))
+  // || charCode === 70 || charCode ===71 || charCode === 72 || charCode ===73 || charCode === 74 || charCode ===75
+  // || charCode === 76 || charCode ===77 || charCode === 78 || charCode ===79 || charCode === 80 || charCode ===81
+  // || charCode === 82 || charCode ===83 || charCode === 84 || charCode ===85 || charCode === 86 || charCode ===87
+  // || charCode === 88 || charCode ===89 || charCode ===90))
   keyPressNumbers(event) {
     var charCode = (event.which) ? event.which : event.keyCode;
     // Only Numbers 0-9
-    if ((charCode < 48 || charCode > 57 )) {
+    if ((charCode < 48 || charCode > 57)) {
       event.preventDefault();
       return false;
     } else {
@@ -130,14 +130,14 @@ export class VacatecomponentComponent implements OnInit {
       return true;
     }
   }
- // validation codes
+  // validation codes
 
 
   Postvacatedetails() {
     if (this.Vacateformgroup.valid) {
       this.spinner.show();
       const signeddetail = new LeaseVacate();
-      signeddetail.leaseID=this.leaseData.leaseID;
+      signeddetail.leaseID = this.leaseData.leaseID;
       signeddetail.proposedDate = this._datePipe.transform(this.Vacateformgroup.get('Proposeddate').value, 'yyyy-MM-dd');
       signeddetail.acceptedDate = this._datePipe.transform(this.Vacateformgroup.get('Accepteddate').value, 'yyyy-MM-dd');
       signeddetail.inspectionDate = this._datePipe.transform(this.Vacateformgroup.get('Inspectiondate').value, 'yyyy-MM-dd');
@@ -148,14 +148,14 @@ export class VacatecomponentComponent implements OnInit {
       signeddetail.advanceBalance = this.Vacateformgroup.get('AdvanceBalance').value;
       signeddetail.dateToTransfer = this.Vacateformgroup.get('ExpectedDate').value;
       signeddetail.modeOfTransfer = this.Vacateformgroup.get('Modeoftransfer').value;
-      let assets=this.Vacateformgroup.get('ReturnableAssets').value;
-      let assetString="";
+      let assets = this.Vacateformgroup.get('ReturnableAssets').value;
+      let assetString = "";
       for (let i = 0; i < assets.length; i++) {
-        if(i!=assets.length-1){
-          assetString+=assets[i]+",";
+        if (i != assets.length - 1) {
+          assetString += assets[i] + ",";
         }
-        else{
-          assetString+=assets[i];
+        else {
+          assetString += assets[i];
         }
       }
       signeddetail.returnableAssets = assetString;
@@ -165,10 +165,10 @@ export class VacatecomponentComponent implements OnInit {
         this.spinner.hide();
         console.log("vacate uploaded");
         this.Vacateformgroup.reset();
-        
+
         this.notificationSnackBarComponent.openSnackBar('Uploaded in successfully', SnackBarStatus.success);
         this.dialogRef.close();
-     
+
       },
         err => {
           console.log(err);
@@ -196,7 +196,7 @@ export class VacatecomponentComponent implements OnInit {
     const value = event.value;
     if ((value || '').trim()) {
       this.assets.setValue([...this.assets.value, value.trim()]);
-        this.assets.updateValueAndValidity();
+      this.assets.updateValueAndValidity();
     }
     if (input) {
       input.value = '';
@@ -205,9 +205,9 @@ export class VacatecomponentComponent implements OnInit {
 
   remove(item: string): void {
     const index = this.assets.value.indexOf(item);
-      if (index >= 0) {
-        this.assets.value.splice(index, 1);
-        this.assets.updateValueAndValidity();
-      }
+    if (index >= 0) {
+      this.assets.value.splice(index, 1);
+      this.assets.updateValueAndValidity();
+    }
   }
 }
