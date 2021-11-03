@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from 'src/app/service/auth.service';
-import { LeaseDocument, LeaseDraft, LeaseManagement, LeaseRenew, LeaseTerminate, LeaseVacate } from '../Model/Leasemanagement';
+import { LeaseDocument, LeaseDraft, LeaseDraftDocumentView, LeaseManagement, LeaseRenew, LeaseTerminate, LeaseVacate } from '../Model/Leasemanagement';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +27,15 @@ export class LeaseManagementService {
 
   SaveLeaseDraft(draft:LeaseDraft){
     return this.http.post<any>(this.baseAddress + 'api/Lease/SaveLeaseDraft', draft,
+    {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    })
+    .pipe(catchError(this.errorHandler));
+  }
+  SaveLeaseDraftDocument(document:LeaseDraftDocumentView){
+    return this.http.post<any>(this.baseAddress + 'api/Lease/SaveLeaseDraftDocument', document,
     {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'

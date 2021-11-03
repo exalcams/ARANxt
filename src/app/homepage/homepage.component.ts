@@ -114,6 +114,9 @@ export class HomepageComponent implements OnInit {
   siteIDofselectedspace: any;
   selectedType: any;
   @Input() item = '';
+  currentPage:string="home";
+  currentTab:string="over";
+
   constructor(
     public dialog: MatDialog,
     private router: Router,

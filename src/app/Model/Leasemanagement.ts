@@ -109,3 +109,8 @@ export class LeaseBankDetalis extends CommonClass{
     bankBranch:string;
 
 }
+
+export class LeaseDraftDocumentView{
+    documentID:number;
+    documentContent:string;
+}

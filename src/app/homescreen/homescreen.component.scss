@@ -1,5 +1,6 @@
 .overviewdiv{
-    padding: 20px;
+    padding: 12px;
+    background: #fff;
     // width: 100%;
 }
 .dashboarddivision{
@@ -7,15 +8,15 @@
 }
 .secondDivision{
     min-width: 236px;
-    width: 28%;
+    width: 32%;
 }
 .rowdivisionwidth{
     gap: 16px;
-    width: 30%;
+    width: 35%;
 }
 .secondrowdivision3{
     min-width: 200px !important;
-    width: 42%;
+    width: 33%;
     flex:1;
     padding: 10px;
 }
