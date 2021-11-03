@@ -71,7 +71,7 @@
                     <button mat-button class="btn_Add" (click)="UploadDraftDocument()">Add</button>
                 </div>
             </div>
-            <div fxLayout="column" class="files">
+            <!-- <div fxLayout="column" class="files">
                 <div fxFlex="50" fxLayoutAlign="space-evenly center">
                     Choose Files
                 </div>
@@ -93,7 +93,7 @@
                         <img src="./assets/XMLID_16_white.svg" (click)="OpenFileFromLink()" class="filesimage">
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 
 
@@ -205,7 +205,7 @@
                     <mat-icon
                         style="font-family: 'Material Icons';font-size: 15px;text-align-last: center; line-height: 24px;">
                         save</mat-icon>
-                    <span class="save_label">Save as</span>
+                    <span class="save_label">Save</span>
                 </div>
                 <div fxLayout="row" matRipple class="icon_outer" (click)="closeDraft('new')">
                     <mat-icon
@@ -221,47 +221,57 @@
             [fullPage]="true" [config]="editorConfig" class="editor"></ck-editor>
     </div>
     <div *ngIf="selectedPage=='edit'" class="ckeditor_outer">
-        <div fxLayout="row" fxLayoutGap="8px">
+        <div fxLayout="row">
             <div fxLayout="column">
-                <div fxLayout="row" fxLayoutAlign="end center" *ngIf="editor1" class="submit-area">
-                    <div fxLayout="row">
+                <div fxLayout="row" fxLayoutAlign="start center" *ngIf="editor1" class="submit-area">
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlex>
+                        <div fxLayoutAlign="start center">
+                            <mat-icon style="font-size: 16px;line-height: 22px;" *ngIf="!editor1change">cloud_done</mat-icon>
+                            <mat-icon style="font-size: 16px;line-height: 22px;" *ngIf="editor1change">sync</mat-icon>
+                            <span *ngIf="editor1change" style="font-size: 11px;">saving...</span>
+                        </div>
+                        <div fxFlex></div>
                         <div fxLayout="row" matRipple class="icon_outer" (click)="saveDraft1()">
                             <mat-icon
-                                style="font-family: 'Material Icons';font-size: 15px;text-align-last: center; line-height: 24px;">
+                                style="font-size: 16px;line-height: 22px;">
                                 save</mat-icon>
                             <span class="save_label">Save as</span>
                         </div>
                         <div fxLayout="row" matRipple class="icon_outer" (click)="closeDraft('editor1')">
                             <mat-icon
-                                style="font-family: 'Material Icons';font-size: 13px;text-align-last: center; line-height: 24px;">
+                                style="font-size: 16px;line-height: 22px;">
                                 clear</mat-icon>
                             <span class="save_label">Close</span>
                         </div>
                     </div>
                 </div>
-                <ck-editor *ngIf="editor1" name="richEditor1" [(ngModel)]="leaseDraft1.documentContent" (change)="editor1change=true"
+                <ck-editor *ngIf="editor1" name="richEditor1" [(ngModel)]="leaseDraft1.documentContent" (ngModelChange)="editor1change=true;"
                     skin="moono-lisa" language="en" [fullPage]="true" [config]="editorConfig" class="editor">
                 </ck-editor>
             </div>
             
             <div fxLayout="column">
-                <div fxLayout="row" fxLayoutAlign="end center" *ngIf="editor2" class="submit-area">
-                    <div fxLayout="row">
+                <div fxLayout="row" fxLayoutAlign="start center" *ngIf="editor2" class="submit-area">
+                    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlex>
+                        <div fxLayoutAlign="start center">
+                            <mat-icon style="font-size: 16px;line-height: 22px;" *ngIf="!editor2change">cloud_done</mat-icon>
+                            <mat-icon style="font-size: 16px;line-height: 22px;" *ngIf="editor1change">sync</mat-icon>
+                            <span *ngIf="editor2change" style="font-size: 11px;">saving...</span>
+                        </div>
+                        <div fxFlex></div>
                         <div fxLayout="row" matRipple class="icon_outer" (click)="saveDraft2()">
-                            <mat-icon
-                                style="font-family: 'Material Icons';font-size: 15px;text-align-last: center; line-height: 24px;">
+                            <mat-icon style="font-size: 16px;line-height: 22px;">
                                 save</mat-icon>
                             <span class="save_label">Save as</span>
                         </div>
                         <div fxLayout="row" matRipple class="icon_outer" (click)="closeDraft('editor2')">
-                            <mat-icon
-                                style="font-family: 'Material Icons';font-size: 13px;text-align-last: center; line-height: 24px;">
+                            <mat-icon style="font-size: 16px;line-height: 22px;">
                                 clear</mat-icon>
                             <span class="save_label">Close</span>
                         </div>
                     </div>
                 </div>
-                <ck-editor *ngIf="editor2" name="richEditor2" [(ngModel)]="leaseDraft2.documentContent" (change)="editor2change=true"
+                <ck-editor *ngIf="editor2" name="richEditor2" [(ngModel)]="leaseDraft2.documentContent" (ngModelChange)="editor2change=true;"
                     skin="moono-lisa" language="en" [fullPage]="true" [config]="editorConfig" class="editor">
                 </ck-editor>
             </div>

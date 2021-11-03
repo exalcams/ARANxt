@@ -8,7 +8,7 @@ body { margin: 0; font-family:  'poppins' !important  }
 }
 @font-face{
     font-family:'poppins';
-    src: url("./assets/Poppins-Regular.ttf");
+    src: url("./assets/Poppins-Medium.ttf");
 }
 @font-face{
   font-family:geometric415bt;
@@ -56,7 +56,7 @@ body { margin: 0; font-family:  'poppins' !important  }
         color: #fff;
       }
       .mat-simple-snackbar {
-        font-family: 'Poppins-Medium';
+        font-family: 'poppins';
         font-weight: 500;
         font-size: 11px !important;
       }

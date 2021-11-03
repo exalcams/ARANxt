@@ -11,7 +11,7 @@ import { DraftDialogComponent } from 'src/app/draft-dialog/draft-dialog.componen
 import { NotificationSnackBarComponent } from 'src/app/notification/notification-snack-bar/notification-snack-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/notification-snackbar-status-enum';
-import { LeaseDraft } from 'src/app/Model/Leasemanagement';
+import { LeaseDraft, LeaseDraftDocumentView } from 'src/app/Model/Leasemanagement';
 import { SendMailDialogComponent } from 'src/app/send-mail-dialog/send-mail-dialog.component';
 import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 import { saveAs } from 'file-saver';
@@ -111,11 +111,13 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
 
     this.editorConfig = {
       height: window.innerHeight - 328 + 'px',
-
-
     }
 
     this.GetFromHome(this.item);
+
+    setInterval(()=>{
+      this.autoSaveDraft();
+    },5000);
 
   }
   ngOnChanges(changes: SimpleChanges): void {
@@ -348,7 +350,7 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
   }
 
   saveDraft1() {
-    this.editor1change = false
+    this.editor1change = false;
     this.service.GetLeaseDraftById(this.leaseDraft1.documentID).subscribe(res => {
       if (res) {
 
@@ -384,7 +386,7 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
   }
 
   saveDraft2() {
-    this.editor2change = false
+    this.editor2change = false;
     this.service.GetLeaseDraftById(this.leaseDraft2.documentID).subscribe(res => {
       if (res) {
         this.commonlease.documentOwner = res.documentOwner,
@@ -638,7 +640,7 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
         const dialogConfig: MatDialogConfig = {
           data: {
             title: "Close",
-            body: "Are you sure  to close without saving",
+            body: "Are you sure  to close without saving?",
           },
           panelClass: 'close-dialog',
           width: '24%',
@@ -1042,5 +1044,40 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
   sideNavStatus($event) {
     this.switchSideNav.emit($event);
   }
-
+  autoSaveDraft(){
+    if(this.editor1change){
+      var doc=new LeaseDraftDocumentView();
+      doc.documentID=this.leaseDraft1.documentID;
+      doc.documentContent=this.leaseDraft1.documentContent;
+      this.saveLeaseDraftDocument(doc,1);
+    }
+    if(this.editor2change){
+      var doc=new LeaseDraftDocumentView();
+      doc.documentID=this.leaseDraft2.documentID;
+      doc.documentContent=this.leaseDraft2.documentContent;
+      this.saveLeaseDraftDocument(doc,2);
+    }
+  }
+  isSaved1:boolean=false;
+  isSaved2:boolean=false;
+  saveLeaseDraftDocument(draftDocument:LeaseDraftDocumentView,editor:number){
+    if(editor==1){
+      this.isSaved1=true;
+    }
+    else{
+      this.isSaved2=true;
+    }
+    this.service.SaveLeaseDraftDocument(draftDocument).subscribe(()=>{
+      console.log("document saved");
+      if(editor==1){
+        this.editor1change=false;
+      }
+      else{
+        this.editor2change=false;
+      }
+    },
+    err=>{
+      console.log(err);
+    });
+  }
 }
