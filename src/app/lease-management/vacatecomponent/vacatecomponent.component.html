@@ -353,8 +353,12 @@
 
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Remarks</span>
-                                <mat-form-field appearance="legacy" fxFlex="50">
-                                    <textarea matInput formControlName="Remarks" class="forminputedit"></textarea>
+                                <mat-form-field appearance="outline" fxFlex="50">
+                                    <textarea matInput
+                                    cdkTextareaAutosize
+                                    #autosize="cdkTextareaAutosize"
+                                    cdkAutosizeMinRows="3"
+                                    cdkAutosizeMaxRows="100" formControlName="Remarks" class="forminputedit"></textarea>
                                     <mat-error *ngIf="Vacateformgroup.get('Remarks').hasError('required')"
                                         class="erroredits">
                                         Remarks is required

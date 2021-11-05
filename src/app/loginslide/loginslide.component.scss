@@ -94,15 +94,12 @@
 
         #login-form-wrapper {
             background-color: #ffffff;
-            min-width: 420px;
-            max-width: 450px;
             overflow: auto;
             -webkit-overflow-scrolling: touch;
-            // margin: 2% 8%;
-            // height: 85%;
-            height: 530px;
+            height: 80vh;
+            width: 432px;
             border-radius: 4px;
-            box-shadow: 0 6px 26px 0 rgba(136,131,255,0.16);
+            box-shadow: 8px 8px 24px 0 rgb(5 5 5 / 5%);
 
             // @include media-breakpoint('sm') {
             //     width: 360px;
@@ -117,11 +114,10 @@
             // }
 
             #login-form {
-                padding: 0px 48px 0px 48px;
-                height: 65vh;
+                padding: 36px;
                 .logo {
                     width: 100%;
-                    margin: 36px auto;
+                    margin-bottom: 36px;
                     .welcomespan{
                         font-family: 'poppins-bold' !important;
                         font-size: 14px;
@@ -257,9 +253,7 @@
                     }
                 }
                 .forgetpassworddiv{
-                    text-align: right;
-                    padding-top: 0px;
-                    padding-bottom: 10px;
+                    padding: 12px 0;
                     .forgetpassword{
                         color: #0d0c22;
                         font-size: 10px;

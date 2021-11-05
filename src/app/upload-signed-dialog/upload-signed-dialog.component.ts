@@ -20,17 +20,19 @@ export class UploadSignedDialogComponent implements OnInit {
   SignedDocumentDetailsForm: FormGroup;
   files:File[] =[];
   notificationSnackBarComponent: NotificationSnackBarComponent;
-  modeoftransfer:any[]=["cash","online"];
+  modeoftransfer:any[]=["Cash","Online"];
   modetransfer_selected:any;
   date_input:any;
- 
+  noticePeriods:number[]=[1,2,3,4,5,6];
+  currentDate:Date=new Date();
   NUMERIC_PATTREN = '^([0-9]{4,10})([.][0-9]{1,2})?$';
 
   constructor(private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<DraftDialogComponent>,private service: LeaseManagementService, public snackBar: MatSnackBar,public _datePipe:DatePipe,   private spinner: NgxSpinnerService,
+    public dialogRef: MatDialogRef<UploadSignedDialogComponent>,private service: LeaseManagementService, public snackBar: MatSnackBar,public _datePipe:DatePipe,   private spinner: NgxSpinnerService,
     @Inject(MAT_DIALOG_DATA) public data: any, ) 
     {   
     this.notificationSnackBarComponent = new NotificationSnackBarComponent(this.snackBar);
+    this.currentDate.setMonth(this.currentDate.getMonth()+1);
     }
 
   ngOnInit(): void {
@@ -56,10 +58,16 @@ export class UploadSignedDialogComponent implements OnInit {
     // AdvanceRequest : ['', Validators.required],
     Maintenance:['',[Validators.required,Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$')]],
     Electrical: ['',[Validators.required,Validators.pattern('^[A-Za-z0-9 ]+$' )]],
-    Condition: ['',Validators.required],
-    Remarks: ['',Validators.required],
+    Condition: [''],
+    Remarks: [''],
     // NoticePeriod: ['',Validators.required],
     NoticePeriod: ['',[Validators.required,Validators.pattern('^[0-9]+$')]],
+    AccType:['',Validators.required],
+    SPOC:['',Validators.required],
+    SPOCMobile1:['',Validators.required],
+    SPOCMobile2:[''],
+    SPOCMail1:['',[Validators.required,Validators.email]],
+    SPOCMail2:['',Validators.email]
   });
   // this.SignedDocumentDetailsForm.get('IFSCCode').valueChanges.subscribe((value) => {
  
@@ -116,6 +124,7 @@ onSelect(event): void {
   console.log(event);
   this.files=[];
   this.files.push(...event.addedFiles);
+  this.SignedDocumentDetailsForm.get('FileName').setValue(this.files[0].name);
 }
 onRemove(event): void {
   console.log(event);

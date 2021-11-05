@@ -101,7 +101,7 @@
     width: 100%;
     height: 33px;
     font-size: 10px !important;
-    line-height: normal;
+    line-height: inherit !important;
     font-family: "poppins-semi" !important;
   }
   .form_bg
@@ -465,15 +465,12 @@ height: 100% !important;
 }
 .ripple_outer
 {
-  padding-left: 16px;
-  color: #6e6d7a;
+  padding:0 16px;
   height: 100%;
-  text-align-last: center;
 }
 .new_txt
 {
-    vertical-align: -webkit-baseline-middle;
-    font-size: 10px;
+    font-size: 11px;
     cursor: pointer;
 }
 

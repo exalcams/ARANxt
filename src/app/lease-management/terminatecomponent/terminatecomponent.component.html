@@ -271,7 +271,7 @@
                                         class="forminputedit">
                                     <mat-error *ngIf="Terminateformgroup.get('AdvanceBalance').hasError('required')"
                                         class="erroredits">
-                                        AdvanceBalance is required
+                                        Advance Balance is required
                                     </mat-error>
 
                                     <mat-error *ngIf="Terminateformgroup.get('AdvanceBalance').touched && !Terminateformgroup.get('AdvanceBalance').hasError('required')
@@ -362,8 +362,12 @@
 
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Remarks</span>
-                                <mat-form-field appearance="legacy" fxFlex="50">
-                                    <textarea matInput formControlName="Remarks" class="forminputedit"></textarea>
+                                <mat-form-field appearance="outline" fxFlex="50">
+                                    <textarea matInput
+                                    cdkTextareaAutosize
+                                    #autosize="cdkTextareaAutosize"
+                                    cdkAutosizeMinRows="3"
+                                    cdkAutosizeMaxRows="100" formControlName="Remarks" class="forminputedit"></textarea>
                                     <mat-error *ngIf="Terminateformgroup.get('Remarks').hasError('required')"
                                         class="erroredits">
                                         Remarks is required

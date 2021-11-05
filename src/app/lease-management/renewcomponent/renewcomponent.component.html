@@ -196,7 +196,7 @@
                             </div>
 
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
-                                <span class="formspan" fxFlex="50">New Expiry Date</span>
+                                <span class="formspan" fxFlex="50">Next Expiry Date</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
                                     <input matInput [matDatepicker]="dp2" disabled  class="forminputedit"
                                         formControlName="NewExpiryDate">
@@ -233,9 +233,13 @@
 
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Remarks</span>
-                                <mat-form-field appearance="legacy" fxFlex="50">
+                                <mat-form-field appearance="outline" fxFlex="50">
                                     <!-- <input matInput  formControlName="Remarks" class="forminputedit"> -->
-                                    <textarea matInput formControlName="Remarks" class="textarea"></textarea>
+                                    <textarea matInput
+                                    cdkTextareaAutosize
+                                    #autosize="cdkTextareaAutosize"
+                                    cdkAutosizeMinRows="3"
+                                    cdkAutosizeMaxRows="100" formControlName="Remarks" class="textarea"></textarea>
                                    
                                 </mat-form-field>
                             </div>

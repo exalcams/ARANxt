@@ -406,11 +406,9 @@ export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
         SpaceId: this.SpaceId,
       },
       panelClass: 'upload-signed-dialog',
-      // position: { top: '3%', right: '3%' },
-      width: '951px',
-      maxWidth: '85.5vw ',
+      height:'90vh',
+      width:'90%',
       disableClose: true
-      // height: '90%',
     };
     const dialogRef = this.dialog.open(UploadSignedDialogComponent, dialogConfig);
     // const dialogRef = this.dialog.open(UploadSignedDialogComponent, {
@@ -420,7 +418,7 @@ export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
-      if (!result) {
+      if (result) {
         this.GetAllLeases();
       }
     });

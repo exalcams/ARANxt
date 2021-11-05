@@ -20,8 +20,9 @@
     flex-direction: column;
   }
   .toolbar{
-    background-color: #f4f4fb;
-    height: 56px;
+    background-color: #fff;
+    height: 48px;
+    box-shadow: 0 3px 3px 0px #00000014;
   }
   .title{
       @extend .poppins;
@@ -37,10 +38,11 @@
 }
   .footer{
     // box-shadow: 0 2px 18px 0 rgba(74, 122, 255, 0.38);
-    background-color: #fdfdfd;
-    height: 56px;
+    background-color: #fff;
+    height: 48px;
     margin: 0;
     padding: 16px;
+    box-shadow: 0 -3px 3px 0px #00000014;
   }
   .savebtn{
     background-color: #4410ff !important;
