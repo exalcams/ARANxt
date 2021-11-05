@@ -31,16 +31,16 @@
     <div *ngIf="selectedPage=='draft'">
         <div class="neweditdiv" fxLayout="row" fxLayoutAlign="space-evenly center" style="margin-top: 13px;" fxLayoutGap="16px">
             <div fxLayout="row" class="tab1" fxLayoutAlign="start center">
-                <div matRipple class="ripple_outer" fxLayoutAlign="center center" (click)="selectedPage='new';newLeaseDraft.documentContent=null">
+                <div matRipple matRippleCentered="true" class="ripple_outer" fxLayoutAlign="center center" (click)="selectedPage='new';newLeaseDraft.documentContent=null">
                     <span class="new_txt">New</span>
                 </div>
-                <div matRipple class="ripple_outer" fxLayoutAlign="center center" (click)="openMultiDraftEditor();">
+                <div matRipple matRippleCentered="true" class="ripple_outer" fxLayoutAlign="center center" (click)="openMultiDraftEditor();">
                     <span class="new_txt">Edit</span>
                 </div>
-                <div matRipple class="ripple_outer" fxLayoutAlign="center center" (click)="DeleteLeaseDrafts()">
+                <div matRipple matRippleCentered="true" class="ripple_outer" fxLayoutAlign="center center" (click)="DeleteLeaseDrafts()">
                     <span class="new_txt">Delete</span>
                 </div>
-                <div matRipple class="ripple_outer"  fxLayoutAlign="center center" (click)="DownloadLeaseDrafts()">
+                <div matRipple matRippleCentered="true" class="ripple_outer"  fxLayoutAlign="center center" (click)="DownloadLeaseDrafts()">
                     <span class="new_txt">Download</span>
                 </div>
                 <!-- <button mat-flat-button class="Renew_btn" (click)="selectedPage='new'">New</button>
@@ -67,33 +67,34 @@
                         <ngx-dropzone-label class="dragdrop-label_2">{{ f.name }}</ngx-dropzone-label>
                     </ngx-dropzone-preview>
                 </ngx-dropzone>
-                <div class="add_div_draft">
+                <!-- <div class="add_div_draft">
                     <button mat-button class="btn_Add" (click)="UploadDraftDocument()">Add</button>
+                </div> -->
+                <div fxLayout="column" class="files">
+                    <div fxFlex="50" fxLayoutAlign="space-evenly center">
+                        Choose Files
+                    </div>
+                    <div fxLayout="row" fxFlex="50" fxLayoutGap="19px" style="margin: 0px 0px 0px 0px;">
+                        <div fxFlex="10">
+                            <img src="./assets/file_search_white.svg" (click)="UploadDraftDocument()" class="filesimage">
+                        </div>
+    
+                        <div fxFlex="10">
+                            <img src="./assets/iconmonstr-product-4_white.svg" (click)="chooseIcons('product')"
+                                class="filesimage">
+                        </div>
+    
+                        <div fxFlex="10">
+                            <img src="./assets/drive white.svg" (click)="openGdrive()" class="filesimage">
+                        </div>
+    
+                        <div fxFlex="10">
+                            <img src="./assets/XMLID_16_white.svg" (click)="OpenFileFromLink()" class="filesimage">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- <div fxLayout="column" class="files">
-                <div fxFlex="50" fxLayoutAlign="space-evenly center">
-                    Choose Files
-                </div>
-                <div fxLayout="row" fxFlex="50" fxLayoutGap="19px" style="margin: 0px 0px 0px 0px;">
-                    <div fxFlex="10">
-                        <img src="./assets/file_search_white.svg" (click)="chooseIcons('search')" class="filesimage">
-                    </div>
-
-                    <div fxFlex="10">
-                        <img src="./assets/iconmonstr-product-4_white.svg" (click)="chooseIcons('product')"
-                            class="filesimage">
-                    </div>
-
-                    <div fxFlex="10">
-                        <img src="./assets/drive white.svg" (click)="openGdrive()" class="filesimage">
-                    </div>
-
-                    <div fxFlex="10">
-                        <img src="./assets/XMLID_16_white.svg" (click)="OpenFileFromLink()" class="filesimage">
-                    </div>
-                </div>
-            </div> -->
+            
         </div>
 
 

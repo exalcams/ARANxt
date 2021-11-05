@@ -50,15 +50,15 @@ export class TerminatecomponentComponent implements OnInit {
       Accepteddate: ['', [Validators.required, this.invalidDateValidatorFn]],
       Inspectiondate: ['', [Validators.required, this.invalidDateValidatorFn]],
       Inspectedby: ['', Validators.required],
-      Rentdue: ['', [Validators.required, Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$')]],
-      Maintenancedue: ['', [Validators.required, Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$')]],
-      DamageRecovery: ['', [Validators.required, Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$')]],
-      AdvanceBalance: ['', [Validators.required, Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$')]],
-      ExpectedDate: ['', [Validators.required, this.invalidDateValidatorFn]],
+      Rentdue:  ['',[Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$' )]],
+      Maintenancedue: ['',[Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$' )]],
+      DamageRecovery:['',[Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$' )]],
+      AdvanceBalance: ['',[Validators.required,Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$' )]],
+      ExpectedDate: ['', [ this.invalidDateValidatorFn]],
       Modeoftransfer: ['', Validators.required],
-      ReturnableAssets: ['', Validators.required],
-      Verifiedby: ['', Validators.required],
-      Remarks: ['', Validators.required],
+      ReturnableAssets: [''],
+      Verifiedby: [''],
+      Remarks: [''],
     });
   }
 

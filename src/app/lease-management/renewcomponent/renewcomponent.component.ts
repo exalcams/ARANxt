@@ -68,17 +68,18 @@ export class RenewcomponentComponent implements OnInit {
     this.Vacateformgroup = this.formBuilder.group({
       RenewOn: ['',[Validators.required,this.invalidDateValidatorFn]],
       Validfor: ['',Validators.required],
-      NewExpiryDate: ['', Validators.required],
-      RevisedRent: ['',[Validators.required,Validators.pattern('^([0-9]{4,10})([.][0-9]{1,2})?$')]],
-      Revisedratio: ['', Validators.required],
-      Remarks: ['', Validators.required]
+      NewExpiryDate: [''],
+      RevisedRent: ['',[Validators.pattern('^([0-9]{4,10})([.][0-9]{1,2})?$')]],
+      Revisedratio: [''],
+      Remarks: ['']
     });
     this.Vacateformgroup.get('Validfor').valueChanges.subscribe((value) => {
       console.log("validforchange",this.Vacateformgroup.value);
       if (value && value != "" && !this.newbool) {
         this.ExpiryCalculation(value);
       }
-    })
+    });
+    this.Vacateformgroup.get('NewExpiryDate').disable();
   }
   selectedIndex: any;
   public setRow(_index: number) {

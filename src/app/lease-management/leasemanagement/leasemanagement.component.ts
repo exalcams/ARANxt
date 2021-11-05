@@ -203,10 +203,14 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
   getrow(eve) {
     this.seletedrows_array.push(eve)
   }
+  docName:string="";
   onSelect(event): void {
     console.log(event);
     this.files = [];
     this.files.push(...event.addedFiles);
+    this.docName=this.files[0].name;
+    this.UploadDraftDocument();
+    this.docName="";
   }
 
   onRemove(event): void {
@@ -425,7 +429,8 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
 
     const dialogRef = this.dialog.open(DraftDialogComponent,
       {
-        panelClass: "draft-dialog"
+        panelClass: "draft-dialog",
+        data:{name:this.docName}
       }
     );
     dialogRef.disableClose = true;

@@ -74,7 +74,11 @@
                                 <p class="fontcolor_dark">Remarks</p>
                             </div>
                             <mat-form-field appearance="outline" class="form_field_cls">
-                                <textarea matInput placeholder="Enter Remarks" formControlName="Remarks"
+                                <textarea matInput
+                                cdkTextareaAutosize
+                                #autosize="cdkTextareaAutosize"
+                                cdkAutosizeMinRows="3"
+                                cdkAutosizeMaxRows="100" placeholder="Enter Remarks" formControlName="Remarks"
                                     class="forminputedit textareaclass"></textarea>
                                 <mat-error *ngIf="ShiftConformationForm.get('Remarks').hasError('required')"
                                     class="erroredits">

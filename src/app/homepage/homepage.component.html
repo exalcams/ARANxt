@@ -24,15 +24,30 @@
                             style="margin-left: 16px;" *ngIf="!isFolded">Home</div>
                     </div>
 
-                    <div fxLayout="row" [ngClass]="currentPage=='dashboard'?'inner_menus_home_highlight':'inner_menus_home'"
-                    (click)="currentPage='dashboard';">
+                    <div fxLayout="row"
+                        [ngClass]="currentPage=='dashboard'?'inner_menus_home_highlight':'inner_menus_home'"
+                        (click)="currentPage='dashboard';">
                         <div style="margin-left: 8px;" *ngIf="currentPage!='dashboard'">
                             <img style="width: 14px;vertical-align: middle;" src="./assets/models.svg">
                         </div>
                         <div style="margin-left: 8px;" *ngIf="currentPage=='dashboard'">
                             <img style="width: 14px;vertical-align: middle;" src="./assets/models-active.svg">
                         </div>
-                        <div [ngClass]="currentPage=='dashboard'?'inner_menus_highlight':'inner_menus'" class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded">Models</div>
+                        <div [ngClass]="currentPage=='dashboard'?'inner_menus_highlight':'inner_menus'"
+                            class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded">Models</div>
+                    </div>
+
+                    <div fxLayout="row" (click)="currentPage='lease';"
+                        [ngClass]="currentPage=='lease'?'inner_menus_home_highlight':'inner_menus_home'">
+
+                        <div style="margin-left: 8px;">
+                            <img style="width: 14px;vertical-align: middle;" *ngIf="currentPage!='lease'"
+                                src="./assets/date-expired.svg">
+                            <img style="width: 14px;vertical-align: middle;" *ngIf="currentPage=='lease'"
+                                src="./assets/date-expired_blue.svg">
+                        </div>
+                        <div [ngClass]="currentPage=='lease'?'inner_menus_highlight':'inner_menus'"
+                            style="margin-left: 16px;" *ngIf="!isFolded">Lease</div>
                     </div>
 
                     <div fxLayout="row" class="inner_menus_home">
@@ -59,18 +74,7 @@
                         </div>
                         <div class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded">Privacy Policy</div>
                     </div>
-                    <div fxLayout="row" (click)="currentPage='lease';"
-                        [ngClass]="currentPage=='lease'?'inner_menus_home_highlight':'inner_menus_home'">
-
-                        <div style="margin-left: 8px;">
-                            <img style="width: 14px;vertical-align: middle;" *ngIf="currentPage!='lease'"
-                                src="./assets/date-expired.svg">
-                            <img style="width: 14px;vertical-align: middle;" *ngIf="currentPage=='lease'"
-                                src="./assets/date-expired_blue.svg">
-                        </div>
-                        <div [ngClass]="currentPage=='lease'?'inner_menus_highlight':'inner_menus'"
-                            style="margin-left: 16px;" *ngIf="!isFolded">Lease</div>
-                    </div>
+                    
                 </div>
                 <!-- <div>
                     <img class="building" src="./assets/building.png">
@@ -161,11 +165,11 @@
                                             <mat-icon inline="true">add</mat-icon>
                                         </button>
                                         <mat-menu #menu1="matMenu" yPosition="below" class="menuclass">
-                                            <button mat-menu-item (click)="spaceclicked()"> 
-                                                <span >Space</span>
+                                            <button mat-menu-item (click)="spaceclicked()">
+                                                <span>Space</span>
                                             </button>
                                             <button mat-menu-item (click)="assetsclicked()">
-                                                <span >Asset</span>
+                                                <span>Asset</span>
                                             </button>
                                         </mat-menu>
                                     </div>
@@ -187,18 +191,18 @@
     <mat-drawer-content style="background-color: white;" [@marginAlign]="!isFolded ? 'open' : 'closed'">
         <mat-toolbar class="toolbar_class">
             <div class="sidenav_3">
-                <div fxLayout="row" fxLayoutAlign="space-between center" class="header_row">
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="header_row1">
                     <div fxLayout="row" class="header">
                         <!-- <div>{{selectedNode}}</div> -->
                         <!-- <div><span>{{option.name}}</span><span>>></span></div> -->
-                        <span  *ngFor="let option of duplicateselecetedarray;let indexOfelement=index;">
+                        <span *ngFor="let option of duplicateselecetedarray;let indexOfelement=index;">
                             <span *ngIf="indexOfelement>0">>></span>
-                           <span>{{option.name}}</span> 
-                        
+                            <span>{{option.name}}</span>
+
                             <!-- <div>{{indexOfelement}}</div> -->
                         </span>
                         <!-- <div>>></div> -->
-                      
+
                     </div>
                     <div class="header_bold" style="margin-left: 15px;">
                         <div (click)="openDialog()">+</div>
@@ -241,7 +245,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div *ngIf="currentTab=='over'">
                 <app-over></app-over>
             </div>

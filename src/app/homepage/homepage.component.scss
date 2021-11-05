@@ -15,7 +15,7 @@
     }
 }
 
-.sidenav_3{height: auto;width: 100%; }   
+.sidenav_3{height: 100%;width: 100%; }   
 .ara_img {
     width: 80px;
     height: auto;
@@ -137,8 +137,11 @@
 .header_row{
     background-color: white;height: 34px;box-shadow: 0 3px 6px 0 #f7f7f7;padding: 0 16px;
 }
+.header_row1{
+    background-color: white;box-shadow: 0 3px 6px 0 #f7f7f7;padding: 0 16px;height: 100%;
+}
 .toolbar_class {
-    height: 40px;padding: 0px;
+    height: 54px;padding: 0px;
     z-index: 100;
     width: 100%  !important;
     padding: 0 !important;

@@ -10,56 +10,22 @@
                 <div class="subtitle1">
                     <label class="General">General</label>
                 </div>
-                <div fxLayout="column" fxLayoutGap="1px">
-                    <div fxLayout="row" fxLayoutGap="15px">
-                        <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="10px">
+                <div fxLayout="column">
+                    <div fxLayout="row" fxLayoutGap="32px" style="padding:0 16px;">
+                        <div fxLayout="row" fxFlex class="label_connect form_outer" fxLayoutGap="10px" fxLayoutAlign="space-between center">
                             <span class="formspan">Client name</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
-                                <input matInput formControlName="Client" type="text" class="placeholdertext "
-                                    class="input_fontsize" (keydown)="AlphabetsonlyOnly($event)">
+                                <input matInput formControlName="Client" class="placeholdertext "
+                                    class="input_fontsize">
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('Client').hasError('required')">
                                     Client name is required
                                 </mat-error>
                             </mat-form-field>
                         </div>
-
-                        <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="10px">
-                            <span class="formspan">File name</span>
-                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
-                                <input matInput formControlName="FileName" class="placeholdertext "  >
-                                <mat-error *ngIf="SignedDocumentDetailsForm.get('FileName').hasError('required')">
-                                    File name is required
-                                </mat-error>
-                                <mat-error *ngIf="SignedDocumentDetailsForm.get('FileName').touched && !SignedDocumentDetailsForm.get('FileName').hasError('required')
-                                &&SignedDocumentDetailsForm.get('FileName').hasError('pattern')">
-                                    Enter a valid Filename
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="10px">
-                            <span class="formspan">Creation date</span>
-                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
-                                <input matInput [matDatepicker]="picker3"  formControlName="CreatedOn" fxFlex>
-                                <img src="assets/calendar_upload.svg" width="16px" class="cursor"
-                                    (click)="picker3.open()">
-                                <mat-datepicker #picker3></mat-datepicker>
-                        
-                                <mat-error *ngIf="SignedDocumentDetailsForm.get('CreatedOn').hasError('required')">
-                                    Enter a valid date
-                                </mat-error>
-                                <mat-error *ngIf="SignedDocumentDetailsForm.get('CreatedOn').touched && !SignedDocumentDetailsForm.get('CreatedOn').hasError('required')
-                                &&SignedDocumentDetailsForm.get('CreatedOn').hasError('pattern')">
-                                    Enter a valid date
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <!--  -->
-                    <div fxLayout="row" fxLayoutGap="15px" style="width: 100%;">
-                        <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="10px">
+                        <div fxLayout="row" fxFlex class="label_connect form_outer" fxLayoutGap="10px" fxLayoutAlign="space-between center">
                             <span class="formspan">Expiry date</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
-                                <input matInput [matDatepicker]="picker4"  formControlName="ExpiryDate" fxFlex>
+                                <input matInput [matDatepicker]="picker4" [min]="currentDate"  formControlName="ExpiryDate" fxFlex>
                                 <img src="assets/calendar_upload.svg" width="16px" class="cursor"
                                     (click)="picker4.open()">
                                 <mat-datepicker #picker4></mat-datepicker>
@@ -73,27 +39,14 @@
                                 </mat-error>
                             </mat-form-field>
                         </div>
-                        <!--  -->
-                        <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="10px">
-                            <span class="formspan">Maintenance</span>
-                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
-                                <label matPrefix class="font">Rs.</label>
-                                <input matInput formControlName="Maintenance" (keydown)="decimalOnly($event)"
-                                    class="placeholdertext">
-                                <mat-error *ngIf="SignedDocumentDetailsForm.get('Maintenance').hasError('required')">
-                                    Maintenance is required
-                                </mat-error>
-                                <mat-error *ngIf="SignedDocumentDetailsForm.get('Maintenance').touched && !SignedDocumentDetailsForm.get('Maintenance').hasError('required')
-                            &&SignedDocumentDetailsForm.get('Maintenance').hasError('pattern')">
-                            Minimum  4 digits afetr decimal maximum 2 digits are allowed
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-
-                        <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="10px">
+                        <div fxLayout="row" fxFlex class="label_connect form_outer" fxLayoutGap="10px" fxLayoutAlign="space-between center">
                             <span class="formspan">Notice period</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
-                                <input matInput formControlName="NoticePeriod" class="placeholdertext" (keydown)="decimalOnlyWithoutDot($event)">
+                                <mat-select name="modeoftransfer"
+                                    formControlName="NoticePeriod">
+                                    <mat-option *ngFor="let period of  noticePeriods" [value]="period">{{period}}</mat-option>
+                                </mat-select>
+                                <!-- <input matInput formControlName="NoticePeriod" class="placeholdertext" (keydown)="decimalOnlyWithoutDot($event)"> -->
                                 <label matSuffix class="font">(months)</label>
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('NoticePeriod').hasError('required')">
                                     Notice period is required
@@ -106,8 +59,24 @@
                         </div>
                     </div>
                     <!--  -->
-                    <div fxLayout="row" fxLayoutGap="15px" style="width: 100%;">
-                        <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="10px">
+                    <div fxLayout="row" fxLayoutGap="32px" style="padding:0 16px;">
+                        <!--  -->
+                        <div fxLayout="row" fxFlex class="label_connect form_outer" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+                            <span class="formspan">Maintenance</span>
+                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                <label matPrefix class="font">Rs.</label>
+                                <input matInput formControlName="Maintenance" (keydown)="decimalOnly($event)"
+                                    class="placeholdertext">
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('Maintenance').hasError('required')">
+                                    Maintenance is required
+                                </mat-error>
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('Maintenance').touched && !SignedDocumentDetailsForm.get('Maintenance').hasError('required')
+                            &&SignedDocumentDetailsForm.get('Maintenance').hasError('pattern')">
+                            Enter valid amount
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxFlex class="label_connect form_outer" fxLayoutGap="10px" fxLayoutAlign="space-between center">
                             <span class="formspan">Rental</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
                                 <label matPrefix class="font">Rs.</label>
@@ -118,12 +87,12 @@
                                 </mat-error>
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('Rental').touched && !SignedDocumentDetailsForm.get('Rental').hasError('required')
                             &&SignedDocumentDetailsForm.get('Rental').hasError('pattern')">
-                            Minimum  4 digits afetr decimal maximum 2 digits are allowed
+                            Enter valid amount
                                 </mat-error>
                             </mat-form-field>
                         </div>
 
-                        <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="10px">
+                        <div fxLayout="row" fxFlex class="label_connect form_outer" fxLayoutGap="10px" fxLayoutAlign="space-between center">
                             <span class="formspan">Electrical(RR)</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
                                 <input matInput formControlName="Electrical" class="placeholdertext">
@@ -136,40 +105,48 @@
                                 </mat-error>
                             </mat-form-field>
                         </div>
-
-
                     </div>
                     <!--  -->
-                    <div fxLayout="row" fxLayoutGap="15px" style="width: 100%;">
-
-                        <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="10px">
-                            <span class="formspan">Condition</span>
-                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
-                                <textarea matInput formControlName="Condition" class="textarea"></textarea>
-                                <mat-error *ngIf="SignedDocumentDetailsForm.get('Condition').hasError('required')">
-                                    Condition is required
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-
-                        <div fxLayout="row" class="label_connect form_outer" fxLayoutGap="10px">
-                            <span class="formspan">Remarks</span>
-                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
-                                <textarea matInput formControlName="Remarks" class="textarea"></textarea>
-                                <mat-error *ngIf="SignedDocumentDetailsForm.get('Remarks').hasError('required')">
-                                    Remarks is required
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                    </div>
                     <!--  -->
                     <div class="subtitle">
                         <label class="General">Bank Details</label>
                     </div>
                    
                     <!--  -->
-                    <div fxLayout="row" fxLayoutGap="15px" style="width: 100%;">
-                        <div fxLayout="row" class="label_connect form_outer_bank" fxLayoutGap="10px">
+                    <div fxLayout="row" fxLayoutGap="32px" style="padding:0 16px;">
+                        <div fxLayout="row" fxFlex class="label_connect form_outer_bank" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+                            <span class="formspan_bank">Bank name</span>
+                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                <input matInput formControlName="BankName"   
+                                    class="placeholdertext">
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxFlex class="label_connect form_outer_bank" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+                            <span class="formspan_bank"> A/C type</span>
+                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                <input matInput formControlName="AccType"
+                                    class="placeholdertext">
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxFlex class="label_connect form_outer_bank" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+                            <span class="formspan_bank"> A/C holder name</span>
+                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                <input matInput formControlName="HolderName" (keydown)="AlphabetsonlyOnly($event)"
+                                    class="placeholdertext">
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('HolderName').hasError('required')">
+                                    Account holder name is required
+                                </mat-error>
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('HolderName').touched && !SignedDocumentDetailsForm.get('HolderName').hasError('required')
+                                &&SignedDocumentDetailsForm.get('HolderName').hasError('pattern')">
+                                    Enter a proper name
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                    <!--  -->
+                    <div fxLayout="row" fxLayoutGap="32px" style="padding:0 16px;">
+                        <div fxLayout="row" fxFlex class="label_connect form_outer_bank" fxLayoutGap="10px" fxLayoutAlign="space-between center">
                             <span class="formspan"> IFSC code </span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
                                 <input matInput formControlName="IFSCCode" class="placeholdertext" (keyup)="GetBankNameByBankCode()">
@@ -182,23 +159,10 @@
                                 </mat-error>
                             </mat-form-field>
                         </div>
-                        <div fxLayout="row" class="label_connect form_outer_bank" fxLayoutGap="10px">
-                            <span class="formspan_bank"> A/C holder name</span>
-                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls_bank">
-                                <input matInput formControlName="HolderName" (keydown)="AlphabetsonlyOnly($event)"
-                                    class="placeholdertext">
-                                <mat-error *ngIf="SignedDocumentDetailsForm.get('HolderName').hasError('required')">
-                                    Account holder name is required
-                                </mat-error>
-                                <mat-error *ngIf="SignedDocumentDetailsForm.get('HolderName').touched && !SignedDocumentDetailsForm.get('HolderName').hasError('required')
-                                &&SignedDocumentDetailsForm.get('HolderName').hasError('pattern')">
-                                    Enter a proper name
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div fxLayout="row" class="label_connect form_outer_bank" fxLayoutGap="10px">
+
+                        <div fxLayout="row" fxFlex class="label_connect form_outer_bank" fxLayoutGap="10px" fxLayoutAlign="space-between center">
                             <span class="formspan_bank">Account no</span>
-                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls_bank">
+                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
                                 <input matInput formControlName="AccountNo" (keydown)="decimalOnlyWithoutDot($event)"
                                     class="placeholdertext">
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('AccountNo').hasError('required')">
@@ -210,15 +174,11 @@
                                 </mat-error>
                             </mat-form-field>
                         </div>
-
-                    </div>
-                    <!--  -->
-                    <div fxLayout="row" fxLayoutGap="15px" style="width: 100%;">
-                        <div fxLayout="row" class="label_connect form_outer_bank" fxLayoutGap="10px">
+                        <div fxLayout="row" fxFlex class="label_connect form_outer_bank" fxLayoutGap="10px" fxLayoutAlign="space-between center">
                             <span class="formspan_bank">Mode of transfer</span>
-                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls_bank">
+                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
 
-                                <mat-select [(ngModel)]="modetransfer_selected" name="modeoftransfer"
+                                <mat-select name="modeoftransfer"
                                     formControlName="ModeofTransfer">
                                     <mat-option *ngFor="let transfer of modeoftransfer" [value]="transfer">
                                         {{transfer}}
@@ -230,15 +190,9 @@
                             </mat-form-field>
                         </div>
                         <!--  -->
-                        <div fxLayout="row" class="label_connect form_outer_bank" fxLayoutGap="10px">
-                            <span class="formspan_bank">Bank name</span>
-                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls_bank">
-                                <input matInput readonly formControlName="BankName"   
-                                    class="placeholdertext">
-                            </mat-form-field>
-                        </div>
-                      
-                        <div fxLayout="row" class="label_connect form_outer_bank" fxLayoutGap="10px">
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="32px" style="padding:0 16px;">
+                        <div fxLayout="row" fxFlex class="label_connect form_outer_bank" fxLayoutGap="10px" fxLayoutAlign="space-between center">
                             <span class="formspan">Total deposit</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
                                 <label matPrefix class="font">Rs.</label>
@@ -249,14 +203,81 @@
                                 </mat-error>
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('TotalDeposit').touched && !SignedDocumentDetailsForm.get('TotalDeposit').hasError('required')
                                 && SignedDocumentDetailsForm.get('TotalDeposit').hasError('pattern')">
-                                Minimum  4 digits afetr decimal maximum 2 digits are allowed
+                                Enter valid amount
                                 </mat-error>
                             </mat-form-field>
                         </div>
+                        <div fxFlex></div>
+                        <div fxFlex></div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+                    <div class="subtitle">
+                        <label class="General">Contact Details</label>
+                    </div>
+                   
+                    <!--  -->
+                    <div fxLayout="row" fxLayoutGap="32px" style="padding:0 16px;">
+                        <div fxLayout="row" fxFlex class="label_connect form_outer_bank" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+                            <span class="formspan_bank">SPOC person</span>
+                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                <input matInput formControlName="SPOC"   
+                                    class="placeholdertext">
+                                    <mat-error *ngIf="SignedDocumentDetailsForm.get('SPOC').hasError('required')">
+                                        SPOC person is required
+                                    </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxFlex class="label_connect form_outer_bank" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+                            <span class="formspan_bank"> Contact number 1</span>
+                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                <input matInput formControlName="SPOCMobile1"
+                                    class="placeholdertext">
+                                    <mat-error *ngIf="SignedDocumentDetailsForm.get('SPOCMobile1').hasError('required')">
+                                        Contact number is required
+                                    </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxFlex class="label_connect form_outer_bank" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+                            <span class="formspan_bank"> Contact number 2</span>
+                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                <input matInput formControlName="SPOCMobile2"
+                                    class="placeholdertext">
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                    <!--  -->
+                    <div fxLayout="row" fxLayoutGap="32px" style="padding:0 16px;">
+                        <div fxLayout="row" fxFlex class="label_connect form_outer_bank" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+                            <span class="formspan"> Email 1 </span>
+                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                <input matInput formControlName="SPOCMail1" class="placeholdertext">
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('SPOCMail1').hasError('required')">
+                                    Contact mail is required
+                                </mat-error>
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('SPOCMail1').hasError('email')">
+                                    Enter a valid email
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row" fxFlex class="label_connect form_outer_bank" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+                            <span class="formspan_bank">Email 2</span>
+                            <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                <input matInput formControlName="SPOCMail2"
+                                    class="placeholdertext">
+                                    <mat-error *ngIf="SignedDocumentDetailsForm.get('SPOCMail2').hasError('email')">
+                                        Enter a valid email
+                                    </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex></div>
+                        <!--  -->
                     </div>
                     <!--  -->
                     <div fxLayout="column" fxLayoutGap="12px" style="width: 100%;" class="subtitle">
-                        <p class="General">Attachemnt</p>
+                        <p class="General">Lease Document</p>
                         <div class="neweditdiv1 uploadfiles" fxLayout="row">
 
                             <ngx-dropzone accept=".pdf" (change)="onSelect($event)" class="dropzonengx"
@@ -269,8 +290,58 @@
                                 </ngx-dropzone-preview>
                             </ngx-dropzone>
                         </div>
+                        <div fxLayout="row" fxLayoutGap="32px" style="padding:0 16px;">
+                            <div fxLayout="row" fxFlex class="label_connect form_outer" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+                                <span class="formspan">File name</span>
+                                <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
+                                    <input matInput formControlName="FileName" class="placeholdertext "  >
+                                    <mat-error *ngIf="SignedDocumentDetailsForm.get('FileName').hasError('required')">
+                                        File name is required
+                                    </mat-error>
+                                    <mat-error *ngIf="SignedDocumentDetailsForm.get('FileName').touched && !SignedDocumentDetailsForm.get('FileName').hasError('required')
+                                    &&SignedDocumentDetailsForm.get('FileName').hasError('pattern')">
+                                        Enter a valid Filename
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex></div>
+                            <div fxFlex></div>
+                        </div>
                     </div>
                     <!--  -->
+                    <div class="subtitle">
+                        <label class="General">Others</label>
+                    </div>
+                    <div fxLayout="column" fxLayoutGap="32px" style="padding:16px 16px 0;">
+
+                        <div fxLayout="row" fxFlex fxLayoutAlign="start start" class="label_connect" fxLayoutGap="10px">
+                            <span class="formspan">Condition</span>
+                            <mat-form-field [floatLabel]="'never'" fxFlex appearance="outline" class="form_field_cls">
+                                <textarea matInput
+                                cdkTextareaAutosize
+                                #autosize="cdkTextareaAutosize"
+                                cdkAutosizeMinRows="3"
+                                cdkAutosizeMaxRows="100" formControlName="Condition" class="textarea"></textarea>
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('Condition').hasError('required')">
+                                    Condition is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row" fxFlex fxLayoutAlign="start start" class="label_connect" fxLayoutGap="10px">
+                            <span class="formspan">Remarks</span>
+                            <mat-form-field [floatLabel]="'never'" fxFlex appearance="outline" class="form_field_cls">
+                                <textarea matInput
+                                cdkTextareaAutosize
+                                #autosize="cdkTextareaAutosize"
+                                cdkAutosizeMinRows="3"
+                                cdkAutosizeMaxRows="100" formControlName="Remarks" class="textarea"></textarea>
+                                <mat-error *ngIf="SignedDocumentDetailsForm.get('Remarks').hasError('required')">
+                                    Remarks is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
