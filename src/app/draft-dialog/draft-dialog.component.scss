@@ -40,6 +40,7 @@
       height: 29px;
     line-height: inherit;
     font-size: 10px;
+    @extend .poppins;
     }
     .list{
       padding: 10px;
@@ -54,6 +55,7 @@
       height: 29px;
     line-height: inherit;
     font-size: 10px;
+    @extend .poppins;
     }
     .list:hover{
       border: 2px solid #5f2cff !important;

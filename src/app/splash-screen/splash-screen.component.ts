@@ -17,7 +17,7 @@ import { filter, take } from 'rxjs/operators';
         opacity: '1'
       })),
       transition('in <=> out', [
-        animate('.5s')
+        animate('.4s')
       ])
     ]),
   ]
@@ -39,7 +39,7 @@ export class SplashScreenComponent implements OnInit {
     setTimeout(()=>{
       this.isFaded=!this.isFaded;
     },
-    1000);
+    1600);
   }
 
   private _init(): void {
