@@ -31,7 +31,11 @@ export class VacatecomponentComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
+  currentDate:Date=new Date();
+
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  AccepeteddateLimit: Date;
+  date1: Date;
   constructor(public dialogRef: MatDialogRef<VacatecomponentComponent>, private formBuilder: FormBuilder, private spinner: NgxSpinnerService,
     @Inject(MAT_DIALOG_DATA) public data: any, private service: LeaseManagementService, public snackBar: MatSnackBar, private _datePipe: DatePipe,) {
     this.leaseData = this.data;
@@ -62,8 +66,28 @@ export class VacatecomponentComponent implements OnInit {
       Verifiedby: ['', Validators.required],
       Remarks: [''],
     });
+    this.Vacateformgroup.get('Proposeddate').valueChanges.subscribe((value) => {
+      console.log("validforchange",this.Vacateformgroup.value);
+      if (value && value != "") {
+        this.ExpiryCalculation(value);
+      }
+    });
   }
+  ExpiryCalculation(value: string): void {
 
+    // let months =  Number(value);
+    let renew=null;
+    renew= value
+    let newdate = new Date();
+    console.log("renew",renew);
+     newdate.setDate(renew.getDate());
+    
+    newdate.setDate( newdate.getDate() +1 );
+    this.AccepeteddateLimit=newdate;
+  
+    console.log("formattedDate",this.AccepeteddateLimit);
+
+  }
   //  validation codes
   static Date(control: FormControl): { [key: string]: any } {
     let ptDatePattern = /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g;

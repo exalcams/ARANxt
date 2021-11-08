@@ -31,6 +31,8 @@ export class TerminatecomponentComponent implements OnInit {
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   shiftConfirmation;
+  currentDate:Date=new Date();
+  AccepeteddateLimit: Date;
   constructor(public dialogRef: MatDialogRef<TerminatecomponentComponent>, private formBuilder: FormBuilder, public dialog: MatDialog, private spinner: NgxSpinnerService,
     private service: LeaseManagementService, public snackBar: MatSnackBar, private _datePipe: DatePipe,
     @Inject(MAT_DIALOG_DATA) public data: any,) {
@@ -60,8 +62,28 @@ export class TerminatecomponentComponent implements OnInit {
       Verifiedby: [''],
       Remarks: [''],
     });
+    this.Terminateformgroup.get('Proposeddate').valueChanges.subscribe((value) => {
+      console.log("validforchange",this.Terminateformgroup.value);
+      if (value && value != "") {
+        this.ExpiryCalculation(value);
+      }
+    });
   }
+  ExpiryCalculation(value: string): void {
 
+    // let months =  Number(value);
+    let renew=null;
+    renew= value
+    let newdate = new Date();
+    console.log("renew",renew);
+     newdate.setDate(renew.getDate());
+    
+    newdate.setDate( newdate.getDate() +1 );
+    this.AccepeteddateLimit=newdate;
+  
+    console.log("formattedDate",this.AccepeteddateLimit);
+
+  }
   // validation codes  Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$' )
   static Date(control: FormControl): { [key: string]: any } {
     let ptDatePattern = /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g;
@@ -176,7 +198,7 @@ export class TerminatecomponentComponent implements OnInit {
         this.spinner.hide();
         console.log("Terminate uploaded", signeddetail);
         this.notificationSnackBarComponent.openSnackBar('Uploaded in successfully', SnackBarStatus.success);
-        this.dialogRef.close()
+        this.dialogRef.close(true)
       },
         err => {
           console.log(err);

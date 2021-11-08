@@ -185,8 +185,13 @@
                                 <span class="formspan" fxFlex="50">Valid for</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
                                     <input matInput  formControlName="Validfor" (keydown)="decimalOnly($event)"class="forminputedit">
+                                       <label matSuffix class="placeholdertext">(months)</label>
                                     <mat-error *ngIf="Vacateformgroup.get('Validfor').hasError('required')">
                                      Month is required
+                                    </mat-error>
+                                    <mat-error *ngIf="Vacateformgroup.get('Validfor').touched && !Vacateformgroup.get('Validfor').hasError('required')
+                                    && Vacateformgroup.get('Validfor').hasError('qt')">
+                                        Enter month between(6 to 36)
                                     </mat-error>
                                     <!-- <mat-error *ngIf="Vacateformgroup.get('Validfor').touched && !Vacateformgroup.get('Validfor').hasError('required')
                         &&Vacateformgroup.get('NoticePeriod').hasError('pattern')">
@@ -210,6 +215,7 @@
                                 <span class="formspan" fxFlex="50">Revised Rent</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
                                     <input matInput  formControlName="RevisedRent" (keydown)="decimalOnly($event)" class="forminputedit">
+                                    <label matSuffix class="placeholdertext">(%)</label>
                                     <mat-error *ngIf="Vacateformgroup.get('RevisedRent').hasError('required')">
                                         Rent is required
                                     </mat-error>

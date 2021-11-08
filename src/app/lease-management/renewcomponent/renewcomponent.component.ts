@@ -75,15 +75,37 @@ export class RenewcomponentComponent implements OnInit {
     });
     this.Vacateformgroup.get('Validfor').valueChanges.subscribe((value) => {
       console.log("validforchange",this.Vacateformgroup.value);
-      if (value && value != "" && !this.newbool) {
+      if (value && value != "" && !this.newbool && value<=36 &&value>=6) {
         this.ExpiryCalculation(value);
+      }
+      else{
+        this.Vacateformgroup.get('Validfor').setErrors({qt:true});
       }
     });
     this.Vacateformgroup.get('NewExpiryDate').disable();
   }
+  
   selectedIndex: any;
   public setRow(_index: number) {
     this.selectedIndex = _index;
+  }
+  monthvalidation():ValidatorFn
+  {
+    let invalidmonth;
+
+    var a =  (control: AbstractControl): { [key: string]: any } => {
+   
+       const date = new Date(control.value);
+   
+       invalidmonth= !control.value ||control.value>=6||control.value<=36;
+       console.log("invalidmonth",invalidmonth);
+       
+     
+       return invalidmonth ? { 'invalidmonth': { value: control.value } } : null;
+   
+     };
+     console.log("invaliddate",invalidmonth);
+   return a
   }
   decimalOnly(event): boolean {
     // this.AmountSelected();
@@ -98,7 +120,8 @@ export class RenewcomponentComponent implements OnInit {
     return true;
   }
   invalidDateValidatorFn(): ValidatorFn {
-    let invalidDate
+    let invalidDate;
+
    var a =  (control: AbstractControl): { [key: string]: any } => {
   
       const date = new Date(control.value);
@@ -127,9 +150,10 @@ export class RenewcomponentComponent implements OnInit {
       this.service.RenewLease(renew, this.files).subscribe((x) => {
         console.log(x);        
         this.Vacateformgroup.reset();
-        this.notificationSnackBarComponent.openSnackBar('Renewed Sucessfully', SnackBarStatus.warning);
+        this.notificationSnackBarComponent.openSnackBar('Renewed Sucessfully', SnackBarStatus.success);
         this.GetLeaseRenewals();
         this.filename=""
+        this.dialogRef.close(true);
       },
         err => {
           console.log(err);
@@ -201,10 +225,11 @@ export class RenewcomponentComponent implements OnInit {
   }
   loadData(row: LeaseRenew,docName:any): void {
     console.log("loaddata call",row);
-this.newbool=true
+  this.newbool=true
     this.selectedID = row.renewalID;
   this.selectedDocId=row.documentID;
 this.selecteddocName=docName;
+
  
       this.Vacateformgroup.patchValue({
         RenewOn: row.renewedOn,
@@ -214,6 +239,7 @@ this.selecteddocName=docName;
         Revisedratio: row.revisedRatio,
 
       });
+      this.Vacateformgroup.disable();
       this.filename=docName;
     
   
@@ -232,6 +258,7 @@ this.selecteddocName=docName;
       });
 }
   newlease(): void {
+    this.Vacateformgroup.enable();
     this.Vacateformgroup.reset();
     console.log("newlease",this.Vacateformgroup.get("RenewOn").value);
     

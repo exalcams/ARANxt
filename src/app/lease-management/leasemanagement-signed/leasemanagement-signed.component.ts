@@ -479,7 +479,7 @@ export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
       });
       dialogRef.afterClosed().subscribe(result => {
         console.log(`Dialog result: ${result}`);
-        if (!result) {
+        if (result) {
           this.GetAllLeases();
         }
       });
@@ -510,7 +510,7 @@ export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
 
       dialogRef.afterClosed().subscribe(result => {
         console.log(`Dialog result: ${result}`);
-        if (!result) {
+        if (result) {
           this.GetAllLeases();
         }
       });
@@ -633,7 +633,27 @@ export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
   }
 
   editSignedDocument(){
+    const dialogConfig: MatDialogConfig = {
+      data: {
+        clientdata:this.clientdata
+      },
+      panelClass: 'upload-signed-dialog',
+      height:'90vh',
+      width:'90%',
+      disableClose: true
+    };
+    const dialogRef = this.dialog.open(UploadSignedDialogComponent, dialogConfig);
+    // const dialogRef = this.dialog.open(UploadSignedDialogComponent, {
+      
 
+    // });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      if (result) {
+        this.GetAllLeases();
+      }
+    });
   }
 
 }

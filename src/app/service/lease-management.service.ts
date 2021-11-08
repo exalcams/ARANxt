@@ -97,6 +97,12 @@ export class LeaseManagementService {
     formData.append('Electrical', signeddetail.electrical.toString());
     formData.append('Condition', signeddetail.condition);
     formData.append('Remarks', signeddetail.remarks);
+    formData.append('AccountType', signeddetail.accountType);
+    formData.append('SPOCPerson', signeddetail.spocPerson);
+    formData.append('ContactNumber1', signeddetail.contactNumber1);
+    formData.append('ContactNumber2', signeddetail.contactNumber2);
+    formData.append('Email1', signeddetail.email1);
+    formData.append('Email2', signeddetail.email2);
 
     formData.append('BankName', signeddetail.bankName);
     formData.append('HolderName', signeddetail.holderName);
@@ -107,6 +113,17 @@ export class LeaseManagementService {
     formData.append('NoticePeriod', signeddetail.noticePeriod.toString());
     formData.append('Site', signeddetail.site.toString());
     formData.append('Space', signeddetail.space.toString());
+    // if(signeddetail.site)
+    // {
+    //   formData.append('Site', signeddetail.site.toString());
+
+    // }
+  
+    // if(signeddetail.space)
+    // {
+    //   formData.append('Space', signeddetail.space.toString());
+
+    // }
     formData.append('Asset', signeddetail.asset.toString());
 
     return this.http.post<any>(this.baseAddress + 'api/Lease/UploadNewLease', formData,
@@ -158,7 +175,7 @@ export class LeaseManagementService {
     const formData: FormData = new FormData();
     formData.append(selectedFiles.name, selectedFiles, selectedFiles.name);
     formData.append('LeaseID', lease.leaseID.toLocaleString());
-    formData.append('RenewedOn', lease.renewedOn.toLocaleString());
+    formData.append('RenewedOn', lease.renewedOn.toDateString());
     formData.append('ExpiryDate', lease.expiryDate.toLocaleString());
     formData.append('ValidFor', lease.validFor.toLocaleString());
     formData.append('RevisedRent', lease.revisedRent.toLocaleString());
