@@ -40,7 +40,7 @@
                             </mat-form-field>
                         </div>
                         <div fxLayout="row" fxFlex class="label_connect form_outer" fxLayoutGap="10px" fxLayoutAlign="space-between center">
-                            <span class="formspan">Notice period</span>
+                            <span class="formspan">Notice period </span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
                                 <mat-select name="modeoftransfer"
                                     formControlName="NoticePeriod">
@@ -95,7 +95,7 @@
                         <div fxLayout="row" fxFlex class="label_connect form_outer" fxLayoutGap="10px" fxLayoutAlign="space-between center">
                             <span class="formspan">Electrical(RR)</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
-                                <input matInput formControlName="Electrical" class="placeholdertext">
+                                <input matInput formControlName="Electrical" class="placeholdertext" (keypress)="AlphabetsAndDecimalonlyOnly($event) ">
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('Electrical').hasError('required')">
                                     Electrical is required
                                 </mat-error>
@@ -350,7 +350,7 @@
         <button mat-raised-button (click)="upload()" class="savebtn" type="button" color="primary">Upload</button>
         <button mat-raised-button type="button" (click)="close()">Cancel</button>
     </mat-dialog-actions> -->
-    <mat-dialog-actions class="m-0 p-16 footer" fxLayoutAlign="end center">
+    <mat-dialog-actions class="m-0 p-16 footer" fxLayoutAlign="end center" >
 
         <button mat-button type="button" class="savebtn btn" color="primary" (click)="upload()">Upload</button>
 

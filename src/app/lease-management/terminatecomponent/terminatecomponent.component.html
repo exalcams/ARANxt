@@ -110,7 +110,7 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Proposed date</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput formControlName="Proposeddate" [matDatepicker]="picker1"
+                                    <input matInput formControlName="Proposeddate" [matDatepicker]="picker1" [min]="currentDate"
                                         class="forminputedit">
 
 
@@ -133,7 +133,7 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Accepted date</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput formControlName="Accepteddate" [matDatepicker]="picker2"
+                                    <input matInput formControlName="Accepteddate" [matDatepicker]="picker2" [min]="AccepeteddateLimit"
                                         class="forminputedit">
                                     <!-- <mat-error *ngIf="Terminateformgroup.get('Accepteddate').hasError('required')"
                                         class="erroredits">
@@ -160,7 +160,8 @@
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Inspection date</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
-                                    <input matInput formControlName="Inspectiondate" [matDatepicker]="picker3"
+                                    <input matInput formControlName="Inspectiondate" [matDatepicker]="picker3" [min]="Terminateformgroup.get('Proposeddate').value"
+                                    [max]="Terminateformgroup.get('Accepteddate').value" 
                                         class="forminputedit">
                                     <!-- <mat-error *ngIf="Terminateformgroup.get('Inspectiondate').hasError('required')"
                                         class="erroredits">
@@ -362,7 +363,7 @@
 
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Remarks</span>
-                                <mat-form-field appearance="outline" fxFlex="50">
+                                <mat-form-field appearance="outline" fxFlex="50" style="padding-top:19px">
                                     <textarea matInput
                                     cdkTextareaAutosize
                                     #autosize="cdkTextareaAutosize"

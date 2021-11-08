@@ -26,7 +26,7 @@ export class UploadSignedDialogComponent implements OnInit {
   noticePeriods:number[]=[1,2,3,4,5,6];
   currentDate:Date=new Date();
   NUMERIC_PATTREN = '^([0-9]{4,10})([.][0-9]{1,2})?$';
-
+  NameFilter:any;
   constructor(private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<UploadSignedDialogComponent>,private service: LeaseManagementService, public snackBar: MatSnackBar,public _datePipe:DatePipe,   private spinner: NgxSpinnerService,
     @Inject(MAT_DIALOG_DATA) public data: any, ) 
@@ -37,15 +37,46 @@ export class UploadSignedDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.SignedFormGroup();
+    if(this.data.clientdata)
+    {
+      console.log("clientdata",this.data);
+      
+      this.Initializeform();
+    }
   }
-
+  Initializeform()
+  {
+this.SignedDocumentDetailsForm.patchValue({
+  Client:this.data.clientdata.clientName,
+  FileName:this.data.clientdata.documentName,
+  ExpiryDate:this.data.clientdata.expiryDate,
+  TotalDeposit:this.data.clientdata.totalDeposit,
+  BankName:this.data.clientdata.bankName,
+  HolderName:this.data.clientdata.holderName,
+  AccountNo:this.data.clientdata.accountNo,
+  ModeofTransfer:this.data.clientdata.modeOfTransfer,
+  IFSCCode:this.data.clientdata.ifsc,
+  Maintenance:this.data.clientdata.manintenace,
+  Electrical:this.data.clientdata.electrical,
+  Condition:this.data.clientdata.condition,
+  Remarks:this.data.clientdata.remarks,
+  NoticePeriod:this.data.clientdata.noticePeriod,
+  AccType:this.data.clientdata.accountType,
+  SPOC:this.data.clientdata.spocPerson,
+  SPOCMobile1:this.data.clientdata.contactNumber1,
+  SPOCMobile2:this.data.clientdata.contactNumber2,
+  SPOCMail1:this.data.clientdata.email1,
+  SPOCMail2:this.data.clientdata.email2,
+});
+// this.SignedDocumentDetailsForm.disable();
+  }
   SignedFormGroup(): void
 {
   
   this.SignedDocumentDetailsForm = this.formBuilder.group({
     Client: ['',Validators.required],
-    FileName :  ['',[Validators.required,Validators.pattern('[a-zA-Z0-9](?:[a-zA-Z0-9 ._-]*[a-zA-Z0-9])?\.[a-zA-Z0-9_-]+$' )]],
-    CreatedOn:['',[Validators.required,this.invalidDateValidatorFn]],
+    FileName :  ['',[Validators.required]],
+    // CreatedOn:['',[Validators.required,this.invalidDateValidatorFn]],
     ExpiryDate: ['',[Validators.required,this.invalidDateValidatorFn]],
 
     TotalDeposit : ['',[Validators.required,Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$' )]],
@@ -57,7 +88,8 @@ export class UploadSignedDialogComponent implements OnInit {
     IFSCCode : ['',[Validators.required,Validators.pattern('^[A-Z]{4}0[A-Z0-9]{6}$')]],
     // AdvanceRequest : ['', Validators.required],
     Maintenance:['',[Validators.required,Validators.pattern('^([0-9]{4,100000})([.][0-9]{1,2})?$')]],
-    Electrical: ['',[Validators.required,Validators.pattern('^[A-Za-z0-9 ]+$' )]],
+    Electrical: ['',Validators.required],
+    // Validators.pattern('^[A-Za-z0-9 ]+$' )]
     Condition: [''],
     Remarks: [''],
     // NoticePeriod: ['',Validators.required],
@@ -142,7 +174,10 @@ onRemove(event): void {
       const signeddetail = new LeaseManagement();
     signeddetail.clientName = this.SignedDocumentDetailsForm.get('Client').value;
     signeddetail.documentName = this.SignedDocumentDetailsForm.get('FileName').value;
-    signeddetail.signedOn = this._datePipe.transform(this.SignedDocumentDetailsForm.get('CreatedOn').value, 'dd-MM-yyyy');
+    const myDate = new Date();
+    console.log("myDate",myDate);
+    
+    signeddetail.signedOn = this._datePipe.transform(myDate , 'dd-MM-yyyy');
     signeddetail.expiryDate = this._datePipe.transform(this.SignedDocumentDetailsForm.get('ExpiryDate').value, 'dd-MM-yyyy');
     signeddetail.totalDeposit = this.SignedDocumentDetailsForm.get('TotalDeposit').value;
     signeddetail.rental = this.SignedDocumentDetailsForm.get('Rental').value;
@@ -156,8 +191,26 @@ onRemove(event): void {
     signeddetail.modeOfTransfer = this.SignedDocumentDetailsForm.get('ModeofTransfer').value;
     signeddetail.ifsc = this.SignedDocumentDetailsForm.get('IFSCCode').value;
     signeddetail.noticePeriod = this.SignedDocumentDetailsForm.get('NoticePeriod').value;
+    signeddetail.accountType = this.SignedDocumentDetailsForm.get('AccType').value;
+    signeddetail.spocPerson = this.SignedDocumentDetailsForm.get('SPOC').value;
+    signeddetail.contactNumber1 = this.SignedDocumentDetailsForm.get('SPOCMobile1').value;
+    signeddetail.contactNumber2 = this.SignedDocumentDetailsForm.get('SPOCMobile2').value;
+    signeddetail.email1 = this.SignedDocumentDetailsForm.get('SPOCMail1').value;
+    signeddetail.email2 = this.SignedDocumentDetailsForm.get('SPOCMail2').value;
     signeddetail.site =this.data.SiteId;
-    signeddetail.space=this.data.SpaceId;
+    signeddetail.space =this.data.SpaceId;
+    // if(this.data.SiteId)
+    // {
+     
+    //   signeddetail.site =this.data.SiteId;
+
+    // }
+    // if(this.data.SpaceId)
+    // {
+     
+    //   signeddetail.space =this.data.SpaceId;
+
+    // }
 
     signeddetail.asset=0;
 
@@ -167,7 +220,7 @@ onRemove(event): void {
     this.SignedDocumentDetailsForm.reset()
       this.spinner.hide();
       this.notificationSnackBarComponent.openSnackBar('Uploaded  successfully', SnackBarStatus.success);
-      this.dialogRef.close(false);
+      this.dialogRef.close(true);
     
  
     },
@@ -225,6 +278,29 @@ onRemove(event): void {
       return false;
     }
     return true;
+  }
+  AlphabetsAndDecimalonlyOnly(event): boolean {
+    let ptDatePattern = "^[A-Za-z0-9 ]+$"
+    const val=this.SignedDocumentDetailsForm.get("Electrical").value;
+    if (event.key.match(ptDatePattern))
+            {
+              return true;
+            }
+            else
+            {
+              return false;
+            }
+    // const charCode = (event.which) ? event.which : event.keyCode;
+    // console.log("charCode",charCode);
+    
+    // if ((charCode >=48 && charCode <=57) || (charCode >=65 && charCode <=90) ||charCode === 8)  {
+    //   return true;
+    // }
+    // else {
+    //   return false;
+    // }
+    
+
   }
   CustomDateValidator(control: FormControl): ValidationErrors | null {
 

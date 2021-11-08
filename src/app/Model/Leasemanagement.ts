@@ -26,6 +26,13 @@ export class LeaseManagement  extends CommonClass
     noticePeriod :number;
     remarks: string;
     status:string;
+    accountType:string;
+    spocPerson:string;
+    contactNumber1:string;
+    contactNumber2:string;
+    email1:string;
+    email2:string;
+
 }
 export class LeaseDocument  extends CommonClass
 {
