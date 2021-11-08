@@ -62,6 +62,7 @@ export class LeasemanagementVacatedComponent implements OnInit {
   ngOnInit(): void {
     this.SignedFormGroup();
     this.GetUnderNoticeLeased();
+    this.sideNavToggle.emit(false);
   }
   GetUnderNoticeLeased(){
     this.spinner.show();

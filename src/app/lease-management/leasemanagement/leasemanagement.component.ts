@@ -16,6 +16,7 @@ import { SendMailDialogComponent } from 'src/app/send-mail-dialog/send-mail-dial
 import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 import { saveAs } from 'file-saver';
 import { CloseDialogComponent } from 'src/app/close-dialog/close-dialog.component';
+import { FormControl } from '@angular/forms';
 export interface UserData {
 
   Documentname: string;
@@ -86,7 +87,7 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
   seletedrows_array: any[] = [];
   SiteId: Item;
   SpaceId: Item;
-  SiteSpaceOfSeleceted :number[] = [];
+  SiteSpaceOfSeleceted: number[] = [];
   toggleSideNav(value: boolean) {
     this.toggleFold.emit(!value);
   }
@@ -100,6 +101,9 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
 
   editorConfig: any;
   isDataLoaded: boolean = false;
+  fileNameNew:FormControl=new FormControl('Document 1');
+  fileNameEdit1:FormControl=new FormControl();
+  fileNameEdit2:FormControl=new FormControl();
   constructor(private dialog: MatDialog, private service: LeaseManagementService,
     private spinner: NgxSpinnerService, private cdr: ChangeDetectorRef,
     private snackBar: MatSnackBar, private socialAuthService: SocialAuthService) {
@@ -108,33 +112,33 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.getAllDrafts();
-
     this.editorConfig = {
       height: window.innerHeight - 328 + 'px',
     }
 
     this.GetFromHome(this.item);
 
-    setInterval(()=>{
+    setInterval(() => {
       this.autoSaveDraft();
-    },5000);
+    }, 5000);
 
   }
   ngOnChanges(changes: SimpleChanges): void {
     // console.log("onchangesDecoratorValue",this.item);
     console.log("changes", changes.item.currentValue);
     this.GetFromHome(changes.item.currentValue);
+    this.switchSideNav.emit(false);
   }
   GetFromHome(eve) {
     // console.log("decoratorvalue",  this.item);
-    this.SiteSpaceOfSeleceted=[];
+    this.SiteSpaceOfSeleceted = [];
     if (eve.length > 0) {
       if (eve[0]) {
         this.SiteId = eve[0];
         this.SiteSpaceOfSeleceted.push(eve[0]);
         console.log("SiteId", this.SiteId);
       }
-       if (eve[1]) {
+      if (eve[1]) {
         this.SpaceId = eve[1];
         this.SiteSpaceOfSeleceted.push(eve[1]);
         console.log("SpaceId", this.SpaceId);
@@ -147,11 +151,15 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
     this.service.GetLeaseDrafts().subscribe(res => {
       this.LeaseDrafts = res;
       this.dataSource = new MatTableDataSource(this.LeaseDrafts);
+      //Filter Predicate
+      this.dataSource.filterPredicate = function (data, filter: string): boolean {
+        return data.documentOwner.toLowerCase().includes(filter) || data.documentType.toLowerCase().includes(filter) || data.documentName.toLowerCase().includes(filter);
+      };
       this.draftdata_filter = this.LeaseDrafts;
       this.selection = new SelectionModel<any>(true, []);
       this.isDataLoaded = true;
       this.spinner.hide();
-      // console.log("LeaseDrafts", res);
+      console.log("LeaseDrafts", res);
     },
       err => {
         this.spinner.hide();
@@ -203,14 +211,14 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
   getrow(eve) {
     this.seletedrows_array.push(eve)
   }
-  docName:string="";
+  docName: string = "";
   onSelect(event): void {
     console.log(event);
     this.files = [];
     this.files.push(...event.addedFiles);
-    this.docName=this.files[0].name;
+    this.docName = this.files[0].name;
     this.UploadDraftDocument();
-    this.docName="";
+    this.docName = "";
   }
 
   onRemove(event): void {
@@ -218,12 +226,10 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
     this.files.splice(this.files.indexOf(event), 1);
   }
 
-  applyFilter(event: Event): void {
-    const filterValue = (event.target as HTMLInputElement).value;
-    console.log("this.draftdata_filter", this.draftdata_filter);
-    this.draftdata_filter.forEach(function (x) { delete x.documentContent });
-    this.dataSource = new MatTableDataSource(this.draftdata_filter);
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  applyFilter(filterValue: string): void {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
 
   }
   chooseIcons(eve): void {
@@ -376,6 +382,7 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
         dialogRef.disableClose = true;
         dialogRef.afterClosed().subscribe(res => {
           if (res) {
+            this.leaseDraft1.documentID = 0;
             this.leaseDraft1.documentName = res.documentName;
             this.leaseDraft1.documentOwner = res.documentOwner;
             this.leaseDraft1.documentType = res.documentType;
@@ -412,10 +419,11 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
         dialogRef.disableClose = true;
         dialogRef.afterClosed().subscribe(res => {
           if (res) {
-            this.leaseDraft1.documentName = res.documentName;
-            this.leaseDraft1.documentOwner = res.documentOwner;
-            this.leaseDraft1.documentType = res.documentType;
-            this.saveLeaseDraft(this.leaseDraft1);
+            this.leaseDraft2.documentID = 0;
+            this.leaseDraft2.documentName = res.documentName;
+            this.leaseDraft2.documentOwner = res.documentOwner;
+            this.leaseDraft2.documentType = res.documentType;
+            this.saveLeaseDraft(this.leaseDraft2);
           }
 
         })
@@ -430,7 +438,7 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
     const dialogRef = this.dialog.open(DraftDialogComponent,
       {
         panelClass: "draft-dialog",
-        data:{name:this.docName}
+        data: { name: this.docName }
       }
     );
     dialogRef.disableClose = true;
@@ -465,12 +473,11 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
         const dialogConfig: MatDialogConfig = {
           data: {
             title: "Close",
-            body: "Are you sure want to close without saving",
+            body: "Are you sure want to close without saving?",
           },
           panelClass: 'close-dialog',
           width: '24%',
           maxWidth: '85.5vw ',
-          height: '192px',
           disableClose: true
         };
         const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
@@ -517,7 +524,6 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
           panelClass: 'close-dialog',
           width: '24%',
           maxWidth: '85.5vw ',
-          height: '195px',
           disableClose: true
         };
         const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
@@ -564,7 +570,6 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
           panelClass: 'close-dialog',
           width: '24%',
           maxWidth: '85.5vw ',
-          height: '195px',
           disableClose: true
         };
         const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
@@ -608,7 +613,6 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
           panelClass: 'close-dialog',
           width: '24%',
           maxWidth: '85.5vw ',
-          height: '195px',
           disableClose: true
         };
         const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
@@ -650,7 +654,6 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
           panelClass: 'close-dialog',
           width: '24%',
           maxWidth: '85.5vw ',
-          height: '195px',
           disableClose: true
         };
         const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
@@ -691,7 +694,6 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
           panelClass: 'close-dialog',
           width: '379px',
           maxWidth: '85.5vw ',
-          height: '195px',
           disableClose: true
         };
         const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);
@@ -729,7 +731,6 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
           panelClass: 'close-dialog',
           width: '24%',
           maxWidth: '85.5vw ',
-          height: '195px',
           disableClose: true
         };
 
@@ -779,7 +780,6 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
           panelClass: 'close-dialog',
           width: '24%',
           maxWidth: '85.5vw ',
-          height: '195px',
           disableClose: true
         };
 
@@ -827,7 +827,6 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
           panelClass: 'close-dialog',
           width: '24%',
           maxWidth: '85.5vw ',
-          height: '195px',
           disableClose: true
         };
 
@@ -902,10 +901,12 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
     this.spinner.show();
     this.service.GetLeaseDraftDocument(row.documentID).subscribe(res => {
       this.spinner.hide();
+      this.switchSideNav.emit(true);
       this.selectedPage = 'edit';
       this.editor1 = true;
       this.editor2 = false;
       this.leaseDraft1 = res;
+      this.fileNameEdit1.setValue(row.documentName);
       this.editor1change = false;
     },
       err => {
@@ -918,6 +919,7 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
       this.notificationSnackBarComponent.openSnackBar("Plese select document to edit!", SnackBarStatus.warning);
     }
     else {
+      this.switchSideNav.emit(true);
       console.log("openMultiDraftEditor", this.selection.selected);
       this.selectedPage = 'edit';
       if (this.selection.selected.length >= 2) {
@@ -925,12 +927,14 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
           console.log(" this.leaseDraft1", this.leaseDraft1);
 
           this.leaseDraft1 = res;
+          this.fileNameEdit1.setValue(this.selection.selected[0].documentName);
           this.editor1 = true;
           this.cdr.detectChanges();
         });
         this.service.GetLeaseDraftDocument(this.selection.selected[1].documentID).subscribe(res => {
           console.log(" this.leaseDraft2", this.leaseDraft2);
           this.leaseDraft2 = res;
+          this.fileNameEdit2.setValue(this.selection.selected[1].documentName);
           this.editor2 = true;
           this.cdr.detectChanges();
         })
@@ -1049,40 +1053,40 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
   sideNavStatus($event) {
     this.switchSideNav.emit($event);
   }
-  autoSaveDraft(){
-    if(this.editor1change){
-      var doc=new LeaseDraftDocumentView();
-      doc.documentID=this.leaseDraft1.documentID;
-      doc.documentContent=this.leaseDraft1.documentContent;
-      this.saveLeaseDraftDocument(doc,1);
+  autoSaveDraft() {
+    if (this.editor1change) {
+      var doc = new LeaseDraftDocumentView();
+      doc.documentID = this.leaseDraft1.documentID;
+      doc.documentContent = this.leaseDraft1.documentContent;
+      this.saveLeaseDraftDocument(doc, 1);
     }
-    if(this.editor2change){
-      var doc=new LeaseDraftDocumentView();
-      doc.documentID=this.leaseDraft2.documentID;
-      doc.documentContent=this.leaseDraft2.documentContent;
-      this.saveLeaseDraftDocument(doc,2);
+    if (this.editor2change) {
+      var doc = new LeaseDraftDocumentView();
+      doc.documentID = this.leaseDraft2.documentID;
+      doc.documentContent = this.leaseDraft2.documentContent;
+      this.saveLeaseDraftDocument(doc, 2);
     }
   }
-  isSaved1:boolean=false;
-  isSaved2:boolean=false;
-  saveLeaseDraftDocument(draftDocument:LeaseDraftDocumentView,editor:number){
-    if(editor==1){
-      this.isSaved1=true;
+  isSaved1: boolean = false;
+  isSaved2: boolean = false;
+  saveLeaseDraftDocument(draftDocument: LeaseDraftDocumentView, editor: number) {
+    if (editor == 1) {
+      this.isSaved1 = true;
     }
-    else{
-      this.isSaved2=true;
+    else {
+      this.isSaved2 = true;
     }
-    this.service.SaveLeaseDraftDocument(draftDocument).subscribe(()=>{
+    this.service.SaveLeaseDraftDocument(draftDocument).subscribe(() => {
       console.log("document saved");
-      if(editor==1){
-        this.editor1change=false;
+      if (editor == 1) {
+        this.editor1change = false;
       }
-      else{
-        this.editor2change=false;
+      else {
+        this.editor2change = false;
       }
     },
-    err=>{
-      console.log(err);
-    });
+      err => {
+        console.log(err);
+      });
   }
 }

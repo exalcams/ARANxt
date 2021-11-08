@@ -230,7 +230,7 @@ table {
 }
 .search_iocn
 {
-    color: #98abc4;
+    color: #acacac;
     transform: scale(0.7);
     margin-left: 12px;
     font-family: 'Material Icons';
@@ -258,6 +258,7 @@ tr.mat-header-row {
   }
   .mat-cell, .mat-header-cell {
     border: none !important;
+    font-family: 'poppins-semi';
     color:#6e6d7a;
   }
 .title
@@ -340,4 +341,8 @@ tr.mat-header-row {
   .datarow{
     font-size: 10px !important;
     font-family: 'poppins-semi' !important;
+  }
+  .file-name-field{
+      font-size: 11px;
+      font-family: 'poppins-semi' !important;
   }

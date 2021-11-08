@@ -37,6 +37,13 @@
                             class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded">Models</div>
                     </div>
 
+                    <div fxLayout="row" class="inner_menus_home">
+                        <div style="margin-left: 8px;">
+                            <img style="width: 14px;vertical-align: middle;" src="./assets/rental_icon.svg">
+                        </div>
+                        <div class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded">Rental</div>
+                    </div>
+
                     <div fxLayout="row" (click)="currentPage='lease';"
                         [ngClass]="currentPage=='lease'?'inner_menus_home_highlight':'inner_menus_home'">
 
@@ -50,16 +57,14 @@
                             style="margin-left: 16px;" *ngIf="!isFolded">Lease</div>
                     </div>
 
+                    <div class="hdivider"></div>
+
                     <div fxLayout="row" class="inner_menus_home">
                         <div style="margin-left: 8px;">
-                            <img style="width: 14px;vertical-align: middle;" src="./assets/rental_icon.svg">
+                            <img style="width: 14px;vertical-align: middle;" src="./assets/1621561.svg">
                         </div>
-                        <div class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded">Rental</div>
+                        <div class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded">Admin panel</div>
                     </div>
-
-
-                    <div style="margin-top:12px;margin-bottom: 12px;" class="menu">Others</div>
-
 
                     <div fxLayout="row" class="inner_menus_home">
                         <div style="margin-left: 8px;">
@@ -70,11 +75,25 @@
 
                     <div fxLayout="row" class="inner_menus_home">
                         <div style="margin-left: 8px;">
+                            <img style="width: 14px;vertical-align: middle;" src="./assets/Notification (1).svg">
+                        </div>
+                        <div class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded">Notification</div>
+                    </div>
+
+                    <div fxLayout="row" class="inner_menus_home">
+                        <div style="margin-left: 8px;">
                             <img style="width: 14px;vertical-align: middle;" src="./assets/privacy_icon.svg">
                         </div>
                         <div class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded">Privacy Policy</div>
                     </div>
-                    
+
+                    <div fxLayout="row" class="inner_menus_home">
+                        <div style="margin-left: 8px;">
+                            <img style="width: 14px;vertical-align: middle;" src="./assets/2956788.svg">
+                        </div>
+                        <div class="inner_menus" style="margin-left: 16px;" *ngIf="!isFolded">Settings</div>
+                    </div>
+
                 </div>
                 <!-- <div>
                     <img class="building" src="./assets/building.png">
@@ -128,12 +147,7 @@
                     <div><img class="main_model" src="./assets/down_arrow1.svg"></div>
                 </div>
                 <div *ngIf="!sidemenu" fxLayout="column">
-                    <div class="menu" style="margin: 5% 0% 0% 8%;">
-                        Sites
-                    </div>
-                    <!-- <div style="margin-top: 5%;" fxLayout="row" fxLayoutAlign="center center">
-                        <mat-divider class="divider2"></mat-divider>
-                    </div> -->
+
                     <div fxLayout="row" fxLayoutAlign="start center">
                         <div fxLayout="row" class="main_input_field" fxLayoutAlign="start center">
                             <img style="vertical-align: -webkit-baseline-middle;
@@ -149,7 +163,7 @@
 
                             <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding
                                 matTreeNodePaddingIndent="8px" class="example-tree-node"
-                                [ngStyle]="{'background-color':selectedNode == node.name ? '#f9f8fe' : '#f4f4f4' }">
+                                [ngStyle]="{'background-color':selectedNode == node.name ? '#ebe5ff' : '#f4f4f4' }">
                                 <li class="mat-tree-node" style="cursor: pointer;" (click)="setSelectedNode(node)">
                                     <div class="mat-tree-node">
                                         <button mat-icon-button matTreeNodeToggle recursive="true"
@@ -196,7 +210,7 @@
                         <!-- <div>{{selectedNode}}</div> -->
                         <!-- <div><span>{{option.name}}</span><span>>></span></div> -->
                         <span *ngFor="let option of duplicateselecetedarray;let indexOfelement=index;">
-                            <span *ngIf="indexOfelement>0">>></span>
+                            <span *ngIf="indexOfelement>0">&nbsp; >> &nbsp;</span>
                             <span>{{option.name}}</span>
 
                             <!-- <div>{{indexOfelement}}</div> -->

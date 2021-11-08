@@ -64,6 +64,7 @@ export class TerminateComponent implements OnInit {
   ngOnInit(): void {
     this.SignedFormGroup();
     this.GetTerminatedLeases();
+    this.sideNavToggle.emit(false);
   }
 
   GetTerminatedLeases(){

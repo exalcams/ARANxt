@@ -60,7 +60,8 @@ export class LeasemanagementExpiryComponent implements OnInit {
 
   ngOnInit(): void {
     this.SignedFormGroup();
-    this.GetExpiryLeases()
+    this.GetExpiryLeases();
+    this.sideNavToggle.emit(false);
   }
 
   isAllSelected(): any {

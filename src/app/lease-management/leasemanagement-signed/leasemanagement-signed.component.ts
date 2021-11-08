@@ -77,6 +77,7 @@ export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
     this.SignedFormGroup();
     this.GetAllLeases();
     this.GetNodeFromLease(this.item);
+    this.sideNavToggle.emit(false);
   }  
   ngOnChanges(changes: SimpleChanges): void {
     // console.log("onchangesDecoratorValue",this.item);

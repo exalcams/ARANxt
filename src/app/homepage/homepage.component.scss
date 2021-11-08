@@ -101,7 +101,11 @@
     overflow-y: auto;
     margin: 8px 0;
 }
-
+.hdivider{
+    width: 100%;
+    border-top: 1px solid #f3f3f4;
+    margin: 12px 0;
+}
 
 .header{color: #6e6d7a;font-size: 11px; font-family: 'poppins-semi' !important;font-weight: 500;line-height: 3.5;}
 .header_bold{color: #0d0c22;font-size: 11px; font-family: 'poppins-semi' !important;}

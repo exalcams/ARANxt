@@ -7,8 +7,8 @@
     <mat-dialog-content class="content" fusePerfectScrollbar>
         <form fxLayout="column" class="form" [formGroup]="form">
             <mat-radio-group class="radio-group" aria-label="Select a document type" fxLayoutGap="32px" formControlName="documentType">
-                <mat-radio-button color="primary" value="Template" [checked]=radio1_check class="radio" (change)="radio1_check=!radio1_check;radio2_check=!radio2_check">Template</mat-radio-button>
-                <mat-radio-button color="primary" value="Draft" [checked]=radio2_check class="radio" (change)="radio1_check=!radio1_check;radio2_check=!radio2_check">Draft</mat-radio-button>
+                <mat-radio-button color="primary" value="Template" class="radio">Template</mat-radio-button>
+                <mat-radio-button color="primary" value="Draft" class="radio">Draft</mat-radio-button>
             </mat-radio-group>
             <mat-form-field appearance="fill" class="fields">
                 <mat-label>Document Name</mat-label>
