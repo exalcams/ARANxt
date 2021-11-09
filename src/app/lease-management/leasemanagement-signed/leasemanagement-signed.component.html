@@ -2,13 +2,16 @@
 
   <div fxFlex fxLayout="row" fxLayoutGap="10px">
     <div fxFlex="70" class="btn_bg cursor" fxLayout="row">
-      <div matRipple matRippleCentered="true" class="ripple_outer"  fxLayoutAlign="center center" (click)="openDialogrenew()">
+      <div matRipple matRippleCentered="true" class="ripple_outer" fxLayoutAlign="center center"
+        (click)="openDialogrenew()">
         <span class="new_txt">Renew</span>
       </div>
-      <div matRipple matRippleCentered="true" class="ripple_outer"  fxLayoutAlign="center center" (click)="openDialogvacate()">
+      <div matRipple matRippleCentered="true" class="ripple_outer" fxLayoutAlign="center center"
+        (click)="openDialogvacate()">
         <span class="new_txt">Vacate</span>
       </div>
-      <div matRipple matRippleCentered="true" class="ripple_outer"  fxLayoutAlign="center center" (click)="openDialogterminate()">
+      <div matRipple matRippleCentered="true" class="ripple_outer" fxLayoutAlign="center center"
+        (click)="openDialogterminate()">
         <span class="new_txt">Terminate</span>
       </div>
 
@@ -41,10 +44,11 @@
   </div>
   <mat-sidenav-container class="example-container" autosize hasBackdrop="false">
     <mat-sidenav #drawer class="example-sidenav " position="end" mode="side" (openedChange)="drawerToggled($event)">
-      <div style="width: 100%;height: 100% !important;">
+      <div class="top-formbg">
+
         <div class="form_bg" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
           <mat-toolbar class="arrowtoolbar" fxLayout="row" fxLayoutAlign="space-between center">
-            <img class="toggleimage" (click)="drawer.toggle();toggleSideNav();" src="./assets/slide_close_arrow.svg" >
+            <img class="toggleimage" (click)="drawer.toggle();toggleSideNav();" src="./assets/slide_close_arrow.svg">
             <button mat-icon-button color="primary" (click)="editSignedDocument()">
           <mat-icon  color="black"  style="font-family: Material Icons;" class="edticon">create</mat-icon> 
             </button>
@@ -79,7 +83,7 @@
           </div>
 
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">Total deposit</div>
+            <div fxFlex="50" class="labelcss">Advance amount</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="variableTotalDeposit">{{variableTotalDeposit}}</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="!variableTotalDeposit">-</div>
           </div>
@@ -94,12 +98,22 @@
             <div fxFlex="50" class="labelcssvalue" *ngIf="!variableBankName">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">Holder name</div>
+            <div fxFlex="50" class="labelcss">IFSC code</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="varIFSCCode">{{varIFSCCode}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!varIFSCCode">-</div>
+          </div>
+          <div fxLayout="row" fxFlex="100" class="clientview">
+            <div fxFlex="50" class="labelcss">Account type</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="vCondition">AccType</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!vCondition">-</div>
+          </div>
+          <div fxLayout="row" fxFlex="100" class="clientview">
+            <div fxFlex="50" class="labelcss">Account holder name</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="variableHolderName">{{variableHolderName}}</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="!variableHolderName">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">Account No.</div>
+            <div fxFlex="50" class="labelcss">Account no</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="variableAccountNo">{{variableAccountNo}}</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="!variableAccountNo">-</div>
           </div>
@@ -117,7 +131,7 @@
             <div fxFlex="50" class="labelcss">Advance request</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="vAdvanceRequest">{{vAdvanceRequest}}</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="!vAdvanceRequest">-</div>
-          </div>
+          </div> -->
           <div fxLayout="row" fxFlex="100" class="clientview">
             <div fxFlex="50" class="labelcss">Maintenance</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="vMaintenance">{{vMaintenance}}</div>
@@ -139,13 +153,38 @@
             <div fxFlex="50" class="labelcssvalue" *ngIf="vCondition">{{vCondition}}</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="!vCondition">-</div>
           </div>
+          <div fxLayout="row" fxFlex="100" class="clientview">
+            <div fxFlex="50" class="labelcss">SPOC person</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="vCondition">SpocPerson</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!vCondition">-</div>
+          </div>
+          <div fxLayout="row" fxFlex="100" class="clientview">
+            <div fxFlex="50" class="labelcss">Contact1</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="vCondition">Contact1</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!vCondition">-</div>
+          </div>
+          <div fxLayout="row" fxFlex="100" class="clientview">
+            <div fxFlex="50" class="labelcss">Contact2</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="vCondition">Contact2</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!vCondition">-</div>
+          </div>
+          <div fxLayout="row" fxFlex="100" class="clientview">
+            <div fxFlex="50" class="labelcss">Email1</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="vCondition">Email1</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!vCondition">-</div>
+          </div>
+          <div fxLayout="row" fxFlex="100" class="clientview">
+            <div fxFlex="50" class="labelcss">Email2</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="vCondition">Email2</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!vCondition">-</div>
+          </div>
         </div>
       </div>
     </mat-sidenav>
 
     <mat-sidenav-content *ngIf="valuetable">
       <div fxLayout="row" fxLayoutGap="10px" style="width: 100%;">
-        <div fxFlex="100" style="overflow-x: scroll !important;">
+        <div fxFlex="100">
           <table mat-table [dataSource]="dataSource" colspan=20
             style="overflow-x: scroll !important;width:100% !important;" matSort class="table example-container">
 
@@ -156,12 +195,13 @@
                   [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
                 </mat-checkbox> -->
               </th>
-              <td mat-cell *matCellDef="let row;index as i;" matTooltip={{row.status}}>
+              <td mat-cell *matCellDef="let row;index as i;">
                 <div fxLayout="row" fxLayoutAlign="start center">
                   <!-- <mat-checkbox color="primary" [checked]="selectedRowIndex2==row.leaseID">  
                   </mat-checkbox> -->
                   <!-- (change)="$event ? selection.toggle(row) : null"  (click)="changeSelection(row)" -->
-                  <div [ngStyle]="{'background-color': bulletcolorwidth(row.status,row.expiryDate)}" class="circlerow"></div>
+                  <div [ngStyle]="{'background-color': bulletcolorwidth(row.status,row.expiryDate)}" class="circlerow"
+                    matTooltip={{row.status}}></div>
                 </div>
               </td>
             </ng-container>
@@ -197,7 +237,7 @@
             <ng-container matColumnDef="Action">
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: center;"> Action </th>
               <td mat-cell *matCellDef="let row;let i=index" class="datarow">
-                <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                <div fxLayout="row" fxLayoutAlign="space-between center">
 
                   <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px"
                     (click)="DownloadLeaseDocument(row)" class="pointer" matTooltip="Download">

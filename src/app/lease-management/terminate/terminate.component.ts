@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { LeaseManagement } from 'src/app/Model/Leasemanagement';
+import { LeaseManagement, LeaseTerminate } from 'src/app/Model/Leasemanagement';
 import { NotificationSnackBarComponent } from 'src/app/notification/notification-snack-bar/notification-snack-bar.component';
 import { LeaseManagementService } from 'src/app/service/lease-management.service';
 import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/notification-snackbar-status-enum';
@@ -54,10 +54,44 @@ export class TerminateComponent implements OnInit {
   clientdata: LeaseManagement;
   notificationSnackBarComponent: NotificationSnackBarComponent;
   sideNavStatus:boolean;
+  variableclient:any;
+  variablefilename:any;
+  variableCreatedOn:any;
+  variableExpiryDate:any;
+  variableTotalDeposit:any;
+  variableRental:any;
+  variableBankName:any;
+  variableHolderName:any;
+  variableAccountNo:any;
+  variaModeofTransfer:any;
+  varIFSCCode:any;
+  vAdvanceRequest:any;
+  vMaintenance:any;
+  vElectrical:any;
+  vCondition:any;
+  vRemarks:any;
+  proposeddate: any;
+  accepteddate: any;
+  inspectiondate: any;
+  inspectedby: any;
+  rentifany: any;
+  maintenancedue: any;
+  damagerecovery: any;
+  advancebalance: any;
+  expectedduedate: any;
+  modeoftransfer: any;
+  returnableassets: any;
+  verifiedby: any;
+  remarks: any;
+  penaltyamt: any;
+  penaltyfrom: any;
+  penaltyto: any;
+  terminatedatasextra: any;
+
   @ViewChild ('drawer') sidenav :MatDrawer;
   constructor(private formBuilder: FormBuilder,
      private datepipe: DatePipe,private service:LeaseManagementService,public dialog: MatDialog,
-     private spinner:NgxSpinnerService, public snackBar: MatSnackBar) {
+     private spinner:NgxSpinnerService, public snackBar: MatSnackBar,private serviceterminate: LeaseManagementService) {
       this.notificationSnackBarComponent = new NotificationSnackBarComponent(this.snackBar);
       }
 
@@ -259,23 +293,12 @@ buttonvaluetable(){
   
  
 }
-variableclient:any;
-variablefilename:any;
-variableCreatedOn:any;
-variableExpiryDate:any;
-variableTotalDeposit:any;
-variableRental:any;
-variableBankName:any;
-variableHolderName:any;
-variableAccountNo:any;
-variaModeofTransfer:any;
-varIFSCCode:any;
-vAdvanceRequest:any;
-vMaintenance:any;
-vElectrical:any;
-vCondition:any;
-vRemarks:any;
+
 docdata(ind){
+  this.serviceterminate.GetTerminatepopuplease(ind.leaseID).subscribe(data => {
+    console.log("terminatepopupdata", data)
+    this.terminatedata(<LeaseTerminate>data)
+  })
   this.clientdata = ind;
  console.log(this.clientdata.clientName)
  this.variableclient = this.clientdata.clientName
@@ -301,6 +324,26 @@ docdata(ind){
   this.sidenav.toggle();
  }
  this.sideNavToggle.emit(true);
+}
+
+terminatedata(terminatedatas: LeaseTerminate) {
+  console.log(terminatedatas)
+  console.log(terminatedatas.penaltyFrom)
+  this.proposeddate = terminatedatas.proposedDate;
+  this.accepteddate = terminatedatas.acceptedDate;
+  this.inspectiondate = terminatedatas.inspectionDate;
+  this.inspectedby = terminatedatas.inspectedBy;
+  this.rentifany = terminatedatas.rentDue;
+  this.maintenancedue = terminatedatas.maintenanceDue;
+  this.damagerecovery = terminatedatas.damageRecovery;
+  this.advancebalance = terminatedatas.advanceBalance;
+  this.modeoftransfer = terminatedatas.modeOfTransfer;
+  this.returnableassets = terminatedatas.returnableAssets;
+  this.verifiedby = terminatedatas.verifiedBy;
+  this.remarks = terminatedatas.remarks;
+  this.penaltyamt = terminatedatas.penaltyAmount;
+  this.penaltyfrom = terminatedatas.penaltyFrom;
+  this.penaltyto = terminatedatas.penaltyTo;
 }
 openDialog() {
   const dialogRef = this.dialog.open(ShiftConfirmationComponent,{

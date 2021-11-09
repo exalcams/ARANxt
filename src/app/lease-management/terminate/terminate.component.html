@@ -5,7 +5,8 @@
     <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="30">
       <div fxLayout="row" class="btn_bg2" fxFlex="100">
         <mat-icon matSuffix class="serachicon_search">search</mat-icon>
-        <input matInput class="search_input1 forminputedit" placeholder="Search Document"  autocomplete="off" (keyup)="applyFilter($event)">
+        <input matInput class="search_input1 forminputedit" placeholder="Search Document" autocomplete="off"
+          (keyup)="applyFilter($event)">
       </div>
     </div>
   </div>
@@ -16,101 +17,103 @@
 
   <mat-sidenav-container class="example-container" autosize hasBackdrop="false">
     <mat-sidenav #drawer class="example-sidenav " position="end" mode="side" (openedChange)="drawerToggled($event)">
-      <div fxLayout="column" fxLayoutAlign="space-evenly center" fxlayoutGap="10px"
-        style="width: 100%;height: 100% !important;">
+      <div class="top-formbg">
 
         <div class="form_bg" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
 
           <mat-toolbar class="arrowtoolbar" fxLayout="row" fxLayoutAlign="start center">
-            <img class="toggleimage"   (click)="drawer.toggle();toggleSideNav();" src="./assets/slide_close_arrow.svg">
-          </mat-toolbar> 
+            <img class="toggleimage" (click)="drawer.toggle();toggleSideNav();" src="./assets/slide_close_arrow.svg">
+          </mat-toolbar>
 
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">Client Name</div>
-            <div fxFlex="50" class="labelcssvalue"  *ngIf="variableclient">{{variableclient}}</div>
-            <div fxFlex="50" class="labelcssvalue"  *ngIf="!variableclient">-</div>
+            <div fxFlex="50" class="labelcss">Client name</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="variableclient">{{variableclient}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!variableclient">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">Client Name</div>
-            <div fxFlex="50" class="labelcssvalue"  *ngIf="variableclient">{{variableclient}}</div>
-            <div fxFlex="50" class="labelcssvalue"  *ngIf="!variableclient">-</div>
+            <div fxFlex="50" class="labelcss">Client name</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="variableclient">{{variableclient}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!variableclient">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">FileName</div>
-            <div fxFlex="50" class="labelcssvalue"  *ngIf="variablefilename">{{variablefilename}}</div>
-            <div fxFlex="50" class="labelcssvalue"  *ngIf="!variablefilename">-</div>
+            <div fxFlex="50" class="labelcss">File name</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="variablefilename">{{variablefilename}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!variablefilename">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss" >Creation Date</div>
-            <div fxFlex="50" class="labelcssvalue" *ngIf="variableCreatedOn">{{variableCreatedOn | date: 'dd.MM.yyyy'}}</div>
-            <div fxFlex="50" class="labelcssvalue" *ngIf="!variableCreatedOn">-</div>
+            <div fxFlex="50" class="labelcss">Proposed date</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="proposeddate">{{proposeddate | date: 'dd.MM.yyyy'}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!proposeddate">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss" >Expiry Date</div>
-            <div fxFlex="50" class="labelcssvalue" *ngIf="variableExpiryDate">{{variableExpiryDate | date: 'dd.MM.yyyy'}}</div>
-            <div fxFlex="50" class="labelcssvalue" *ngIf="!variableExpiryDate">-</div>
-          </div>
-   
-          <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">Total Deposit</div>
-            <div fxFlex="50" class="labelcssvalue" *ngIf="variableTotalDeposit">{{variableTotalDeposit}}</div>
-            <div fxFlex="50" class="labelcssvalue" *ngIf="!variableTotalDeposit">-</div>
+            <div fxFlex="50" class="labelcss">Accepted date</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="accepteddate">{{accepteddate | date: 'dd.MM.yyyy'}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!accepteddate">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">Rental</div>
-            <div fxFlex="50" class="labelcssvalue" *ngIf="variableRental">{{variableRental}}</div>
-            <div fxFlex="50" class="labelcssvalue" *ngIf="!variableRental">-</div>
+            <div fxFlex="50" class="labelcss">Inspected date</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="inspectiondate">{{inspectiondate | date: 'dd.MM.yyyy'}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!inspectiondate">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">Bank Name</div>
-            <div fxFlex="50" class="labelcssvalue" *ngIf="variableBankName">{{variableBankName}}</div>
-            <div fxFlex="50" class="labelcssvalue" *ngIf="!variableBankName">-</div>
+            <div fxFlex="50" class="labelcss">Inspected by</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="inspectedby">{{inspectedby}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!inspectedby">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">Holder Name</div>
-            <div fxFlex="50" class="labelcssvalue" *ngIf="variableHolderName">{{variableHolderName}}</div>
-            <div fxFlex="50" class="labelcssvalue" *ngIf="!variableHolderName">-</div>
+            <div fxFlex="50" class="labelcss">Rent due</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="rentifany">{{rentifany}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!rentifany">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">Account No.</div>
-            <div fxFlex="50" class="labelcssvalue" *ngIf="variableAccountNo">{{variableAccountNo}}</div>
-            <div fxFlex="50" class="labelcssvalue" *ngIf="!variableAccountNo">-</div>
+            <div fxFlex="50" class="labelcss">Maintenance due</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="maintenancedue">{{maintenancedue}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!maintenancedue">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">Mode of Transfer</div>
-            <div fxFlex="50" class="labelcssvalue"  *ngIf="variaModeofTransfer">{{variaModeofTransfer}}</div>
-            <div fxFlex="50" class="labelcssvalue" *ngIf="!variaModeofTransfer">-</div>
+            <div fxFlex="50" class="labelcss">Damage recovery</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="damagerecovery">{{damagerecovery}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!damagerecovery">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">IFSC Code</div>
-            <div fxFlex="50" class="labelcssvalue"  *ngIf="varIFSCCode">{{varIFSCCode}}</div>
-            <div fxFlex="50" class="labelcssvalue"  *ngIf="!varIFSCCode">-</div>
+            <div fxFlex="50" class="labelcss">Advance balance</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="advancebalance">{{advancebalance}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!advancebalance">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div  fxFlex="50"class="labelcss">Advance Request</div>
-            <div  fxFlex="50"class="labelcssvalue" *ngIf="vAdvanceRequest">{{vAdvanceRequest}}</div>
-            <div  fxFlex="50"class="labelcssvalue" *ngIf="!vAdvanceRequest">-</div>
+            <div fxFlex="50" class="labelcss">Mode of transfer</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="modeoftransfer">{{modeoftransfer}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!modeoftransfer">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div  fxFlex="50"class="labelcss" >Maintenance</div>
-            <div  fxFlex="50"class="labelcssvalue"  *ngIf="vMaintenance">{{vMaintenance}}</div>
-            <div  fxFlex="50"class="labelcssvalue"  *ngIf="!vMaintenance">-</div>
+            <div fxFlex="50" class="labelcss">Returnable assets</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="returnableassets">{{returnableassets}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!returnableassets">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div  fxFlex="50"class="labelcss" >Remarks</div>
-            <div  fxFlex="50"class="labelcssvalue" *ngIf="vRemarks">{{vRemarks}}</div>
-            <div  fxFlex="50"class="labelcssvalue" *ngIf="!vRemarks">-</div>
+            <div fxFlex="50" class="labelcss">Verified by</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="verifiedby">{{verifiedby}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!verifiedby">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div  fxFlex="50"class="labelcss">Electrical(RR)</div>
-            <div  fxFlex="50"class="labelcssvalue" *ngIf="vElectrical">{{vElectrical}}</div>
-            <div  fxFlex="50"class="labelcssvalue" *ngIf="!vElectrical">-</div>
+            <div fxFlex="50" class="labelcss">Remarks</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="remarks">{{remarks}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!remarks">-</div>
           </div>
-        
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div  fxFlex="50"class="labelcss" >Condition</div>
-            <div  fxFlex="50"class="labelcssvalue" *ngIf="vCondition">{{vCondition}}</div>
-            <div  fxFlex="50"class="labelcssvalue" *ngIf="!vCondition">-</div>
+            <div fxFlex="50" class="labelcss">Penalty amount</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="penaltyamt">{{penaltyamt}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!penaltyamt">-</div>
+          </div>
+          <div fxLayout="row" fxFlex="100" class="clientview">
+            <div fxFlex="50" class="labelcss">Penalty from</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="penaltyfrom">{{penaltyfrom}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!penaltyfrom">-</div>
+          </div>
+          <div fxLayout="row" fxFlex="100" class="clientview">
+            <div fxFlex="50" class="labelcss">Penalty to</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="penaltyto">{{penaltyto}}</div>
+            <div fxFlex="50" class="labelcssvalue" *ngIf="!penaltyto">-</div>
           </div>
         </div>
       </div>
@@ -120,7 +123,7 @@
         <div fxFlex="100" style="overflow-x: scroll !important;">
           <table mat-table [dataSource]="dataSource" colspan=20
             style="overflow-x: scroll !important;width:100% !important" matSort class="table example-container">
-           
+
 
             <!-- <ng-container matColumnDef="select" sticky>
               <th mat-header-cell *matHeaderCellDef>
@@ -168,18 +171,20 @@
             <ng-container matColumnDef="Action">
               <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align: center;"> Action </th>
               <td mat-cell *matCellDef="let row" class="datarow">
-                <div fxLayout="row" fxLayoutAlign="space-evenly center" >
+                <div fxLayout="row" fxLayoutAlign="space-between center">
 
-                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px" (click)="DownloadLeaseDocument(row);" matTooltip="Download">
+                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px"
+                    (click)="DownloadLeaseDocument(row);" matTooltip="Download">
                     <img src="./assets/download_ash.svg" class="actionstable cursor_hover">
                     <!-- <span class="actionsspan">Download</span> -->
                   </div>
-                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px" (click)="sideNavStatus=true;openSendMailDialog(row.documentID)" matTooltip="Send Mail">
+                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px"
+                    (click)="sideNavStatus=true;openSendMailDialog(row.documentID)" matTooltip="Send Mail">
                     <img src="./assets/iconmonstr-paper-plane-2 (2).svg" class="actionstable cursor_hover">
                     <!-- <span class="actionsspan" >Send</span> -->
                   </div>
-                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px"
-                   class="pointer" (click)="Deleteleaserow(row.documentID);" matTooltip="Delete">
+                  <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px" class="pointer"
+                    (click)="Deleteleaserow(row.documentID);" matTooltip="Delete">
                     <img src="./assets/iconmonstr-trash-can-28.svg" class="actionstable">
                     <!-- <span class="actionsspan">Delete</span> -->
                   </div>
@@ -187,15 +192,17 @@
                     <img src="./assets/iconmonstr-product-10.svg" class="actionstable cursor_hover">
                     <span class="actionsspan" (click)="openDialog()" (click)="openSendMailDialog(row.documentID)">Review</span>
                   </div> -->
-                 
+
                 </div>
               </td>
             </ng-container>
 
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color: #f4f3f4;"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;" style="border-bottom-style: none; cursor: pointer;"
-              [ngClass]="{'highlight3': selectedRowIndex2 == row.leaseID}" (click)="highlight2(row);docdata(row);go(row)">
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+              style="border-bottom-style: none; cursor: pointer;"
+              [ngClass]="{'highlight3': selectedRowIndex2 == row.leaseID}"
+              (click)="highlight2(row);docdata(row);go(row)">
             </tr>
           </table>
 
@@ -209,10 +216,10 @@
       </mat-icon>
       <span class="nodata">The table does not contain any records</span>
     </div> -->
-<div  flex fxLayoutAlign="center center" fxLayout="column" *ngIf="!terminatedLeases.length && isDataLoaded">
-  <img src="./assets/Empty.svg"  style="height: 150px;">
-  <label class="nodata">The table does not contain any records</label>
-</div>
+      <div flex fxLayoutAlign="center center" fxLayout="column" *ngIf="!terminatedLeases.length && isDataLoaded">
+        <img src="./assets/Empty.svg" style="height: 150px;">
+        <label class="nodata">The table does not contain any records</label>
+      </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

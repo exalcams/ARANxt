@@ -18,7 +18,7 @@
 }
 .serachicon_search
 {
-    color: #98abc4;
+    color: #98abc4 !important;
     /* font-size: 14px; */
     transform: scale(0.7);
     align-self: center;
@@ -109,8 +109,9 @@
     background-color: #f3f3f4;
     height: 100%;
     width: 100%;
-    // overflow-y: scroll;
     padding: 8px 8px;
+    background-size: 100% 100%;
+    overflow-y: scroll;
   }
   .form_img
   {
@@ -336,6 +337,9 @@ height: 100% !important;
   font-family: 'poppins-semi' !important;
   word-wrap: break-word;
 }
+.top-formbg{
+  width: 100%;height: 100% !important;
+}
 .formspan{
   color: #0d0c22;
   font-size: 12px;
@@ -399,13 +403,13 @@ height: 100% !important;
   justify-self: left;
   width: 100%;
   justify-content: space-evenly center;
-  padding-left: 10px;
+  padding-left: 20px;
 }
 
 .toggleimage{
   width: 12px;
   cursor: pointer;
-  padding: 10px;
+  // padding: 10px;
   animation: out 0.5s ;
   animation-fill-mode: backwards ;
 }
@@ -444,8 +448,8 @@ height: 100% !important;
   padding-top: 4px;
 }
 .toggleimage:hover{
-  width: 13px;
-  padding: 10px;
+  width: 12px;
+  // padding: 10px;
   animation: rotation 0.5s ;
   animation-fill-mode: forwards ;
   @keyframes rotation {

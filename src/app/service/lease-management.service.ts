@@ -242,6 +242,14 @@ export class LeaseManagementService {
       })
       .pipe(catchError(this.errorHandler));
   }
+  GetTerminatepopuplease(leaseID){
+    return this.http.get(`${this.baseAddress}api/Lease/GetLeaseTerminateById?leaseID=${leaseID}`)
+    .pipe(catchError(this.errorHandler));
+  }
+  GetVacatepopuplease(leaseID){
+    return this.http.get(`${this.baseAddress}api/Lease/GetLeaseVaccateById?leaseID=${leaseID}`)
+    .pipe(catchError(this.errorHandler));
+  }
   SendMailFromDraft(mailTemplate: any): Observable<any> {
     return this.http.post<any>(this.baseAddress + 'api/Lease/SendMailFromDraft', mailTemplate,
       {

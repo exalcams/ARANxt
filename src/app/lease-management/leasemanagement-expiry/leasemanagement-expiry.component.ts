@@ -115,6 +115,12 @@ SignedFormGroup(): void
     Electrical: [''],
     Condition: [''],
     Remarks: [''],
+    SpocPerson: [''],
+    Contact1: [''],
+    Contact2: [''],
+    Email1: [''],
+    Email2: [''],
+    AccType:['']
   });
 }
 loadallsigneddocuments(Mlease:LeaseManagement){
