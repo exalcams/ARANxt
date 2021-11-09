@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { LeaseManagement } from 'src/app/Model/Leasemanagement';
+import { LeaseManagement, LeaseVacate } from 'src/app/Model/Leasemanagement';
 import { NotificationSnackBarComponent } from 'src/app/notification/notification-snack-bar/notification-snack-bar.component';
 import { LeaseManagementService } from 'src/app/service/lease-management.service';
 import { SnackBarStatus } from 'src/app/notification/notification-snack-bar/notification-snackbar-status-enum';
@@ -53,9 +53,40 @@ export class LeasemanagementVacatedComponent implements OnInit {
   clientdata: LeaseManagement;
   notificationSnackBarComponent: NotificationSnackBarComponent;
   sideNavStatus:boolean;
+  variableclient:any;
+  variablefilename:any;
+  variableCreatedOn:any;
+  variableExpiryDate:any;
+  variableTotalDeposit:any;
+  variableRental:any;
+  variableBankName:any;
+  variableHolderName:any;
+  variableAccountNo:any;
+  variaModeofTransfer:any;
+  varIFSCCode:any;
+  vAdvanceRequest:any;
+  vMaintenance:any;
+  vElectrical:any;
+  vCondition:any;
+  vRemarks:any;
+  proposeddate: any;
+  accepteddate: any;
+  inspectiondate: any;
+  inspectedby: any;
+  rentifany: any;
+  maintenancedue: any;
+  damagerecovery: any;
+  advancebalance: any;
+  expectedduedate: any;
+  modeoftransfer: any;
+  returnableassets: any;
+  verifiedby: any;
+  remarks: any;
+
   @ViewChild ('drawer') sidenav :MatDrawer;
   constructor(private formBuilder: FormBuilder, private datepipe: DatePipe,public dialog: MatDialog,
-    private service:LeaseManagementService,private spinner:NgxSpinnerService, public snackBar: MatSnackBar) {
+    private service:LeaseManagementService,private spinner:NgxSpinnerService, public snackBar: MatSnackBar,
+    private serviceterminate: LeaseManagementService) {
       this.notificationSnackBarComponent = new NotificationSnackBarComponent(this.snackBar);
      }
 
@@ -159,25 +190,13 @@ loadLeaseDetails(row:LeaseManagement){
   });
   this.highlight2(row)
 }
-variableclient:any;
-variablefilename:any;
-variableCreatedOn:any;
-variableExpiryDate:any;
-variableTotalDeposit:any;
-variableRental:any;
-variableBankName:any;
-variableHolderName:any;
-variableAccountNo:any;
-variaModeofTransfer:any;
-varIFSCCode:any;
-vAdvanceRequest:any;
-vMaintenance:any;
-vElectrical:any;
-vCondition:any;
-vRemarks:any;
 
 
 docdata(ind){
+  this.serviceterminate.GetVacatepopuplease(ind.leaseID).subscribe(data => {
+    console.log("vacatepopupdata", data)
+    this.vacatedata(<LeaseVacate>data)
+  })
     this.clientdata = ind;
    console.log(this.clientdata.clientName)
    this.variableclient = this.clientdata.clientName
@@ -203,6 +222,22 @@ docdata(ind){
       this.sidenav.toggle();
      }
      this.sideNavToggle.emit(true);
+}
+vacatedata(vacatepopupdatas: LeaseVacate) {
+  console.log(vacatepopupdatas)
+  console.log(vacatepopupdatas.proposedDate)
+  this.proposeddate = vacatepopupdatas.proposedDate;
+  this.accepteddate = vacatepopupdatas.acceptedDate;
+  this.inspectiondate = vacatepopupdatas.inspectionDate;
+  this.inspectedby = vacatepopupdatas.inspectedBy;
+  this.rentifany = vacatepopupdatas.rentDue;
+  this.maintenancedue = vacatepopupdatas.maintenanceDue;
+  this.damagerecovery = vacatepopupdatas.damageRecovery;
+  this.advancebalance = vacatepopupdatas.advanceBalance;
+  this.modeoftransfer = vacatepopupdatas.modeOfTransfer;
+  this.returnableassets = vacatepopupdatas.returnableAssets;
+  this.verifiedby = vacatepopupdatas.verifiedBy;
+  this.remarks = vacatepopupdatas.remarks;
 }
 upload(): void{
   this.uploadVisible = false;

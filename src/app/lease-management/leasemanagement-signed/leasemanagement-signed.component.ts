@@ -240,6 +240,12 @@ export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
       Electrical: ['', Validators.required],
       Condition: ['', Validators.required],
       Remarks: ['', Validators.required],
+      SpocPerson: ['', Validators.required],
+      Contact1: ['',Validators.required],
+      Contact2: ['',Validators.required],
+      Email1: ['',Validators.required],
+      Email2: ['',Validators.required],
+      AccType:['', Validators.required]
 
     });
   }
