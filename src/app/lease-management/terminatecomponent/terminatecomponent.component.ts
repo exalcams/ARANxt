@@ -142,9 +142,9 @@ export class TerminatecomponentComponent implements OnInit {
   openShiftDialog() {
     if (this.Terminateformgroup.valid) {
       const dialogRef = this.dialog.open(ShiftConfirmationComponent, {
-        panelClass: 'upload-signed-dialog',
+        panelClass: 'shift-Confirmation',
         data: this.leaseData.clientName,
-        width: '630px',
+        width: '736px',
       });
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
@@ -197,7 +197,7 @@ export class TerminatecomponentComponent implements OnInit {
       this.service.TerminateLease(signeddetail).subscribe((x) => {
         this.spinner.hide();
         console.log("Terminate uploaded", signeddetail);
-        this.notificationSnackBarComponent.openSnackBar('Uploaded in successfully', SnackBarStatus.success);
+        this.notificationSnackBarComponent.openSnackBar('Terminated successfully', SnackBarStatus.success);
         this.dialogRef.close(true)
       },
         err => {

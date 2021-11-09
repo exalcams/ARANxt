@@ -42,46 +42,44 @@
   <mat-sidenav-container class="example-container" autosize hasBackdrop="false">
     <mat-sidenav #drawer class="example-sidenav " position="end" mode="side" (openedChange)="drawerToggled($event)">
       <div style="width: 100%;height: 100% !important;">
-
         <div class="form_bg" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
-
           <mat-toolbar class="arrowtoolbar" fxLayout="row" fxLayoutAlign="space-between center">
             <img class="toggleimage" (click)="drawer.toggle();toggleSideNav();" src="./assets/slide_close_arrow.svg" >
             <button mat-icon-button color="primary" (click)="editSignedDocument()">
-          <mat-icon  color="black"  style="font-family: Material Icons;">create</mat-icon> 
+          <mat-icon  color="black"  style="font-family: Material Icons;" class="edticon">create</mat-icon> 
             </button>
           </mat-toolbar>
 
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">Client Name</div>
+            <div fxFlex="50" class="labelcss">Client name</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="variableclient">{{variableclient}}</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="!variableclient">-</div>
           </div>
-          <div fxLayout="row" fxFlex="100" class="clientview">
+          <!-- <div fxLayout="row" fxFlex="100" class="clientview">
             <div fxFlex="50" class="labelcss">Client Name</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="variableclient">{{variableclient}}</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="!variableclient">-</div>
-          </div>
+          </div> -->
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">FileName</div>
+            <div fxFlex="50" class="labelcss">File name</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="variablefilename">{{variablefilename}}</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="!variablefilename">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">Creation Date</div>
+            <div fxFlex="50" class="labelcss">Creation date</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="variableCreatedOn">{{variableCreatedOn | date: 'dd.MM.yyyy'}}
             </div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="!variableCreatedOn">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">Expiry Date</div>
+            <div fxFlex="50" class="labelcss">Expiry date</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="variableExpiryDate">{{variableExpiryDate | date:
               'dd.MM.yyyy'}}</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="!variableExpiryDate">-</div>
           </div>
 
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">Total Deposit</div>
+            <div fxFlex="50" class="labelcss">Total deposit</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="variableTotalDeposit">{{variableTotalDeposit}}</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="!variableTotalDeposit">-</div>
           </div>
@@ -91,12 +89,12 @@
             <div fxFlex="50" class="labelcssvalue" *ngIf="!variableRental">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">Bank Name</div>
+            <div fxFlex="50" class="labelcss">Bank name</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="variableBankName">{{variableBankName}}</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="!variableBankName">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">Holder Name</div>
+            <div fxFlex="50" class="labelcss">Holder name</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="variableHolderName">{{variableHolderName}}</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="!variableHolderName">-</div>
           </div>
@@ -106,17 +104,17 @@
             <div fxFlex="50" class="labelcssvalue" *ngIf="!variableAccountNo">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">Mode of Transfer</div>
+            <div fxFlex="50" class="labelcss">Mode of transfer</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="variaModeofTransfer">{{variaModeofTransfer}}</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="!variaModeofTransfer">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">IFSC Code</div>
+            <div fxFlex="50" class="labelcss">IFSC code</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="varIFSCCode">{{varIFSCCode}}</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="!varIFSCCode">-</div>
           </div>
           <div fxLayout="row" fxFlex="100" class="clientview">
-            <div fxFlex="50" class="labelcss">Advance Request</div>
+            <div fxFlex="50" class="labelcss">Advance request</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="vAdvanceRequest">{{vAdvanceRequest}}</div>
             <div fxFlex="50" class="labelcssvalue" *ngIf="!vAdvanceRequest">-</div>
           </div>

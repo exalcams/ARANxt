@@ -1,6 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { DatePipe } from '@angular/common';
-import { Component, ElementRef, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild, ViewEncapsulation, } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild, ViewEncapsulation, } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
@@ -67,7 +67,7 @@ export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
 
   SpaceId: any;
 
-  constructor(private formBuilder: FormBuilder, private datepipe: DatePipe, private service: LeaseManagementService,
+  constructor(private formBuilder: FormBuilder, private datepipe: DatePipe, private service: LeaseManagementService,private cdr: ChangeDetectorRef,
     // tslint:disable-next-line:align
     private spinner: NgxSpinnerService, public snackBar: MatSnackBar, public dialog: MatDialog) {
     this.notificationSnackBarComponent = new NotificationSnackBarComponent(this.snackBar);
@@ -419,7 +419,14 @@ export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+      this.selectedRowIndex2=null
+      console.log("selectedRowIndex2",this.selectedRowIndex2);
+      
+      // this.selection = new SelectionModel<any>(true, []);
+      // this.selection.clear();
+      this.cdr.detectChanges();
       if (result) {
+       
         this.GetAllLeases();
       }
     });
@@ -434,11 +441,12 @@ export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
         panelClass: 'upload-vacate-dialog',
         data: this.Renewdialogdata,
         // position: { top: '3%', right: '3%' },
-        width: '720px',
+        width: '836px',
 
       });
 
       dialogRef.afterClosed().subscribe(result => {
+        this.selectedRowIndex2=null
         console.log(`Dialog result: ${result}`);
         if (!result) {
           this.GetAllLeases();
@@ -475,10 +483,11 @@ export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
         panelClass: 'upload-renew-dialog',
         data: this.Renewdialogdata,
         // position: { top: '3%', right: '3%' },
-        width: '80%',
+        width: '1016px',
 
       });
       dialogRef.afterClosed().subscribe(result => {
+        this.selectedRowIndex2=null
         console.log(`Dialog result: ${result}`);
         if (result) {
           this.GetAllLeases();
@@ -505,11 +514,12 @@ export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
         panelClass: 'upload-terminate-dialog',
         data: this.Renewdialogdata,
         // position: { top: '3%', right: '3%' },
-        width: '720px',
+        width: '853px',
 
       });
 
       dialogRef.afterClosed().subscribe(result => {
+        this.selectedRowIndex2=null
         console.log(`Dialog result: ${result}`);
         if (result) {
           this.GetAllLeases();
@@ -636,7 +646,9 @@ export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
   editSignedDocument(){
     const dialogConfig: MatDialogConfig = {
       data: {
-        clientdata:this.clientdata
+        clientdata:this.clientdata,
+        SiteId: this.SiteId,
+        SpaceId: this.SpaceId,
       },
       panelClass: 'upload-signed-dialog',
       height:'90vh',
@@ -651,6 +663,8 @@ export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+      this.selectedRowIndex2=null
+      console.log("selectedRowIndex2",this.selectedRowIndex2);
       if (result) {
         this.GetAllLeases();
       }

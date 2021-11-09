@@ -142,6 +142,7 @@ export class RenewcomponentComponent implements OnInit {
     renew.validFor = this.Vacateformgroup.get('Validfor').value;
     renew.revisedRent = this.Vacateformgroup.get('RevisedRent').value;
     renew.revisedRatio = this.Vacateformgroup.get('Revisedratio').value;
+    renew.remarks=this.Vacateformgroup.get('Remarks').value;
    
       renew.renewalID=this.renewalById.length;
 
@@ -224,6 +225,7 @@ export class RenewcomponentComponent implements OnInit {
 
   }
   loadData(row: LeaseRenew,docName:any): void {
+    
     console.log("loaddata call",row);
   this.newbool=true
     this.selectedID = row.renewalID;
@@ -237,6 +239,7 @@ this.selecteddocName=docName;
         NewExpiryDate: row.expiryDate,
         RevisedRent: row.revisedRent,
         Revisedratio: row.revisedRatio,
+        Remarks:row.remarks
 
       });
       this.Vacateformgroup.disable();
@@ -259,9 +262,9 @@ this.selecteddocName=docName;
 }
   newlease(): void {
     this.Vacateformgroup.enable();
-    this.Vacateformgroup.reset();
-    console.log("newlease",this.Vacateformgroup.get("RenewOn").value);
-    
+    this.Vacateformgroup.reset();   
+    console.log("newlease",this.Vacateformgroup.get("RenewOn").value);  
+    this.Vacateformgroup.get("Remarks").setValue("")
     this.selectedID = null;
     this.newbool=false;
     this.filename=null;

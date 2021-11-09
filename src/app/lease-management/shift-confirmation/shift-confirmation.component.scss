@@ -1,3 +1,6 @@
+.shift-Confirmation{
+
+
 .dialog-content-wrapper {
     max-height: 90vh;
     display: flex;
@@ -8,9 +11,16 @@
   .shifttoolbar{
     // background-color: white;
     // height: 12px;
-    padding: 0;
     background-color: white;
-    height: 12px;
+    height: 30px;
+    padding: 20px;
+    box-shadow: 0 3px 3px 0px #00000014;
+    padding: 24px;
+
+  }
+  .mat-dialog-container {
+    padding: 0;
+    border-radius: 4px;
   }
   .title{
     // @extend .poppins;
@@ -63,10 +73,18 @@
   .empty_img
   {
     height: 295px;
-    width: 230px;
-    margin-top: 84px;
+        width: 89%;
+        margin-top: 84px;
 
   }
+  .closeimages{
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    justify-content: right;
+    text-align: right;
+    align-items: flex-end;
+}
   .outer
   {
     margin-top: 17px;
@@ -85,12 +103,23 @@
     font-family: 'poppins-semi' !important;
     // margin-top: -16px;
   }
-  .formspan
+  .formspan-shift
   { color: #0d0c22;
     font-size: 10px;
     font-family: 'poppins-semi' !important;
     align-self: center;
     margin-right: 13px;
+  }
+  .formspan{
+    color: #0d0c22;
+    font-size: 10px;
+    font-family: 'poppins-semi' !important;
+    // justify-content: left;
+}
+  .forminputedit{
+    color: #0d0c22 !important;
+    font-size: 10px !important;
+    font-family: 'poppins-semi' !important;
   }
   .shift_btn
   { background-color: #4410ff;
@@ -146,7 +175,14 @@ input::-webkit-inner-spin-button {
   text-align: right;
   align-items: flex-end;
 }
-
+.content{
+  margin: 0;
+  max-height: 90vh;
+  padding: 0px 24px 24px 24px;
+  .contentdivision{
+    padding:0 24px;
+  }
+}
 .mat-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-form-field-flex {
   cursor: default;
 }
@@ -154,4 +190,22 @@ input::-webkit-inner-spin-button {
 .erroredits{
   font-size: 8px !important;
   font-family: 'poppins-semi' !important;
+}
+.savebtn{
+  background-color: #4410ff !important;
+  color: #ffffff !important;
+  width: 17%;
+  height: 28px;
+  line-height: normal;
+  font-size: 10px;
+  font-family: 'poppins-semi' !important;
+}
+.footer{
+  box-shadow: 0 -3px 3px 0px #00000014;
+  background-color: #fff;
+  height: 26px;
+  margin: 0;
+  padding: 16px;
+  bottom: 0;
+}
 }

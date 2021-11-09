@@ -67,7 +67,10 @@ this.SignedDocumentDetailsForm.patchValue({
   SPOCMobile2:this.data.clientdata.contactNumber2,
   SPOCMail1:this.data.clientdata.email1,
   SPOCMail2:this.data.clientdata.email2,
+  Rental:this.data.clientdata.rental,
+
 });
+this.SignedDocumentDetailsForm.get("ModeofTransfer").setValue(this.data.clientdata.modeOfTransfer)
 // this.SignedDocumentDetailsForm.disable();
   }
   SignedFormGroup(): void
@@ -169,7 +172,68 @@ onRemove(event): void {
   upload()
   {
     this.spinner.show();
-    if((this.SignedDocumentDetailsForm.valid  )&&(this.files[0]))
+    if(this.data.clientdata)
+    {
+      if((this.SignedDocumentDetailsForm.valid )  )
+      {
+        const signeddetail = new LeaseManagement();
+      signeddetail.clientName = this.SignedDocumentDetailsForm.get('Client').value;
+      signeddetail.documentName = this.SignedDocumentDetailsForm.get('FileName').value;
+      const myDate = new Date();
+      console.log("myDate",myDate);
+      signeddetail.leaseID=this.data.clientdata.leaseID
+      signeddetail.signedOn = this._datePipe.transform(myDate , 'dd-MM-yyyy');
+      signeddetail.expiryDate = this._datePipe.transform(this.SignedDocumentDetailsForm.get('ExpiryDate').value, 'dd-MM-yyyy');
+      signeddetail.totalDeposit = this.SignedDocumentDetailsForm.get('TotalDeposit').value;
+      signeddetail.rental = this.SignedDocumentDetailsForm.get('Rental').value;
+      signeddetail.manintenace = this.SignedDocumentDetailsForm.get('Maintenance').value;
+      signeddetail.electrical = this.SignedDocumentDetailsForm.get('Electrical').value;
+      signeddetail.condition = this.SignedDocumentDetailsForm.get('Condition').value;
+      signeddetail.remarks = this.SignedDocumentDetailsForm.get('Remarks').value;
+      signeddetail.bankName = this.SignedDocumentDetailsForm.get('BankName').value;
+      signeddetail.holderName = this.SignedDocumentDetailsForm.get('HolderName').value;
+      signeddetail.accountNo = this.SignedDocumentDetailsForm.get('AccountNo').value;
+      signeddetail.modeOfTransfer = this.SignedDocumentDetailsForm.get('ModeofTransfer').value;
+      signeddetail.ifsc = this.SignedDocumentDetailsForm.get('IFSCCode').value;
+      signeddetail.noticePeriod = this.SignedDocumentDetailsForm.get('NoticePeriod').value;
+      signeddetail.accountType = this.SignedDocumentDetailsForm.get('AccType').value;
+      signeddetail.spocPerson = this.SignedDocumentDetailsForm.get('SPOC').value;
+      signeddetail.contactNumber1 = this.SignedDocumentDetailsForm.get('SPOCMobile1').value;
+      signeddetail.contactNumber2 = this.SignedDocumentDetailsForm.get('SPOCMobile2').value;
+      signeddetail.email1 = this.SignedDocumentDetailsForm.get('SPOCMail1').value;
+      signeddetail.email2 = this.SignedDocumentDetailsForm.get('SPOCMail2').value;
+      signeddetail.site =this.data.SiteId;
+      signeddetail.space =this.data.SpaceId;
+      signeddetail.asset=0;
+  
+     console.log("upload",signeddetail);
+     
+      this.service.UpdateLeaseByLeaseId(signeddetail).subscribe((x) => {
+      this.SignedDocumentDetailsForm.reset();
+        this.spinner.hide();
+        this.notificationSnackBarComponent.openSnackBar('Uploaded  successfully', SnackBarStatus.success);
+        this.dialogRef.close(true);
+      
+   
+      },
+        err => {
+          this.spinner.hide();
+          console.log(err);
+  
+        })
+  
+      }
+      else if(!this.SignedDocumentDetailsForm.valid)
+      {
+        this.spinner.hide();
+      // this.SignedDocumentDetailsForm.invalid;
+      this.ShowValidationErrors(this.SignedDocumentDetailsForm);
+      }
+    }
+    else{
+
+    
+    if((this.SignedDocumentDetailsForm.valid  )&&(this.files[0])  )
     {
       const signeddetail = new LeaseManagement();
     signeddetail.clientName = this.SignedDocumentDetailsForm.get('Client').value;
@@ -199,19 +263,6 @@ onRemove(event): void {
     signeddetail.email2 = this.SignedDocumentDetailsForm.get('SPOCMail2').value;
     signeddetail.site =this.data.SiteId;
     signeddetail.space =this.data.SpaceId;
-    // if(this.data.SiteId)
-    // {
-     
-    //   signeddetail.site =this.data.SiteId;
-
-    // }
-    // if(this.data.SpaceId)
-    // {
-     
-    //   signeddetail.space =this.data.SpaceId;
-
-    // }
-
     signeddetail.asset=0;
 
    console.log("upload",signeddetail);
@@ -242,6 +293,7 @@ onRemove(event): void {
   // this.SignedDocumentDetailsForm.invalid;
   this.ShowValidationErrors(this.SignedDocumentDetailsForm);
   }
+}
   }
   decimalOnly(event): boolean {
     // this.AmountSelected();

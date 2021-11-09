@@ -59,9 +59,9 @@
                     </div>
                 </div>
 
-                <div fxFlex="5"></div>
+                <div fxFlex="2"></div>
 
-                <div fxFlex="30" class="imagesforbackground">
+                <div fxFlex="31" class="imagesforbackground">
 
                     <div fxLayout="column" fxlayoutGap="16px" style="width: 100%;height: 100% !important;">
                         <div fxLayout="row" fxFlex>
@@ -70,27 +70,27 @@
                         </div>
                         <div class="form_bg" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="10px">
                             <div fxLayout="row" fxFlex="100" class="clientview">
-                                <div fxFlex="50" class="labelcss">Client Name</div>
+                                <div fxFlex="50" class="labelcss">Client name</div>
                                 <div fxFlex="50" class="labelcssvalue">{{leaseData.clientName?leaseData.clientName:'-'}}
                                 </div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
-                                <div fxFlex="50" class="labelcss">FileName</div>
+                                <div fxFlex="50" class="labelcss">File name</div>
                                 <div fxFlex="50" class="labelcssvalue">
                                     {{leaseData.documentName?leaseData.documentName:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
-                                <div fxFlex="50" class="labelcss">Creation Date</div>
+                                <div fxFlex="50" class="labelcss">Creation date</div>
                                 <div fxFlex="50" class="labelcssvalue">{{leaseData.createdOn | date:'dd/MM/yyyy'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
-                                <div fxFlex="50" class="labelcss">Expiry Date</div>
+                                <div fxFlex="50" class="labelcss">Expiry date</div>
                                 <div fxFlex="50" class="labelcssvalue">{{leaseData.expiryDate | date:'dd/MM/yyyy'}}
                                 </div>
                             </div>
 
                             <div fxLayout="row" fxFlex="100" class="clientview">
-                                <div fxFlex="50" class="labelcss">Total Deposit</div>
+                                <div fxFlex="50" class="labelcss">Total deposit</div>
                                 <div fxFlex="50" class="labelcssvalue">
                                     {{leaseData.totalDeposit?leaseData.totalDeposit:'-'}}</div>
                             </div>
@@ -99,33 +99,33 @@
                                 <div fxFlex="50" class="labelcssvalue"> {{leaseData.rental?leaseData.rental:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
-                                <div fxFlex="50" class="labelcss">Bank Name</div>
+                                <div fxFlex="50" class="labelcss">Bank name</div>
                                 <div fxFlex="50" class="labelcssvalue"> {{leaseData.bankName?leaseData.bankName:'-'}}
                                 </div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
-                                <div fxFlex="50" class="labelcss">Holder Name</div>
+                                <div fxFlex="50" class="labelcss">Holder name</div>
                                 <div fxFlex="50" class="labelcssvalue">{{leaseData.holderName?leaseData.holderName:'-'}}
                                 </div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
-                                <div fxFlex="50" class="labelcss">Account No.</div>
+                                <div fxFlex="50" class="labelcss">Account no.</div>
                                 <div fxFlex="50" class="labelcssvalue"> {{leaseData.accountNo?leaseData.accountNo:'-'}}
                                 </div>
                             </div>
 
 
                             <div fxLayout="row" fxFlex="100" class="clientview">
-                                <div fxFlex="50" class="labelcss">Mode of Transfer</div>
+                                <div fxFlex="50" class="labelcss">Mode of transfer</div>
                                 <div fxFlex="50" class="labelcssvalue">
                                     {{leaseData.modeOfTransfer?leaseData.modeOfTransfer:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
-                                <div fxFlex="50" class="labelcss">IFSC Code</div>
+                                <div fxFlex="50" class="labelcss">IFSC code</div>
                                 <div fxFlex="50" class="labelcssvalue"> {{leaseData.ifsc?leaseData.ifsc:'-'}}</div>
                             </div>
                             <div fxLayout="row" fxFlex="100" class="clientview">
-                                <div fxFlex="50" class="labelcss">Advance Request</div>
+                                <div fxFlex="50" class="labelcss">Advance request</div>
                                 <div fxFlex="50" class="labelcssvalue"> {{leaseData.advance?leaseData.advance:'-'}}
                                 </div>
                             </div>
@@ -153,10 +153,10 @@
                     </div>
                 </div>
 
-                <div fxFlex="5"></div>
+                <div fxFlex="2"></div>
 
-                <div fxFlex="60" fxLayout="row">
-                    <form [formGroup]="Vacateformgroup" style="width: 80%;" autocomplete="off">
+                <div fxFlex="38" fxLayout="row">
+                    <form [formGroup]="Vacateformgroup" style="width: 100%;" autocomplete="off">
                         <div fxLayout="column" style="width:100% !important;padding: 10px 10px;">
                             <div *ngIf="newbool">
                                 <button mat-raised-button class="newbtn" type="button" color="primary" (click)="newlease()">New</button>
@@ -215,7 +215,7 @@
                                 <span class="formspan" fxFlex="50">Revised Rent</span>
                                 <mat-form-field appearance="legacy" fxFlex="50">
                                     <input matInput  formControlName="RevisedRent" (keydown)="decimalOnly($event)" class="forminputedit">
-                                    <label matSuffix class="placeholdertext">(%)</label>
+                                  
                                     <mat-error *ngIf="Vacateformgroup.get('RevisedRent').hasError('required')">
                                         Rent is required
                                     </mat-error>
@@ -229,15 +229,17 @@
 
                             <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
                                 <span class="formspan" fxFlex="50">Revised ratio</span>
+                                
                                 <mat-form-field appearance="legacy" fxFlex="50">
                                     <input matInput  formControlName="Revisedratio" class="forminputedit">
+                                    <label matSuffix class="placeholdertext">(%)</label>
                                 </mat-form-field>
                                
                             </div>
 
 
 
-                            <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start center">
+                            <div fxLayout="row" class="label_connect" fxFlex="100" fxLayoutAlign="start start" style="margin-top:19px">
                                 <span class="formspan" fxFlex="50">Remarks</span>
                                 <mat-form-field appearance="outline" fxFlex="50">
                                     <!-- <input matInput  formControlName="Remarks" class="forminputedit"> -->
@@ -245,7 +247,7 @@
                                     cdkTextareaAutosize
                                     #autosize="cdkTextareaAutosize"
                                     cdkAutosizeMinRows="3"
-                                    cdkAutosizeMaxRows="100" formControlName="Remarks" class="textarea"></textarea>
+                                    cdkAutosizeMaxRows="100" formControlName="Remarks" class="textarea forminputedit"></textarea>
                                    
                                 </mat-form-field>
                             </div>
@@ -278,7 +280,7 @@
     </mat-dialog-content>
 
     <mat-dialog-actions class="m-0 p-16 footer" fxLayoutAlign="center center" fxLayoutGap="8px">
-        <button mat-raised-button class="savebtnfooter" type="button" color="primary" (click)="Renew()">Renew</button>
+        <button mat-raised-button class="savebtnfooter" *ngIf="!newbool" type="button" color="primary" (click)="Renew()">Renew</button>
     </mat-dialog-actions>
 
 </div>
