@@ -190,7 +190,7 @@ export class VacatecomponentComponent implements OnInit {
         console.log("vacate uploaded");
         this.Vacateformgroup.reset();
 
-        this.notificationSnackBarComponent.openSnackBar('Uploaded in successfully', SnackBarStatus.success);
+        this.notificationSnackBarComponent.openSnackBar('Vacated  successfully', SnackBarStatus.success);
         this.dialogRef.close();
 
       },

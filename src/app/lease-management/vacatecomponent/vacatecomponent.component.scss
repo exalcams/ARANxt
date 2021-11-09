@@ -153,8 +153,9 @@ font-family: 'poppins-semi' !important;
       }
       .content{
         padding: 24px;
-        padding-top: 0;
+        padding-top: 24px;
         margin: 0;
+        max-height: 90vh;
         .contentdivision{
           padding:0 24px;
         }

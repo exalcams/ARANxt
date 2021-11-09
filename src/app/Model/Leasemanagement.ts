@@ -105,6 +105,7 @@ export class LeaseRenew extends CommonClass{
     revisedRent:number;
     revisedRatio:number;
     documentID:number;
+    remarks:string;
 
 }
 export class LeaseBankDetalis extends CommonClass{

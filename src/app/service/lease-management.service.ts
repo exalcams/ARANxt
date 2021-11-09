@@ -112,30 +112,62 @@ export class LeaseManagementService {
     formData.append('Advance', signeddetail.advance);
     formData.append('NoticePeriod', signeddetail.noticePeriod.toString());
     formData.append('Site', signeddetail.site.toString());
-    formData.append('Space', signeddetail.space.toString());
-    // if(signeddetail.site)
-    // {
-    //   formData.append('Site', signeddetail.site.toString());
-
-    // }
-  
-    // if(signeddetail.space)
-    // {
-    //   formData.append('Space', signeddetail.space.toString());
-
-    // }
+   
+    if(signeddetail.space)
+    {
+      formData.append('Space', signeddetail.space.toString());
+    }
     formData.append('Asset', signeddetail.asset.toString());
 
     return this.http.post<any>(this.baseAddress + 'api/Lease/UploadNewLease', formData,
-      // {
-      //   headers: new HttpHeaders({
-      //     'Content-Type': 'application/json'
-      //   })
-      // }
+   
       )
       .pipe(catchError(this.errorHandler));
   }
-  //AddSignedFileDetail
+ 
+  UpdateLeaseByLeaseId(signeddetail: LeaseManagement): Observable<any> {
+    const formData: FormData = new FormData();
+   
+    formData.append('ClientName', signeddetail.clientName);
+    formData.append('DocumentName', signeddetail.documentName);
+    // formData.append('CreatedOn', signeddetail.createdOn .toString());
+    formData.append('SignedOn',signeddetail.signedOn.toString());
+    formData.append('ExpiryDate',signeddetail.expiryDate.toString());
+    formData.append('TotalDeposit', signeddetail.totalDeposit.toString());
+    formData.append('Rental', signeddetail.rental.toString());
+    formData.append('Manintenace', signeddetail.manintenace.toString());
+    formData.append('Electrical', signeddetail.electrical.toString());
+    formData.append('Condition', signeddetail.condition);
+    formData.append('Remarks', signeddetail.remarks);
+    formData.append('AccountType', signeddetail.accountType);
+    formData.append('SPOCPerson', signeddetail.spocPerson);
+    formData.append('ContactNumber1', signeddetail.contactNumber1);
+    formData.append('ContactNumber2', signeddetail.contactNumber2);
+    formData.append('Email1', signeddetail.email1);
+    formData.append('Email2', signeddetail.email2);
+
+    formData.append('BankName', signeddetail.bankName);
+    formData.append('HolderName', signeddetail.holderName);
+    formData.append('AccountNo', signeddetail.accountNo);
+    formData.append('ModeOfTransfer', signeddetail.modeOfTransfer);
+    formData.append('IFSC', signeddetail.ifsc);
+    formData.append('Advance', signeddetail.advance);
+    formData.append('NoticePeriod', signeddetail.noticePeriod.toString());
+    formData.append('Site', signeddetail.site.toString());
+    formData.append('LeaseID', signeddetail.leaseID.toString());
+    if(signeddetail.space)
+    {
+      formData.append('Space', signeddetail.space.toString());
+    }
+   
+    formData.append('Asset', signeddetail.asset.toString());
+
+    return this.http.post<any>(this.baseAddress + 'api/Lease/UpdateLeaseByLeaseId', formData,
+   
+      )
+      .pipe(catchError(this.errorHandler));
+  }
+ 
 
   AddSignedFile(signeddetail: LeaseDocument, selectedFiles: File): Observable<any> {
     const formData: FormData = new FormData();
@@ -181,7 +213,8 @@ export class LeaseManagementService {
     formData.append('RevisedRent', lease.revisedRent.toLocaleString());
     formData.append('RevisedRatio', lease.revisedRatio.toLocaleString());
     formData.append('RenewalID', lease.renewalID.toLocaleString());
-
+    formData.append('Remarks', lease.remarks.toLocaleString());
+ 
     return this.http.post<any>(this.baseAddress + 'api/Lease/RenewLease', formData,
       // {
       //   headers: new HttpHeaders({
