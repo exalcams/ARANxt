@@ -6,7 +6,7 @@
 .main_buttons_not_seklected{color: #6e6d7a;font-size: 11px; font-family: 'poppins-semi' !important;font-weight: 600;
     padding: 4px 10px 4px 10px;    border-radius: 4px; cursor: pointer; line-height: 2;height: 20px; }
 
-.main_buttons_not_seklected:hover{color: #6e6d7a;font-size: 11px; font-family: 'poppins-semi' !important;font-weight: 600;
+.main_buttons_not_seklected:hover{color: #6e6d7a;font-size: 11px; font-family: 'poppins-semi' !important;font-weight: 600;color: #333;
         padding: 4px 10px 4px 10px;  line-height: 2;height: 20px;   border-radius: 4px; background-color: #f3f3f4;cursor: pointer; }
 
 .main_buttons{color: #0d0c22;font-size: 11px; font-family: 'poppins-semi' !important; cursor: pointer; line-height: 2;height: 20px;
@@ -290,6 +290,9 @@ tr.mat-header-row {
     vertical-align: -webkit-baseline-middle;
     font-size: 11px;
 }
+.new_txt:hover{
+    color: #333;
+}
 .save_icon
 {
     font-family: 'Material Icons' !important;
@@ -301,10 +304,13 @@ tr.mat-header-row {
     font-weight: 500;
 }
 .icon_outer
-{   
-    align-items: center;
-    height: 24px;
+{  
+    padding: 4px 12px;
+    border-radius: 4px;
     cursor: pointer;
+}
+.icon_outer:hover{
+    background-color: #f3f3f4;
 }
 .ckeditor_outer
 {

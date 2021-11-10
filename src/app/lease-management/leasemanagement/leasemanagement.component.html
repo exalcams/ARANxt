@@ -201,21 +201,21 @@
     <div *ngIf="selectedPage=='new'" class="ckeditor_outer">
 
         <div fxLayout="row" fxLayoutAlign="end center" class="submit-area">
-            <mat-form-field fxFlex=50 class="file-name-field">
+            <mat-form-field fxFlex=45 class="file-name-field">
                 <input type="text" matInput [formControl]="fileNameNew">
             </mat-form-field>
             <div fxFlex></div>
-            <div fxLayout="row">
-                <div fxLayout="row" matRipple class="icon_outer" (click)="saveNewDraft()" style="margin-right: 12px;">
-                    <mat-icon
+            <div fxLayout="row" fxLayoutGap="4px">
+                <div fxLayout="row" matRipple class="icon_outer" (click)="saveNewDraft()">
+                    <!-- <mat-icon
                         style="font-family: 'Material Icons';font-size: 15px;text-align-last: center; line-height: 24px;">
-                        save</mat-icon>
+                        save</mat-icon> -->
                     <span class="save_label">Save</span>
                 </div>
                 <div fxLayout="row" matRipple class="icon_outer" (click)="closeDraft('new')">
-                    <mat-icon
+                    <!-- <mat-icon
                         style="font-family: 'Material Icons';font-size: 13px;text-align-last: center; line-height: 24px;">
-                        clear</mat-icon>
+                        clear</mat-icon> -->
                     <span class="save_label">Close</span>
                 </div>
             </div>
@@ -235,26 +235,28 @@
                             <mat-icon style="font-size: 16px;line-height: 22px;" *ngIf="!isSaved1" class="save-load-icon">sync</mat-icon>
                             <!-- <span *ngIf="!isSaved1" style="font-size: 11px;">saving...</span> -->
                         </div>
-                        <mat-form-field class="file-name-field" fxFlex=50>
+                        <mat-form-field class="file-name-field" fxFlex=45>
                             <input type="text" matInput [formControl]="fileNameEdit1">
                         </mat-form-field>
                         <div fxFlex></div>
-                        <div fxLayout="row" matRipple class="icon_outer" (click)="autoSaveDraft()">
-                            <mat-icon style="font-size: 16px;line-height: 22px;">
-                                save</mat-icon>
-                            <span class="save_label">Save</span>
-                        </div>
-                        <div fxLayout="row" matRipple class="icon_outer" (click)="saveDraft1()">
-                            <mat-icon
-                                style="font-size: 16px;line-height: 22px;">
-                                save</mat-icon>
-                            <span class="save_label">Save as</span>
-                        </div>
-                        <div fxLayout="row" matRipple class="icon_outer" (click)="closeDraft('editor1')">
-                            <mat-icon
-                                style="font-size: 16px;line-height: 22px;">
-                                clear</mat-icon>
-                            <span class="save_label">Close</span>
+                        <div fxLayout="row" fxLayoutGap="4px">
+                            <div fxLayout="row" matRipple class="icon_outer" (click)="autoSaveDraft()">
+                                <!-- <mat-icon style="font-size: 16px;line-height: 22px;">
+                                    save</mat-icon> -->
+                                <span class="save_label">Save</span>
+                            </div>
+                            <div fxLayout="row" matRipple class="icon_outer" (click)="saveDraft1()">
+                                <!-- <mat-icon
+                                    style="font-size: 16px;line-height: 22px;">
+                                    save</mat-icon> -->
+                                <span class="save_label">Save as</span>
+                            </div>
+                            <div fxLayout="row" matRipple class="icon_outer" (click)="closeDraft('editor1')">
+                                <!-- <mat-icon
+                                    style="font-size: 16px;line-height: 22px;">
+                                    clear</mat-icon> -->
+                                <span class="save_label">Close</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -271,24 +273,26 @@
                             <mat-icon style="font-size: 16px;line-height: 22px;" *ngIf="editor2change">sync</mat-icon>
                             <!-- <span *ngIf="editor2change" style="font-size: 11px;">saving...</span> -->
                         </div>
-                        <mat-form-field class="file-name-field" fxFlex=50>
+                        <mat-form-field class="file-name-field" fxFlex=45>
                             <input type="text" matInput [formControl]="fileNameEdit2">
                         </mat-form-field>
                         <div fxFlex></div>
-                        <div fxLayout="row" matRipple class="icon_outer" (click)="autoSaveDraft()">
-                            <mat-icon style="font-size: 16px;line-height: 22px;">
-                                save</mat-icon>
-                            <span class="save_label">Save</span>
-                        </div>
-                        <div fxLayout="row" matRipple class="icon_outer" (click)="saveDraft2()">
-                            <mat-icon style="font-size: 16px;line-height: 22px;">
-                                save</mat-icon>
-                            <span class="save_label">Save as</span>
-                        </div>
-                        <div fxLayout="row" matRipple class="icon_outer" (click)="closeDraft('editor2')">
-                            <mat-icon style="font-size: 16px;line-height: 22px;">
-                                clear</mat-icon>
-                            <span class="save_label">Close</span>
+                        <div fxLayout="row" fxLayoutGap="4px">
+                            <div fxLayout="row" matRipple class="icon_outer" (click)="autoSaveDraft()">
+                                <!-- <mat-icon style="font-size: 16px;line-height: 22px;">
+                                    save</mat-icon> -->
+                                <span class="save_label">Save</span>
+                            </div>
+                            <div fxLayout="row" matRipple class="icon_outer" (click)="saveDraft2()">
+                                <!-- <mat-icon style="font-size: 16px;line-height: 22px;">
+                                    save</mat-icon> -->
+                                <span class="save_label">Save as</span>
+                            </div>
+                            <div fxLayout="row" matRipple class="icon_outer" (click)="closeDraft('editor2')">
+                                <!-- <mat-icon style="font-size: 16px;line-height: 22px;">
+                                    clear</mat-icon> -->
+                                <span class="save_label">Close</span>
+                            </div>
                         </div>
                     </div>
                 </div>
