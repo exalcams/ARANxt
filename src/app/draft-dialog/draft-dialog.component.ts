@@ -21,39 +21,23 @@ export class DraftDialogComponent implements OnInit {
   ) {
     this.form = this.fb.group({
       documentName: ['', Validators.required],
-      documentType: [''],
+      documentType: ['Template'],
       documentOwner: ['', Validators.required]
     });
   }
 
   ngOnInit(): void {
-
     this.InitializeFormGroup();
   }
 
   InitializeFormGroup(): void {
     if (this.data !=null) {
-      console.log("intialize Formgroup- draft dilog");
-
       this.form.patchValue({
         documentName: this.data.name,
         documentType: this.data.type,
         documentOwner: this.data.owner
       });
-      console.log("formgroup", this.form);
-
     }
-    else {
-      this.radio1_check = true
-    }
-    // radio
-    if (this.data.type == "Draft") {
-      this.radio2_check = true
-    }
-    else if (this.data.type == "Template") {
-      this.radio1_check = true
-    }
-
   }
   close() {
     this.dialogRef.close(false);
@@ -61,18 +45,10 @@ export class DraftDialogComponent implements OnInit {
   UploadFile() {
     console.log(this.form);
     if (this.form.valid) {
-      let radio_value;
-      if (this.radio2_check) {
-        radio_value = "Draft";
-      }
-      else if (this.radio1_check) {
-        radio_value = "Template";
-      }
-
       const  obj =new LeaseDraft();
       obj .documentName=this.form.get("documentName").value;
       obj.documentOwner=this.form.get("documentOwner").value;
-      obj.documentType=radio_value;
+      obj.documentType=this.form.get("documentType").value;
       console.log("draft-dialog",obj);
       
       this.dialogRef.close(obj);

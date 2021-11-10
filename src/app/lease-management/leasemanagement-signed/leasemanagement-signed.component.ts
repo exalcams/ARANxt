@@ -134,6 +134,7 @@ export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
   variableTotalDeposit: any;
   variableRental: any;
   variableBankName: any;
+  variableAccountType:any;
   variableHolderName: any;
   variableAccountNo: any;
   variaModeofTransfer: any;
@@ -155,6 +156,7 @@ export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
     this.variableTotalDeposit = this.clientdata.totalDeposit
     this.variableRental = this.clientdata.rental
     this.variableBankName = this.clientdata.bankName
+    this.variableAccountType=this.clientdata.accountType
     this.variableHolderName = this.clientdata.holderName
     this.variableAccountNo = this.clientdata.accountNo
 
@@ -611,12 +613,11 @@ export class LeasemanagementSignedComponent implements OnInit ,OnChanges {
     const dialogConfig: MatDialogConfig = {
       data: {
         title: "Delete",
-        body: "Are you sure  want to delete",
+        body: "Are you sure  want to delete?",
       },
       panelClass: 'close-dialog',
       width: '24%',
       maxWidth: '85.5vw ',
-      height: '195px',
       disableClose: true
     };
     const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);

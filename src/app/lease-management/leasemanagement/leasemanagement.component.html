@@ -1,7 +1,7 @@
 <div class="bg">
     <p class="title"> Lease Document Management System</p>
     <div fxLayout="row">
-        <div (click)="closePage('draft');selection.clear();switchSideNav.emit(false);"
+        <div (click)="closePage('draft');selection.clear();switchSideNav.emit(false);getAllDrafts();"
             [ngClass]="selectedPage=='draft' ? 'main_buttons' : 'main_buttons_not_seklected' ">
             Draft
 
@@ -222,7 +222,7 @@
             <!-- <button mat-raised-button class="saveBtn" (click)="saveNewDraft()">Save</button>
             <button mat-raised-button class="saveBtn" (click)="close">close</button> -->
         </div>
-        <ck-editor name="richEditor" [(ngModel)]="newLeaseDraft.documentContent" skin="moono-lisa" language="en" (change)="neweditorchange=true"
+        <ck-editor name="richEditor" [(ngModel)]="newLeaseDraft.documentContent" skin="moono-lisa" language="en" (ngModelChange)="neweditorchange=true"
             [fullPage]="true" [config]="editorConfig" class="editor"></ck-editor>
     </div>
     <div *ngIf="selectedPage=='edit'" class="ckeditor_outer">
@@ -231,14 +231,19 @@
                 <div fxLayout="row" fxLayoutAlign="start center" class="submit-area">
                     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px" fxFlex>
                         <div fxLayoutAlign="start center">
-                            <mat-icon style="font-size: 16px;line-height: 22px;" *ngIf="!editor1change">cloud_done</mat-icon>
-                            <mat-icon style="font-size: 16px;line-height: 22px;" *ngIf="editor1change">sync</mat-icon>
-                            <span *ngIf="editor1change" style="font-size: 11px;">saving...</span>
+                            <mat-icon style="font-size: 16px;line-height: 22px;" *ngIf="isSaved1">cloud_done</mat-icon>
+                            <mat-icon style="font-size: 16px;line-height: 22px;" *ngIf="!isSaved1" class="save-load-icon">sync</mat-icon>
+                            <!-- <span *ngIf="!isSaved1" style="font-size: 11px;">saving...</span> -->
                         </div>
                         <mat-form-field class="file-name-field" fxFlex=50>
                             <input type="text" matInput [formControl]="fileNameEdit1">
                         </mat-form-field>
                         <div fxFlex></div>
+                        <div fxLayout="row" matRipple class="icon_outer" (click)="autoSaveDraft()">
+                            <mat-icon style="font-size: 16px;line-height: 22px;">
+                                save</mat-icon>
+                            <span class="save_label">Save</span>
+                        </div>
                         <div fxLayout="row" matRipple class="icon_outer" (click)="saveDraft1()">
                             <mat-icon
                                 style="font-size: 16px;line-height: 22px;">
@@ -253,7 +258,7 @@
                         </div>
                     </div>
                 </div>
-                <ck-editor *ngIf="editor1" name="richEditor1" [(ngModel)]="leaseDraft1.documentContent" (ngModelChange)="editor1change=true;"
+                <ck-editor name="richEditor1" [(ngModel)]="leaseDraft1.documentContent" (ngModelChange)="editor1change=true;"
                     skin="moono-lisa" language="en" [fullPage]="true" [config]="editorConfig" class="editor">
                 </ck-editor>
             </div>
@@ -264,12 +269,17 @@
                         <div fxLayoutAlign="start center">
                             <mat-icon style="font-size: 16px;line-height: 22px;" *ngIf="!editor2change">cloud_done</mat-icon>
                             <mat-icon style="font-size: 16px;line-height: 22px;" *ngIf="editor2change">sync</mat-icon>
-                            <span *ngIf="editor2change" style="font-size: 11px;">saving...</span>
+                            <!-- <span *ngIf="editor2change" style="font-size: 11px;">saving...</span> -->
                         </div>
                         <mat-form-field class="file-name-field" fxFlex=50>
                             <input type="text" matInput [formControl]="fileNameEdit2">
                         </mat-form-field>
                         <div fxFlex></div>
+                        <div fxLayout="row" matRipple class="icon_outer" (click)="autoSaveDraft()">
+                            <mat-icon style="font-size: 16px;line-height: 22px;">
+                                save</mat-icon>
+                            <span class="save_label">Save</span>
+                        </div>
                         <div fxLayout="row" matRipple class="icon_outer" (click)="saveDraft2()">
                             <mat-icon style="font-size: 16px;line-height: 22px;">
                                 save</mat-icon>
@@ -282,7 +292,7 @@
                         </div>
                     </div>
                 </div>
-                <ck-editor *ngIf="editor2" name="richEditor2" [(ngModel)]="leaseDraft2.documentContent" (ngModelChange)="editor2change=true;"
+                <ck-editor name="richEditor2" [(ngModel)]="leaseDraft2.documentContent" (ngModelChange)="editor2change=true;"
                     skin="moono-lisa" language="en" [fullPage]="true" [config]="editorConfig" class="editor">
                 </ck-editor>
             </div>

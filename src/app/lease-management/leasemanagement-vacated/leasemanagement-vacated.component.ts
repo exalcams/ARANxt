@@ -365,12 +365,11 @@ Deleteleaserow(documentID){
   const dialogConfig: MatDialogConfig = {
     data: {
       title: "Delete",
-      body: "Are you sure want to delete",
+      body: "Are you sure want to delete?",
     },
     panelClass: 'close-dialog',
     width: '24%',
     maxWidth: '85.5vw ',
-    height: '195px',
     disableClose: true
   };
   const dialogRef = this.dialog.open(CloseDialogComponent, dialogConfig);

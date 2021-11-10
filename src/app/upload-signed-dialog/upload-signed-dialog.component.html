@@ -193,13 +193,13 @@
                     </div>
                     <div fxLayout="row" fxLayoutGap="32px" style="padding:0 16px;">
                         <div fxLayout="row" fxFlex class="label_connect form_outer_bank" fxLayoutGap="10px" fxLayoutAlign="space-between center">
-                            <span class="formspan">Total deposit</span>
+                            <span class="formspan">Advance amount</span>
                             <mat-form-field [floatLabel]="'never'" appearance="legacy" class="form_field_cls">
                                 <label matPrefix class="font">Rs.</label>
                                 <input matInput formControlName="TotalDeposit" (keydown)="decimalOnly($event)"
                                     class="placeholdertext">
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('TotalDeposit').hasError('required')">
-                                    Total deposit is required
+                                    Advance amount is required
                                 </mat-error>
                                 <mat-error *ngIf="SignedDocumentDetailsForm.get('TotalDeposit').touched && !SignedDocumentDetailsForm.get('TotalDeposit').hasError('required')
                                 && SignedDocumentDetailsForm.get('TotalDeposit').hasError('pattern')">
