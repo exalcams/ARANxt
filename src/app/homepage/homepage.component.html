@@ -110,15 +110,16 @@
                 </div> -->
                 <div fxFlex></div>
                 <div class="user-panel">
-                    <div fxLayout="row" fxLayoutAlign="center center" style="padding: 8px;"
+                    <div fxLayout="row" fxLayoutAlign="start center" style="padding: 8px;"
                         [style.gap]="isFolded?'0px':'16px'">
                         <img style="height: 28px;" src="./assets/face.png">
                         <label *ngIf="!isFolded" style="color: #394256;
                         font-size: 11px;font-weight:500 ;font-family: poppins-med;">{{currentUser}}</label>
+                        <div fxFlex></div>
                         <img src="assets/Images/userActive.svg" width="8px" class="activity-img">
                     </div>
-                    <div fxLayout="row" fxLayoutGap="16px" style="padding:0px 8px 8px;cursor: pointer;"
-                        fxLayoutAlign="center" (click)="logout()">
+                    <div fxLayout="row" fxLayoutGap="24px" style="padding:0px 8px 8px 16px;cursor: pointer;"
+                        fxLayoutAlign="start center" (click)="logout()">
                         <div>
                             <img src="./assets/logout_ash.svg" style="width: 12px;">
                         </div>

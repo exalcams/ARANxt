@@ -121,7 +121,16 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
     setInterval(() => {
       this.autoSaveDraft();
     }, 5000);
-
+    this.fileNameEdit1.valueChanges.subscribe((value)=>{
+      if(value){
+        this.editor1change=true;
+      }
+    });
+    this.fileNameEdit2.valueChanges.subscribe((value)=>{
+      if(value){
+        this.editor2change=true;
+      }
+    });
   }
   ngOnChanges(changes: SimpleChanges): void {
     // console.log("onchangesDecoratorValue",this.item);
@@ -898,7 +907,9 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
       this.editor2 = true;
       if (this.selection.selected.length >= 2) {
         this.service.GetLeaseDraftDocument(this.selection.selected[0].documentID).subscribe(res => {
-          this.leaseDraft1.documentContent = res.documentContent;
+          setTimeout(()=>{
+            this.leaseDraft1.documentContent = res.documentContent;
+          },500);
           this.leaseDraft1.documentID=this.selection.selected[0].documentID;
           this.leaseDraft1.documentName=this.selection.selected[0].documentName;
           this.leaseDraft1.documentType=this.selection.selected[0].documentType;
@@ -906,6 +917,9 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
           console.log("leaseDraft1", this.leaseDraft1);
         });
         this.service.GetLeaseDraftDocument(this.selection.selected[1].documentID).subscribe(res => {
+          setTimeout(()=>{
+            this.leaseDraft2.documentContent = res.documentContent;
+          },500);
           this.leaseDraft2.documentContent = res.documentContent;
           this.leaseDraft2.documentID=this.selection.selected[1].documentID;
           this.leaseDraft2.documentName=this.selection.selected[1].documentName;
@@ -920,7 +934,9 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
         this.editor1 = true;
         this.editor2 = false;
         this.service.GetLeaseDraftDocument(this.selection.selected[0].documentID).subscribe(res => {
-          this.leaseDraft1.documentContent = res.documentContent;
+          setTimeout(()=>{
+            this.leaseDraft1.documentContent = res.documentContent;
+          },500);
           this.leaseDraft1.documentID=this.selection.selected[0].documentID;
           this.leaseDraft1.documentName=this.selection.selected[0].documentName;
           this.leaseDraft1.documentType=this.selection.selected[0].documentType;
