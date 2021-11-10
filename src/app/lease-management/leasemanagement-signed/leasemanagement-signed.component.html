@@ -240,19 +240,19 @@
                 <div fxLayout="row" fxLayoutAlign="space-between center">
 
                   <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px"
-                    (click)="DownloadLeaseDocument(row)" class="pointer" matTooltip="Download">
+                    (click)="DownloadLeaseDocument(row);$event.stopPropagation();" class="pointer" matTooltip="Download">
                     <img src="./assets/download_ash.svg" class="actionstable">
                     <!-- <span class="actionsspan">Download</span> -->
                   </div>
 
                   <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px"
-                    (click)="sideNavStatus=true;openSendMailDialog(row.documentID)" matTooltip="Send Email">
+                    (click)="sideNavStatus=true;openSendMailDialog(row.documentID);$event.stopPropagation();" matTooltip="Send Email">
                     <img src="./assets/iconmonstr-paper-plane-2 (2).svg" class="actionstable">
                     <!-- <span class="actionsspan">Send</span> -->
                   </div>
 
                   <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px" class="pointer"
-                    (click)="Deleteleaserow(row.leaseID);" matTooltip="Delete">
+                    (click)="Deleteleaserow(row.leaseID);$event.stopPropagation();" matTooltip="Delete">
                     <img src="./assets/iconmonstr-trash-can-28.svg" class="actionstable">
                     <!-- <span class="actionsspan">Delete</span> -->
                   </div>
@@ -269,7 +269,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"
               style="border-bottom-style: none;cursor: pointer;"
               [ngClass]="{'highlight3':selectedRowIndex2 == row.leaseID }"
-              (click)="highlight2(row);docdata(row);go(row)">
+              (click)="highlight2(row);docdata(row);go(row);">
             </tr>
           </table>
         </div>

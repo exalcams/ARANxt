@@ -164,18 +164,18 @@
                 <div fxLayout="row" fxLayoutAlign="space-between center">
 
                   <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px"
-                    (click)="DownloadLeaseDocument(row)" matTooltip="Download">
+                    (click)="DownloadLeaseDocument(row);$event.stopPropagation();" matTooltip="Download">
                     <img src="./assets/download_ash.svg" class="actionstable">
                     <!-- <span class="actionsspan">Download</span> -->
                   </div>
 
                   <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px"
-                    (click)="sideNavStatus=true;openSendMailDialog(row.documentID)" matTooltip="Send Mail">
+                    (click)="sideNavStatus=true;openSendMailDialog(row.documentID);$event.stopPropagation();" matTooltip="Send Mail">
                     <img src="./assets/iconmonstr-paper-plane-2 (2).svg" class="actionstable">
                     <!-- <span class="actionsspan"  >send</span> -->
                   </div>
                   <div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="5px" class="pointer"
-                    (click)="Deleteleaserow(row.documentID);" matTooltip="Delete">
+                    (click)="Deleteleaserow(row.documentID);$event.stopPropagation();" matTooltip="Delete">
                     <img src="./assets/iconmonstr-trash-can-28.svg" class="actionstable">
                     <!-- <span class="actionsspan">Delete</span> -->
                   </div>
