@@ -143,12 +143,12 @@
                 margin-top: -15px !important;
             }
                 .subTitel{
-                    font-size: 8px;
+                    font-size: 9px;
                     font-weight: 600;
                     font-family: 'poppins-semi' !important;
                     text-align: left;
                     color: #acacac;
-                    padding-top: 10px !important;
+                    padding-top: 4px !important;
                 }
                 .inputdivision{
                     background-color: #f4f4f4;
@@ -409,6 +409,9 @@
         }
         .mat-mini-fab.mat-button-disabled.mat-button-disabled {
             background-color: #26009c;
+        }
+        .sliderpart{
+            pointer-events: none;
         }
     }
     

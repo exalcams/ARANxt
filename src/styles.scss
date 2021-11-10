@@ -87,3 +87,10 @@ body { margin: 0; font-family:  'poppins' !important  }
   //     height: 6px !important;
   //     margin: 7.5px !important;
   // }
+  .mat-calendar-body-label, .mat-calendar-period-button {
+    font-size: 12px !important;
+    font-weight: 500;
+}
+.mat-calendar-body {
+  font-size: 11px !important;
+}

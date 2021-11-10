@@ -326,37 +326,7 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
   }
 
   saveNewDraft() {
-    this.editor_mode = 1
-    // console.log("savednewlease",this.savedNewLease);
-
-    if (this.savednewLeaseHasval) {
-      this.commonlease.documentOwner = this.savedNewLease.documentOwner;
-      this.commonlease.documentType = this.savedNewLease.documentType;
-      this.commonlease.documentName = this.savedNewLease.documentName;
-      const dialogConfig: MatDialogConfig = {
-        data: {
-          name: this.commonlease.documentName,
-          owner: this.commonlease.documentOwner,
-          type: this.commonlease.documentType
-        },
-        panelClass: "draft-dialog"
-      };
-      const dialogRef = this.dialog.open(DraftDialogComponent, dialogConfig);
-      dialogRef.disableClose = true;
-      dialogRef.afterClosed().subscribe(res => {
-        if (res) {
-          this.leaseDraft1.documentName = res.documentName;
-          this.leaseDraft1.documentOwner = res.documentOwner;
-          this.leaseDraft1.documentType = res.documentType;
-          this.saveLeaseDraft(this.leaseDraft1);
-        }
-
-      })
-    }
-    else {
-      this.openDraftDialog(1);
-
-    }
+    this.openDraftDialog(1);
   }
 
   saveDraft1() {
@@ -366,7 +336,7 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
 
         this.commonlease.documentOwner = res.documentOwner,
           this.commonlease.documentType = res.documentType,
-          this.commonlease.documentName = res.documentName,
+          this.commonlease.documentName = this.fileNameEdit1.value,
           console.log("saveDraft1", this.leaseDraft1);
 
 
@@ -402,8 +372,8 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
       if (res) {
         this.commonlease.documentOwner = res.documentOwner,
           this.commonlease.documentType = res.documentType,
-          this.commonlease.documentName = res.documentName,
-          console.log("saveDraft1", this.leaseDraft1);
+          this.commonlease.documentName = this.fileNameEdit2.value,
+          console.log("saveDraft1", this.leaseDraft2);
 
         // this.openDraftDialog(3);
 
@@ -438,7 +408,7 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
     const dialogRef = this.dialog.open(DraftDialogComponent,
       {
         panelClass: "draft-dialog",
-        data: { name: this.docName }
+        data: { name: this.fileNameNew.value }
       }
     );
     dialogRef.disableClose = true;
@@ -450,7 +420,6 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
           this.newLeaseDraft.documentOwner = res.documentOwner;
           this.newLeaseDraft.documentType = res.documentType;
           console.log("mode1", this.newLeaseDraft);
-
           this.saveLeaseDraft(this.newLeaseDraft);
         }
         else if (mode == 2) {
@@ -874,6 +843,7 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
 
       this.notificationSnackBarComponent.openSnackBar("Saved Sucessfully", SnackBarStatus.success);
       this.getAllDrafts();
+      this.selectedPage = "draft";
       console.log("draft saved");
     },
       err => {
@@ -898,14 +868,16 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
   }
   openDratEdtitor(row: LeaseDraft) {
     console.log("row", row);
+    this.leaseDraft1=row;
     this.spinner.show();
     this.service.GetLeaseDraftDocument(row.documentID).subscribe(res => {
+      console.log(res);
       this.spinner.hide();
       this.switchSideNav.emit(true);
       this.selectedPage = 'edit';
       this.editor1 = true;
       this.editor2 = false;
-      this.leaseDraft1 = res;
+      this.leaseDraft1.documentContent = res.documentContent;
       this.fileNameEdit1.setValue(row.documentName);
       this.editor1change = false;
     },
@@ -922,38 +894,44 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
       this.switchSideNav.emit(true);
       console.log("openMultiDraftEditor", this.selection.selected);
       this.selectedPage = 'edit';
+      this.editor1 = true;
+      this.editor2 = true;
       if (this.selection.selected.length >= 2) {
         this.service.GetLeaseDraftDocument(this.selection.selected[0].documentID).subscribe(res => {
-          console.log(" this.leaseDraft1", this.leaseDraft1);
-
-          this.leaseDraft1 = res;
-          this.fileNameEdit1.setValue(this.selection.selected[0].documentName);
-          this.editor1 = true;
-          this.cdr.detectChanges();
+          this.leaseDraft1.documentContent = res.documentContent;
+          this.leaseDraft1.documentID=this.selection.selected[0].documentID;
+          this.leaseDraft1.documentName=this.selection.selected[0].documentName;
+          this.leaseDraft1.documentType=this.selection.selected[0].documentType;
+          this.leaseDraft1.documentOwner=this.selection.selected[0].documentOwner;
+          console.log("leaseDraft1", this.leaseDraft1);
         });
         this.service.GetLeaseDraftDocument(this.selection.selected[1].documentID).subscribe(res => {
-          console.log(" this.leaseDraft2", this.leaseDraft2);
-          this.leaseDraft2 = res;
-          this.fileNameEdit2.setValue(this.selection.selected[1].documentName);
-          this.editor2 = true;
-          this.cdr.detectChanges();
-        })
+          this.leaseDraft2.documentContent = res.documentContent;
+          this.leaseDraft2.documentID=this.selection.selected[1].documentID;
+          this.leaseDraft2.documentName=this.selection.selected[1].documentName;
+          this.leaseDraft2.documentType=this.selection.selected[1].documentType;
+          this.leaseDraft2.documentOwner=this.selection.selected[1].documentOwner;
+          console.log("leaseDraft2", this.leaseDraft2);
+        });
+        this.fileNameEdit1.setValue(this.selection.selected[0].documentName);
+        this.fileNameEdit2.setValue(this.selection.selected[1].documentName);
       }
       else {
-        //  this.spinner.show();
-        // this.leaseDraft1 = this.selection.selected[0];
+        this.editor1 = true;
+        this.editor2 = false;
         this.service.GetLeaseDraftDocument(this.selection.selected[0].documentID).subscribe(res => {
-          this.leaseDraft1 = res;
-          console.log("LeaseDrafts", res);
-          this.editor1 = true;
-          this.editor2 = false;
-          this.cdr.detectChanges();
+          this.leaseDraft1.documentContent = res.documentContent;
+          this.leaseDraft1.documentID=this.selection.selected[0].documentID;
+          this.leaseDraft1.documentName=this.selection.selected[0].documentName;
+          this.leaseDraft1.documentType=this.selection.selected[0].documentType;
+          this.leaseDraft1.documentOwner=this.selection.selected[0].documentOwner;
+          this.fileNameEdit1.setValue(this.selection.selected[0].documentName);
+          console.log(" leaseDraft1", this.leaseDraft1);
         },
           err => {
             this.spinner.hide();
             console.log(err);
-          })
-
+          });
       }
     }
   }
@@ -1053,40 +1031,37 @@ export class LeasemanagementComponent implements OnInit, OnChanges {
   sideNavStatus($event) {
     this.switchSideNav.emit($event);
   }
+
+  isSaved1: boolean = true;
+  isSaved2: boolean = true;
   autoSaveDraft() {
     if (this.editor1change) {
-      var doc = new LeaseDraftDocumentView();
-      doc.documentID = this.leaseDraft1.documentID;
-      doc.documentContent = this.leaseDraft1.documentContent;
-      this.saveLeaseDraftDocument(doc, 1);
-    }
-    if (this.editor2change) {
-      var doc = new LeaseDraftDocumentView();
-      doc.documentID = this.leaseDraft2.documentID;
-      doc.documentContent = this.leaseDraft2.documentContent;
-      this.saveLeaseDraftDocument(doc, 2);
-    }
-  }
-  isSaved1: boolean = false;
-  isSaved2: boolean = false;
-  saveLeaseDraftDocument(draftDocument: LeaseDraftDocumentView, editor: number) {
-    if (editor == 1) {
-      this.isSaved1 = true;
-    }
-    else {
-      this.isSaved2 = true;
-    }
-    this.service.SaveLeaseDraftDocument(draftDocument).subscribe(() => {
-      console.log("document saved");
-      if (editor == 1) {
+      this.isSaved1=false;
+      this.leaseDraft1.documentName=this.fileNameEdit1.value;
+      this.service.SaveLeaseDraft(this.leaseDraft1).subscribe(()=>{
+        console.log("draft 1 saved");
         this.editor1change = false;
-      }
-      else {
-        this.editor2change = false;
-      }
-    },
-      err => {
+        setTimeout(()=>{
+          this.isSaved1=true;
+        },2000);
+      },
+      err=>{
         console.log(err);
       });
+    }
+    if (this.editor2change) {
+      this.isSaved2=false;
+      this.leaseDraft2.documentName=this.fileNameEdit2.value;
+      this.service.SaveLeaseDraft(this.leaseDraft2).subscribe(()=>{
+        console.log("draft 2 saved");
+        this.editor2change = false;
+        setTimeout(()=>{
+          this.isSaved2=true;
+        },2000);
+      },
+      err=>{
+        console.log(err);
+      });
+    }
   }
 }
